@@ -15,7 +15,7 @@
 get_header();
 ?>
 
-	testing
+	hello
 
 <?php
 get_footer();
