@@ -1,0 +1,230 @@
+.top_green_gradient{
+    position: relative;
+}
+
+.top_green_gradient::before{
+    content:"";
+    position: absolute;
+    left: 0px;
+    top:0px;
+    width: 100%;
+    height: 300px;
+    background: linear-gradient(0deg, rgba(210,222,210,0) 0%, rgba(210,222,210,1) 100%); 
+}
+
+
+/* ink_bg */
+
+.plain_bg{
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+    height: 100%;
+    /* background: linear-gradient(0deg, rgba(242,238,238,0) 0%, rgba(242,238,238,1) 30%); 
+    z-index: 2; */
+}
+
+.ink_bg{
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+    height: auto;
+}
+
+
+.ink_bg1{
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+    height: 150%;
+}
+
+.ink_bg1 img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position:top;
+}
+
+.ink_bg3{
+    position: absolute;
+    width: auto;
+    top:-100%;
+    right: 0px;
+    height: 200%;
+}
+
+.ink_bg4{
+    position: absolute;
+    top:20%;
+    right: 0px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.ink_bg5{
+    position: absolute;
+    top:0%;
+    right: 0px;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+
+.ink_bg6{
+    position: absolute;
+    top:0%;
+    right: 0px;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.ink_bg7{
+    position: absolute;
+    top:0%;
+    margin-top: -25%;
+    left: 0px;
+    width: 100%;
+    object-fit: cover;
+    object-position: bottom center;
+}
+
+.ink_bg8_wrapper{
+    padding-bottom: 25%;
+    position: relative;
+}
+
+.ink_bg8{
+    position: absolute;
+    top:0%;
+    right: 0px;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.ink_bg9_wrapper{
+    padding-bottom: 25%;
+    position: relative;
+}
+
+.ink_bg9{
+    position: absolute;
+    top:0%;
+    right: 0px;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.ink_bg10_wrapper{
+    position: absolute;
+    top:100%
+}
+
+.ink_bg10{
+    width: 100%;
+    height: auto;
+}
+
+
+.ink_bg11_wrapper{
+    position: absolute;
+    top:0%
+}
+
+.ink_bg11{
+    width: 100%;
+    height: auto;
+}
+
+.ink_bg12_wrapper{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top:100px;
+    overflow: hidden;
+}
+
+.ink_bg12{
+    position: absolute;
+    top:-20%;
+    right: 0px;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.ink_bg13_wrapper{
+    position: absolute;
+    top:0%
+}
+
+.ink_bg13{
+    width: 100%;
+    height: auto;
+}
+
+
+.brush_bg{
+    position: absolute;
+    left: 0px;
+    top:0px;
+    width: 100%;
+    height: 100%;;
+    background-image: url(images/ink_bg2.jpg);
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+}
+
+@media screen and (max-width: 800px) { 
+
+    .ink_bg1{
+        position: absolute;
+        left: 0px;
+        bottom: 0px;
+        width: 100%;
+        height: auto;
+    }
+
+    .ink_bg1 img{
+        width: 100%;
+        height: auto;
+    }
+
+
+    .loadfinish .scrollinbottom.startani.ink_bg1{
+        opacity: 0.5;
+    }
+    .loadfinish .scrollinbottom.startani.ink_bg3{
+        opacity: 0.5;
+    }
+    .loadfinish .scrollinbottom.startani.ink_bg4{
+        opacity: 0.5;
+    }
+    .loadfinish .scrollinbottom.startani.ink_bg5{
+        opacity: 0.5;
+    }
+    .loadfinish .scrollinbottom.startani.ink_bg6{
+        opacity: 0.5;
+    }
+    .brush_bg{
+        opacity: 0.5;
+    }
+    
+    .loadfinish .scrollinbottom.startani.ink_bg12 {
+        opacity: 0.5;
+        top: 0%;
+      }
+    
+    .loadfinish .scrollinbottom.startani.ink_bg13 {
+        opacity: 0.5;
+      }
+}

@@ -1,0 +1,17 @@
+.acf-field-flexible-content[data-enable-grid="true"] .values {
+    display: flex !important;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+.acf-field-flexible-content[data-enable-grid="true"] .layout {
+    display: inline-block;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+.acf-field-flexible-content[data-enable-grid="true"] .layout:first-child + .layout.ui-sortable-placeholder{
+    margin-top: 0px !important;
+}

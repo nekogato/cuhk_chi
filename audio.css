@@ -1,0 +1,127 @@
+.audio-player {
+  background: white;
+}
+
+.audio-player .player-controls {
+	position: relative;
+  height: 25px;
+}
+.audio-player .player-controls progress {
+  width: 100%;
+  height: 25px;
+	opacity:0;
+	cursor: pointer;
+}
+.audio-player .player-controls progress[value] {
+  height: 25px;
+}
+
+.play-btn-td, .pause-btn-td{
+  width: 25px;
+  padding-left: 0px !important;
+}
+
+.audio_title{
+	text-align: center;
+	color:#000;
+	margin-bottom: 5px;
+}
+
+.time-td{
+	vertical-align: middle;
+  width: 25px;
+  white-space: nowrap;
+}
+
+.audio-player .play-btn {
+
+  background-image: url("images/play.png");
+  background-size: 14px 19px;
+  width: 50px;
+  height: 50px;
+	background-position: 53% center;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	border-radius: 100%;
+	border:1px solid #000;
+
+}
+
+.audio-player .pause-btn {
+  background-image: url("images/pause.png");
+  background-size: 14px 19px;
+  width: 50px;
+  height: 50px;
+	background-position: center center;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	border-radius: 100%;
+	border:1px solid #000;
+}
+
+.audio-player .play-btn.active, .audio-player .pause-btn.active{
+	display: none;
+}
+
+.audio-player table{
+	width:100%;
+}
+
+.audio-player td{
+	vertical-align: middle;
+}
+
+.audio-player td+td{
+	padding-left: 20px;
+}
+
+.pbg{
+	position: absolute;
+	top:0%;
+	bottom:0%;
+	margin: auto;
+	left:0%;
+	height:2px;
+	width:100%;
+	background-color: #000000;
+	pointer-events:none;
+}
+
+.pbar{
+	position: absolute;
+	top:0%;
+	bottom:0%;
+	margin: auto;
+	left:0%;
+	height:25px;
+	width:5px;
+	pointer-events:none;
+
+}
+
+.pbar::before{
+	content:"";
+	position: absolute;
+	width: 10px;
+	height: 10px;
+	left: 50%;
+	top:50%;
+	margin-left: -5px;
+	margin-top: -5px;
+	background-color: #000000;
+	border-radius: 100%;
+}
+
+@media screen and (max-width: 800px) { 
+	.audio-player .play-btn {
+		background-size: 7px 9px;
+		width: 25px;
+		height: 25px;
+	}
+
+	.audio-player .pause-btn {
+		background-size: 7px 9px;
+		width: 25px;
+		height: 25px;
+	  }
+}

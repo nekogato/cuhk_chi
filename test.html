@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<style>
+    .sticky_menu {
+  position: sticky;
+  top: 80px;
+  background: white;
+  transition: all 0.3s ease;
+}
+
+.sticky_menu.is-stuck {
+  background-color: #f0f0f0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.sentinel {
+  position: absolute;
+  top: 0;
+  height: 1px;
+  width: 100%;
+}
+
+</style>
+	<body>
+        
+    <p>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a</p>
+    <p>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a</p>
+        <div class="sentinel"></div>
+        <div class="sticky_menu">Sticky 1</div>
+         
+          
+        <p>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a</p>
+        <p>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a</p>
+          <div class="sticky-wrapper">
+            <div class="sentinel"></div>
+            <div class="sticky_menu">Sticky 2</div>
+            <p>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a</p>
+            <p>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a</p>
+            <p>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>end</p>
+        </div>
+          <p>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a</p>
+          <p>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a</p>
+          <p>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a</p>
+        <script>
+            document.querySelectorAll('.sticky-wrapper').forEach(wrapper => {
+  const sticky = wrapper.querySelector('.sticky_menu');
+  const sentinel = wrapper.querySelector('.sentinel');
+
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (!entry.isIntersecting) {
+        sticky.classList.add('is-stuck');
+      } else {
+        sticky.classList.remove('is-stuck');
+      }
+    },
+    { threshold: [0] }
+  );
+
+  observer.observe(sentinel);
+});
+
+        </script>
+	</body>
+</html>

@@ -1,0 +1,218 @@
+@import url("vf.css");
+@import url("vf-italic.css");
+
+@font-face {
+    font-family: 'area-extended';
+    src: url('AreaExtended-BlackItalic.woff2') format('woff2'),
+        url('AreaExtended-BlackItalic.woff') format('woff');
+    font-weight: 900;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'area-extended';
+    src: url('AreaExtended-Black.woff2') format('woff2'),
+        url('AreaExtended-Black.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'area-extended';
+    src: url('AreaExtended-ThinItalic.woff2') format('woff2'),
+        url('AreaExtended-ThinItalic.woff') format('woff');
+    font-weight: 100;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'area-extended';
+    src: url('AreaExtended-RegularItalic.woff2') format('woff2'),
+        url('AreaExtended-RegularItalic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'area-extended';
+    src: url('AreaExtended-SemiBoldItalic.woff2') format('woff2'),
+        url('AreaExtended-SemiBoldItalic.woff') format('woff');
+    font-weight: 600;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'area-extended';
+    src: url('AreaExtended-BoldItalic.woff2') format('woff2'),
+        url('AreaExtended-BoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'area-extended';
+    src: url('AreaExtended-Thin.woff2') format('woff2'),
+        url('AreaExtended-Thin.woff') format('woff');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'area-extended';
+    src: url('AreaExtended-SemiBold.woff2') format('woff2'),
+        url('AreaExtended-SemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'area-extended';
+    src: url('AreaExtended-Regular.woff2') format('woff2'),
+        url('AreaExtended-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'area-extended';
+    src: url('AreaExtended-Bold.woff2') format('woff2'),
+        url('AreaExtended-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'area-extended';
+    src: url('AreaExtended-ExtraBoldItalic.woff2') format('woff2'),
+        url('AreaExtended-ExtraBoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'area-normal';
+    src: url('AreaNormal-BlackItalic.woff2') format('woff2'),
+        url('AreaNormal-BlackItalic.woff') format('woff');
+    font-weight: 900;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'area-normal';
+    src: url('AreaNormal-Black.woff2') format('woff2'),
+        url('AreaNormal-Black.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'area-extended';
+    src: url('AreaExtended-ExtraBold.woff2') format('woff2'),
+        url('AreaExtended-ExtraBold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'area-normal';
+    src: url('AreaNormal-Bold.woff2') format('woff2'),
+        url('AreaNormal-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'area-normal';
+    src: url('AreaNormal-ExtraBold.woff2') format('woff2'),
+        url('AreaNormal-ExtraBold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'area-normal';
+    src: url('AreaNormal-ExtraBoldItalic.woff2') format('woff2'),
+        url('AreaNormal-ExtraBoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'area-normal';
+    src: url('AreaNormal-Regular.woff2') format('woff2'),
+        url('AreaNormal-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'area-normal';
+    src: url('AreaNormal-Thin.woff2') format('woff2'),
+        url('AreaNormal-Thin.woff') format('woff');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'area-normal';
+    src: url('AreaNormal-ThinItalic.woff2') format('woff2'),
+        url('AreaNormal-ThinItalic.woff') format('woff');
+    font-weight: 100;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'area-normal';
+    src: url('AreaNormal-RegularItalic.woff2') format('woff2'),
+        url('AreaNormal-RegularItalic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'area-normal';
+    src: url('AreaNormal-SemiBold.woff2') format('woff2'),
+        url('AreaNormal-SemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'area-normal';
+    src: url('AreaNormal-BoldItalic.woff2') format('woff2'),
+        url('AreaNormal-BoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'area-normal';
+    src: url('AreaNormal-SemiBoldItalic.woff2') format('woff2'),
+        url('AreaNormal-SemiBoldItalic.woff') format('woff');
+    font-weight: 600;
+    font-style: italic;
+    font-display: swap;
+}

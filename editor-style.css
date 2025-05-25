@@ -1,0 +1,240 @@
+/*
+Theme Name: cuhk_chi
+*/
+
+@import url("reset.css");
+
+body#tinymce.wp-editor { 
+	color: #736562;
+	background-color:#ece6e5;
+    padding: 4px 8px;
+}
+ 
+body#tinymce.wp-editor a {
+    text-decoration: underline;
+    color: #736562;
+}
+
+body#tinymce.wp-editor a:hover{
+    opacity: 0.5;
+}
+		
+body#tinymce.wp-editor h1, body#tinymce.wp-editor h2, body#tinymce.wp-editor h3, body#tinymce.wp-editor h4, body#tinymce.wp-editor h5, body#tinymce.wp-editor h6{
+	margin-top:30px;
+	margin-bottom:0px;
+	display:block;
+}		
+		
+body#tinymce.wp-editor h1:first-child, body#tinymce.wp-editor h2:first-child, body#tinymce.wp-editor h3:first-child, body#tinymce.wp-editor h4:first-child, body#tinymce.wp-editor h5:first-child, body#tinymce.wp-editor h6:first-child{
+	margin-top:0px;
+}		
+	
+body#tinymce.wp-editor p{
+    margin-top: 30px;
+	margin-bottom:0px;
+}		
+	
+body#tinymce.wp-editor p:first-child{
+    margin-top: 0px;
+	margin-bottom:0px;
+}
+
+body#tinymce.wp-editor {
+	font-family:  "area-normal","Noto Sans TC", sans-serif;
+	font-size: calc(10px + 0.3vw);
+	line-height:1.5em;
+	font-weight: 400;
+	color: #736562;
+    min-height: 0vw;
+}
+	
+
+body#tinymce.wp-editor h1 + p,
+body#tinymce.wp-editor h2 + p,
+body#tinymce.wp-editor h3 + p,
+body#tinymce.wp-editor h4 + p,
+body#tinymce.wp-editor h5 + p,
+body#tinymce.wp-editor h6 + p{
+    margin-top: 5px;
+}
+
+body#tinymce.wp-editor h1 + *,
+body#tinymce.wp-editor h2 + *,
+body#tinymce.wp-editor h3 + *,
+body#tinymce.wp-editor h4 + *,
+body#tinymce.wp-editor h5 + *,
+body#tinymce.wp-editor h6 + *{
+    margin-top: 5px;
+}
+
+body#tinymce.wp-editor h1,
+body#tinymce.wp-editor h2,
+body#tinymce.wp-editor h3,
+body#tinymce.wp-editor h4,
+body#tinymce.wp-editor h5,
+body#tinymce.wp-editor h6{
+	font-weight: 600;
+}
+
+body#tinymce.wp-editor a{
+    opacity: 1;
+    text-decoration: underline;
+}
+body#tinymce.wp-editor a:hover{
+    opacity: 0.5;
+}
+
+body#tinymce.wp-editor img{
+    max-width: 100%;
+	height: auto;
+}
+
+body#tinymce.wp-editor ol {
+    margin-top: 20px;
+}
+
+body#tinymce.wp-editor ol:first-child {
+    margin-top: auto;
+}
+
+body#tinymce.wp-editor ol ol, body#tinymce.wp-editor ol ul{
+    margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+body#tinymce.wp-editor ol ol:first-child, body#tinymce.wp-editor ol ul:first-child{
+    margin-top: 20px;
+}
+
+body#tinymce.wp-editor ul ol, body#tinymce.wp-editor ul ul{
+    margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+body#tinymce.wp-editor ul ol:first-child, body#tinymce.wp-editor ul ul:first-child{
+    margin-top: 20px;
+}
+
+body#tinymce.wp-editor ol li{
+	list-style:decimal;
+	margin-left:1em;
+	}	
+	
+body#tinymce.wp-editor ol > li+li{
+	margin-top: 15px;
+	}
+
+body#tinymce.wp-editor ul {
+    margin-top: 20px;
+}	
+
+body#tinymce.wp-editor ul:first-child {
+    margin-top: auto;
+}
+	
+body#tinymce.wp-editor ul li{
+	list-style:none;
+	margin-left:1em;
+	}	
+
+body#tinymce.wp-editor ul li::before{
+	content:"•";
+	position: absolute;
+	margin-left: -1em;
+
+}	
+	
+body#tinymce.wp-editor ul li+li{
+	}
+
+body#tinymce.wp-editor strong, body#tinymce.wp-editor b{
+    font-weight: 600 !important;
+}
+
+body#tinymce.wp-editor i, body#tinymce.wp-editor em{
+	font-style: italic;
+}
+
+body#tinymce.wp-editor h1{
+	font-family: "area-normal", "Noto Sans TC", sans-serif;
+	font-size: calc(10px + 2vw);
+	line-height:1.2em;
+    min-height: 0vw;
+}	
+
+body#tinymce.wp-editor h2{
+	font-family: "area-normal", "Noto Sans TC", sans-serif;
+	font-size: calc(10px + 1.8vw);
+	line-height:1.2em;
+    min-height: 0vw;
+}	
+	
+body#tinymce.wp-editor h3{
+	font-family: "area-normal", "Noto Sans TC", sans-serif;
+	font-size: calc(10px + 1.6vw);
+	line-height:1.3em;
+    min-height: 0vw;
+	letter-spacing: 0.01em;
+}	
+
+body#tinymce.wp-editor h4{
+	font-family: "area-normal", "Noto Sans TC", sans-serif;
+	font-size: calc(10px + 1vw);
+	line-height:1.4em;
+    min-height: 0vw;
+	letter-spacing: 0.01em;
+	}	
+	
+body#tinymce.wp-editor h5{
+	font-family: "area-normal", "Noto Sans TC", sans-serif;
+	font-size: calc(10px + 0.6vw);
+	line-height:1.4em;
+    min-height: 0vw;
+	letter-spacing: 0.01em;
+	}	
+	
+body#tinymce.wp-editor h6{
+	font-family: "area-normal", "Noto Sans TC", sans-serif;
+	font-size: calc(10px + 0.4vw);
+	line-height:1.4em;
+    min-height: 0vw;
+	}	
+	
+body#tinymce.wp-editor hr{
+	background:none;
+	border:none;
+	border-top:1px solid #F0F0F0;
+	margin-top:40px;
+	margin-bottom:40px;
+	}
+
+body#tinymce.wp-editor img{
+    max-width: 100%;
+    height:auto;
+}
+
+/* btn */
+
+body#tinymce.wp-editor .round_btn{
+	background: none;
+	border:none;
+	border-radius: 999px;
+	text-transform: uppercase;
+	line-height: 1em;
+	padding: 5px 10px;
+	border:1px solid #6a5d9d;
+	color:#6a5d9d;
+	cursor: pointer;
+	text-decoration: none !important;
+	display: inline-block;
+}
+
+@-moz-document url-prefix() {
+    body#tinymce.wp-editor .round_btn{ padding-top: 8px; padding-bottom: 4px; }
+}
+
+body#tinymce.wp-editor .round_btn:hover{
+	background-color: #6a5d9d;
+	color:#fff;
+	opacity: 1 !important;
+}
