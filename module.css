@@ -344,6 +344,10 @@ justify-content: center;
     font-weight: 600;
 }
 
+.section_smalltitle{
+    color:#6f6ea6;
+}
+
 .section_subtitle{
     margin: auto;
     text-align: center;
@@ -2823,6 +2827,7 @@ justify-content: center;
     font-weight: 100;
 }
 
+
 .featured_news_box_section .news_box .title_wrapper{
     overflow: hidden;
     padding-left: 20px;
@@ -4087,12 +4092,17 @@ justify-content: center;
 
 /* committee_list_slider */
 
-.committee_list .title + ul{
+.section_intro_no_bg + .section_committee{
+    padding-top: 0px;
+}
+
+.committee_list .section_smalltitle + ul{
     margin-top: 20px;
 }
 
-.committee_list .title{
-    color:#6f6ea6;
+
+.committee_list.free_text ol li + li{
+    margin-top: 5px;
 }
 
 .committee_list_slider{
@@ -4100,8 +4110,14 @@ justify-content: center;
     position: relative;
 }
 
+.committee_list_slider > .swiper-container{
+    margin-left: 80px;
+    margin-right: 80px;
+}
+
 .committee_list_slider .name{
     color:#6f6ea6;
+    font-weight: 600;
 }
 
 .committee_list_slider .name + .description{
@@ -4110,7 +4126,6 @@ justify-content: center;
 
 
 .committee_list_slider .description{
-    padding: 20px;
     position: relative;
 }
 
@@ -4145,10 +4160,37 @@ justify-content: center;
 
 .committee_list_slider .description .free_text thead td{
     color:#62629e;
-    padding-bottom: 15px;
+    padding: 10px 40px;
 }
 
 
+.committee_list_slider .description .free_text tbody td{
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.committee_list_slider .description .free_text tbody{
+    position: relative;
+}
+
+.committee_list_slider .description .free_text tbody tr:first-child td{
+    padding-top: 10px;
+}
+
+.committee_list_slider .description .free_text tbody::before{
+    content:"";
+    position: absolute;
+    left: 0px;
+    top:0px;
+    width: 100%;
+    height: 80px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 100%); 
+    pointer-events: none;
+}
+
+.committee_list_slider .description .free_text tbody tr{
+    position: relative;
+}
 
 
 .committee_list_slider .prev_btn{
@@ -4176,7 +4218,7 @@ justify-content: center;
     bottom: 0px;
     left: 0px;
     margin: auto;
-    background-color: #ae6364;
+    background-color: #059F9F;
 }
 
 .committee_list_slider .prev_btn:hover::before{
@@ -4195,8 +4237,8 @@ justify-content: center;
     left: 5px;
     margin: auto;
     transform: rotate(-45deg);
-    border-top:1px solid #ae6364;
-    border-left:1px solid #ae6364;
+    border-top:1px solid #059F9F;
+    border-left:1px solid #059F9F;
 }
 
 .committee_list_slider .prev_btn:hover::after{
@@ -4229,7 +4271,7 @@ justify-content: center;
     bottom: 0px;
     right: 0px;
     margin: auto;
-    background-color: #ae6364;
+    background-color: #059F9F;
 }
 
 .committee_list_slider .next_btn:hover::before{
@@ -4248,12 +4290,338 @@ justify-content: center;
     right: 5px;
     margin: auto;
     transform: rotate(45deg);
-    border-top:1px solid #ae6364;
-    border-right:1px solid #ae6364;
+    border-top:1px solid #059F9F;
+    border-right:1px solid #059F9F;
 }
 
 .committee_list_slider .next_btn:hover::after{
     right:-5px;
+}
+
+.section_committee_album{
+    overflow: hidden;
+}
+
+.section_committee_album .section_smalltitle{
+    margin-bottom: 30px;
+    color: #575792;
+}
+
+.committee_albums_slider{
+    position: relative;
+}
+
+
+
+.committee_albums_slider > .swiper-container{
+    overflow: visible;
+    margin-right: -50%;
+    margin-left: 80px;
+}
+
+.committee_album_slider .swiper-slide{
+    padding-bottom: 50%;
+    position: relative;  
+    overflow: hidden;
+}
+
+.committee_albums_slider .album_title{
+    margin-bottom: 10px;
+    color: #575792;
+    font-weight: 600;
+}
+
+
+.committee_albums_slider .prev_btn{
+    -webkit-transition: right 0.3s cubic-bezier(0.77, 0, 0.175, 1) 0s; 
+    transition: right 0.3s cubic-bezier(0.77, 0, 0.175, 1) 0s; 
+    width: 100px;
+    height: 60px;
+    z-index: 9;
+    border-radius: 999px;
+    cursor: pointer;
+    position: absolute;
+    top:50%;
+    margin-top: -30px;
+    left: 0px;
+}
+
+.committee_albums_slider .prev_btn::before{
+    -webkit-transition: left 0.3s cubic-bezier(0.77, 0, 0.175, 1) 0s; 
+    transition: left 0.3s cubic-bezier(0.77, 0, 0.175, 1) 0s; 
+    content:"";
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    top:0px;
+    bottom: 0px;
+    left: 0px;
+    margin: auto;
+    background-color: #059F9F;
+}
+
+.committee_albums_slider .prev_btn:hover::before{
+    left:-10px;
+}
+
+.committee_albums_slider .prev_btn::after{
+    -webkit-transition: left 0.3s cubic-bezier(0.77, 0, 0.175, 1) 0s; 
+    transition: left 0.3s cubic-bezier(0.77, 0, 0.175, 1) 0s; 
+    content:"";
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top:0px;
+    bottom: 0px;
+    left: 5px;
+    margin: auto;
+    transform: rotate(-45deg);
+    border-top:1px solid #059F9F;
+    border-left:1px solid #059F9F;
+}
+
+.committee_albums_slider .prev_btn:hover::after{
+    left:-5px;
+}
+
+.committee_albums_slider .next_btn{
+    -webkit-transition: right 0.3s cubic-bezier(0.77, 0, 0.175, 1) 0s; 
+    transition: right 0.3s cubic-bezier(0.77, 0, 0.175, 1) 0s; 
+    width: 100px;
+    height: 60px;
+    margin: auto;
+    z-index: 9;
+    border-radius: 999px;
+    cursor: pointer;
+    position: absolute;
+    top:50%;
+    margin-top: -30px;
+    right: 0px;
+}
+
+.committee_albums_slider .next_btn::before{
+    -webkit-transition: right 0.3s cubic-bezier(0.77, 0, 0.175, 1) 0s; 
+    transition: right 0.3s cubic-bezier(0.77, 0, 0.175, 1) 0s; 
+    content:"";
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    top:0px;
+    bottom: 0px;
+    right: 0px;
+    margin: auto;
+    background-color: #059F9F;
+}
+
+.committee_albums_slider .next_btn:hover::before{
+    right:-10px;
+}
+
+.committee_albums_slider .next_btn::after{
+    -webkit-transition: right 0.3s cubic-bezier(0.77, 0, 0.175, 1) 0s; 
+    transition: right 0.3s cubic-bezier(0.77, 0, 0.175, 1) 0s; 
+    content:"";
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top:0px;
+    bottom: 0px;
+    right: 5px;
+    margin: auto;
+    transform: rotate(45deg);
+    border-top:1px solid #059F9F;
+    border-right:1px solid #059F9F;
+}
+
+.committee_albums_slider .next_btn:hover::after{
+    right:-5px;
+}
+
+
+.committee_album_slider img{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    object-position: center center;
+    object-fit: cover;
+
+}
+
+
+.committee_album_slider .dot_wrapper{
+    display: flex;
+    justify-content: start;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.committee_album_slider .dot_wrapper .swiper-pagination-bullet{
+    border:1px solid #6F6EA6;
+    background-color: transparent;
+    opacity: 1;
+}
+
+.committee_album_slider .dot_wrapper .swiper-pagination-bullet-active{
+    background-color: #6F6EA6;
+}
+
+
+.section_committee_sns .section_smalltitle{
+    color: #6F6EA6;
+}
+
+.section_committee_sns ul{
+	display: flex;
+	flex-direction: row;
+	gap: 20px;
+	justify-content: start;
+    margin-top: 30px;
+}
+
+.section_committee_sns a {
+  height: 24px;
+  width: 24px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: block;
+  pointer-events: auto;
+}
+
+.section_committee_sns a:hover{
+    opacity: 0.5;
+}
+
+/* section_alumni_btn */
+
+.section_alumni_btn .section_smalltitle{
+    color:#62629b;
+}
+
+.section_alumni_btn ul{
+    display: flex;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.section_alumni_btn .round_btn{
+    border:1px #62629b solid;
+    color:#62629b;
+}
+
+.section_alumni_btn .round_btn:hover{
+    border:1px #62629b solid;
+    color:#fff;
+    background-color: #62629b;
+}
+
+.alumni_news_box_section .section_smalltitle{
+    color:#62629b;
+}
+
+.alumni_news_box_section .section_smalltitle + .col_wrapper{
+    margin-top: 30px;
+}
+
+.alumni_news_box_section .news_box .date_wrapper{
+    color:#736562;  
+    font-weight: 400;
+}
+
+.alumni_news_box_section .news_box .title_wrapper .description{
+    color:#736562;
+    margin-top: 20px;
+}
+
+.alumni_news_box_section .news_box .title_wrapper .btn_wrapper{
+    color:#736562;
+    margin-top: 30px;
+}
+
+.alumni_news_box_section .flex{
+    gap: 50px 0px;
+}
+
+.alumni_story_section .section_smalltitle{
+    font-family: "richmond-text","Chiron Sung HK WS", sans-serif;
+    color:#62629b;
+}
+
+.alumni_story_section  .thumb_text_box_slider_wrapper{
+    margin-top: 30px;
+}
+
+.alumni_story_section .thumb_text_box_slider_wrapper .swiper-slide .title{
+    color:#62629b;
+}
+
+.border_box_item_wrapper{
+    margin-top: 30px;
+}
+
+.border_box_item_row{
+    display: flex;
+    gap: 40px;
+    overflow: hidden;
+}
+
+.border_box_item{
+    flex: 0 0 calc(25% - 30px); /* Changed flex-grow to 0 */
+    position: relative;
+    padding-bottom: 60px;
+}
+
+.border_box_item::before{
+    content:"";
+    position: absolute;
+    left: -20px;
+    top:0px;
+    bottom: 0px;
+    margin: auto;
+    border-left:1px solid #575792;
+}
+
+.border_box_item .photo{
+    position: relative;
+    margin-top: 20px;
+    padding-bottom: 56.25%;
+}
+
+.border_box_item .photo img{
+    position: absolute;
+    left: 0px;
+    top:0px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position:center center;
+}
+
+.border_box_item .t1{
+    font-family: "richmond-text","Chiron Sung HK WS", sans-serif;
+    color:#62629b;
+}
+
+.border_box_item .t2{
+    margin-top: 20px;
+}
+
+.border_box_item .btn_wrapper{
+    margin-top: 20px;
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+}
+
+.border_box_item .round_btn{
+    border:1px #62629b solid;
+    color:#62629b;
+}
+
+.border_box_item .round_btn:hover{
+    border:1px #62629b solid;
+    color:#fff;
+    background-color: #62629b;
 }
 
 

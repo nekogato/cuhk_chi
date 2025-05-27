@@ -223,6 +223,7 @@ function loading_finish(){
 	$("body").addClass("loadfinish")
 	$(".loading").fadeOut(function(){
 		doscroll();
+		dosize();
 	})
 
 
@@ -271,7 +272,6 @@ function loading_finish(){
 		});
 
 	}
-
 }
 
 
@@ -710,6 +710,48 @@ function init_function(){
 		})
 	})
 
+	$(".committee_album_slider").each(function(){
+		var $this = $(this);
+		var committee_album_slider = new Swiper($this.find(" > .swiper-container")[0], {
+			effect : 'fade',
+			fadeEffect: {
+				crossFade: true,
+			},
+			autoplay: false,
+			slidesPerView: 1,
+			speed: 1600,
+			loop: false,
+			spaceBetween: 0,
+			pagination: {
+				el: $this.find('.dot_wrapper'),
+				clickable: true
+			},
+            allowTouchMove: false
+		});
+		
+	})
+
+
+
+	$(".committee_albums_slider").each(function(){
+		var $this = $(this);
+		var committee_albums_slider = new Swiper($this.find(" > .swiper-container")[0], {
+			autoplay: false,
+			slidesPerView: 2,
+			speed: 1600,
+			loop: false,
+			spaceBetween: 50,
+		});
+
+		$this.find(".next_btn").click(function(){
+			committee_albums_slider.slideNext();
+		})
+
+		$this.find(".prev_btn").click(function(){
+			committee_albums_slider.slidePrev();
+		})
+	})
+
 	
 
 	$(".home_promotion_box").click(function(){
@@ -835,7 +877,19 @@ function dosize(){
 		
 	})
 
-	
+	do_committee_list_name_height();
+
+	function do_committee_list_name_height(){
+		$(".committee_list_slider .name").height("auto")
+		var titleheight = 0;
+		$(".committee_list_slider .name").each(function(){
+			var myheight = $(this).height();
+			if(myheight>titleheight){
+				titleheight = myheight;
+			}
+		})
+		$(".committee_list_slider .name").height(titleheight)
+	}
 }
 
 
