@@ -66,12 +66,14 @@ while (have_posts()) :
 		</div>
 	</div>
 
+
 	<div class="section plain_text_section">
 		<div class="section_center_content small_section_center_content">
-			<div class="col_wrapper">
+			<div class="col_wrapper ">
 				<div class="flex row">
 					<div class="col6 col">
-						<div class="col_spacing scrollin scrollinbottom">
+						<div class="col_spacing scrollin scrollinbottom scrollin scrollinbottom">
+							<!-- introduction -->
 							<div class="free_text">
 								<?php echo get_field("introduction") ?>
 							</div>
@@ -81,6 +83,7 @@ while (have_posts()) :
 			</div>
 		</div>
 	</div>
+
 
 	<div class="section year_list_section scrollin_p">
 		<div class="year_list_slider_wrapper scrollin scrollinbottom">
@@ -172,7 +175,7 @@ while (have_posts()) :
 									<div class="section_center_content">
 										<div class="expandable_title">
 											<div class="cat"><?php echo get_field("funding_organization"); ?></div>
-											<div class="text5"><?php echo get_field("project_title"); ?> (<?php echo get_field("funding_start_year"); ?>/<?php echo get_field("funding_end_year"); ?>)</div>
+											<div class="text5"><?php echo get_field("project_title"); ?> (<?php echo get_field("funding_start_year"); ?>/<?php echo substr(get_field("funding_end_year"), -2); ?>)</div>
 											<div class="icon"></div>
 										</div>
 										<div class="hidden">
@@ -184,7 +187,7 @@ while (have_posts()) :
 													</div>
 													<div class="table_flex_item">
 														<div class="title text7"><?php pll_e('撥款年份'); ?></div>
-														<div class="text"><?php echo get_field("funding_start_year"); ?>/<?php echo get_field("funding_end_year"); ?></div>
+														<div class="text"><?php echo get_field("funding_start_year"); ?>/<?php echo substr(get_field("funding_end_year"), -2); ?></div>
 													</div>
 												</div>
 
