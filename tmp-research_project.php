@@ -177,7 +177,7 @@ while (have_posts()) :
 									foreach ($years as $year) :
 								?>
 										<div class="swiper-slide">
-											<div><a href="?active_year=<?php echo $year; ?>" <?php echo $year === $selected_year ? 'class="active"' : ''; ?>><?php echo $year; ?></a></div>
+											<div><a href="?active_year=<?php echo $year; ?>" <?php echo $year == $selected_year ? 'class="active"' : ''; ?>><?php echo $year; ?></a></div>
 										</div>
 								<?php
 									endforeach;
