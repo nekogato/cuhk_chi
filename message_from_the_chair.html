@@ -181,8 +181,8 @@
 							<div class="col_spacing scrollin scrollinbottom">
 								<div class="text_wrapper vertical_text_wrapper absolute_vertical_text_wrapper">
 									<div class="text vertical_text">
-                                        <h4 class="project_smalltitle "><span>系主任的話:</span></h4>
-                                        <h1 class="project_title no_max_height"><span>結合傳統與現代，<br>融會中國與西方<br>同時也是中文系的使命。</span></h1>
+                                        <!-- if small_headline --><h4 class="project_smalltitle "><span>系主任的話:</span></h4>
+                                        <!-- if small_headline --><h1 class="project_title no_max_height"><span>結合傳統與現代，<br>融會中國與西方<br>同時也是中文系的使命。</span></h1>
 									</div>
 								</div>
 							</div>
@@ -190,14 +190,18 @@
 						<div class="col9 col">
 							<div class="col_spacing scrollin scrollinleft">
 								<div class="chair_photo_wrapper">
+									<!-- if chair_image -->
 									<div class="photo_wrapper col10">
 										<div class="photo">
 											<img src="images/message_from_the_chair.jpg" >
 										</div>
+										<!-- if chair_image_caption -->
 										<div class="caption">Public Lectures on History and Business in China 2024-25</div>
 									</div>
 									<div class="chair_name">
+										<!-- if chair_name -->
 										<div class="t1 text5">潘銘基</div>
+										<!-- if chair_title -->
 										<div class="t2">中國語言及文學系主任</div>
 									</div>
 								</div>
@@ -217,6 +221,7 @@
                     <div class="flex row">
                         <div class="col7 col">
                             <div class="col_spacing scrollin scrollinbottom scrollin scrollinbottom">
+								<!-- if left_free_text -->
                                 <div class="free_text">
 									<h5>本校成立於1963年，</h5>
 									<p>在此之前，三間成員書院已各有中文系。可以說，中文系比起中大有著更悠久的歷史。</p>
@@ -238,6 +243,7 @@
                         <div class="col col7">
                             <div class="col_spacing">
                                 <div class="right_content">
+									<!-- if flexible_content, please reference single-news -->
                                     <div class="flexible_layout_wrapper ">
                                         <div class="flexible_layout flexible_layout_photo scrollin scrollinleft">
                                             <div class="photo_wrapper">
