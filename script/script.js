@@ -691,6 +691,27 @@ function init_function(){
 		})
 	})
 
+	$(".committee_list_slider").each(function(){
+		var $this = $(this);
+		var committee_list_slider = new Swiper($this.find(".swiper-container")[0], {
+			autoplay: false,
+			slidesPerView: 3,
+			speed: 1600,
+			loop: true,
+			spaceBetween: 30,
+		});
+
+		$this.find(".next_btn").click(function(){
+			committee_list_slider.slideNext();
+		})
+
+		$this.find(".prev_btn").click(function(){
+			committee_list_slider.slidePrev();
+		})
+	})
+
+	
+
 	$(".home_promotion_box").click(function(){
 
 		var normal_w = $(".home_promotion_box:not(.active)").width();
