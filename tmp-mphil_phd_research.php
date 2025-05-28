@@ -1,4 +1,4 @@
-<?php /* Template Name: Research Project  */ ?>
+<?php /* Template Name: MPhil / PhD Research  */ ?>
 <?php
 /**
  * The template for displaying all pages
