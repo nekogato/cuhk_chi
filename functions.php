@@ -8,8 +8,9 @@
  * @package cuhk_chi
  */
 
-define('MPHIL_PHD_RESEARCH_MAX_POSTS', 3);
-define('PUBLICATIONS_PER_PAGE', 3);
+define('MPHIL_PHD_RESEARCH_MAX_POSTS', 6);
+define('PUBLICATIONS_PER_PAGE', 6);
+define('NEWS_PER_PAGE', 4);
 
 if (! defined('_S_VERSION')) {
 	// Replace the version number of the theme on each release.
@@ -417,7 +418,7 @@ function load_more_publications()
 					<?php endif; ?>
 				</div>
 			</div>
-<?php
+		<?php
 			$html .= ob_get_clean();
 		}
 		wp_reset_postdata();
@@ -430,3 +431,52 @@ function load_more_publications()
 }
 add_action('wp_ajax_load_more_publications', 'load_more_publications');
 add_action('wp_ajax_nopriv_load_more_publications', 'load_more_publications');
+
+function load_more_news()
+{
+	check_ajax_referer('load_more_nonce', 'nonce');
+
+	$page = $_POST['page'];
+	$offset = ($page - 1) * NEWS_PER_PAGE;
+
+	$args = array(
+		'post_type' => 'news',
+		'posts_per_page' => NEWS_PER_PAGE,
+		'offset' => $offset,
+		'orderby' => 'date',
+		'order' => 'DESC'
+	);
+
+	$query = new WP_Query($args);
+
+	if ($query->have_posts()) {
+		while ($query->have_posts()) {
+			$query->the_post();
+		?>
+			<div class="news_box col col4">
+				<div class="col_spacing scrollin scrollinbottom">
+					<div class="photo">
+						<?php if (has_post_thumbnail()): ?>
+							<img src="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'full'); ?>" alt="<?php the_title_attribute(); ?>">
+						<?php endif; ?>
+					</div>
+					<div class="text_wrapper">
+						<div class="date_wrapper text5"><?php echo get_the_date('M d'); ?></div>
+						<div class="title_wrapper">
+							<div class="title text5"><?php the_title(); ?></div>
+							<div class="btn_wrapper text8">
+								<a href="<?php the_permalink(); ?>" class="round_btn">view more</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+<?php
+		}
+		wp_reset_postdata();
+	}
+
+	die();
+}
+add_action('wp_ajax_load_more_news', 'load_more_news');
+add_action('wp_ajax_nopriv_load_more_news', 'load_more_news');

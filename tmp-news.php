@@ -14,222 +14,162 @@
  */
 
 get_header();
+
+while (have_posts()) :
+	the_post();
 ?>
+
+	<div class="section section_content section_intro">
+		<div class="section_center_content">
+			<?php if ($page_title): ?>
+				<h1 class="section_title text1 scrollin scrollinbottom"><?php echo the_title(); ?></h1>
+			<?php endif; ?>
+			<?php if ($page_description): ?>
+				<div class="section_description scrollin scrollinbottom col6"><?php echo get_field('introduction'); ?></div>
+			<?php endif; ?>
+		</div>
+	</div>
+
+	<!-- Featured News Section -->
+	<div class="section featured_news_box_section scrollin_p">
+		<div class="news_box_wrapper">
+			<div class="section_center_content">
+				<div class="col_wrapper big_col_wrapper">
+					<div class="flex row">
+						<?php
+						$featured_args = array(
+							'post_type' => 'news',
+							'posts_per_page' => 2,
+							'orderby' => 'date',
+							'order' => 'DESC'
+						);
+						$featured_query = new WP_Query($featured_args);
+
+						if ($featured_query->have_posts()) :
+							while ($featured_query->have_posts()) : $featured_query->the_post();
+						?>
+								<div class="news_box col col6">
+									<div class="col_spacing scrollin scrollinbottom">
+										<div class="photo">
+											<?php if (has_post_thumbnail()): ?>
+												<img src="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'full'); ?>" alt="<?php the_title_attribute(); ?>">
+											<?php endif; ?>
+										</div>
+										<div class="text_wrapper">
+											<div class="date_wrapper text2"><?php echo get_the_date('M d'); ?></div>
+											<div class="title_wrapper">
+												<div class="title text5"><?php the_title(); ?></div>
+												<div class="btn_wrapper text8">
+													<a href="<?php the_permalink(); ?>" class="round_btn"><?php pll_e('view more'); ?></a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+						<?php
+							endwhile;
+							wp_reset_postdata();
+						endif;
+						?>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Regular News Section -->
+	<div class="section news_box_section scrollin_p">
+		<div class="news_box_wrapper">
+			<div class="section_center_content">
+				<div class="col_wrapper">
+					<div class="flex row" id="news-container">
+						<?php
+						$args = array(
+							'post_type' => 'news',
+							'posts_per_page' => NEWS_PER_PAGE,
+							'offset' => 2,
+							'orderby' => 'date',
+							'order' => 'DESC'
+						);
+						$query = new WP_Query($args);
+
+						if ($query->have_posts()) :
+							while ($query->have_posts()) : $query->the_post();
+						?>
+								<div class="news_box col col4">
+									<div class="col_spacing scrollin scrollinbottom">
+										<div class="photo">
+											<?php if (has_post_thumbnail()): ?>
+												<img src="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'full'); ?>" alt="<?php the_title_attribute(); ?>">
+											<?php endif; ?>
+										</div>
+										<div class="text_wrapper">
+											<div class="date_wrapper text5"><?php echo get_the_date('M d'); ?></div>
+											<div class="title_wrapper">
+												<div class="title text5"><?php the_title(); ?></div>
+												<div class="btn_wrapper text8">
+													<a href="<?php the_permalink(); ?>" class="round_btn"><?php pll_e('view more'); ?></a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+						<?php
+							endwhile;
+							wp_reset_postdata();
+						endif;
+						?>
+					</div>
+					<?php if ($query->max_num_pages > 1) : ?>
+						<div class="load_more_wrapper scrollin scrollinbottom">
+							<a href="#" class="load_more_btn text5" data-page="1" data-max-pages="<?php echo $query->max_num_pages; ?>">
+								<div class="icon"></div>
+								<div class="text"><?php pll_e('Load more'); ?></div>
+							</a>
+						</div>
+					<?php endif; ?>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		jQuery(document).ready(function($) {
+			$('.load_more_btn').on('click', function(e) {
+				e.preventDefault();
+				var button = $(this);
+				var page = parseInt(button.data('page'));
+				var maxPages = parseInt(button.data('max-pages'));
+
+				$.ajax({
+					url: '<?php echo admin_url('admin-ajax.php'); ?>',
+					type: 'POST',
+					data: {
+						action: 'load_more_news',
+						nonce: '<?php echo wp_create_nonce('load_more_nonce'); ?>',
+						page: page + 1
+					},
+					beforeSend: function() {
+						button.addClass('loading');
+					},
+					success: function(response) {
+						if (response) {
+							$('#news-container').append(response);
+							button.data('page', page + 1);
+
+							if (page + 1 >= maxPages) {
+								button.parent().hide();
+							}
+						}
+					},
+					complete: function() {
+						button.removeClass('loading');
+					}
+				});
+			});
+		});
+	</script>
 
 <?php
-
-while ( have_posts() ) :
-    the_post();
-    $page_title = get_field("page_title");
-    $page_description = get_field("page_description");
-    $featured_news = get_field("featured_news");
-    $excluded_ids = [];
-?>
-
-
-    <div class="section section_content section_intro">
-
-        <div class="section_center_content">
-            <?php if($page_title): ?>
-                <h1 class="section_title text1 scrollin scrollinbottom"><?php echo $page_title; ?></h1>
-            <?php endif; ?>
-            <?php if($page_description): ?>
-                <div class="section_description scrollin scrollinbottom col6"><?php echo $page_description; ?></div>
-            <?php endif; ?>
-        </div>
-    </div>
-
-
-    <!-- show latest two news here -->
-    <div class="section featured_news_box_section scrollin_p">
-        <div class="news_box_wrapper">
-            <div class="section_center_content">
-                <div class="col_wrapper big_col_wrapper">
-                    <div class="flex row">
-                        <div class="news_box col col6">
-                            <div class="col_spacing scrollin scrollinbottom">
-                                <div class="photo">
-                                    <img src="images/dummy_image9.jpg" >
-                                </div>
-                                <div class="text_wrapper">
-                                    <div class="date_wrapper text2">Mar 04</div>
-                                    <div class="title_wrapper">
-                                        <div class="title text5">祝賀本系林麗玲博士榮獲香港中文大學</div>
-                                        <div class="btn_wrapper text8"><span class="round_btn">view more</span></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="news_box col col6">
-                            <div class="col_spacing scrollin scrollinbottom">
-                                <div class="photo">
-                                    <img src="images/dummy_image9.jpg" >
-                                </div>
-                                <div class="text_wrapper">
-                                    <div class="date_wrapper text2">Mar 04</div>
-                                    <div class="title_wrapper">
-                                        <div class="title text5">祝賀本系林麗玲博士榮獲香港中文大學</div>
-                                        <div class="btn_wrapper text8"><span class="round_btn">view more</span></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- show other news here -->
-    <div class="section news_box_section scrollin_p">
-        <div class="news_box_wrapper">
-            <div class="section_center_content">
-                <div class="col_wrapper">
-                    <div class="flex row">
-                        <div class="news_box col col4">
-                            <div class="col_spacing scrollin scrollinbottom">
-                                <div class="photo">
-                                    <img src="images/dummy_image4.jpg" >
-                                </div>
-                                <div class="text_wrapper">
-                                    <div class="date_wrapper text5">Mar 04</div>
-                                    <div class="title_wrapper">
-                                        <div class="title text5">祝賀本系林麗玲博士榮獲香港中文大學</div>
-                                        <div class="btn_wrapper text8"><span class="round_btn">view more</span></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="news_box col col4">
-                            <div class="col_spacing scrollin scrollinbottom">
-                                <div class="photo">
-                                    <img src="images/dummy_image8.jpg" >
-                                </div>
-                                <div class="text_wrapper">
-                                    <div class="date_wrapper text5">Mar 04</div>
-                                    <div class="title_wrapper">
-                                        <div class="title text5">祝賀本系林麗玲博士榮獲香港中文大學</div>
-                                        <div class="btn_wrapper text8"><span class="round_btn">view more</span></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="news_box col col4">
-                            <div class="col_spacing scrollin scrollinbottom">
-                                <div class="photo">
-                                    <img src="images/dummy_image6.jpg" >
-                                </div>
-                                <div class="text_wrapper">
-                                    <div class="date_wrapper text5">Mar 04</div>
-                                    <div class="title_wrapper">
-                                        <div class="title text5">祝賀本系林麗玲博士榮獲香港中文大學</div>
-                                        <div class="btn_wrapper text8"><span class="round_btn">view more</span></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="news_box col col4">
-                            <div class="col_spacing scrollin scrollinbottom">
-                                <div class="photo">
-                                    <img src="images/dummy_image4.jpg" >
-                                </div>
-                                <div class="text_wrapper">
-                                    <div class="date_wrapper text5">Mar 04</div>
-                                    <div class="title_wrapper">
-                                        <div class="title text5">祝賀本系林麗玲博士榮獲香港中文大學</div>
-                                        <div class="btn_wrapper text8"><span class="round_btn">view more</span></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="news_box col col4">
-                            <div class="col_spacing scrollin scrollinbottom">
-                                <div class="photo">
-                                    <img src="images/dummy_image6.jpg" >
-                                </div>
-                                <div class="text_wrapper">
-                                    <div class="date_wrapper text5">Mar 04</div>
-                                    <div class="title_wrapper">
-                                        <div class="title text5">祝賀本系林麗玲博士榮獲香港中文大學</div>
-                                        <div class="btn_wrapper text8"><span class="round_btn">view more</span></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="news_box col col4">
-                            <div class="col_spacing scrollin scrollinbottom">
-                                <div class="photo">
-                                    <img src="images/dummy_image4.jpg" >
-                                </div>
-                                <div class="text_wrapper">
-                                    <div class="date_wrapper text5">Mar 04</div>
-                                    <div class="title_wrapper">
-                                        <div class="title text5">祝賀本系林麗玲博士榮獲香港中文大學</div>
-                                        <div class="btn_wrapper text8"><span class="round_btn">view more</span></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="news_box col col4">
-                            <div class="col_spacing scrollin scrollinbottom">
-                                <div class="photo">
-                                    <img src="images/dummy_image6.jpg" >
-                                </div>
-                                <div class="text_wrapper">
-                                    <div class="date_wrapper text5">Mar 04</div>
-                                    <div class="title_wrapper">
-                                        <div class="title text5">祝賀本系林麗玲博士榮獲香港中文大學</div>
-                                        <div class="btn_wrapper text8"><span class="round_btn">view more</span></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="news_box col col4">
-                            <div class="col_spacing scrollin scrollinbottom">
-                                <div class="photo">
-                                    <img src="images/dummy_image4.jpg" >
-                                </div>
-                                <div class="text_wrapper">
-                                    <div class="date_wrapper text5">Mar 04</div>
-                                    <div class="title_wrapper">
-                                        <div class="title text5">祝賀本系林麗玲博士榮獲香港中文大學</div>
-                                        <div class="btn_wrapper text8"><span class="round_btn">view more</span></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="news_box col col4">
-                            <div class="col_spacing scrollin scrollinbottom">
-                                <div class="photo">
-                                    <img src="images/dummy_image8.jpg" >
-                                </div>
-                                <div class="text_wrapper">
-                                    <div class="date_wrapper text5">Mar 04</div>
-                                    <div class="title_wrapper">
-                                        <div class="title text5">祝賀本系林麗玲博士榮獲香港中文大學</div>
-                                        <div class="btn_wrapper text8"><span class="round_btn">view more</span></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="load_more_wrapper scrollin scrollinbottom">
-                    <a class="load_more_btn text5">
-                        <div class="icon"></div>
-                        <div class="text">Load more</div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-       
-    <?php
-    
-endwhile; // End of the loop.
-?>
-
-
-<?php
+endwhile;
 get_footer();
