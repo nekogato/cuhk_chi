@@ -36,7 +36,7 @@ get_header();
 					array(
 						'taxonomy' => 'people_category',
 						'field' => 'term_id',
-						'terms' => get_field('people_category')
+						'terms' => get_field('target_people_category')
 					)
 				)
 			);
