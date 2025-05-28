@@ -19,7 +19,7 @@ get_header();
 					the_post();
 					$author = get_field('author');
 					$publisher = get_field('publisher');
-					$publish_year = get_field('publish_year');
+					$publish_year = get_field('year_and_month_of_publication');
 					$cover_image = get_field('cover_photo');
 					$chief_editor = get_field('chief_editor');
 					$editor = get_field('editors');
