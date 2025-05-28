@@ -6,10 +6,8 @@
  * @package cuhk_chi
  */
 
-$args = get_query_var('args');
 $target_page = $args['target_page'] ?? '';
 
-var_dump($target_page);
 
 if ($target_page) {
 	// Get the page by slug
