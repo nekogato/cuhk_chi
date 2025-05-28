@@ -53,7 +53,7 @@ get_header();
 					$phone_numbers = array();
 					if ($phones) {
 						foreach ($phones as $phone) {
-							$phone_numbers[] = $phone['number'];
+							$phone_numbers[] = $phone['phone'];
 						}
 					}
 					$phone_display = $phone_numbers ? '(+852) ' . implode(' / ', $phone_numbers) : '';
