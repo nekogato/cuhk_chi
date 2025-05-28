@@ -9,6 +9,7 @@
  */
 
 define('MPHIL_PHD_RESEARCH_MAX_POSTS', 3);
+define('PUBLICATIONS_PER_PAGE', 3);
 
 if (! defined('_S_VERSION')) {
 	// Replace the version number of the theme on each release.
@@ -343,7 +344,7 @@ function load_more_mphil_phd_research_post()
 					</div>
 				</div>
 			</div>
-<?php
+		<?php
 			$html .= ob_get_clean();
 		}
 		wp_reset_postdata();
@@ -353,3 +354,79 @@ function load_more_mphil_phd_research_post()
 }
 add_action('wp_ajax_load_more_mphil_phd_research_post', 'load_more_mphil_phd_research_post');
 add_action('wp_ajax_nopriv_load_more_mphil_phd_research_post', 'load_more_mphil_phd_research_post');
+
+// AJAX handler for loading more publications
+function load_more_publications()
+{
+	check_ajax_referer('load_more_publications_nonce', 'nonce');
+
+	$page = isset($_POST['page']) ? intval($_POST['page']) : 1;
+
+	$args = array(
+		'post_type' => 'publication',
+		'posts_per_page' => PUBLICATIONS_PER_PAGE,
+		'paged' => $page,
+		'orderby' => 'date',
+		'order' => 'DESC'
+	);
+
+	$publications = new WP_Query($args);
+	$html = '';
+
+	if ($publications->have_posts()) {
+		while ($publications->have_posts()) {
+			$publications->the_post();
+
+			// Get custom fields
+			$author = get_field('author');
+			$publisher = get_field('publisher');
+			$publish_year = get_field('publish_year');
+			$cover_image = get_field('cover_image');
+
+			ob_start();
+		?>
+			<div class="publication_box scrollin scrollinbottom">
+				<div class="publication_thumb">
+					<div class="thumb">
+						<?php if ($cover_image) : ?>
+							<a href="<?php the_permalink(); ?>">
+								<img src="<?php echo esc_url($cover_image['url']); ?>" alt="<?php echo esc_attr($cover_image['alt']); ?>">
+							</a>
+						<?php endif; ?>
+					</div>
+				</div>
+				<div class="publication_text">
+					<div class="publication_text_item text5 book_name"><?php the_title(); ?></div>
+					<?php if ($author) : ?>
+						<div class="publication_text_item">
+							<div class="title text7"><?php pll_e('Author'); ?></div>
+							<div class="text text5"><?php echo esc_html($author); ?></div>
+						</div>
+					<?php endif; ?>
+					<?php if ($publisher) : ?>
+						<div class="publication_text_item">
+							<div class="title text7"><?php pll_e('Publisher'); ?></div>
+							<div class="text text5"><?php echo esc_html($publisher); ?></div>
+						</div>
+					<?php endif; ?>
+					<?php if ($publish_year) : ?>
+						<div class="publication_text_item">
+							<div class="title text7"><?php pll_e('Publication Year'); ?></div>
+							<div class="text text5"><?php echo esc_html($publish_year); ?></div>
+						</div>
+					<?php endif; ?>
+				</div>
+			</div>
+<?php
+			$html .= ob_get_clean();
+		}
+		wp_reset_postdata();
+	}
+
+	wp_send_json_success(array(
+		'html' => $html,
+		'has_more' => $page < $publications->max_num_pages
+	));
+}
+add_action('wp_ajax_load_more_publications', 'load_more_publications');
+add_action('wp_ajax_nopriv_load_more_publications', 'load_more_publications');
