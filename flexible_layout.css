@@ -28,6 +28,7 @@
 .flexible_layout_slider .photo{
     padding-bottom: 56.25%;
     position: relative;
+    display: block;
 }
 
 

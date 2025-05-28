@@ -157,6 +157,7 @@ while ( have_posts() ) :
                                     </div>
 									<?php
 									if( have_rows('flexible_content') ):
+										$i=0;
 										while ( have_rows('flexible_content') ) : the_row();
 											if( get_row_layout() == 'free_text' ):
 												$freetext = get_sub_field("free_text");
@@ -202,6 +203,7 @@ while ( have_posts() ) :
 												};
 											elseif( get_row_layout() == 'slider' ):
 												if( have_rows('image_list') ):
+													$i++;
 													?>
 													<div class="flexible_layout flexible_layout_slider scrollin scrollinbottom">
 														<div class="swiper-container swiper">
@@ -212,9 +214,9 @@ while ( have_posts() ) :
 																	$caption = get_sub_field('caption');
 																	?>
 																		<div class="swiper-slide">
-																			<div class="photo">
+																			<a href="<?php echo esc_url($image['sizes']['l']); ?>" class="photo" data-fancybox="gallery<?php echo $i ;?>" <?php if($caption){ ?>data-caption="<?php echo $caption; ?>"<?php }; ?>>
 																				<img src="<?php echo esc_url($image['sizes']['l']); ?>" >
-																			</div>
+																			</a>
 																			<?php if($caption){ ?>
 																				<div class="caption"><?php echo $caption; ?></div>
 																			<?php }; ?>

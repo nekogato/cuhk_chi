@@ -342,7 +342,7 @@ function init_event(){
 	})
 
 
-	$(".popup_btn").click(function(){
+	$(document).on('click', '.popup_btn', function(){
 		var target = $(this).attr("data-target");
 		var $target = $(".popup[data-id='"+target+"']");
 		$target.stop().fadeIn();
