@@ -16,112 +16,124 @@
 get_header();
 ?>
 
-<?php
+<?php get_template_part('template-parts/roll-menu'); ?>
 
-while ( have_posts() ) :
-    the_post();
-?>
-    <?php if(get_field("small_headline")): ?>
-        <div><?php the_field("small_headline"); ?></div>
-    <?php endif; ?>
-    <?php if(get_field("headline")): ?>
-        <div><?php the_field("headline"); ?></div>
-    <?php endif; ?>
-    <?php $chair_image = get_field("chair_image");
-        echo $chair_image ? '<div>'.esc_url($chair_image['sizes']['xl']).'</div>' : '';
-    ?>
-    <?php if(get_field("chair_name")): ?>
-        <div><?php the_field("chair_name"); ?></div>
-    <?php endif; ?>
-    <?php if(get_field("chair_title")): ?>
-        <div><?php the_field("chair_title"); ?></div>
-    <?php endif; ?>
-    
-    
-    <?php
-    if( have_rows('flexible_content') ):
-		$i=0;
-        while ( have_rows('flexible_content') ) : the_row();
-            if( get_row_layout() == 'free_text' ):
-                $freetext = get_sub_field("free_text");
-                if($freetext){
-                ?>
-                    <div class="flexible_layout flexible_layout_freetext scrollin scrollinbottom">
-                        <div class="free_text">
-                            <?php echo $freetext; ?>
-                        </div>
-                    </div>
-                <?php
-                };
-            elseif( get_row_layout() == 'single_image' ):
-                $image = get_sub_field('image');
-                $caption = get_sub_field('caption');
-                if($image){
-                ?>
-                    <div class="flexible_layout flexible_layout_photo scrollin scrollinleft">
-                        <div class="photo_wrapper">
-                            <div class="photo">
-                                <img src="<?php echo esc_url($image['sizes']['l']); ?>" >
-                            </div>
-                            <?php if($caption){?>
-                            <div class="caption"><?php echo $caption;?></div>
-                            <?php };?>
-                        </div>
-                    </div>
-                <?php
-                };
-            elseif( get_row_layout() == 'video_upload' ):
-                $video = get_sub_field('video_upload');
-                if($video){
-                ?>
-                    <div class="flexible_layout flexible_layout_video scrollin scrollinbottom">
-                        <div class="upload_video_wrapper">
-                            <video controls playsinline>
-                                <source src="<?php echo $video["url"];?>" type="video/mp4">
-                                Your browser does not support HTML5 video.
-                            </video>
-                        </div>
-                    </div>
-                <?php
-                };
-            elseif( get_row_layout() == 'slider' ):
-                if( have_rows('image_list') ):
-					$i++;
-                    ?>
-                    <div class="flexible_layout flexible_layout_slider scrollin scrollinbottom">
-                        <div class="swiper-container swiper">
-                            <div class="swiper-wrapper">
-                                <?php
-                                while( have_rows('image_list') ) : the_row();
-                                    $image = get_sub_field('image');
-                                    $caption = get_sub_field('caption');
-                                    ?>
-                                        <div class="swiper-slide">
-                                            <a href="<?php echo esc_url($image['sizes']['l']); ?>" class="photo" data-fancybox="gallery<?php echo $i ;?>" <?php if($caption){ ?>data-caption="<?php echo $caption; ?>"<?php }; ?>>
-                                                <img src="<?php echo esc_url($image['sizes']['l']); ?>" >
-                                            </a>
-                                            <?php if($caption){ ?>
-                                                <div class="caption"><?php echo $caption; ?></div>
-                                            <?php }; ?>
-                                        </div>
-                                    <?php
-                                endwhile;
-                                ?>
-                            </div>
-                        </div>
-                        <div class="prev_btn"></div>
-                        <div class="next_btn"></div>
-                    </div>
-                    <?php
-                endif;
-            endif;
-        endwhile;
-    endif;
-    ?>
-<?php
-endwhile; // End of the loop.
-?>
+<div class="section top_photo_banner_section banner_bg2">
+	<div class="ink_bg10_wrapper">
+		<img src="<?php echo get_template_directory_uri(); ?>/images/ink_bg10.jpg" class="ink_bg10 scrollin scrollinbottom">
+	</div>
+	<div class="section_center_content small_section_center_content">
+		<div class="col_wrapper">
+			<div class="flex row">
+				<div class="col3 col">
+					<div class="col_spacing scrollin scrollinbottom">
+						<div class="text_wrapper vertical_text_wrapper absolute_vertical_text_wrapper">
+							<div class="text vertical_text">
+								<?php if (get_field("small_headline")): ?>
+									<h4 class="project_smalltitle"><span><?php the_field("small_headline"); ?></span></h4>
+								<?php endif; ?>
+								<?php if (get_field("headline")): ?>
+									<h1 class="project_title no_max_height"><span><?php the_field("headline"); ?></span></h1>
+								<?php endif; ?>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col9 col">
+					<div class="col_spacing scrollin scrollinleft">
+						<div class="chair_photo_wrapper">
+							<?php
+							$chair_image = get_field("chair_image");
+							if ($chair_image): ?>
+								<div class="photo_wrapper col10">
+									<div class="photo">
+										<img src="<?php echo esc_url($chair_image['sizes']['l']); ?>">
+									</div>
+									<?php if (get_field("chair_image_caption")): ?>
+										<div class="caption"><?php the_field("chair_image_caption"); ?></div>
+									<?php endif; ?>
+								</div>
+							<?php endif; ?>
+							<div class="chair_name">
+								<?php if (get_field("chair_name")): ?>
+									<div class="t1 text5"><?php the_field("chair_name"); ?></div>
+								<?php endif; ?>
+								<?php if (get_field("chair_title")): ?>
+									<div class="t2"><?php the_field("chair_title"); ?></div>
+								<?php endif; ?>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 
+<div class="section section_left_right_content scrollin_p">
+	<div class="section_center_content small_section_center_content">
+		<div class="col_wrapper">
+			<div class="flex row">
+				<div class="col7 col">
+					<div class="col_spacing scrollin scrollinbottom">
+						<?php if (get_field("left_free_text")): ?>
+							<div class="free_text">
+								<?php the_field("left_free_text"); ?>
+							</div>
+						<?php endif; ?>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col_wrapper">
+			<div class="flex row">
+				<div class="col col5"></div>
+				<div class="col col7">
+					<div class="col_spacing">
+						<div class="right_content">
+							<?php
+							if (have_rows('flexible_content')):
+								while (have_rows('flexible_content')): the_row();
+									if (get_row_layout() == 'free_text'):
+										$freetext = get_sub_field("free_text");
+										if ($freetext):
+							?>
+											<div class="flexible_layout flexible_layout_freetext scrollin scrollinbottom">
+												<div class="free_text">
+													<?php echo $freetext; ?>
+												</div>
+											</div>
+										<?php
+										endif;
+									elseif (get_row_layout() == 'single_image'):
+										$image = get_sub_field('image');
+										$caption = get_sub_field('caption');
+										if ($image):
+										?>
+											<div class="flexible_layout flexible_layout_photo scrollin scrollinleft">
+												<div class="photo_wrapper">
+													<div class="photo">
+														<img src="<?php echo esc_url($image['sizes']['l']); ?>">
+													</div>
+													<?php if ($caption): ?>
+														<div class="caption"><?php echo $caption; ?></div>
+													<?php endif; ?>
+												</div>
+											</div>
+							<?php
+										endif;
+									endif;
+								endwhile;
+							endif;
+							?>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 
 <?php
 get_footer();
