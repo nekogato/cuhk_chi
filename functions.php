@@ -381,7 +381,7 @@ function load_more_publications()
 			$author = get_field('author');
 			$publisher = get_field('publisher');
 			$publish_year = get_field('publish_year');
-			$cover_image = get_field('cover_image');
+			$cover_image = get_field('cover_photo');
 
 			ob_start();
 		?>
@@ -399,19 +399,19 @@ function load_more_publications()
 					<div class="publication_text_item text5 book_name"><?php the_title(); ?></div>
 					<?php if ($author) : ?>
 						<div class="publication_text_item">
-							<div class="title text7"><?php pll_e('Author'); ?></div>
+							<div class="title text7"><?php pll_e('作者'); ?></div>
 							<div class="text text5"><?php echo esc_html($author); ?></div>
 						</div>
 					<?php endif; ?>
 					<?php if ($publisher) : ?>
 						<div class="publication_text_item">
-							<div class="title text7"><?php pll_e('Publisher'); ?></div>
+							<div class="title text7"><?php pll_e('出版社'); ?></div>
 							<div class="text text5"><?php echo esc_html($publisher); ?></div>
 						</div>
 					<?php endif; ?>
 					<?php if ($publish_year) : ?>
 						<div class="publication_text_item">
-							<div class="title text7"><?php pll_e('Publication Year'); ?></div>
+							<div class="title text7"><?php pll_e('出版年份'); ?></div>
 							<div class="text text5"><?php echo esc_html($publish_year); ?></div>
 						</div>
 					<?php endif; ?>
