@@ -481,3 +481,11 @@ function load_more_news()
 }
 add_action('wp_ajax_load_more_news', 'load_more_news');
 add_action('wp_ajax_nopriv_load_more_news', 'load_more_news');
+
+function load_google_maps_script()
+{
+	if (is_page_template('tmp-about_contact.php')) {
+		wp_enqueue_script('google-maps', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBf7lvMAu5CR6kOUpRB3XVKjYixA8G9rec&callback=initMap', array(), null, true);
+	}
+}
+add_action('wp_enqueue_scripts', 'load_google_maps_script');
