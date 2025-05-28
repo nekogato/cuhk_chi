@@ -8,7 +8,7 @@ get_header();
 ?>
 
 <div class="header_bg"></div>
-<?php get_template_part('template-parts/roll-menu'); ?>
+<?php get_template_part('template-parts/roll-menu', null, array('target_page' => 'publications')); ?>
 
 <div class="section section_content people_detail_section">
 	<div class="section_center_content small_section_center_content">
