@@ -18,8 +18,6 @@ get_header();
 while (have_posts()) :
 	the_post();
 ?>
-
-	<div class="header_bg"></div>
 	<?php get_template_part('template-parts/roll-menu'); ?>
 
 	<div class="section section_content section_intro">

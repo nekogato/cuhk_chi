@@ -15,8 +15,6 @@
 
 get_header();
 ?>
-
-<div class="header_bg"></div>
 <?php get_template_part('template-parts/roll-menu'); ?>
 
 <div class="section section_content">
