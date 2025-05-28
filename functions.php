@@ -1,4 +1,5 @@
 <?php
+
 /**
  * cuhk_chi functions and definitions
  *
@@ -7,9 +8,9 @@
  * @package cuhk_chi
  */
 
-if ( ! defined( '_S_VERSION' ) ) {
+if (! defined('_S_VERSION')) {
 	// Replace the version number of the theme on each release.
-	define( '_S_VERSION', '1.0.0' );
+	define('_S_VERSION', '1.0.0');
 }
 
 /**
@@ -19,17 +20,18 @@ if ( ! defined( '_S_VERSION' ) ) {
  * runs before the init hook. The init hook is too late for some features, such
  * as indicating support for post thumbnails.
  */
-function cuhk_chi_setup() {
+function cuhk_chi_setup()
+{
 	/*
 		* Make theme available for translation.
 		* Translations can be filed in the /languages/ directory.
 		* If you're building a theme based on cuhk_chi, use a find and replace
 		* to change 'cuhk_chi' to the name of your theme in all the template files.
 		*/
-	load_theme_textdomain( 'cuhk_chi', get_template_directory() . '/languages' );
+	load_theme_textdomain('cuhk_chi', get_template_directory() . '/languages');
 
 	// Add default posts and comments RSS feed links to head.
-	add_theme_support( 'automatic-feed-links' );
+	add_theme_support('automatic-feed-links');
 
 	/*
 		* Let WordPress manage the document title.
@@ -37,19 +39,19 @@ function cuhk_chi_setup() {
 		* hard-coded <title> tag in the document head, and expect WordPress to
 		* provide it for us.
 		*/
-	add_theme_support( 'title-tag' );
+	add_theme_support('title-tag');
 
 	/*
 		* Enable support for Post Thumbnails on posts and pages.
 		*
 		* @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
 		*/
-	add_theme_support( 'post-thumbnails' );
+	add_theme_support('post-thumbnails');
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(
 		array(
-			'menu-1' => esc_html__( 'Primary', 'cuhk_chi' ),
+			'menu-1' => esc_html__('Primary', 'cuhk_chi'),
 		)
 	);
 
@@ -83,7 +85,7 @@ function cuhk_chi_setup() {
 	);
 
 	// Add theme support for selective refresh for widgets.
-	add_theme_support( 'customize-selective-refresh-widgets' );
+	add_theme_support('customize-selective-refresh-widgets');
 
 	/**
 	 * Add support for core custom logo.
@@ -102,13 +104,13 @@ function cuhk_chi_setup() {
 
 
 	/* chung add - register image size */
-	add_image_size( 'xl', 1920, 1080 );
-	add_image_size( 'l', 1600, 1200 );
-	add_image_size( 'm', 1200, 900 );
-	add_image_size( 's', 500, 500, array( 'center', 'center' ) );
-	add_image_size( 'xs', 200, 200, array( 'center', 'center' ) );
+	add_image_size('xl', 1920, 1080);
+	add_image_size('l', 1600, 1200);
+	add_image_size('m', 1200, 900);
+	add_image_size('s', 500, 500, array('center', 'center'));
+	add_image_size('xs', 200, 200, array('center', 'center'));
 }
-add_action( 'after_setup_theme', 'cuhk_chi_setup' );
+add_action('after_setup_theme', 'cuhk_chi_setup');
 
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
@@ -117,22 +119,24 @@ add_action( 'after_setup_theme', 'cuhk_chi_setup' );
  *
  * @global int $content_width
  */
-function cuhk_chi_content_width() {
-	$GLOBALS['content_width'] = apply_filters( 'cuhk_chi_content_width', 640 );
+function cuhk_chi_content_width()
+{
+	$GLOBALS['content_width'] = apply_filters('cuhk_chi_content_width', 640);
 }
-add_action( 'after_setup_theme', 'cuhk_chi_content_width', 0 );
+add_action('after_setup_theme', 'cuhk_chi_content_width', 0);
 
 /**
  * Register widget area.
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
-function cuhk_chi_widgets_init() {
+function cuhk_chi_widgets_init()
+{
 	register_sidebar(
 		array(
-			'name'          => esc_html__( 'Sidebar', 'cuhk_chi' ),
+			'name'          => esc_html__('Sidebar', 'cuhk_chi'),
 			'id'            => 'sidebar-1',
-			'description'   => esc_html__( 'Add widgets here.', 'cuhk_chi' ),
+			'description'   => esc_html__('Add widgets here.', 'cuhk_chi'),
 			'before_widget' => '<section id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</section>',
 			'before_title'  => '<h2 class="widget-title">',
@@ -140,39 +144,40 @@ function cuhk_chi_widgets_init() {
 		)
 	);
 }
-add_action( 'widgets_init', 'cuhk_chi_widgets_init' );
+add_action('widgets_init', 'cuhk_chi_widgets_init');
 
 /**
  * Enqueue scripts and styles.
  */
-function cuhk_chi_scripts() {
-	wp_enqueue_style( 'cuhk_chi-style', get_stylesheet_uri(), array(), _S_VERSION );
-	wp_style_add_data( 'cuhk_chi-style', 'rtl', 'replace' );
+function cuhk_chi_scripts()
+{
+	wp_enqueue_style('cuhk_chi-style', get_stylesheet_uri(), array(), _S_VERSION);
+	wp_style_add_data('cuhk_chi-style', 'rtl', 'replace');
 
-	wp_enqueue_script( 'cuhk_chi-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
+	wp_enqueue_script('cuhk_chi-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true);
 
-	wp_enqueue_script( 'cuhk_chi-jquery', get_template_directory_uri() . '/script/lib/jquery-3.6.0.min.js', array(), '', false );
-	wp_enqueue_script( 'cuhk_chi-ScrollMagic', get_template_directory_uri() . '/script/lib/ScrollMagic.min.js', array(), '', false );
-	wp_enqueue_script( 'cuhk_chi-gsap', get_template_directory_uri() . '/script/lib/gsap.min.js', array(), '', false );
-	wp_enqueue_style( 'cuhk_chi-swiper-style', get_template_directory_uri() . '/script/lib/swiper/css/swiper.min.css', '', '', 'all' );
-	wp_enqueue_script( 'cuhk_chi-swiper', get_template_directory_uri() . '/script/lib/swiper/js/swiper.min.js', array('cuhk_chi-jquery'), '', false );
-	wp_enqueue_style( 'cuhk_chi-fancy-style', get_template_directory_uri() . '/script/lib/fancybox/jquery.fancybox.min.css', '', '', 'all' );
-	wp_enqueue_script( 'cuhk_chi-fancy', get_template_directory_uri() . '/script/lib/fancybox/jquery.fancybox.min.js', array('cuhk_chi-jquery'), '', false );
-    
-	wp_enqueue_style( 'cuhk_chi-adobe-font', 'https://use.typekit.net/gsi3slf.css', '', '', 'all' );
-	
-	wp_enqueue_style( 'cuhk_chi-fonts', get_template_directory_uri() . '/fonts/stylesheet.css', '', '', 'all' );
-	wp_enqueue_style( 'cuhk_chi-main', get_template_directory_uri() . '/main.css', '', '', 'all' );
-	wp_enqueue_style( 'cuhk_chi-module', get_template_directory_uri() . '/module.css', '', '', 'all' );
-	
-	wp_enqueue_script( 'cuhk_chi-script', get_template_directory_uri() . '/script/script.js', array('cuhk_chi-jquery'), '', false );
-    
+	wp_enqueue_script('cuhk_chi-jquery', get_template_directory_uri() . '/script/lib/jquery-3.6.0.min.js', array(), '', false);
+	wp_enqueue_script('cuhk_chi-ScrollMagic', get_template_directory_uri() . '/script/lib/ScrollMagic.min.js', array(), '', false);
+	wp_enqueue_script('cuhk_chi-gsap', get_template_directory_uri() . '/script/lib/gsap.min.js', array(), '', false);
+	wp_enqueue_style('cuhk_chi-swiper-style', get_template_directory_uri() . '/script/lib/swiper/css/swiper.min.css', '', '', 'all');
+	wp_enqueue_script('cuhk_chi-swiper', get_template_directory_uri() . '/script/lib/swiper/js/swiper.min.js', array('cuhk_chi-jquery'), '', false);
+	wp_enqueue_style('cuhk_chi-fancy-style', get_template_directory_uri() . '/script/lib/fancybox/jquery.fancybox.min.css', '', '', 'all');
+	wp_enqueue_script('cuhk_chi-fancy', get_template_directory_uri() . '/script/lib/fancybox/jquery.fancybox.min.js', array('cuhk_chi-jquery'), '', false);
 
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
+	wp_enqueue_style('cuhk_chi-adobe-font', 'https://use.typekit.net/gsi3slf.css', '', '', 'all');
+
+	wp_enqueue_style('cuhk_chi-fonts', get_template_directory_uri() . '/fonts/stylesheet.css', '', '', 'all');
+	wp_enqueue_style('cuhk_chi-main', get_template_directory_uri() . '/main.css', '', '', 'all');
+	wp_enqueue_style('cuhk_chi-module', get_template_directory_uri() . '/module.css', '', '', 'all');
+
+	wp_enqueue_script('cuhk_chi-script', get_template_directory_uri() . '/script/script.js', array('cuhk_chi-jquery'), '', false);
+
+
+	if (is_singular() && comments_open() && get_option('thread_comments')) {
+		wp_enqueue_script('comment-reply');
 	}
 }
-add_action( 'wp_enqueue_scripts', 'cuhk_chi_scripts' );
+add_action('wp_enqueue_scripts', 'cuhk_chi_scripts');
 
 /**
  * Implement the Custom Header feature.
@@ -197,23 +202,24 @@ require get_template_directory() . '/inc/customizer.php';
 /**
  * Load Jetpack compatibility file.
  */
-if ( defined( 'JETPACK__VERSION' ) ) {
+if (defined('JETPACK__VERSION')) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
 
-function register_my_menu() {
-	register_nav_menus( array(
-		  'main-menu' => 'Main Menu',
-	) );
+function register_my_menu()
+{
+	register_nav_menus(array(
+		'main-menu' => 'Main Menu',
+	));
 }
 
-add_action( 'init', 'register_my_menu' );
-	
+add_action('init', 'register_my_menu');
 
-	
 
-add_action('acf/init', function() { 
+
+
+add_action('acf/init', function () {
 	acf_add_options_page(array(
 		'page_title' 	=> 'Theme General Settings',
 		'menu_title'	=> 'Theme Settings',
@@ -232,23 +238,23 @@ add_action('acf/init', function() {
  * @param   $page_slug      string          WordPress page slug
  * @return                  string|false    Page Permalink or false if the page is not found
  */
-function pll_get_page_url( $page_slug ) {
+function pll_get_page_url($page_slug)
+{
 
 	// Check parameter
-	if( empty( $page_slug ) ) return false;
-	
+	if (empty($page_slug)) return false;
+
 	// Get the page
-	$page = get_page_by_path( $page_slug );
+	$page = get_page_by_path($page_slug);
 
 	// Check if the page exists
-	if( empty( $page ) || is_null( $page ) ) return false;
+	if (empty($page) || is_null($page)) return false;
 
 	// Get the URL
-	$page_ID_current_lang = pll_get_post( $page->ID );
+	$page_ID_current_lang = pll_get_post($page->ID);
 
 	// Return the current language permalink
-	return empty($page_ID_current_lang) ? get_permalink( $page->ID ) : get_permalink( $page_ID_current_lang );
-
+	return empty($page_ID_current_lang) ? get_permalink($page->ID) : get_permalink($page_ID_current_lang);
 }
 
 add_action('wp_footer', 'pll_get_page_url');
@@ -256,8 +262,92 @@ add_action('wp_footer', 'pll_get_page_url');
 
 function my_theme_add_editor_styles()
 {
-    add_editor_style('editor-style.css');
-    add_editor_style(get_stylesheet_directory_uri() . '/fonts/stylesheet.css');
+	add_editor_style('editor-style.css');
+	add_editor_style(get_stylesheet_directory_uri() . '/fonts/stylesheet.css');
 }
 
 add_action('after_setup_theme', 'my_theme_add_editor_styles');
+
+// AJAX handler for loading more posts
+function load_more_mphil_phd_research_post()
+{
+	check_ajax_referer('load_more_nonce', 'nonce');
+
+	$page = $_POST['page'];
+
+	$args = array(
+		'post_type' => 'mphil_phd_research',
+		'posts_per_page' => 20,
+		'orderby' => 'date',
+		'order' => 'DESC',
+		'paged' => $page
+	);
+
+	$query = new WP_Query($args);
+	$html = '';
+
+	if ($query->have_posts()) {
+		while ($query->have_posts()) {
+			$query->the_post();
+
+			// Get custom fields
+			$student_name = get_field('student_name');
+			$degree = get_field('degree');
+			$publish_year = get_field('publish_year');
+			$programme = get_field('programme_specialties');
+			$thesis_title = get_field('thesis_title');
+
+			ob_start();
+?>
+			<div class="research_thesis_list scrollin scrollinbottom col_wrapper">
+				<div class="row flex">
+					<div class="col col2">
+						<div class="col_spacing">
+							<div class="t_wrapper">
+								<div class="t">
+									<div class="t1 text8"><?php echo pll__('Student Name'); ?></div>
+									<div class="t2 text5"><?php echo esc_html($student_name); ?></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col col3">
+						<div class="col_spacing">
+							<div class="t_wrapper">
+								<div class="t">
+									<div class="t1 text8"><?php echo pll__('Degree'); ?></div>
+									<div class="t2 text6"><?php echo esc_html($degree); ?></div>
+								</div>
+								<div class="t">
+									<div class="t1 text8"><?php echo pll__('Publish Year'); ?></div>
+									<div class="t2"><?php echo esc_html($publish_year); ?></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col col7">
+						<div class="col_spacing">
+							<div class="t_wrapper">
+								<div class="t">
+									<div class="t1 text8"><?php echo pll__('Programme/ Specialties'); ?></div>
+									<div class="t2"><?php echo esc_html($programme); ?></div>
+								</div>
+								<div class="t">
+									<div class="t1 text8"><?php echo pll__('Thesis Title'); ?></div>
+									<div class="t2"><?php echo esc_html($thesis_title); ?></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+<?php
+			$html .= ob_get_clean();
+		}
+		wp_reset_postdata();
+	}
+
+	wp_send_json_success(array('html' => $html));
+}
+add_action('wp_ajax_load_more_mphil_phd_research_post', 'load_more_mphil_phd_research_post');
+add_action('wp_ajax_nopriv_load_more_mphil_phd_research_post', 'load_more_mphil_phd_research_post');

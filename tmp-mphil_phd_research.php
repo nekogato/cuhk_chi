@@ -1,4 +1,4 @@
-<?php /* Template Name: MPhil / PhD Research  */ ?>
+<?php /* Template Name: Research Project  */ ?>
 <?php
 /**
  * The template for displaying all pages
@@ -32,12 +32,14 @@ get_header();
 			<?php
 			$args = array(
 				'post_type' => 'mphil_phd_research',
-				'posts_per_page' => -1,
+				'posts_per_page' => 20,
 				'orderby' => 'date',
-				'order' => 'DESC'
+				'order' => 'DESC',
+				'paged' => 1
 			);
 
 			$query = new WP_Query($args);
+			$max_pages = $query->max_num_pages;
 
 			if ($query->have_posts()) :
 				while ($query->have_posts()) : $query->the_post();
@@ -96,8 +98,8 @@ get_header();
 			endif;
 			?>
 
-			<div class="load_more_wrapper scrollin scrollinbottom">
-				<a class="load_more_btn text5">
+			<div class="load_more_wrapper scrollin scrollinbottom" data-max-pages="<?php echo esc_attr($max_pages); ?>" data-current-page="1">
+				<a class="load_more_btn text5" href="#">
 					<div class="icon"></div>
 					<div class="text"><?php echo pll__('Load more'); ?></div>
 				</a>
@@ -105,6 +107,50 @@ get_header();
 		</div>
 	</div>
 </div>
+
+<script>
+	jQuery(document).ready(function($) {
+		$('.load_more_btn').on('click', function(e) {
+			e.preventDefault();
+
+			const $button = $(this);
+			const $wrapper = $button.closest('.load_more_wrapper');
+			const currentPage = parseInt($wrapper.data('current-page'));
+			const maxPages = parseInt($wrapper.data('max-pages'));
+
+			if (currentPage >= maxPages) {
+				$wrapper.hide();
+				return;
+			}
+
+			$button.addClass('loading');
+
+			$.ajax({
+				url: '<?php echo admin_url('admin-ajax.php'); ?>',
+				type: 'POST',
+				data: {
+					action: 'load_more_mphil_phd_research_post',
+					page: currentPage + 1,
+					nonce: '<?php echo wp_create_nonce('load_more_nonce'); ?>'
+				},
+				success: function(response) {
+					if (response.success) {
+						$('.research_thesis_list_wrapper').append(response.data.html);
+						$wrapper.data('current-page', currentPage + 1);
+
+						if (currentPage + 1 >= maxPages) {
+							$wrapper.hide();
+						}
+					}
+					$button.removeClass('loading');
+				},
+				error: function() {
+					$button.removeClass('loading');
+				}
+			});
+		});
+	});
+</script>
 
 <?php
 get_footer();
