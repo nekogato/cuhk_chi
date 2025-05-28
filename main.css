@@ -994,7 +994,7 @@ p:first-child{
 .free_text h4 + p,
 .free_text h5 + p,
 .free_text h6 + p{
-    margin-top: 5px;
+    margin-top: 10px;
 }
 
 .free_text h1 + table,
@@ -1003,7 +1003,25 @@ p:first-child{
 .free_text h4 + table,
 .free_text h5 + table,
 .free_text h6 + table{
-    margin-top: 5px;
+    margin-top: 10px;
+}
+
+.free_text h1 + ul,
+.free_text h2 + ul,
+.free_text h3 + ul,
+.free_text h4 + ul,
+.free_text h5 + ul,
+.free_text h6 + ul{
+    margin-top: 10px;
+}
+
+.free_text h1 + ol,
+.free_text h2 + ol,
+.free_text h3 + ol,
+.free_text h4 + ol,
+.free_text h5 + ol,
+.free_text h6 + ol{
+    margin-top: 10px;
 }
 
 .free_text p + table{

@@ -335,18 +335,21 @@ function init_event(){
 		return false;
 	})
 
-	$(".people_popup_close_btn").click(function(){
+	$(".popup_close_btn").click(function(){
 		var $p = $(this).parents(".people_popup")
 		$p.stop().fadeOut();
 		return false;
 	})
 
 
-	$(".student_list_item .photo").click(function(){
-		var $p = $(this).parents(".student_list_item")
-		$p.find(".people_popup").stop().fadeIn();
+	$(".popup_btn").click(function(){
+		var target = $(this).attr("data-target");
+		var $target = $(".popup[data-id='"+target+"']");
+		$target.stop().fadeIn();
 		return false;
 	})
+
+
 
 	$(".song_btn").click(function(){
 		var $this = $(this);
@@ -363,10 +366,14 @@ function init_event(){
 	})
 
 	$('.filter_switchable_wrapper input[name="filter"]').on('change', function () {
+		$(".resource_filter_menu_section").height($(".resource_filter_menu_section").height());
 		let selectedValue = $(this).attr('id'); 
-		$(".switchable_section_expandable_list.active").removeClass("active").hide();
-		$(".switchable_section_expandable_list[data-id="+selectedValue+"]").addClass("active").hide();
+		$(".switchable_section_expandable_list.active").hide();
+		$(".switchable_section_expandable_list.active").removeClass("active");
+		$(".switchable_section_expandable_list[data-id="+selectedValue+"]").hide();
+		$(".switchable_section_expandable_list[data-id="+selectedValue+"]").addClass("active");
 		setTimeout(function(){
+			$(".resource_filter_menu_section").height("auto");
 			$(".switchable_section_expandable_list[data-id="+selectedValue+"]").stop().fadeIn();
 		},0)
 	});
@@ -499,6 +506,51 @@ function init_function(){
 				1600: {
 					spaceBetween: 50,
 					slidesPerView: 5,
+				}
+			}
+		});
+
+		$(this).find(".next_btn").click(function(){
+			thumb_text_box_slider.slideNext()
+		})
+
+		$(this).find(".prev_btn").click(function(){
+			thumb_text_box_slider.slidePrev()
+		})
+	});
+
+	$(".thumb_text_box_slider_wrapper2").each(function(){
+		var thumb_text_box_slider = new Swiper($(this).find(".swiper-container")[0], {
+			autoplay: false,
+			slidesPerView: 2,
+			speed: 1600,
+			loop: false,
+			spaceBetween: 50,
+			breakpoints: {
+				// when window width is >= 320px
+				320: {
+					spaceBetween: 20,
+					slidesPerView: 1,
+				},
+				// when window width is >= 480px
+				640: {
+					spaceBetween: 30,
+					slidesPerView: 1,
+				},
+				// when window width is >= 480px
+				1024: {
+					spaceBetween: 30,
+					slidesPerView:2,
+				},
+				// when window width is >= 640px
+				1200: {
+					spaceBetween: 50,
+					slidesPerView: 2,
+				},
+				// when window width is >= 640px
+				1600: {
+					spaceBetween: 50,
+					slidesPerView: 2,
 				}
 			}
 		});
