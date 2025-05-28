@@ -42,9 +42,21 @@ get_header();
 				while ($query->have_posts()) : $query->the_post();
 					$title = get_field('position');
 					$name = get_the_title();
-					$emails = get_field('c');
-					$email = $emails[0]['email'] ?? '';
-					$phone = get_field('phone');
+					$emails = get_field('email');
+					$email_addresses = array();
+					if ($emails) {
+						foreach ($emails as $email) {
+							$email_addresses[] = $email['email'];
+						}
+					}
+					$phones = get_field('phone');
+					$phone_numbers = array();
+					if ($phones) {
+						foreach ($phones as $phone) {
+							$phone_numbers[] = $phone['number'];
+						}
+					}
+					$phone_display = $phone_numbers ? '(+852) ' . implode(' / ', $phone_numbers) : '';
 			?>
 					<div class="list_item_row scrollin scrollinbottom">
 						<div class="list_item_col col2">
@@ -56,13 +68,19 @@ get_header();
 						<div class="list_item_col col8">
 							<div class="inner_list_item_col col6">
 								<div>
-									<?php if ($email): ?>
-										<a href="mailto:<?php echo esc_attr($email); ?>"><?php echo esc_html($email); ?></a>
-									<?php endif; ?>
+									<?php
+									if ($email_addresses):
+										$email_links = array();
+										foreach ($email_addresses as $email) {
+											$email_links[] = '<a href="mailto:' . esc_attr($email) . '">' . esc_html($email) . '</a>';
+										}
+										echo implode(' / ', $email_links);
+									endif;
+									?>
 								</div>
 							</div>
 							<div class="inner_list_item_col col6">
-								<div><?php echo esc_html($phone); ?></div>
+								<div><?php echo esc_html($phone_display); ?></div>
 							</div>
 						</div>
 					</div>
