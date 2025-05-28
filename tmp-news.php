@@ -21,12 +21,8 @@ while (have_posts()) :
 
 	<div class="section section_content section_intro">
 		<div class="section_center_content">
-			<?php if ($page_title): ?>
-				<h1 class="section_title text1 scrollin scrollinbottom"><?php echo the_title(); ?></h1>
-			<?php endif; ?>
-			<?php if ($page_description): ?>
-				<div class="section_description scrollin scrollinbottom col6"><?php echo get_field('introduction'); ?></div>
-			<?php endif; ?>
+			<h1 class="section_title text1 scrollin scrollinbottom"><?php echo the_title(); ?></h1>
+			<div class="section_description scrollin scrollinbottom col6"><?php echo get_field('introduction'); ?></div>
 		</div>
 	</div>
 
