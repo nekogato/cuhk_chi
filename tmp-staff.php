@@ -32,11 +32,11 @@ get_header();
 			$args = array(
 				'post_type' => 'profile',
 				'posts_per_page' => -1,
-				'meta_query' => array(
+				'tax_query' => array(
 					array(
-						'key' => 'people_category',
-						'value' => get_field('people_category'),
-						'compare' => '='
+						'taxonomy' => 'people_category',
+						'field' => 'term_id',
+						'terms' => get_field('people_category')
 					)
 				)
 			);
