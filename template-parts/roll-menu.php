@@ -9,16 +9,27 @@
 $args = get_query_var('args');
 $target_page = $args['target_page'] ?? '';
 
+var_dump($target_page);
+
 if ($target_page) {
 	// Get the page by slug
 	$page = get_page_by_path($target_page);
 	if ($page) {
 		$parent_id = $page->post_parent;
 		$current_id = $page->ID;
+	} else {
+		// If page not found, fallback to current page
+		$parent_id = wp_get_post_parent_id(get_the_ID());
+		$current_id = get_the_ID();
 	}
 } else {
 	$parent_id = wp_get_post_parent_id(get_the_ID());
 	$current_id = get_the_ID();
+}
+
+// If no parent found, use current page as parent
+if (!$parent_id) {
+	$parent_id = $current_id;
 }
 ?>
 
