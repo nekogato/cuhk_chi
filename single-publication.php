@@ -7,7 +7,7 @@
 get_header();
 ?>
 
-<?php get_template_part('template-parts/roll-menu', null, array('target_page' => 'publications')); ?>
+<?php get_template_part('template-parts/roll-menu', null, array('target_page' => 'research/publications')); ?>
 
 <div class="section section_content people_detail_section">
 	<div class="section_center_content small_section_center_content">
