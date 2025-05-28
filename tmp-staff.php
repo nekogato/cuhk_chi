@@ -21,10 +21,10 @@ get_header();
 <div class="section section_content">
 	<div class="section_center_content small_section_center_content">
 		<?php if (get_field("page_title")): ?>
-			<h1 class="section_title text1 scrollin scrollinbottom"><?php the_field("page_title"); ?></h1>
+			<h1 class="section_title text1 scrollin scrollinbottom"><?php the_title(); ?></h1>
 		<?php endif; ?>
 		<?php if (get_field("page_description")): ?>
-			<div class="section_description scrollin scrollinbottom col6"><?php the_field("page_description"); ?></div>
+			<div class="section_description scrollin scrollinbottom col6"><?php the_field('introduction') ?></div>
 		<?php endif; ?>
 
 		<div class="section_list">
