@@ -292,33 +292,45 @@ function init_event(){
 	$(".scheme_unit_expandable_box .title").click(function(){
 		var $p = $(this).parents(".scheme_unit_expandable_box")
 		if($p.hasClass("active")){
-			$p.removeClass("active")
+			$p.removeClass("active").find(".hidden").show();
+			setTimeout(function(){
 			$p.find(".hidden").stop().slideUp();
+			},0)
 		}else{
-			$p.addClass("active")
+			$p.addClass("active").find(".hidden").hide();
+			setTimeout(function(){
 			$p.find(".hidden").stop().slideDown();
+			},0)
 		}
 	})
 
 	$(".expandable_item .expandable_title").click(function(){
 		var $p = $(this).parents(".expandable_item")
 		if($p.hasClass("active")){
-			$p.removeClass("active")
+			$p.removeClass("active").find(".hidden").show();
+			setTimeout(function(){
 			$p.find(".hidden").stop().slideUp();
+			},0)
 		}else{
-			$p.addClass("active")
+			$p.addClass("active").find(".hidden").hide();
+			setTimeout(function(){
 			$p.find(".hidden").stop().slideDown();
+			},0)
 		}
 	})
 
 	$(".filter_dropdown_btn").click(function(){
 		var $p = $(this).parents(".filter_dropdown_wrapper")
 		if($p.hasClass("active")){
-			$p.removeClass("active")
-			$p.find(".filter_dropdown").stop().slideUp();
+			$p.removeClass("active").find(".hidden").show();
+			setTimeout(function(){
+			$p.find(".hidden").stop().slideUp();
+			},0)
 		}else{
-			$p.addClass("active")
-			$p.find(".filter_dropdown").stop().slideDown();
+			$p.addClass("active").find(".hidden").hide();
+			setTimeout(function(){
+			$p.find(".hidden").stop().slideDown();
+			},0)
 		}
 		return false;
 	})
@@ -350,7 +362,14 @@ function init_event(){
 		return false;
 	})
 
-	
+	$('.filter_switchable_wrapper input[name="filter"]').on('change', function () {
+		let selectedValue = $(this).attr('id'); 
+		$(".switchable_section_expandable_list.active").removeClass("active").hide();
+		$(".switchable_section_expandable_list[data-id="+selectedValue+"]").addClass("active").hide();
+		setTimeout(function(){
+			$(".switchable_section_expandable_list[data-id="+selectedValue+"]").stop().fadeIn();
+		},0)
+	});
 }
 
 
