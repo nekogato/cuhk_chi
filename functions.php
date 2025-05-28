@@ -437,7 +437,7 @@ function load_more_news()
 	check_ajax_referer('load_more_nonce', 'nonce');
 
 	$page = $_POST['page'];
-	$offset = ($page - 1) * NEWS_PER_PAGE;
+	$offset = ($page * NEWS_PER_PAGE) + 2; // Add 2 to account for featured posts
 
 	$args = array(
 		'post_type' => 'news',
@@ -452,12 +452,13 @@ function load_more_news()
 	if ($query->have_posts()) {
 		while ($query->have_posts()) {
 			$query->the_post();
+			$news_banner = get_field('news_banner');
 		?>
 			<div class="news_box col col4">
 				<div class="col_spacing scrollin scrollinbottom">
 					<div class="photo">
-						<?php if (has_post_thumbnail()): ?>
-							<img src="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'full'); ?>" alt="<?php the_title_attribute(); ?>">
+						<?php if ($news_banner): ?>
+							<img src="<?php echo esc_url($news_banner['url']); ?>" alt="<?php echo esc_attr($news_banner['alt']); ?>">
 						<?php endif; ?>
 					</div>
 					<div class="text_wrapper">
@@ -465,7 +466,7 @@ function load_more_news()
 						<div class="title_wrapper">
 							<div class="title text5"><?php the_title(); ?></div>
 							<div class="btn_wrapper text8">
-								<a href="<?php the_permalink(); ?>" class="round_btn">view more</a>
+								<a href="<?php the_permalink(); ?>" class="round_btn"><?php pll_e('view more'); ?></a>
 							</div>
 						</div>
 					</div>
