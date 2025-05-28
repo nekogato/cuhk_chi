@@ -60,7 +60,7 @@ while ( have_posts() ) :
                                     <div class="d1 text3">Mar</div>
                                     <div class="d2 text5">23</div>
                                 </div>
-                                <div class="btn_wrapper"><div class="reg_btn round_btn text7">Register Now</div></div>
+                                <div class="btn_wrapper"><div class="reg_btn round_btn text7">View More</div></div>
                             </div>
                             <div class="title_wrapper">
                                 <div class="title text5"><?php the_field("event_title");?> </div>
