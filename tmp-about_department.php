@@ -16,104 +16,104 @@
 get_header();
 ?>
 
-<?php
+<?php get_template_part('template-parts/roll-menu', null, array('target_page' => 'about/about-the-department')); ?>
 
-while ( have_posts() ) :
-    the_post();
-?>
-    <?php if(get_field("small_headline")): ?>
-        <div><?php the_field("small_headline"); ?></div>
-    <?php endif; ?>
-    <?php if(get_field("headline")): ?>
-        <div><?php the_field("headline"); ?></div>
-    <?php endif; ?>
-    <?php $department_image = get_field("department_image");
-        echo $department_image ? '<div>'.esc_url($department_image['sizes']['xl']).'</div>' : '';
-    ?>
-    <?php
-    if( have_rows('flexible_content') ):
-		$i=0;
-        while ( have_rows('flexible_content') ) : the_row();
-            if( get_row_layout() == 'free_text' ):
-                $freetext = get_sub_field("free_text");
-                if($freetext){
-                ?>
-                    <div class="flexible_layout flexible_layout_freetext scrollin scrollinbottom">
-                        <div class="free_text">
-                            <?php echo $freetext; ?>
-                        </div>
-                    </div>
-                <?php
-                };
-            elseif( get_row_layout() == 'single_image' ):
-                $image = get_sub_field('image');
-                $caption = get_sub_field('caption');
-                if($image){
-                ?>
-                    <div class="flexible_layout flexible_layout_photo scrollin scrollinleft">
-                        <div class="photo_wrapper">
-                            <div class="photo">
-                                <img src="<?php echo esc_url($image['sizes']['l']); ?>" >
-                            </div>
-                            <?php if($caption){?>
-                            <div class="caption"><?php echo $caption;?></div>
-                            <?php };?>
-                        </div>
-                    </div>
-                <?php
-                };
-            elseif( get_row_layout() == 'video_upload' ):
-                $video = get_sub_field('video_upload');
-                if($video){
-                ?>
-                    <div class="flexible_layout flexible_layout_video scrollin scrollinbottom">
-                        <div class="upload_video_wrapper">
-                            <video controls playsinline>
-                                <source src="<?php echo $video["url"];?>" type="video/mp4">
-                                Your browser does not support HTML5 video.
-                            </video>
-                        </div>
-                    </div>
-                <?php
-                };
-            elseif( get_row_layout() == 'slider' ):
-                if( have_rows('image_list') ):
-					$i++;
-                    ?>
-                    <div class="flexible_layout flexible_layout_slider scrollin scrollinbottom">
-                        <div class="swiper-container swiper">
-                            <div class="swiper-wrapper">
-                                <?php
-                                while( have_rows('image_list') ) : the_row();
-                                    $image = get_sub_field('image');
-                                    $caption = get_sub_field('caption');
-                                    ?>
-                                        <div class="swiper-slide">
-                                            <a href="<?php echo esc_url($image['sizes']['l']); ?>" class="photo" data-fancybox="gallery<?php echo $i ;?>" <?php if($caption){ ?>data-caption="<?php echo $caption; ?>"<?php }; ?>>
-                                                <img src="<?php echo esc_url($image['sizes']['l']); ?>" >
-                                            </a>
-                                            <?php if($caption){ ?>
-                                                <div class="caption"><?php echo $caption; ?></div>
-                                            <?php }; ?>
-                                        </div>
-                                    <?php
-                                endwhile;
-                                ?>
-                            </div>
-                        </div>
-                        <div class="prev_btn"></div>
-                        <div class="next_btn"></div>
-                    </div>
-                    <?php
-                endif;
-            endif;
-        endwhile;
-    endif;
-    ?>
-<?php
-endwhile; // End of the loop.
-?>
+<div class="section top_photo_banner_section top_photo_banner_section_absolute">
+	<div class="section_center_content small_section_center_content">
+		<div class="col_wrapper xl_col_wrapper">
+			<div class="flex row">
+				<div class="col2 col">
+					<div class="col_spacing scrollin scrollinbottom">
+						<div class="text_wrapper vertical_text_wrapper">
+							<div class="text vertical_text">
+								<?php if (get_field("small_headline")): ?>
+									<h4 class="project_smalltitle"><span><?php the_field("small_headline"); ?></span></h4>
+								<?php endif; ?>
+								<?php if (get_field("headline")): ?>
+									<h1 class="project_title"><span><?php the_field("headline"); ?></span></h1>
+								<?php endif; ?>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 
+<div class="section section_left_right_content section_left_right_content2 scrollin_p">
+	<div class="ink_bg11_wrapper">
+		<img src="<?php echo get_template_directory_uri(); ?>/images/ink_bg11.jpg" class="ink_bg11 scrollin scrollinbottom">
+	</div>
+
+	<div class="section_center_content small_section_center_content">
+		<div class="col_wrapper xl_col_wrapper">
+			<div class="flex row">
+				<div class="col col5">
+					<div class="col_spacing">
+						<div class="left_content free_text">
+							<div class="flexible_layout_wrapper">
+								<?php
+								$department_image = get_field("department_image");
+								if ($department_image): ?>
+									<div class="flexible_layout flexible_layout_photo scrollin scrollinleft">
+										<div class="photo_wrapper">
+											<div class="photo">
+												<img src="<?php echo esc_url($department_image['sizes']['l']); ?>">
+											</div>
+											<?php if (get_field("department_image_caption")): ?>
+												<div class="caption"><?php the_field("department_image_caption"); ?></div>
+											<?php endif; ?>
+										</div>
+									</div>
+								<?php endif; ?>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col col5">
+					<div class="col_spacing">
+						<div class="right_content">
+							<?php
+							if (have_rows('flexible_content')):
+								while (have_rows('flexible_content')): the_row();
+									if (get_row_layout() == 'free_text'):
+										$freetext = get_sub_field("free_text");
+										if ($freetext):
+							?>
+											<div class="flexible_layout flexible_layout_freetext scrollin scrollinbottom">
+												<div class="free_text">
+													<?php echo $freetext; ?>
+												</div>
+											</div>
+										<?php
+										endif;
+									elseif (get_row_layout() == 'single_image'):
+										$image = get_sub_field('image');
+										$caption = get_sub_field('caption');
+										if ($image):
+										?>
+											<div class="flexible_layout flexible_layout_photo scrollin scrollinbottom">
+												<div class="photo">
+													<img src="<?php echo esc_url($image['sizes']['l']); ?>">
+												</div>
+												<?php if ($caption): ?>
+													<div class="caption"><?php echo $caption; ?></div>
+												<?php endif; ?>
+											</div>
+							<?php
+										endif;
+									endif;
+								endwhile;
+							endif;
+							?>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 
 <?php
 get_footer();
