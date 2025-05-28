@@ -8,6 +8,8 @@
  * @package cuhk_chi
  */
 
+define('MPHIL_PHD_RESEARCH_MAX_POSTS', 3);
+
 if (! defined('_S_VERSION')) {
 	// Replace the version number of the theme on each release.
 	define('_S_VERSION', '1.0.0');
@@ -277,7 +279,7 @@ function load_more_mphil_phd_research_post()
 
 	$args = array(
 		'post_type' => 'mphil_phd_research',
-		'posts_per_page' => 20,
+		'posts_per_page' => MPHIL_PHD_RESEARCH_MAX_POSTS,
 		'orderby' => 'date',
 		'order' => 'DESC',
 		'paged' => $page

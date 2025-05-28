@@ -32,7 +32,7 @@ get_header();
 			<?php
 			$args = array(
 				'post_type' => 'mphil_phd_research',
-				'posts_per_page' => 20,
+				'posts_per_page' => MPHIL_PHD_RESEARCH_MAX_POSTS,
 				'orderby' => 'date',
 				'order' => 'DESC',
 				'paged' => 1
