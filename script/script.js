@@ -357,10 +357,10 @@ function init_event(){
 		}else{
 			$(".song_btn.active").removeClass("active");
 			$this.addClass("active");
+			var myname  = $this.text();
+			$(".song_text .t2 .version_name").text(myname);
 			var mysong  = $this.attr("data-song");
-			var mythumb  = $this.attr("data-thumb");
 			changeAudioSource($(".audio-player"),mysong);
-			$('.song_thumb img').attr('src', mythumb);
 		}
 		return false;
 	})

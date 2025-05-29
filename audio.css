@@ -1,5 +1,27 @@
 .audio-player {
   background: white;
+  position: relative;
+}
+
+.audio-player .loader{
+	-webkit-transition: all 0.3s cubic-bezier(0.77, 0, 0.175, 1) 0s; 
+    transition: all 0.3s cubic-bezier(0.77, 0, 0.175, 1) 0s; 
+	position: absolute;
+	left: 0px;
+	top:0px;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(255,255,255,0.9);
+  background-image: url("images/black_oval.svg");
+	background-size: 25px 25px;
+	background-position: center center;	
+	background-repeat: no-repeat;
+	opacity: 0;
+	z-index: 19;
+}
+
+.audio-player.loading .loader{
+	opacity: 1;
 }
 
 .audio-player .player-controls {

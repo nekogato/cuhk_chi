@@ -3906,6 +3906,7 @@ justify-content: center;
 /* section_song */
 
 .section_song{
+    padding-top: 100px;
 
 }
 
@@ -3927,7 +3928,6 @@ justify-content: center;
 }
 
 .main_song_wrapper{
-    margin-top: -100px;
 }
 
 .main_song{
