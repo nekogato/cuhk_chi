@@ -322,14 +322,14 @@ function init_event(){
 	$(".filter_dropdown_btn").click(function(){
 		var $p = $(this).parents(".filter_dropdown_wrapper")
 		if($p.hasClass("active")){
-			$p.removeClass("active").find(".hidden").show();
+			$p.removeClass("active").find(".filter_dropdown").show();
 			setTimeout(function(){
-			$p.find(".hidden").stop().slideUp();
+			$p.find(".filter_dropdown").stop().slideUp();
 			},0)
 		}else{
-			$p.addClass("active").find(".hidden").hide();
+			$p.addClass("active").find(".filter_dropdown").hide();
 			setTimeout(function(){
-			$p.find(".hidden").stop().slideDown();
+			$p.find(".filter_dropdown").stop().slideDown();
 			},0)
 		}
 		return false;
