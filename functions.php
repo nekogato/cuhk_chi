@@ -532,16 +532,16 @@ function load_more_events()
 					<div class="d_wrapper">
 						<?php if ($start_date && $end_date && $start_date !== $end_date) : ?>
 							<div class="d">
-								<div class="d1 text3"><?php echo $start_date_obj->format('M'); ?></div>
+								<div class="d1 text3"><?php echo get_chinese_month($start_date_obj->format('M')); ?></div>
 								<div class="d2 text5"><?php echo $start_date_obj->format('d'); ?></div>
 							</div>
 							<div class="d">
-								<div class="d1 text3"><?php echo $end_date_obj->format('M'); ?></div>
+								<div class="d1 text3"><?php echo get_chinese_month($end_date_obj->format('M')); ?></div>
 								<div class="d2 text5"><?php echo $end_date_obj->format('d'); ?></div>
 							</div>
 						<?php else : ?>
 							<div class="d">
-								<div class="d1 text3"><?php echo $start_date_obj->format('M'); ?></div>
+								<div class="d1 text3"><?php echo get_chinese_month($start_date_obj->format('M')); ?></div>
 								<div class="d2 text5"><?php echo $start_date_obj->format('d'); ?></div>
 							</div>
 						<?php endif; ?>
@@ -598,3 +598,29 @@ function load_more_events()
 }
 add_action('wp_ajax_load_more_events', 'load_more_events');
 add_action('wp_ajax_nopriv_load_more_events', 'load_more_events');
+
+/**
+ * Convert English month abbreviation to Chinese month name
+ *
+ * @param string $month_abbr English month abbreviation (e.g., 'Jan', 'Feb')
+ * @return string Chinese month name (e.g., '一月', '二月')
+ */
+function get_chinese_month($month_abbr)
+{
+	$chinese_months = array(
+		'Jan' => '一月',
+		'Feb' => '二月',
+		'Mar' => '三月',
+		'Apr' => '四月',
+		'May' => '五月',
+		'Jun' => '六月',
+		'Jul' => '七月',
+		'Aug' => '八月',
+		'Sep' => '九月',
+		'Oct' => '十月',
+		'Nov' => '十一月',
+		'Dec' => '十二月'
+	);
+
+	return isset($chinese_months[$month_abbr]) ? $chinese_months[$month_abbr] : $month_abbr;
+}

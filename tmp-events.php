@@ -64,16 +64,16 @@ while (have_posts()) :
 								<div class="d_wrapper">
 									<?php if ($start_date && $end_date && $start_date !== $end_date) : ?>
 										<div class="d">
-											<div class="d1 text3"><?php echo $start_date_obj->format('M'); ?></div>
+											<div class="d1 text3"><?php echo get_chinese_month($start_date_obj->format('M')); ?></div>
 											<div class="d2 text5"><?php echo $start_date_obj->format('d'); ?></div>
 										</div>
 										<div class="d">
-											<div class="d1 text3"><?php echo $end_date_obj->format('M'); ?></div>
+											<div class="d1 text3"><?php echo get_chinese_month($end_date_obj->format('M')); ?></div>
 											<div class="d2 text5"><?php echo $end_date_obj->format('d'); ?></div>
 										</div>
 									<?php else : ?>
 										<div class="d">
-											<div class="d1 text3"><?php echo $start_date_obj->format('M'); ?></div>
+											<div class="d1 text3"><?php echo get_chinese_month($start_date_obj->format('M')); ?></div>
 											<div class="d2 text5"><?php echo $start_date_obj->format('d'); ?></div>
 										</div>
 									<?php endif; ?>
@@ -90,9 +90,9 @@ while (have_posts()) :
 										<div class="t2 text6">
 											<?php
 											if ($start_date && $end_date && $start_date !== $end_date) {
-												echo esc_html($start_date_obj->format('Y年m月d日') . '－' . $end_date_obj->format('Y年m月d日'));
+												echo esc_html($start_date_obj->format('Y年n月d日') . '－' . $end_date_obj->format('Y年n月d日'));
 											} else {
-												echo esc_html($start_date_obj->format('Y年m月d日'));
+												echo esc_html($start_date_obj->format('Y年n月d日'));
 											}
 											?>
 										</div>
