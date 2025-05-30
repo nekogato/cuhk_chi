@@ -687,6 +687,7 @@ function load_postgraduate_students()
 			$position = get_field('position');
 			$description = get_field('description');
 			$address = get_field('address');
+			$qualifications = get_field('qualifications');
 
 			// Get contact information
 			$emails = array();
@@ -722,7 +723,8 @@ function load_postgraduate_students()
 				'address' => $address,
 				'emails' => $emails,
 				'phones' => $phones,
-				'faxes' => $faxes
+				'faxes' => $faxes,
+				'qualifications' => $qualifications
 			);
 
 			if ($photo) {

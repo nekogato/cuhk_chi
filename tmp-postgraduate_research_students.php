@@ -96,10 +96,12 @@ get_header();
 						<div class="people_detail_text">
 							<div class="name text3" x-text="currentStudent.title"></div>
 							<div class="position text5" x-text="currentStudent.position"></div>
-							<template x-if="currentStudent.description">
+							<template x-if="currentStudent.qualifications">
 								<div class="qualifications text6">
 									<ul>
-										<li x-html="currentStudent.description"></li>
+										<template x-for="qualification in currentStudent.qualifications.split(',')" :key="qualification">
+											<li x-text="qualification.trim()"></li>
+										</template>
 									</ul>
 								</div>
 							</template>
@@ -131,6 +133,12 @@ get_header();
 									</template>
 								</div>
 							</div>
+							<template x-if="currentStudent.description">
+								<div class="description">
+									<div class="t1 text7"><?php pll_e('Description'); ?></div>
+									<div class="t2 free_text" x-html="currentStudent.description"></div>
+								</div>
+							</template>
 						</div>
 					</div>
 				</div>
