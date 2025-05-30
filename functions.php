@@ -683,7 +683,6 @@ function load_postgraduate_students()
 			$query->the_post();
 
 			$photo = get_field('photo');
-			$title = get_field('title');
 			$position = get_field('position');
 			$description = get_field('description');
 			$address = get_field('address');
@@ -717,7 +716,7 @@ function load_postgraduate_students()
 
 			$student = array(
 				'id' => get_the_ID(),
-				'title' => $title,
+				'title' => get_the_title(),
 				'position' => $position,
 				'description' => $description,
 				'address' => $address,
@@ -738,7 +737,7 @@ function load_postgraduate_students()
 			}
 
 			// Only add student if it matches alphabet filter
-			if (!$alphabet || strtolower(substr($title, 0, 1)) === $alphabet) {
+			if (!$alphabet || strtolower(substr($student['title'], 0, 1)) === $alphabet) {
 				$students[] = $student;
 			}
 		}
