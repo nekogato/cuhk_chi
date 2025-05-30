@@ -9,7 +9,6 @@
 get_header();
 ?>
 
-<?php get_template_part('template-parts/roll-menu'); ?>
 
 <div class="section section_song scrollin_p">
 	<div class="ink_bg12_wrapper">
