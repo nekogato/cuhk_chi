@@ -31,7 +31,7 @@ while (have_posts()) :
 
 	<?php
 	$args = array(
-		'post_type' => 'events',
+		'post_type' => 'event',
 		'posts_per_page' => EVENTS_PER_PAGE,
 		'orderby' => 'meta_value',
 		'meta_key' => 'start_date',

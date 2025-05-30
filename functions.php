@@ -499,7 +499,7 @@ function load_more_events()
 	$page = isset($_POST['page']) ? intval($_POST['page']) : 1;
 
 	$args = array(
-		'post_type' => 'events',
+		'post_type' => 'event',
 		'posts_per_page' => EVENTS_PER_PAGE,
 		'paged' => $page,
 		'orderby' => 'meta_value',
