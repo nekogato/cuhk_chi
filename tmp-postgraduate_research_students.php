@@ -81,7 +81,7 @@ get_header();
 	</div>
 
 	<!-- Render Popup -->
-	<div x-show="currentStudent" x-cloak>
+	<div x-show="currentStudent" x-cloak style="display: none;">
 		<template x-if="currentStudent">
 			<div class="people_popup popup" :data-id="'student' + currentStudent.id">
 				<div class="people_detail_content">
@@ -93,7 +93,7 @@ get_header();
 								</div>
 							</div>
 						</template>
-						<div class="people_detail_text scrollin scrollinbottom">
+						<div class="people_detail_text">
 							<div class="name text3" x-text="currentStudent.title"></div>
 							<div class="position text5" x-text="currentStudent.position"></div>
 							<template x-if="currentStudent.description">
@@ -249,7 +249,10 @@ get_header();
 
 			showStudentPopup(student) {
 				this.currentStudent = student;
-				jQuery('.people_popup').fadeIn(300);
+				// Wait for Alpine to update the DOM
+				this.$nextTick(() => {
+					jQuery('.people_popup').fadeIn(300);
+				});
 			},
 
 			hideStudentPopup() {
