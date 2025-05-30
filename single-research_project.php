@@ -75,7 +75,7 @@ while (have_posts()) :
 						<div class="col_spacing scrollin scrollinbottom">
 							<div class="left_content free_text">
 								<?php if ($funding_start_year || $funding_end_year) : ?>
-									<h5><?php pll_e('Funding Period'); ?></h5>
+									<h5><?php pll_e('撥款年份'); ?></h5>
 									<p>
 										<?php
 										if ($funding_start_year && $funding_end_year) {
@@ -90,22 +90,22 @@ while (have_posts()) :
 								<?php endif; ?>
 
 								<?php if ($principal_investigator) : ?>
-									<h5><?php pll_e('Principal Investigator'); ?></h5>
+									<h5><?php pll_e('計劃主持'); ?></h5>
 									<p><?php echo esc_html($principal_investigator); ?></p>
 								<?php endif; ?>
 
 								<?php if ($other_investigator) : ?>
-									<h5><?php pll_e('Other Investigators'); ?></h5>
+									<h5><?php pll_e('其他研究員'); ?></h5>
 									<p><?php echo esc_html($other_investigator); ?></p>
 								<?php endif; ?>
 
 								<?php if ($granted_amount) : ?>
-									<h5><?php pll_e('Granted Amount'); ?></h5>
+									<h5><?php pll_e('撥款金額'); ?></h5>
 									<p><?php echo esc_html($granted_amount); ?></p>
 								<?php endif; ?>
 
 								<?php if ($funding_organization) : ?>
-									<h5><?php pll_e('Funding Organization'); ?></h5>
+									<h5><?php pll_e('撥款機構'); ?></h5>
 									<p><?php echo esc_html($funding_organization); ?></p>
 								<?php endif; ?>
 							</div>
