@@ -12,6 +12,7 @@ define('MPHIL_PHD_RESEARCH_MAX_POSTS', 6);
 define('PUBLICATIONS_PER_PAGE', 6);
 define('NEWS_PER_PAGE', 4);
 define('EVENTS_PER_PAGE', 4);
+define('MAX_POSTGRADUATE_STUDENTS_PER_PAGE', 6);
 
 if (! defined('_S_VERSION')) {
 	// Replace the version number of the theme on each release.
@@ -640,12 +641,27 @@ function load_postgraduate_students()
 	$alphabet = isset($_POST['alphabet']) ? sanitize_text_field($_POST['alphabet']) : '';
 	$degree = isset($_POST['degree']) ? sanitize_text_field($_POST['degree']) : '';
 
+	// Get the category ID for postgraduate-research-students
+	$category = get_term_by('slug', 'postgraduate-research-students', 'people_category');
+
+	if (!$category) {
+		wp_send_json_error('Category not found');
+		return;
+	}
+
 	$args = array(
-		'post_type' => 'postgraduate_student',
-		'posts_per_page' => 6,
+		'post_type' => 'profile',
+		'posts_per_page' => MAX_POSTGRADUATE_STUDENTS_PER_PAGE,
 		'paged' => $page,
 		'orderby' => 'title',
-		'order' => 'ASC'
+		'order' => 'ASC',
+		'tax_query' => array(
+			array(
+				'taxonomy' => 'people_category',
+				'field' => 'term_id',
+				'terms' => $category->term_id
+			)
+		)
 	);
 
 	// Add meta query for degree if specified
