@@ -365,6 +365,25 @@ function init_event(){
 		return false;
 	})
 
+	
+
+	$('.scholarship_filter input[name="filter"]').on('change', function () {
+		$(".section_expandable_list").height($(".section_expandable_list").height());
+		let selectedValue = $(this).attr('id'); 
+		if(selectedValue!=="all"){
+			$(".expandable_item").hide();
+			$(".expandable_item."+selectedValue).stop().fadeIn();
+		}else{
+			$(".expandable_item").stop().fadeIn();
+		}
+		setTimeout(function(){
+			$(".section_expandable_list").height("auto");
+		},0)
+		setTimeout(function(){
+			doscroll();
+		},600)
+	});
+
 	$('.filter_switchable_wrapper input[name="filter"]').on('change', function () {
 		$(".resource_filter_menu_section").height($(".resource_filter_menu_section").height());
 		let selectedValue = $(this).attr('id'); 
@@ -377,6 +396,28 @@ function init_event(){
 			$(".switchable_section_expandable_list[data-id="+selectedValue+"]").stop().fadeIn();
 		},0)
 	});
+
+	$(".f_btn").click(function(){
+		$(this).parent().find(".fancybox:first").click();
+	});
+
+
+
+	$(".scrollinbottom_dropdown").click(function(){
+		var $p = $(this).parents(".scrollinbottom_dropdown_wrapper")
+		if($p.hasClass("active")){
+			$p.removeClass("active").find(".hidden").show();
+			setTimeout(function(){
+			$p.find(".hidden").stop().slideUp();
+			},0)
+		}else{
+			$p.addClass("active").find(".hidden").hide();
+			setTimeout(function(){
+			$p.find(".hidden").stop().slideDown();
+			},0)
+		}
+		return false;
+	})
 }
 
 
@@ -664,6 +705,9 @@ function init_function(){
 		$(this).find(".prev_btn").click(function(){
 			home_news_date_slider.slidePrev()
 		})
+
+
+		
 	});
 		
 
@@ -864,9 +908,8 @@ function init_function(){
 		}
 	})
 
-	$(".f_btn").click(function(){
-		$(this).parent().find(".fancybox:first").click();
-	});
+
+	
 }
 
 

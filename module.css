@@ -241,32 +241,108 @@
 
 
 .roll_top_menu .breadcrumb{
-    padding-top: 10px;
-    padding-bottom: 10px;
     text-align: center;
-    padding-left: 10px;
-    padding-right: 10px;
     display: inline-block;
     position: relative;
+    display: flex;
+    gap: 10px;
 }
 
 .roll_top_menu .breadcrumb span{
-    padding-left: 10px;
-    padding-right: 10px;
+    position: relative;
 }
 
 .roll_top_menu .breadcrumb a{
     color:#63629B;
     font-weight: 600;
+    position: relative;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    display: block;
 }
 
-.roll_top_menu .breadcrumb::after{
-    content:"";
+.roll_top_menu .breadcrumb .scrollinbottom_dropdown_wrapper{
+    position: relative;
+}
+
+
+
+.roll_top_menu .breadcrumb a.scrollinbottom_dropdown{
+    padding-left: 50px;
+    padding-right: 50px;
+    color:#009b9d;
+}
+
+.roll_top_menu .breadcrumb .scrollinbottom_dropdown_wrapper.active .scrollinbottom_dropdown{
+    color:#009b9d
+}
+
+
+
+.roll_top_menu .breadcrumb a.scrollinbottom_dropdown span{
+    padding-right: 20px;
+}
+
+.roll_top_menu .breadcrumb a.scrollinbottom_dropdown span::before {
+    content: "";
+    position: absolute;
+    top: 0px;
+    bottom: 6px;
+    right: 0px;
+    margin: auto;
+    width: 8px;
+    height: 8px;
+    border-right:1px solid #009b9d;
+    border-bottom:1px solid #009b9d;
+    transform: rotate(45deg);
+}
+
+.roll_top_menu .breadcrumb .scrollinbottom_dropdown_wrapper.active  a.scrollinbottom_dropdown span::before {
+    border-right:1px solid #009b9d;
+    border-bottom:1px solid #009b9d;
+    transform: rotate(-135deg);
+    top: 6px;
+    bottom: 0px;
+}
+
+.roll_top_menu .breadcrumb .scrollinbottom_dropdown_wrapper .hidden{
     position: absolute;
     left: 0px;
-    right: 0px;
+    top:100%;
+    padding: 10px;
+    background-color: #fff;
+    z-index: 9;
+    text-align: left;
+    display: none;
+}
+
+.roll_top_menu .breadcrumb .scrollinbottom_dropdown_wrapper .hidden a{
+    padding: 10px;
+    background-color: #fff;
+    color:#575792;
+}
+
+.roll_top_menu .breadcrumb .scrollinbottom_dropdown_wrapper .hidden li+li{
+    border-top:1px solid #b6b3b3
+}
+
+.roll_top_menu .breadcrumb .scrollinbottom_dropdown_wrapper .hidden a:hover{
+    opacity: 0.5;
+}
+
+
+.scrollinbottom_dropdown::before {
+    content: "";
+    position: absolute;
+    left: 0px;
     bottom: 0px;
-    border-bottom:2px solid #009b9d
+    right: 0px;
+    margin: auto;
+    height: 100%;
+    background: linear-gradient(0deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 100%);
+    pointer-events: none;
 }
 
 .roll_bottom_menu{
