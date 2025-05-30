@@ -638,7 +638,7 @@ function load_postgraduate_students()
 	check_ajax_referer('load_postgraduate_students_nonce', 'nonce');
 
 	$page = isset($_POST['page']) ? intval($_POST['page']) : 1;
-	$alphabet = isset($_POST['alphabet']) ? sanitize_text_field($_POST['alphabet']) : '';
+	$alphabet = isset($_POST['alphabet']) ? strtoupper(sanitize_text_field($_POST['alphabet'])) : '';
 	$degree = isset($_POST['degree']) ? sanitize_text_field($_POST['degree']) : '';
 
 	// Get the category ID for postgraduate-research-students
