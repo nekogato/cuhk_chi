@@ -53,7 +53,7 @@ get_header();
 					<template x-for="student in filteredStudents" :key="student.id">
 						<div class="student_list_item">
 							<template x-if="student.photo">
-								<div class="photo popup_btn" :data-target="'student' + student.id">
+								<div class="photo" @click="showStudentPopup(student)">
 									<img :src="student.photo.sizes.s" :alt="student.photo.alt">
 								</div>
 							</template>
@@ -81,64 +81,79 @@ get_header();
 	</div>
 </div>
 
-<!-- Student Popup Template -->
-<template id="student-popup-template">
-	<div class="people_popup popup" :data-id="'student' + student.id">
-		<div class="people_detail_content">
-			<div class="people_detail_incontent">
-				<template x-if="student.photo">
-					<div class="people_detail_photo_wrapper">
-						<div class="people_detail_photo">
-							<img :src="student.photo.sizes.l" :alt="student.photo.alt">
-						</div>
-					</div>
-				</template>
-				<div class="people_detail_text scrollin scrollinbottom">
-					<div class="name text3" x-text="student.title"></div>
-					<div class="position text5" x-text="student.position"></div>
-					<template x-if="student.description">
-						<div class="qualifications text6">
-							<ul>
-								<li x-html="student.description"></li>
-							</ul>
+<!-- Render Popup -->
+<div x-data x-show="$store.popup.currentStudent" x-cloak>
+	<template x-if="$store.popup.currentStudent">
+		<div class="people_popup popup" :data-id="'student' + $store.popup.currentStudent.id">
+			<div class="people_detail_content">
+				<div class="people_detail_incontent">
+					<template x-if="$store.popup.currentStudent.photo">
+						<div class="people_detail_photo_wrapper">
+							<div class="people_detail_photo">
+								<img :src="$store.popup.currentStudent.photo.sizes.l" :alt="$store.popup.currentStudent.photo.alt">
+							</div>
 						</div>
 					</template>
-					<div class="info_table text6">
-						<div class="table_flex_item_wrapper">
-							<template x-if="student.emails && student.emails.length">
-								<div class="table_flex_item">
-									<div class="title text7"><?php pll_e('Email'); ?></div>
-									<div class="text" x-html="student.emails.join(' / ')"></div>
-								</div>
-							</template>
-							<template x-if="student.phones && student.phones.length">
-								<div class="table_flex_item">
-									<div class="title text7"><?php pll_e('Tel'); ?></div>
-									<div class="text" x-text="student.phones.join(' / ')"></div>
-								</div>
-							</template>
-							<template x-if="student.faxes && student.faxes.length">
-								<div class="table_flex_item">
-									<div class="title text7"><?php pll_e('Fax'); ?></div>
-									<div class="text" x-text="student.faxes.join(' / ')"></div>
-								</div>
-							</template>
-							<template x-if="student.address">
-								<div class="table_flex_item">
-									<div class="title text7"><?php pll_e('Address'); ?></div>
-									<div class="text" x-text="student.address"></div>
-								</div>
-							</template>
+					<div class="people_detail_text scrollin scrollinbottom">
+						<div class="name text3" x-text="$store.popup.currentStudent.title"></div>
+						<div class="position text5" x-text="$store.popup.currentStudent.position"></div>
+						<template x-if="$store.popup.currentStudent.description">
+							<div class="qualifications text6">
+								<ul>
+									<li x-html="$store.popup.currentStudent.description"></li>
+								</ul>
+							</div>
+						</template>
+						<div class="info_table text6">
+							<div class="table_flex_item_wrapper">
+								<template x-if="$store.popup.currentStudent.emails && $store.popup.currentStudent.emails.length">
+									<div class="table_flex_item">
+										<div class="title text7"><?php pll_e('Email'); ?></div>
+										<div class="text" x-html="$store.popup.currentStudent.emails.join(' / ')"></div>
+									</div>
+								</template>
+								<template x-if="$store.popup.currentStudent.phones && $store.popup.currentStudent.phones.length">
+									<div class="table_flex_item">
+										<div class="title text7"><?php pll_e('Tel'); ?></div>
+										<div class="text" x-text="$store.popup.currentStudent.phones.join(' / ')"></div>
+									</div>
+								</template>
+								<template x-if="$store.popup.currentStudent.faxes && $store.popup.currentStudent.faxes.length">
+									<div class="table_flex_item">
+										<div class="title text7"><?php pll_e('Fax'); ?></div>
+										<div class="text" x-text="$store.popup.currentStudent.faxes.join(' / ')"></div>
+									</div>
+								</template>
+								<template x-if="$store.popup.currentStudent.address">
+									<div class="table_flex_item">
+										<div class="title text7"><?php pll_e('Address'); ?></div>
+										<div class="text" x-text="$store.popup.currentStudent.address"></div>
+									</div>
+								</template>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+			<a class="popup_close_btn" @click="$store.popup.hide()"></a>
 		</div>
-		<a class="popup_close_btn"></a>
-	</div>
-</template>
+	</template>
+</div>
 
 <script>
+	// Create a global store for managing the popup state
+	document.addEventListener('alpine:init', () => {
+		Alpine.store('popup', {
+			currentStudent: null,
+			show(student) {
+				this.currentStudent = student;
+			},
+			hide() {
+				this.currentStudent = null;
+			}
+		});
+	});
+
 	function studentList() {
 		return {
 			students: [],
@@ -242,6 +257,10 @@ get_header();
 				}
 
 				return parts.join(' / ');
+			},
+
+			showStudentPopup(student) {
+				this.$store.popup.show(student);
 			}
 		}
 	}

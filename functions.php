@@ -696,21 +696,21 @@ function load_postgraduate_students()
 			if (have_rows('email')) {
 				while (have_rows('email')) {
 					the_row();
-					$emails[] = get_sub_field('email_address');
+					$emails[] = get_sub_field('email');
 				}
 			}
 
 			if (have_rows('phone')) {
 				while (have_rows('phone')) {
 					the_row();
-					$phones[] = get_sub_field('phone_number');
+					$phones[] = get_sub_field('phone');
 				}
 			}
 
 			if (have_rows('fax')) {
 				while (have_rows('fax')) {
 					the_row();
-					$faxes[] = get_sub_field('fax_number');
+					$faxes[] = get_sub_field('fax');
 				}
 			}
 
