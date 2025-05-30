@@ -438,7 +438,7 @@ function init_function(){
 			slidesPerView: "auto",
 			speed: 1600,
 			loop: false,
-			spaceBetween: 50,
+			spaceBetween: 100,
 			breakpoints: {
 				// when window width is >= 320px
 				320: {
@@ -451,6 +451,10 @@ function init_function(){
 				// when window width is >= 640px
 				640: {
 					spaceBetween: 0,
+				},
+				// when window width is >= 640px
+				1600: {
+					spaceBetween: 50,
 				}
 			}
 		});
@@ -569,7 +573,7 @@ function init_function(){
 			autoplay: false,
 			slidesPerView: 4,
 			speed: 1600,
-			loop: true,
+			loop: false,
 			spaceBetween: 0,
 			pagination: {
 				el: $(this).find('.dot_wrapper'),
@@ -859,6 +863,10 @@ function init_function(){
 			},0)
 		}
 	})
+
+	$(".f_btn").click(function(){
+		$(this).parent().find(".fancybox:first").click();
+	});
 }
 
 
