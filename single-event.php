@@ -1,44 +1,20 @@
 <?php
+
 /**
+ * The template for displaying single event posts
+ *
  * @package cuhk_chi
  */
 
 get_header();
 ?>
 
+<?php get_template_part('template-parts/roll-menu', null, array('target_page' => 'news-and-events/events')); ?>
 
 <?php
-while ( have_posts() ) :
+while (have_posts()) :
 	the_post();
 ?>
-
-	<div class="sentinel"></div>
-	<div class="section roll_menu_section sticky_section">
-		<div class="roll_menu scrollin scrollinbottom">
-			<div class="roll_top_menu text7">
-				<div class="section_center_content">
-					<div class="swiper-container swiper">
-						<div class="swiper-wrapper">
-							<div class="swiper-slide"><div><a href="#" class="active">News & Events</a></div></div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="roll_bottom_menu text7">
-				<div class="section_center_content">
-					<div class="swiper-container swiper">
-						<div class="swiper-wrapper">
-							<div class="swiper-slide"><div><a href="#">Announcements</a></div></div>
-							<div class="swiper-slide"><div><a href="#" class="active">Up Coming Events</a></div></div>
-							<div class="swiper-slide"><div><a href="#">News</a></div></div>
-							<div class="swiper-slide"><div><a href="#">Newsletter</a></div></div>
-							<div class="swiper-slide"><div><a href="#">Media Gallery</a></div></div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 
 	<div class="section top_photo_banner_section top_photo_banner_section_absolute">
 		<div class="section_center_content small_section_center_content">
@@ -48,38 +24,25 @@ while ( have_posts() ) :
 						<div class="col_spacing scrollin scrollinbottom">
 							<div class="text_wrapper vertical_text_wrapper">
 								<div class="text vertical_text">
-									<?php $event_category = get_the_terms(get_the_ID(),'event_category'); 
-									if ( $event_category ) {
-										if ( $event_category && ! is_wp_error( $event_category ) ) {
-											?>
-											<h4 class="project_smalltitle ">
-											<?php
-											foreach ( $event_category as $term ) {
-												$termid = $term->term_id;
-												$termslug = $term->slug;
-												$termlink = get_term_link( $term );
-												if ( is_wp_error( $termlink ) ) {
-													continue;
-												}
-												if(pll_current_language() == 'tc') {
-													$termname = get_field('tc_name', 'event_category_' .$termid);
-												}elseif(pll_current_language() == 'sc'){
-													$termname = get_field('sc_name', 'event_category_' .$termid);
-												}else{
-													$termname = get_field('en_name', 'event_category_' .$termid);
-												};
-												?>
-												<span><?php echo $termname;?></span>
-												<?php
-											};
-											?>
-											</h4>
-											<?php
-										};
-									};
+									<?php
+									$event_category = get_the_terms(get_the_ID(), 'event_category');
+									if ($event_category && !is_wp_error($event_category)) :
+										foreach ($event_category as $term) :
+											$term_id = $term->term_id;
+											if (pll_current_language() == 'tc') {
+												$term_name = get_field('tc_name', 'event_category_' . $term_id);
+											} elseif (pll_current_language() == 'sc') {
+												$term_name = get_field('sc_name', 'event_category_' . $term_id);
+											} else {
+												$term_name = get_field('en_name', 'event_category_' . $term_id);
+											}
 									?>
-
-									<h1 class="project_title"><span><?php the_field("event_name");?></span></h1>
+											<h4 class="project_smalltitle"><span><?php echo esc_html($term_name); ?></span></h4>
+									<?php
+										endforeach;
+									endif;
+									?>
+									<h1 class="project_title"><span><?php echo esc_html(get_field('event_name')); ?></span></h1>
 								</div>
 							</div>
 						</div>
@@ -89,139 +52,142 @@ while ( have_posts() ) :
 		</div>
 	</div>
 
-
 	<div class="section section_left_right_content section_left_right_content2 scrollin_p">
 		<div class="section_center_content small_section_center_content">
 			<div class="col_wrapper xl_col_wrapper">
 				<div class="flex row">
-					
-					<?php 
-					$event_banner = get_field("event_banner");
-					$event_banner_caption = get_field("event_banner_caption");
-					if ( get_field("event_banner") ) {
-						?>
-
+					<?php
+					$event_banner = get_field('event_banner');
+					$event_banner_caption = get_field('event_banner_caption');
+					if ($event_banner) :
+					?>
 						<div class="col col5">
-							<div class="col_spacing ">
+							<div class="col_spacing">
 								<div class="left_content free_text">
-									<div class="flexible_layout_wrapper ">
+									<div class="flexible_layout_wrapper">
 										<div class="flexible_layout flexible_layout_photo scrollin scrollinleft">
 											<div class="photo_wrapper">
 												<div class="photo">
-													<img src="<?php echo $event_banner["sizes"]["l"]; ?>" >
+													<img src="<?php echo esc_url($event_banner['sizes']['l']); ?>" alt="<?php echo esc_attr($event_banner['alt']); ?>">
 												</div>
-												<?php if($event_banner_caption){ ?>
-													<div class="caption"><?php echo $event_banner_caption;?></div>
-												<?php }; ?>
+												<?php if ($event_banner_caption) : ?>
+													<div class="caption"><?php echo esc_html($event_banner_caption); ?></div>
+												<?php endif; ?>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
+					<?php endif; ?>
 
-						<?php
-					};?>
 					<div class="col col5">
 						<div class="col_spacing">
 							<div class="right_content">
-								<div class="flexible_layout_wrapper ">
-                                    <div class="info_item_wrapper scrollin scrollinbottom">
-										<?php if(get_field('start_date')){?>
+								<div class="flexible_layout_wrapper">
+									<div class="info_item_wrapper scrollin scrollinbottom">
+										<?php if (get_field('start_date')) : ?>
 											<div class="info_item">
-												<div class="t1 text5"><?php echo pll__('日期')?></div>
+												<div class="t1 text5"><?php pll_e('日期'); ?></div>
 												<div class="t2 text6">
-													<?php the_field('start_date'); ?>
-													<?php if(get_field('end_date')){
-														echo " - ".get_field('end_date');
-													};?>
+													<?php
+													$start_date = get_field('start_date');
+													$end_date = get_field('end_date');
+													$start_date_obj = DateTime::createFromFormat('d/m/Y', $start_date);
+													$end_date_obj = DateTime::createFromFormat('d/m/Y', $end_date);
+
+													if ($start_date && $end_date && $start_date !== $end_date) {
+														echo esc_html($start_date_obj->format('Y年n月d日') . '－' . $end_date_obj->format('Y年n月d日'));
+													} else {
+														echo esc_html($start_date_obj->format('Y年n月d日'));
+													}
+													?>
 												</div>
 											</div>
-										<?php };?>
-										<?php if(get_field('event_time')){?>
-											<div class="info_item ">
-												<div class="t1 text5"><?php echo pll__('時間')?></div>
-												<div class="t2 text6">
-													<?php the_field('event_time'); ?>
-												</div>
+										<?php endif; ?>
+
+										<?php if (get_field('event_time')) : ?>
+											<div class="info_item">
+												<div class="t1 text5"><?php pll_e('時間'); ?></div>
+												<div class="t2 text6"><?php echo esc_html(get_field('event_time')); ?></div>
 											</div>
-										<?php };?>
-										<?php if(get_field('event_venue')){?>
+										<?php endif; ?>
+
+										<?php if (get_field('event_venue')) : ?>
 											<div class="info_item big_info_item">
-												<div class="t1 text5"><?php echo pll__('地點')?></div>
-												<div class="t2 text6">
-													<?php the_field('event_venue'); ?>
-												</div>
+												<div class="t1 text5"><?php pll_e('地點'); ?></div>
+												<div class="t2 text6"><?php echo esc_html(get_field('event_venue')); ?></div>
 											</div>
-										<?php };?>
-                                    </div>
+										<?php endif; ?>
+									</div>
+
 									<?php
-									if( have_rows('flexible_content') ):
-										$i=0;
-										while ( have_rows('flexible_content') ) : the_row();
-											if( get_row_layout() == 'free_text' ):
-												$freetext = get_sub_field("free_text");
-												if($freetext){
-												?>
+									if (have_rows('flexible_content')) :
+										$i = 0;
+										while (have_rows('flexible_content')) : the_row();
+											if (get_row_layout() == 'free_text') :
+												$free_text = get_sub_field('free_text');
+												if ($free_text) :
+									?>
 													<div class="flexible_layout flexible_layout_freetext scrollin scrollinbottom">
 														<div class="free_text">
-															<?php echo $freetext; ?>
+															<?php echo wp_kses_post($free_text); ?>
 														</div>
 													</div>
 												<?php
-												};
-											elseif( get_row_layout() == 'single_image' ):
+												endif;
+											elseif (get_row_layout() == 'single_image') :
 												$image = get_sub_field('image');
 												$caption = get_sub_field('caption');
-												if($image){
+												if ($image) :
 												?>
 													<div class="flexible_layout flexible_layout_photo scrollin scrollinleft">
 														<div class="photo_wrapper">
 															<div class="photo">
-																<img src="<?php echo esc_url($image['sizes']['l']); ?>" >
+																<img src="<?php echo esc_url($image['sizes']['l']); ?>" alt="<?php echo esc_attr($image['alt']); ?>">
 															</div>
-															<?php if($caption){?>
-															<div class="caption"><?php echo $caption;?></div>
-															<?php };?>
+															<?php if ($caption) : ?>
+																<div class="caption"><?php echo esc_html($caption); ?></div>
+															<?php endif; ?>
 														</div>
 													</div>
 												<?php
-												};
-											elseif( get_row_layout() == 'video_upload' ):
+												endif;
+											elseif (get_row_layout() == 'video_upload') :
 												$video = get_sub_field('video_upload');
-												if($video){
+												if ($video) :
 												?>
 													<div class="flexible_layout flexible_layout_video scrollin scrollinbottom">
 														<div class="upload_video_wrapper">
 															<video controls playsinline>
-																<source src="<?php echo $video["url"];?>" type="video/mp4">
-																Your browser does not support HTML5 video.
+																<source src="<?php echo esc_url($video['url']); ?>" type="video/mp4">
+																<?php pll_e('Your browser does not support HTML5 video.'); ?>
 															</video>
 														</div>
 													</div>
 												<?php
-												};
-											elseif( get_row_layout() == 'slider' ):
-												if( have_rows('image_list') ):
+												endif;
+											elseif (get_row_layout() == 'slider') :
+												if (have_rows('image_list')) :
 													$i++;
-													?>
+												?>
 													<div class="flexible_layout flexible_layout_slider scrollin scrollinbottom">
 														<div class="swiper-container swiper">
 															<div class="swiper-wrapper">
 																<?php
-																while( have_rows('image_list') ) : the_row();
+																while (have_rows('image_list')) : the_row();
 																	$image = get_sub_field('image');
 																	$caption = get_sub_field('caption');
-																	?>
-																		<div class="swiper-slide">
-																			<a href="<?php echo esc_url($image['sizes']['l']); ?>" class="photo" data-fancybox="gallery<?php echo $i ;?>" <?php if($caption){ ?>data-caption="<?php echo $caption; ?>"<?php }; ?>>
-																				<img src="<?php echo esc_url($image['sizes']['l']); ?>" >
-																			</a>
-																			<?php if($caption){ ?>
-																				<div class="caption"><?php echo $caption; ?></div>
-																			<?php }; ?>
-																		</div>
-																	<?php
+																?>
+																	<div class="swiper-slide">
+																		<a href="<?php echo esc_url($image['sizes']['l']); ?>" class="photo" data-fancybox="gallery<?php echo $i; ?>" <?php if ($caption) : ?>data-caption="<?php echo esc_attr($caption); ?>" <?php endif; ?>>
+																			<img src="<?php echo esc_url($image['sizes']['l']); ?>" alt="<?php echo esc_attr($image['alt']); ?>">
+																		</a>
+																		<?php if ($caption) : ?>
+																			<div class="caption"><?php echo esc_html($caption); ?></div>
+																		<?php endif; ?>
+																	</div>
+																<?php
 																endwhile;
 																?>
 															</div>
@@ -229,13 +195,12 @@ while ( have_posts() ) :
 														<div class="prev_btn"></div>
 														<div class="next_btn"></div>
 													</div>
-													<?php
+									<?php
 												endif;
 											endif;
 										endwhile;
 									endif;
-                                    ?>
-									
+									?>
 								</div>
 							</div>
 						</div>
@@ -244,10 +209,10 @@ while ( have_posts() ) :
 			</div>
 		</div>
 	</div>
-<?php
-endwhile; // End of the loop.
-?>
 
+<?php
+endwhile;
+?>
 
 <?php
 get_footer();
