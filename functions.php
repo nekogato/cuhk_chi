@@ -664,15 +664,27 @@ function load_postgraduate_students()
 		)
 	);
 
-	// Add meta query for degree if specified
+	// Add meta query for degree and alphabet if specified
+	$meta_query = array('relation' => 'AND');
+
 	if ($degree) {
-		$args['meta_query'] = array(
-			array(
-				'key' => 'position',
-				'value' => $degree,
-				'compare' => 'LIKE'
-			)
+		$meta_query[] = array(
+			'key' => 'filter_degree',
+			'value' => $degree,
+			'compare' => '='
 		);
+	}
+
+	if ($alphabet) {
+		$meta_query[] = array(
+			'key' => 'filter_alphabet',
+			'value' => $alphabet,
+			'compare' => '='
+		);
+	}
+
+	if (count($meta_query) > 1) {
+		$args['meta_query'] = $meta_query;
 	}
 
 	$query = new WP_Query($args);
@@ -736,10 +748,7 @@ function load_postgraduate_students()
 				);
 			}
 
-			// Only add student if it matches alphabet filter
-			if (!$alphabet || strtolower(substr($student['title'], 0, 1)) === $alphabet) {
-				$students[] = $student;
-			}
+			$students[] = $student;
 		}
 		wp_reset_postdata();
 	}
