@@ -219,12 +219,16 @@ get_header();
 			},
 
 			filterByAlphabet(alphabet) {
+				this.students = [];
+				this.filteredStudents = [];
 				this.selectedAlphabet = this.selectedAlphabet === alphabet ? '' : alphabet;
 				this.page = 1;
 				this.loadStudents();
 			},
 
 			filterByDegree(degree) {
+				this.students = [];
+				this.filteredStudents = [];
 				this.selectedDegree = this.selectedDegree === degree ? '' : degree;
 				this.page = 1;
 				this.loadStudents();
