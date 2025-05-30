@@ -624,3 +624,107 @@ function get_chinese_month($month_abbr)
 
 	return isset($chinese_months[$month_abbr]) ? $chinese_months[$month_abbr] : $month_abbr;
 }
+
+// AJAX handler for loading postgraduate students
+function load_postgraduate_students()
+{
+	check_ajax_referer('load_postgraduate_students_nonce', 'nonce');
+
+	$page = isset($_POST['page']) ? intval($_POST['page']) : 1;
+	$alphabet = isset($_POST['alphabet']) ? sanitize_text_field($_POST['alphabet']) : '';
+	$degree = isset($_POST['degree']) ? sanitize_text_field($_POST['degree']) : '';
+
+	$args = array(
+		'post_type' => 'postgraduate_student',
+		'posts_per_page' => 6,
+		'paged' => $page,
+		'orderby' => 'title',
+		'order' => 'ASC'
+	);
+
+	// Add meta query for degree if specified
+	if ($degree) {
+		$args['meta_query'] = array(
+			array(
+				'key' => 'position',
+				'value' => $degree,
+				'compare' => 'LIKE'
+			)
+		);
+	}
+
+	$query = new WP_Query($args);
+	$students = array();
+
+	if ($query->have_posts()) {
+		while ($query->have_posts()) {
+			$query->the_post();
+
+			$photo = get_field('photo');
+			$title = get_field('title');
+			$position = get_field('position');
+			$description = get_field('description');
+			$address = get_field('address');
+
+			// Get contact information
+			$emails = array();
+			$phones = array();
+			$faxes = array();
+
+			if (have_rows('email')) {
+				while (have_rows('email')) {
+					the_row();
+					$emails[] = get_sub_field('email_address');
+				}
+			}
+
+			if (have_rows('phone')) {
+				while (have_rows('phone')) {
+					the_row();
+					$phones[] = get_sub_field('phone_number');
+				}
+			}
+
+			if (have_rows('fax')) {
+				while (have_rows('fax')) {
+					the_row();
+					$faxes[] = get_sub_field('fax_number');
+				}
+			}
+
+			$student = array(
+				'id' => get_the_ID(),
+				'title' => $title,
+				'position' => $position,
+				'description' => $description,
+				'address' => $address,
+				'emails' => $emails,
+				'phones' => $phones,
+				'faxes' => $faxes
+			);
+
+			if ($photo) {
+				$student['photo'] = array(
+					'sizes' => array(
+						's' => $photo['sizes']['s'],
+						'l' => $photo['sizes']['l']
+					),
+					'alt' => $photo['alt']
+				);
+			}
+
+			// Only add student if it matches alphabet filter
+			if (!$alphabet || strtolower(substr($title, 0, 1)) === $alphabet) {
+				$students[] = $student;
+			}
+		}
+		wp_reset_postdata();
+	}
+
+	wp_send_json_success(array(
+		'students' => $students,
+		'has_more' => $page < $query->max_num_pages
+	));
+}
+add_action('wp_ajax_load_postgraduate_students', 'load_postgraduate_students');
+add_action('wp_ajax_nopriv_load_postgraduate_students', 'load_postgraduate_students');
