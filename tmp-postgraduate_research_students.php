@@ -61,7 +61,7 @@ get_header();
 								<div class="name text5" x-text="student.title"></div>
 								<div class="title" x-text="student.position"></div>
 								<template x-if="student.contact_info">
-									<div class="email" x-html="student.contact_info"></div>
+									<div class="email" x-html="student.emails.join(' / ')" </div>
 								</template>
 							</div>
 						</div>
