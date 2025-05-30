@@ -249,10 +249,13 @@ get_header();
 
 			showStudentPopup(student) {
 				this.currentStudent = student;
+				jQuery('.people_popup').fadeIn(300);
 			},
 
 			hideStudentPopup() {
-				this.currentStudent = null;
+				jQuery('.people_popup').fadeOut(300, () => {
+					this.currentStudent = null;
+				});
 			}
 		}
 	}
