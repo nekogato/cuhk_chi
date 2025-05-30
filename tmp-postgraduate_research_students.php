@@ -9,6 +9,10 @@
 get_header();
 ?>
 
+<script>
+	var ajaxurl = '<?php echo admin_url('admin-ajax.php'); ?>';
+</script>
+
 <?php get_template_part('template-parts/roll-menu'); ?>
 
 <div x-data="studentList()">
