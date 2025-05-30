@@ -56,8 +56,8 @@ while (have_posts()) :
 						$event_venue = get_field('event_venue');
 
 						// Format dates
-						$start_date_obj = new DateTime($start_date);
-						$end_date_obj = new DateTime($end_date);
+						$start_date_obj = DateTime::createFromFormat('d/m/Y', $start_date);
+						$end_date_obj = DateTime::createFromFormat('d/m/Y', $end_date);
 					?>
 						<div class="event_list_item flex">
 							<div class="date">
