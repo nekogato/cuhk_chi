@@ -113,6 +113,7 @@ function cuhk_chi_setup()
 	add_image_size('xl', 1920, 1080);
 	add_image_size('l', 1600, 1200);
 	add_image_size('m', 1200, 900);
+	add_image_size('929x465', 929, 465, array('center', 'center'));
 	add_image_size('s', 500, 500, array('center', 'center'));
 	add_image_size('xs', 200, 200, array('center', 'center'));
 }

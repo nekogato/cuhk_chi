@@ -94,7 +94,7 @@ if (have_posts()) :
 																<a href="<?php echo esc_url($image['url']); ?>"
 																	data-fancybox="gallery<?php echo get_row_index(); ?>"
 																	data-caption="<?php the_sub_field('album_title'); ?>">
-																	<img src="<?php echo esc_url($image['sizes']['medium']); ?>"
+																	<img src="<?php echo esc_url($image['sizes']['929x465']); ?>"
 																		alt="<?php echo esc_attr($image['alt']); ?>">
 																</a>
 															</div>
