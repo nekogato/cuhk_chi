@@ -50,7 +50,7 @@ get_header();
 		<div class="section_center_content small_section_center_content scrollin scrollinopacity">
 			<div class="student_list">
 				<div class="student_list_item_wrapper">
-					<template x-for="student in filteredStudents" :key="student.id">
+					<template x-for="student in students" :key="student.id">
 						<div class="student_list_item">
 							<template x-if="student.photo">
 								<div class="photo" @click="showStudentPopup(student)">
@@ -152,7 +152,6 @@ get_header();
 	function studentList() {
 		return {
 			students: [],
-			filteredStudents: [],
 			selectedAlphabet: '',
 			selectedDegree: '',
 			page: 1,
@@ -199,7 +198,6 @@ get_header();
 						}
 
 						this.hasMore = data.data.has_more;
-						this.filterStudents();
 					}
 				} catch (error) {
 					console.error('Error loading students:', error);
@@ -208,27 +206,13 @@ get_header();
 				}
 			},
 
-			filterStudents() {
-				this.filteredStudents = this.students.filter(student => {
-					const matchesAlphabet = !this.selectedAlphabet ||
-						student.title.toLowerCase().startsWith(this.selectedAlphabet);
-					const matchesDegree = !this.selectedDegree ||
-						student.position.includes(this.selectedDegree);
-					return matchesAlphabet && matchesDegree;
-				});
-			},
-
 			filterByAlphabet(alphabet) {
-				this.students = [];
-				this.filteredStudents = [];
 				this.selectedAlphabet = this.selectedAlphabet === alphabet ? '' : alphabet;
 				this.page = 1;
 				this.loadStudents();
 			},
 
 			filterByDegree(degree) {
-				this.students = [];
-				this.filteredStudents = [];
 				this.selectedDegree = this.selectedDegree === degree ? '' : degree;
 				this.page = 1;
 				this.loadStudents();
