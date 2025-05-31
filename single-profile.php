@@ -190,7 +190,7 @@ if (have_posts()) :
 													<tr>
 														<td class="year text5"><?php the_sub_field('year'); ?></td>
 														<td class="free_text">
-															<?php echo wp_kses_post(get_sub_field('project_description')); ?>
+															<?php echo wp_kses_post(get_sub_field('free_text')); ?>
 														</td>
 													</tr>
 												<?php endwhile; ?>
@@ -239,7 +239,7 @@ if (have_posts()) :
 													<tr>
 														<td class="year text5"><?php the_sub_field('year'); ?></td>
 														<td class="free_text">
-															<?php echo wp_kses_post(get_sub_field('award_description')); ?>
+															<?php echo wp_kses_post(get_sub_field('free_text')); ?>
 														</td>
 													</tr>
 												<?php endwhile; ?>
