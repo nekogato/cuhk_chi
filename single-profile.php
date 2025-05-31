@@ -54,7 +54,19 @@ if (have_posts()) :
 
 							<?php if ($qualifications): ?>
 								<div class="qualifications text6">
-									<?php echo wp_kses_post($qualifications); ?>
+									<ul>
+										<?php
+										$qualification_items = explode(',', $qualifications);
+										foreach ($qualification_items as $item):
+											$item = trim($item);
+											if (!empty($item)):
+										?>
+												<li><?php echo esc_html($item); ?></li>
+										<?php
+											endif;
+										endforeach;
+										?>
+									</ul>
 								</div>
 							<?php endif; ?>
 
