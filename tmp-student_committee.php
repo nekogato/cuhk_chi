@@ -115,20 +115,56 @@ if (have_posts()) :
 			</div>
 		<?php endif; ?>
 
-		<?php if (have_rows('social_media')): ?>
+		<?php
+		$facebook_url = get_field('facebook_url');
+		$instagram_url = get_field('instagram_url');
+		$youtube_url = get_field('youtube_url');
+		$linkedin_url = get_field('linkedin_url');
+
+		if ($facebook_url || $instagram_url || $youtube_url || $linkedin_url): ?>
 			<div class="section section_content section_committee_sns">
 				<div class="section_center_content small_section_center_content scrollin scrollinbottom">
 					<h3 class="section_smalltitle"><?php pll_e('社交媒體'); ?></h3>
 					<ul>
-						<?php while (have_rows('social_media')): the_row(); ?>
+						<?php if ($facebook_url): ?>
 							<li>
-								<a href="<?php echo esc_url(get_sub_field('social_media_url')); ?>"
-									class="sns_icon_<?php echo esc_attr(get_sub_field('social_media_type')); ?>"
+								<a href="<?php echo esc_url($facebook_url); ?>"
+									class="sns_icon_fb"
 									target="_blank"
 									rel="noopener noreferrer">
 								</a>
 							</li>
-						<?php endwhile; ?>
+						<?php endif; ?>
+
+						<?php if ($instagram_url): ?>
+							<li>
+								<a href="<?php echo esc_url($instagram_url); ?>"
+									class="sns_icon_ig"
+									target="_blank"
+									rel="noopener noreferrer">
+								</a>
+							</li>
+						<?php endif; ?>
+
+						<?php if ($youtube_url): ?>
+							<li>
+								<a href="<?php echo esc_url($youtube_url); ?>"
+									class="sns_icon_yt"
+									target="_blank"
+									rel="noopener noreferrer">
+								</a>
+							</li>
+						<?php endif; ?>
+
+						<?php if ($linkedin_url): ?>
+							<li>
+								<a href="<?php echo esc_url($linkedin_url); ?>"
+									class="sns_icon_in"
+									target="_blank"
+									rel="noopener noreferrer">
+								</a>
+							</li>
+						<?php endif; ?>
 					</ul>
 				</div>
 			</div>
