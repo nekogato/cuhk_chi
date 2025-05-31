@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Template Name: tmp-student_committee
+ * Template Name: Student Committee
  */
 
 get_header();
