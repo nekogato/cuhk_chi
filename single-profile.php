@@ -6,8 +6,15 @@
 
 get_header();
 
+// Get the first people category this post belongs to
+$people_categories = get_the_terms(get_the_ID(), 'people_category');
+$target_page = '';
+if ($people_categories && !is_wp_error($people_categories)) {
+	$target_page = "people/" . $people_categories[0]->slug;
+}
+
 // Include roll menu
-get_template_part('template-parts/roll-menu');
+get_template_part('template-parts/roll-menu', null, array('target_page' => $target_page));
 
 if (have_posts()) :
 	while (have_posts()) : the_post();
