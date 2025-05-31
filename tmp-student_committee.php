@@ -1,0 +1,141 @@
+<?php
+
+/**
+ * Template Name: tmp-student_committee
+ */
+
+get_header();
+
+// Include roll menu
+get_template_part('template-parts/roll-menu');
+
+if (have_posts()) :
+	while (have_posts()) : the_post();
+?>
+
+		<div class="section section_content section_intro">
+			<div class="section_center_content small_section_center_content scrollin scrollinbottom">
+				<h1 class="section_title text1"><?php the_title(); ?></h1>
+				<div class="section_description col6"><?php the_field('introduction'); ?></div>
+			</div>
+		</div>
+
+		<div class="section section_content section_committee">
+			<div class="section_center_content small_section_center_content scrollin scrollinbottom">
+				<div class="committee_list free_text">
+					<h3 class="section_smalltitle"><?php pll_e('學生組織'); ?></h3>
+					<?php if (have_rows('organization_list')): ?>
+						<ol>
+							<?php while (have_rows('organization_list')): the_row(); ?>
+								<li><?php the_sub_field('organization_name'); ?></li>
+							<?php endwhile; ?>
+						</ol>
+					<?php endif; ?>
+				</div>
+
+				<div class="committee_list_slider">
+					<div class="swiper-container swiper">
+						<div class="swiper-wrapper">
+							<?php if (have_rows('organization_list')): ?>
+								<?php while (have_rows('organization_list')): the_row(); ?>
+									<div class="swiper-slide">
+										<div class="name text5"><?php the_sub_field('organization_name'); ?></div>
+										<div class="description">
+											<div class="free_text">
+												<table>
+													<thead>
+														<tr>
+															<td><?php pll_e('職位'); ?></td>
+															<td><?php pll_e('姓名'); ?></td>
+														</tr>
+													</thead>
+													<tbody>
+														<?php if (have_rows('committee_members')): ?>
+															<?php while (have_rows('committee_members')): the_row(); ?>
+																<tr>
+																	<td><?php the_sub_field('position'); ?></td>
+																	<td><?php the_sub_field('name'); ?></td>
+																</tr>
+															<?php endwhile; ?>
+														<?php endif; ?>
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+								<?php endwhile; ?>
+							<?php endif; ?>
+						</div>
+					</div>
+					<div class="prev_btn"></div>
+					<div class="next_btn"></div>
+				</div>
+			</div>
+		</div>
+
+		<?php if (have_rows('photo_albums')): ?>
+			<div class="section section_content section_committee_album">
+				<div class="section_center_content small_section_center_content scrollin scrollinbottom">
+					<h3 class="section_smalltitle"><?php pll_e('學生相簿'); ?></h3>
+					<div class="committee_albums_slider">
+						<div class="swiper-container swiper">
+							<div class="swiper-wrapper">
+								<?php while (have_rows('photo_albums')): the_row(); ?>
+									<div class="swiper-slide">
+										<div class="album_title text5"><?php the_sub_field('album_title'); ?></div>
+										<div class="committee_album_slider">
+											<div class="swiper-container swiper">
+												<div class="swiper-wrapper">
+													<?php
+													$gallery = get_sub_field('album_gallery');
+													if ($gallery): ?>
+														<?php foreach ($gallery as $image): ?>
+															<div class="swiper-slide">
+																<a href="<?php echo esc_url($image['url']); ?>"
+																	data-fancybox="gallery<?php echo get_row_index(); ?>"
+																	data-caption="<?php the_sub_field('album_title'); ?>">
+																	<img src="<?php echo esc_url($image['sizes']['medium']); ?>"
+																		alt="<?php echo esc_attr($image['alt']); ?>">
+																</a>
+															</div>
+														<?php endforeach; ?>
+													<?php endif; ?>
+												</div>
+											</div>
+											<div class="dot_wrapper"></div>
+										</div>
+									</div>
+								<?php endwhile; ?>
+							</div>
+						</div>
+						<div class="prev_btn"></div>
+						<div class="next_btn"></div>
+					</div>
+				</div>
+			</div>
+		<?php endif; ?>
+
+		<?php if (have_rows('social_media')): ?>
+			<div class="section section_content section_committee_sns">
+				<div class="section_center_content small_section_center_content scrollin scrollinbottom">
+					<h3 class="section_smalltitle"><?php pll_e('社交媒體'); ?></h3>
+					<ul>
+						<?php while (have_rows('social_media')): the_row(); ?>
+							<li>
+								<a href="<?php echo esc_url(get_sub_field('social_media_url')); ?>"
+									class="sns_icon_<?php echo esc_attr(get_sub_field('social_media_type')); ?>"
+									target="_blank"
+									rel="noopener noreferrer">
+								</a>
+							</li>
+						<?php endwhile; ?>
+					</ul>
+				</div>
+			</div>
+		<?php endif; ?>
+
+<?php
+	endwhile;
+endif;
+
+get_footer(); ?>
