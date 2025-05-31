@@ -87,7 +87,7 @@ if (have_posts()) :
 											<div class="swiper-container swiper">
 												<div class="swiper-wrapper">
 													<?php
-													$gallery = get_sub_field('album_gallery');
+													$gallery = get_sub_field('album_photos');
 													if ($gallery): ?>
 														<?php foreach ($gallery as $image): ?>
 															<div class="swiper-slide">
