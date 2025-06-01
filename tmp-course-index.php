@@ -233,23 +233,28 @@ if (have_posts()) :
 						this.loading = true;
 
 						try {
-							const requestData = {
-								action: 'load_courses',
-								nonce: '<?php echo wp_create_nonce("load_courses_nonce"); ?>',
-								categories: this.filters.categories,
-								academic_year: this.filters.academicYear,
-								academic_term: this.filters.academicTerm
-							};
+							const formData = new FormData();
+							formData.append('action', 'load_courses');
+							formData.append('nonce', '<?php echo wp_create_nonce("load_courses_nonce"); ?>');
 
-							console.log('Sending request:', requestData);
+							// Handle categories array
+							if (this.filters.categories.length > 0) {
+								this.filters.categories.forEach((category, index) => {
+									formData.append(`categories[${index}]`, category);
+								});
+							}
+
+							formData.append('academic_year', this.filters.academicYear);
+							formData.append('academic_term', this.filters.academicTerm);
+
+							console.log('Sending request with FormData');
+							for (let pair of formData.entries()) {
+								console.log(pair[0] + ': ' + pair[1]);
+							}
 
 							const response = await fetch('<?php echo admin_url("admin-ajax.php"); ?>', {
 								method: 'POST',
-								headers: {
-									'Content-Type': 'application/json',
-									'Accept': 'application/json'
-								},
-								body: JSON.stringify(requestData)
+								body: formData
 							});
 
 							console.log('Response status:', response.status);
