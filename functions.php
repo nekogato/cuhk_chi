@@ -807,7 +807,7 @@ function load_courses()
 		);
 	}
 
-	// Filter by course categories
+	// Filter by course categories only if categories are selected
 	if (!empty($categories)) {
 		$tax_query[] = array(
 			'taxonomy' => 'course_category',

@@ -213,10 +213,7 @@ if (have_posts()) :
 					loading: false,
 
 					init() {
-						// Set default category filter
-						<?php if (!empty($course_categories)): ?>
-							this.filters.categories = ['<?php echo esc_js($course_categories[0]->slug); ?>'];
-						<?php endif; ?>
+						// Don't set default category filter - show all courses initially
 						this.loadCourses();
 					},
 
