@@ -135,11 +135,11 @@ if (have_posts()) :
 
 					<div class="section_expandable_list scrollin_p filter_detail_flex_body">
 						<template x-for="course in section.courses" :key="course.id">
-							<div class="expandable_item scrollin scrollinbottom">
+							<div class="expandable_item scrollin scrollinbottom"
+								:class="expandedCourses.includes(course.id) ? 'active' : ''">
 								<div class="section_center_content small_section_center_content">
 									<div class="expandable_title filter_detail_flex"
-										@click="toggleCourse(course.id)"
-										:class="expandedCourses.includes(course.id) ? 'expanded' : ''">
+										@click="toggleCourse(course.id, $event)">
 										<div class="filter_detail_flex_item text5 text_c1 filter_detail_flex_item_title">
 											<div class="text8 mobile_show2 mobile_title"><?php pll_e('Course Code'); ?></div>
 											<span x-text="course.course_code"></span>
@@ -170,7 +170,7 @@ if (have_posts()) :
 										</div>
 										<div class="icon"></div>
 									</div>
-									<div class="hidden" x-show="expandedCourses.includes(course.id)" x-transition>
+									<div class="hidden">
 										<div class="hidden_content">
 											<div class="filter_detail_description_title text7"><?php pll_e('Description'); ?></div>
 											<div class="filter_detail_description free_text" x-html="course.course_description"></div>
@@ -284,11 +284,28 @@ if (have_posts()) :
 						}
 					},
 
-					toggleCourse(courseId) {
-						if (this.expandedCourses.includes(courseId)) {
+					toggleCourse(courseId, $event) {
+						const isExpanded = this.expandedCourses.includes(courseId);
+						const $item = $($event.target).closest('.expandable_item');
+
+						if (isExpanded) {
+							// Remove from expanded array
 							this.expandedCourses = this.expandedCourses.filter((id) => id !== courseId);
+
+							// Animate with jQuery (matching original behavior)
+							$item.find(".hidden").show();
+							setTimeout(() => {
+								$item.find(".hidden").stop().slideUp();
+							}, 0);
 						} else {
+							// Add to expanded array
 							this.expandedCourses.push(courseId);
+
+							// Animate with jQuery (matching original behavior)
+							$item.find(".hidden").hide();
+							setTimeout(() => {
+								$item.find(".hidden").stop().slideDown();
+							}, 0);
 						}
 					}
 				}
