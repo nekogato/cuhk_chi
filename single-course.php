@@ -16,11 +16,11 @@ while (have_posts()) :
 
 	// Get course fields
 	$course_code = get_field('course_code');
-	$course_title = get_field('course_title');
+	$course_title = get_field('Course_Title');
 	$language = get_field('language');
 	$lecture_time = get_field('lecture_time');
 	$venue = get_field('venue');
-	$quota = get_field('quota');
+	$quota = get_field('Quota');
 	$course_description = get_field('course_description');
 	$syllabus = get_field('syllabus');
 	$assessment_assignments = get_field('assessment_assignments');
