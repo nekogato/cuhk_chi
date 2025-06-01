@@ -58,7 +58,14 @@ get_header();
 								</div>
 							</template>
 							<div class="text">
-								<div class="name text5" x-text="student.title"></div>
+								<template x-if="student.has_detail">
+									<div class="name text5">
+										<a :href="student.permalink" x-text="student.title"></a>
+									</div>
+								</template>
+								<template x-if="!student.has_detail">
+									<div class="name text5" x-text="student.title"></div>
+								</template>
 								<div class="title" x-text="student.position"></div>
 								<template x-if="student.contact_info">
 									<div class="email" x-html="student.emails.join(' / ')" </div>

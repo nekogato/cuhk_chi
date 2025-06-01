@@ -42,6 +42,7 @@ get_header();
 				while ($query->have_posts()) : $query->the_post();
 					$title = get_field('position');
 					$name = get_the_title();
+					$has_detail = get_field('has_detail');
 					$emails = get_field('email');
 					$email_addresses = array();
 					if ($emails) {
@@ -56,7 +57,13 @@ get_header();
 							<div><?php echo esc_html($title); ?></div>
 						</div>
 						<div class="list_item_col text_c1 col2 text5">
-							<div><?php echo esc_html($name); ?></div>
+							<div>
+								<?php if ($has_detail): ?>
+									<a href="<?php the_permalink(); ?>"><?php echo esc_html($name); ?></a>
+								<?php else: ?>
+									<?php echo esc_html($name); ?>
+								<?php endif; ?>
+							</div>
 						</div>
 						<div class="list_item_col col8">
 							<div class="inner_list_item_col col6">

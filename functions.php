@@ -742,7 +742,9 @@ function load_postgraduate_students()
 				'emails' => $emails,
 				'phones' => $phones,
 				'faxes' => $faxes,
-				'qualifications' => $qualifications
+				'qualifications' => $qualifications,
+				'has_detail' => get_field('has_detail'),
+				'permalink' => get_permalink(get_the_ID())
 			);
 
 			if ($photo) {
@@ -842,7 +844,6 @@ function load_courses()
 			$venue = get_field('venue');
 			$quota = get_field('Quota'); // Note: field name is Quota in ACF
 			$course_description = get_field('course_description');
-			$has_detail = get_field('has_detail'); // "Has Detail" checkbox field
 
 			// Get lecturer (post object)
 			$lecturer = get_field('lecturer');
@@ -872,9 +873,7 @@ function load_courses()
 				'venue' => $venue,
 				'quota' => $quota,
 				'course_description' => $course_description,
-				'teaching_assistant_name' => $teaching_assistant_name,
-				'has_detail' => $has_detail,
-				'permalink' => get_permalink(get_the_ID())
+				'teaching_assistant_name' => $teaching_assistant_name
 			);
 
 			// Group courses by course_type (not course_category)
