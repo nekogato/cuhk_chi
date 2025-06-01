@@ -12,7 +12,7 @@ get_template_part('template-parts/roll-menu', null, array('target_page' => 'stud
 
 // Get filter options from taxonomies
 $course_categories = get_terms(array(
-	'taxonomy' => 'course_category',
+	'taxonomy' => 'course_type',
 	'hide_empty' => false,
 ));
 
