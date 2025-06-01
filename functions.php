@@ -177,6 +177,12 @@ function cuhk_chi_scripts()
 		wp_script_add_data('alpinejs', 'defer', true);
 	}
 
+	// Add Alpine.js for course index template
+	if (is_page_template('tmp-course-index.php')) {
+		wp_enqueue_script('alpinejs', 'https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js', array(), '3.13.3', true);
+		wp_script_add_data('alpinejs', 'defer', true);
+	}
+
 	wp_enqueue_style('cuhk_chi-adobe-font', 'https://use.typekit.net/gsi3slf.css', '', '', 'all');
 
 	wp_enqueue_style('cuhk_chi-fonts', get_template_directory_uri() . '/fonts/stylesheet.css', '', '', 'all');
@@ -761,3 +767,131 @@ function load_postgraduate_students()
 }
 add_action('wp_ajax_load_postgraduate_students', 'load_postgraduate_students');
 add_action('wp_ajax_nopriv_load_postgraduate_students', 'load_postgraduate_students');
+
+// AJAX handler for loading courses
+function load_courses()
+{
+	// Get JSON data from request body
+	$json_data = file_get_contents('php://input');
+	$request_data = json_decode($json_data, true);
+
+	// Verify nonce
+	if (!wp_verify_nonce($request_data['nonce'], 'load_courses_nonce')) {
+		wp_send_json_error('Invalid nonce');
+		return;
+	}
+
+	$programmes = isset($request_data['programmes']) ? $request_data['programmes'] : [];
+	$academic_year = isset($request_data['academic_year']) ? sanitize_text_field($request_data['academic_year']) : '';
+	$academic_term = isset($request_data['academic_term']) ? sanitize_text_field($request_data['academic_term']) : '';
+
+	// Build taxonomy query for filtering
+	$tax_query = array('relation' => 'AND');
+
+	if ($academic_year) {
+		$tax_query[] = array(
+			'taxonomy' => 'course_year',
+			'field'    => 'slug',
+			'terms'    => sanitize_title($academic_year)
+		);
+	}
+
+	if ($academic_term) {
+		$tax_query[] = array(
+			'taxonomy' => 'course_semester',
+			'field'    => 'slug',
+			'terms'    => sanitize_title($academic_term)
+		);
+	}
+
+	// Filter by course types (programmes)
+	if (!empty($programmes)) {
+		$tax_query[] = array(
+			'taxonomy' => 'course_type',
+			'field'    => 'slug',
+			'terms'    => $programmes,
+			'operator' => 'IN'
+		);
+	}
+
+	$args = array(
+		'post_type' => 'course',
+		'posts_per_page' => -1,
+		'orderby' => 'title',
+		'order' => 'ASC',
+		'tax_query' => $tax_query
+	);
+
+	$courses_query = new WP_Query($args);
+	$course_sections = array();
+
+	if ($courses_query->have_posts()) {
+		$courses_by_category = array();
+
+		while ($courses_query->have_posts()) {
+			$courses_query->the_post();
+
+			// Get course fields with correct field names from ACF export
+			$course_code = get_field('course_code');
+			$course_title = get_field('Course_Title'); // Note: field name is Course_Title in ACF
+			$language = get_field('language');
+			$lecture_time = get_field('lecture_time');
+			$venue = get_field('venue');
+			$quota = get_field('Quota'); // Note: field name is Quota in ACF
+			$course_description = get_field('course_description');
+
+			// Get lecturer (post object)
+			$lecturer = get_field('lecturer');
+			$lecturer_name = '';
+			if ($lecturer) {
+				$lecturer_name = get_the_title($lecturer->ID);
+			}
+
+			// Get teaching assistant (post object)
+			$teaching_assistant = get_field('teaching_assistant');
+			$teaching_assistant_name = '';
+			if ($teaching_assistant) {
+				$teaching_assistant_name = get_the_title($teaching_assistant->ID);
+			}
+
+			// Get course category from taxonomy instead of ACF field
+			$course_categories = wp_get_post_terms(get_the_ID(), 'course_category');
+			$course_category = !empty($course_categories) ? $course_categories[0]->name : pll__('General');
+
+			$course_data = array(
+				'id' => get_the_ID(),
+				'course_code' => $course_code,
+				'course_title' => $course_title,
+				'lecturer_name' => $lecturer_name,
+				'language' => $language,
+				'lecture_time' => $lecture_time,
+				'venue' => $venue,
+				'quota' => $quota,
+				'course_description' => $course_description,
+				'teaching_assistant_name' => $teaching_assistant_name
+			);
+
+			// Group courses by category
+			if (!isset($courses_by_category[$course_category])) {
+				$courses_by_category[$course_category] = array();
+			}
+			$courses_by_category[$course_category][] = $course_data;
+		}
+
+		// Convert to the format expected by Alpine.js
+		foreach ($courses_by_category as $category_name => $courses) {
+			$course_sections[] = array(
+				'name' => $category_name,
+				'courses' => $courses
+			);
+		}
+
+		wp_reset_postdata();
+	}
+
+	wp_send_json_success(array(
+		'course_sections' => $course_sections
+	));
+}
+add_action('wp_ajax_load_courses', 'load_courses');
+add_action('wp_ajax_nopriv_load_courses', 'load_courses');
