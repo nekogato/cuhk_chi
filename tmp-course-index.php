@@ -176,6 +176,10 @@ if (have_posts()) :
 											<div class="filter_detail_description free_text" x-html="course.course_description"></div>
 											<div x-show="course.teaching_assistant_name" class="filter_detail_description_title text7" style="margin-top: 20px;"><?php pll_e('Teaching Assistant'); ?></div>
 											<div x-show="course.teaching_assistant_name" class="filter_detail_description" x-text="course.teaching_assistant_name"></div>
+											<!-- Course Outline button - only show if has_detail is true -->
+											<div x-show="course.has_detail" class="btn_wrapper text7" style="margin-top: 20px;">
+												<a :href="course.permalink" class="round_btn"><?php pll_e('Course Outline'); ?></a>
+											</div>
 										</div>
 									</div>
 								</div>
