@@ -69,14 +69,14 @@ if (have_posts()) :
 					<div class="filter_menu_content">
 						<div class="filter_dropdown_wrapper">
 							<a class="filter_dropdown_btn text5" href="#" @click="dropdowns.year = !dropdowns.year"
-								x-text="'Academic Years (' + filters.academicYear + ')'"></a>
+								x-text="'Academic Years (' + filters.academicYearName + ')'"></a>
 							<div class="filter_dropdown text5" x-show="dropdowns.year" @click.away="dropdowns.year = false">
 								<ul>
 									<?php if (!empty($academic_years)): ?>
 										<?php foreach ($academic_years as $year): ?>
 											<li>
 												<a href="#"
-													@click="selectFilter('academicYear', '<?php echo esc_js($year->slug); ?>')"
+													@click="selectFilter('academicYear', '<?php echo esc_js($year->slug); ?>', '<?php echo esc_js($year->name); ?>')"
 													:class="filters.academicYear === '<?php echo esc_js($year->slug); ?>' ? 'active' : ''">
 													<?php echo esc_html($year->name); ?>
 												</a>
@@ -88,14 +88,14 @@ if (have_posts()) :
 						</div>
 						<div class="filter_dropdown_wrapper">
 							<a class="filter_dropdown_btn text5" href="#" @click="dropdowns.term = !dropdowns.term"
-								x-text="'Academic Terms (' + filters.academicTerm + ')'"></a>
+								x-text="'Academic Terms (' + filters.academicTermName + ')'"></a>
 							<div class="filter_dropdown text5" x-show="dropdowns.term" @click.away="dropdowns.term = false">
 								<ul>
 									<?php if (!empty($academic_terms)): ?>
 										<?php foreach ($academic_terms as $term): ?>
 											<li>
 												<a href="#"
-													@click="selectFilter('academicTerm', '<?php echo esc_js($term->slug); ?>')"
+													@click="selectFilter('academicTerm', '<?php echo esc_js($term->slug); ?>', '<?php echo esc_js($term->name); ?>')"
 													:class="filters.academicTerm === '<?php echo esc_js($term->slug); ?>' ? 'active' : ''">
 													<?php echo esc_html($term->name); ?>
 												</a>
@@ -195,17 +195,19 @@ if (have_posts()) :
 		<script>
 			function courseFilter() {
 				return {
-					loading: false,
-					courseSections: [],
 					filters: {
 						categories: [],
 						academicYear: '<?php echo !empty($academic_years) ? esc_js($academic_years[0]->slug) : ''; ?>',
-						academicTerm: '<?php echo !empty($academic_terms) ? esc_js($academic_terms[0]->slug) : ''; ?>'
+						academicYearName: '<?php echo !empty($academic_years) ? esc_js($academic_years[0]->name) : ''; ?>',
+						academicTerm: '<?php echo !empty($academic_terms) ? esc_js($academic_terms[0]->slug) : ''; ?>',
+						academicTermName: '<?php echo !empty($academic_terms) ? esc_js($academic_terms[0]->name) : ''; ?>'
 					},
 					dropdowns: {
 						year: false,
 						term: false
 					},
+					courseSections: [],
+					loading: false,
 
 					init() {
 						// Set default category filter
@@ -215,8 +217,9 @@ if (have_posts()) :
 						this.loadCourses();
 					},
 
-					selectFilter(type, value) {
+					selectFilter(type, value, name) {
 						this.filters[type] = value;
+						this.filters[type + 'Name'] = name;
 						this.dropdowns.year = false;
 						this.dropdowns.term = false;
 						this.filterCourses();
@@ -238,6 +241,8 @@ if (have_posts()) :
 								academic_term: this.filters.academicTerm
 							};
 
+							console.log('Sending request:', requestData);
+
 							const response = await fetch('<?php echo admin_url("admin-ajax.php"); ?>', {
 								method: 'POST',
 								headers: {
@@ -247,7 +252,15 @@ if (have_posts()) :
 								body: JSON.stringify(requestData)
 							});
 
+							console.log('Response status:', response.status);
+							console.log('Response headers:', response.headers);
+
+							if (!response.ok) {
+								throw new Error(`HTTP error! status: ${response.status}`);
+							}
+
 							const data = await response.json();
+							console.log('Response data:', data);
 
 							if (data.success) {
 								this.courseSections = data.data.course_sections;

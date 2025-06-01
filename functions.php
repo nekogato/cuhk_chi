@@ -775,13 +775,29 @@ function load_courses()
 	$json_data = file_get_contents('php://input');
 	$request_data = json_decode($json_data, true);
 
+	// Log the received data for debugging
+	error_log('Received JSON data: ' . $json_data);
+	error_log('Decoded request data: ' . print_r($request_data, true));
+
+	// Check if JSON decode was successful
+	if (json_last_error() !== JSON_ERROR_NONE) {
+		wp_send_json_error('Invalid JSON data: ' . json_last_error_msg());
+		return;
+	}
+
+	// Check if request data exists
+	if (!$request_data) {
+		wp_send_json_error('No request data received');
+		return;
+	}
+
 	// Verify nonce
-	if (!wp_verify_nonce($request_data['nonce'], 'load_courses_nonce')) {
+	if (!isset($request_data['nonce']) || !wp_verify_nonce($request_data['nonce'], 'load_courses_nonce')) {
 		wp_send_json_error('Invalid nonce');
 		return;
 	}
 
-	$programmes = isset($request_data['programmes']) ? $request_data['programmes'] : [];
+	$categories = isset($request_data['categories']) ? $request_data['categories'] : [];
 	$academic_year = isset($request_data['academic_year']) ? sanitize_text_field($request_data['academic_year']) : '';
 	$academic_term = isset($request_data['academic_term']) ? sanitize_text_field($request_data['academic_term']) : '';
 
@@ -804,12 +820,12 @@ function load_courses()
 		);
 	}
 
-	// Filter by course types (programmes)
-	if (!empty($programmes)) {
+	// Filter by course categories
+	if (!empty($categories)) {
 		$tax_query[] = array(
-			'taxonomy' => 'course_type',
+			'taxonomy' => 'course_category',
 			'field'    => 'slug',
-			'terms'    => $programmes,
+			'terms'    => $categories,
 			'operator' => 'IN'
 		);
 	}
