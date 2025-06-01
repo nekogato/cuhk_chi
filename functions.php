@@ -810,7 +810,7 @@ function load_courses()
 	// Filter by course categories
 	if (!empty($categories)) {
 		$tax_query[] = array(
-			'taxonomy' => 'course_type',
+			'taxonomy' => 'course_category',
 			'field'    => 'slug',
 			'terms'    => $categories,
 			'operator' => 'IN'
@@ -857,7 +857,7 @@ function load_courses()
 				$teaching_assistant_name = get_the_title($teaching_assistant->ID);
 			}
 
-			// Get course type from taxonomy instead of ACF field
+			// Get course type from taxonomy for grouping (not filtering)
 			$course_types = wp_get_post_terms(get_the_ID(), 'course_type');
 			$course_category = !empty($course_types) ? $course_types[0]->name : pll__('General');
 
@@ -874,7 +874,7 @@ function load_courses()
 				'teaching_assistant_name' => $teaching_assistant_name
 			);
 
-			// Group courses by category
+			// Group courses by course_type (not course_category)
 			if (!isset($courses_by_category[$course_category])) {
 				$courses_by_category[$course_category] = array();
 			}
