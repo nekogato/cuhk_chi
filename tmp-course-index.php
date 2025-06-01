@@ -2,6 +2,7 @@
 
 /**
  * Template Name: Course Index
+ * Template for displaying course listings with filtering
  */
 
 get_header();
@@ -35,88 +36,87 @@ if (have_posts()) :
 			<img src="<?php echo get_template_directory_uri(); ?>/images/ink_bg13.jpg" class="ink_bg13 scrollin scrollinbottom" alt="Background">
 		</div>
 
-		<div class="section section_content filter_menu_section"
-			x-data="courseFilter()">
+		<div x-data="courseFilter()">
+			<div class="section section_content filter_menu_section">
 
-			<div class="section_center_content small_section_center_content scrollin scrollinbottom">
-				<h1 class="section_title text1 scrollin scrollinbottom"><?php the_title(); ?></h1>
-			</div>
+				<div class="section_center_content small_section_center_content scrollin scrollinbottom">
+					<h1 class="section_title text1 scrollin scrollinbottom"><?php the_title(); ?></h1>
+				</div>
 
-			<div class="filter_menu_wrapper">
-				<div class="filter_menu filter_menu_left_bg section_center_content small_section_center_content scrollin scrollinbottom">
-					<div class="filter_menu_content">
-						<div class="filter_checkbox_wrapper text7">
-							<?php if (!empty($course_categories)): ?>
-								<?php foreach ($course_categories as $category): ?>
-									<div class="filter_checkbox">
-										<div class="checkbox">
-											<input type="checkbox"
-												id="<?php echo esc_attr($category->slug); ?>"
-												x-model="filters.categories"
-												value="<?php echo esc_attr($category->slug); ?>"
-												@change="filterCourses()">
-											<label for="<?php echo esc_attr($category->slug); ?>">
-												<span><?php echo esc_html($category->name); ?></span>
-											</label>
+				<div class="filter_menu_wrapper">
+					<div class="filter_menu filter_menu_left_bg section_center_content small_section_center_content scrollin scrollinbottom">
+						<div class="filter_menu_content">
+							<div class="filter_checkbox_wrapper text7">
+								<?php if (!empty($course_categories)) : ?>
+									<?php foreach ($course_categories as $category) : ?>
+										<div class="filter_checkbox">
+											<div class="checkbox">
+												<input type="checkbox"
+													id="<?php echo esc_attr($category->slug); ?>"
+													x-model="filters.categories"
+													value="<?php echo esc_attr($category->slug); ?>"
+													@change="filterCourses()">
+												<label for="<?php echo esc_attr($category->slug); ?>">
+													<span><?php echo esc_html($category->name); ?></span>
+												</label>
+											</div>
 										</div>
-									</div>
-								<?php endforeach; ?>
-							<?php endif; ?>
+									<?php endforeach; ?>
+								<?php endif; ?>
+							</div>
+						</div>
+					</div>
+					<div class="filter_menu filter_menu_left_bg filter_menu_bottom section_center_content small_section_center_content scrollin scrollinbottom">
+						<div class="filter_menu_content">
+							<div class="filter_dropdown_wrapper">
+								<a class="filter_dropdown_btn text5" href="#" @click="dropdowns.year = !dropdowns.year" x-text="'Academic Years (' + filters.academicYearName + ')'"></a>
+								<div class="filter_dropdown text5" x-show="dropdowns.year" @click.away="dropdowns.year = false">
+									<ul>
+										<?php if (!empty($academic_years)) : ?>
+											<?php foreach ($academic_years as $year) : ?>
+												<li>
+													<a href="#"
+														@click="selectFilter('academicYear', '<?php echo esc_js($year->slug); ?>', '<?php echo esc_js($year->name); ?>')"
+														:class="filters.academicYear === '<?php echo esc_js($year->slug); ?>' ? 'active' : ''">
+														<?php echo esc_html($year->name); ?>
+													</a>
+												</li>
+											<?php endforeach; ?>
+										<?php endif; ?>
+									</ul>
+								</div>
+							</div>
+							<div class="filter_dropdown_wrapper">
+								<a class="filter_dropdown_btn text5" href="#" @click="dropdowns.term = !dropdowns.term" x-text="'Academic Terms (' + filters.academicTermName + ')'"></a>
+								<div class="filter_dropdown text5" x-show="dropdowns.term" @click.away="dropdowns.term = false">
+									<ul>
+										<?php if (!empty($academic_terms)) : ?>
+											<?php foreach ($academic_terms as $term) : ?>
+												<li>
+													<a href="#"
+														@click="selectFilter('academicTerm', '<?php echo esc_js($term->slug); ?>', '<?php echo esc_js($term->name); ?>')"
+														:class="filters.academicTerm === '<?php echo esc_js($term->slug); ?>' ? 'active' : ''">
+														<?php echo esc_html($term->name); ?>
+													</a>
+												</li>
+											<?php endforeach; ?>
+										<?php endif; ?>
+									</ul>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
-				<div class="filter_menu filter_menu_left_bg filter_menu_bottom section_center_content small_section_center_content scrollin scrollinbottom">
-					<div class="filter_menu_content">
-						<div class="filter_dropdown_wrapper">
-							<a class="filter_dropdown_btn text5" href="#" @click="dropdowns.year = !dropdowns.year"
-								x-text="'Academic Years (' + filters.academicYearName + ')'"></a>
-							<div class="filter_dropdown text5" x-show="dropdowns.year" @click.away="dropdowns.year = false">
-								<ul>
-									<?php if (!empty($academic_years)): ?>
-										<?php foreach ($academic_years as $year): ?>
-											<li>
-												<a href="#"
-													@click="selectFilter('academicYear', '<?php echo esc_js($year->slug); ?>', '<?php echo esc_js($year->name); ?>')"
-													:class="filters.academicYear === '<?php echo esc_js($year->slug); ?>' ? 'active' : ''">
-													<?php echo esc_html($year->name); ?>
-												</a>
-											</li>
-										<?php endforeach; ?>
-									<?php endif; ?>
-								</ul>
-							</div>
-						</div>
-						<div class="filter_dropdown_wrapper">
-							<a class="filter_dropdown_btn text5" href="#" @click="dropdowns.term = !dropdowns.term"
-								x-text="'Academic Terms (' + filters.academicTermName + ')'"></a>
-							<div class="filter_dropdown text5" x-show="dropdowns.term" @click.away="dropdowns.term = false">
-								<ul>
-									<?php if (!empty($academic_terms)): ?>
-										<?php foreach ($academic_terms as $term): ?>
-											<li>
-												<a href="#"
-													@click="selectFilter('academicTerm', '<?php echo esc_js($term->slug); ?>', '<?php echo esc_js($term->name); ?>')"
-													:class="filters.academicTerm === '<?php echo esc_js($term->slug); ?>' ? 'active' : ''">
-													<?php echo esc_html($term->name); ?>
-												</a>
-											</li>
-										<?php endforeach; ?>
-									<?php endif; ?>
-								</ul>
-							</div>
-						</div>
+
+				<!-- Loading indicator -->
+				<div x-show="loading" class="loading-wrapper" style="text-align: center; padding: 40px;">
+					<div class="loading">
+						<img src="<?php echo get_template_directory_uri(); ?>/images/oval.svg" alt="Loading">
 					</div>
 				</div>
 			</div>
 
-			<!-- Loading indicator -->
-			<div x-show="loading" class="loading-wrapper" style="text-align: center; padding: 40px;">
-				<div class="loading">
-					<img src="<?php echo get_template_directory_uri(); ?>/images/oval.svg" alt="Loading">
-				</div>
-			</div>
-
-			<!-- Course sections -->
+			<!-- Course sections - each course type gets its own section -->
 			<template x-for="section in courseSections" :key="section.name">
 				<div class="section section_content filter_detail_section scrollin_p" x-show="section.courses.length > 0">
 					<div class="filter_course_type_name section_center_content scrollin scrollinbottom small_section_center_content text3" x-text="section.name"></div>
@@ -185,7 +185,7 @@ if (have_posts()) :
 				</div>
 			</template>
 
-			<!-- No results message -->
+			<!-- No courses found message -->
 			<div x-show="!loading && courseSections.length === 0"
 				class="section section_content" style="text-align: center; padding: 60px 0;">
 				<div class="section_center_content small_section_center_content">
@@ -209,8 +209,8 @@ if (have_posts()) :
 						term: false
 					},
 					courseSections: [],
-					loading: false,
 					expandedCourses: [],
+					loading: false,
 
 					init() {
 						// Set default category filter
@@ -221,10 +221,15 @@ if (have_posts()) :
 					},
 
 					selectFilter(type, value, name) {
-						this.filters[type] = value;
-						this.filters[type + 'Name'] = name;
-						this.dropdowns.year = false;
-						this.dropdowns.term = false;
+						if (type === 'academicYear') {
+							this.filters.academicYear = value;
+							this.filters.academicYearName = name;
+							this.dropdowns.year = false;
+						} else if (type === 'academicTerm') {
+							this.filters.academicTerm = value;
+							this.filters.academicTermName = name;
+							this.dropdowns.term = false;
+						}
 						this.filterCourses();
 					},
 
@@ -233,26 +238,25 @@ if (have_posts()) :
 					},
 
 					async loadCourses() {
-						this.loading = true;
-
 						try {
+							this.loading = true;
 							const formData = new FormData();
 							formData.append('action', 'load_courses');
 							formData.append('nonce', '<?php echo wp_create_nonce("load_courses_nonce"); ?>');
 
 							// Handle categories array
 							if (this.filters.categories.length > 0) {
-								this.filters.categories.forEach((category, index) => {
-									formData.append(`categories[${index}]`, category);
+								this.filters.categories.forEach(category => {
+									formData.append('categories[]', category);
 								});
 							}
 
-							formData.append('academic_year', this.filters.academicYear);
-							formData.append('academic_term', this.filters.academicTerm);
+							if (this.filters.academicYear) {
+								formData.append('academic_year', this.filters.academicYear);
+							}
 
-							console.log('Sending request with FormData');
-							for (let pair of formData.entries()) {
-								console.log(pair[0] + ': ' + pair[1]);
+							if (this.filters.academicTerm) {
+								formData.append('academic_term', this.filters.academicTerm);
 							}
 
 							const response = await fetch('<?php echo admin_url("admin-ajax.php"); ?>', {
@@ -260,20 +264,12 @@ if (have_posts()) :
 								body: formData
 							});
 
-							console.log('Response status:', response.status);
-							console.log('Response headers:', response.headers);
-
-							if (!response.ok) {
-								throw new Error(`HTTP error! status: ${response.status}`);
-							}
-
 							const data = await response.json();
-							console.log('Response data:', data);
 
 							if (data.success) {
 								this.courseSections = data.data.course_sections;
 							} else {
-								console.error('Error loading courses:', data.data);
+								console.error('Error loading courses:', data);
 								this.courseSections = [];
 							}
 						} catch (error) {
@@ -284,28 +280,28 @@ if (have_posts()) :
 						}
 					},
 
-					toggleCourse(courseId, $event) {
-						const isExpanded = this.expandedCourses.includes(courseId);
-						const $item = $($event.target).closest('.expandable_item');
+					toggleCourse(courseId, event) {
+						event.preventDefault();
 
-						if (isExpanded) {
-							// Remove from expanded array
-							this.expandedCourses = this.expandedCourses.filter((id) => id !== courseId);
+						const expandableItem = event.target.closest('.expandable_item');
+						const hidden = expandableItem.querySelector('.hidden');
 
-							// Animate with jQuery (matching original behavior)
-							$item.find(".hidden").show();
-							setTimeout(() => {
-								$item.find(".hidden").stop().slideUp();
-							}, 0);
+						if (this.expandedCourses.includes(courseId)) {
+							// Remove from expanded courses
+							this.expandedCourses = this.expandedCourses.filter(id => id !== courseId);
+							expandableItem.classList.remove('active');
+							if (hidden) {
+								hidden.style.maxHeight = '0px';
+								hidden.style.opacity = '0';
+							}
 						} else {
-							// Add to expanded array
+							// Add to expanded courses
 							this.expandedCourses.push(courseId);
-
-							// Animate with jQuery (matching original behavior)
-							$item.find(".hidden").hide();
-							setTimeout(() => {
-								$item.find(".hidden").stop().slideDown();
-							}, 0);
+							expandableItem.classList.add('active');
+							if (hidden) {
+								hidden.style.maxHeight = hidden.scrollHeight + 'px';
+								hidden.style.opacity = '1';
+							}
 						}
 					}
 				}
