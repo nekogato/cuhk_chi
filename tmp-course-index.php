@@ -10,14 +10,16 @@ get_header();
 get_template_part('template-parts/roll-menu', null, array('target_page' => 'study'));
 
 // Get filter options from taxonomies
-$programmes = get_terms(array(
-	'taxonomy' => 'course_type',
+$course_categories = get_terms(array(
+	'taxonomy' => 'course_category',
 	'hide_empty' => false,
 ));
 
 $academic_years = get_terms(array(
 	'taxonomy' => 'course_year',
 	'hide_empty' => false,
+	'orderby' => 'name',
+	'order' => 'DESC'
 ));
 
 $academic_terms = get_terms(array(
@@ -44,17 +46,17 @@ if (have_posts()) :
 				<div class="filter_menu filter_menu_left_bg section_center_content small_section_center_content scrollin scrollinbottom">
 					<div class="filter_menu_content">
 						<div class="filter_checkbox_wrapper text7">
-							<?php if (!empty($programmes)): ?>
-								<?php foreach ($programmes as $programme): ?>
+							<?php if (!empty($course_categories)): ?>
+								<?php foreach ($course_categories as $category): ?>
 									<div class="filter_checkbox">
 										<div class="checkbox">
 											<input type="checkbox"
-												id="<?php echo esc_attr($programme->slug); ?>"
-												x-model="filters.programmes"
-												value="<?php echo esc_attr($programme->slug); ?>"
+												id="<?php echo esc_attr($category->slug); ?>"
+												x-model="filters.categories"
+												value="<?php echo esc_attr($category->slug); ?>"
 												@change="filterCourses()">
-											<label for="<?php echo esc_attr($programme->slug); ?>">
-												<span><?php echo esc_html($programme->name); ?></span>
+											<label for="<?php echo esc_attr($category->slug); ?>">
+												<span><?php echo esc_html($category->name); ?></span>
 											</label>
 										</div>
 									</div>
@@ -196,7 +198,7 @@ if (have_posts()) :
 					loading: false,
 					courseSections: [],
 					filters: {
-						programmes: [],
+						categories: [],
 						academicYear: '<?php echo !empty($academic_years) ? esc_js($academic_years[0]->slug) : ''; ?>',
 						academicTerm: '<?php echo !empty($academic_terms) ? esc_js($academic_terms[0]->slug) : ''; ?>'
 					},
@@ -206,9 +208,9 @@ if (have_posts()) :
 					},
 
 					init() {
-						// Set default programme filter
-						<?php if (!empty($programmes)): ?>
-							this.filters.programmes = ['<?php echo esc_js($programmes[0]->slug); ?>'];
+						// Set default category filter
+						<?php if (!empty($course_categories)): ?>
+							this.filters.categories = ['<?php echo esc_js($course_categories[0]->slug); ?>'];
 						<?php endif; ?>
 						this.loadCourses();
 					},
@@ -231,7 +233,7 @@ if (have_posts()) :
 							const requestData = {
 								action: 'load_courses',
 								nonce: '<?php echo wp_create_nonce("load_courses_nonce"); ?>',
-								programmes: this.filters.programmes,
+								categories: this.filters.categories,
 								academic_year: this.filters.academicYear,
 								academic_term: this.filters.academicTerm
 							};
