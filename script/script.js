@@ -226,6 +226,17 @@ function loading_finish(){
 		dosize();
 	})
 
+	$(".people_detail_text").each(function () {
+		var $this = $(this);
+
+		var ps  = new PerfectScrollbar($(this)[0],{
+			suppressScrollX:true,
+			scrollYMarginOffset:20
+		});
+
+		scrollArr.push(ps)
+    });
+
 
 	if($(".bg_video_wrapper").length){
 
@@ -346,6 +357,9 @@ function init_event(){
 		var target = $(this).attr("data-target");
 		var $target = $(".popup[data-id='"+target+"']");
 		$target.stop().fadeIn();
+		for ( var i = 0; i < scrollArr.length; i++ ) { 
+			scrollArr[i].update();
+		}
 		return false;
 	})
 
@@ -791,6 +805,38 @@ function init_function(){
 		})
 	})
 
+
+	
+
+	$(".border_box_item_wrapper").each(function(){
+		var $this = $(this);
+		var border_box_item_slider = new Swiper($this.find(".swiper-container")[0], {
+			autoplay: false,
+			slidesPerView: 4,
+			speed: 1600,
+			loop: false,
+			spaceBetween: 0,
+			breakpoints: {
+				// when window width is >= 320px
+				320: {
+					slidesPerView: 2,
+				},
+				// when window width is >= 480px
+				480: {
+					slidesPerView: 4,
+				},
+				// when window width is >= 640px
+				640: {
+					slidesPerView: 4,
+				}
+			},
+			pagination: {
+				el: $this.find('.dot_wrapper'),
+				clickable: true
+			},
+		});
+	})
+
 	$(".flexible_layout_slider").each(function(){
 		var $this = $(this);
 		var flexible_layout_slider = new Swiper($this.find(".swiper-container")[0], {
@@ -870,6 +916,7 @@ function init_function(){
 			committee_albums_slider.slidePrev();
 		})
 	})
+
 
 	
 

@@ -19,6 +19,8 @@
 <link href="script/lib/swiper/css/swiper.min.css" rel="stylesheet" type="text/css" />
 <script src="script/lib/swiper/js/swiper.min.js"></script>
 <link rel="stylesheet" href="https://use.typekit.net/gsi3slf.css">
+<link href="script/lib/perfect-scrollbar.css" rel="stylesheet" type="text/css" />
+<script src="script/lib/perfect-scrollbar.js"></script>
 
 
 
@@ -198,52 +200,13 @@
         </div>
 
 
+		<!-- there is a category call 校友活動 in event, let user select events from there, if no event selected, hide whole section-->
         <div class="section featured_news_box_section alumni_news_box_section scrollin_p">
             <div class="news_box_wrapper">
                 <div class="section_center_content small_section_center_content">
                 	<h3 class="section_smalltitle">校友活動</h3>
                     <div class="col_wrapper big_col_wrapper">
                         <div class="flex row">
-                            <div class="news_box col col6">
-                                <div class="col_spacing scrollin scrollinbottom">
-                                    <div class="photo">
-                                        <img src="images/dummy_image9.jpg" >
-                                    </div>
-                                    <div class="text_wrapper">
-                                        <div class="date_wrapper ">
-											14 November 2024<br>
-											19:00-22:30
-										</div>
-                                        <div class="title_wrapper">
-                                            <div class="title text5">祝賀本系林麗玲博士榮獲香港中文大學</div>
-											<div class="description">
-												多年來，已有逾 35,000 名畢業生從中大文學院畢業。畢業後，他們選擇不同的道路。有為人生目標奮鬥的；亦有人矢志為社會帶來改變。他們的故事可能會為你帶來啟發。
-											</div>
-                                            <div class="btn_wrapper text8"><span class="round_btn">了解更多</span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="news_box col col6">
-                                <div class="col_spacing scrollin scrollinbottom">
-                                    <div class="photo">
-                                        <img src="images/dummy_image9.jpg" >
-                                    </div>
-                                    <div class="text_wrapper">
-                                        <div class="date_wrapper ">
-											14 November 2024<br>
-											19:00-22:30
-										</div>
-                                        <div class="title_wrapper">
-                                            <div class="title text5">祝賀本系林麗玲博士榮獲香港中文大學</div>
-											<div class="description">
-												多年來，已有逾 35,000 名畢業生從中大文學院畢業。畢業後，他們選擇不同的道路。有為人生目標奮鬥的；亦有人矢志為社會帶來改變。他們的故事可能會為你帶來啟發。
-											</div>
-                                            <div class="btn_wrapper text8"><span class="round_btn">了解更多</span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="news_box col col6">
                                 <div class="col_spacing scrollin scrollinbottom">
                                     <div class="photo">
@@ -298,7 +261,7 @@
 			<div class="thumb_text_box_slider_wrapper scrollin scrollinbottom">
 				<div class="swiper-container">
 					<div class="swiper-wrapper">
-						<div class="swiper-slide">
+						<div class="swiper-slide popup_btn" data-target="popup1">
 							<div class="thumb">
 								<img src="images/dummy_image1.jpg">
 							</div>
@@ -312,11 +275,11 @@
 										
 									<div class="description">The history of mankind is deeply intertwined with human desires, which have shaped the course of civilizati The history of mankind is deeply intertwined with human desires, which have shaped the course of civilizati</div>
 										
-									<div class="name text8">Lydia</div>
+									<div class="name author text8">Lydia</div>
 								</div>
 							</div>
 						</div>
-						<div class="swiper-slide">
+						<div class="swiper-slide popup_btn" data-target="popup1">
 							<div class="thumb">
 								<img src="images/dummy_image1.jpg">
 							</div>
@@ -330,11 +293,11 @@
 										
 									<div class="description">The history of mankind is deeply intertwined with human desires, which have shaped the course of civilizati The history of mankind is deeply intertwined with human desires, which have shaped the course of civilizati</div>
 										
-									<div class="name text8">Lydia</div>
+									<div class="name author text8">Lydia</div>
 								</div>
 							</div>
 						</div>
-						<div class="swiper-slide">
+						<div class="swiper-slide popup_btn" data-target="popup1">
 							<div class="thumb">
 								<img src="images/dummy_image1.jpg">
 							</div>
@@ -348,11 +311,11 @@
 										
 									<div class="description">The history of mankind is deeply intertwined with human desires, which have shaped the course of civilizati The history of mankind is deeply intertwined with human desires, which have shaped the course of civilizati</div>
 										
-									<div class="name text8">Lydia</div>
+									<div class="name author text8">Lydia</div>
 								</div>
 							</div>
 						</div>
-						<div class="swiper-slide">
+						<div class="swiper-slide popup_btn" data-target="popup1">
 							<div class="thumb">
 								<img src="images/dummy_image1.jpg">
 							</div>
@@ -366,7 +329,7 @@
 										
 									<div class="description">The history of mankind is deeply intertwined with human desires, which have shaped the course of civilizati The history of mankind is deeply intertwined with human desires, which have shaped the course of civilizati</div>
 										
-									<div class="name text8">Lydia</div>
+									<div class="name author text8">Lydia</div>
 								</div>
 							</div>
 						</div>
@@ -381,41 +344,87 @@
         <div class="section section_content border_box_list_section">
 			<div class="section_center_content small_section_center_content scrollin scrollinbottom">
                 <h3 class="section_smalltitle">校友會</h3>
-				<div class="border_box_item_wrapper">
-					<div class="border_box_item_row">
-						<div class="border_box_item">
-							<div class="t1 text4">Association Sample 1</div>
-							<div class="photo"><img src="images/dummy_image1.jpg"></div>
-							<div class="t2">Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mock-ups.</div>
-							<div class="btn_wrapper">
-								<a href="#" class="round_btn text8">了解更多</a>
-							</div>
-						</div>
-						<div class="border_box_item">
-							<div class="t1 text4">Association Sample 1</div>
-							<div class="photo"><img src="images/dummy_image1.jpg"></div>
-							<div class="t2">Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mock-ups.</div>
-							<div class="btn_wrapper">
-								<a href="#" class="round_btn text8">了解更多</a>
-							</div>
-						</div>
-						<div class="border_box_item">
-							<div class="t1 text4">Association Sample 1</div>
-							<div class="photo"><img src="images/dummy_image1.jpg"></div>
-							<div class="t2">Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mock-ups.Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mock-ups.</div>
-							<div class="btn_wrapper">
-								<a href="#" class="round_btn text8">了解更多</a>
-							</div>
-						</div>
-						<div class="border_box_item">
-							<div class="t1 text4">Association Sample 1</div>
-							<div class="photo"><img src="images/dummy_image1.jpg"></div>
-							<div class="t2">Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mock-ups.</div>
-							<div class="btn_wrapper">
-								<a href="#" class="round_btn text8">了解更多</a>
+
+				<div class="border_box_item_wrapper ">
+					<div class="border_box_item_inwrapper ">
+						<div class="swiper-container">
+							<div class="border_box_item_row swiper-wrapper">
+								<div class="border_box_item swiper-slide">
+									<div class="t1 text4">Association Sample 1</div>
+									<div class="photo"><img src="images/dummy_image1.jpg"></div>
+									<div class="t2">Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mock-ups.</div>
+									<div class="btn_wrapper">
+										<!-- outside link-->
+										<a href="#" class="round_btn text8">了解更多</a>
+									</div>
+								</div>
+								<div class="border_box_item swiper-slide">
+									<div class="t1 text4">Association Sample 1</div>
+									<div class="photo"><img src="images/dummy_image1.jpg"></div>
+									<div class="t2">Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mock-ups.</div>
+									<div class="btn_wrapper">
+										<!-- outside link-->
+										<a href="#" class="round_btn text8">了解更多</a>
+									</div>
+								</div>
+								<div class="border_box_item swiper-slide">
+									<div class="t1 text4">Association Sample 1</div>
+									<div class="photo"><img src="images/dummy_image1.jpg"></div>
+									<div class="t2">Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mock-ups.Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mock-ups.</div>
+									<div class="btn_wrapper">
+										<!-- outside link-->
+										<a href="#" class="round_btn text8">了解更多</a>
+									</div>
+								</div>
+								<div class="border_box_item swiper-slide">
+									<div class="t1 text4">Association Sample 1</div>
+									<div class="photo"><img src="images/dummy_image1.jpg"></div>
+									<div class="t2">Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mock-ups.</div>
+									<div class="btn_wrapper">
+										<!-- outside link-->
+										<a href="#" class="round_btn text8">了解更多</a>
+									</div>
+								</div>
+								<div class="border_box_item swiper-slide">
+									<div class="t1 text4">Association Sample 1</div>
+									<div class="photo"><img src="images/dummy_image1.jpg"></div>
+									<div class="t2">Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mock-ups.</div>
+									<div class="btn_wrapper">
+										<!-- outside link-->
+										<a href="#" class="round_btn text8">了解更多</a>
+									</div>
+								</div>
+								<div class="border_box_item swiper-slide">
+									<div class="t1 text4">Association Sample 1</div>
+									<div class="photo"><img src="images/dummy_image1.jpg"></div>
+									<div class="t2">Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mock-ups.</div>
+									<div class="btn_wrapper">
+										<!-- outside link-->
+										<a href="#" class="round_btn text8">了解更多</a>
+									</div>
+								</div>
+								<div class="border_box_item swiper-slide">
+									<div class="t1 text4">Association Sample 1</div>
+									<div class="photo"><img src="images/dummy_image1.jpg"></div>
+									<div class="t2">Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mock-ups.Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mock-ups.</div>
+									<div class="btn_wrapper">
+										<!-- outside link-->
+										<a href="#" class="round_btn text8">了解更多</a>
+									</div>
+								</div>
+								<div class="border_box_item swiper-slide">
+									<div class="t1 text4">Association Sample 1</div>
+									<div class="photo"><img src="images/dummy_image1.jpg"></div>
+									<div class="t2">Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mock-ups.</div>
+									<div class="btn_wrapper">
+										<!-- outside link-->
+										<a href="#" class="round_btn text8">了解更多</a>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
+					<div class="dot_wrapper"></div>
 				</div>
 
 			</div>
@@ -612,5 +621,33 @@
 		<div class="mobile_show"></div>
 		<div class="loading"><img src="images/oval.svg"></div>
 
+		<div class="people_popup  popup" data-id="popup1">
+			<div class="people_detail_content">
+				<div class="people_detail_incontent">
+					<div class="people_detail_photo_wrapper">
+						<div class="people_detail_photo"><img src="images/student1.jpg"></div>
+					</div>
+					<div class="people_detail_text scrollin scrollinbottom">
+						<div class="title1 ">
+							<div class="text4">陳大文</div>
+							<div class="text6">中國文學文學碩士（2019）<br>市場總監</div>
+						</div>
+						<div class="description">
+							<div class="t2 free_text">
+								<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia est sed enim iaculis, in dictum augue dignissim. Sed in quam mollis, facilisis magna eleifend, consectetur risus. Aenean quis nibh at nulla hendrerit ullamcorper. Quisque volutpat nulla ut mauris facilisis, in sollicitudin lorem malesuada. Cras in erat eu mi ultricies congue. Integer nec urna nec urna maximus semper ac sit amet mi. Curabitur placerat urna at ipsum vulputate, a maximus nisi dictum. Curabitur et lorem convallis, sollicitudin lacus eget, suscipit nisi. Morbi arcu enim, ultricies a semper vitae, euismod sed arcu. In venenatis tellus ut accumsan tincidunt. Morbi dictum justo purus, vitae blandit nisi interdum quis. Aliquam sed vestibulum sapien. Maecenas gravida cursus lectus vel semper. Ut commodo faucibus libero, non rhoncus lorem scelerisque nec. Quisque turpis erat, venenatis non fringilla eget, vulputate eget ipsum.</p>
+
+								<p>Quisque lectus odio, ullamcorper ut nisl ut, commodo condimentum velit. Maecenas ac magna a massa molestie lacinia. Proin volutpat at nisi at blandit. Vivamus a dignissim sem. Fusce tempus commodo nibh eu auctor. Etiam molestie commodo risus ut volutpat. Mauris augue neque, mollis eget pretium ornare, maximus at leo. Aenean varius sapien non arcu viverra, vitae fermentum elit semper. Nam aliquet eu ex at dignissim. Sed pharetra aliquet libero eget egestas. Nullam venenatis mi in turpis dapibus, eu suscipit felis dignissim. In ac congue erat. Proin non ullamcorper elit. Donec eu molestie nisl.</p>
+
+								<p>Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec vehicula dolor rutrum sodales vehicula. Proin dignissim sollicitudin libero sit amet consectetur. Sed iaculis arcu id mi volutpat porttitor. Maecenas tincidunt turpis at turpis condimentum tristique. Pellentesque condimentum sagittis neque. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce elit dolor, convallis quis enim vitae, accumsan eleifend ex.</p>
+
+								<p>Phasellus hendrerit lacus lorem, eget lobortis felis tincidunt eget. Maecenas pulvinar id tortor eu placerat. Duis blandit mauris in ante imperdiet finibus non nec urna. Quisque imperdiet nisi eget ante aliquam, eget egestas enim elementum. Ut eu lectus dictum, laoreet nulla et, consectetur urna. Aenean sit amet lacus nec nunc vestibulum imperdiet. Donec consequat lacus neque, sit amet rhoncus sem varius nec. Mauris sed eros at dolor eleifend dapibus. Suspendisse eu nisi ac mauris sollicitudin maximus. Sed et sem sed orci aliquam finibus. Aenean gravida magna ac lectus fermentum congue. Sed ligula turpis, lacinia in pulvinar hendrerit, consequat eget tellus. Phasellus pharetra ligula molestie, imperdiet nunc at, interdum dui. Proin pretium ornare nulla sed interdum. </p>
+							</div>
+							<div class="author t3 text6">Lydia</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<a class="popup_close_btn"></a>
+		</div>
 	</body>
 </html>

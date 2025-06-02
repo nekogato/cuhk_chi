@@ -29,24 +29,11 @@
   width: 6px;
   right: 10px;
   position: absolute;
+  background-color: #ffffff;
+  border-radius: 5px;
 }
 
 .ps__rail-y::before{
-  content:"";
-  opacity: 1;
-  transition: background-color 0.2s linear, opacity 0.2s linear;
-  -webkit-transition: background-color 0.2s linear, opacity 0.2s linear;
-  width: 1px;
-  /* there must be 'right' or 'left' for ps__rail-y */
-  right: 0px;
-  left: 0px;
-  top:0px;
-  bottom:0px;
-  margin: auto;
-  /* please don't change 'position' */
-  position: absolute;
-  background-color: transparent;
-  border-radius: 999px;
 }
 
 .ps--active-x > .ps__rail-x,
@@ -100,8 +87,8 @@
 
 .ps__thumb-y::before {
   content:"";
-  background-color: #9fa1a4;
-  border-radius: 0px;
+  background-color: #62629e;
+  border-radius: 5px;
   transition: background-color 0.2s linear, width 0.2s ease-in-out;
   -webkit-transition: background-color 0.2s linear, width 0.2s ease-in-out;
   width: 6px;
