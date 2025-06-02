@@ -619,7 +619,7 @@ a{
 	}	
 
 .small_section_center_content{
-    max-width: 1440px;
+    max-width: 1600px;
 }
 
 .filter_menu_wrapper .small_section_center_content{
@@ -1183,7 +1183,7 @@ p:first-child{
 	}
 	
 
-@media screen and (max-width: 1600px) { 
+@media screen and (max-width: 1024) { 
 
 
 	.cuhk_logo{

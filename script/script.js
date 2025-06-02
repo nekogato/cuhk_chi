@@ -395,7 +395,7 @@ function init_event(){
 		},0)
 		setTimeout(function(){
 			doscroll();
-		},600)
+		},900)
 	});
 
 	$('.filter_switchable_wrapper input[name="filter"]').on('change', function () {
@@ -875,27 +875,6 @@ function init_function(){
 		})
 	})
 
-	$(".committee_album_slider").each(function(){
-		var $this = $(this);
-		var committee_album_slider = new Swiper($this.find(" > .swiper-container")[0], {
-			effect : 'fade',
-			fadeEffect: {
-				crossFade: true,
-			},
-			autoplay: false,
-			slidesPerView: 1,
-			speed: 1600,
-			loop: false,
-			spaceBetween: 0,
-			pagination: {
-				el: $this.find('.dot_wrapper'),
-				clickable: true
-			},
-            allowTouchMove: false
-		});
-		
-	})
-
 
 
 	$(".committee_albums_slider").each(function(){
@@ -917,6 +896,28 @@ function init_function(){
 		})
 	})
 
+
+
+	$(".committee_album_slider").each(function(){
+		var $this = $(this);
+		var committee_album_slider = new Swiper($this.find(" > .swiper-container")[0], {
+			effect : 'fade',
+			fadeEffect: {
+				crossFade: true,
+			},
+			autoplay: false,
+			slidesPerView: 1,
+			speed: 1600,
+			loop: false,
+			spaceBetween: 0,
+			pagination: {
+				el: $this.find('.dot_wrapper'),
+				clickable: true
+			},
+            allowTouchMove: false
+		});
+		
+	})
 
 	
 
