@@ -25,9 +25,11 @@ get_header(); ?>
 
 		if ($announcements->have_posts()) :
 			while ($announcements->have_posts()) : $announcements->the_post();
-				// Get ACF fields
+				// Get fields
 				$announcement_title = get_the_title();
-				$announcement_date = get_the_date('j F Y');
+				// Force English date format like "14 November 2024"
+				$announcement_date = get_the_date('j F Y', null, '', false);
+
 				$announcement_content = get_the_content();
 		?>
 				<div class="expandable_item">
