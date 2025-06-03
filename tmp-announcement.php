@@ -26,9 +26,9 @@ get_header(); ?>
 		if ($announcements->have_posts()) :
 			while ($announcements->have_posts()) : $announcements->the_post();
 				// Get ACF fields
-				$announcement_title = get_field('announcement_title') ?: get_the_title();
-				$announcement_date = get_field('announcement_date') ?: get_the_date('j F Y');
-				$announcement_content = get_field('announcement_content') ?: get_the_content();
+				$announcement_title = get_the_title();
+				$announcement_date = get_the_date('j F Y');
+				$announcement_content = get_the_content();
 		?>
 				<div class="expandable_item">
 					<div class="section_center_content small_section_center_content">
