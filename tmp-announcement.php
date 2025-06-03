@@ -27,8 +27,11 @@ get_header(); ?>
 			while ($announcements->have_posts()) : $announcements->the_post();
 				// Get fields
 				$announcement_title = get_the_title();
-				// Force English date format like "14 November 2024"
-				$announcement_date = get_the_date('j F Y', null, '', false);
+
+				// Force English date format using PHP DateTime directly
+				$post_date = get_post_time('Y-m-d');
+				$date_obj = new DateTime($post_date);
+				$announcement_date = $date_obj->format('j F Y');
 
 				$announcement_content = get_the_content();
 		?>
