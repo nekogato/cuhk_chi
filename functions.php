@@ -676,14 +676,14 @@ function format_chinese_date($timestamp = null, $format = 'Y年n月j日（{day}�
 	$english_day = $date_obj->format('l');
 	$chinese_day = $chinese_days[$english_day];
 
-	// Replace {day} placeholder with temporary placeholder to avoid conflicts during formatting
-	$temp_format = str_replace('{day}', '###DAY###', $format);
+	// Replace {day} placeholder with temporary placeholder that won't conflict with PHP date formatting
+	$temp_format = str_replace('{day}', '___', $format);
 
 	// Format the date using PHP date formatting
 	$formatted_date = $date_obj->format($temp_format);
 
 	// Replace temporary placeholder with Chinese day name
-	return str_replace('###DAY###', $chinese_day, $formatted_date);
+	return str_replace('___', $chinese_day, $formatted_date);
 }
 
 // AJAX handler for loading postgraduate students
