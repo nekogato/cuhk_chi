@@ -517,15 +517,15 @@ function load_more_events()
 	check_ajax_referer('load_more_events_nonce', 'nonce');
 
 	$page = isset($_POST['page']) ? intval($_POST['page']) : 1;
-	$today = date('d/m/Y');
+	$today = date('Y-m-d');
 
 	$args = array(
 		'post_type' => 'event',
 		'posts_per_page' => EVENTS_PER_PAGE,
 		'paged' => $page,
-		'orderby' => 'meta_value',
 		'meta_key' => 'start_date',
-		'order' => 'DESC',
+		'orderby' => 'meta_value',
+		'order' => 'ASC',
 		'meta_query' => array(
 			array(
 				'key' => 'start_date',
@@ -551,8 +551,8 @@ function load_more_events()
 			$event_venue = get_field('event_venue');
 
 			// Format dates
-			$start_date_obj = new DateTime($start_date);
-			$end_date_obj = new DateTime($end_date);
+			$start_date_obj = DateTime::createFromFormat('Y-m-d', $start_date);
+			$end_date_obj = DateTime::createFromFormat('Y-m-d', $end_date);
 
 			ob_start();
 		?>

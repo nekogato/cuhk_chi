@@ -39,13 +39,13 @@ while (have_posts()) :
 	</div>
 
 	<?php
-	$today = date('d/m/Y');
+	$today = date('Y-m-d');
 	$args = array(
 		'post_type' => 'event',
 		'posts_per_page' => EVENTS_PER_PAGE,
-		'orderby' => 'meta_value',
 		'meta_key' => 'start_date',
-		'order' => 'DESC',
+		'orderby' => 'meta_value',
+		'order' => 'ASC',
 		'meta_query' => array(
 			array(
 				'key' => 'start_date',
@@ -74,8 +74,8 @@ while (have_posts()) :
 						$event_venue = get_field('event_venue');
 
 						// Format dates
-						$start_date_obj = DateTime::createFromFormat('d/m/Y', $start_date);
-						$end_date_obj = DateTime::createFromFormat('d/m/Y', $end_date);
+						$start_date_obj = DateTime::createFromFormat('Y-m-d', $start_date);
+						$end_date_obj = DateTime::createFromFormat('Y-m-d', $end_date);
 					?>
 						<div class="event_list_item flex">
 							<div class="date">
@@ -108,9 +108,9 @@ while (have_posts()) :
 										<div class="t2 text6">
 											<?php
 											if ($start_date && $end_date && $start_date !== $end_date) {
-												echo esc_html($start_date_obj->format('Y年n月d日') . '－' . $end_date_obj->format('Y年n月d日'));
+												echo esc_html($start_date_obj->format('Y年n月j日') . '－' . $end_date_obj->format('Y年n月j日'));
 											} else {
-												echo esc_html($start_date_obj->format('Y年n月d日'));
+												echo esc_html($start_date_obj->format('Y年n月j日'));
 											}
 											?>
 										</div>
