@@ -562,16 +562,16 @@ function load_more_events()
 						<?php if ($start_date && $end_date && $start_date !== $end_date) : ?>
 							<div class="d">
 								<div class="d1 text3"><?php echo get_chinese_month($start_date_obj->format('M')); ?></div>
-								<div class="d2 text5"><?php echo $start_date_obj->format('d'); ?></div>
+								<div class="d2 text5"><?php echo $start_date_obj->format('j'); ?></div>
 							</div>
 							<div class="d">
 								<div class="d1 text3"><?php echo get_chinese_month($end_date_obj->format('M')); ?></div>
-								<div class="d2 text5"><?php echo $end_date_obj->format('d'); ?></div>
+								<div class="d2 text5"><?php echo $end_date_obj->format('j'); ?></div>
 							</div>
 						<?php else : ?>
 							<div class="d">
 								<div class="d1 text3"><?php echo get_chinese_month($start_date_obj->format('M')); ?></div>
-								<div class="d2 text5"><?php echo $start_date_obj->format('d'); ?></div>
+								<div class="d2 text5"><?php echo $start_date_obj->format('j'); ?></div>
 							</div>
 						<?php endif; ?>
 					</div>
@@ -1076,16 +1076,16 @@ function load_more_past_events()
 						<?php if ($start_date && $end_date && $start_date !== $end_date) : ?>
 							<div class="d">
 								<div class="d1 text3"><?php echo get_chinese_month($start_date_obj->format('M')); ?></div>
-								<div class="d2 text5"><?php echo $start_date_obj->format('d'); ?></div>
+								<div class="d2 text5"><?php echo $start_date_obj->format('j'); ?></div>
 							</div>
 							<div class="d">
 								<div class="d1 text3"><?php echo get_chinese_month($end_date_obj->format('M')); ?></div>
-								<div class="d2 text5"><?php echo $end_date_obj->format('d'); ?></div>
+								<div class="d2 text5"><?php echo $end_date_obj->format('j'); ?></div>
 							</div>
 						<?php else : ?>
 							<div class="d">
 								<div class="d1 text3"><?php echo get_chinese_month($start_date_obj->format('M')); ?></div>
-								<div class="d2 text5"><?php echo $start_date_obj->format('d'); ?></div>
+								<div class="d2 text5"><?php echo $start_date_obj->format('j'); ?></div>
 							</div>
 						<?php endif; ?>
 					</div>
