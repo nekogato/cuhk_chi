@@ -53,9 +53,21 @@ get_header(); ?>
 													<?php the_post_thumbnail('department-news-featured'); ?>
 												<?php endif; ?>
 											</div>
-											<?php if (has_post_thumbnail()) : ?>
-												<div class="caption"><?php echo esc_html(wp_get_attachment_caption(get_post_thumbnail_id())); ?></div>
-											<?php endif; ?>
+											<?php if (has_post_thumbnail()) :
+												$thumbnail_id = get_post_thumbnail_id();
+												$metadata = wp_get_attachment_metadata($thumbnail_id);
+
+												// Get caption from metadata
+												$caption = '';
+												if ($metadata && isset($metadata['image_meta']['caption'])) {
+													$caption = $metadata['image_meta']['caption'];
+												}
+
+												if (!empty($caption)) :
+											?>
+													<div class="caption"><?php echo esc_html($caption); ?></div>
+											<?php endif;
+											endif; ?>
 										</div>
 									</div>
 								</div>
