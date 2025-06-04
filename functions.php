@@ -1011,7 +1011,7 @@ function load_more_department_news()
 					</div>
 				</div>
 			</div>
-<?php
+		<?php
 			$html .= ob_get_clean();
 		}
 		wp_reset_postdata();
@@ -1024,3 +1024,120 @@ function load_more_department_news()
 }
 add_action('wp_ajax_load_more_department_news', 'load_more_department_news');
 add_action('wp_ajax_nopriv_load_more_department_news', 'load_more_department_news');
+
+// AJAX handler for loading more past events
+function load_more_past_events()
+{
+	check_ajax_referer('load_more_past_events_nonce', 'nonce');
+
+	$page = isset($_POST['page']) ? intval($_POST['page']) : 1;
+	$today = date('Y-m-d');
+
+	$args = array(
+		'post_type' => 'event',
+		'posts_per_page' => EVENTS_PER_PAGE,
+		'paged' => $page,
+		'meta_key' => 'start_date',
+		'orderby' => 'meta_value',
+		'order' => 'DESC',
+		'meta_query' => array(
+			array(
+				'key' => 'start_date',
+				'value' => $today,
+				'compare' => '<',
+				'type' => 'DATE'
+			)
+		)
+	);
+
+	$events = new WP_Query($args);
+	$html = '';
+
+	if ($events->have_posts()) {
+		while ($events->have_posts()) {
+			$events->the_post();
+
+			$event_name = get_field('event_name');
+			$event_banner = get_field('event_banner');
+			$start_date = get_field('start_date');
+			$end_date = get_field('end_date');
+			$event_time = get_field('event_time');
+			$event_venue = get_field('event_venue');
+
+			// Format dates
+			$start_date_obj = DateTime::createFromFormat('Y-m-d', $start_date);
+			$end_date_obj = DateTime::createFromFormat('Y-m-d', $end_date);
+
+			ob_start();
+		?>
+			<div class="event_list_item flex">
+				<div class="date">
+					<div class="d_wrapper">
+						<?php if ($start_date && $end_date && $start_date !== $end_date) : ?>
+							<div class="d">
+								<div class="d1 text3"><?php echo get_chinese_month($start_date_obj->format('M')); ?></div>
+								<div class="d2 text5"><?php echo $start_date_obj->format('d'); ?></div>
+							</div>
+							<div class="d">
+								<div class="d1 text3"><?php echo get_chinese_month($end_date_obj->format('M')); ?></div>
+								<div class="d2 text5"><?php echo $end_date_obj->format('d'); ?></div>
+							</div>
+						<?php else : ?>
+							<div class="d">
+								<div class="d1 text3"><?php echo get_chinese_month($start_date_obj->format('M')); ?></div>
+								<div class="d2 text5"><?php echo $start_date_obj->format('d'); ?></div>
+							</div>
+						<?php endif; ?>
+					</div>
+					<div class="btn_wrapper">
+						<a href="<?php the_permalink(); ?>" class="reg_btn round_btn text7"><?php pll_e('了解更多'); ?></a>
+					</div>
+				</div>
+				<div class="title_wrapper">
+					<div class="title text5"><?php echo esc_html($event_name); ?></div>
+					<div class="info_item_wrapper">
+						<div class="info_item">
+							<div class="t1"><?php pll_e('日期'); ?></div>
+							<div class="t2 text6">
+								<?php
+								if ($start_date && $end_date && $start_date !== $end_date) {
+									echo esc_html($start_date_obj->format('Y年n月j日') . '－' . $end_date_obj->format('Y年n月j日'));
+								} else {
+									echo esc_html($start_date_obj->format('Y年n月j日'));
+								}
+								?>
+							</div>
+						</div>
+						<?php if ($event_time) : ?>
+							<div class="info_item">
+								<div class="t1"><?php pll_e('時間'); ?></div>
+								<div class="t2 text6"><?php echo esc_html($event_time); ?></div>
+							</div>
+						<?php endif; ?>
+						<?php if ($event_venue) : ?>
+							<div class="info_item big_info_item">
+								<div class="t1"><?php pll_e('地點'); ?></div>
+								<div class="t2 text6"><?php echo esc_html($event_venue); ?></div>
+							</div>
+						<?php endif; ?>
+					</div>
+				</div>
+				<?php if ($event_banner) : ?>
+					<div class="photo">
+						<img src="<?php echo esc_url($event_banner['sizes']['l']); ?>" alt="<?php echo esc_attr($event_banner['alt']); ?>">
+					</div>
+				<?php endif; ?>
+			</div>
+<?php
+			$html .= ob_get_clean();
+		}
+		wp_reset_postdata();
+	}
+
+	wp_send_json_success(array(
+		'html' => $html,
+		'has_more' => $page < $events->max_num_pages
+	));
+}
+add_action('wp_ajax_load_more_past_events', 'load_more_past_events');
+add_action('wp_ajax_nopriv_load_more_past_events', 'load_more_past_events');
