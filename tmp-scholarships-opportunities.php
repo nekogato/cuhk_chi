@@ -143,8 +143,10 @@ if (have_posts()) :
 
 					<div class="swiper-container swiper-container-stories">
 						<div class="swiper-wrapper">
-							<?php foreach ($student_stories as $story) : ?>
-								<div class="swiper-slide popup_btn" data-target="popup<?php echo $story['id']; ?>">
+							<?php foreach ($student_stories as $index => $story) :
+								$story_id = 'story_' . $index;
+							?>
+								<div class="swiper-slide popup_btn" data-target="popup<?php echo $story_id; ?>">
 									<div class="thumb thumb2">
 										<?php if ($story['photo']) : ?>
 											<img src="<?php echo esc_url($story['photo']['url']); ?>" alt="<?php echo esc_attr($story['photo']['alt']); ?>">
@@ -171,8 +173,10 @@ if (have_posts()) :
 			</div>
 
 			<!-- Popups for student stories -->
-			<?php foreach ($student_stories as $story) : ?>
-				<div class="people_popup scholarship_popup popup" data-id="popup<?php echo $story['id']; ?>">
+			<?php foreach ($student_stories as $index => $story) :
+				$story_id = 'story_' . $index;
+			?>
+				<div class="people_popup scholarship_popup popup" data-id="popup<?php echo $story_id; ?>">
 					<div class="people_detail_content">
 						<div class="people_detail_incontent">
 							<div class="people_detail_photo_wrapper">
