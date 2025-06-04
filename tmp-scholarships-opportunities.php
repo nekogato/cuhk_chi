@@ -135,13 +135,12 @@ if (have_posts()) :
 		if ($student_stories) :
 		?>
 			<div class="section section_content" id="section_stories">
-				<div class="section_center_content">
-					<div class="section_title_wrapper scrollin scrollinbottom">
-						<h1 class="section_title text1"><?php echo esc_html($student_stories_title); ?></h1>
-						<div class="section_description"><?php echo esc_html($student_stories_description); ?></div>
-					</div>
-
-					<div class="swiper-container swiper-container-stories">
+				<div class="section_center_content small_section_center_content scrollin scrollinbottom">
+					<h1 class="section_title text1"><?php echo esc_html($student_stories_title); ?></h1>
+					<div class="section_description"><?php echo esc_html($student_stories_description); ?></div>
+				</div>
+				<div class="thumb_text_box_slider_wrapper scrollin scrollinbottom">
+					<div class="swiper-container">
 						<div class="swiper-wrapper">
 							<?php foreach ($student_stories as $index => $story) :
 								$story_id = 'story_' . $index;
