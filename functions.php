@@ -912,12 +912,12 @@ function load_more_department_news()
 	$page = isset($_POST['page']) ? intval($_POST['page']) : 1;
 
 	$args = array(
-		'post_type' => 'department-news',
+		'post_type' => 'department_news',
 		'posts_per_page' => MAX_DEPARTMENT_NEWS,
 		'paged' => $page + 1, // +1 because we're loading the next page
 		'orderby' => 'date',
 		'order' => 'DESC',
-		'offset' => 2 + ($page * MAX_DEPARTMENT_NEWS) // +2 to skip featured posts
+		'offset' => ($page * MAX_DEPARTMENT_NEWS) // +2 to skip featured posts
 	);
 
 	$query = new WP_Query($args);

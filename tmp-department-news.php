@@ -22,9 +22,9 @@ get_header(); ?>
 </div>
 
 <?php
-// Get all department news
+// Query to get department news
 $args = array(
-	'post_type' => 'department-news',
+	'post_type' => 'department_news',
 	'posts_per_page' => MAX_DEPARTMENT_NEWS,
 	'orderby' => 'date',
 	'order' => 'DESC'
