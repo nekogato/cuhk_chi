@@ -517,6 +517,7 @@ function load_more_events()
 	check_ajax_referer('load_more_events_nonce', 'nonce');
 
 	$page = isset($_POST['page']) ? intval($_POST['page']) : 1;
+	$today = date('d/m/Y');
 
 	$args = array(
 		'post_type' => 'event',
@@ -524,7 +525,15 @@ function load_more_events()
 		'paged' => $page,
 		'orderby' => 'meta_value',
 		'meta_key' => 'start_date',
-		'order' => 'ASC'
+		'order' => 'DESC',
+		'meta_query' => array(
+			array(
+				'key' => 'start_date',
+				'value' => $today,
+				'compare' => '>=',
+				'type' => 'DATE'
+			)
+		)
 	);
 
 	$events = new WP_Query($args);

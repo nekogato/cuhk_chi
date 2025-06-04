@@ -19,7 +19,14 @@ while (have_posts()) :
 ?>
 
 	<div class="section section_content section_intro">
-		<div class="section_center_content">
+		<div class="section_center_content small_section_center_content">
+			<?php
+			$related_page = get_field('related_page');
+			if ($related_page) : ?>
+				<div class="intro_btn_wrapper">
+					<a href="<?php echo get_permalink($related_page->ID); ?>" class="round_btn text5"><?php echo get_the_title($related_page->ID); ?></a>
+				</div>
+			<?php endif; ?>
 			<?php if ($page_title) : ?>
 				<h1 class="section_title text1 scrollin scrollinbottom"><?php echo esc_html($page_title); ?></h1>
 			<?php endif; ?>
@@ -30,19 +37,28 @@ while (have_posts()) :
 	</div>
 
 	<?php
+	$today = date('d/m/Y');
 	$args = array(
 		'post_type' => 'event',
 		'posts_per_page' => EVENTS_PER_PAGE,
 		'orderby' => 'meta_value',
 		'meta_key' => 'start_date',
-		'order' => 'ASC'
+		'order' => 'DESC',
+		'meta_query' => array(
+			array(
+				'key' => 'start_date',
+				'value' => $today,
+				'compare' => '>=',
+				'type' => 'DATE'
+			)
+		)
 	);
 	$query = new WP_Query($args);
 
 	if ($query->have_posts()) :
 	?>
 		<div class="section event_list_section scrollin_p">
-			<div class="section_center_content">
+			<div class="section_center_content small_section_center_content">
 				<div class="event_list_item_wrapper">
 					<?php
 					while ($query->have_posts()) :
