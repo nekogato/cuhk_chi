@@ -54,7 +54,7 @@ get_header(); ?>
 												<?php endif; ?>
 											</div>
 											<?php if (has_post_thumbnail()) : ?>
-												<div class="caption"><?php echo esc_attr(get_post_meta(get_post_thumbnail_id(), '_wp_attachment_image_alt', true)); ?></div>
+												<div class="caption"><?php echo esc_html(wp_get_attachment_caption(get_post_thumbnail_id())); ?></div>
 											<?php endif; ?>
 										</div>
 									</div>
