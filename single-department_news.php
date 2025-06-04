@@ -55,12 +55,19 @@ get_header(); ?>
 											</div>
 											<?php if (has_post_thumbnail()) :
 												$thumbnail_id = get_post_thumbnail_id();
-												$metadata = wp_get_attachment_metadata($thumbnail_id);
+												$attachment = get_post($thumbnail_id);
 
-												// Get caption from metadata
+												// Get caption from WordPress CMS fields
 												$caption = '';
-												if ($metadata && isset($metadata['image_meta']['caption'])) {
-													$caption = $metadata['image_meta']['caption'];
+
+												// Try Caption field (post_excerpt)
+												if ($attachment && !empty($attachment->post_excerpt)) {
+													$caption = $attachment->post_excerpt;
+												}
+
+												// Try Description field (post_content) if caption is empty
+												if (empty($caption) && $attachment && !empty($attachment->post_content)) {
+													$caption = $attachment->post_content;
 												}
 
 												if (!empty($caption)) :
