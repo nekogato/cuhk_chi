@@ -13,6 +13,7 @@ define('PUBLICATIONS_PER_PAGE', 6);
 define('NEWS_PER_PAGE', 4);
 define('EVENTS_PER_PAGE', 4);
 define('MAX_POSTGRADUATE_STUDENTS_PER_PAGE', 6);
+define('MAX_DEPARTMENT_NEWS', 6);
 
 if (! defined('_S_VERSION')) {
 	// Replace the version number of the theme on each release.
@@ -116,6 +117,8 @@ function cuhk_chi_setup()
 	add_image_size('929x465', 929, 465, array('center', 'center'));
 	add_image_size('s', 500, 500, array('center', 'center'));
 	add_image_size('xs', 200, 200, array('center', 'center'));
+	add_image_size('department-news-featured', 650, 366, array('center', 'center'));
+	add_image_size('department-news-regular', 193, 9999); // 193px width, auto height
 }
 add_action('after_setup_theme', 'cuhk_chi_setup');
 
@@ -599,7 +602,7 @@ function load_more_events()
 					</div>
 				<?php endif; ?>
 			</div>
-<?php
+		<?php
 			$html .= ob_get_clean();
 		}
 		wp_reset_postdata();
@@ -900,3 +903,68 @@ function load_courses()
 }
 add_action('wp_ajax_load_courses', 'load_courses');
 add_action('wp_ajax_nopriv_load_courses', 'load_courses');
+
+// AJAX handler for loading more department news
+function load_more_department_news()
+{
+	check_ajax_referer('load_more_department_news_nonce', 'nonce');
+
+	$page = isset($_POST['page']) ? intval($_POST['page']) : 1;
+
+	$args = array(
+		'post_type' => 'department-news',
+		'posts_per_page' => MAX_DEPARTMENT_NEWS,
+		'paged' => $page + 1, // +1 because we're loading the next page
+		'orderby' => 'date',
+		'order' => 'DESC',
+		'offset' => 2 + ($page * MAX_DEPARTMENT_NEWS) // +2 to skip featured posts
+	);
+
+	$query = new WP_Query($args);
+	$html = '';
+
+	if ($query->have_posts()) {
+		while ($query->have_posts()) {
+			$query->the_post();
+
+			$banner_url = get_the_post_thumbnail_url(get_the_ID(), 'department-news-regular');
+			$banner_alt = get_post_meta(get_post_thumbnail_id(), '_wp_attachment_image_alt', true);
+
+			// Get category from taxonomy
+			$categories = wp_get_post_terms(get_the_ID(), 'department-category');
+			$category_name = !empty($categories) ? $categories[0]->name : '';
+
+			ob_start();
+		?>
+			<div class="news_box col col4">
+				<div class="col_spacing scrollin scrollinbottom">
+					<div class="photo">
+						<?php if ($banner_url) : ?>
+							<img src="<?php echo esc_url($banner_url); ?>" alt="<?php echo esc_attr($banner_alt); ?>">
+						<?php endif; ?>
+					</div>
+					<div class="text_wrapper">
+						<div class="date_wrapper text5"><?php echo get_the_date('M d'); ?></div>
+						<div class="title_wrapper">
+							<div class="cat"><?php echo esc_html($category_name); ?></div>
+							<div class="title text5"><?php the_title(); ?></div>
+							<div class="btn_wrapper text8">
+								<a href="<?php the_permalink(); ?>" class="round_btn"><?php pll_e('了解更多'); ?></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+<?php
+			$html .= ob_get_clean();
+		}
+		wp_reset_postdata();
+	}
+
+	wp_send_json_success(array(
+		'html' => $html,
+		'has_more' => $page + 1 < $query->max_num_pages
+	));
+}
+add_action('wp_ajax_load_more_department_news', 'load_more_department_news');
+add_action('wp_ajax_nopriv_load_more_department_news', 'load_more_department_news');
