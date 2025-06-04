@@ -86,7 +86,7 @@ get_header(); ?>
 							<div class="right_content">
 								<div class="flexible_layout_wrapper">
 									<div class="news_date scrollin scrollinbottom">
-										<?php pll_e('發報日期'); ?>：<?php echo DateTime::createFromFormat('U', get_post_time('U'))->format('Y年m月d日（l）'); ?>
+										<?php echo pll__('發報日期') . '：' . format_chinese_date(get_post_time('U')); ?>
 									</div>
 									<div class="flexible_layout flexible_layout_freetext scrollin scrollinbottom">
 										<div class="free_text">

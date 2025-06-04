@@ -642,6 +642,51 @@ function get_chinese_month($month_abbr)
 	return isset($chinese_months[$month_abbr]) ? $chinese_months[$month_abbr] : $month_abbr;
 }
 
+/**
+ * Format date with Chinese day names
+ *
+ * @param int|string $timestamp Unix timestamp or date string
+ * @param string $format Date format (default: 'Y年m月d日（{day}）')
+ * @return string Formatted date with Chinese day name
+ */
+function format_chinese_date($timestamp = null, $format = 'Y年m月d日（{day}）')
+{
+	// Use current post time if no timestamp provided
+	if ($timestamp === null) {
+		$timestamp = get_post_time('U');
+	}
+
+	// Convert to timestamp if it's a date string
+	if (!is_numeric($timestamp)) {
+		$timestamp = strtotime($timestamp);
+	}
+
+	$date_obj = DateTime::createFromFormat('U', $timestamp);
+
+	$chinese_days = array(
+		'Monday' => '星期一',
+		'Tuesday' => '星期二',
+		'Wednesday' => '星期三',
+		'Thursday' => '星期四',
+		'Friday' => '星期五',
+		'Saturday' => '星期六',
+		'Sunday' => '星期日'
+	);
+
+	$english_day = $date_obj->format('l');
+	$chinese_day = $chinese_days[$english_day];
+
+	// Replace {day} placeholder with Chinese day name
+	$formatted_date = str_replace('{day}', $chinese_day, $format);
+
+	// Format the date (excluding the day placeholder)
+	$final_format = str_replace('（{day}）', '', $format);
+	$date_part = $date_obj->format($final_format);
+
+	// Combine date and Chinese day
+	return $date_obj->format('Y年m月d日') . '（' . $chinese_day . '）';
+}
+
 // AJAX handler for loading postgraduate students
 function load_postgraduate_students()
 {
