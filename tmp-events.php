@@ -21,10 +21,12 @@ while (have_posts()) :
 	<div class="section section_content section_intro">
 		<div class="section_center_content small_section_center_content">
 			<?php
-			$related_page = get_field('related_page');
-			if ($related_page) : ?>
+			$related_pages = get_field('related_page');
+			if ($related_pages) : ?>
 				<div class="intro_btn_wrapper">
-					<a href="<?php echo get_permalink($related_page->ID); ?>" class="round_btn text5"><?php echo get_the_title($related_page->ID); ?></a>
+					<?php foreach ($related_pages as $related_page) : ?>
+						<a href="<?php echo get_permalink($related_page->ID); ?>" class="round_btn text5"><?php echo get_the_title($related_page->ID); ?></a>
+					<?php endforeach; ?>
 				</div>
 			<?php endif; ?>
 			<?php if ($page_title) : ?>
