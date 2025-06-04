@@ -575,9 +575,9 @@ function load_more_events()
 							<div class="t2 text6">
 								<?php
 								if ($start_date && $end_date && $start_date !== $end_date) {
-									echo esc_html($start_date_obj->format('Y年m月d日') . '－' . $end_date_obj->format('Y年m月d日'));
+									echo esc_html($start_date_obj->format('Y年n月j日') . '－' . $end_date_obj->format('Y年n月j日'));
 								} else {
-									echo esc_html($start_date_obj->format('Y年m月d日'));
+									echo esc_html($start_date_obj->format('Y年n月j日'));
 								}
 								?>
 							</div>
@@ -649,7 +649,7 @@ function get_chinese_month($month_abbr)
  * @param string $format Date format (default: 'Y年m月d日（{day}）')
  * @return string Formatted date with Chinese day name
  */
-function format_chinese_date($timestamp = null, $format = 'Y年m月d日（{day}）')
+function format_chinese_date($timestamp = null, $format = 'Y年n月j日（{day}）')
 {
 	// Use current post time if no timestamp provided
 	if ($timestamp === null) {
@@ -676,15 +676,14 @@ function format_chinese_date($timestamp = null, $format = 'Y年m月d日（{day}�
 	$english_day = $date_obj->format('l');
 	$chinese_day = $chinese_days[$english_day];
 
-	// Replace {day} placeholder with Chinese day name
-	$formatted_date = str_replace('{day}', $chinese_day, $format);
+	// Replace {day} placeholder with temporary placeholder to avoid conflicts during formatting
+	$temp_format = str_replace('{day}', '###DAY###', $format);
 
-	// Format the date (excluding the day placeholder)
-	$final_format = str_replace('（{day}）', '', $format);
-	$date_part = $date_obj->format($final_format);
+	// Format the date using PHP date formatting
+	$formatted_date = $date_obj->format($temp_format);
 
-	// Combine date and Chinese day
-	return $date_obj->format('Y年m月d日') . '（' . $chinese_day . '）';
+	// Replace temporary placeholder with Chinese day name
+	return str_replace('###DAY###', $chinese_day, $formatted_date);
 }
 
 // AJAX handler for loading postgraduate students
