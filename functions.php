@@ -115,6 +115,7 @@ function cuhk_chi_setup()
 	add_image_size('l', 1600, 1200);
 	add_image_size('m', 1200, 900);
 	add_image_size('929x465', 929, 465, array('center', 'center'));
+	add_image_size('392x202', 392, 202, array('center', 'center'));
 	add_image_size('s', 500, 500, array('center', 'center'));
 	add_image_size('xs', 200, 200, array('center', 'center'));
 	add_image_size('department-news-featured', 650, 366, array('center', 'center'));
@@ -173,6 +174,8 @@ function cuhk_chi_scripts()
 	wp_enqueue_script('cuhk_chi-swiper', get_template_directory_uri() . '/script/lib/swiper/js/swiper.min.js', array('cuhk_chi-jquery'), '', false);
 	wp_enqueue_style('cuhk_chi-fancy-style', get_template_directory_uri() . '/script/lib/fancybox/jquery.fancybox.min.css', '', '', 'all');
 	wp_enqueue_script('cuhk_chi-fancy', get_template_directory_uri() . '/script/lib/fancybox/jquery.fancybox.min.js', array('cuhk_chi-jquery'), '', false);
+	wp_enqueue_style('cuhk_chi-perfect-scrollbar-style', get_template_directory_uri() . '/script/lib/perfect-scrollbar.css', '', '', 'all');
+	wp_enqueue_script('cuhk_chi-perfect-scrollbar', get_template_directory_uri() . '/script/lib/perfect-scrollbar.js', array('cuhk_chi-jquery'), '', false);
 
 	// Add Alpine.js only for postgraduate research students template
 	if (is_page_template('tmp-postgraduate_research_students.php')) {

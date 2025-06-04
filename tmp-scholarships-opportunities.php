@@ -148,8 +148,14 @@ if (have_posts()) :
 							?>
 								<div class="swiper-slide popup_btn" data-target="popup<?php echo $story_id; ?>">
 									<div class="thumb thumb2">
-										<?php if ($story['photo']) : ?>
-											<img src="<?php echo esc_url($story['photo']['url']); ?>" alt="<?php echo esc_attr($story['photo']['alt']); ?>">
+										<?php if ($story['photo']) :
+											// Get 392x202 thumbnail size for swiper slides
+											$image_id = $story['photo']['ID'];
+											$thumbnail = wp_get_attachment_image_src($image_id, '392x202');
+											$thumbnail_url = $thumbnail ? $thumbnail[0] : $story['photo']['url'];
+											$alt_text = get_post_meta($image_id, '_wp_attachment_image_alt', true) ?: $story['photo']['alt'];
+										?>
+											<img src="<?php echo esc_url($thumbnail_url); ?>" alt="<?php echo esc_attr($alt_text); ?>">
 										<?php endif; ?>
 										<?php if ($story['video_url']) : ?>
 											<div class="video_play_btn"></div>
@@ -186,7 +192,14 @@ if (have_posts()) :
 									</div>
 								<?php elseif ($story['photo']) : ?>
 									<div class="people_detail_photo">
-										<img src="<?php echo esc_url($story['photo']['url']); ?>" alt="<?php echo esc_attr($story['photo']['alt']); ?>">
+										<?php
+										// Get 400px wide thumbnail
+										$image_id = $story['photo']['ID'];
+										$thumbnail = wp_get_attachment_image_src($image_id, array(400, 9999));
+										$thumbnail_url = $thumbnail ? $thumbnail[0] : $story['photo']['url'];
+										$alt_text = get_post_meta($image_id, '_wp_attachment_image_alt', true) ?: $story['photo']['alt'];
+										?>
+										<img src="<?php echo esc_url($thumbnail_url); ?>" alt="<?php echo esc_attr($alt_text); ?>">
 									</div>
 								<?php endif; ?>
 							</div>
