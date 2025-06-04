@@ -47,7 +47,7 @@ if ($all_news->have_posts()) {
 			'id' => get_the_ID(),
 			'title' => get_the_title(),
 			'permalink' => get_permalink(),
-			'date' => get_the_date('M d'),
+			'date' => DateTime::createFromFormat('U', get_post_time('U'))->format('M d'),
 			'banner_url' => '', // Will be set based on featured/regular
 			'banner_alt' => get_post_meta(get_post_thumbnail_id(), '_wp_attachment_image_alt', true),
 			'category' => $category_name
