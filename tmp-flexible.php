@@ -39,7 +39,7 @@ while (have_posts()) :
 							<!-- Free Text Content Section -->
 							<div class="section_introduction scrollin scrollinbottom onscreen startani">
 								<div class="free_text">
-									<?php echo $content; ?>
+									<?php echo apply_filters('the_content', $content); ?>
 								</div>
 							</div>
 						<?php endif; ?>
@@ -68,7 +68,7 @@ while (have_posts()) :
 											<div class="hidden">
 												<div class="hidden_content">
 													<div class="free_text">
-														<?php echo wp_kses_post($answer); ?>
+														<?php echo apply_filters('the_content', $answer); ?>
 													</div>
 												</div>
 											</div>
