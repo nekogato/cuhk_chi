@@ -72,15 +72,13 @@ while (have_posts()) :
 					</div>
 
 					<?php
-					$manual_total_units = get_field('total_units');
-					$display_total = $manual_total_units ? $manual_total_units : $total_programme_units;
-					if ($display_total) : ?>
+					if ($total_programme_units) : ?>
 						<div class="scheme_unit_box_total">
 							<div class="scheme_unit_box_left">
 								<div class="t2">Total Units</div>
 							</div>
 							<div class="scheme_unit_box_right">
-								<div class="t1 text1"><?php echo esc_html($display_total); ?></div>
+								<div class="t1 text1"><?php echo esc_html($total_programme_units); ?></div>
 								<div class="t2">Units</div>
 							</div>
 						</div>
