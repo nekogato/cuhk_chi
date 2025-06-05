@@ -58,7 +58,7 @@ while (have_posts()) :
 								$question = $item['question'];
 								$answer = $item['answer'];
 								$is_active = $item['is_active'];
-								$active_class = ($is_active || $first_item) ? ' active' : '';
+								$active_class = ($is_active) ? ' active' : '';
 								$first_item = false;
 								?>
 								<div class="expandable_item<?php echo $active_class; ?>">
