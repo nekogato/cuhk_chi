@@ -39,7 +39,7 @@ while (have_posts()) :
 							<!-- Free Text Content Section -->
 							<div class="section_introduction scrollin scrollinbottom onscreen startani">
 								<div class="free_text">
-									<?php echo wp_kses_post($content); ?>
+									<?php echo $content; ?>
 								</div>
 							</div>
 						<?php endif; ?>
