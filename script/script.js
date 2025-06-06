@@ -1026,7 +1026,7 @@ function dosize(){
 
 	$(".top_photo_banner_section .vertical_text_wrapper .project_title").each(function(){
 		var $p = $(this).parents(".top_photo_banner_section");
-		if($p.find(".photo")){
+		if($p.find(".photo").length){
 			$(this).css({
 				"max-height":$p.find(".photo").outerHeight()*0.8+"px"
 			})
@@ -1083,16 +1083,23 @@ $(function(){
 
 	$(".project_title span").each(function () {
 		const $el = $(this);
-		const originalText = $el.text();
-		const wrapped = Array.from(originalText).map(char => {
-		// CJK Ideographs only
-		if (/[\u4E00-\u9FFF]/.test(char)) {
-			return char; // Keep CJK characters as-is
-		} else {
-			return `<span class="horizontal-text">${char}</span>`;
+
+		$el.contents().each(function () {
+		if (this.nodeType === Node.TEXT_NODE) {
+			const text = this.nodeValue;
+			const wrapped = Array.from(text).map(char => {
+			if (/[\u4E00-\u9FFF]/.test(char)) {
+				return char;
+			} else {
+				return `<span class="horizontal-text">${char}</span>`;
+			}
+			}).join('');
+
+			// Replace the text node with new HTML
+			$(this).replaceWith(wrapped);
 		}
-		}).join('');
-		$el.html(wrapped);
+		// If it's not a text node (e.g., <br>), leave it alone
+		});
 	});
 
 	init_event();
