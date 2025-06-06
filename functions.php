@@ -1150,6 +1150,35 @@ add_action('wp_ajax_load_more_past_events', 'load_more_past_events');
 add_action('wp_ajax_nopriv_load_more_past_events', 'load_more_past_events');
 
 
+
+
+/* chung */
+
+add_action('template_redirect', function() {
+    if (is_singular('research_project')) {
+        // Get current Polylang language
+        $lang = function_exists('pll_current_language') ? pll_current_language() : '';
+
+        // Get the ID of the target page in the current language
+        $page_id = pll_get_page_by_title('research-projects', $lang);
+
+        // Fallback: use slug if title lookup fails
+        if (!$page_id) {
+            $page = get_page_by_path('research-projects');
+            if ($page && function_exists('pll_get_post')) {
+                $page_id = pll_get_post($page->ID, $lang);
+            }
+        }
+
+        // If a valid page is found, redirect
+        if ($page_id) {
+            wp_redirect(get_permalink($page_id), 301);
+            exit;
+        }
+    }
+});
+
+
 // 1. Add custom column to the admin list
 add_filter('manage_research_project_posts_columns', function($columns) {
     $columns['funding_start_year'] = 'Funding Start Year';
