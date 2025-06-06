@@ -31,7 +31,7 @@ while (have_posts()) :
 						<div class="col_spacing scrollin scrollinbottom">
 							<div class="text_wrapper vertical_text_wrapper">
 								<div class="text vertical_text">
-									<h1 class="project_title"><span><?php the_title(); ?></span></h1>
+									<h1 class="project_title"><span><?php the_field("page_title"); ?></span></h1>
 								</div>
 							</div>
 						</div>
