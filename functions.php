@@ -1194,13 +1194,23 @@ add_action('template_redirect', function() {
 });
 
 
-// 1. Add custom column to the admin list
+// 1. Add custom columns to each post type
 add_filter('manage_research_project_posts_columns', function($columns) {
     $columns['funding_start_year'] = 'Funding Start Year';
     return $columns;
 });
 
-// 2. Display the ACF value in the column
+add_filter('manage_news_posts_columns', function($columns) {
+    $columns['start_date'] = 'Start Date';
+    return $columns;
+});
+
+add_filter('manage_event_posts_columns', function($columns) {
+    $columns['start_date'] = 'Start Date';
+    return $columns;
+});
+
+// 2. Display ACF values in the columns
 add_action('manage_research_project_posts_custom_column', function($column, $post_id) {
     if ($column === 'funding_start_year') {
         $value = get_field('funding_start_year', $post_id);
@@ -1208,20 +1218,51 @@ add_action('manage_research_project_posts_custom_column', function($column, $pos
     }
 }, 10, 2);
 
-// 3. Make the column sortable
+add_action('manage_news_posts_custom_column', function($column, $post_id) {
+    if ($column === 'start_date') {
+        $value = get_field('start_date', $post_id);
+        echo esc_html($value);
+    }
+}, 10, 2);
+
+add_action('manage_event_posts_custom_column', function($column, $post_id) {
+    if ($column === 'start_date') {
+        $value = get_field('start_date', $post_id);
+        echo esc_html($value);
+    }
+}, 10, 2);
+
+// 3. Make the columns sortable
 add_filter('manage_edit-research_project_sortable_columns', function($columns) {
     $columns['funding_start_year'] = 'funding_start_year';
     return $columns;
 });
 
-// 4. Add sorting logic
+add_filter('manage_edit-news_sortable_columns', function($columns) {
+    $columns['start_date'] = 'start_date';
+    return $columns;
+});
+
+add_filter('manage_edit-event_sortable_columns', function($columns) {
+    $columns['start_date'] = 'start_date';
+    return $columns;
+});
+
+// 4. Add sorting logic for custom fields
 add_action('pre_get_posts', function($query) {
     if (!is_admin() || !$query->is_main_query()) {
         return;
     }
 
-    if ($query->get('orderby') === 'funding_start_year') {
+    $orderby = $query->get('orderby');
+
+    if ($orderby === 'funding_start_year') {
         $query->set('meta_key', 'funding_start_year');
-        $query->set('orderby', 'meta_value_num'); // If stored as number (like year)
+        $query->set('orderby', 'meta_value_num'); // or 'meta_value' if it's not a number
+    }
+
+    if ($orderby === 'start_date') {
+        $query->set('meta_key', 'start_date');
+        $query->set('orderby', 'meta_value'); // or 'meta_value_num' if it's a timestamp or Y-m-d
     }
 });
