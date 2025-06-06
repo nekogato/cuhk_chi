@@ -20,17 +20,17 @@ get_header();
 
 <div class="section section_contact scrollin_p">
 	<div class="contact_banner">
-		<div class="section_center_content">
+		<div class="section_center_content small_section_center_content">
 			<?php
 			$contact_banner = get_field("contact_banner");
 			if ($contact_banner): ?>
-				<div class="photo"><img src="<?php echo esc_url($contact_banner['sizes']['l']); ?>"></div>
+				<div class="photo scrollin scrollinopacity"><img src="<?php echo esc_url($contact_banner['sizes']['l']); ?>"></div>
 			<?php endif; ?>
 		</div>
 	</div>
 
 	<div class="contact_intro">
-		<div class="section_center_content">
+		<div class="section_center_content small_section_center_content">
 			<?php if (get_field("contact_title")): ?>
 				<h1 class="section_title text1 scrollin scrollinbottom"><?php the_field("contact_title"); ?></h1>
 			<?php endif; ?>
@@ -41,7 +41,7 @@ get_header();
 	</div>
 
 	<div class="contact_bottom">
-		<div class="section_center_content">
+		<div class="section_center_content small_section_center_content">
 			<div class="col_wrapper">
 				<div class="flex row">
 					<div class="col col7">

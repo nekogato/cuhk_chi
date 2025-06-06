@@ -4262,13 +4262,13 @@ justify-content: center;
 .main_song{
     background-color: #fff;
     box-shadow: 5px 5px 10px rgba(0,0,0,.3);
-    margin-left: 50px;
-    margin-right: 50px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .main_song_btn_wrapper{
-    margin-left: 50px;
-    margin-right: 50px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .main_song_btn_wrapper ul{

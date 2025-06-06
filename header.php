@@ -19,8 +19,20 @@
 
 	<?php wp_head(); ?>
 </head>
+<?php
+global $style_class;
+if (pll_current_language() == 'sc' || pll_current_language() == 'tc') {
+    $style_class .= ' zh_body';
+}else{
+    $style_class .= ' en_body';
+}
 
-<body <?php body_class(); ?>>
+if (pll_current_language() == 'sc') {
+    $style_class .= ' sc_body';
+}
+
+?>
+<body <?php body_class($style_class); ?>>
 <?php wp_body_open(); ?>
 
 	<div class="plain_bg"></div>

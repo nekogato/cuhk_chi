@@ -21,10 +21,12 @@ get_header();
 					<div class="main_song_btn_wrapper">
 						<ul>
 							<?php
+							$firsttext;
 							$first = true;
 							while (have_rows('song_repeater')) : the_row();
 								$version_name = get_sub_field('version_name');
 								$song_file = get_sub_field('song_file');
+								$firsttext = $version_name;
 								if ($song_file) :
 							?>
 									<li>
@@ -60,7 +62,7 @@ get_header();
 									<div class="t1 text5"><?php the_field('song_small_title'); ?></div>
 								<?php endif; ?>
 								<?php if (get_field('song_name')) : ?>
-									<div class="t2 text2"><?php the_field('song_name'); ?> - <span class="version_name">原唱</span></div>
+									<div class="t2 text2"><?php the_field('song_name'); ?> - <span class="version_name"><?php echo $firsttext;?></span></div>
 								<?php endif; ?>
 							</div>
 							<?php if (get_field('song_short_info')) : ?>

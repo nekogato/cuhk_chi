@@ -189,6 +189,13 @@ function cuhk_chi_scripts()
 		wp_script_add_data('alpinejs', 'defer', true);
 	}
 
+
+	// Add audio script for about song template
+	if (is_page_template('tmp-about_song.php')) {
+		wp_enqueue_script('cuhk_chi-audio', get_template_directory_uri() . '/script/audio.js', array('cuhk_chi-jquery'), '', false);
+		wp_enqueue_style('cuhk_chi-audio-style', get_template_directory_uri() . '/audio.css', '', '', 'all');
+	}
+
 	wp_enqueue_style('cuhk_chi-adobe-font', 'https://use.typekit.net/gsi3slf.css', '', '', 'all');
 
 	wp_enqueue_style('cuhk_chi-fonts', get_template_directory_uri() . '/fonts/stylesheet.css', '', '', 'all');
