@@ -1026,9 +1026,15 @@ function dosize(){
 
 	$(".top_photo_banner_section .vertical_text_wrapper .project_title").each(function(){
 		var $p = $(this).parents(".top_photo_banner_section");
-		$(this).css({
-			"max-height":$p.find(".photo").outerHeight()*0.8+"px"
-		})
+		if($p.find(".photo")){
+			$(this).css({
+				"max-height":$p.find(".photo").outerHeight()*0.8+"px"
+			})
+		}else{
+			$(this).css({
+				"max-height":"400px"
+			})
+		}
 		
 	})
 
@@ -1073,6 +1079,20 @@ $(function(){
 			var my_src = $(this).attr("src")
 			$(this).wrap( "<div class='video_wrapper'></div>" );
 		}
+	});
+
+	$(".project_title span").each(function () {
+		const $el = $(this);
+		const originalText = $el.text();
+		const wrapped = Array.from(originalText).map(char => {
+		// CJK Ideographs only
+		if (/[\u4E00-\u9FFF]/.test(char)) {
+			return char; // Keep CJK characters as-is
+		} else {
+			return `<span class="horizontal-text">${char}</span>`;
+		}
+		}).join('');
+		$el.html(wrapped);
 	});
 
 	init_event();

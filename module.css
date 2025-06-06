@@ -1,6 +1,11 @@
 @import url("flexible_layout.css");
 @import url("bg.css");
 
+.horizontal-text {
+  writing-mode: horizontal-tb;
+  display: inline-block;
+}
+
 .break {
     flex-basis: 100%;
     height: 0;
