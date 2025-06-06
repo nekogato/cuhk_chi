@@ -3374,6 +3374,7 @@ justify-content: center;
 
 .news_gallery_box_section .col_spacing{
     flex-direction: row;
+    display: block;
 }
 
 .news_gallery_box_section .news_box .text_wrapper {
