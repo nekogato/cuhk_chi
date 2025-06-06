@@ -1032,7 +1032,7 @@ function dosize(){
 			})
 		}else{
 			$(this).css({
-				"max-height":"400px"
+				"max-height": $(window).height()+"px"
 			})
 		}
 		

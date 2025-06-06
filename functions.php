@@ -1148,3 +1148,36 @@ function load_more_past_events()
 }
 add_action('wp_ajax_load_more_past_events', 'load_more_past_events');
 add_action('wp_ajax_nopriv_load_more_past_events', 'load_more_past_events');
+
+
+// 1. Add custom column to the admin list
+add_filter('manage_research_project_posts_columns', function($columns) {
+    $columns['funding_start_year'] = 'Funding Start Year';
+    return $columns;
+});
+
+// 2. Display the ACF value in the column
+add_action('manage_research_project_posts_custom_column', function($column, $post_id) {
+    if ($column === 'funding_start_year') {
+        $value = get_field('funding_start_year', $post_id);
+        echo esc_html($value);
+    }
+}, 10, 2);
+
+// 3. Make the column sortable
+add_filter('manage_edit-research_project_sortable_columns', function($columns) {
+    $columns['funding_start_year'] = 'funding_start_year';
+    return $columns;
+});
+
+// 4. Add sorting logic
+add_action('pre_get_posts', function($query) {
+    if (!is_admin() || !$query->is_main_query()) {
+        return;
+    }
+
+    if ($query->get('orderby') === 'funding_start_year') {
+        $query->set('meta_key', 'funding_start_year');
+        $query->set('orderby', 'meta_value_num'); // If stored as number (like year)
+    }
+});
