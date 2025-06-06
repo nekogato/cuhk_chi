@@ -114,7 +114,7 @@ function initPlayers($player) {
 }
 
 function changeAudioSource($playerContainer, newSrc) {
-  $playerContainer.addClass("loading")
+  $playerContainer.addClass("loadingaudio")
   var $audio = $playerContainer.find('.player');
   var audio = $audio[0];
   
@@ -136,7 +136,7 @@ function changeAudioSource($playerContainer, newSrc) {
     setTimeout(function(){
       var totalLength = calculateTotalValue(audio.duration);
       $playerContainer.find('.end-time').html(totalLength);
-      $playerContainer.removeClass("loading")
+      $playerContainer.removeClass("loadingaudio")
     },300)
   });
 }

@@ -18,10 +18,12 @@
 	background-repeat: no-repeat;
 	opacity: 0;
 	z-index: 19;
+	pointer-events: none;
 }
 
-.audio-player.loading .loader{
+.audio-player.loadingaudio .loader{
 	opacity: 1;
+	pointer-events: auto;
 }
 
 .audio-player .player-controls {
