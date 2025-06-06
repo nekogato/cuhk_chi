@@ -1154,26 +1154,41 @@ add_action('wp_ajax_nopriv_load_more_past_events', 'load_more_past_events');
 
 /* chung */
 
+function get_translated_page_by_slug($slug, $lang = null) {
+    if (empty($slug)) return false;
+
+    // Default to current language if none is specified
+    if (!$lang && function_exists('pll_current_language')) {
+        $lang = pll_current_language();
+    }
+
+    // Query pages by slug (post_name), in all hierarchies
+    $page = get_posts([
+        'name'           => $slug,
+        'post_type'      => 'page',
+        'post_status'    => 'publish',
+        'posts_per_page' => 1,
+    ]);
+
+    if (empty($page)) return false;
+
+    $page_id = $page[0]->ID;
+
+    // Return translated ID, or fallback to default
+    if (function_exists('pll_get_post')) {
+        $translated_id = pll_get_post($page_id, $lang);
+        return $translated_id ? $translated_id : $page_id;
+    }
+
+    return $page_id;
+}
+
 add_action('template_redirect', function() {
     if (is_singular('research_project')) {
-        if (!function_exists('pll_current_language') || !function_exists('pll_get_post')) {
-            return; // Make sure Polylang is active
-        }
-
-        // Get current language
-        $lang = pll_current_language();
-
-        // Get the page in default language by path (adjust if not EN)
-        $default_page = get_page_by_path('research-projects');
-
-        if ($default_page) {
-            // Get the translated version of the page for the current language
-            $translated_page_id = pll_get_post($default_page->ID, $lang);
-
-            if ($translated_page_id) {
-                wp_redirect(get_permalink($translated_page_id), 301);
-                exit;
-            }
+        $target_page_id = get_translated_page_by_slug('research-projects');
+        if ($target_page_id) {
+            wp_redirect(get_permalink($target_page_id), 301);
+            exit;
         }
     }
 });
