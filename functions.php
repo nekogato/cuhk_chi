@@ -180,7 +180,7 @@ function cuhk_chi_scripts()
 	wp_enqueue_script('cuhk_chi-perfect-scrollbar', get_template_directory_uri() . '/script/lib/perfect-scrollbar.js', array('cuhk_chi-jquery'), '', false);
 
 	// Add Alpine.js only for postgraduate research students template
-	if (is_page_template('tmp-postgraduate_research_students.php') || is_page_template('tmp-teaching-staff.php') || is_page_template('tmp-course-index.php') || is_page_template('tmp-research_project.php')) {
+	if (is_page_template('tmp-postgraduate_research_students.php') || is_page_template('tmp-teaching-staff.php') || is_page_template('tmp-course-index.php') || is_page_template('tmp-research_project.php') || is_page_template('tmp-events.php')) {
 		wp_enqueue_script('alpinejs', 'https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js', array(), '3.13.3', true);
 		wp_script_add_data('alpinejs', 'defer', true);
 	}
@@ -1353,6 +1353,103 @@ function load_research_projects()
 }
 add_action('wp_ajax_load_research_projects', 'load_research_projects');
 add_action('wp_ajax_nopriv_load_research_projects', 'load_research_projects');
+
+// AJAX handler for filtering events by category
+function filter_events()
+{
+	check_ajax_referer('filter_events_nonce', 'nonce');
+
+	$page = isset($_POST['page']) ? intval($_POST['page']) : 1;
+	$category = isset($_POST['category']) ? sanitize_text_field($_POST['category']) : 'all';
+	$today = date('Y-m-d');
+
+	// Build query args
+	$args = array(
+		'post_type' => 'event',
+		'posts_per_page' => EVENTS_PER_PAGE,
+		'paged' => $page,
+		'meta_key' => 'start_date',
+		'orderby' => 'meta_value',
+		'order' => 'ASC',
+		'meta_query' => array(
+			array(
+				'key' => 'start_date',
+				'value' => $today,
+				'compare' => '>=',
+				'type' => 'DATE'
+			)
+		)
+	);
+
+	// Add taxonomy query if category is not 'all'
+	if ($category !== 'all') {
+		$args['tax_query'] = array(
+			array(
+				'taxonomy' => 'event_category',
+				'field' => 'slug',
+				'terms' => $category
+			)
+		);
+	}
+
+	$events_query = new WP_Query($args);
+	$events = array();
+
+	if ($events_query->have_posts()) {
+		while ($events_query->have_posts()) {
+			$events_query->the_post();
+
+			$event_name = get_field('event_name');
+			$event_banner = get_field('event_banner');
+			$start_date = get_field('start_date');
+			$end_date = get_field('end_date');
+			$event_time = get_field('event_time');
+			$event_venue = get_field('event_venue');
+
+			// Format dates
+			$start_date_obj = DateTime::createFromFormat('Y-m-d', $start_date);
+			$end_date_obj = $end_date ? DateTime::createFromFormat('Y-m-d', $end_date) : null;
+
+			// Check if event spans multiple days
+			$has_date_range = $end_date && $start_date !== $end_date;
+
+			// Format date display
+			if ($has_date_range) {
+				$date_display = $start_date_obj->format('Y年n月j日') . '－' . $end_date_obj->format('Y年n月j日');
+			} else {
+				$date_display = $start_date_obj->format('Y年n月j日');
+			}
+
+			$event = array(
+				'id' => get_the_ID(),
+				'event_name' => $event_name,
+				'permalink' => get_permalink(),
+				'start_month' => get_chinese_month($start_date_obj->format('M')),
+				'start_day' => $start_date_obj->format('j'),
+				'end_month' => $end_date_obj ? get_chinese_month($end_date_obj->format('M')) : '',
+				'end_day' => $end_date_obj ? $end_date_obj->format('j') : '',
+				'has_date_range' => $has_date_range,
+				'date_display' => $date_display,
+				'event_time' => $event_time,
+				'event_venue' => $event_venue,
+				'event_banner' => $event_banner ? array(
+					'url' => $event_banner['sizes']['l'],
+					'alt' => $event_banner['alt']
+				) : null
+			);
+
+			$events[] = $event;
+		}
+		wp_reset_postdata();
+	}
+
+	wp_send_json_success(array(
+		'events' => $events,
+		'has_more' => $page < $events_query->max_num_pages
+	));
+}
+add_action('wp_ajax_filter_events', 'filter_events');
+add_action('wp_ajax_nopriv_filter_events', 'filter_events');
 
 
 
