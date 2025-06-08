@@ -260,7 +260,7 @@ if ($alumni_events): ?>
 						<div class="title1">
 							<div class="text4"><?php echo esc_html($story_name); ?></div>
 							<?php if ($story_credentials): ?>
-								<div class="text6"><?php echo esc_html($story_credentials); ?></div>
+								<div class="text6"><?php echo ($story_credentials); ?></div>
 							<?php endif; ?>
 						</div>
 						<?php if ($story_content): ?>
