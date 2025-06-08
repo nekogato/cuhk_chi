@@ -40,7 +40,7 @@ while (have_posts()) :
 												<?php endif; ?>
 												<?php foreach ($hero_banner['buttons'] as $button) : ?>
 													<?php if ($button['button_link']) : ?>
-														<a class="btn" href="<?php echo esc_url($button['button_link']['url']); ?>" <?php if ($button['button_link']['target']) echo 'target="' . esc_attr($button['button_link']['target']) . '"'; ?>>
+														<a class="btn" href="<?php echo esc_url($button['button_link']['url']); ?>">
 															<div class="btn_text"><?php echo esc_html($button['button_text']); ?></div>
 														</a>
 													<?php endif; ?>
