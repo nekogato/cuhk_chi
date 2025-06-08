@@ -41,8 +41,9 @@ $max_year = 0;
 if ($query->have_posts()) :
 	foreach ($query->posts as $post_id) :
 		$year = get_field("funding_end_year", $post_id);
-		if ($year && !in_array($year, $years)) {
-			$years[] = $year;
+		// Validate year: must be 4-digit number between 1900-2100
+		if ($year && is_numeric($year) && strlen($year) == 4 && $year >= 1900 && $year <= 2100 && !in_array($year, $years)) {
+			$years[] = intval($year);
 			if ($year > $max_year) {
 				$max_year = $year;
 			}
@@ -52,6 +53,8 @@ if ($query->have_posts()) :
 
 	// Sort years in descending order
 	rsort($years);
+	// Ensure all years are integers for JSON output
+	$years = array_map('intval', $years);
 endif;
 
 // Get initial selected year
