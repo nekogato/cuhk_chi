@@ -116,6 +116,7 @@ function cuhk_chi_setup()
 	add_image_size('m', 1200, 900);
 	add_image_size('929x465', 929, 465, array('center', 'center'));
 	add_image_size('392x202', 392, 202, array('center', 'center'));
+	add_image_size('287x155', 287, 155, array('center', 'center'));
 	add_image_size('s', 500, 500, array('center', 'center'));
 	add_image_size('xs', 200, 200, array('center', 'center'));
 	add_image_size('department-news-featured', 650, 366, array('center', 'center'));

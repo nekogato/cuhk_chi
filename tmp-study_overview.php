@@ -209,7 +209,12 @@ while (have_posts()) :
 													</div>
 													<?php if ($experience['image']) : ?>
 														<div class="thumb">
-															<img src="<?php echo esc_url($experience['image']['url']); ?>" alt="<?php echo esc_attr($experience['image']['alt']); ?>">
+															<?php
+															$image_id = $experience['image']['ID'];
+															$image_src = wp_get_attachment_image_src($image_id, '287x155');
+															$image_url = $image_src ? $image_src[0] : $experience['image']['url'];
+															?>
+															<img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($experience['image']['alt']); ?>">
 														</div>
 													<?php endif; ?>
 												</div>
