@@ -160,7 +160,7 @@ $initial_year = isset($_GET['active_year']) ? intval($_GET['active_year']) : $ma
 					<div class="section_expandable_list">
 						<template x-for="project in projects" :key="project.id">
 							<div class="year-group" :data-year="activeYear">
-								<div class="expandable_item scrollin scrollinbottom" :class="{ 'onscreen startani': firstLoad > 1 }">
+								<div class="expandable_item scrollin scrollinbottom">
 									<div class="section_center_content">
 										<div class="expandable_title">
 											<div class="cat" x-text="project.funding_organization"></div>
@@ -283,6 +283,12 @@ $initial_year = isset($_GET['active_year']) ? intval($_GET['active_year']) : $ma
 								}
 							});
 
+							// Add animation classes after 1 second delay
+							if (this.firstLoad > 1) {
+								setTimeout(() => {
+									$(".expandable_item.scrollin.scrollinbottom").addClass("onscreen startani");
+								}, 1000);
+							}
 						});
 					}
 				} catch (error) {
