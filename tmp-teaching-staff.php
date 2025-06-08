@@ -25,7 +25,7 @@ get_header();
 				<div class="section_center_content small_section_center_content scrollin scrollinbottom">
 					<div class="filter_menu_content full_filter_menu_content">
 						<div class="alphabet_list_wrapper">
-							<div class="title">alphabet order</div>
+							<div class="title"><?php pll_e('alphabet order'); ?></div>
 							<ul class="alphabet_list">
 								<?php
 								$alphabet = range('A', 'Z');
