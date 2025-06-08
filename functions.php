@@ -838,6 +838,142 @@ function load_postgraduate_students()
 add_action('wp_ajax_load_postgraduate_students', 'load_postgraduate_students');
 add_action('wp_ajax_nopriv_load_postgraduate_students', 'load_postgraduate_students');
 
+// AJAX handler for loading teaching staff
+function load_teaching_staff()
+{
+	check_ajax_referer('load_teaching_staff_nonce', 'nonce');
+
+	$page = isset($_POST['page']) ? intval($_POST['page']) : 1;
+	$alphabet = isset($_POST['alphabet']) ? strtoupper(sanitize_text_field($_POST['alphabet'])) : '';
+	$position = isset($_POST['position']) ? sanitize_text_field($_POST['position']) : '';
+	$sort_order = isset($_POST['sort_order']) ? sanitize_text_field($_POST['sort_order']) : 'asc';
+
+	// Get the category ID for teaching-staff
+	$category = get_term_by('slug', 'teaching-staff', 'people_category');
+
+	if (!$category) {
+		wp_send_json_error('Category not found');
+		return;
+	}
+
+	$args = array(
+		'post_type' => 'profile',
+		'posts_per_page' => MAX_POSTGRADUATE_STUDENTS_PER_PAGE, // Reuse the same constant
+		'paged' => $page,
+		'orderby' => 'title',
+		'order' => strtoupper($sort_order),
+		'tax_query' => array(
+			array(
+				'taxonomy' => 'people_category',
+				'field' => 'term_id',
+				'terms' => $category->term_id
+			)
+		)
+	);
+
+	// Add meta query for position and alphabet if specified
+	$meta_query = array('relation' => 'AND');
+
+	if ($position) {
+		$meta_query[] = array(
+			'key' => 'filter_position',
+			'value' => $position,
+			'compare' => '='
+		);
+	}
+
+	if ($alphabet) {
+		$meta_query[] = array(
+			'key' => 'filter_alphabet',
+			'value' => $alphabet,
+			'compare' => '='
+		);
+	}
+
+	if (count($meta_query) > 1) {
+		$args['meta_query'] = $meta_query;
+	}
+
+	$query = new WP_Query($args);
+	$staff = array();
+
+	if ($query->have_posts()) {
+		while ($query->have_posts()) {
+			$query->the_post();
+
+			$photo = get_field('photo');
+			$position = get_field('position');
+			$description = get_field('description');
+			$address = get_field('address');
+			$qualifications = get_field('qualifications');
+			$research_interests = get_field('research_interests');
+			$office_hours = get_field('office_hours');
+
+			// Get contact information
+			$emails = array();
+			$phones = array();
+			$faxes = array();
+
+			if (have_rows('email')) {
+				while (have_rows('email')) {
+					the_row();
+					$emails[] = get_sub_field('email');
+				}
+			}
+
+			if (have_rows('phone')) {
+				while (have_rows('phone')) {
+					the_row();
+					$phones[] = get_sub_field('phone');
+				}
+			}
+
+			if (have_rows('fax')) {
+				while (have_rows('fax')) {
+					the_row();
+					$faxes[] = get_sub_field('fax');
+				}
+			}
+
+			$staff_member = array(
+				'id' => get_the_ID(),
+				'title' => get_the_title(),
+				'position' => $position,
+				'description' => $description,
+				'address' => $address,
+				'emails' => $emails,
+				'phones' => $phones,
+				'faxes' => $faxes,
+				'qualifications' => $qualifications,
+				'research_interests' => $research_interests,
+				'office_hours' => $office_hours,
+				'has_detail' => get_field('has_detail'),
+				'permalink' => get_permalink(get_the_ID())
+			);
+
+			if ($photo) {
+				$staff_member['photo'] = array(
+					'sizes' => array(
+						's' => $photo['sizes']['s'],
+						'l' => $photo['sizes']['l']
+					),
+					'alt' => $photo['alt']
+				);
+			}
+
+			$staff[] = $staff_member;
+		}
+		wp_reset_postdata();
+	}
+
+	wp_send_json_success(array(
+		'staff' => $staff,
+		'has_more' => $page < $query->max_num_pages
+	));
+}
+add_action('wp_ajax_load_teaching_staff', 'load_teaching_staff');
+add_action('wp_ajax_nopriv_load_teaching_staff', 'load_teaching_staff');
+
 // AJAX handler for loading courses
 function load_courses()
 {
