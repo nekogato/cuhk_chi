@@ -279,6 +279,9 @@ $initial_year = isset($_GET['active_year']) ? intval($_GET['active_year']) : $ma
 									}, 0)
 								}
 							});
+
+							// Add animation classes to new expandable items for scroll effects
+							$(".expandable_item.scrollin.scrollinbottom").addClass("onscreen startani");
 						});
 					}
 				} catch (error) {
