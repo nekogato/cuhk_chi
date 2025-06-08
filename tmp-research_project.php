@@ -283,11 +283,11 @@ $initial_year = isset($_GET['active_year']) ? intval($_GET['active_year']) : $ma
 								}
 							});
 
-							// Add animation classes after 500ms delay
+							// Add animation classes after 100ms delay
 							if (this.firstLoad > 1) {
 								setTimeout(() => {
 									$(".expandable_item.scrollin.scrollinbottom").addClass("onscreen startani");
-								}, 500);
+								}, 100);
 							}
 						});
 					}
