@@ -93,8 +93,8 @@ while (have_posts()) :
 													<?php
 													$start_date = get_field('start_date');
 													$end_date = get_field('end_date');
-													$start_date_obj = DateTime::createFromFormat('d/m/Y', $start_date);
-													$end_date_obj = DateTime::createFromFormat('d/m/Y', $end_date);
+													$start_date_obj = DateTime::createFromFormat('Y-m-d', $start_date);
+													$end_date_obj = DateTime::createFromFormat('Y-m-d', $end_date);
 
 													if ($start_date && $end_date && $start_date !== $end_date) {
 														echo esc_html($start_date_obj->format('Y年n月d日') . '－' . $end_date_obj->format('Y年n月d日'));
