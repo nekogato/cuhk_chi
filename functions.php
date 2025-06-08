@@ -180,7 +180,7 @@ function cuhk_chi_scripts()
 	wp_enqueue_script('cuhk_chi-perfect-scrollbar', get_template_directory_uri() . '/script/lib/perfect-scrollbar.js', array('cuhk_chi-jquery'), '', false);
 
 	// Add Alpine.js only for postgraduate research students template
-	if (is_page_template('tmp-postgraduate_research_students.php') || is_page_template('tmp-teaching-staff.php') || is_page_template('tmp-course-index.php') || is_page_template('tmp-research_project.php') || is_page_template('tmp-events.php')) {
+	if (is_page_template('tmp-postgraduate_research_students.php') || is_page_template('tmp-teaching-staff.php') || is_page_template('tmp-course-index.php') || is_page_template('tmp-research_project.php') || is_page_template('tmp-events.php') || is_page_template('tmp-old_events_index.php')) {
 		wp_enqueue_script('alpinejs', 'https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js', array(), '3.13.3', true);
 		wp_script_add_data('alpinejs', 'defer', true);
 	}
@@ -512,7 +512,6 @@ function load_google_maps_script()
 	}
 }
 add_action('wp_enqueue_scripts', 'load_google_maps_script');
-
 
 
 /**
@@ -1034,7 +1033,7 @@ function load_more_department_news()
 					</div>
 				</div>
 			</div>
-		<?php
+<?php
 			$html .= ob_get_clean();
 		}
 		wp_reset_postdata();
@@ -1048,21 +1047,22 @@ function load_more_department_news()
 add_action('wp_ajax_load_more_department_news', 'load_more_department_news');
 add_action('wp_ajax_nopriv_load_more_department_news', 'load_more_department_news');
 
-// AJAX handler for loading more past events
-function load_more_past_events()
+// AJAX handler for loading past events (Alpine.js version)
+function load_past_events()
 {
-	check_ajax_referer('load_more_past_events_nonce', 'nonce');
+	check_ajax_referer('load_past_events_nonce', 'nonce');
 
 	$page = isset($_POST['page']) ? intval($_POST['page']) : 1;
 	$today = date('Y-m-d');
 
+	// Build query args for past events (latest to oldest)
 	$args = array(
 		'post_type' => 'event',
 		'posts_per_page' => EVENTS_PER_PAGE,
 		'paged' => $page,
 		'meta_key' => 'start_date',
 		'orderby' => 'meta_value',
-		'order' => 'DESC',
+		'order' => 'DESC', // Latest past events first
 		'meta_query' => array(
 			array(
 				'key' => 'start_date',
@@ -1073,12 +1073,12 @@ function load_more_past_events()
 		)
 	);
 
-	$events = new WP_Query($args);
-	$html = '';
+	$events_query = new WP_Query($args);
+	$events = array();
 
-	if ($events->have_posts()) {
-		while ($events->have_posts()) {
-			$events->the_post();
+	if ($events_query->have_posts()) {
+		while ($events_query->have_posts()) {
+			$events_query->the_post();
 
 			$event_name = get_field('event_name');
 			$event_banner = get_field('event_banner');
@@ -1089,81 +1089,46 @@ function load_more_past_events()
 
 			// Format dates
 			$start_date_obj = DateTime::createFromFormat('Y-m-d', $start_date);
-			$end_date_obj = DateTime::createFromFormat('Y-m-d', $end_date);
+			$end_date_obj = $end_date ? DateTime::createFromFormat('Y-m-d', $end_date) : null;
 
-			ob_start();
-		?>
-			<div class="event_list_item flex">
-				<div class="date">
-					<div class="d_wrapper">
-						<?php if ($start_date && $end_date && $start_date !== $end_date) : ?>
-							<div class="d">
-								<div class="d1 text3"><?php echo get_chinese_month($start_date_obj->format('M')); ?></div>
-								<div class="d2 text5"><?php echo $start_date_obj->format('j'); ?></div>
-							</div>
-							<div class="d">
-								<div class="d1 text3"><?php echo get_chinese_month($end_date_obj->format('M')); ?></div>
-								<div class="d2 text5"><?php echo $end_date_obj->format('j'); ?></div>
-							</div>
-						<?php else : ?>
-							<div class="d">
-								<div class="d1 text3"><?php echo get_chinese_month($start_date_obj->format('M')); ?></div>
-								<div class="d2 text5"><?php echo $start_date_obj->format('j'); ?></div>
-							</div>
-						<?php endif; ?>
-					</div>
-					<div class="btn_wrapper">
-						<a href="<?php the_permalink(); ?>" class="reg_btn round_btn text7"><?php pll_e('了解更多'); ?></a>
-					</div>
-				</div>
-				<div class="title_wrapper">
-					<div class="title text5"><?php echo esc_html($event_name); ?></div>
-					<div class="info_item_wrapper">
-						<div class="info_item">
-							<div class="t1"><?php pll_e('日期'); ?></div>
-							<div class="t2 text6">
-								<?php
-								if ($start_date && $end_date && $start_date !== $end_date) {
-									echo esc_html($start_date_obj->format('j/n/Y') . '－' . $end_date_obj->format('j/n/Y'));
-								} else {
-									echo esc_html($start_date_obj->format('j/n/Y'));
-								}
-								?>
-							</div>
-						</div>
-						<?php if ($event_time) : ?>
-							<div class="info_item">
-								<div class="t1"><?php pll_e('時間'); ?></div>
-								<div class="t2 text6"><?php echo esc_html($event_time); ?></div>
-							</div>
-						<?php endif; ?>
-						<?php if ($event_venue) : ?>
-							<div class="info_item big_info_item">
-								<div class="t1"><?php pll_e('地點'); ?></div>
-								<div class="t2 text6"><?php echo esc_html($event_venue); ?></div>
-							</div>
-						<?php endif; ?>
-					</div>
-				</div>
-				<?php if ($event_banner) : ?>
-					<div class="photo">
-						<img src="<?php echo esc_url($event_banner['sizes']['l']); ?>" alt="<?php echo esc_attr($event_banner['alt']); ?>">
-					</div>
-				<?php endif; ?>
-			</div>
-<?php
-			$html .= ob_get_clean();
+			// Check if event spans multiple days
+			$has_date_range = $end_date && $start_date !== $end_date;
+
+			// Format date display
+			if ($has_date_range) {
+				$date_display = $start_date_obj->format('j/n/Y') . '－' . $end_date_obj->format('j/n/Y');
+			} else {
+				$date_display = $start_date_obj->format('j/n/Y');
+			}
+
+			$event = array(
+				'id' => get_the_ID(),
+				'event_name' => $event_name,
+				'permalink' => get_permalink(),
+				'start_date_short' => $start_date_obj->format('j/n'),
+				'end_date_short' => $end_date_obj ? $end_date_obj->format('j/n') : '',
+				'has_date_range' => $has_date_range,
+				'date_display' => $date_display,
+				'event_time' => $event_time,
+				'event_venue' => $event_venue,
+				'event_banner' => $event_banner ? array(
+					'url' => $event_banner['sizes']['l'],
+					'alt' => $event_banner['alt']
+				) : null
+			);
+
+			$events[] = $event;
 		}
 		wp_reset_postdata();
 	}
 
 	wp_send_json_success(array(
-		'html' => $html,
-		'has_more' => $page < $events->max_num_pages
+		'events' => $events,
+		'has_more' => $page < $events_query->max_num_pages
 	));
 }
-add_action('wp_ajax_load_more_past_events', 'load_more_past_events');
-add_action('wp_ajax_nopriv_load_more_past_events', 'load_more_past_events');
+add_action('wp_ajax_load_past_events', 'load_past_events');
+add_action('wp_ajax_nopriv_load_past_events', 'load_past_events');
 
 // AJAX handler for loading research projects
 function load_research_projects()
