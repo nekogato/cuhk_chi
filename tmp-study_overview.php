@@ -39,9 +39,11 @@ while (have_posts()) :
 													<div class="btn_title"><?php echo esc_html($hero_banner['buttons_title']); ?></div>
 												<?php endif; ?>
 												<?php foreach ($hero_banner['buttons'] as $button) : ?>
-													<a class="btn" href="<?php echo esc_url($button['button_link']); ?>">
-														<div class="btn_text"><?php echo esc_html($button['button_text']); ?></div>
-													</a>
+													<?php if ($button['button_link']) : ?>
+														<a class="btn" href="<?php echo esc_url($button['button_link']['url']); ?>" <?php if ($button['button_link']['target']) echo 'target="' . esc_attr($button['button_link']['target']) . '"'; ?>>
+															<div class="btn_text"><?php echo esc_html($button['button_text']); ?></div>
+														</a>
+													<?php endif; ?>
 												<?php endforeach; ?>
 											</div>
 										<?php endif; ?>
