@@ -262,11 +262,23 @@ $initial_year = isset($_GET['active_year']) ? intval($_GET['active_year']) : $ma
 					const data = await response.json();
 					if (data.success) {
 						this.projects = data.data.projects;
-						// Reinitialize any JavaScript functionality for expandable items
+						// Reinitialize jQuery expandable functionality after Alpine updates DOM
 						this.$nextTick(() => {
-							if (typeof initExpandableItems === 'function') {
-								initExpandableItems();
-							}
+							// Reinitialize expandable items with jQuery
+							$(".expandable_item .expandable_title").off('click').on('click', function() {
+								var $p = $(this).parents(".expandable_item")
+								if ($p.hasClass("active")) {
+									$p.removeClass("active").find(".hidden").show();
+									setTimeout(function() {
+										$p.find(".hidden").stop().slideUp();
+									}, 0)
+								} else {
+									$p.addClass("active").find(".hidden").hide();
+									setTimeout(function() {
+										$p.find(".hidden").stop().slideDown();
+									}, 0)
+								}
+							});
 						});
 					}
 				} catch (error) {
