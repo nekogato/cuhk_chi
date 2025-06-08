@@ -340,6 +340,12 @@ while (have_posts()) :
 												<iframe class="youtube-video" src="<?php echo esc_url($testimonial['video_url']); ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 											</div>
 										</div>
+									<?php elseif ($testimonial['popup_image']) : ?>
+										<div class="people_detail_photo_wrapper">
+											<div class="photo_wrapper">
+												<img src="<?php echo esc_url($testimonial['popup_image']['url']); ?>" alt="<?php echo esc_attr($testimonial['popup_image']['alt']); ?>">
+											</div>
+										</div>
 									<?php endif; ?>
 									<div class="people_detail_text scrollin scrollinbottom">
 										<?php if ($testimonial['category']) : ?>
