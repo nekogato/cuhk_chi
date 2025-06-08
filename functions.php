@@ -1154,115 +1154,116 @@ add_action('wp_ajax_nopriv_load_more_past_events', 'load_more_past_events');
 
 /* chung */
 
-function get_translated_page_by_slug($slug, $lang = null) {
-    if (empty($slug)) return false;
+function get_translated_page_by_slug($slug, $lang = null)
+{
+	if (empty($slug)) return false;
 
-    // Default to current language if none is specified
-    if (!$lang && function_exists('pll_current_language')) {
-        $lang = pll_current_language();
-    }
+	// Default to current language if none is specified
+	if (!$lang && function_exists('pll_current_language')) {
+		$lang = pll_current_language();
+	}
 
-    // Query pages by slug (post_name), in all hierarchies
-    $page = get_posts([
-        'name'           => $slug,
-        'post_type'      => 'page',
-        'post_status'    => 'publish',
-        'posts_per_page' => 1,
-    ]);
+	// Query pages by slug (post_name), in all hierarchies
+	$page = get_posts([
+		'name'           => $slug,
+		'post_type'      => 'page',
+		'post_status'    => 'publish',
+		'posts_per_page' => 1,
+	]);
 
-    if (empty($page)) return false;
+	if (empty($page)) return false;
 
-    $page_id = $page[0]->ID;
+	$page_id = $page[0]->ID;
 
-    // Return translated ID, or fallback to default
-    if (function_exists('pll_get_post')) {
-        $translated_id = pll_get_post($page_id, $lang);
-        return $translated_id ? $translated_id : $page_id;
-    }
+	// Return translated ID, or fallback to default
+	if (function_exists('pll_get_post')) {
+		$translated_id = pll_get_post($page_id, $lang);
+		return $translated_id ? $translated_id : $page_id;
+	}
 
-    return $page_id;
+	return $page_id;
 }
 
-add_action('template_redirect', function() {
-    if (is_singular('research_project')) {
-        $target_page_id = get_translated_page_by_slug('research-projects');
-        if ($target_page_id) {
-            wp_redirect(get_permalink($target_page_id), 301);
-            exit;
-        }
-    }
+add_action('template_redirect', function () {
+	if (is_singular('research_project')) {
+		$target_page_id = get_translated_page_by_slug('research-projects');
+		if ($target_page_id) {
+			wp_redirect(get_permalink($target_page_id), 301);
+			exit;
+		}
+	}
 });
 
 
 // 1. Add custom columns to each post type
-add_filter('manage_research_project_posts_columns', function($columns) {
-    $columns['funding_start_year'] = 'Funding Start Year';
-    return $columns;
+add_filter('manage_research_project_posts_columns', function ($columns) {
+	$columns['funding_start_year'] = 'Funding Start Year';
+	return $columns;
 });
 
-add_filter('manage_news_posts_columns', function($columns) {
-    $columns['start_date'] = 'Start Date';
-    return $columns;
+add_filter('manage_news_posts_columns', function ($columns) {
+	$columns['start_date'] = 'Start Date';
+	return $columns;
 });
 
-add_filter('manage_event_posts_columns', function($columns) {
-    $columns['start_date'] = 'Start Date';
-    return $columns;
+add_filter('manage_event_posts_columns', function ($columns) {
+	$columns['start_date'] = 'Start Date';
+	return $columns;
 });
 
 // 2. Display ACF values in the columns
-add_action('manage_research_project_posts_custom_column', function($column, $post_id) {
-    if ($column === 'funding_start_year') {
-        $value = get_field('funding_start_year', $post_id);
-        echo esc_html($value);
-    }
+add_action('manage_research_project_posts_custom_column', function ($column, $post_id) {
+	if ($column === 'funding_start_year') {
+		$value = get_field('funding_start_year', $post_id);
+		echo esc_html($value);
+	}
 }, 10, 2);
 
-add_action('manage_news_posts_custom_column', function($column, $post_id) {
-    if ($column === 'start_date') {
-        $value = get_field('start_date', $post_id);
-        echo esc_html($value);
-    }
+add_action('manage_news_posts_custom_column', function ($column, $post_id) {
+	if ($column === 'start_date') {
+		$value = get_field('start_date', $post_id);
+		echo esc_html($value);
+	}
 }, 10, 2);
 
-add_action('manage_event_posts_custom_column', function($column, $post_id) {
-    if ($column === 'start_date') {
-        $value = get_field('start_date', $post_id);
-        echo esc_html($value);
-    }
+add_action('manage_event_posts_custom_column', function ($column, $post_id) {
+	if ($column === 'start_date') {
+		$value = get_field('start_date', $post_id);
+		echo esc_html($value);
+	}
 }, 10, 2);
 
 // 3. Make the columns sortable
-add_filter('manage_edit-research_project_sortable_columns', function($columns) {
-    $columns['funding_start_year'] = 'funding_start_year';
-    return $columns;
+add_filter('manage_edit-research_project_sortable_columns', function ($columns) {
+	$columns['funding_start_year'] = 'funding_start_year';
+	return $columns;
 });
 
-add_filter('manage_edit-news_sortable_columns', function($columns) {
-    $columns['start_date'] = 'start_date';
-    return $columns;
+add_filter('manage_edit-news_sortable_columns', function ($columns) {
+	$columns['start_date'] = 'start_date';
+	return $columns;
 });
 
-add_filter('manage_edit-event_sortable_columns', function($columns) {
-    $columns['start_date'] = 'start_date';
-    return $columns;
+add_filter('manage_edit-event_sortable_columns', function ($columns) {
+	$columns['start_date'] = 'start_date';
+	return $columns;
 });
 
 // 4. Add sorting logic for custom fields
-add_action('pre_get_posts', function($query) {
-    if (!is_admin() || !$query->is_main_query()) {
-        return;
-    }
+add_action('pre_get_posts', function ($query) {
+	if (!is_admin() || !$query->is_main_query()) {
+		return;
+	}
 
-    $orderby = $query->get('orderby');
+	$orderby = $query->get('orderby');
 
-    if ($orderby === 'funding_start_year') {
-        $query->set('meta_key', 'funding_start_year');
-        $query->set('orderby', 'meta_value_num'); // or 'meta_value' if it's not a number
-    }
+	if ($orderby === 'funding_start_year') {
+		$query->set('meta_key', 'funding_start_year');
+		$query->set('orderby', 'meta_value_num'); // or 'meta_value' if it's not a number
+	}
 
-    if ($orderby === 'start_date') {
-        $query->set('meta_key', 'start_date');
-        $query->set('orderby', 'meta_value'); // or 'meta_value_num' if it's a timestamp or Y-m-d
-    }
+	if ($orderby === 'start_date') {
+		$query->set('meta_key', 'start_date');
+		$query->set('orderby', 'meta_value'); // or 'meta_value_num' if it's a timestamp or Y-m-d
+	}
 });
