@@ -97,9 +97,9 @@ while (have_posts()) :
 													$end_date_obj = DateTime::createFromFormat('Y-m-d', $end_date);
 
 													if ($start_date && $end_date && $start_date !== $end_date) {
-														echo esc_html($start_date_obj->format('Y年n月d日') . '－' . $end_date_obj->format('Y年n月d日'));
+														echo esc_html($start_date_obj->format('j/n/Y') . '－' . $end_date_obj->format('j/n/Y'));
 													} else {
-														echo esc_html($start_date_obj->format('Y年n月d日'));
+														echo esc_html($start_date_obj->format('j/n/Y'));
 													}
 													?>
 												</div>

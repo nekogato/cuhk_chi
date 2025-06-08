@@ -108,9 +108,9 @@ while (have_posts()) :
 										<div class="t2 text6">
 											<?php
 											if ($start_date && $end_date && $start_date !== $end_date) {
-												echo esc_html($start_date_obj->format('Y年n月j日') . '－' . $end_date_obj->format('Y年n月j日'));
+												echo esc_html($start_date_obj->format('j/n/Y') . '－' . $end_date_obj->format('j/n/Y'));
 											} else {
-												echo esc_html($start_date_obj->format('Y年n月j日'));
+												echo esc_html($start_date_obj->format('j/n/Y'));
 											}
 											?>
 										</div>
