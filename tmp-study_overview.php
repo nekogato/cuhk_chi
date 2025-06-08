@@ -149,10 +149,10 @@ while (have_posts()) :
 						<div class="thumb_text_box_slider_wrapper scrollin scrollinbottom">
 							<div class="swiper-container">
 								<div class="swiper-wrapper">
-									<?php foreach ($testimonials as $testimonial) : ?>
-										<div class="swiper-slide">
+									<?php foreach ($testimonials as $index => $testimonial) : ?>
+										<div class="swiper-slide popup_btn" data-target="popup<?php echo ($index + 1); ?>">
 											<?php if ($testimonial['photo']) : ?>
-												<div class="thumb">
+												<div class="thumb thumb2">
 													<img src="<?php echo esc_url($testimonial['photo']['url']); ?>" alt="<?php echo esc_attr($testimonial['photo']['alt']); ?>">
 												</div>
 											<?php endif; ?>
@@ -202,9 +202,9 @@ while (have_posts()) :
 							<div class="border_thumb_text_box_slider_inwrapper">
 								<div class="swiper-container">
 									<div class="swiper-wrapper">
-										<?php foreach ($experiences as $experience) : ?>
+										<?php foreach ($experiences as $index => $experience) : ?>
 											<div class="swiper-slide">
-												<div class="border_thumb_text_box">
+												<div class="border_thumb_text_box f_btn">
 													<div class="text">
 														<?php echo wp_kses_post($experience['text']); ?>
 														<div class="icon"></div>
@@ -220,6 +220,13 @@ while (have_posts()) :
 														</div>
 													<?php endif; ?>
 												</div>
+												<?php if ($experience['gallery']) : ?>
+													<div style="display: none;">
+														<?php foreach ($experience['gallery'] as $gallery_index => $gallery_image) : ?>
+															<a href="<?php echo esc_url($gallery_image['url']); ?>" data-fancybox="gallery<?php echo ($index + 1); ?>" class="fancybox"></a>
+														<?php endforeach; ?>
+													</div>
+												<?php endif; ?>
 											</div>
 										<?php endforeach; ?>
 									</div>
@@ -232,7 +239,10 @@ while (have_posts()) :
 
 			<?php elseif (get_row_layout() == 'roll_menu_section') : ?>
 				<?php
-				// Get sibling pages for roll_top_menu
+				// Get top menu from ACF field
+				$top_menu_items = get_sub_field('top_menu_repeater');
+
+				// Get sibling pages for roll_bottom_menu
 				$current_page = get_the_ID();
 				$parent_id = wp_get_post_parent_id($current_page);
 				if ($parent_id) {
@@ -249,17 +259,48 @@ while (have_posts()) :
 						'sort_order' => 'ASC'
 					));
 				}
-
-				// Get sub menu from ACF field
-				$sub_menu_items = get_sub_field('sub_menu_repeater');
 				?>
 				<div class="section roll_menu_section sticky_section">
 					<div class="roll_menu scrollin scrollinbottom">
-						<div class="roll_top_menu text7">
-							<div class="section_center_content">
-								<div class="swiper-container swiper">
-									<div class="swiper-wrapper">
-										<?php if ($sibling_pages) : ?>
+						<?php if ($top_menu_items) : ?>
+							<div class="roll_top_menu text7">
+								<div class="section_center_content">
+									<div class="breadcrumb">
+										<?php foreach ($top_menu_items as $index => $item) : ?>
+											<?php if ($item['menu_type'] == 'dropdown' && $item['sub_items']) : ?>
+												<div class="scrollinbottom_dropdown_wrapper">
+													<a href="#" class="scrollinbottom_dropdown">
+														<span><?php echo esc_html($item['title']); ?></span>
+													</a>
+													<div class="hidden">
+														<ul>
+															<?php foreach ($item['sub_items'] as $sub_item) : ?>
+																<?php if ($sub_item['link']) : ?>
+																	<li>
+																		<a href="<?php echo esc_url($sub_item['link']['url']); ?>" <?php if ($sub_item['link']['target']) echo 'target="' . esc_attr($sub_item['link']['target']) . '"'; ?>>
+																			<?php echo esc_html($sub_item['title']); ?>
+																		</a>
+																	</li>
+																<?php endif; ?>
+															<?php endforeach; ?>
+														</ul>
+													</div>
+												</div>
+											<?php elseif ($item['menu_type'] == 'single' && $item['link']) : ?>
+												<a href="<?php echo esc_url($item['link']['url']); ?>" <?php echo $item['is_active'] ? 'class="active"' : ''; ?> <?php if ($item['link']['target']) echo 'target="' . esc_attr($item['link']['target']) . '"'; ?>>
+													<?php echo esc_html($item['title']); ?>
+												</a>
+											<?php endif; ?>
+										<?php endforeach; ?>
+									</div>
+								</div>
+							</div>
+						<?php endif; ?>
+						<?php if ($sibling_pages) : ?>
+							<div class="roll_bottom_menu text7">
+								<div class="section_center_content">
+									<div class="swiper-container swiper">
+										<div class="swiper-wrapper">
 											<?php foreach ($sibling_pages as $page) : ?>
 												<div class="swiper-slide">
 													<div>
@@ -268,27 +309,6 @@ while (have_posts()) :
 														</a>
 													</div>
 												</div>
-											<?php endforeach; ?>
-										<?php endif; ?>
-									</div>
-								</div>
-							</div>
-						</div>
-						<?php if ($sub_menu_items) : ?>
-							<div class="roll_bottom_menu text7">
-								<div class="section_center_content">
-									<div class="swiper-container swiper">
-										<div class="swiper-wrapper">
-											<?php foreach ($sub_menu_items as $index => $item) : ?>
-												<?php if ($item['link']) : ?>
-													<div class="swiper-slide">
-														<div>
-															<a href="<?php echo esc_url($item['link']['url']); ?>" <?php echo ($index == 0) ? 'class="active"' : ''; ?> <?php if ($item['link']['target']) echo 'target="' . esc_attr($item['link']['target']) . '"'; ?>>
-																<?php echo esc_html($item['title']); ?>
-															</a>
-														</div>
-													</div>
-												<?php endif; ?>
 											<?php endforeach; ?>
 										</div>
 									</div>
@@ -302,6 +322,51 @@ while (have_posts()) :
 
 		<?php endwhile; ?>
 	<?php endif; ?>
+
+	<?php
+	// Add testimonial popups
+	if (have_rows('content_sections')) :
+		while (have_rows('content_sections')) : the_row();
+			if (get_row_layout() == 'testimonials_section') :
+				$testimonials = get_sub_field('testimonials');
+				if ($testimonials) :
+					foreach ($testimonials as $index => $testimonial) : ?>
+						<div class="people_popup scholarship_popup popup" data-id="popup<?php echo ($index + 1); ?>">
+							<div class="people_detail_content">
+								<div class="people_detail_incontent">
+									<?php if ($testimonial['video_url']) : ?>
+										<div class="people_detail_photo_wrapper">
+											<div class="video_wrapper">
+												<iframe class="youtube-video" src="<?php echo esc_url($testimonial['video_url']); ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+											</div>
+										</div>
+									<?php endif; ?>
+									<div class="people_detail_text scrollin scrollinbottom">
+										<?php if ($testimonial['category']) : ?>
+											<div class="title1 text6"><?php echo esc_html($testimonial['category']); ?></div>
+										<?php endif; ?>
+										<?php if ($testimonial['title']) : ?>
+											<div class="title2 text4"><?php echo esc_html($testimonial['title']); ?></div>
+										<?php endif; ?>
+										<div class="description">
+											<?php if ($testimonial['description']) : ?>
+												<div class="t2 free_text"><?php echo wp_kses_post($testimonial['description']); ?></div>
+											<?php endif; ?>
+											<?php if ($testimonial['name']) : ?>
+												<div class="t3 text8"><?php echo esc_html($testimonial['name']); ?></div>
+											<?php endif; ?>
+										</div>
+									</div>
+								</div>
+							</div>
+							<a class="popup_close_btn"></a>
+						</div>
+	<?php endforeach;
+				endif;
+			endif;
+		endwhile;
+	endif;
+	?>
 
 <?php
 endwhile;
