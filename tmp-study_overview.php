@@ -153,7 +153,12 @@ while (have_posts()) :
 										<div class="swiper-slide popup_btn" data-target="popup<?php echo ($index + 1); ?>">
 											<?php if ($testimonial['photo']) : ?>
 												<div class="thumb thumb2">
-													<img src="<?php echo esc_url($testimonial['photo']['url']); ?>" alt="<?php echo esc_attr($testimonial['photo']['alt']); ?>">
+													<?php
+													$image_id = $testimonial['photo']['ID'];
+													$image_src = wp_get_attachment_image_src($image_id, '929x465');
+													$image_url = $image_src ? $image_src[0] : $testimonial['photo']['url'];
+													?>
+													<img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($testimonial['photo']['alt']); ?>">
 												</div>
 											<?php endif; ?>
 											<div class="text">
