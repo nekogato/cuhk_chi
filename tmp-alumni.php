@@ -127,7 +127,7 @@ if ($alumni_events): ?>
 								<div class="text_spacing">
 									<div class="title text5"><?php echo esc_html($story_name); ?></div>
 									<?php if ($story_credentials): ?>
-										<div class="sub_title text6"><?php echo esc_html($story_credentials); ?></div>
+										<div class="sub_title text6"><?php echo ($story_credentials); ?></div>
 									<?php endif; ?>
 									<?php if ($story_description): ?>
 										<div class="description"><?php echo esc_html($story_description); ?></div>
