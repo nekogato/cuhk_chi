@@ -280,13 +280,15 @@ while (have_posts()) :
 									<div class="swiper-container swiper">
 										<div class="swiper-wrapper">
 											<?php foreach ($sub_menu_items as $index => $item) : ?>
-												<div class="swiper-slide">
-													<div>
-														<a href="<?php echo esc_url($item['link']); ?>" <?php echo ($index == 0) ? 'class="active"' : ''; ?>>
-															<?php echo esc_html($item['title']); ?>
-														</a>
+												<?php if ($item['link']) : ?>
+													<div class="swiper-slide">
+														<div>
+															<a href="<?php echo esc_url($item['link']['url']); ?>" <?php echo ($index == 0) ? 'class="active"' : ''; ?> <?php if ($item['link']['target']) echo 'target="' . esc_attr($item['link']['target']) . '"'; ?>>
+																<?php echo esc_html($item['title']); ?>
+															</a>
+														</div>
 													</div>
-												</div>
+												<?php endif; ?>
 											<?php endforeach; ?>
 										</div>
 									</div>
