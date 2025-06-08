@@ -10,8 +10,6 @@
 get_header();
 ?>
 
-<?php get_template_part('template-parts/roll-menu'); ?>
-
 <?php
 while (have_posts()) :
 	the_post();
