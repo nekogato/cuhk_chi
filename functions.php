@@ -1280,6 +1280,80 @@ function load_more_past_events()
 add_action('wp_ajax_load_more_past_events', 'load_more_past_events');
 add_action('wp_ajax_nopriv_load_more_past_events', 'load_more_past_events');
 
+// AJAX handler for loading research projects
+function load_research_projects()
+{
+	check_ajax_referer('load_research_projects_nonce', 'nonce');
+
+	$year = isset($_POST['year']) ? intval($_POST['year']) : 0;
+
+	if (!$year) {
+		wp_send_json_error('Invalid year');
+		return;
+	}
+
+	// Query projects for selected year
+	$args = array(
+		'post_type' => 'research_project',
+		'post_status' => 'publish',
+		'posts_per_page' => -1,
+		'meta_query' => array(
+			array(
+				'key' => 'funding_end_year',
+				'value' => $year,
+				'compare' => '=',
+				'type' => 'NUMERIC'
+			)
+		),
+		'orderby' => 'title',
+		'order' => 'ASC'
+	);
+
+	$query = new WP_Query($args);
+	$projects = array();
+
+	if ($query->have_posts()) {
+		while ($query->have_posts()) {
+			$query->the_post();
+
+			// Get flexible content for description
+			$description = '';
+			if (have_rows('flexible_content')) {
+				while (have_rows('flexible_content')) {
+					the_row();
+					if (get_row_layout() == 'free_text') {
+						$freetext = get_sub_field("free_text");
+						if ($freetext) {
+							$description .= wp_kses_post($freetext);
+						}
+					}
+				}
+			}
+
+			$project = array(
+				'id' => get_the_ID(),
+				'project_title' => get_field('project_title'),
+				'funding_organization' => get_field('funding_organization'),
+				'funding_start_year' => get_field('funding_start_year'),
+				'funding_end_year_short' => substr(get_field('funding_end_year'), -2),
+				'principal_investigator' => get_field('principal_investigator'),
+				'other_investigator' => get_field('other_investigator'),
+				'granted_amount' => get_field('granted_amount'),
+				'description' => $description
+			);
+
+			$projects[] = $project;
+		}
+		wp_reset_postdata();
+	}
+
+	wp_send_json_success(array(
+		'projects' => $projects
+	));
+}
+add_action('wp_ajax_load_research_projects', 'load_research_projects');
+add_action('wp_ajax_nopriv_load_research_projects', 'load_research_projects');
+
 
 
 
