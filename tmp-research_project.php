@@ -160,7 +160,7 @@ $initial_year = isset($_GET['active_year']) ? intval($_GET['active_year']) : $ma
 					<div class="section_expandable_list">
 						<template x-for="project in projects" :key="project.id">
 							<div class="year-group" :data-year="activeYear">
-								<div class="expandable_item scrollin scrollinbottom">
+								<div class="expandable_item scrollin scrollinbottom" :class="firstLoad > 1 ? 'onscreen startanim' : ''">
 									<div class="section_center_content">
 										<div class="expandable_title">
 											<div class="cat" x-text="project.funding_organization"></div>
@@ -237,6 +237,7 @@ $initial_year = isset($_GET['active_year']) ? intval($_GET['active_year']) : $ma
 			years: years,
 			activeYear: initialYear,
 			loading: false,
+			firstLoad: 0,
 
 			init() {
 				// Load initial projects for the default year
@@ -262,6 +263,7 @@ $initial_year = isset($_GET['active_year']) ? intval($_GET['active_year']) : $ma
 					const data = await response.json();
 					if (data.success) {
 						this.projects = data.data.projects;
+						this.firstLoad++;
 						// Reinitialize jQuery expandable functionality after Alpine updates DOM
 						this.$nextTick(() => {
 							// Reinitialize expandable items with jQuery
@@ -280,8 +282,6 @@ $initial_year = isset($_GET['active_year']) ? intval($_GET['active_year']) : $ma
 								}
 							});
 
-							// Add animation classes to new expandable items for scroll effects
-							$(".expandable_item.scrollin.scrollinbottom").addClass("onscreen startani");
 						});
 					}
 				} catch (error) {
