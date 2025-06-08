@@ -121,6 +121,7 @@ function cuhk_chi_setup()
 	add_image_size('xs', 200, 200, array('center', 'center'));
 	add_image_size('department-news-featured', 650, 366, array('center', 'center'));
 	add_image_size('department-news-regular', 193, 9999); // 193px width, auto height
+	add_image_size('testimonial-popup', 400, 9999); // 400px width, auto height for testimonial popups
 }
 add_action('after_setup_theme', 'cuhk_chi_setup');
 

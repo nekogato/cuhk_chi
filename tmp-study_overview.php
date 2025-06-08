@@ -343,7 +343,12 @@ while (have_posts()) :
 									<?php elseif ($testimonial['popup_image']) : ?>
 										<div class="people_detail_photo_wrapper">
 											<div class="photo_wrapper">
-												<img src="<?php echo esc_url($testimonial['popup_image']['url']); ?>" alt="<?php echo esc_attr($testimonial['popup_image']['alt']); ?>">
+												<?php
+												$image_id = $testimonial['popup_image']['ID'];
+												$image_src = wp_get_attachment_image_src($image_id, 'testimonial-popup');
+												$image_url = $image_src ? $image_src[0] : $testimonial['popup_image']['url'];
+												?>
+												<img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($testimonial['popup_image']['alt']); ?>">
 											</div>
 										</div>
 									<?php endif; ?>
