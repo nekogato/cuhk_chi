@@ -180,7 +180,7 @@ function cuhk_chi_scripts()
 	wp_enqueue_script('cuhk_chi-perfect-scrollbar', get_template_directory_uri() . '/script/lib/perfect-scrollbar.js', array('cuhk_chi-jquery'), '', false);
 
 	// Add Alpine.js only for postgraduate research students template
-	if (is_page_template('tmp-postgraduate_research_students.php') || is_page_template('tmp-teaching-staff.php') || is_page_template('tmp-course-index.php')) {
+	if (is_page_template('tmp-postgraduate_research_students.php') || is_page_template('tmp-teaching-staff.php') || is_page_template('tmp-course-index.php') || is_page_template('tmp-research_project.php')) {
 		wp_enqueue_script('alpinejs', 'https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js', array(), '3.13.3', true);
 		wp_script_add_data('alpinejs', 'defer', true);
 	}
