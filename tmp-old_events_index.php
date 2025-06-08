@@ -38,6 +38,47 @@ while (have_posts()) :
 					<div class="section_description scrollin scrollinbottom col6"><?php echo wp_kses_post($page_description); ?></div>
 				<?php endif; ?>
 			</div>
+
+			<?php
+			// Get event categories
+			$event_categories = get_terms(array(
+				'taxonomy' => 'event_category',
+				'hide_empty' => true,
+				'orderby' => 'name',
+				'order' => 'ASC'
+			));
+			?>
+
+			<div class="filter_menu_wrapper">
+				<div class="filter_menu filter_menu_left_bg section_center_content small_section_center_content scrollin scrollinbottom">
+					<div class="filter_menu_content">
+						<div class="filter_checkbox_wrapper text7 filter_switchable_wrapper">
+							<div class="filter_checkbox">
+								<div class="checkbox">
+									<input name="filter" type="radio" id="all"
+										@change="filterByCategory('all')"
+										:checked="activeCategory === 'all'">
+									<label for="all"><span><?php pll_e('活動分類'); ?></span></label>
+								</div>
+							</div>
+							<?php if (!empty($event_categories)) : ?>
+								<?php foreach ($event_categories as $category) : ?>
+									<div class="filter_checkbox">
+										<div class="checkbox">
+											<input name="filter" type="radio" id="category-<?php echo esc_attr($category->term_id); ?>"
+												@change="filterByCategory('<?php echo esc_attr($category->slug); ?>')"
+												:checked="activeCategory === '<?php echo esc_attr($category->slug); ?>'">
+											<label for="category-<?php echo esc_attr($category->term_id); ?>">
+												<span><?php echo esc_html($category->name); ?></span>
+											</label>
+										</div>
+									</div>
+								<?php endforeach; ?>
+							<?php endif; ?>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 
 		<div class="section event_list_section scrollin_p">
@@ -127,6 +168,7 @@ endwhile;
 	function pastEventFilter() {
 		return {
 			events: [],
+			activeCategory: 'all',
 			loading: false,
 			currentPage: 1,
 			hasMore: true,
@@ -135,7 +177,7 @@ endwhile;
 				this.loadEvents();
 			},
 
-			async loadEvents(page = 1, append = false) {
+			async loadEvents(page = 1, category = 'all', append = false) {
 				this.loading = true;
 
 				try {
@@ -147,7 +189,8 @@ endwhile;
 						body: new URLSearchParams({
 							action: 'load_past_events',
 							nonce: '<?php echo wp_create_nonce('load_past_events_nonce'); ?>',
-							page: page
+							page: page,
+							category: category
 						})
 					});
 
@@ -168,9 +211,16 @@ endwhile;
 				}
 			},
 
+			filterByCategory(category) {
+				if (this.activeCategory === category) return;
+				this.activeCategory = category;
+				this.currentPage = 1;
+				this.loadEvents(1, category, false);
+			},
+
 			loadMore() {
 				if (!this.hasMore || this.loading) return;
-				this.loadEvents(this.currentPage + 1, true);
+				this.loadEvents(this.currentPage + 1, this.activeCategory, true);
 			}
 		}
 	}

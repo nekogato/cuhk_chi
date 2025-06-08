@@ -1053,6 +1053,7 @@ function load_past_events()
 	check_ajax_referer('load_past_events_nonce', 'nonce');
 
 	$page = isset($_POST['page']) ? intval($_POST['page']) : 1;
+	$category = isset($_POST['category']) ? sanitize_text_field($_POST['category']) : 'all';
 	$today = date('Y-m-d');
 
 	// Build query args for past events (latest to oldest)
@@ -1072,6 +1073,17 @@ function load_past_events()
 			)
 		)
 	);
+
+	// Add taxonomy query if category is not 'all'
+	if ($category !== 'all') {
+		$args['tax_query'] = array(
+			array(
+				'taxonomy' => 'event_category',
+				'field' => 'slug',
+				'terms' => $category
+			)
+		);
+	}
 
 	$events_query = new WP_Query($args);
 	$events = array();
