@@ -287,7 +287,7 @@ while (have_posts()) :
 													</div>
 												</div>
 											<?php elseif ($item['menu_type'] == 'single' && $item['link']) : ?>
-												<a href="<?php echo esc_url($item['link']['url']); ?>" <?php echo $item['is_active'] ? 'class="active"' : ''; ?> <?php if ($item['link']['target']) echo 'target="' . esc_attr($item['link']['target']) . '"'; ?>>
+												<a href="<?php echo esc_url($item['link']['url']); ?>" <?php if ($item['link']['target']) echo 'target="' . esc_attr($item['link']['target']) . '"'; ?>>
 													<?php echo esc_html($item['title']); ?>
 												</a>
 											<?php endif; ?>
