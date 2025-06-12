@@ -917,30 +917,38 @@ function load_courses()
 		while ($courses_query->have_posts()) {
 			$courses_query->the_post();
 
-			// Get course fields with correct field names from ACF export
+			// Get course fields
 			$course_code = get_field('course_code');
-			$course_title = get_field('Course_Title'); // Note: field name is Course_Title in ACF
+			$course_title = get_field('Course_Title');
 			$language = get_field('language');
 			$lecture_time = get_field('lecture_time');
 			$venue = get_field('venue');
-			$quota = get_field('Quota'); // Note: field name is Quota in ACF
+			$quota = get_field('Quota');
 			$course_description = get_field('course_description');
 
-			// Get lecturer (post object)
+			// Lecturer
 			$lecturer = get_field('lecturer');
-			$lecturer_name = '';
-			if ($lecturer) {
-				$lecturer_name = get_the_title($lecturer->ID);
-			}
+			$lecturer_name = $lecturer ? get_the_title($lecturer->ID) : '';
 
-			// Get teaching assistant (post object)
+			// Teaching Assistant
 			$teaching_assistant = get_field('teaching_assistant');
-			$teaching_assistant_name = '';
-			if ($teaching_assistant) {
-				$teaching_assistant_name = get_the_title($teaching_assistant->ID);
-			}
+			$teaching_assistant_name = $teaching_assistant ? get_the_title($teaching_assistant->ID) : '';
 
-			// Get course type from taxonomy for grouping (not filtering)
+			// ✅ Define course data FIRST
+			$course_data = array(
+				'id' => get_the_ID(),
+				'course_code' => $course_code,
+				'course_title' => $course_title,
+				'lecturer_name' => $lecturer_name,
+				'language' => $language,
+				'lecture_time' => $lecture_time,
+				'venue' => $venue,
+				'quota' => $quota,
+				'course_description' => $course_description,
+				'teaching_assistant_name' => $teaching_assistant_name
+			);
+
+			// ✅ Now group by all course_semester terms
 			$academic_terms = wp_get_post_terms(get_the_ID(), 'course_semester');
 
 			if (!empty($academic_terms) && !is_wp_error($academic_terms)) {
@@ -960,26 +968,8 @@ function load_courses()
 				}
 				$courses_by_category[$course_category][] = $course_data;
 			}
-
-			$course_data = array(
-				'id' => get_the_ID(),
-				'course_code' => $course_code,
-				'course_title' => $course_title,
-				'lecturer_name' => $lecturer_name,
-				'language' => $language,
-				'lecture_time' => $lecture_time,
-				'venue' => $venue,
-				'quota' => $quota,
-				'course_description' => $course_description,
-				'teaching_assistant_name' => $teaching_assistant_name
-			);
-
-			// Group courses by course_type (not course_category)
-			if (!isset($courses_by_category[$course_category])) {
-				$courses_by_category[$course_category] = array();
-			}
-			$courses_by_category[$course_category][] = $course_data;
 		}
+
 
 		// Convert to the format expected by Alpine.js
 		foreach ($courses_by_category as $category_name => $courses) {
