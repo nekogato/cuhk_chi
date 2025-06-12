@@ -3976,6 +3976,8 @@ justify-content: center;
     display: flex;
     gap: 50px;
     position: relative;
+    width: 100%;
+    max-width: 1200px;
 }
 
 .people_popup .people_detail_incontent{
@@ -4001,6 +4003,7 @@ justify-content: center;
     width: 35%;
     position: relative;
       max-width: 400px;
+  flex-shrink: 0; /* Prevent shrinking below 35% */
 }
 
 .people_detail_photo img{
