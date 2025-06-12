@@ -100,8 +100,8 @@ if (have_posts()) :
 								<a class="filter_dropdown_btn text5" href="#" @click="dropdowns.type = !dropdowns.type" x-text="'Course Type (' + filters.courseTypeName + ')'"></a>
 								<div class="filter_dropdown text5" x-show="dropdowns.type" @click.away="dropdowns.type = false">
 									<ul>
-										<?php if (!empty($courseType)) : ?>
-											<?php foreach ($courseType as $type) : ?>
+										<?php if (!empty($course_type)) : ?>
+											<?php foreach ($course_type as $type) : ?>
 												<li>
 													<a href="#"
 														@click="selectFilter('courseType', '<?php echo esc_js($type->slug); ?>', '<?php echo esc_js($type->name); ?>')"
