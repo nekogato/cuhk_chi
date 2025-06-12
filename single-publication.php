@@ -41,43 +41,43 @@ get_header();
 							<div class="table_flex_item_wrapper">
 								<?php if ($author) : ?>
 									<div class="table_flex_item col6">
-										<div class="title text7"><?php pll_e('作者'); ?></div>
+										<div class="title text7"><?php echo cuhk_multilang_text("作者","","Author"); ?></div>
 										<div class="text text6"><?php echo ($author); ?></div>
 									</div>
 								<?php endif; ?>
 								<?php if ($publisher) : ?>
 									<div class="table_flex_item col6">
-										<div class="title text7"><?php pll_e('出版社'); ?></div>
+										<div class="title text7"><?php echo cuhk_multilang_text("出版社","","Publisher"); ?></div>
 										<div class="text text6"><?php echo ($publisher); ?></div>
 									</div>
 								<?php endif; ?>
 								<?php if ($publish_year) : ?>
 									<div class="table_flex_item col6">
-										<div class="title text7"><?php pll_e('出版年份'); ?></div>
+										<div class="title text7"><?php echo cuhk_multilang_text("出版年份","","Publish Year"); ?></div>
 										<div class="text text6"><?php echo ($publish_year); ?></div>
 									</div>
 								<?php endif; ?>
 								<?php if ($chief_editor) : ?>
 									<div class="table_flex_item col6">
-										<div class="title text7"><?php pll_e('主編'); ?></div>
+										<div class="title text7"><?php echo cuhk_multilang_text("主編","","Chief Editor"); ?></div>
 										<div class="text text6"><?php echo ($chief_editor); ?></div>
 									</div>
 								<?php endif; ?>
 								<?php if ($editor) : ?>
 									<div class="table_flex_item col6">
-										<div class="title text7"><?php pll_e('編輯'); ?></div>
+										<div class="title text7"><?php echo cuhk_multilang_text("編輯","","Editor"); ?></div>
 										<div class="text text6"><?php echo ($editor); ?></div>
 									</div>
 								<?php endif; ?>
 								<?php if ($composition) : ?>
 									<div class="table_flex_item col6">
-										<div class="title text7"><?php pll_e('排版印刷'); ?></div>
+										<div class="title text7"><?php echo cuhk_multilang_text("排版印刷","","Composition"); ?></div>
 										<div class="text text6"><?php echo ($composition); ?></div>
 									</div>
 								<?php endif; ?>
 								<?php if ($isbn) : ?>
 									<div class="table_flex_item col6">
-										<div class="title text7"><?php pll_e('ISBN / ISSN'); ?></div>
+										<div class="title text7"><?php echo cuhk_multilang_text("ISBN / ISSN","","ISBN / ISSN"); ?></div>
 										<div class="text text6"><?php echo ($isbn); ?></div>
 									</div>
 								<?php endif; ?>
@@ -85,7 +85,7 @@ get_header();
 						</div>
 						<?php if ($abstract) : ?>
 							<div class="description">
-								<div class="t1 text7"><?php pll_e('撮要'); ?></div>
+								<div class="t1 text7"><?php echo cuhk_multilang_text("撮要","","Abstract"); ?></div>
 								<div class="t2 free_text">
 									<?php echo ($abstract); ?>
 								</div>
