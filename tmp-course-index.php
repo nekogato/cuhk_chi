@@ -20,7 +20,7 @@ $academic_years = get_terms(array(
 	'taxonomy' => 'course_year',
 	'hide_empty' => false,
 	'orderby' => 'name',
-	'order' => 'ASC'
+	'order' => 'DESC'
 ));
 
 $course_type = get_terms(array(
