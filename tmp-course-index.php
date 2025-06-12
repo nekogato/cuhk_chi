@@ -79,7 +79,7 @@ if (have_posts()) :
 					<div class="filter_menu filter_menu_left_bg filter_menu_bottom section_center_content small_section_center_content scrollin scrollinbottom">
 						<div class="filter_menu_content">
 							<div class="filter_dropdown_wrapper">
-								<a class="filter_dropdown_btn text5" href="#" @click="dropdowns.year = !dropdowns.year" x-text="'Academic Years (' + filters.academicYearName + ')'"></a>
+								<a class="filter_dropdown_btn text5" href="#" @click="dropdowns.year = !dropdowns.year" x-text="'filters.academicYearName'"></a>
 								<div class="filter_dropdown text5" x-show="dropdowns.year" @click.away="dropdowns.year = false">
 									<ul>
 										<?php if (!empty($academic_years)) : ?>
@@ -97,7 +97,7 @@ if (have_posts()) :
 								</div>
 							</div>
 							<div class="filter_dropdown_wrapper">
-								<a class="filter_dropdown_btn text5" href="#" @click="dropdowns.type = !dropdowns.type" x-text="'Course Type (' + filters.courseTypeName + ')'"></a>
+								<a class="filter_dropdown_btn text5" href="#" @click="dropdowns.type = !dropdowns.type" x-text="filters.courseTypeName || '<?php echo cuhk_multilang_text("分類","","Course Type"); ?>'"></a>
 								<div class="filter_dropdown text5" x-show="dropdowns.type" @click.away="dropdowns.type = false">
 									<ul>
 										<?php if (!empty($course_type)) : ?>
@@ -211,8 +211,8 @@ if (have_posts()) :
 						categories: [],
 						academicYear: '<?php echo !empty($academic_years) ? esc_js($academic_years[0]->slug) : ''; ?>',
 						academicYearName: '<?php echo !empty($academic_years) ? esc_js($academic_years[0]->name) : ''; ?>',
-						courseType: '<?php echo !empty($course_type) ? esc_js($course_type[0]->slug) : ''; ?>',
-						courseTypeName: '<?php echo !empty($course_type) ? esc_js($course_type[0]->name) : ''; ?>'
+						courseType: '<?php echo !empty($course_type) ? "" : ''; ?>',
+						courseTypeName: '<?php echo !empty($course_type) ? "" : ''; ?>'
 					},
 					dropdowns: {
 						year: false,
