@@ -14,7 +14,7 @@ get_header();
 <?php
 while (have_posts()) :
 	the_post();
-	$page_title = get_the_title();
+	$page_title = get_field("event_name");
 	$page_description = get_field("introduction");
 ?>
 
@@ -32,10 +32,10 @@ while (have_posts()) :
 					</div>
 				<?php endif; ?>
 				<?php if ($page_title) : ?>
-					<h1 class="section_title text1 scrollin scrollinbottom"><?php echo esc_html($page_title); ?></h1>
+					<h1 class="section_title text1 scrollin scrollinbottom"><?php echo ($page_title); ?></h1>
 				<?php endif; ?>
 				<?php if ($page_description) : ?>
-					<div class="section_description scrollin scrollinbottom col6"><?php echo wp_kses_post($page_description); ?></div>
+					<div class="section_description scrollin scrollinbottom col6"><?php echo ($page_description); ?></div>
 				<?php endif; ?>
 			</div>
 
@@ -58,7 +58,7 @@ while (have_posts()) :
 									<input name="filter" type="radio" id="all"
 										@change="filterByCategory('all')"
 										:checked="activeCategory === 'all'">
-									<label for="all"><span><?php pll_e('活動分類'); ?></span></label>
+									<label for="all"><span><?php echo cuhk_multilang_text("活動分類","","Filter"); ?></span></label>
 								</div>
 							</div>
 							<?php if (!empty($event_categories)) : ?>
@@ -105,25 +105,25 @@ while (have_posts()) :
 									</template>
 								</div>
 								<div class="btn_wrapper">
-									<a :href="event.permalink" class="reg_btn round_btn text7"><?php pll_e('了解更多'); ?></a>
+									<a :href="event.permalink" class="reg_btn round_btn text7"><?php echo cuhk_multilang_text("查看更多","","View more"); ?></a>
 								</div>
 							</div>
 							<div class="title_wrapper">
 								<div class="title text5" x-text="event.event_name"></div>
 								<div class="info_item_wrapper">
 									<div class="info_item">
-										<div class="t1"><?php pll_e('日期'); ?></div>
+										<div class="t1"><?php echo cuhk_multilang_text("日期","","Date"); ?></div>
 										<div class="t2 text6" x-text="event.date_display"></div>
 									</div>
 									<template x-if="event.event_time">
 										<div class="info_item">
-											<div class="t1"><?php pll_e('時間'); ?></div>
+											<div class="t1"><?php echo cuhk_multilang_text("時間","","Time"); ?></div>
 											<div class="t2 text6" x-text="event.event_time"></div>
 										</div>
 									</template>
 									<template x-if="event.event_venue">
 										<div class="info_item big_info_item">
-											<div class="t1"><?php pll_e('地點'); ?></div>
+											<div class="t1"><?php echo cuhk_multilang_text("地點","","Venue"); ?></div>
 											<div class="t2 text6" x-text="event.event_venue"></div>
 										</div>
 									</template>

@@ -112,18 +112,18 @@ while (have_posts()) :
 								<div class="title text5" x-text="event.event_name"></div>
 								<div class="info_item_wrapper">
 									<div class="info_item">
-										<div class="t1"><?php pll_e('日期'); ?></div>
+										<div class="t1"><?php echo cuhk_multilang_text("日期","","Date"); ?></div>
 										<div class="t2 text6" x-text="event.date_display"></div>
 									</div>
 									<template x-if="event.event_time">
 										<div class="info_item">
-											<div class="t1"><?php pll_e('時間'); ?></div>
+											<div class="t1"><?php echo cuhk_multilang_text("時間","","Time"); ?></div>
 											<div class="t2 text6" x-text="event.event_time"></div>
 										</div>
 									</template>
 									<template x-if="event.event_venue">
 										<div class="info_item big_info_item">
-											<div class="t1"><?php pll_e('地點'); ?></div>
+											<div class="t1"><?php echo cuhk_multilang_text("地點","","Venue"); ?></div>
 											<div class="t2 text6" x-text="event.event_venue"></div>
 										</div>
 									</template>
