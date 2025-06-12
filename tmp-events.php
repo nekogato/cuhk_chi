@@ -87,21 +87,23 @@ while (have_posts()) :
 					<template x-for="event in events" :key="event.id">
 						<div class="event_list_item flex">
 							<div class="date">
-								<div class="d_wrapper">
-									<template x-if="event.has_date_range">
+								<template x-if="event.has_date_range">
+									<div class="d_wrapper">
 										<div class="d">
 											<div class="d1 text3" x-text="event.start_date_short"></div>
 										</div>
 										<div class="d">
 											<div class="d1 text3" x-text="event.end_date_short"></div>
 										</div>
-									</template>
-									<template x-if="!event.has_date_range">
+									</div>
+								</template>
+								<template x-if="!event.has_date_range">
+									<div class="d_wrapper">
 										<div class="d">
 											<div class="d1 text3" x-text="event.start_date_short"></div>
 										</div>
-									</template>
-								</div>
+									</div>
+								</template>
 								<div class="btn_wrapper">
 									<a :href="event.permalink" class="reg_btn round_btn text7"><?php echo cuhk_multilang_text("查看更多","","View more"); ?></a>
 								</div>
