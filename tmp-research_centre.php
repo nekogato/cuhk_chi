@@ -90,7 +90,8 @@ while (have_posts()) :
 											<div class="break"></div>
 											<?php if ($description): ?>
 												<div class="research_centre_text_item col12">
-													<div class="t2 text6"><?php echo esc_html($tel); ?></div>
+													<div class="t1"><?php pll_e('Description'); ?></div>
+													<div class="t2 text6"><?php echo esc_html($description); ?></div>
 												</div>
 											<?php endif; ?>
 										</div>
