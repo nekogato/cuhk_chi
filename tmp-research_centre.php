@@ -37,9 +37,10 @@ while (have_posts()) :
 						$logo = get_sub_field('logo');
 						$name = get_sub_field('name');
 						$website = get_sub_field('website');
-						$title = get_sub_field('title');
+						$director = get_sub_field('director');
 						$email = get_sub_field('email');
 						$tel = get_sub_field('tel');
+						$description = get_sub_field('description');
 					?>
 						<div class="research_centre_box scrollin scrollinbottom col_wrapper">
 							<div class="row flex">
@@ -63,26 +64,32 @@ while (have_posts()) :
 											<?php endif; ?>
 											<?php if ($website): ?>
 												<div class="research_centre_text_item">
-													<div class="t1"><?php pll_e('website'); ?></div>
+													<div class="t1"><?php pll_e('Website'); ?></div>
 													<div class="t2 text6"><?php echo esc_html($website); ?></div>
 												</div>
 											<?php endif; ?>
 											<div class="break"></div>
-											<?php if ($title): ?>
+											<?php if ($director): ?>
 												<div class="research_centre_text_item">
-													<div class="t1"><?php pll_e('Title'); ?></div>
-													<div class="t2 text6"><?php echo esc_html($title); ?></div>
+													<div class="t1"><?php pll_e('Director'); ?></div>
+													<div class="t2 text6"><?php echo esc_html($director); ?></div>
 												</div>
 											<?php endif; ?>
 											<?php if ($email): ?>
 												<div class="research_centre_text_item">
-													<div class="t1"><?php pll_e('email'); ?></div>
+													<div class="t1"><?php pll_e('Email'); ?></div>
 													<div class="t2 text6"><?php echo esc_html($email); ?></div>
 												</div>
 											<?php endif; ?>
 											<?php if ($tel): ?>
 												<div class="research_centre_text_item">
 													<div class="t1"><?php pll_e('Tel'); ?></div>
+													<div class="t2 text6"><?php echo esc_html($tel); ?></div>
+												</div>
+											<?php endif; ?>
+											<div class="break"></div>
+											<?php if ($description): ?>
+												<div class="research_centre_text_item col12">
 													<div class="t2 text6"><?php echo esc_html($tel); ?></div>
 												</div>
 											<?php endif; ?>

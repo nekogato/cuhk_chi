@@ -3183,6 +3183,10 @@ justify-content: center;
     flex: 0 0 calc(33.33% - 33.33px);
 }
 
+.research_centre_text_item.col12{
+    flex: 0 0 calc(100%);
+}
+
 .research_centre_text_item .t1{
     color:#63629B;
     font-weight: 600;
@@ -3977,7 +3981,7 @@ justify-content: center;
     gap: 50px;
     position: relative;
     width: 100%;
-    max-width: 1200px;
+    max-width: 1400px;
 }
 
 .people_popup .people_detail_incontent{
