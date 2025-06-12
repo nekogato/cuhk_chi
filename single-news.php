@@ -99,6 +99,7 @@ while (have_posts()) :
 								<div class="flexible_layout_wrapper ">
 									<?php if (get_field('start_date')) { ?>
 										<div class="news_date scrollin scrollinbottom">
+											<?php echo cuhk_multilang_text("發報日期：","","Publish Date:"); ?>
 											<?php
 											$start_date_raw = get_field('start_date'); // This is in Ymd format, e.g. 20250622
 											if ($start_date_raw) {
