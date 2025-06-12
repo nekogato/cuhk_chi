@@ -863,13 +863,13 @@ function load_courses()
 	// Get parameters from $_POST
 	$categories = isset($_POST['categories']) ? $_POST['categories'] : [];
 	$academic_year = isset($_POST['academic_year']) ? sanitize_text_field($_POST['academic_year']) : '';
-	$academic_term = isset($_POST['academic_term']) ? sanitize_text_field($_POST['academic_term']) : '';
+	$course_type = isset($_POST['course_type']) ? sanitize_text_field($_POST['course_type']) : '';
 
 	// Log the received data for debugging
 	error_log('Received POST data: ' . print_r($_POST, true));
 	error_log('Categories: ' . print_r($categories, true));
 	error_log('Academic year: ' . $academic_year);
-	error_log('Academic term: ' . $academic_term);
+	error_log('Course type: ' . $course_type);
 
 	// Build taxonomy query for filtering
 	$tax_query = array('relation' => 'AND');
@@ -882,11 +882,11 @@ function load_courses()
 		);
 	}
 
-	if ($academic_term) {
+	if ($course_type) {
 		$tax_query[] = array(
-			'taxonomy' => 'course_semester',
+			'taxonomy' => 'course_type',
 			'field'    => 'slug',
-			'terms'    => sanitize_title($academic_term)
+			'terms'    => sanitize_title($course_type)
 		);
 	}
 
@@ -941,8 +941,8 @@ function load_courses()
 			}
 
 			// Get course type from taxonomy for grouping (not filtering)
-			$course_types = wp_get_post_terms(get_the_ID(), 'course_type');
-			$course_category = !empty($course_types) ? $course_types[0]->name : pll__('General');
+			$academic_term = wp_get_post_terms(get_the_ID(), 'course_semester');
+			$course_category = !empty($academic_term) ? $academic_term[0]->name : pll__('Other');
 
 			$course_data = array(
 				'id' => get_the_ID(),

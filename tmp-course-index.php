@@ -23,8 +23,8 @@ $academic_years = get_terms(array(
 	'order' => 'DESC'
 ));
 
-$academic_terms = get_terms(array(
-	'taxonomy' => 'course_semester',
+$course_type = get_terms(array(
+	'taxonomy' => 'course_type',
 	'hide_empty' => false,
 ));
 
@@ -97,16 +97,16 @@ if (have_posts()) :
 								</div>
 							</div>
 							<div class="filter_dropdown_wrapper">
-								<a class="filter_dropdown_btn text5" href="#" @click="dropdowns.term = !dropdowns.term" x-text="'Academic Terms (' + filters.academicTermName + ')'"></a>
-								<div class="filter_dropdown text5" x-show="dropdowns.term" @click.away="dropdowns.term = false">
+								<a class="filter_dropdown_btn text5" href="#" @click="dropdowns.type = !dropdowns.type" x-text="'Course Type (' + filters.courseTypeName + ')'"></a>
+								<div class="filter_dropdown text5" x-show="dropdowns.type" @click.away="dropdowns.type = false">
 									<ul>
-										<?php if (!empty($academic_terms)) : ?>
-											<?php foreach ($academic_terms as $term) : ?>
+										<?php if (!empty($courseType)) : ?>
+											<?php foreach ($courseType as $type) : ?>
 												<li>
 													<a href="#"
-														@click="selectFilter('academicTerm', '<?php echo esc_js($term->slug); ?>', '<?php echo esc_js($term->name); ?>')"
-														:class="filters.academicTerm === '<?php echo esc_js($term->slug); ?>' ? 'active' : ''">
-														<?php echo esc_html($term->name); ?>
+														@click="selectFilter('courseType', '<?php echo esc_js($type->slug); ?>', '<?php echo esc_js($type->name); ?>')"
+														:class="filters.courseType === '<?php echo esc_js($type->slug); ?>' ? 'active' : ''">
+														<?php echo esc_html($type->name); ?>
 													</a>
 												</li>
 											<?php endforeach; ?>
@@ -211,12 +211,12 @@ if (have_posts()) :
 						categories: [],
 						academicYear: '<?php echo !empty($academic_years) ? esc_js($academic_years[0]->slug) : ''; ?>',
 						academicYearName: '<?php echo !empty($academic_years) ? esc_js($academic_years[0]->name) : ''; ?>',
-						academicTerm: '<?php echo !empty($academic_terms) ? esc_js($academic_terms[0]->slug) : ''; ?>',
-						academicTermName: '<?php echo !empty($academic_terms) ? esc_js($academic_terms[0]->name) : ''; ?>'
+						courseType: '<?php echo !empty($academic_terms) ? esc_js($academic_terms[0]->slug) : ''; ?>',
+						courseTypeName: '<?php echo !empty($academic_terms) ? esc_js($academic_terms[0]->name) : ''; ?>'
 					},
 					dropdowns: {
 						year: false,
-						term: false
+						type: false
 					},
 					courseSections: [],
 					expandedCourses: [],
@@ -232,10 +232,10 @@ if (have_posts()) :
 							this.filters.academicYear = value;
 							this.filters.academicYearName = name;
 							this.dropdowns.year = false;
-						} else if (type === 'academicTerm') {
-							this.filters.academicTerm = value;
-							this.filters.academicTermName = name;
-							this.dropdowns.term = false;
+						} else if (type === 'courseType') {
+							this.filters.courseType = value;
+							this.filters.courseTypeName = name;
+							this.dropdowns.type = false;
 						}
 						this.filterCourses();
 					},
@@ -262,8 +262,8 @@ if (have_posts()) :
 								formData.append('academic_year', this.filters.academicYear);
 							}
 
-							if (this.filters.academicTerm) {
-								formData.append('academic_term', this.filters.academicTerm);
+							if (this.filters.courseType) {
+								formData.append('course_type', this.filters.courseType);
 							}
 
 							const response = await fetch('<?php echo admin_url("admin-ajax.php"); ?>', {
