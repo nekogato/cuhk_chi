@@ -36,8 +36,9 @@ while (have_posts()) :
 						$featured_args = array(
 							'post_type' => 'news',
 							'posts_per_page' => 2,
-							'orderby' => 'date',
-							'order' => 'DESC'
+							'meta_key' => 'start_date',
+							'orderby' => 'meta_value',
+							'order' => 'DESC',
 						);
 						$featured_query = new WP_Query($featured_args);
 
@@ -53,7 +54,14 @@ while (have_posts()) :
 											<?php endif; ?>
 										</div>
 										<div class="text_wrapper">
-											<div class="date_wrapper text2"><?php echo get_the_date('M d'); ?></div>
+											<div class="date_wrapper text2">
+												<?php 
+												$start_date_raw = get_field('start_date'); // This is in Ymd format, e.g. 20250622
+												if ($start_date_raw) {
+													$date_obj = DateTime::createFromFormat('Ymd', $start_date_raw);
+													echo $date_obj->format('j/n'); // Outputs e.g., 22/6
+												}
+												?></div>
 											<div class="title_wrapper">
 
 												<?php $news_cat = get_the_terms(get_the_ID(),'news_category'); 
@@ -78,9 +86,9 @@ while (have_posts()) :
 													};
 												};
 												?>
-												<div class="title text5"><?php the_title(); ?></div>
+												<div class="title text5"><?php the_field("title"); ?></div>
 												<div class="btn_wrapper text8">
-													<a href="<?php the_permalink(); ?>" class="round_btn"><?php pll_e('view more'); ?></a>
+													<a href="<?php the_permalink(); ?>" class="round_btn"><?php echo cuhk_multilang_text("查看更多","","View more"); ?></a>
 												</div>
 											</div>
 										</div>
@@ -108,8 +116,9 @@ while (have_posts()) :
 							'post_type' => 'news',
 							'posts_per_page' => NEWS_PER_PAGE,
 							'offset' => 2,
-							'orderby' => 'date',
-							'order' => 'DESC'
+							'meta_key' => 'start_date',
+							'orderby' => 'meta_value',
+							'order' => 'DESC',
 						);
 						$query = new WP_Query($args);
 
@@ -125,9 +134,39 @@ while (have_posts()) :
 											<?php endif; ?>
 										</div>
 										<div class="text_wrapper">
-											<div class="date_wrapper text5"><?php echo get_the_date('M d'); ?></div>
+											<div class="date_wrapper text5">
+												<?php
+												$start_date_raw = get_field('start_date'); // This is in Ymd format, e.g. 20250622
+												if ($start_date_raw) {
+													$date_obj = DateTime::createFromFormat('Ymd', $start_date_raw);
+													echo $date_obj->format('j/n'); // Outputs e.g., 22/6
+												}
+												?>
+											</div>
 											<div class="title_wrapper">
-												<div class="title text5"><?php the_title(); ?></div>
+												<?php $news_cat = get_the_terms(get_the_ID(),'news_category'); 
+												if ( $news_cat ) {
+													if ( $news_cat && ! is_wp_error( $news_cat ) ) {
+														$ctermid = $news_cat[0]->term_id;
+														$ctermslug = $news_cat[0]->slug;
+														$ctermlink = get_term_link( $news_cat[0] );
+														if ( is_wp_error( $ctermlink ) ) {
+															continue;
+														}
+														if(pll_current_language() == 'tc') {
+															$ctermfullname = get_field('tc_name', 'news_category_' .$ctermid);
+														}elseif(pll_current_language() == 'sc'){
+															$ctermfullname = get_field('sc_name', 'news_category_' .$ctermid);
+														}else{
+															$ctermfullname = get_field('en_name', 'news_category_' .$ctermid);
+														};
+														?>
+														<div class="cat"><?php echo $ctermfullname;?></div>
+														<?php
+													};
+												};
+												?>
+												<div class="title text5"><?php the_field("title"); ?></div>
 												<div class="btn_wrapper text8">
 													<a href="<?php the_permalink(); ?>" class="round_btn"><?php echo cuhk_multilang_text("查看更多","","View more"); ?></a>
 												</div>
