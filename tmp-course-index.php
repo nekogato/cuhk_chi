@@ -211,8 +211,8 @@ if (have_posts()) :
 						categories: [],
 						academicYear: '<?php echo !empty($academic_years) ? esc_js($academic_years[0]->slug) : ''; ?>',
 						academicYearName: '<?php echo !empty($academic_years) ? esc_js($academic_years[0]->name) : ''; ?>',
-						courseType: '<?php echo !empty($academic_terms) ? esc_js($academic_terms[0]->slug) : ''; ?>',
-						courseTypeName: '<?php echo !empty($academic_terms) ? esc_js($academic_terms[0]->name) : ''; ?>'
+						courseType: '<?php echo !empty($course_type) ? esc_js($course_type[0]->slug) : ''; ?>',
+						courseTypeName: '<?php echo !empty($course_type) ? esc_js($course_type[0]->name) : ''; ?>'
 					},
 					dropdowns: {
 						year: false,
