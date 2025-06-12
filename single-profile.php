@@ -81,7 +81,7 @@ if (have_posts()) :
 								<div class="table_flex_item_wrapper">
 									<?php if ($emails): ?>
 										<div class="table_flex_item">
-											<div class="title text7"><?php pll_e('Email'); ?></div>
+											<div class="title text7"><?php echo cuhk_multilang_text("電郵","","Email"); ?></div>
 											<div class="text text6">
 												<?php if (is_array($emails)): ?>
 													<?php foreach ($emails as $email): ?>
@@ -96,7 +96,7 @@ if (have_posts()) :
 
 									<?php if ($phones): ?>
 										<div class="table_flex_item">
-											<div class="title text7"><?php pll_e('Tel'); ?></div>
+											<div class="title text7"><?php echo cuhk_multilang_text("電話","","Tel"); ?></div>
 											<div class="text text6">
 												<?php if (is_array($phones)): ?>
 													<?php foreach ($phones as $phone): ?>
@@ -109,7 +109,7 @@ if (have_posts()) :
 
 									<?php if ($faxes): ?>
 										<div class="table_flex_item">
-											<div class="title text7"><?php pll_e('Fax'); ?></div>
+											<div class="title text7"><?php echo cuhk_multilang_text("傳真","","Fax"); ?></div>
 											<div class="text text6">
 												<?php if (is_array($faxes)): ?>
 													<?php foreach ($faxes as $fax): ?>
@@ -122,7 +122,7 @@ if (have_posts()) :
 
 									<?php if ($address): ?>
 										<div class="table_flex_item">
-											<div class="title text7"><?php pll_e('Address'); ?></div>
+											<div class="title text7"><?php echo cuhk_multilang_text("地址","","Address"); ?></div>
 											<div class="text text6"><?php echo esc_html($address); ?></div>
 										</div>
 									<?php endif; ?>
@@ -131,7 +131,7 @@ if (have_posts()) :
 
 							<?php if ($description): ?>
 								<div class="description">
-									<div class="t1 text7"><?php pll_e('Description'); ?></div>
+									<div class="t1 text7"><?php echo cuhk_multilang_text("簡介","","Description"); ?></div>
 									<div class="t2 free_text"><?php echo wp_kses_post($description); ?></div>
 								</div>
 							<?php endif; ?>
@@ -144,7 +144,7 @@ if (have_posts()) :
 				<?php if ($research_interests): ?>
 					<div class="expandable_item scrollin scrollinbottom">
 						<div class="section_center_content small_section_center_content">
-							<div class="expandable_title text5"><?php pll_e('研究專長'); ?><div class="icon"></div>
+							<div class="expandable_title text5"><?php echo cuhk_multilang_text("研究專長","","Research Interests"); ?><div class="icon"></div>
 							</div>
 							<div class="hidden">
 								<div class="hidden_content">
@@ -160,7 +160,7 @@ if (have_posts()) :
 				<?php if ($teaching): ?>
 					<div class="expandable_item scrollin scrollinbottom">
 						<div class="section_center_content small_section_center_content">
-							<div class="expandable_title text5"><?php pll_e('任教科目'); ?><div class="icon"></div>
+							<div class="expandable_title text5"><?php echo cuhk_multilang_text("任教科目","","Teaching"); ?><div class="icon"></div>
 							</div>
 							<div class="hidden">
 								<div class="hidden_content">
@@ -176,7 +176,7 @@ if (have_posts()) :
 				<?php if ($selected_publications): ?>
 					<div class="expandable_item scrollin scrollinbottom">
 						<div class="section_center_content small_section_center_content">
-							<div class="expandable_title text5"><?php pll_e('著作選錄'); ?><div class="icon"></div>
+							<div class="expandable_title text5"><?php echo cuhk_multilang_text("著作選錄","","Selected Publications"); ?><div class="icon"></div>
 							</div>
 							<div class="hidden">
 								<div class="hidden_content">
@@ -192,7 +192,7 @@ if (have_posts()) :
 				<?php if (have_rows('research_projects')): ?>
 					<div class="expandable_item scrollin scrollinbottom">
 						<div class="section_center_content small_section_center_content">
-							<div class="expandable_title text5"><?php pll_e('研究計劃'); ?><div class="icon"></div>
+							<div class="expandable_title text5"><?php echo cuhk_multilang_text("研究計劃","","Research Projects"); ?><div class="icon"></div>
 							</div>
 							<div class="hidden">
 								<div class="hidden_content">
@@ -200,8 +200,8 @@ if (have_posts()) :
 										<table>
 											<thead>
 												<tr>
-													<td class="year"><?php pll_e('年份'); ?></td>
-													<td class="free_text"><?php pll_e('研究'); ?></td>
+													<td class="year"><?php echo cuhk_multilang_text("年份","","Year"); ?></td>
+													<td class="free_text"><?php echo cuhk_multilang_text("研究","","Research"); ?></td>
 												</tr>
 											</thead>
 											<tbody>
@@ -225,7 +225,7 @@ if (have_posts()) :
 				<?php if ($other_positions_held): ?>
 					<div class="expandable_item scrollin scrollinbottom">
 						<div class="section_center_content small_section_center_content">
-							<div class="expandable_title text5"><?php pll_e('其他職銜'); ?><div class="icon"></div>
+							<div class="expandable_title text5"><?php echo cuhk_multilang_text("其他職銜","","Other Positions Held"); ?><div class="icon"></div>
 							</div>
 							<div class="hidden">
 								<div class="hidden_content">
@@ -241,7 +241,7 @@ if (have_posts()) :
 				<?php if (have_rows('awards_and_honors')): ?>
 					<div class="expandable_item scrollin scrollinbottom">
 						<div class="section_center_content small_section_center_content">
-							<div class="expandable_title text5"><?php pll_e('獎項與榮譽'); ?><div class="icon"></div>
+							<div class="expandable_title text5"><?php echo cuhk_multilang_text("獎項與榮譽","","Awards and Honors"); ?><div class="icon"></div>
 							</div>
 							<div class="hidden">
 								<div class="hidden_content">
@@ -249,8 +249,8 @@ if (have_posts()) :
 										<table>
 											<thead>
 												<tr>
-													<td class="year"><?php pll_e('年份'); ?></td>
-													<td class="free_text"><?php pll_e('獎項'); ?></td>
+													<td class="year"><?php echo cuhk_multilang_text("年份","","Year"); ?></td>
+													<td class="free_text"><?php echo cuhk_multilang_text("獎項","","Awards"); ?></td>
 												</tr>
 											</thead>
 											<tbody>
