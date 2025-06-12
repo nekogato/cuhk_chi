@@ -39,6 +39,7 @@ get_header();
 				while ($publications->have_posts()) : $publications->the_post();
 					// Get custom fields
 					$author = get_field('author');
+					$chief_editor = get_field('chief_editor');
 					$publisher = get_field('publisher');
 					$publish_year = get_field('year_and_month_of_publication');
 					$cover_image = get_field('cover_photo');
@@ -58,19 +59,24 @@ get_header();
 							<?php if ($author) : ?>
 								<div class="publication_text_item">
 									<div class="title text7"><?php pll_e('作者'); ?></div>
-									<div class="text text5"><?php echo esc_html($author); ?></div>
+									<div class="text text5"><?php echo ($author); ?></div>
+								</div>
+							<?php elseif ($chief_editor) : ?>
+								<div class="publication_text_item">
+									<div class="title text7"><?php pll_e('主編'); ?></div>
+									<div class="text text5"><?php echo ($chief_editor); ?></div>
 								</div>
 							<?php endif; ?>
 							<?php if ($publisher) : ?>
 								<div class="publication_text_item">
 									<div class="title text7"><?php pll_e('出版社'); ?></div>
-									<div class="text text5"><?php echo esc_html($publisher); ?></div>
+									<div class="text text5"><?php echo ($publisher); ?></div>
 								</div>
 							<?php endif; ?>
 							<?php if ($publish_year) : ?>
 								<div class="publication_text_item">
 									<div class="title text7"><?php pll_e('出版年份'); ?></div>
-									<div class="text text5"><?php echo esc_html($publish_year); ?></div>
+									<div class="text text5"><?php echo ($publish_year); ?></div>
 								</div>
 							<?php endif; ?>
 						</div>
