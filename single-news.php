@@ -99,7 +99,13 @@ while (have_posts()) :
 								<div class="flexible_layout_wrapper ">
 									<?php if (get_field('start_date')) { ?>
 										<div class="news_date scrollin scrollinbottom">
-											<?php echo cuhk_multilang_text("發報日期：","","Publish Date:"); ?><?php the_field('start_date'); ?>
+											<?php
+											$start_date_raw = get_field('start_date'); // This is in Ymd format, e.g. 20250622
+											if ($start_date_raw) {
+												$date_obj = DateTime::createFromFormat('Ymd', $start_date_raw);
+												echo $date_obj->format('j/n/y'); // Outputs e.g., 22/6
+											}
+											?>
 										</div>
 									<?php }; ?>
 									<?php
