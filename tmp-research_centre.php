@@ -58,39 +58,39 @@ while (have_posts()) :
 										<div class="research_centre_text_item_wrapper">
 											<?php if ($name): ?>
 												<div class="research_centre_text_item">
-													<div class="t1"><?php pll_e('Name'); ?></div>
+													<div class="t1"><?php echo cuhk_multilang_text("姓名","","Name"); ?></div>
 													<div class="t2 text6"><?php echo ($name); ?></div>
 												</div>
 											<?php endif; ?>
 											<?php if ($website): ?>
 												<div class="research_centre_text_item">
-													<div class="t1"><?php pll_e('Website'); ?></div>
+													<div class="t1"><?php echo cuhk_multilang_text("網站","","Website"); ?></div>
 													<div class="t2 text6"><a href="<?php echo($website); ?>" target="_blank"><?php echo($website); ?></a></div>
 												</div>
 											<?php endif; ?>
 											<div class="break"></div>
 											<?php if ($director): ?>
 												<div class="research_centre_text_item">
-													<div class="t1"><?php pll_e('Director'); ?></div>
+													<div class="t1"><?php echo cuhk_multilang_text("中心主任","","Director"); ?></div>
 													<div class="t2 text6"><?php echo ($director); ?></div>
 												</div>
 											<?php endif; ?>
 											<?php if ($email): ?>
 												<div class="research_centre_text_item">
-													<div class="t1"><?php pll_e('Email'); ?></div>
+													<div class="t1"><?php echo cuhk_multilang_text("電郵","","Email"); ?></div>
 													<div class="t2 text6"><a href="mailto:<?php echo($email); ?>"><?php echo($email); ?></a></div>
 												</div>
 											<?php endif; ?>
 											<?php if ($tel): ?>
 												<div class="research_centre_text_item">
-													<div class="t1"><?php pll_e('Tel'); ?></div>
+													<div class="t1"><?php echo cuhk_multilang_text("電話","","Tel"); ?></div>
 													<div class="t2 text6"><?php echo ($tel); ?></div>
 												</div>
 											<?php endif; ?>
 											<div class="break"></div>
 											<?php if ($description): ?>
 												<div class="research_centre_text_item col12">
-													<div class="t1"><?php pll_e('Description'); ?></div>
+													<div class="t1"><?php echo cuhk_multilang_text("簡介","","Description"); ?></div>
 													<div class="t2 text6"><?php echo ($description); ?></div>
 												</div>
 											<?php endif; ?>
