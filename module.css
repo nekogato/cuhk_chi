@@ -3183,6 +3183,15 @@ justify-content: center;
     flex: 0 0 calc(33.33% - 33.33px);
 }
 
+.research_centre_text_item a{
+    color:#45adb3;
+	text-decoration: underline;
+}
+
+.research_centre_text_item a:hover{
+    opacity: 0.5;
+}
+
 .research_centre_text_item.col12{
     flex: 0 0 calc(100%);
 }
