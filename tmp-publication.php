@@ -67,18 +67,6 @@ get_header();
 									<div class="text text5"><?php echo ($chief_editor); ?></div>
 								</div>
 							<?php endif; ?>
-							<?php if ($publisher) : ?>
-								<div class="publication_text_item">
-									<div class="title text7"><?php pll_e('出版社'); ?></div>
-									<div class="text text5"><?php echo ($publisher); ?></div>
-								</div>
-							<?php endif; ?>
-							<?php if ($publish_year) : ?>
-								<div class="publication_text_item">
-									<div class="title text7"><?php pll_e('出版年份'); ?></div>
-									<div class="text text5"><?php echo ($publish_year); ?></div>
-								</div>
-							<?php endif; ?>
 						</div>
 					</div>
 			<?php
