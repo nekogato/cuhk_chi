@@ -42,7 +42,7 @@ while (have_posts()) :
 										endforeach;
 									endif;
 									?>
-									<h1 class="project_title"><span><?php echo esc_html(get_field('event_name')); ?></span></h1>
+									<h1 class="project_title"><span><?php echo (get_field('event_name')); ?></span></h1>
 								</div>
 							</div>
 						</div>

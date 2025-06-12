@@ -14,7 +14,7 @@ get_header();
 <?php
 while (have_posts()) :
 	the_post();
-	$page_title = get_field("event_name");
+	$page_title = get_field("page_title");
 	$page_description = get_field("introduction");
 ?>
 
@@ -27,7 +27,7 @@ while (have_posts()) :
 				if ($related_pages) : ?>
 					<div class="intro_btn_wrapper">
 						<?php foreach ($related_pages as $related_page) : ?>
-							<a href="<?php echo get_permalink($related_page->ID); ?>" class="round_btn text5"><?php echo get_the_title($related_page->ID); ?></a>
+							<a href="<?php echo get_permalink($related_page->ID); ?>" class="round_btn text5"><?php echo get_field("page_title",$related_page->ID); ?></a>
 						<?php endforeach; ?>
 					</div>
 				<?php endif; ?>
@@ -58,7 +58,7 @@ while (have_posts()) :
 									<input name="filter" type="radio" id="all"
 										@change="filterByCategory('all')"
 										:checked="activeCategory === 'all'">
-									<label for="all"><span><?php echo cuhk_multilang_text("活動分類","","Filter"); ?></span></label>
+									<label for="all"><span><?php echo cuhk_multilang_text("所有活動","","All Events"); ?></span></label>
 								</div>
 							</div>
 							<?php if (!empty($event_categories)) : ?>
@@ -69,7 +69,17 @@ while (have_posts()) :
 												@change="filterByCategory('<?php echo esc_attr($category->slug); ?>')"
 												:checked="activeCategory === '<?php echo esc_attr($category->slug); ?>'">
 											<label for="category-<?php echo esc_attr($category->term_id); ?>">
-												<span><?php echo esc_html($category->name); ?></span>
+												<span>
+												<?php 
+													if(pll_current_language() == 'tc') {
+														$ctermfullname = get_field('tc_name', 'news_category_' .$category->term_id);
+													}elseif(pll_current_language() == 'sc'){
+														$ctermfullname = get_field('sc_name', 'news_category_' .$category->term_id);
+													}else{
+														$ctermfullname = get_field('en_name', 'news_category_' .$category->term_id);
+													};
+													echo ($ctermfullname); 
+												?></span>
 											</label>
 										</div>
 									</div>
@@ -150,7 +160,7 @@ while (have_posts()) :
 				<!-- Loading indicator -->
 				<div class="event_list_item_wrapper" x-show="loading" x-cloak>
 					<div class="loading-indicator" style="text-align: center; padding: 40px;">
-						<p><?php pll_e('Loading events...'); ?></p>
+						<p><?php echo cuhk_multilang_text("戴入活動中","","Loading events..."); ?></p>
 					</div>
 				</div>
 			</div>

@@ -3357,6 +3357,7 @@ justify-content: center;
     flex-direction: row-reverse;
     gap: 40px;
     border-top:1px solid #62629e;
+      padding-top: 15px;
 }
 
 .news_gallery_box_section .col_spacing{

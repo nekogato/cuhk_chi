@@ -21,7 +21,7 @@ get_header();
 	<img src="<?php echo get_template_directory_uri(); ?>/images/ink_bg5.jpg" class="ink_bg5 scrollin scrollinbottom" alt="Background Image">
 
 	<div class="section_center_content small_section_center_content">
-		<h1 class="section_title text1 scrollin scrollinbottom"><?php the_title(); ?></h1>
+		<h1 class="section_title text1 scrollin scrollinbottom"><?php echo get_field("page_title"); ?></h1>
 		<div class="section_description scrollin scrollinbottom col6"><?php echo get_field('introduction'); ?></div>
 
 		<div class="publication_box_list scrollin_p">
