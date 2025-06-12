@@ -941,8 +941,25 @@ function load_courses()
 			}
 
 			// Get course type from taxonomy for grouping (not filtering)
-			$academic_term = wp_get_post_terms(get_the_ID(), 'course_semester');
-			$course_category = !empty($academic_term) ? $academic_term[0]->name : pll__('Other');
+			$academic_terms = wp_get_post_terms(get_the_ID(), 'course_semester');
+
+			if (!empty($academic_terms) && !is_wp_error($academic_terms)) {
+				foreach ($academic_terms as $term) {
+					$course_category = $term->name;
+
+					if (!isset($courses_by_category[$course_category])) {
+						$courses_by_category[$course_category] = array();
+					}
+					$courses_by_category[$course_category][] = $course_data;
+				}
+			} else {
+				// If no terms, assign to "Other"
+				$course_category = pll__('Other');
+				if (!isset($courses_by_category[$course_category])) {
+					$courses_by_category[$course_category] = array();
+				}
+				$courses_by_category[$course_category][] = $course_data;
+			}
 
 			$course_data = array(
 				'id' => get_the_ID(),
