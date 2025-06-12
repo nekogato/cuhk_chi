@@ -59,39 +59,39 @@ while (have_posts()) :
 											<?php if ($name): ?>
 												<div class="research_centre_text_item">
 													<div class="t1"><?php pll_e('Name'); ?></div>
-													<div class="t2 text6"><?php echo esc_html($name); ?></div>
+													<div class="t2 text6"><?php echo ($name); ?></div>
 												</div>
 											<?php endif; ?>
 											<?php if ($website): ?>
 												<div class="research_centre_text_item">
 													<div class="t1"><?php pll_e('Website'); ?></div>
-													<div class="t2 text6"><?php echo esc_html($website); ?></div>
+													<div class="t2 text6"><a href="<?php echo($website); ?>" target="_blank"><?php echo($website); ?></a></div>
 												</div>
 											<?php endif; ?>
 											<div class="break"></div>
 											<?php if ($director): ?>
 												<div class="research_centre_text_item">
 													<div class="t1"><?php pll_e('Director'); ?></div>
-													<div class="t2 text6"><?php echo esc_html($director); ?></div>
+													<div class="t2 text6"><?php echo ($director); ?></div>
 												</div>
 											<?php endif; ?>
 											<?php if ($email): ?>
 												<div class="research_centre_text_item">
 													<div class="t1"><?php pll_e('Email'); ?></div>
-													<div class="t2 text6"><?php echo esc_html($email); ?></div>
+													<div class="t2 text6"><a href="mailto:<?php echo($email); ?>"><?php echo($email); ?></a></div>
 												</div>
 											<?php endif; ?>
 											<?php if ($tel): ?>
 												<div class="research_centre_text_item">
 													<div class="t1"><?php pll_e('Tel'); ?></div>
-													<div class="t2 text6"><?php echo esc_html($tel); ?></div>
+													<div class="t2 text6"><?php echo ($tel); ?></div>
 												</div>
 											<?php endif; ?>
 											<div class="break"></div>
 											<?php if ($description): ?>
 												<div class="research_centre_text_item col12">
 													<div class="t1"><?php pll_e('Description'); ?></div>
-													<div class="t2 text6"><?php echo esc_html($description); ?></div>
+													<div class="t2 text6"><?php echo ($description); ?></div>
 												</div>
 											<?php endif; ?>
 										</div>
