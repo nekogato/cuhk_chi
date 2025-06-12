@@ -58,12 +58,16 @@ get_header();
 							<div class="publication_text_item text5 book_name"><?php the_title(); ?></div>
 							<?php if ($author) : ?>
 								<div class="publication_text_item">
-									<div class="title text7"><?php pll_e('作者'); ?></div>
+									<div class="title text7">
+										<?php 
+										echo cuhk_multilang_text("作者","","Author");
+										?>
+									</div>
 									<div class="text text5"><?php echo ($author); ?></div>
 								</div>
 							<?php elseif ($chief_editor) : ?>
 								<div class="publication_text_item">
-									<div class="title text7"><?php pll_e('主編'); ?></div>
+									<div class="title text7"><?php echo cuhk_multilang_text("主編","","Chief Editor"); ?></div>
 									<div class="text text5"><?php echo ($chief_editor); ?></div>
 								</div>
 							<?php endif; ?>
