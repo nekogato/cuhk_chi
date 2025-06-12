@@ -79,7 +79,7 @@ if (have_posts()) :
 					<div class="filter_menu filter_menu_left_bg filter_menu_bottom section_center_content small_section_center_content scrollin scrollinbottom">
 						<div class="filter_menu_content">
 							<div class="filter_dropdown_wrapper">
-								<a class="filter_dropdown_btn text5" href="#" @click="dropdowns.year = !dropdowns.year" x-text="'filters.academicYearName'"></a>
+								<a class="filter_dropdown_btn text5" href="#" @click="dropdowns.year = !dropdowns.year" x-text="filters.academicYearName"></a>
 								<div class="filter_dropdown text5" x-show="dropdowns.year" @click.away="dropdowns.year = false">
 									<ul>
 										<?php if (!empty($academic_years)) : ?>
