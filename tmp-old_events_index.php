@@ -141,7 +141,7 @@ while (have_posts()) :
 						<div class="load_more_wrapper scrollin scrollinbottom">
 							<a href="#" @click.prevent="loadMore()" class="load_more_btn text5">
 								<div class="icon"></div>
-								<div class="text"><?php pll_e('Load more'); ?></div>
+								<div class="text"><?php echo cuhk_multilang_text("載入更多","","Load more"); ?></div>
 							</a>
 						</div>
 					</template>

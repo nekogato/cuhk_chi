@@ -144,7 +144,7 @@ if ($all_news->have_posts()) {
 							data-page="1"
 							data-nonce="<?php echo wp_create_nonce('load_more_department_news_nonce'); ?>">
 							<div class="icon"></div>
-							<div class="text"><?php pll_e('Load more'); ?></div>
+							<div class="text"><?php echo cuhk_multilang_text("載入更多","","Load more"); ?></div>
 						</a>
 					</div>
 				<?php endif; ?>
@@ -177,7 +177,7 @@ if ($all_news->have_posts()) {
 					if (response.success) {
 						$('#department-news-container .row').append(response.data.html);
 						button.data('page', page + 1);
-						button.find('.text').text('<?php pll_e('Load more'); ?>');
+						button.find('.text').text('<?php echo cuhk_multilang_text("載入更多","","Load more"); ?>');
 
 						if (!response.data.has_more) {
 							button.hide();
@@ -187,7 +187,7 @@ if ($all_news->have_posts()) {
 					}
 				},
 				error: function() {
-					button.find('.text').text('<?php pll_e('Load more'); ?>');
+					button.find('.text').text('<?php echo cuhk_multilang_text("載入更多","","Load more"); ?>');
 				}
 			});
 		});

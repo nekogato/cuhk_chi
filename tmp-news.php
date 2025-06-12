@@ -21,7 +21,7 @@ while (have_posts()) :
 
 	<div class="section section_content section_intro">
 		<div class="section_center_content">
-			<h1 class="section_title text1 scrollin scrollinbottom"><?php echo the_title(); ?></h1>
+			<h1 class="section_title text1 scrollin scrollinbottom"><?php echo get_field("title"); ?></h1>
 			<div class="section_description scrollin scrollinbottom col6"><?php echo get_field('introduction'); ?></div>
 		</div>
 	</div>
@@ -55,6 +55,29 @@ while (have_posts()) :
 										<div class="text_wrapper">
 											<div class="date_wrapper text2"><?php echo get_the_date('M d'); ?></div>
 											<div class="title_wrapper">
+
+												<?php $news_cat = get_the_terms(get_the_ID(),'news_category'); 
+												if ( $news_cat ) {
+													if ( $news_cat && ! is_wp_error( $news_cat ) ) {
+														$ctermid = $news_cat[0]->term_id;
+														$ctermslug = $news_cat[0]->slug;
+														$ctermlink = get_term_link( $news_cat[0] );
+														if ( is_wp_error( $ctermlink ) ) {
+															continue;
+														}
+														if(pll_current_language() == 'tc') {
+															$ctermfullname = get_field('tc_name', 'news_category_' .$ctermid);
+														}elseif(pll_current_language() == 'sc'){
+															$ctermfullname = get_field('sc_name', 'news_category_' .$ctermid);
+														}else{
+															$ctermfullname = get_field('en_name', 'news_category_' .$ctermid);
+														};
+														?>
+														<div class="cat"><?php echo $ctermfullname;?></div>
+														<?php
+													};
+												};
+												?>
 												<div class="title text5"><?php the_title(); ?></div>
 												<div class="btn_wrapper text8">
 													<a href="<?php the_permalink(); ?>" class="round_btn"><?php pll_e('view more'); ?></a>
@@ -106,7 +129,7 @@ while (have_posts()) :
 											<div class="title_wrapper">
 												<div class="title text5"><?php the_title(); ?></div>
 												<div class="btn_wrapper text8">
-													<a href="<?php the_permalink(); ?>" class="round_btn"><?php pll_e('view more'); ?></a>
+													<a href="<?php the_permalink(); ?>" class="round_btn"><?php echo cuhk_multilang_text("查看更多","","View more"); ?></a>
 												</div>
 											</div>
 										</div>
@@ -122,7 +145,7 @@ while (have_posts()) :
 						<div class="load_more_wrapper scrollin scrollinbottom">
 							<a href="#" class="load_more_btn text5" data-page="1" data-max-pages="<?php echo $query->max_num_pages; ?>">
 								<div class="icon"></div>
-								<div class="text"><?php pll_e('Load more'); ?></div>
+								<div class="text"><?php echo cuhk_multilang_text("載入更多","","Load more"); ?></div>
 							</a>
 						</div>
 					<?php endif; ?>

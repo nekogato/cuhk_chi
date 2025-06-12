@@ -99,7 +99,7 @@ while (have_posts()) :
 								<div class="flexible_layout_wrapper ">
 									<?php if (get_field('start_date')) { ?>
 										<div class="news_date scrollin scrollinbottom">
-											<?php echo pll__('發報日期：') ?><?php the_field('start_date'); ?>
+											<?php echo cuhk_multilang_text("發報日期：","","Publish Date:"); ?><?php the_field('start_date'); ?>
 										</div>
 									<?php }; ?>
 									<?php

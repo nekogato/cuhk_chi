@@ -84,7 +84,7 @@ get_header();
 			<div class="load_more_wrapper scrollin scrollinbottom">
 				<a href="#" class="load_more_btn text6" data-page="1" data-max-pages="<?php echo $publications->max_num_pages; ?>">
 					<div class="icon"></div>
-					<div class="text"><?php pll_e('Load More'); ?></div>
+					<div class="text"><?php echo cuhk_multilang_text("載入更多","","Load more"); ?></div>
 				</a>
 			</div>
 		<?php endif; ?>
@@ -128,7 +128,7 @@ get_header();
 					}
 				},
 				complete: function() {
-					button.find('.text').text('<?php pll_e('Load More'); ?>');
+					button.find('.text').text('<?php echo cuhk_multilang_text("載入更多","","Load more"); ?>');
 					button.removeClass('loading');
 				}
 			});
