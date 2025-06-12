@@ -72,11 +72,11 @@ while (have_posts()) :
 												<span>
 												<?php 
 													if(pll_current_language() == 'tc') {
-														$ctermfullname = get_field('tc_name', 'news_category_' .$category->term_id);
+														$ctermfullname = get_field('tc_name', 'event_category_' .$category->term_id);
 													}elseif(pll_current_language() == 'sc'){
-														$ctermfullname = get_field('sc_name', 'news_category_' .$category->term_id);
+														$ctermfullname = get_field('sc_name', 'event_category_' .$category->term_id);
 													}else{
-														$ctermfullname = get_field('en_name', 'news_category_' .$category->term_id);
+														$ctermfullname = get_field('en_name', 'event_category_' .$category->term_id);
 													};
 													echo ($ctermfullname); 
 												?></span>

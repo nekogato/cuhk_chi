@@ -40,7 +40,7 @@ if (have_posts()) :
 			<div class="section section_content filter_menu_section">
 
 				<div class="section_center_content small_section_center_content scrollin scrollinbottom">
-					<h1 class="section_title text1 scrollin scrollinbottom"><?php the_title(); ?></h1>
+					<h1 class="section_title text1 scrollin scrollinbottom"><?php the_field("page_title"); ?></h1>
 				</div>
 
 				<div class="filter_menu_wrapper">
@@ -57,7 +57,17 @@ if (have_posts()) :
 													value="<?php echo esc_attr($category->slug); ?>"
 													@change="filterCourses()">
 												<label for="<?php echo esc_attr($category->slug); ?>">
-													<span><?php echo esc_html($category->name); ?></span>
+													<span>
+													<?php 
+														if(pll_current_language() == 'tc') {
+															$ctermfullname = get_field('tc_name', 'course_category_' .$category->term_id);
+														}elseif(pll_current_language() == 'sc'){
+															$ctermfullname = get_field('sc_name', 'course_category_' .$category->term_id);
+														}else{
+															$ctermfullname = get_field('en_name', 'course_category_' .$category->term_id);
+														};
+														echo ($ctermfullname); 
+													?></span>
 												</label>
 											</div>
 										</div>
