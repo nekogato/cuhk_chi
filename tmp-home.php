@@ -310,13 +310,7 @@ get_header(); ?>
 					slidesPerView: 1,
 					speed: 1600,
 					loop: false,
-					spaceBetween: 30,
-					grabCursor: true,
-					allowTouchMove: true,
-					freeMode: true,
-					freeModeMomentum: true,
-					freeModeMomentumRatio: 0.5,
-					freeModeSticky: true
+					spaceBetween: 0
 				});
 
 				// Initialize date slider
