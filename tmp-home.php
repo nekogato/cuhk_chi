@@ -301,6 +301,11 @@ get_header(); ?>
 			init() {
 				this.initSwipers();
 				this.loadNews();
+
+				const that = this;
+				setTimeout(() => {
+					that.yearSwiper.update();
+				}, 1000);
 			},
 
 			initSwipers() {
