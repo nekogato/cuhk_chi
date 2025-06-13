@@ -97,12 +97,17 @@ if (have_posts()) :
 								</div>
 							</div>
 							<div class="filter_dropdown_wrapper">
-								<a class="filter_dropdown_btn text5" href="#" @click="dropdowns.type = !dropdowns.type" x-text="filters.courseTypeName || '<?php echo cuhk_multilang_text("分類","","Course Type"); ?>'"></a>
+								<a class="filter_dropdown_btn text5" href="#" @click="dropdowns.type = !dropdowns.type" x-text="filters.courseTypeName || '<?php echo cuhk_multilang_text("所有分類","","All Course Type"); ?>'"></a>
 								<div class="filter_dropdown text5" x-show="dropdowns.type" @click.away="dropdowns.type = false">
 									<ul>
 										<?php if (!empty($course_type)) : ?>
 											<?php foreach ($course_type as $type) : ?>
 												<li>
+													<a href="#"
+														@click="selectFilter('courseType', '', '<?php echo cuhk_multilang_text("所有分類","","All Course Type"); ?>')"
+														:class="filters.courseType === '' ? 'active' : ''">
+														<?php echo cuhk_multilang_text("所有分類","","All Course Type"); ?>
+													</a>
 													<a href="#"
 														@click="selectFilter('courseType', '<?php echo esc_js($type->slug); ?>', '<?php echo esc_js($type->name); ?>')"
 														:class="filters.courseType === '<?php echo esc_js($type->slug); ?>' ? 'active' : ''">
