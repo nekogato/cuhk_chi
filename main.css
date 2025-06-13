@@ -59,6 +59,18 @@ a{
 	left:0px;
 	margin:auto;}	
 
+.ajax_loading{
+	position:fixed;
+	width:100%;
+	height:100%;
+	left:0px;
+	top:0px;
+	z-index:1001;
+	background-image: url(images/black_oval.svg);
+	background-size: 20px 20px;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
 
 
 /* common fadein animation */

@@ -135,19 +135,16 @@ if (have_posts()) :
 				</div>
 
 				<!-- Loading indicator -->
-				<div x-show="loading" class="loading-wrapper" style="text-align: center; padding: 40px;">
-					<div class="loading">
-						<img src="<?php echo get_template_directory_uri(); ?>/images/oval.svg" alt="Loading">
-					</div>
+				<div x-show="loading" class="ajax_loading">
 				</div>
 			</div>
 
 			<!-- Course sections - each course type gets its own section -->
 			<template x-for="section in courseSections" :key="section.name">
-				<div class="section section_content filter_detail_section scrollin_p" x-show="section.courses.length > 0">
-					<div class="filter_course_type_name section_center_content scrollin scrollinbottom small_section_center_content text3" x-text="section.name"></div>
+				<div class="section section_content filter_detail_section scrollin scrollinbottom" x-show="section.courses.length > 0">
+					<div class="filter_course_type_name section_center_content  small_section_center_content text3" x-text="section.name"></div>
 
-					<div class="section_center_content small_section_center_content scrollin scrollinbottom filter_detail_flex_head mobile_hide2">
+					<div class="section_center_content small_section_center_content  filter_detail_flex_head mobile_hide2">
 						<div class="filter_detail_flex text7">
 							<div class="filter_detail_flex_item"><?php echo cuhk_multilang_text("課程編號","","Course Code"); ?></div>
 							<div class="filter_detail_flex_item"><?php echo cuhk_multilang_text("課程名稱","","Course Title"); ?></div>
@@ -159,7 +156,7 @@ if (have_posts()) :
 						</div>
 					</div>
 
-					<div class="section_expandable_list  scrollin scrollinbottom filter_detail_flex_body">
+					<div class="section_expandable_list   filter_detail_flex_body">
 						<template x-for="course in section.courses" :key="course.id">
 							<div class="expandable_item "
 								:class="expandedCourses.includes(course.id) ? 'active' : ''">
