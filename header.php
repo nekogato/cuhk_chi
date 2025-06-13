@@ -179,7 +179,7 @@ if (pll_current_language() == 'sc') {
 						<div class="text text8">
 							<?php if(get_field('address', 'option')){
 								?>
-								<strong><?php echo cuhk_multilang_text("地址：","","Address:"); ?></strong><br>
+								<strong><?php echo cuhk_multilang_text("地址：","地址：","Address:"); ?></strong><br>
 								<?php
 								the_field('address', 'option');
 							}; ?>
