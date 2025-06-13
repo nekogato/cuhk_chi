@@ -124,6 +124,12 @@ if ($teaching_staff_term) {
 					</template>
 				</div>
 			</div>
+			
+			<template x-if="!loading && staffMembers.length === 0">
+				<div class="no_result text5">
+					<?php echo cuhk_multilang_text("沒有資料", "", "No staff found."); ?>
+				</div>
+			</template>
 
 			<template x-if="hasMore">
 				<div class="load_more_wrapper">
