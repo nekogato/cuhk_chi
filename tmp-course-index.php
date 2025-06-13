@@ -303,23 +303,7 @@ if (have_posts()) :
 						} finally {
 							this.loading = false;
 						}
-					},
-
-
-					$(document).on("click", ".expandable_item .expandable_title", function () {
-						var $p = $(this).parents(".expandable_item")
-						if($p.hasClass("active")){
-							$p.removeClass("active").find(".hidden").show();
-							setTimeout(function(){
-							$p.find(".hidden").stop().slideUp();
-							},0)
-						}else{
-							$p.addClass("active").find(".hidden").hide();
-							setTimeout(function(){
-							$p.find(".hidden").stop().slideDown();
-							},0)
-						}
-					})
+					}
 
 
 					// toggleCourse(courseId, event) {

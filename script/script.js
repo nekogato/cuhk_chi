@@ -315,7 +315,7 @@ function init_event(){
 		}
 	})
 
-	$(".expandable_item .expandable_title").click(function(){
+	$(document).on("click", ".expandable_item .expandable_title", function () {
 		var $p = $(this).parents(".expandable_item")
 		if($p.hasClass("active")){
 			$p.removeClass("active").find(".hidden").show();
