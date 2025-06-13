@@ -236,51 +236,52 @@ if ($teaching_staff_term) {
 			async loadStaff() {
 				if (this.loading) return;
 				this.loading = true;
+				$(".student_list_item").fadeOut(funciton(){
+					try {
+						const response = await fetch(ajaxurl, {
+							method: 'POST',
+							headers: {
+								'Content-Type': 'application/x-www-form-urlencoded',
+							},
+							body: new URLSearchParams({
+								action: 'load_teaching_staff',
+								nonce: '<?php echo wp_create_nonce('load_teaching_staff_nonce'); ?>',
+								page: this.page,
+								position: this.selectedPosition,
+								sort_order: this.sortOrder
+							})
+						});
 
-				try {
-					const response = await fetch(ajaxurl, {
-						method: 'POST',
-						headers: {
-							'Content-Type': 'application/x-www-form-urlencoded',
-						},
-						body: new URLSearchParams({
-							action: 'load_teaching_staff',
-							nonce: '<?php echo wp_create_nonce('load_teaching_staff_nonce'); ?>',
-							page: this.page,
-							position: this.selectedPosition,
-							sort_order: this.sortOrder
-						})
-					});
+						const data = await response.json();
+						if (data.success) {
+							const newStaff = data.data.staff.map(staff => ({
+								...staff,
+								contact_info: this.formatContactInfo(staff)
+							}));
 
-					const data = await response.json();
-					if (data.success) {
-						const newStaff = data.data.staff.map(staff => ({
-							...staff,
-							contact_info: this.formatContactInfo(staff)
-						}));
+							if (this.page === 1) {
+								this.staffMembers = newStaff;
+							} else {
+								this.staffMembers = [...this.staffMembers, ...newStaff];
+							}
 
-						if (this.page === 1) {
-							this.staffMembers = newStaff;
-						} else {
-							this.staffMembers = [...this.staffMembers, ...newStaff];
+							this.hasMore = data.data.has_more;
+							setTimeout(function(){
+								doscroll();
+							},300)
 						}
-
-						this.hasMore = data.data.has_more;
-						setTimeout(function(){
-							doscroll();
-						},300)
+					} catch (error) {
+						console.error('Error loading teaching staff:', error);
+							setTimeout(function(){
+								doscroll();
+							},300)
+					} finally {
+						this.loading = false;
+							setTimeout(function(){
+								doscroll();
+							},300)
 					}
-				} catch (error) {
-					console.error('Error loading teaching staff:', error);
-						setTimeout(function(){
-							doscroll();
-						},300)
-				} finally {
-					this.loading = false;
-						setTimeout(function(){
-							doscroll();
-						},300)
-				}
+				})
 			},
 
 			filterByPosition(position) {
