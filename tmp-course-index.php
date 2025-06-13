@@ -146,7 +146,7 @@ if (have_posts()) :
 					<div class="filter_course_type_name section_center_content scrollin scrollinbottom small_section_center_content text3" x-text="section.name"></div>
 
 					<div class="section_center_content small_section_center_content filter_detail_flex_head mobile_hide2">
-						<div class="filter_detail_flex text7 scrollin scrollinbottom">
+						<div class="filter_detail_flex text7">
 							<div class="filter_detail_flex_item"><?php echo cuhk_multilang_text("課程編號","","Course Code"); ?></div>
 							<div class="filter_detail_flex_item"><?php echo cuhk_multilang_text("課程名稱","","Course Title"); ?></div>
 							<div class="filter_detail_flex_item"><?php echo cuhk_multilang_text("講師","","Lecturer"); ?></div>
@@ -157,9 +157,9 @@ if (have_posts()) :
 						</div>
 					</div>
 
-					<div class="section_expandable_list scrollin_p filter_detail_flex_body">
+					<div class="section_expandable_list  scrollin scrollinbottom filter_detail_flex_body">
 						<template x-for="course in section.courses" :key="course.id">
-							<div class="expandable_item scrollin scrollinbottom"
+							<div class="expandable_item "
 								:class="expandedCourses.includes(course.id) ? 'active' : ''">
 								<div class="section_center_content small_section_center_content">
 									<div class="expandable_title filter_detail_flex"
