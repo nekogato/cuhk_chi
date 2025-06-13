@@ -294,11 +294,33 @@ get_header(); ?>
 			selectedYear: <?php echo date('Y'); ?>, // Current year
 			groupedNews: {},
 			loading: false,
-			swiper: null,
+			yearSwiper: null,
+			dateSwiper: null,
 			availableMonths: <?php echo json_encode(array_values($available_months)); ?>,
 
 			init() {
+				this.initSwipers();
 				this.loadNews();
+			},
+
+			initSwipers() {
+				// Initialize year slider
+				this.yearSwiper = new Swiper('.home_news_year_slider .swiper-container', {
+					autoplay: false,
+					slidesPerView: 1,
+					speed: 1600,
+					loop: false,
+					spaceBetween: 0
+				});
+
+				// Initialize date slider
+				this.dateSwiper = new Swiper('.home_news_date_slider .swiper-container', {
+					autoplay: false,
+					slidesPerView: 'auto',
+					speed: 1600,
+					loop: false,
+					spaceBetween: 0
+				});
 			},
 
 			formatDate(dateString) {
@@ -333,7 +355,16 @@ get_header(); ?>
 					if (data.success) {
 						this.groupedNews = data.data.grouped_news;
 						this.$nextTick(() => {
-							this.initSwiper();
+							if (this.dateSwiper) {
+								this.dateSwiper.destroy();
+							}
+							this.dateSwiper = new Swiper('.home_news_date_slider .swiper-container', {
+								autoplay: false,
+								slidesPerView: 'auto',
+								speed: 1600,
+								loop: false,
+								spaceBetween: 0
+							});
 						});
 					}
 				} catch (error) {
@@ -350,30 +381,15 @@ get_header(); ?>
 				this.loadNews();
 			},
 
-			initSwiper() {
-				if (this.swiper) {
-					this.swiper.destroy();
-				}
-
-				this.swiper = new Swiper('.home_news_date_slider .swiper-container', {
-					slidesPerView: 'auto',
-					spaceBetween: 20,
-					navigation: {
-						nextEl: '.home_news_date_slider .next_btn',
-						prevEl: '.home_news_date_slider .prev_btn',
-					},
-				});
-			},
-
 			nextSlide() {
-				if (this.swiper) {
-					this.swiper.slideNext();
+				if (this.dateSwiper) {
+					this.dateSwiper.slideNext();
 				}
 			},
 
 			previousSlide() {
-				if (this.swiper) {
-					this.swiper.slidePrev();
+				if (this.dateSwiper) {
+					this.dateSwiper.slidePrev();
 				}
 			}
 		}

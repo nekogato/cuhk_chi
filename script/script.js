@@ -695,34 +695,34 @@ function init_function(){
 		})
 	});
 
-	$(".home_news_section").each(function(){
-		var home_news_year_slider = new Swiper($(this).find(".home_news_year_slider .swiper-container")[0], {
-			autoplay: false,
-			slidesPerView: 1,
-			speed: 1600,
-			loop: false,
-			spaceBetween: 0
-		});
-		var home_news_date_slider = new Swiper($(this).find(".home_news_date_slider .swiper-container")[0], {
-			autoplay: false,
-			slidesPerView: "auto",
-			speed: 1600,
-			loop: false,
-			spaceBetween: 0
-		});
+	// $(".home_news_section").each(function(){
+	// 	var home_news_year_slider = new Swiper($(this).find(".home_news_year_slider .swiper-container")[0], {
+	// 		autoplay: false,
+	// 		slidesPerView: 1,
+	// 		speed: 1600,
+	// 		loop: false,
+	// 		spaceBetween: 0
+	// 	});
+	// 	var home_news_date_slider = new Swiper($(this).find(".home_news_date_slider .swiper-container")[0], {
+	// 		autoplay: false,
+	// 		slidesPerView: "auto",
+	// 		speed: 1600,
+	// 		loop: false,
+	// 		spaceBetween: 0
+	// 	});
 		
 
-		$(this).find(".next_btn").click(function(){
-			home_news_date_slider.slideNext()
-		})
+	// 	$(this).find(".next_btn").click(function(){
+	// 		home_news_date_slider.slideNext()
+	// 	})
 
-		$(this).find(".prev_btn").click(function(){
-			home_news_date_slider.slidePrev()
-		})
+	// 	$(this).find(".prev_btn").click(function(){
+	// 		home_news_date_slider.slidePrev()
+	// 	})
 
 
 		
-	});
+	// });
 		
 
 	// $(".filter_dropdown").each(function(){
