@@ -106,7 +106,16 @@ if (have_posts()) :
 													<a href="#"
 														@click="selectFilter('courseType', '<?php echo esc_js($type->slug); ?>', '<?php echo esc_js($type->name); ?>')"
 														:class="filters.courseType === '<?php echo esc_js($type->slug); ?>' ? 'active' : ''">
-														<?php echo esc_html($type->name); ?>
+														<?php 
+															if(pll_current_language() == 'tc') {
+																$ctermfullname = get_field('tc_name', 'course_type_' .$type->term_id);
+															}elseif(pll_current_language() == 'sc'){
+																$ctermfullname = get_field('sc_name', 'course_type_' .$type->term_id);
+															}else{
+																$ctermfullname = get_field('en_name', 'course_type_' .$type->term_id);
+															};
+															echo ($ctermfullname); 
+														?>
 													</a>
 												</li>
 											<?php endforeach; ?>
