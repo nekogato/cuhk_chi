@@ -1484,26 +1484,31 @@ function cuhk_multilang_text($tc_text, $sc_text = '', $en_text = '') {
     }
 }
 
-add_filter('manage_profile_posts_columns', 'reorder_profile_columns');
-function reorder_profile_columns($columns) {
-    $new = [];
-    foreach ($columns as $key => $label) {
-        if ($key === 'cb') $new[$key] = $label; // Keep checkbox first
-        $new['photo'] = 'Photo'; // Insert photo column
-        if ($key === 'title') $new[$key] = $label;
+add_filter('manage_profile_posts_columns', 'add_profile_photo_column');
+function add_profile_photo_column($columns) {
+    // Insert "Photo" column just before "Title" (optional)
+    $new_columns = [];
+
+    foreach ($columns as $key => $value) {
+        if ($key === 'cb') {
+            $new_columns[$key] = $value;
+            $new_columns['photo'] = 'Photo'; // Insert photo after checkbox
+        } else {
+            $new_columns[$key] = $value;
+        }
     }
-    return $new;
+
+    return $new_columns;
 }
+
 
 add_action('manage_profile_posts_custom_column', 'show_profile_photo_column', 10, 2);
 function show_profile_photo_column($column, $post_id) {
     if ($column === 'photo') {
-        $image = get_field('photo', $post_id); // ACF image field
-
+        $image = get_field('photo', $post_id);
         if ($image) {
-            // If ACF field returns array (default setting)
             $url = is_array($image) ? $image['sizes']['thumbnail'] : wp_get_attachment_image_url($image, 'thumbnail');
-            echo '<img src="' . esc_url($url) . '" style="max-height: 50px; width: auto;" />';
+            echo '<img src="' . esc_url($url) . '" style="max-height: 50px;" />';
         } else {
             echo '—';
         }
