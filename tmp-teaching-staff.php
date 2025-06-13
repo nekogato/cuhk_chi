@@ -84,43 +84,29 @@ if ($teaching_staff_term) {
 			<div class="student_list">
 				<div class="student_list_item_wrapper">
 					<template x-for="staff in staffMembers" :key="staff.id">
-						<template x-if="!!staff.has_detail">
-							<div class="student_list_item scrollin scrollin_fast scrollinopacity ">
-								<!-- If staff has detail page, make entire item clickable to detail page -->
-								<template x-if="staff.photo">
-									<a class="photo" :href="staff.permalink">
-										<img :src="staff.photo.sizes.s" :alt="staff.photo.alt" />
-									</a>
-								</template>
-								<div class="text">
-									<div class="name text5">
-										<a x-text="staff.title"></a>
-									</div>
-									<div class="title" x-text="staff.position"></div>
-									<template x-if="staff.contact_info">
-										<div class="email" x-html="staff.emails.join(' / ')"></div>
-									</template>
-								</div>
-							</div>
-						</template>
+						<div class="student_list_item scrollin scrollin_fast scrollinopacity">
+							<template x-if="staff.has_detail">
+								<a class="photo" :href="staff.permalink" x-show="staff.photo">
+									<img :src="staff.photo.sizes.s" :alt="staff.photo.alt" />
+								</a>
+							</template>
 
-						<!-- If staff has no detail page, make entire item clickable to show popup -->
-						<template x-if="!staff.has_detail">
-							<div class="student_list_item scrollin scrollin_fast scrollinbottom">
-								<template x-if="staff.photo">
-									<a class="photo" @click="showStaffPopup(staff)">
-										<img :src="staff.photo.sizes.s" :alt="staff.photo.alt">
-									</a>
-								</template>
-								<div class="text">
-									<div class="name text5" x-text="staff.title"></div>
-									<div class="title" x-text="staff.position"></div>
-									<template x-if="staff.contact_info">
-										<div class="email" x-html="staff.emails.join(' / ')"></div>
-									</template>
+							<template x-if="!staff.has_detail">
+								<div class="photo" @click="showStaffPopup(staff)" x-show="staff.photo">
+									<img :src="staff.photo.sizes.s" :alt="staff.photo.alt">
 								</div>
+							</template>
+
+							<div class="text" @click="!staff.has_detail && showStaffPopup(staff)">
+								<div class="name text5">
+									<a x-text="staff.title" :href="staff.has_detail ? staff.permalink : null"></a>
+								</div>
+								<div class="title" x-text="staff.position"></div>
+								<template x-if="staff.contact_info">
+									<div class="email" x-html="staff.emails.join(' / ')"></div>
+								</template>
 							</div>
-						</template>
+						</div>
 					</template>
 				</div>
 			</div>
