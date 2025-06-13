@@ -35,7 +35,7 @@ if ($teaching_staff_term) {
 				<div class="section_center_content small_section_center_content scrollin scrollinbottom">
 					<div class="filter_menu_content full_filter_menu_content">
 						<div class="alphabet_list_wrapper">
-							<div class="title"><?php pll_e('職位分類'); ?></div>
+							<div class="title"><?php echo cuhk_multilang_text("職位分類","","Category"); ?></div>
 							<ul class="alphabet_list">
 								<?php if (!empty($child_terms) && !is_wp_error($child_terms)) : ?>
 								<ul class="alphabet_list">
@@ -133,7 +133,7 @@ if ($teaching_staff_term) {
 				<div class="load_more_wrapper">
 					<a class="load_more_btn text5" @click="loadMore">
 						<div class="icon"></div>
-						<div class="text"><?php pll_e('Load more'); ?></div>
+						<div class="text"><?php echo cuhk_multilang_text("載入更多","","Load more"); ?></div>
 					</a>
 				</div>
 			</template>
