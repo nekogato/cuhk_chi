@@ -75,7 +75,7 @@ get_header(); ?>
 																	</div>
 																	<?php if ($slide_button_text && $slide_button_link) : ?>
 																		<div class="btn_wrapper">
-																			<a href="<?php echo $slide_button_link; ?>" class="round_btn"><?php echo $slide_button_text; ?></a>
+																			<a href="<?php echo $slide_button_link['url']; ?>" class="round_btn" <?php if ($slide_button_link['target']) echo 'target="' . $slide_button_link['target'] . '"'; ?>><?php echo $slide_button_text; ?></a>
 																		</div>
 																	<?php endif; ?>
 																</div>
