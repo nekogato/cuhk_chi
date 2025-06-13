@@ -264,7 +264,6 @@ if ($teaching_staff_term) {
 
 					const data = await response.json();
 					if (data.success) {
-						setTimeout(function(){
 							const newStaff = data.data.staff.map(staff => ({
 								...staff,
 								contact_info: this.formatContactInfo(staff)
@@ -277,28 +276,27 @@ if ($teaching_staff_term) {
 							}
 
 							this.hasMore = data.data.has_more;
-					$(".ajax_loading").stop().fadeOut();
+							$(".ajax_loading").stop().fadeOut();
 							setTimeout(function(){
 								doscroll();
 								$(".student_list_item_wrapper").height("auto")
 							},300)
-						},1200)
 					}
 				} catch (error) {
 					console.error('Error loading teaching staff:', error);
 					$(".ajax_loading").stop().fadeOut();
-						setTimeout(function(){
-							doscroll();
-							$(".student_list_item_wrapper").height("auto")
-						},300)
+					setTimeout(function(){
+						doscroll();
+						$(".student_list_item_wrapper").height("auto")
+					},300)
 				} finally {
 					this.loading = false;
 
 					$(".ajax_loading").stop().fadeOut();
-						setTimeout(function(){
-							doscroll();
-							$(".student_list_item_wrapper").height("auto")
-						},300)
+					setTimeout(function(){
+						doscroll();
+						$(".student_list_item_wrapper").height("auto")
+					},300)
 				}
 			},
 
