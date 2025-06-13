@@ -1372,6 +1372,13 @@ add_action('template_redirect', function () {
 			exit;
 		}
 	}
+	if (is_singular('mphil_phd_research')) {
+		$target_page_id = get_translated_page_by_slug('mphil-phd-research');
+		if ($target_page_id) {
+			wp_redirect(get_permalink($target_page_id), 301);
+			exit;
+		}
+	}
 });
 
 
