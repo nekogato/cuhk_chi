@@ -307,12 +307,16 @@ get_header(); ?>
 				// Initialize year slider
 				this.yearSwiper = new Swiper('.home_news_year_slider .swiper-container', {
 					autoplay: false,
-					slidesPerView: 'auto',
+					slidesPerView: 1,
 					speed: 1600,
 					loop: false,
-					spaceBetween: 0,
+					spaceBetween: 30,
 					grabCursor: true,
-					allowTouchMove: true
+					allowTouchMove: true,
+					freeMode: true,
+					freeModeMomentum: true,
+					freeModeMomentumRatio: 0.5,
+					freeModeSticky: true
 				});
 
 				// Initialize date slider
