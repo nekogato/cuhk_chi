@@ -101,13 +101,15 @@ if (have_posts()) :
 								<div class="filter_dropdown text5" x-show="dropdowns.type" @click.away="dropdowns.type = false">
 									<ul>
 										<?php if (!empty($course_type)) : ?>
+											<li>
+												<a href="#"
+													@click="selectFilter('courseType', '', '<?php echo cuhk_multilang_text("所有分類","","All Course Type"); ?>')"
+													:class="filters.courseType === '' ? 'active' : ''">
+													<?php echo cuhk_multilang_text("所有分類","","All Course Type"); ?>
+												</a>
+											</li>
 											<?php foreach ($course_type as $type) : ?>
 												<li>
-													<a href="#"
-														@click="selectFilter('courseType', '', '<?php echo cuhk_multilang_text("所有分類","","All Course Type"); ?>')"
-														:class="filters.courseType === '' ? 'active' : ''">
-														<?php echo cuhk_multilang_text("所有分類","","All Course Type"); ?>
-													</a>
 													<a href="#"
 														@click="selectFilter('courseType', '<?php echo esc_js($type->slug); ?>', '<?php echo esc_js($type->name); ?>')"
 														:class="filters.courseType === '<?php echo esc_js($type->slug); ?>' ? 'active' : ''">
@@ -145,7 +147,7 @@ if (have_posts()) :
 				<div class="section section_content filter_detail_section scrollin_p" x-show="section.courses.length > 0">
 					<div class="filter_course_type_name section_center_content scrollin scrollinbottom small_section_center_content text3" x-text="section.name"></div>
 
-					<div class="section_center_content small_section_center_content filter_detail_flex_head mobile_hide2">
+					<div class="section_center_content small_section_center_content scrollin scrollinbottom filter_detail_flex_head mobile_hide2">
 						<div class="filter_detail_flex text7">
 							<div class="filter_detail_flex_item"><?php echo cuhk_multilang_text("課程編號","","Course Code"); ?></div>
 							<div class="filter_detail_flex_item"><?php echo cuhk_multilang_text("課程名稱","","Course Title"); ?></div>
