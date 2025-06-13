@@ -3950,6 +3950,14 @@ justify-content: center;
     border-left:1px solid #6f6ea6;
 }
 
+.student_list_item > .text a{
+    color:#6f6ea6;
+}
+
+.student_list_item > .text a:hover{
+    color:#009594;
+}
+
 .student_list_item > .text > .name{
     color:#6f6ea6;
     font-weight: 600;

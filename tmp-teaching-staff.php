@@ -102,8 +102,15 @@ if ($teaching_staff_term) {
 									<a x-text="staff.title" :href="staff.has_detail ? staff.permalink : null"></a>
 								</div>
 								<div class="title" x-text="staff.position"></div>
-								<template x-if="staff.contact_info">
-									<div class="email" x-html="staff.emails.join(' / ')"></div>
+								<template x-if="staff.emails && staff.emails.length">
+									<div class="email">
+										<template x-for="(email, index) in staff.emails" :key="email">
+											<span>
+												<a class="email_link" :href="'mailto:' + email" x-text="email"></a>
+												<span x-show="index < staff.emails.length - 1"> / </span>
+											</span>
+										</template>
+									</div>
 								</template>
 							</div>
 						</div>
