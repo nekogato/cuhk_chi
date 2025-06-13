@@ -194,9 +194,7 @@ get_header(); ?>
 											<template x-if="dateGroup.length > 2">
 												<div class="news_item more_items">
 													<div class="news_item_spacing">
-														<div class="text">
-															<?php echo cuhk_multilang_text("還有 " + (dateGroup . length - 2) + " 則消息", "还有 " + (dateGroup . length - 2) + " 则消息", "+" + (dateGroup . length - 2) + " more items"); ?>
-														</div>
+														<div class="text" x-text="'<?php echo cuhk_multilang_text("還有 ", "还有 ", "+"); ?>' + (dateGroup.length - 2) + '<?php echo cuhk_multilang_text(" 則消息", " 则消息", " more items"); ?>'"></div>
 													</div>
 												</div>
 											</template>
