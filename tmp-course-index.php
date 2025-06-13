@@ -302,6 +302,7 @@ if (have_posts()) :
 							this.courseSections = [];
 						} finally {
 							this.loading = false;
+							doscroll();
 						}
 					}
 
