@@ -347,7 +347,19 @@ if ($teaching_staff_term) {
 			showStaffPopup(staff) {
 				this.currentStaff = staff;
 				// Wait for Alpine to update the DOM
+
 				this.$nextTick(() => {
+					$(".people_detail_text").each(function () {
+						var $this = $(this);
+
+						var ps  = new PerfectScrollbar($(this)[0],{
+							suppressScrollX:true,
+							scrollYMarginOffset:20
+						});
+
+						scrollArr.push(ps)
+					});
+					
 					jQuery('.people_popup').fadeIn(300);
 				});
 			},

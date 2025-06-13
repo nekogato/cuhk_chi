@@ -3952,6 +3952,7 @@ justify-content: center;
 
 .student_list_item > .text a{
     color:#6f6ea6;
+    cursor: pointer;
 }
 
 .student_list_item > .text a:hover{
