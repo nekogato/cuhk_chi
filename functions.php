@@ -917,7 +917,7 @@ function load_courses()
 		while ($courses_query->have_posts()) {
 			$courses_query->the_post();
 
-			// Get course fields
+			// Get ACF fields
 			$course_code = get_field('course_code');
 			$course_title = get_field('Course_Title');
 			$language = get_field('language');
@@ -927,11 +927,11 @@ function load_courses()
 			$course_description = get_field('course_description');
 			$has_detail = get_field('has_detail');
 
-			// Lecturer
+			// Get lecturer
 			$lecturer = get_field('lecturer');
 			$lecturer_name = $lecturer ? get_the_title($lecturer->ID) : '';
 
-			// ✅ Define course data FIRST
+			// Prepare course data
 			$course_data = array(
 				'id' => get_the_ID(),
 				'course_code' => $course_code,
@@ -945,26 +945,48 @@ function load_courses()
 				'has_detail' => $has_detail
 			);
 
-			// ✅ Now group by all course_semester terms
+			// Get course_semester terms
 			$academic_terms = wp_get_post_terms(get_the_ID(), 'course_semester');
 
 			if (!empty($academic_terms) && !is_wp_error($academic_terms)) {
 				foreach ($academic_terms as $term) {
-					$course_category = $term->name;
+					$term_name = $term->name;
 
-					if (!isset($courses_by_category[$course_category])) {
-						$courses_by_category[$course_category] = array();
+					if (!isset($courses_by_category[$term_name])) {
+						$courses_by_category[$term_name] = array();
 					}
-					$courses_by_category[$course_category][] = $course_data;
+					$courses_by_category[$term_name][] = $course_data;
 				}
 			} else {
-				// If no terms, assign to "Other"
-				$course_category = pll__('Other');
-				if (!isset($courses_by_category[$course_category])) {
-					$courses_by_category[$course_category] = array();
+				// No term assigned
+				$other = pll__('Other');
+				if (!isset($courses_by_category[$other])) {
+					$courses_by_category[$other] = array();
 				}
-				$courses_by_category[$course_category][] = $course_data;
+				$courses_by_category[$other][] = $course_data;
 			}
+		}
+
+		// ✅ Reorder $courses_by_category based on course_semester term menu_order
+		$sorted_courses_by_category = [];
+		$ordered_terms = get_terms(array(
+			'taxonomy' => 'course_semester',
+			'hide_empty' => false,
+			'orderby' => 'term_order', // plugin must support this
+			'order' => 'ASC'
+		));
+
+		foreach ($ordered_terms as $term) {
+			$term_name = $term->name;
+			if (isset($courses_by_category[$term_name])) {
+				$sorted_courses_by_category[$term_name] = $courses_by_category[$term_name];
+			}
+		}
+
+		// Add "Other" to the end if present
+		$other = pll__('Other');
+		if (isset($courses_by_category[$other])) {
+			$sorted_courses_by_category[$other] = $courses_by_category[$other];
 		}
 
 
