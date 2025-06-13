@@ -783,6 +783,10 @@ justify-content: center;
     color:#62629b;
 }
 
+.resource_content_section{
+    padding-top: 0px;
+}
+
 .resource_content_section .section_expandable_list + .section_expandable_list{
     margin-top: 100px;
 }
