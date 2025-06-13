@@ -1472,3 +1472,43 @@ function cuhk_multilang_text($tc_text, $sc_text = '', $en_text = '') {
             return $en_text;
     }
 }
+
+function get_custom_taxonomy_field_columns_config() {
+    return [
+        'course_semester' => [
+            'tc_name' => '繁',
+            'sc_name' => '簡',
+            'en_name' => 'EN',
+        ],
+        'course_category' => [
+            'tc_name' => '繁',
+            'sc_name' => '簡',
+            'en_name' => 'EN',
+        ],
+        'course_type' => [
+            'tc_name' => '繁',
+            'sc_name' => '簡',
+            'en_name' => 'EN',
+        ],
+        // 之後繼續加
+    ];
+}
+
+foreach (get_custom_taxonomy_field_columns_config() as $taxonomy => $fields) {
+    // 增加欄位
+    add_filter("manage_edit-{$taxonomy}_columns", function($columns) use ($fields) {
+        foreach ($fields as $field => $label) {
+            $columns[$field] = $label;
+        }
+        return $columns;
+    });
+
+    // 顯示欄位內容
+    add_filter("manage_{$taxonomy}_custom_column", function($content, $column_name, $term_id) use ($fields, $taxonomy) {
+        if (array_key_exists($column_name, $fields)) {
+            $value = get_field($column_name, "{$taxonomy}_{$term_id}");
+            return $value ? esc_html($value) : '—';
+        }
+        return $content;
+    }, 10, 3);
+}

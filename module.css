@@ -3315,7 +3315,7 @@ justify-content: center;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center center;
+    object-position: top center;
 }
 
 .featured_news_box_section .news_box .date_wrapper{
