@@ -39,7 +39,7 @@ if (have_posts()) :
 			</div>
 		</div>
 
-		<div class="section section_content filter_menu_section resource_filter_menu_section scrollin scrollinbottom">
+		<div class="section section_content resource_content_section scrollin scrollinbottom">
 			
 
 				<?php if (have_rows('filter_categories')): ?>
@@ -47,13 +47,13 @@ if (have_posts()) :
 					while (have_rows('filter_categories')): the_row();
 						$category_name = get_sub_field('category_name');
 					?>
-						<div class="section_center_content small_section_center_content scrollin scrollinbottom">
-							<?php if ($category_name): ?>
-								<h2 class="section_title text1 scrollin scrollinbottom"><?php echo wp_kses_post($category_name); ?></h2>
-							<?php endif; ?>
-						</div>
 
 						<div class="section_expandable_list" >
+							<div class="section_expandable_list_title">
+								<div class="section_center_content small_section_center_content">
+									<h3><?php echo $category_name;?></h3>
+								</div>
+							</div>
 							<?php if (have_rows('download_groups')): ?>
 								<?php while (have_rows('download_groups')): the_row(); ?>
 									<?php

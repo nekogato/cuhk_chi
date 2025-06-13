@@ -778,6 +778,15 @@ justify-content: center;
     border-top:2px solid #ece6e5;
 }
 
+.section_expandable_list_title{
+    margin-bottom: 20px;
+    color:#62629b;
+}
+
+.resource_content_section .section_expandable_list + .section_expandable_list{
+    margin-top: 100px;
+}
+
 .announcement_title{
     display: flex;
     gap: 50px;
