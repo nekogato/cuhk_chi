@@ -1491,3 +1491,24 @@ function cuhk_multilang_text($tc_text, $sc_text = '', $en_text = '') {
             return $en_text;
     }
 }
+
+add_filter('manage_people_posts_columns', 'add_people_photo_column');
+function add_people_photo_column($columns) {
+    $columns['photo'] = 'Photo';
+    return $columns;
+}
+
+add_action('manage_people_posts_custom_column', 'show_people_photo_column', 10, 2);
+function show_people_photo_column($column, $post_id) {
+    if ($column === 'photo') {
+        $image = get_field('photo', $post_id); // ACF image field
+
+        if ($image) {
+            // If field returns array (default)
+            $url = is_array($image) ? $image['sizes']['thumbnail'] : wp_get_attachment_image_url($image, 'thumbnail');
+            echo '<img src="' . esc_url($url) . '" style="max-height: 50px; width: auto;" />';
+        } else {
+            echo '—';
+        }
+    }
+}
