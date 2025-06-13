@@ -440,9 +440,11 @@ get_header(); ?>
 															<?php if ($buttons) : ?>
 																<div class="btn_wrapper">
 																	<?php foreach ($buttons as $button) : ?>
-																		<a href="<?php echo $button['link']; ?>" class="<?php echo $button['style'] ?: 'round_btn'; ?>">
-																			<?php echo $button['text']; ?>
-																		</a>
+																		<?php if ($button['link']) : ?>
+																			<a href="<?php echo $button['link']['url']; ?>" class="<?php echo $button['style'] ?: 'round_btn'; ?>" <?php if ($button['link']['target']) echo 'target="' . $button['link']['target'] . '"'; ?>>
+																				<?php echo $button['text']; ?>
+																			</a>
+																		<?php endif; ?>
 																	<?php endforeach; ?>
 																</div>
 															<?php endif; ?>
