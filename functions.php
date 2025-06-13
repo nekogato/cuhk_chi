@@ -1663,11 +1663,11 @@ function load_home_news_ajax()
 			array(
 				'key' => 'start_date',
 				'value' => array(
-					date('Y-m-d', strtotime("$year-$month-01")),
-					date('Y-m-t', strtotime("$year-$month-01"))
+					date('Ymd', strtotime("$year-$month-01")),
+					date('Ymd', strtotime("$year-$month-t"))
 				),
 				'compare' => 'BETWEEN',
-				'type' => 'DATE'
+				'type' => 'NUMERIC'
 			)
 		),
 		'orderby' => 'meta_value',

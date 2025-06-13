@@ -116,6 +116,53 @@ get_header(); ?>
 
 
 <div class="section home_news_section scrollin_p" x-data="homeNewsSlider()">
+	<?php
+	// Query news and department_news
+	$news_args = array(
+		'post_type' => array('news', 'department_news'),
+		'posts_per_page' => -1,
+		'meta_query' => array(
+			array(
+				'key' => 'start_date',
+				'compare' => 'EXISTS'
+			)
+		),
+		'orderby' => 'meta_value',
+		'meta_key' => 'start_date',
+		'order' => 'DESC',
+		'post_status' => 'publish'
+	);
+
+	$news_query = new WP_Query($news_args);
+	$available_months = array();
+
+	if ($news_query->have_posts()) {
+		while ($news_query->have_posts()) {
+			$news_query->the_post();
+			$start_date = get_field('start_date');
+			if (!$start_date) continue;
+
+			// Extract month and year from YYYYMMDD format
+			$month = intval(substr($start_date, 4, 2));
+			$year = intval(substr($start_date, 0, 4));
+			$month_key = $year . str_pad($month, 2, '0', STR_PAD_LEFT);
+
+			if (!isset($available_months[$month_key])) {
+				$available_months[$month_key] = array(
+					'value' => $month,
+					'year' => $year,
+					'text' => pll_current_language() === 'en' ?
+						date('F', mktime(0, 0, 0, $month, 1)) :
+						date('n月', mktime(0, 0, 0, $month, 1))
+				);
+			}
+		}
+	}
+	wp_reset_postdata();
+
+	// Sort months in descending order
+	krsort($available_months);
+	?>
 	<img src="<?php bloginfo('template_directory'); ?>/images/ink_bg7.jpg" class="ink_bg7 scrollin scrollinbottom">
 	<div class="section_center_content small_section_center_content">
 		<div class="text_wrapper vertical_text_wrapper">
@@ -130,7 +177,7 @@ get_header(); ?>
 		</div>
 	</div>
 
-	<!-- Loading indicator moved outside -->
+	<!-- Loading indicator -->
 	<template x-if="loading">
 		<div class="home_news_loading">
 			<div class="section_center_content small_section_center_content">
@@ -153,11 +200,10 @@ get_header(); ?>
 					<div class="swiper-wrapper">
 						<template x-for="(month, index) in availableMonths" :key="index">
 							<div class="swiper-slide"
-								:class="{ 'active': selectedMonth === month.value }"
-								@click="selectMonth(month.value)">
+								:class="{ 'active': selectedMonth === month.value && selectedYear === month.year }"
+								@click="selectMonth(month.value, month.year)">
 								<div class="t_wrapper">
-									<div class="t1 text4"><span x-text="month.chinese"></span></div>
-									<div class="t2 text2" x-text="month.english"></div>
+									<div class="t1 text4"><span x-text="month.text"></span></div>
 								</div>
 							</div>
 						</template>
@@ -249,80 +295,17 @@ get_header(); ?>
 			groupedNews: {},
 			loading: false,
 			swiper: null,
-			availableMonths: [{
-					value: 1,
-					chinese: '一月',
-					english: 'January'
-				},
-				{
-					value: 2,
-					chinese: '二月',
-					english: 'February'
-				},
-				{
-					value: 3,
-					chinese: '三月',
-					english: 'March'
-				},
-				{
-					value: 4,
-					chinese: '四月',
-					english: 'April'
-				},
-				{
-					value: 5,
-					chinese: '五月',
-					english: 'May'
-				},
-				{
-					value: 6,
-					chinese: '六月',
-					english: 'June'
-				},
-				{
-					value: 7,
-					chinese: '七月',
-					english: 'July'
-				},
-				{
-					value: 8,
-					chinese: '八月',
-					english: 'August'
-				},
-				{
-					value: 9,
-					chinese: '九月',
-					english: 'September'
-				},
-				{
-					value: 10,
-					chinese: '十月',
-					english: 'October'
-				},
-				{
-					value: 11,
-					chinese: '十一月',
-					english: 'November'
-				},
-				{
-					value: 12,
-					chinese: '十二月',
-					english: 'December'
-				}
-			],
+			availableMonths: <?php echo json_encode(array_values($available_months)); ?>,
 
 			init() {
 				this.loadNews();
 			},
 
 			formatDate(dateString) {
-				// Check if dateString is valid
-				if (!dateString) return '';
-
-				// Parse the date string (assuming YYYY-MM-DD format)
-				const [year, month, day] = dateString.split('-').map(Number);
-				if (!year || !month || !day) return '';
-
+				// Parse YYYYMMDD format
+				const year = dateString.substring(0, 4);
+				const month = dateString.substring(4, 6);
+				const day = dateString.substring(6, 8);
 				const date = new Date(year, month - 1, day);
 				const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 				const dayName = days[date.getDay()];
@@ -342,20 +325,13 @@ get_header(); ?>
 							action: 'load_home_news',
 							nonce: '<?php echo wp_create_nonce('load_home_news_nonce'); ?>',
 							month: this.selectedMonth,
-							year: this.selectedYear,
-							use_start_date: true // Add flag to indicate we want to use start_date
+							year: this.selectedYear
 						})
 					});
 
 					const data = await response.json();
 					if (data.success) {
-						// Sort the grouped news by start_date
-						this.groupedNews = Object.fromEntries(
-							Object.entries(data.data.grouped_news)
-							.sort(([dateA], [dateB]) => new Date(dateB) - new Date(dateA))
-						);
-
-						// Reinitialize swiper after data loads
+						this.groupedNews = data.data.grouped_news;
 						this.$nextTick(() => {
 							this.initSwiper();
 						});
@@ -367,9 +343,10 @@ get_header(); ?>
 				}
 			},
 
-			selectMonth(month) {
-				if (this.selectedMonth === month) return;
+			selectMonth(month, year) {
+				if (this.selectedMonth === month && this.selectedYear === year) return;
 				this.selectedMonth = month;
+				this.selectedYear = year;
 				this.loadNews();
 			},
 
@@ -378,7 +355,6 @@ get_header(); ?>
 					this.swiper.destroy();
 				}
 
-				// Initialize swiper for news slides
 				this.swiper = new Swiper('.home_news_date_slider .swiper-container', {
 					slidesPerView: 'auto',
 					spaceBetween: 20,
