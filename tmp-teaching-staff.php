@@ -272,6 +272,7 @@ if ($teaching_staff_term) {
 
 					const data = await response.json();
 					if (data.success) {
+						console.log(data.data.staff)
 						const newStaff = data.data.staff.map(staff => ({
 							...staff,
 							contact_info: this.formatContactInfo(staff)
