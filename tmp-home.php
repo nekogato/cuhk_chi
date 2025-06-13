@@ -130,7 +130,23 @@ get_header(); ?>
 		</div>
 	</div>
 
-	<div class="home_news_slider_wrapper">
+	<!-- Loading indicator moved outside -->
+	<template x-if="loading">
+		<div class="home_news_loading">
+			<div class="section_center_content small_section_center_content">
+				<div class="date text4"><?php echo cuhk_multilang_text("載入中...", "载入中...", "Loading..."); ?></div>
+				<div class="news_item_wrapper">
+					<div class="news_item">
+						<div class="news_item_spacing">
+							<div class="text"><?php echo cuhk_multilang_text("正在載入消息...", "正在载入消息...", "Loading news..."); ?></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</template>
+
+	<div class="home_news_slider_wrapper" x-show="!loading">
 		<div class="home_news_year_slider">
 			<div class="section_center_content small_section_center_content scrollin scrollinbottom">
 				<div class="swiper-container swiper">
@@ -155,7 +171,8 @@ get_header(); ?>
 				<div class="home_news_date_slider_inwrapper">
 					<div class="home_news_date_slider">
 						<div class="swiper-container swiper">
-							<div class="swiper-wrapper" x-show="!loading">
+							<div class="swiper-wrapper">
+								<!-- News slides - Each date is one slide -->
 								<template x-for="(dateGroup, dateKey) in groupedNews" :key="dateKey">
 									<div class="swiper-slide">
 										<div class="date text4" x-text="dateKey"></div>
@@ -190,20 +207,6 @@ get_header(); ?>
 										</div>
 									</div>
 								</template>
-							</div>
-
-							<!-- Loading indicator -->
-							<div class="swiper-wrapper" x-show="loading" x-cloak>
-								<div class="swiper-slide">
-									<div class="date text4"><?php echo cuhk_multilang_text("載入中...", "载入中...", "Loading..."); ?></div>
-									<div class="news_item_wrapper">
-										<div class="news_item">
-											<div class="news_item_spacing">
-												<div class="text"><?php echo cuhk_multilang_text("正在載入消息...", "正在载入消息...", "Loading news..."); ?></div>
-											</div>
-										</div>
-									</div>
-								</div>
 							</div>
 						</div>
 						<div class="prev_btn" @click="previousSlide()"></div>
