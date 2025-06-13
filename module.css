@@ -3548,6 +3548,10 @@ justify-content: center;
     flex-wrap: wrap;
 }
 
+.alphabet_list_wrapper .alphabet_list a{
+    cursor: pointer;
+}
+
 .alphabet_list_wrapper .alphabet_list a:hover{
     color:#63629B
 }
