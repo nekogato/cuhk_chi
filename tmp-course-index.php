@@ -290,16 +290,27 @@ if (have_posts()) :
 
 							if (data.success) {
 								this.courseSections = data.data.course_sections;
+								setTimeout(() => {
+									doscroll();
+								}, 300);
 							} else {
 								console.error('Error loading courses:', data);
 								this.courseSections = [];
+								setTimeout(() => {
+									doscroll();
+								}, 300);
 							}
 						} catch (error) {
 							console.error('Error loading courses:', error);
 							this.courseSections = [];
+							setTimeout(() => {
+								doscroll();
+							}, 300);
 						} finally {
 							this.loading = false;
-							doscroll();
+							setTimeout(() => {
+								doscroll();
+							}, 300);
 						}
 					}
 
