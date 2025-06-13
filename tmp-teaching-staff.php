@@ -84,7 +84,7 @@ if ($teaching_staff_term) {
 			<div class="student_list">
 				<div class="student_list_item_wrapper">
 					<template x-for="staff in staffMembers" :key="staff.id">
-						<template x-if="staff.has_detail">
+						<template x-if="staff.has_detail === true">
 							<div class="student_list_item scrollin scrollin_fast scrollinopacity ">
 								<!-- If staff has detail page, make entire item clickable to detail page -->
 								<template x-if="staff.photo">
@@ -105,7 +105,7 @@ if ($teaching_staff_term) {
 						</template>
 
 						<!-- If staff has no detail page, make entire item clickable to show popup -->
-						<template x-if="!staff.has_detail">
+						<template x-if="staff.has_detail !== true">
 							<div class="student_list_item scrollin scrollin_fast scrollinbottom">
 								<template x-if="staff.photo">
 									<a class="photo" @click="showStaffPopup(staff)">
