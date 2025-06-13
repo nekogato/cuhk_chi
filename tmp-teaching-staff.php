@@ -36,25 +36,23 @@ if ($teaching_staff_term) {
 					<div class="filter_menu_content full_filter_menu_content">
 						<div class="alphabet_list_wrapper big_alphabet_list_wrapper">
 							<div class="title"><?php echo cuhk_multilang_text("職位分類","","Category"); ?></div>
+							<?php if (!empty($child_terms) && !is_wp_error($child_terms)) : ?>
 							<ul class="alphabet_list">
-								<?php if (!empty($child_terms) && !is_wp_error($child_terms)) : ?>
-								<ul class="alphabet_list">
-									<?php foreach ($child_terms as $term): ?>
-										<li>
-											<a 
-											@click.prevent="filterByPosition('<?php echo esc_attr($term->slug); ?>')"
-											:class="{ 'active': selectedPosition === '<?php echo esc_js($term->slug); ?>' }">
-											<?php
-												$lang = pll_current_language();
-												$ctermfullname = get_field("{$lang}_name", 'people_category_' . $term->term_id);
-												echo esc_html($ctermfullname);
-											?>
-											</a>
-										</li>
-									<?php endforeach; ?>
-								</ul>
-								<?php endif; ?>
+								<?php foreach ($child_terms as $term): ?>
+									<li>
+										<a 
+										@click.prevent="filterByPosition('<?php echo esc_attr($term->slug); ?>')"
+										:class="{ 'active': selectedPosition === '<?php echo esc_js($term->slug); ?>' }">
+										<?php
+											$lang = pll_current_language();
+											$ctermfullname = get_field("{$lang}_name", 'people_category_' . $term->term_id);
+											echo esc_html($ctermfullname);
+										?>
+										</a>
+									</li>
+								<?php endforeach; ?>
 							</ul>
+							<?php endif; ?>
 						</div>
 					</div>
 				</div>
