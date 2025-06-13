@@ -62,17 +62,7 @@ if (pll_current_language() == 'sc') {
 
 						<div class="dropdown_menu_list">
 							<div class="t1 text5"><a><?php echo $group_name;?></a></div>
-							<ul>
-								<?php
-								while( have_rows('menu') ) : the_row();
-									$text = get_sub_field('text');
-									$url = get_sub_field('url');
-									?>
-									<li><a href="<?php echo $url;?>"><?php echo $text;?></a></li>
-									<?php
-								endwhile;
-								?>
-							</ul>
+							
 							</div>
 						</div>
 
@@ -84,7 +74,7 @@ if (pll_current_language() == 'sc') {
 				<?php
 			endif;
 			?>
-			<?php
+			<!-- <?php
 			if( have_rows('column_2_menu', 'option') ):
 				?>
 				<div class="dropdown_col">
@@ -117,8 +107,8 @@ if (pll_current_language() == 'sc') {
 				</div>
 				<?php
 			endif;
-			?>
-			<?php
+			?> -->
+			<!-- <?php
 			if( have_rows('column_3_menu', 'option') ):
 				?>
 				<div class="dropdown_col">
@@ -151,7 +141,7 @@ if (pll_current_language() == 'sc') {
 				</div>
 				<?php
 			endif;
-			?>
+			?> -->
 			<div class="dropdown_col">
 				<div class="dropdown_department">
 					<div class="dropdown_department_top">
