@@ -454,8 +454,8 @@ get_header(); ?>
 											</div>
 										</div>
 									</div>
-									<div class="big_num text2"><?php echo sprintf('%02d', $counter); ?></div>
 								</div>
+								<div class="big_num text2"><?php echo sprintf('%02d', $counter); ?></div>
 							</div>
 						</div>
 				<?php
