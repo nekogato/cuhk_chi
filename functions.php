@@ -1484,19 +1484,24 @@ function cuhk_multilang_text($tc_text, $sc_text = '', $en_text = '') {
     }
 }
 
-add_filter('manage_people_posts_columns', 'add_people_photo_column');
-function add_people_photo_column($columns) {
-    $columns['photo'] = 'Photo';
-    return $columns;
+add_filter('manage_profile_posts_columns', 'reorder_profile_columns');
+function reorder_profile_columns($columns) {
+    $new = [];
+    foreach ($columns as $key => $label) {
+        if ($key === 'cb') $new[$key] = $label; // Keep checkbox first
+        $new['photo'] = 'Photo'; // Insert photo column
+        if ($key === 'title') $new[$key] = $label;
+    }
+    return $new;
 }
 
-add_action('manage_people_posts_custom_column', 'show_people_photo_column', 10, 2);
-function show_people_photo_column($column, $post_id) {
+add_action('manage_profile_posts_custom_column', 'show_profile_photo_column', 10, 2);
+function show_profile_photo_column($column, $post_id) {
     if ($column === 'photo') {
         $image = get_field('photo', $post_id); // ACF image field
 
         if ($image) {
-            // If field returns array (default)
+            // If ACF field returns array (default setting)
             $url = is_array($image) ? $image['sizes']['thumbnail'] : wp_get_attachment_image_url($image, 'thumbnail');
             echo '<img src="' . esc_url($url) . '" style="max-height: 50px; width: auto;" />';
         } else {
