@@ -264,25 +264,23 @@ if ($teaching_staff_term) {
 
 					const data = await response.json();
 					if (data.success) {
+						const newStaff = data.data.staff.map(staff => ({
+							...staff,
+							contact_info: this.formatContactInfo(staff)
+						}));
+
+						if (this.page === 1) {
+							this.staffMembers = newStaff;
+						} else {
+							this.staffMembers = [...this.staffMembers, ...newStaff];
+						}
+
+						this.hasMore = data.data.has_more;
+						$(".ajax_loading").fadeOut();
 						setTimeout(function(){
-							const newStaff = data.data.staff.map(staff => ({
-								...staff,
-								contact_info: this.formatContactInfo(staff)
-							}));
-
-							if (this.page === 1) {
-								this.staffMembers = newStaff;
-							} else {
-								this.staffMembers = [...this.staffMembers, ...newStaff];
-							}
-
-							this.hasMore = data.data.has_more;
-							$(".ajax_loading").fadeOut();
-							setTimeout(function(){
-								doscroll();
-								$(".student_list_item_wrapper").height("auto")
-							},300)
-						},1200)
+							doscroll();
+							$(".student_list_item_wrapper").height("auto")
+						},300)
 					}
 				} catch (error) {
 					console.error('Error loading teaching staff:', error);
