@@ -1,0 +1,469 @@
+<?php
+/*
+Template Name: Home Page
+*/
+
+get_header(); ?>
+
+<div class="bg_video_wrapper">
+	<video id="video1" src="<?php bloginfo('template_directory'); ?>/video/3.mp4" muted playsinline></video>
+</div>
+
+<div class="section home_top_section" id="section1">
+	<div class="section_center_content small_section_center_content scrollin scrollinbottom">
+		<h1 class="text text0 scrollin scrollinbottom">
+			<?php
+			$home_title = get_field('home_title');
+			if ($home_title) {
+				echo $home_title;
+			}
+			?>
+			<div class="logo scrollin scrollinbottom"><img src="<?php bloginfo('template_directory'); ?>/images/chi_logo.png" alt="<?php echo cuhk_multilang_text("中文系標誌", "中文系標誌", "Chinese Department Logo"); ?>"></div>
+		</h1>
+	</div>
+</div>
+
+<div class="section home_about_slider_section ">
+	<div class="section_center_content small_section_center_content">
+		<div class="col_wrapper scrollin_p">
+			<div class="flex row">
+				<div class="col2 col">
+					<div class="col_spacing scrollin scrollinbottom">
+						<div class="text_wrapper vertical_text_wrapper">
+							<div class="text vertical_text">
+								<h1 class="project_title"><span><?php
+																$about_section_title = get_field('about_section_title');
+																if ($about_section_title) {
+																	echo $about_section_title;
+																}
+																?></span></h1>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col10 col">
+					<div class="col_spacing scrollin scrollinbottom">
+						<div class="home_about_slider">
+							<div class="swiper-container swiper">
+								<div class="swiper-wrapper">
+									<?php
+									if (have_rows('about_slider')) :
+										while (have_rows('about_slider')) : the_row();
+											$slide_title = get_sub_field('slide_title');
+											$slide_content = get_sub_field('slide_content');
+											$slide_image = get_sub_field('slide_image');
+											$slide_button_text = get_sub_field('slide_button_text');
+											$slide_button_link = get_sub_field('slide_button_link');
+											$slide_ink_image = get_sub_field('slide_ink_image');
+									?>
+											<div class="swiper-slide">
+												<div class="col_wrapper ">
+													<div class="flex row">
+														<div class="col6 col">
+															<div class="col_spacing ">
+																<div class="text_wrapper">
+																	<div class="text free_text text5">
+																		<?php if ($slide_title) : ?>
+																			<h4><?php echo $slide_title; ?></h4>
+																		<?php endif; ?>
+																		<?php if ($slide_content) : ?>
+																			<?php echo $slide_content; ?>
+																		<?php endif; ?>
+																		<?php if ($slide_image) : ?>
+																			<p><img src="<?php echo $slide_image['url']; ?>" alt="<?php echo $slide_image['alt']; ?>"></p>
+																		<?php endif; ?>
+																	</div>
+																	<?php if ($slide_button_text && $slide_button_link) : ?>
+																		<div class="btn_wrapper">
+																			<a href="<?php echo $slide_button_link; ?>" class="round_btn"><?php echo $slide_button_text; ?></a>
+																		</div>
+																	<?php endif; ?>
+																</div>
+															</div>
+														</div>
+														<div class="col6 col">
+															<div class="col_spacing ">
+																<div class="ink_image scrollin scrollinbottom">
+																	<?php if ($slide_ink_image) : ?>
+																		<img src="<?php echo $slide_ink_image['url']; ?>" alt="<?php echo $slide_ink_image['alt']; ?>">
+																	<?php else : ?>
+																		<img src="<?php bloginfo('template_directory'); ?>/images/home_slider_ink1.png" alt="<?php echo cuhk_multilang_text("水墨設計", "水墨设计", "Ink Design"); ?>">
+																	<?php endif; ?>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+									<?php
+										endwhile;
+									endif;
+									?>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="nav_wrapper scrollin scrollinbottom">
+				<div class="prev_btn"></div>
+				<div class="next_btn"></div>
+				<div class="dot_wrapper"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="section home_news_section scrollin_p" x-data="homeNewsSlider()">
+	<img src="<?php bloginfo('template_directory'); ?>/images/ink_bg7.jpg" class="ink_bg7 scrollin scrollinbottom">
+	<div class="section_center_content small_section_center_content">
+		<div class="text_wrapper vertical_text_wrapper">
+			<div class="text vertical_text scrollin scrollinbottom">
+				<h1 class="project_title"><span><?php
+												$news_section_title = get_field('news_section_title');
+												if ($news_section_title) {
+													echo $news_section_title;
+												}
+												?></span></h1>
+			</div>
+		</div>
+	</div>
+
+	<div class="home_news_slider_wrapper">
+		<div class="home_news_year_slider">
+			<div class="section_center_content small_section_center_content scrollin scrollinbottom">
+				<div class="swiper-container swiper">
+					<div class="swiper-wrapper">
+						<template x-for="(month, index) in availableMonths" :key="index">
+							<div class="swiper-slide"
+								:class="{ 'active': selectedMonth === month.value }"
+								@click="selectMonth(month.value)">
+								<div class="t_wrapper">
+									<div class="t1 text4"><span x-text="month.chinese"></span></div>
+									<div class="t2 text2" x-text="month.english"></div>
+								</div>
+							</div>
+						</template>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="home_news_date_slider_wrapper">
+			<div class="section_center_content small_section_center_content scrollin scrollinbottom">
+				<div class="home_news_date_slider_inwrapper">
+					<div class="home_news_date_slider">
+						<div class="swiper-container swiper">
+							<div class="swiper-wrapper" x-show="!loading">
+								<template x-for="(dateGroup, dateKey) in groupedNews" :key="dateKey">
+									<div class="swiper-slide">
+										<div class="date text4" x-text="dateKey"></div>
+										<div class="news_item_wrapper">
+											<template x-for="newsItem in dateGroup" :key="newsItem.id">
+												<div class="news_item">
+													<div class="news_item_spacing">
+														<a :href="newsItem.link">
+															<img :src="newsItem.image" :alt="newsItem.title">
+															<div class="text" x-text="newsItem.title"></div>
+														</a>
+														<div class="cat_icon"
+															:class="newsItem.post_type === 'news' ? 'bg_color2' : 'cat_circle bg_color1'">
+														</div>
+													</div>
+												</div>
+											</template>
+										</div>
+									</div>
+								</template>
+
+								<!-- No news message -->
+								<template x-if="Object.keys(groupedNews).length === 0 && !loading">
+									<div class="swiper-slide">
+										<div class="date text4"><?php echo cuhk_multilang_text("暫無消息", "暂无消息", "No News"); ?></div>
+										<div class="news_item_wrapper">
+											<div class="news_item">
+												<div class="news_item_spacing">
+													<div class="text"><?php echo cuhk_multilang_text("本月暫無消息", "本月暂无消息", "No news this month"); ?></div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</template>
+							</div>
+
+							<!-- Loading indicator -->
+							<div class="swiper-wrapper" x-show="loading" x-cloak>
+								<div class="swiper-slide">
+									<div class="date text4"><?php echo cuhk_multilang_text("載入中...", "载入中...", "Loading..."); ?></div>
+									<div class="news_item_wrapper">
+										<div class="news_item">
+											<div class="news_item_spacing">
+												<div class="text"><?php echo cuhk_multilang_text("正在載入消息...", "正在载入消息...", "Loading news..."); ?></div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="prev_btn" @click="previousSlide()"></div>
+						<div class="next_btn" @click="nextSlide()"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="home_news_slider_bottom">
+			<div class="section_center_content small_section_center_content">
+				<div class="cat_legend">
+					<div><?php echo cuhk_multilang_text("資訊", "资讯", "Information"); ?></div>
+					<div class="cat_legend_item_wrapper text5">
+						<div class="cat_legend_item">
+							<div class="cat_icon bg_color2"></div>
+							<div class="text"><?php echo cuhk_multilang_text("教學消息", "教学消息", "Teaching News"); ?></div>
+						</div>
+						<div class="cat_legend_item">
+							<div class="cat_icon cat_circle bg_color1"></div>
+							<div class="text"><?php echo cuhk_multilang_text("學系消息", "学系消息", "Department News"); ?></div>
+						</div>
+					</div>
+				</div>
+				<div class="btn_wrapper">
+					<a href="#" class="round_btn"><?php echo cuhk_multilang_text("查看完整日曆", "查看完整日历", "View Full Calendar"); ?></a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	var ajaxurl = '<?php echo admin_url('admin-ajax.php'); ?>';
+
+	function homeNewsSlider() {
+		return {
+			selectedMonth: <?php echo date('n'); ?>, // Current month
+			selectedYear: <?php echo date('Y'); ?>, // Current year
+			groupedNews: {},
+			loading: false,
+			swiper: null,
+			availableMonths: [{
+					value: 1,
+					chinese: '一月',
+					english: 'January'
+				},
+				{
+					value: 2,
+					chinese: '二月',
+					english: 'February'
+				},
+				{
+					value: 3,
+					chinese: '三月',
+					english: 'March'
+				},
+				{
+					value: 4,
+					chinese: '四月',
+					english: 'April'
+				},
+				{
+					value: 5,
+					chinese: '五月',
+					english: 'May'
+				},
+				{
+					value: 6,
+					chinese: '六月',
+					english: 'June'
+				},
+				{
+					value: 7,
+					chinese: '七月',
+					english: 'July'
+				},
+				{
+					value: 8,
+					chinese: '八月',
+					english: 'August'
+				},
+				{
+					value: 9,
+					chinese: '九月',
+					english: 'September'
+				},
+				{
+					value: 10,
+					chinese: '十月',
+					english: 'October'
+				},
+				{
+					value: 11,
+					chinese: '十一月',
+					english: 'November'
+				},
+				{
+					value: 12,
+					chinese: '十二月',
+					english: 'December'
+				}
+			],
+
+			init() {
+				this.loadNews();
+			},
+
+			async loadNews() {
+				this.loading = true;
+
+				try {
+					const response = await fetch(ajaxurl, {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/x-www-form-urlencoded',
+						},
+						body: new URLSearchParams({
+							action: 'load_home_news',
+							nonce: '<?php echo wp_create_nonce('load_home_news_nonce'); ?>',
+							month: this.selectedMonth,
+							year: this.selectedYear
+						})
+					});
+
+					const data = await response.json();
+					if (data.success) {
+						this.groupedNews = data.data.grouped_news;
+
+						// Reinitialize swiper after data loads
+						this.$nextTick(() => {
+							this.initSwiper();
+						});
+					}
+				} catch (error) {
+					console.error('Error loading news:', error);
+				} finally {
+					this.loading = false;
+				}
+			},
+
+			selectMonth(month) {
+				if (this.selectedMonth === month) return;
+				this.selectedMonth = month;
+				this.loadNews();
+			},
+
+			initSwiper() {
+				if (this.swiper) {
+					this.swiper.destroy();
+				}
+
+				// Initialize swiper for news slides
+				this.swiper = new Swiper('.home_news_date_slider .swiper-container', {
+					slidesPerView: 'auto',
+					spaceBetween: 20,
+					navigation: {
+						nextEl: '.home_news_date_slider .next_btn',
+						prevEl: '.home_news_date_slider .prev_btn',
+					},
+				});
+			},
+
+			nextSlide() {
+				if (this.swiper) {
+					this.swiper.slideNext();
+				}
+			},
+
+			previousSlide() {
+				if (this.swiper) {
+					this.swiper.slidePrev();
+				}
+			}
+		}
+	}
+</script>
+
+<!-- Promotion Highlight Section with ACF Integration -->
+<div class="section home_promotion_section scrollin_p">
+	<div class="ink_bg9_wrapper">
+		<img src="<?php bloginfo('template_directory'); ?>/images/ink_bg9.jpg" class="ink_bg9 scrollin scrollinbottom" alt="<?php echo cuhk_multilang_text("水墨背景", "水墨背景", "Ink Background"); ?>">
+	</div>
+	<?php
+	$promotion_title = get_field('promotion_section_title');
+	if ($promotion_title) :
+	?>
+		<div class="home_promotion_section_title">
+			<div class="section_center_content small_section_center_content scrollin scrollinbottom">
+				<h1><?php echo $promotion_title; ?></h1>
+			</div>
+		</div>
+	<?php endif; ?>
+	<div class="home_promotion_box_wrapper">
+		<div class="section_center_content small_section_center_content scrollin scrollinbottom">
+			<div class="home_promotion_box_inwrapper">
+				<?php
+				if (have_rows('promotion_highlights')) :
+					$counter = 1;
+					while (have_rows('promotion_highlights')) : the_row();
+						$title = get_sub_field('title');
+						$image = get_sub_field('image');
+						$description = get_sub_field('description');
+						$buttons = get_sub_field('buttons');
+						$is_active = ($counter === 1) ? 'active anim_in' : '';
+				?>
+						<div class="home_promotion_box <?php echo $is_active; ?>">
+							<div class="title">
+								<div class="rotate_text_wrapper">
+									<h3><span><?php echo $title; ?></span></h3>
+								</div>
+							</div>
+							<div class="hidden_wrapper">
+								<div class="hidden">
+									<div class="hidden_content">
+										<div class="col_wrapper ">
+											<div class="flex row">
+												<div class="col6 col">
+													<div class="col_spacing <?php echo $counter === 1 ? 'scrollin scrollinbottom' : ''; ?>">
+														<div class="image_wrapper">
+															<?php if ($image) : ?>
+																<img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>">
+															<?php endif; ?>
+														</div>
+													</div>
+												</div>
+												<div class="col6 col">
+													<div class="col_spacing">
+														<div class="t_wrapper">
+															<div class="t t1 text4"><?php echo $title; ?></div>
+															<div class="t t2 free_text">
+																<?php echo $description; ?>
+															</div>
+															<?php if ($buttons) : ?>
+																<div class="btn_wrapper">
+																	<?php foreach ($buttons as $button) : ?>
+																		<a href="<?php echo $button['link']; ?>" class="<?php echo $button['style'] ?: 'round_btn'; ?>">
+																			<?php echo $button['text']; ?>
+																		</a>
+																	<?php endforeach; ?>
+																</div>
+															<?php endif; ?>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="big_num text2"><?php echo sprintf('%02d', $counter); ?></div>
+								</div>
+							</div>
+						</div>
+				<?php
+						$counter++;
+					endwhile;
+				endif;
+				?>
+			</div>
+		</div>
+	</div>
+</div>
+
+<?php get_footer(); ?>
