@@ -142,13 +142,13 @@ if (have_posts()) :
 
 					<div class="section_center_content small_section_center_content filter_detail_flex_head mobile_hide2">
 						<div class="filter_detail_flex text7 scrollin scrollinbottom">
-							<div class="filter_detail_flex_item"><?php pll_e('Course Code'); ?></div>
-							<div class="filter_detail_flex_item"><?php pll_e('Course Title'); ?></div>
-							<div class="filter_detail_flex_item"><?php pll_e('Lecturer'); ?></div>
-							<div class="filter_detail_flex_item"><?php pll_e('Language'); ?></div>
-							<div class="filter_detail_flex_item"><?php pll_e('Lecture Time'); ?></div>
-							<div class="filter_detail_flex_item"><?php pll_e('Venue'); ?></div>
-							<div class="filter_detail_flex_item"><?php pll_e('Quota'); ?></div>
+							<div class="filter_detail_flex_item"><?php echo cuhk_multilang_text("課程編號","","Course Code"); ?></div>
+							<div class="filter_detail_flex_item"><?php echo cuhk_multilang_text("課程名稱","","Course Title"); ?></div>
+							<div class="filter_detail_flex_item"><?php echo cuhk_multilang_text("講師","","Lecturer"); ?></div>
+							<div class="filter_detail_flex_item"><?php echo cuhk_multilang_text("語言","","Language"); ?></div>
+							<div class="filter_detail_flex_item"><?php echo cuhk_multilang_text("時間","","Lecture Time"); ?></div>
+							<div class="filter_detail_flex_item"><?php echo cuhk_multilang_text("地點","","Venue"); ?></div>
+							<div class="filter_detail_flex_item"><?php echo cuhk_multilang_text("人數","","Quota"); ?></div>
 						</div>
 					</div>
 
@@ -160,41 +160,44 @@ if (have_posts()) :
 									<div class="expandable_title filter_detail_flex"
 										@click="toggleCourse(course.id, $event)">
 										<div class="filter_detail_flex_item text5 text_c1 filter_detail_flex_item_title">
-											<div class="text8 mobile_show2 mobile_title"><?php pll_e('Course Code'); ?></div>
+											<div class="text8 mobile_show2 mobile_title"><?php echo cuhk_multilang_text("課程編號","","Course Code"); ?></div>
 											<span x-text="course.course_code"></span>
 										</div>
 										<div class="filter_detail_flex_item">
-											<div class="text8 mobile_show2 mobile_title"><?php pll_e('Course Title'); ?></div>
+											<div class="text8 mobile_show2 mobile_title"><?php echo cuhk_multilang_text("課程名稱","","Course Title"); ?></div>
 											<span x-text="course.course_title"></span>
 										</div>
 										<div class="filter_detail_flex_item">
-											<div class="text8 mobile_show2 mobile_title"><?php pll_e('Lecturer'); ?></div>
+											<div class="text8 mobile_show2 mobile_title"><?php echo cuhk_multilang_text("講師","","Lecturer"); ?></div>
 											<span x-text="course.lecturer_name"></span>
 										</div>
 										<div class="filter_detail_flex_item">
-											<div class="text8 mobile_show2 mobile_title"><?php pll_e('Language'); ?></div>
+											<div class="text8 mobile_show2 mobile_title"><?php echo cuhk_multilang_text("語言","","Language"); ?></div>
 											<span x-text="course.language"></span>
 										</div>
 										<div class="filter_detail_flex_item">
-											<div class="text8 mobile_show2 mobile_title"><?php pll_e('Lecture Time'); ?></div>
+											<div class="text8 mobile_show2 mobile_title"><?php echo cuhk_multilang_text("時間","","Lecture Time"); ?></div>
 											<span x-text="course.lecture_time"></span>
 										</div>
 										<div class="filter_detail_flex_item">
-											<div class="text8 mobile_show2 mobile_title"><?php pll_e('Venue'); ?></div>
+											<div class="text8 mobile_show2 mobile_title"><?php echo cuhk_multilang_text("地點","","Venue"); ?></div>
 											<span x-text="course.venue"></span>
 										</div>
 										<div class="filter_detail_flex_item">
-											<div class="text8 mobile_show2 mobile_title"><?php pll_e('Quota'); ?></div>
+											<div class="text8 mobile_show2 mobile_title"><?php echo cuhk_multilang_text("人數","","Quota"); ?></div>
 											<span x-text="course.quota"></span>
 										</div>
 										<div class="icon"></div>
 									</div>
 									<div class="hidden">
 										<div class="hidden_content">
-											<div class="filter_detail_description_title text7"><?php pll_e('Description'); ?></div>
+											<div class="filter_detail_description_title text7"><?php echo cuhk_multilang_text("簡介","","Description"); ?></div>
 											<div class="filter_detail_description free_text" x-html="course.course_description"></div>
-											<div x-show="course.teaching_assistant_name" class="filter_detail_description_title text7" style="margin-top: 20px;"><?php pll_e('Teaching Assistant'); ?></div>
-											<div x-show="course.teaching_assistant_name" class="filter_detail_description" x-text="course.teaching_assistant_name"></div>
+
+											<div x-show="course.has_detail" class="btn_wrapper text7">
+												<a href="<?php the_permalink();?>" class="round_btn"><?php echo cuhk_multilang_text("課程內容","","Course detail"); ?></a>
+											</div>
+
 										</div>
 									</div>
 								</div>
@@ -208,7 +211,7 @@ if (have_posts()) :
 			<div x-show="!loading && courseSections.length === 0"
 				class="section section_content" style="text-align: center; padding: 60px 0;">
 				<div class="section_center_content small_section_center_content">
-					<p class="text5"><?php pll_e('No courses found matching the selected criteria.'); ?></p>
+					<p class="text5"><?php pll_e(''); ?><?php echo cuhk_multilang_text("未找到符合所選條件的課程。","","No courses found matching the selected criteria."); ?></p>
 				</div>
 			</div>
 		</div>
