@@ -25,7 +25,8 @@ if ($teaching_staff_term) {
 
 <?php get_template_part('template-parts/roll-menu'); ?>
 
-<div x-data="teachingStaffList()">
+<div x-data="teachingStaffList()" x-init="init()">
+	<p>Selected: <span x-text="selectedPosition"></span></p>
 	<div class="section section_content filter_menu_section">
 		<div class="section_center_content small_section_center_content scrollin scrollinbottom">
 			<h1 class="section_title text1 scrollin scrollinbottom"><?php the_field('page_title'); ?></h1>
@@ -44,16 +45,11 @@ if ($teaching_staff_term) {
 											<a 
 											@click.prevent="filterByPosition('<?php echo esc_attr($term->slug); ?>')"
 											:class="{ 'active': selectedPosition === '<?php echo esc_js($term->slug); ?>' }">
-												<?php 
-													if(pll_current_language() == 'tc') {
-														$ctermfullname = get_field('tc_name', 'people_category_' .$term->term_id);
-													}elseif(pll_current_language() == 'sc'){
-														$ctermfullname = get_field('sc_name', 'people_category_' .$term->term_id);
-													}else{
-														$ctermfullname = get_field('en_name', 'people_category_' .$term->term_id);
-													};
-													echo ($ctermfullname); 
-												?>
+											<?php
+												$lang = pll_current_language();
+												$ctermfullname = get_field("{$lang}_name", 'people_category_' . $term->term_id);
+												echo esc_html($ctermfullname);
+											?>
 											</a>
 										</li>
 									<?php endforeach; ?>
@@ -279,6 +275,7 @@ if ($teaching_staff_term) {
 			},
 
 			filterByPosition(position) {
+	console.log("Filtering by:", position);
 				this.selectedPosition = this.selectedPosition === position ? '' : position;
 				this.page = 1;
 				this.loadStaff();
