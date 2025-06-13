@@ -162,15 +162,27 @@ if (pll_current_language() == 'sc') {
 						
 						<div class="dropdown_department_sns_wrapper">
 							<ul>
-								<li><a href="#" class="sns_icon_fb"></a></li>
-								<li><a href="#" class="sns_icon_ig"></a></li>
-								<li><a href="#" class="sns_icon_yt"></a></li>
+								<?php if(get_field("fb_url")){?>
+									<li><a href="<?php the_field("fb_url"); ?>" class="sns_icon_fb"></a></li>
+								<?php }; ?>
+								<?php if(get_field("ig_url")){?>
+									<li><a href="<?php the_field("ig_url"); ?>" class="sns_icon_ig"></a></li>
+								<?php }; ?>
+								<?php if(get_field("youtube_url")){?>
+									<li><a href="<?php the_field("youtube_url"); ?>" class="sns_icon_yt"></a></li>
+								<?php }; ?>
+								<?php if(get_field("linkedin_url")){?>
+									<li><a href="<?php the_field("linkedin_url"); ?>" class="sns_icon_in"></a></li>
+								<?php }; ?>
 							</ul>
 						</div>
 						<div class="text text8">
-							<strong>Address:</strong><br>
-							Rm 523, Fung King Hey Building
-							The Chinese University of Hong Kong
+							<?php if(get_field('address', 'option')){
+								?>
+								<strong><?php echo cuhk_multilang_text("地址：","","Address:"); ?></strong><br>
+								<?php
+								the_field('address', 'option');
+							}; ?>
 						</div>
 					</div>
 				</div>

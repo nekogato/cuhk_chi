@@ -17,55 +17,88 @@
                 <div class="footer_row">
                     <div class="footer_menu_list_wrapper">
                         <div class="footer_menu_list footer_department_logo_wrapper">
-                            <img src="<?php bloginfo('template_directory'); ?>/images/ccc.png" class="footer_department_logo">
-                            <div class="t1">Address:</div>
+                            <img src="<?php bloginfo('template_directory'); ?>/images/ccc_color.png" class="footer_department_logo">
+                            <div class="t1"><?php echo cuhk_multilang_text("地址：","","Address:"); ?></div>
                             <div class="t2 text7">
-                                Room 131, 1/F, Fung King Hey Building,<br/>
-                                The Chinese University of Hong Kong, <br/>
-                                Shatin, New Territories, Hong Kong.
+                                <?php the_field('address', 'option'); ?>
                             </div>
                         </div>
-                        <div class="footer_menu_list">
-                            <div class="t1 text6"><a href="#">About Us</a></div>
-                            <ul>
-                                <li><a href="#">About the Department</a></li>
-                                <li><a href="#">Message From Chairman</a></li>
-                                <li><a href="#">CUHK Historians</a></li>
-                            </ul>
-                        </div>
-                        <div class="footer_menu_list">
-                            <div class="t1 text6"><a href="#">People</a></div>
-                            <ul>
-                                <li><a href="#">Teaching Staff</a></li>
-                                <li><a href="#">Administrative Staff</a></li>
-                                <li><a href="#">Research Staff</a></li>
-                                <li><a href="#">Research Students</a></li>
-                                <li><a href="#">Student Association</a></li>
-                                <li><a href="#">Alumni</a></li>
-                            </ul>
-                        </div>
-                        <div class="footer_menu_list">
-                            <div class="t1 text6"><a href="#">Programmes</a></div>
-                            <ul>
-                                <li><a href="#">B.A. Programme</a></li>
-                                <li><a href="#">Summer Internship</a></li>
-                                <li><a href="#">M.A. Programme</a></li>
-                                <li><a href="#">M.Phil. Programme</a></li>
-                                <li><a href="#">Ph.D. Programme</a></li>
-                            </ul>
-                        </div>
-                        <div class="footer_menu_list">
-                            <div class="t1 text6"><a href="#">Research</a></div>
-                        </div>
-                        <div class="footer_menu_list">
-                            <div class="t1 text6"><a href="#">News</a></div>
-                            <ul>
-                                <li><a href="#">Announcements</a></li>
-                                <li><a href="#">Events</a></li>
-                                <li><a href="#">Newsletter</a></li>
-                                <li><a href="#">Photo / Video</a></li>
-                            </ul>
-                        </div>
+                        <?php
+                        if( have_rows('column_1_menu', 'option') ):
+                            while( have_rows('column_1_menu', 'option') ) : the_row();
+                                $group_name = get_sub_field('group_name');
+                                if( have_rows('menu') ):
+                                    ?>
+                                    <div class="footer_menu_list">
+                                        <div class="t1 text6"><a><?php echo $group_name;?></a></div>
+                                        <ul>
+                                            <?php
+                                            while( have_rows('menu') ) : the_row();
+                                                $text = get_sub_field('text');
+                                                $url = get_sub_field('url');
+                                                ?>
+                                                <li><a href="<?php echo $url;?>"><?php echo $text;?></a></li>
+                                                <?php
+                                            endwhile;
+                                            ?>
+                                        </ul>
+                                    </div>
+                                    <?php
+                                endif;
+                            endwhile;
+                        endif;
+                        ?>
+                        <?php
+                        if( have_rows('column_2_menu', 'option') ):
+                            while( have_rows('column_2_menu', 'option') ) : the_row();
+                                $group_name = get_sub_field('group_name');
+                                if( have_rows('menu') ):
+                                    ?>
+                                    <div class="footer_menu_list">
+                                        <div class="t1 text6"><a><?php echo $group_name;?></a></div>
+                                        <ul>
+                                            <?php
+                                            while( have_rows('menu') ) : the_row();
+                                                $text = get_sub_field('text');
+                                                $url = get_sub_field('url');
+                                                ?>
+                                                <li><a href="<?php echo $url;?>"><?php echo $text;?></a></li>
+                                                <?php
+                                            endwhile;
+                                            ?>
+                                        </ul>
+                                    </div>
+                                    <?php
+                                endif;
+                            endwhile;
+                        endif;
+                        ?>
+                        <?php
+                        if( have_rows('column_3_menu', 'option') ):
+                            while( have_rows('column_3_menu', 'option') ) : the_row();
+                                $group_name = get_sub_field('group_name');
+                                if( have_rows('menu') ):
+                                    ?>
+                                    <div class="footer_menu_list">
+                                        <div class="t1 text6"><a><?php echo $group_name;?></a></div>
+                                        <ul>
+                                            <?php
+                                            while( have_rows('menu') ) : the_row();
+                                                $text = get_sub_field('text');
+                                                $url = get_sub_field('url');
+                                                ?>
+                                                <li><a href="<?php echo $url;?>"><?php echo $text;?></a></li>
+                                                <?php
+                                            endwhile;
+                                            ?>
+                                        </ul>
+                                    </div>
+                                    <?php
+                                endif;
+                            endwhile;
+                        endif;
+                        ?>
+
                     </div>
                 </div>
             </div>
@@ -81,17 +114,25 @@
                                 </ul>
                             </div>
                             <div class="copyright">
-                                © Copyright 2025<span class="copyright_line">|</span>The Chinese University of Hong Kong Department of Chinese Language & Literature
+                                <?php echo cuhk_multilang_text("2025版權所有","","© Copyright 2025"); ?><span class="copyright_line">|</span><?php echo cuhk_multilang_text("香港中文大學中國語言及文學系","","The Chinese University of Hong Kong Department of Chinese Language & Literature"); ?>
                             </div>
                         </div>
                         <div class="footer2_t footer2_t2">
-                            <div class="footer_sns_title text8">Follow Department of Chinese Language & Literature</div>
+                            <div class="footer_sns_title text8"><?php echo cuhk_multilang_text("追蹤中國語言及文學系","","Follow Department of Chinese Language & Literature"); ?></div>
                             <div class="footer_sns_wrapper">
                                 <ul>
-                                    <li><a href="#" class="sns_icon_fb"></a></li>
-                                    <li><a href="#" class="sns_icon_ig"></a></li>
-                                    <li><a href="#" class="sns_icon_yt"></a></li>
-                                    <li><a href="#" class="sns_icon_in"></a></li>
+                                    <?php if(get_field("fb_url")){?>
+                                        <li><a href="<?php the_field("fb_url"); ?>" class="sns_icon_fb"></a></li>
+                                    <?php }; ?>
+                                    <?php if(get_field("ig_url")){?>
+                                        <li><a href="<?php the_field("ig_url"); ?>" class="sns_icon_ig"></a></li>
+                                    <?php }; ?>
+                                    <?php if(get_field("youtube_url")){?>
+                                        <li><a href="<?php the_field("youtube_url"); ?>" class="sns_icon_yt"></a></li>
+                                    <?php }; ?>
+                                    <?php if(get_field("linkedin_url")){?>
+                                        <li><a href="<?php the_field("linkedin_url"); ?>" class="sns_icon_in"></a></li>
+                                    <?php }; ?>
                                 </ul>
                             </div>
                         </div>

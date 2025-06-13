@@ -478,7 +478,6 @@ a{
 	padding-bottom: 50px;
 	color:#4c4846;
 	position: relative;
-	z-index: -1;
 }
 
 .footer .section_center_content{
@@ -488,6 +487,10 @@ a{
 
 .footer a{
 	color:#4c4846;
+}
+
+.footer a:hover{
+	color:#45adb3
 }
 
 .footer_row_wrapper + .footer_row_wrapper{
