@@ -175,9 +175,9 @@ get_header(); ?>
 								<!-- News slides - Each date is one slide -->
 								<template x-for="(dateGroup, dateKey) in groupedNews" :key="dateKey">
 									<div class="swiper-slide">
-										<div class="date text4" x-text="dateKey"></div>
+										<div class="date text4" x-text="formatDate(dateKey)"></div>
 										<div class="news_item_wrapper">
-											<template x-for="newsItem in dateGroup" :key="newsItem.id">
+											<template x-for="(newsItem, index) in dateGroup.slice(0, 2)" :key="newsItem.id">
 												<div class="news_item">
 													<div class="news_item_spacing">
 														<a :href="newsItem.link">
@@ -186,6 +186,16 @@ get_header(); ?>
 														</a>
 														<div class="cat_icon"
 															:class="newsItem.post_type === 'news' ? 'bg_color2' : 'cat_circle bg_color1'">
+														</div>
+													</div>
+												</div>
+											</template>
+											<!-- Show "more" indicator if there are additional items -->
+											<template x-if="dateGroup.length > 2">
+												<div class="news_item more_items">
+													<div class="news_item_spacing">
+														<div class="text">
+															<?php echo cuhk_multilang_text("還有 " + (dateGroup . length - 2) + " 則消息", "还有 " + (dateGroup . length - 2) + " 则消息", "+" + (dateGroup . length - 2) + " more items"); ?>
 														</div>
 													</div>
 												</div>
@@ -315,6 +325,14 @@ get_header(); ?>
 				this.loadNews();
 			},
 
+			formatDate(dateString) {
+				const date = new Date(dateString);
+				const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+				const day = days[date.getDay()];
+				const dayOfMonth = date.getDate();
+				return `${day} ${dayOfMonth}`;
+			},
+
 			async loadNews() {
 				this.loading = true;
 
@@ -328,13 +346,18 @@ get_header(); ?>
 							action: 'load_home_news',
 							nonce: '<?php echo wp_create_nonce('load_home_news_nonce'); ?>',
 							month: this.selectedMonth,
-							year: this.selectedYear
+							year: this.selectedYear,
+							use_start_date: true // Add flag to indicate we want to use start_date
 						})
 					});
 
 					const data = await response.json();
 					if (data.success) {
-						this.groupedNews = data.data.grouped_news;
+						// Sort the grouped news by start_date
+						this.groupedNews = Object.fromEntries(
+							Object.entries(data.data.grouped_news)
+							.sort(([dateA], [dateB]) => new Date(dateB) - new Date(dateA))
+						);
 
 						// Reinitialize swiper after data loads
 						this.$nextTick(() => {
