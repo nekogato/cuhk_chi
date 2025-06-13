@@ -151,9 +151,8 @@ get_header(); ?>
 				$available_months[$month_key] = array(
 					'value' => $month,
 					'year' => $year,
-					'text' => pll_current_language() === 'en' ?
-						date('F', mktime(0, 0, 0, $month, 1)) :
-						date('n月', mktime(0, 0, 0, $month, 1))
+					'chinese' => date('n月', mktime(0, 0, 0, $month, 1)),
+					'english' => date('F', mktime(0, 0, 0, $month, 1))
 				);
 			}
 		}
@@ -203,7 +202,8 @@ get_header(); ?>
 								:class="{ 'active': selectedMonth === month.value && selectedYear === month.year }"
 								@click="selectMonth(month.value, month.year)">
 								<div class="t_wrapper">
-									<div class="t1 text4"><span x-text="month.text"></span></div>
+									<div class="t1 text4"><span x-text="month.chinese"></span></div>
+									<div class="t2 text2" x-text="month.english"></div>
 								</div>
 							</div>
 						</template>
