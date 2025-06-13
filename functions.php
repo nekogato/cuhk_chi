@@ -925,14 +925,11 @@ function load_courses()
 			$venue = get_field('venue');
 			$quota = get_field('Quota');
 			$course_description = get_field('course_description');
+			$has_detail = get_field('has_detail');
 
 			// Lecturer
 			$lecturer = get_field('lecturer');
 			$lecturer_name = $lecturer ? get_the_title($lecturer->ID) : '';
-
-			// Teaching Assistant
-			$teaching_assistant = get_field('teaching_assistant');
-			$teaching_assistant_name = $teaching_assistant ? get_the_title($teaching_assistant->ID) : '';
 
 			// ✅ Define course data FIRST
 			$course_data = array(
@@ -945,7 +942,7 @@ function load_courses()
 				'venue' => $venue,
 				'quota' => $quota,
 				'course_description' => $course_description,
-				'teaching_assistant_name' => $teaching_assistant_name
+				'has_detail' => $has_detail
 			);
 
 			// ✅ Now group by all course_semester terms
