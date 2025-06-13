@@ -41,7 +41,7 @@ if ($teaching_staff_term) {
 								<ul class="alphabet_list">
 									<?php foreach ($child_terms as $term): ?>
 										<li>
-											<a href="#"
+											<a 
 											@click.prevent="filterByPosition('<?php echo esc_attr($term->slug); ?>')"
 											:class="{ 'active': selectedPosition === '<?php echo esc_js($term->slug); ?>' }">
 												<?php 
@@ -224,7 +224,6 @@ if ($teaching_staff_term) {
 	function teachingStaffList() {
 		return {
 			staffMembers: [],
-			selectedAlphabet: '',
 			selectedPosition: '',
 			sortOrder: 'asc',
 			page: 1,
@@ -234,7 +233,6 @@ if ($teaching_staff_term) {
 
 			init() {
 				this.loadStaff();
-				this.$watch('selectedAlphabet', () => this.filterStaff());
 				this.$watch('selectedPosition', () => this.filterStaff());
 				this.$watch('sortOrder', () => this.filterStaff());
 			},
@@ -253,7 +251,6 @@ if ($teaching_staff_term) {
 							action: 'load_teaching_staff',
 							nonce: '<?php echo wp_create_nonce('load_teaching_staff_nonce'); ?>',
 							page: this.page,
-							alphabet: this.selectedAlphabet,
 							position: this.selectedPosition,
 							sort_order: this.sortOrder
 						})
@@ -279,12 +276,6 @@ if ($teaching_staff_term) {
 				} finally {
 					this.loading = false;
 				}
-			},
-
-			filterByAlphabet(alphabet) {
-				this.selectedAlphabet = this.selectedAlphabet === alphabet ? '' : alphabet;
-				this.page = 1;
-				this.loadStaff();
 			},
 
 			filterByPosition(position) {

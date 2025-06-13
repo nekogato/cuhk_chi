@@ -721,7 +721,6 @@ function load_teaching_staff()
 	check_ajax_referer('load_teaching_staff_nonce', 'nonce');
 
 	$page = isset($_POST['page']) ? intval($_POST['page']) : 1;
-	$alphabet = isset($_POST['alphabet']) ? strtoupper(sanitize_text_field($_POST['alphabet'])) : '';
 	$position = isset($_POST['position']) ? sanitize_text_field($_POST['position']) : '';
 	$sort_order = isset($_POST['sort_order']) ? sanitize_text_field($_POST['sort_order']) : 'asc';
 
@@ -748,7 +747,7 @@ function load_teaching_staff()
 		)
 	);
 
-	// Add meta query for position and alphabet if specified
+	// Add meta query for position if specified
 	$meta_query = array('relation' => 'AND');
 
 	if ($position) {
@@ -759,13 +758,6 @@ function load_teaching_staff()
 		);
 	}
 
-	if ($alphabet) {
-		$meta_query[] = array(
-			'key' => 'filter_alphabet',
-			'value' => $alphabet,
-			'compare' => '='
-		);
-	}
 
 	if (count($meta_query) > 1) {
 		$args['meta_query'] = $meta_query;
