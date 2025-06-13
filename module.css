@@ -3556,7 +3556,7 @@ justify-content: center;
     cursor: pointer;
 }
 
-.alphabet_list_wrapper .alphabet_list a:hover{
+.alphabet_list_wrapper .alphabet_list a.active, .alphabet_list_wrapper .alphabet_list a:hover{
     color:#63629B
 }
 

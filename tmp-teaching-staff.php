@@ -85,7 +85,7 @@ if ($teaching_staff_term) {
 				<div class="student_list_item_wrapper">
 					<template x-for="staff in staffMembers" :key="staff.id">
 						<template x-if="staff.has_detail">
-							<div class="student_list_item scrollin scrollinbottom ">
+							<div class="student_list_item scrollin scrollinopacity ">
 								<!-- If staff has detail page, make entire item clickable to detail page -->
 								<template x-if="staff.photo">
 									<a class="photo" :href="staff.permalink">
