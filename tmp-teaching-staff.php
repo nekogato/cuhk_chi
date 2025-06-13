@@ -254,7 +254,6 @@ if ($teaching_staff_term) {
 
 					const data = await response.json();
 					if (data.success) {
-						doscroll();
 						const newStaff = data.data.staff.map(staff => ({
 							...staff,
 							contact_info: this.formatContactInfo(staff)
@@ -267,13 +266,20 @@ if ($teaching_staff_term) {
 						}
 
 						this.hasMore = data.data.has_more;
+						setTimeout(function(){
+							doscroll();
+						},300)
 					}
 				} catch (error) {
 					console.error('Error loading teaching staff:', error);
-					doscroll();
+						setTimeout(function(){
+							doscroll();
+						},300)
 				} finally {
 					this.loading = false;
-					doscroll();
+						setTimeout(function(){
+							doscroll();
+						},300)
 				}
 			},
 
