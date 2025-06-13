@@ -114,24 +114,24 @@
                                 </ul>
                             </div>
                             <div class="copyright">
-                                <?php echo cuhk_multilang_text("2025版權所有","","© Copyright 2025"); ?><span class="copyright_line">|</span><?php echo cuhk_multilang_text("香港中文大學中國語言及文學系","","The Chinese University of Hong Kong Department of Chinese Language & Literature"); ?>
+                                <?php echo cuhk_multilang_text(date('Y') ."版權所有","","© Copyright ".date('Y')); ?><span class="copyright_line">|</span><?php echo cuhk_multilang_text("香港中文大學中國語言及文學系","","The Chinese University of Hong Kong Department of Chinese Language & Literature"); ?>
                             </div>
                         </div>
                         <div class="footer2_t footer2_t2">
                             <div class="footer_sns_title text8"><?php echo cuhk_multilang_text("追蹤中國語言及文學系","","Follow Department of Chinese Language & Literature"); ?></div>
                             <div class="footer_sns_wrapper">
                                 <ul>
-                                    <?php if(get_field("fb_url")){?>
-                                        <li><a href="<?php the_field("fb_url"); ?>" class="sns_icon_fb"></a></li>
+                                    <?php if(get_field("fb_url","option")){?>
+                                        <li><a href="<?php the_field("fb_url","option"); ?>" class="sns_icon_fb"></a></li>
                                     <?php }; ?>
-                                    <?php if(get_field("ig_url")){?>
-                                        <li><a href="<?php the_field("ig_url"); ?>" class="sns_icon_ig"></a></li>
+                                    <?php if(get_field("ig_url","option")){?>
+                                        <li><a href="<?php the_field("ig_url","option"); ?>" class="sns_icon_ig"></a></li>
                                     <?php }; ?>
-                                    <?php if(get_field("youtube_url")){?>
-                                        <li><a href="<?php the_field("youtube_url"); ?>" class="sns_icon_yt"></a></li>
+                                    <?php if(get_field("youtube_url","option")){?>
+                                        <li><a href="<?php the_field("youtube_url","option"); ?>" class="sns_icon_yt"></a></li>
                                     <?php }; ?>
-                                    <?php if(get_field("linkedin_url")){?>
-                                        <li><a href="<?php the_field("linkedin_url"); ?>" class="sns_icon_in"></a></li>
+                                    <?php if(get_field("linkedin_url","option")){?>
+                                        <li><a href="<?php the_field("linkedin_url","option"); ?>" class="sns_icon_in"></a></li>
                                     <?php }; ?>
                                 </ul>
                             </div>
