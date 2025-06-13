@@ -724,7 +724,7 @@ function load_teaching_staff()
 	$position = isset($_POST['position']) ? sanitize_text_field($_POST['position']) : '';
 	$sort_order = isset($_POST['sort_order']) ? sanitize_text_field($_POST['sort_order']) : 'asc';
 
-	// Get the category ID for teaching-staff
+	// Get the parent term (teaching-staff)
 	$category = get_term_by('slug', 'teaching-staff', 'people_category');
 
 	if (!$category) {
@@ -732,38 +732,38 @@ function load_teaching_staff()
 		return;
 	}
 
-	$args = array(
-		'post_type' => 'profile',
-		'posts_per_page' => MAX_POSTGRADUATE_STUDENTS_PER_PAGE, // Reuse the same constant
-		'paged' => $page,
-		'orderby' => 'title',
-		'order' => strtoupper($sort_order),
-		'tax_query' => array(
-			array(
-				'taxonomy' => 'people_category',
-				'field' => 'term_id',
-				'terms' => $category->term_id
-			)
+	// Build tax_query
+	$tax_query = array(
+		'relation' => 'AND',
+		array(
+			'taxonomy' => 'people_category',
+			'field' => 'term_id',
+			'terms' => $category->term_id,
+			'include_children' => true // this ensures we get all children of teaching-staff
 		)
 	);
 
-	// Add meta query for position if specified
-	$meta_query = array('relation' => 'AND');
-
 	if ($position) {
-		$meta_query[] = array(
-			'key' => 'filter_position',
-			'value' => $position,
-			'compare' => '='
+		$tax_query[] = array(
+			'taxonomy' => 'people_category',
+			'field' => 'slug',
+			'terms' => $position
 		);
 	}
 
+	$args = array(
+		'post_type' => 'profile',
+		'posts_per_page' => MAX_POSTGRADUATE_STUDENTS_PER_PAGE,
+		'paged' => $page,
+		'orderby' => 'title',
+		'order' => strtoupper($sort_order),
+		'tax_query' => $tax_query
+	);
 
-	if (count($meta_query) > 1) {
-		$args['meta_query'] = $meta_query;
-	}
+	// No meta_query needed anymore
 
 	$query = new WP_Query($args);
+
 	$staff = array();
 
 	if ($query->have_posts()) {
