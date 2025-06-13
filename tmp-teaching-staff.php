@@ -108,11 +108,11 @@ if ($teaching_staff_term) {
 						<template x-if="!staff.has_detail">
 							<div class="student_list_item scrollin scrollin_fast scrollinbottom">
 								<template x-if="staff.photo">
-									<div class="photo" @click="showStaffPopup(staff)" x-if="staff.photo">
+									<a class="photo" @click="showStaffPopup(staff)">
 										<img :src="staff.photo.sizes.s" :alt="staff.photo.alt">
-									</div>
+									</a>
 								</template>
-								<div class="text" @click="showStaffPopup(staff)">
+								<div class="text">
 									<div class="name text5" x-text="staff.title"></div>
 									<div class="title" x-text="staff.position"></div>
 									<template x-if="staff.contact_info">
