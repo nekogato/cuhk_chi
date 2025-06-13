@@ -133,6 +133,8 @@ if ($teaching_staff_term) {
 					</a>
 				</div>
 			</template>
+
+			<div class="ajax_loading"></div>
 		</div>
 	</div>
 
@@ -236,9 +238,10 @@ if ($teaching_staff_term) {
 			async loadStaff() {
 				if (this.loading) return;
 				this.loading = true;
+				$(".ajax_loading").stop().fadeIn();
 				$(".student_list_item_wrapper").height($(".student_list_item_wrapper").height());
 
-				$(".student_list_item")..css({
+				$(".student_list_item").css({
 					"-webkit-transition-delay": 0+"ms",
 					"transition-delay": 0+"ms",
 				})
@@ -262,30 +265,36 @@ if ($teaching_staff_term) {
 					const data = await response.json();
 					if (data.success) {
 						setTimeout(function(){
-						const newStaff = data.data.staff.map(staff => ({
-							...staff,
-							contact_info: this.formatContactInfo(staff)
-						}));
+							const newStaff = data.data.staff.map(staff => ({
+								...staff,
+								contact_info: this.formatContactInfo(staff)
+							}));
 
-						if (this.page === 1) {
-							this.staffMembers = newStaff;
-						} else {
-							this.staffMembers = [...this.staffMembers, ...newStaff];
-						}
+							if (this.page === 1) {
+								this.staffMembers = newStaff;
+							} else {
+								this.staffMembers = [...this.staffMembers, ...newStaff];
+							}
 
-						this.hasMore = data.data.has_more;
-							doscroll();
-							$(".student_list_item_wrapper").height("auto")
-						},300)
+							this.hasMore = data.data.has_more;
+					$(".ajax_loading").stop().fadeOut();
+							setTimeout(function(){
+								doscroll();
+								$(".student_list_item_wrapper").height("auto")
+							},300)
+						},1200)
 					}
 				} catch (error) {
 					console.error('Error loading teaching staff:', error);
+					$(".ajax_loading").stop().fadeOut();
 						setTimeout(function(){
 							doscroll();
 							$(".student_list_item_wrapper").height("auto")
 						},300)
 				} finally {
 					this.loading = false;
+
+					$(".ajax_loading").stop().fadeOut();
 						setTimeout(function(){
 							doscroll();
 							$(".student_list_item_wrapper").height("auto")
