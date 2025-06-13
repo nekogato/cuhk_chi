@@ -991,7 +991,7 @@ function load_courses()
 
 
 		// Convert to the format expected by Alpine.js
-		foreach ($courses_by_category as $category_name => $courses) {
+		foreach ($sorted_courses_by_category as $category_name => $courses) {
 			$course_sections[] = array(
 				'name' => $category_name,
 				'courses' => $courses
