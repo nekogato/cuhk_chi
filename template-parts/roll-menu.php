@@ -62,11 +62,14 @@ if (!$parent_id) {
 						if ($child_pages->have_posts()) :
 							while ($child_pages->have_posts()) : $child_pages->the_post();
 								$is_active = (get_the_ID() === $current_id) ? 'active' : '';
+								if(!get_field("hide_in_submenu")){
 						?>
 								<div class="swiper-slide">
 									<div><a href="<?php the_permalink(); ?>" class="<?php echo $is_active; ?>"><?php the_title(); ?></a></div>
 								</div>
 						<?php
+
+								};
 							endwhile;
 							wp_reset_postdata();
 						endif;
