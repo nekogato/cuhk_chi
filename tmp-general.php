@@ -21,7 +21,7 @@ if (have_posts()) :
 		<div class="section section_content resource_top_section">
 			<div class="section_center_content small_section_center_content">
 				<?php if ($page_title): ?>
-					<h1 class="section_title text1 scrollin scrollinbottom"><?php echo wp_kses_post($resources_title); ?></h1>
+					<h1 class="section_title text1 scrollin scrollinbottom"><?php echo wp_kses_post($page_title); ?></h1>
 				<?php endif; ?>
 
 				<?php if ($page_description): ?>
