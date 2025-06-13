@@ -7,6 +7,16 @@
  */
 
 get_header();
+
+$teaching_staff_term = get_term_by('slug', 'teaching-staff', 'people_category');
+
+if ($teaching_staff_term) {
+    $child_terms = get_terms(array(
+        'taxonomy' => 'people_category',
+        'hide_empty' => false,
+        'parent' => $teaching_staff_term->term_id,
+    ));
+}
 ?>
 
 <script>
@@ -27,11 +37,28 @@ get_header();
 						<div class="alphabet_list_wrapper">
 							<div class="title"><?php pll_e('職位分類'); ?></div>
 							<ul class="alphabet_list">
-								<li><a href="#" @click.prevent="filterByPosition('professors')" :class="{ 'active': selectedPosition === 'professors' }">Professors</a></li>
-								<li><a href="#" @click.prevent="filterByPosition('lecturers')" :class="{ 'active': selectedPosition === 'lecturers' }">Lecturers</a></li>
-								<li><a href="#" @click.prevent="filterByPosition('honorary-professor-and-emeritus-professor')" :class="{ 'active': selectedPosition === 'honorary-professor-and-emeritus-professor' }">Honorary Professor and Emeritus Professor</a></li>
-								<li><a href="#" @click.prevent="filterByPosition('adjunct-professors-and-part-time-teaching-staff')" :class="{ 'active': selectedPosition === 'adjunct-professors-and-part-time-teaching-staff' }">Adjunct Professors and Part-time Teaching Staff</a></li>
-								<li><a href="#" @click.prevent="filterByPosition('visiting-scholars')" :class="{ 'active': selectedPosition === 'visiting-scholars' }">Visiting Scholars</a></li>
+								<?php if (!empty($child_terms) && !is_wp_error($child_terms)) : ?>
+								<ul class="alphabet_list">
+									<?php foreach ($child_terms as $term): ?>
+										<li>
+											<a href="#"
+											@click.prevent="filterByPosition('<?php echo esc_attr($term->slug); ?>')"
+											:class="{ 'active': selectedPosition === '<?php echo esc_js($term->slug); ?>' }">
+												<?php 
+													if(pll_current_language() == 'tc') {
+														$ctermfullname = get_field('tc_name', 'people_category_' .$term->term_id);
+													}elseif(pll_current_language() == 'sc'){
+														$ctermfullname = get_field('sc_name', 'people_category_' .$term->term_id);
+													}else{
+														$ctermfullname = get_field('en_name', 'people_category_' .$term->term_id);
+													};
+													echo ($ctermfullname); 
+												?>
+											</a>
+										</li>
+									<?php endforeach; ?>
+								</ul>
+								<?php endif; ?>
 							</ul>
 						</div>
 					</div>
@@ -73,7 +100,7 @@ get_header();
 								</a>
 								<div class="text">
 									<div class="name text5">
-										<a :href="staff.permalink" x-text="staff.title"></a>
+										<a x-text="staff.title"></a>
 									</div>
 									<div class="title" x-text="staff.position"></div>
 									<template x-if="staff.contact_info">
@@ -142,31 +169,31 @@ get_header();
 								<div class="table_flex_item_wrapper">
 									<template x-if="currentStaff.emails && currentStaff.emails.length">
 										<div class="table_flex_item">
-											<div class="title text7"><?php pll_e('Email'); ?></div>
+											<div class="title text7"><?php echo cuhk_multilang_text("電郵","","Email"); ?></div>
 											<div class="text" x-html="currentStaff.emails.join(' / ')"></div>
 										</div>
 									</template>
 									<template x-if="currentStaff.phones && currentStaff.phones.length">
 										<div class="table_flex_item">
-											<div class="title text7"><?php pll_e('Tel'); ?></div>
+											<div class="title text7"><?php echo cuhk_multilang_text("電話","","Tel"); ?></div>
 											<div class="text" x-text="currentStaff.phones.join(' / ')"></div>
 										</div>
 									</template>
 									<template x-if="currentStaff.faxes && currentStaff.faxes.length">
 										<div class="table_flex_item">
-											<div class="title text7"><?php pll_e('Fax'); ?></div>
+											<div class="title text7"><?php echo cuhk_multilang_text("傳真","","Fax"); ?></div>
 											<div class="text" x-text="currentStaff.faxes.join(' / ')"></div>
 										</div>
 									</template>
 									<template x-if="currentStaff.address">
 										<div class="table_flex_item">
-											<div class="title text7"><?php pll_e('Address'); ?></div>
+											<div class="title text7"><?php echo cuhk_multilang_text("地址","","Address"); ?></div>
 											<div class="text" x-text="currentStaff.address"></div>
 										</div>
 									</template>
 									<template x-if="currentStaff.office_hours">
 										<div class="table_flex_item">
-											<div class="title text7"><?php pll_e('Office Hours'); ?></div>
+											<div class="title text7"><?php echo cuhk_multilang_text("辦工時間","","Office Hours"); ?></div>
 											<div class="text" x-text="currentStaff.office_hours"></div>
 										</div>
 									</template>
@@ -174,13 +201,13 @@ get_header();
 							</div>
 							<template x-if="currentStaff.research_interests">
 								<div class="description">
-									<div class="t1 text7"><?php pll_e('Research Interests'); ?></div>
+									<div class="t1 text7"><?php echo cuhk_multilang_text("研究專長","","Research Interests"); ?></div>
 									<div class="t2 free_text" x-html="currentStaff.research_interests"></div>
 								</div>
 							</template>
 							<template x-if="currentStaff.description">
 								<div class="description">
-									<div class="t1 text7"><?php pll_e('Description'); ?></div>
+									<div class="t1 text7"><?php echo cuhk_multilang_text("簡介","","Description"); ?></div>
 									<div class="t2 free_text" x-html="currentStaff.description"></div>
 								</div>
 							</template>

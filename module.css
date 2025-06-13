@@ -3543,13 +3543,19 @@ justify-content: center;
 
 .alphabet_list_wrapper .alphabet_list{
     display: flex;
-    gap: 5px 10px;
+    gap: 5px 0px;
     margin-top: 5px;
     flex-wrap: wrap;
 }
 
 .alphabet_list_wrapper .alphabet_list a:hover{
     color:#63629B
+}
+
+.alphabet_list_wrapper .alphabet_list li + li{
+    padding-left: 10px;
+    margin-left: 10px;
+    border-left:1px solid #63629B;
 }
 
 .filter_checkbox_wrapper{
