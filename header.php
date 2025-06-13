@@ -51,11 +51,11 @@ if (pll_current_language() == 'sc') {
 	<div class="dropdown">
 		<div class="dropdown_col_wrapper text7">
 			<?php
-			if( have_rows('column_1_menu') ):
+			if( have_rows('column_1_menu', 'option') ):
 				?>
 				<div class="dropdown_col">
 				<?php
-				while( have_rows('column_1_menu') ) : the_row();
+				while( have_rows('column_1_menu', 'option') ) : the_row();
 					$group_name = get_sub_field('group_name');
 					if( have_rows('menu') ):
 						?>
@@ -85,11 +85,11 @@ if (pll_current_language() == 'sc') {
 			endif;
 			?>
 			<?php
-			if( have_rows('column_2_menu') ):
+			if( have_rows('column_2_menu', 'option') ):
 				?>
 				<div class="dropdown_col">
 				<?php
-				while( have_rows('column_2_menu') ) : the_row();
+				while( have_rows('column_2_menu', 'option') ) : the_row();
 					$group_name = get_sub_field('group_name');
 					if( have_rows('menu') ):
 						?>
@@ -119,11 +119,11 @@ if (pll_current_language() == 'sc') {
 			endif;
 			?>
 			<?php
-			if( have_rows('column_3_menu') ):
+			if( have_rows('column_3_menu', 'option') ):
 				?>
 				<div class="dropdown_col">
 				<?php
-				while( have_rows('column_3_menu') ) : the_row();
+				while( have_rows('column_3_menu', 'option') ) : the_row();
 					$group_name = get_sub_field('group_name');
 					if( have_rows('menu') ):
 						?>
