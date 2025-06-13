@@ -19,7 +19,7 @@ if (have_posts()) :
 ?>
 
 		<div class="section section_content resource_top_section">
-			<div class="section_center_content small_section_center_content">
+			<div class="section_center_content xs_section_center_content">
 				<?php if ($page_title): ?>
 					<h1 class="section_title text1 scrollin scrollinbottom"><?php echo wp_kses_post($page_title); ?></h1>
 				<?php endif; ?>
@@ -29,7 +29,7 @@ if (have_posts()) :
 				<?php endif; ?>
 
 				<?php if ($page_freetext): ?>
-					<div class="section_introduction col6 scrollin scrollinbottom">
+					<div class="section_introduction col12 scrollin scrollinbottom">
 						<div class="free_text">
 							<?php echo wp_kses_post($page_freetext); ?>
 						</div>
