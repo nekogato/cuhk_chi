@@ -79,13 +79,13 @@ if (have_posts()) :
 					<div class="filter_menu filter_menu_left_bg filter_menu_bottom section_center_content small_section_center_content scrollin scrollinbottom">
 						<div class="filter_menu_content">
 							<div class="filter_dropdown_wrapper">
-								<a class="filter_dropdown_btn text5" href="#" @click="dropdowns.year = !dropdowns.year" x-text="filters.academicYearName"></a>
+								<a class="filter_dropdown_btn text5"  @click="dropdowns.year = !dropdowns.year" x-text="filters.academicYearName"></a>
 								<div class="filter_dropdown text5" x-show="dropdowns.year" @click.away="dropdowns.year = false">
 									<ul>
 										<?php if (!empty($academic_years)) : ?>
 											<?php foreach ($academic_years as $year) : ?>
 												<li>
-													<a href="#"
+													<a 
 														@click="selectFilter('academicYear', '<?php echo esc_js($year->slug); ?>', '<?php echo esc_js($year->name); ?>')"
 														:class="filters.academicYear === '<?php echo esc_js($year->slug); ?>' ? 'active' : ''">
 														<?php echo esc_html($year->name); ?>
@@ -97,12 +97,12 @@ if (have_posts()) :
 								</div>
 							</div>
 							<div class="filter_dropdown_wrapper">
-								<a class="filter_dropdown_btn text5" href="#" @click="dropdowns.type = !dropdowns.type" x-text="filters.courseTypeName || '<?php echo cuhk_multilang_text("所有分類","","All Course Type"); ?>'"></a>
+								<a class="filter_dropdown_btn text5"  @click="dropdowns.type = !dropdowns.type" x-text="filters.courseTypeName || '<?php echo cuhk_multilang_text("所有分類","","All Course Type"); ?>'"></a>
 								<div class="filter_dropdown text5" x-show="dropdowns.type" @click.away="dropdowns.type = false">
 									<ul>
 										<?php if (!empty($course_type)) : ?>
 											<li>
-												<a href="#"
+												<a 
 													@click="selectFilter('courseType', '', '<?php echo cuhk_multilang_text("所有分類","","All Course Type"); ?>')"
 													:class="filters.courseType === '' ? 'active' : ''">
 													<?php echo cuhk_multilang_text("所有分類","","All Course Type"); ?>
@@ -110,7 +110,7 @@ if (have_posts()) :
 											</li>
 											<?php foreach ($course_type as $type) : ?>
 												<li>
-													<a href="#"
+													<a 
 														@click="selectFilter('courseType', '<?php echo esc_js($type->slug); ?>', '<?php echo esc_js($type->name); ?>')"
 														:class="filters.courseType === '<?php echo esc_js($type->slug); ?>' ? 'active' : ''">
 														<?php 
@@ -164,8 +164,7 @@ if (have_posts()) :
 							<div class="expandable_item "
 								:class="expandedCourses.includes(course.id) ? 'active' : ''">
 								<div class="section_center_content small_section_center_content">
-									<div class="expandable_title filter_detail_flex"
-										@click="toggleCourse(course.id, $event)">
+									<div class="expandable_title filter_detail_flex">
 										<div class="filter_detail_flex_item text5 text_c1 filter_detail_flex_item_title">
 											<div class="text8 mobile_show2 mobile_title"><?php echo cuhk_multilang_text("課程編號","","Course Code"); ?></div>
 											<span x-text="course.course_code"></span>
@@ -306,30 +305,47 @@ if (have_posts()) :
 						}
 					},
 
-					toggleCourse(courseId, event) {
-						event.preventDefault();
 
-						const expandableItem = event.target.closest('.expandable_item');
-						const hidden = expandableItem.querySelector('.hidden');
-
-						if (this.expandedCourses.includes(courseId)) {
-							// Remove from expanded courses
-							this.expandedCourses = this.expandedCourses.filter(id => id !== courseId);
-							expandableItem.classList.remove('active');
-							if (hidden) {
-								hidden.style.maxHeight = '0px';
-								hidden.style.opacity = '0';
-							}
-						} else {
-							// Add to expanded courses
-							this.expandedCourses.push(courseId);
-							expandableItem.classList.add('active');
-							if (hidden) {
-								hidden.style.maxHeight = hidden.scrollHeight + 'px';
-								hidden.style.opacity = '1';
-							}
+					$(document).on("click", ".expandable_item .expandable_title", function () {
+						var $p = $(this).parents(".expandable_item")
+						if($p.hasClass("active")){
+							$p.removeClass("active").find(".hidden").show();
+							setTimeout(function(){
+							$p.find(".hidden").stop().slideUp();
+							},0)
+						}else{
+							$p.addClass("active").find(".hidden").hide();
+							setTimeout(function(){
+							$p.find(".hidden").stop().slideDown();
+							},0)
 						}
-					}
+					})
+
+
+					// toggleCourse(courseId, event) {
+					// 	event.preventDefault();
+
+					// 	const expandableItem = event.target.closest('.expandable_item');
+					// 	const hidden = expandableItem.querySelector('.hidden');
+
+					// 	if (this.expandedCourses.includes(courseId)) {
+					// 		// Remove from expanded courses
+					// 		this.expandedCourses = this.expandedCourses.filter(id => id !== courseId);
+					// 		expandableItem.classList.remove('active');
+					// 		if (hidden) {
+					// 			hidden.style.maxHeight = '0px';
+					// 			hidden.style.opacity = '0';
+					// 		}
+					// 	} else {
+					// 		// Add to expanded courses
+					// 		this.expandedCourses.push(courseId);
+					// 		expandableItem.classList.add('active');
+					// 		if (hidden) {
+					// 			hidden.style.maxHeight = hidden.scrollHeight + 'px';
+					// 			hidden.style.opacity = '1';
+					// 		}
+					// 	}
+					// }
 				}
 			}
 		</script>
