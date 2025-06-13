@@ -18,40 +18,27 @@ get_header();
 <div x-data="teachingStaffList()">
 	<div class="section section_content filter_menu_section">
 		<div class="section_center_content small_section_center_content scrollin scrollinbottom">
-			<h1 class="section_title text1 scrollin scrollinbottom"><?php pll_e('教學人員'); ?></h1>
+			<h1 class="section_title text1 scrollin scrollinbottom"><?php the_field('page_title'); ?></h1>
 		</div>
 		<div class="filter_menu_wrapper">
 			<div class="filter_menu filter_menu_no_flex">
 				<div class="section_center_content small_section_center_content scrollin scrollinbottom">
 					<div class="filter_menu_content full_filter_menu_content">
 						<div class="alphabet_list_wrapper">
-							<div class="title"><?php pll_e('alphabet order'); ?></div>
+							<div class="title"><?php pll_e('職位分類'); ?></div>
 							<ul class="alphabet_list">
-								<?php
-								$alphabet = range('A', 'Z');
-								foreach ($alphabet as $letter) :
-								?>
-									<li><a href="#" @click.prevent="filterByAlphabet('<?php echo strtolower($letter); ?>')" :class="{ 'active': selectedAlphabet === '<?php echo strtolower($letter); ?>' }"><?php echo $letter; ?></a></li>
-								<?php endforeach; ?>
+								<li><a href="#" @click.prevent="filterByPosition('professors')" :class="{ 'active': selectedPosition === 'professors' }">Professors</a></li>
+								<li><a href="#" @click.prevent="filterByPosition('lecturers')" :class="{ 'active': selectedPosition === 'lecturers' }">Lecturers</a></li>
+								<li><a href="#" @click.prevent="filterByPosition('honorary-professor-and-emeritus-professor')" :class="{ 'active': selectedPosition === 'honorary-professor-and-emeritus-professor' }">Honorary Professor and Emeritus Professor</a></li>
+								<li><a href="#" @click.prevent="filterByPosition('adjunct-professors-and-part-time-teaching-staff')" :class="{ 'active': selectedPosition === 'adjunct-professors-and-part-time-teaching-staff' }">Adjunct Professors and Part-time Teaching Staff</a></li>
+								<li><a href="#" @click.prevent="filterByPosition('visiting-scholars')" :class="{ 'active': selectedPosition === 'visiting-scholars' }">Visiting Scholars</a></li>
 							</ul>
-						</div>
-						<div class="filter_dropdown_wrapper right_filter_dropdown_wrapper">
-							<a class="filter_dropdown_btn text5" href="#"><?php pll_e('職位分類'); ?></a>
-							<div class="filter_dropdown text5">
-								<ul>
-									<li><a href="#" @click.prevent="filterByPosition('professors')" :class="{ 'active': selectedPosition === 'professors' }">Professors</a></li>
-									<li><a href="#" @click.prevent="filterByPosition('lecturers')" :class="{ 'active': selectedPosition === 'lecturers' }">Lecturers</a></li>
-									<li><a href="#" @click.prevent="filterByPosition('honorary-professor-and-emeritus-professor')" :class="{ 'active': selectedPosition === 'honorary-professor-and-emeritus-professor' }">Honorary Professor and Emeritus Professor</a></li>
-									<li><a href="#" @click.prevent="filterByPosition('adjunct-professors-and-part-time-teaching-staff')" :class="{ 'active': selectedPosition === 'adjunct-professors-and-part-time-teaching-staff' }">Adjunct Professors and Part-time Teaching Staff</a></li>
-									<li><a href="#" @click.prevent="filterByPosition('visiting-scholars')" :class="{ 'active': selectedPosition === 'visiting-scholars' }">Visiting Scholars</a></li>
-								</ul>
-							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 
-			<div class="filter_menu filter_menu_left_bg filter_menu_bottom section_center_content small_section_center_content scrollin scrollinbottom">
+			<!-- <div class="filter_menu filter_menu_left_bg filter_menu_bottom section_center_content small_section_center_content scrollin scrollinbottom">
 				<div class="filter_menu_content">
 					<div class="filter_checkbox_wrapper text7">
 						<div class="filter_checkbox">
@@ -68,7 +55,7 @@ get_header();
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> -->
 		</div>
 	</div>
 
