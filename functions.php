@@ -742,21 +742,21 @@ function load_teaching_staff()
 			array(
 				'taxonomy' => 'people_category',
 				'field' => 'term_id',
-				'terms' => $category->term_id
+				'terms' => $category->term_id,
+				'include_children' => true // very important!
 			)
 		)
 	);
 
-	// Add meta query for position if specified
-	$meta_query = array('relation' => 'AND');
-
 	if ($position) {
-		$meta_query[] = array(
-			'key' => 'filter_position',
-			'value' => $position,
-			'compare' => '='
+		$tax_query[] = array(
+			'taxonomy' => 'people_category',
+			'field' => 'slug',
+			'terms' => $position
 		);
 	}
+
+	$args['tax_query'] = $tax_query;
 
 
 	if (count($meta_query) > 1) {
