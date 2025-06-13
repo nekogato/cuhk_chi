@@ -688,7 +688,7 @@ function load_postgraduate_students()
 				'phones' => $phones,
 				'faxes' => $faxes,
 				'qualifications' => $qualifications,
-				'has_detail' => get_field('has_detail'),
+				'has_detail' => (bool) get_field('has_detail'),
 				'permalink' => get_permalink(get_the_ID())
 			);
 
@@ -816,7 +816,7 @@ function load_teaching_staff()
 				'qualifications' => $qualifications,
 				'research_interests' => $research_interests,
 				'office_hours' => $office_hours,
-				'has_detail' => get_field('has_detail'),
+				'has_detail' => (bool) get_field('has_detail'),
 				'permalink' => get_permalink(get_the_ID())
 			);
 
@@ -934,7 +934,7 @@ function load_courses()
 				'venue' => $venue,
 				'quota' => $quota,
 				'course_description' => $course_description,
-				'has_detail' => $has_detail
+				'has_detail' => (bool) $has_detail
 			);
 
 			// Get course_semester terms
