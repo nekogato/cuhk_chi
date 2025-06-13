@@ -50,6 +50,19 @@ if (pll_current_language() == 'sc') {
 	</div>
 	<div class="dropdown">
 		<div class="dropdown_col_wrapper text7">
+			<?php
+			if( have_rows('column_1_menu', 'option') ):
+				?>
+				<div class="dropdown_col">
+				<?php
+				while( have_rows('column_1_menu', 'option') ) : the_row();
+					
+				endwhile;
+				?>
+				</div>
+				<?php
+			endif;
+			?>
 			
 			<div class="dropdown_col">
 				<div class="dropdown_department">
