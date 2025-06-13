@@ -114,11 +114,11 @@
                                 </ul>
                             </div>
                             <div class="copyright">
-                                <?php echo cuhk_multilang_text(date('Y') ."版權所有","","© Copyright ".date('Y')); ?><span class="copyright_line">|</span><?php echo cuhk_multilang_text("香港中文大學中國語言及文學系","","The Chinese University of Hong Kong Department of Chinese Language & Literature"); ?>
+                                <?php echo cuhk_multilang_text(date('Y') ."版權所有","版權所有","© Copyright ".date('Y')); ?><span class="copyright_line">|</span><?php echo cuhk_multilang_text("香港中文大學中國語言及文學系","香港中文大學中國語言及文學系","The Chinese University of Hong Kong Department of Chinese Language & Literature"); ?>
                             </div>
                         </div>
                         <div class="footer2_t footer2_t2">
-                            <div class="footer_sns_title text8"><?php echo cuhk_multilang_text("追蹤中國語言及文學系","","Follow Department of Chinese Language & Literature"); ?></div>
+                            <div class="footer_sns_title text8"><?php echo cuhk_multilang_text("追蹤中國語言及文學系","追蹤中國語言及文學系","Follow Department of Chinese Language & Literature"); ?></div>
                             <div class="footer_sns_wrapper">
                                 <ul>
                                     <?php if(get_field("fb_url","option")){?>
