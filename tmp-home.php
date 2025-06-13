@@ -177,7 +177,7 @@ get_header(); ?>
 									<div class="swiper-slide">
 										<div class="date text4" x-text="formatDate(dateKey)"></div>
 										<div class="news_item_wrapper">
-											<template x-for="(newsItem, index) in dateGroup.slice(0, 2)" :key="newsItem.id">
+											<template x-for="(newsItem, index) in dateGroup" :key="newsItem.id">
 												<div class="news_item">
 													<div class="news_item_spacing">
 														<a :href="newsItem.link">
@@ -187,14 +187,6 @@ get_header(); ?>
 														<div class="cat_icon"
 															:class="newsItem.post_type === 'news' ? 'bg_color2' : 'cat_circle bg_color1'">
 														</div>
-													</div>
-												</div>
-											</template>
-											<!-- Show "more" indicator if there are additional items -->
-											<template x-if="dateGroup.length > 2">
-												<div class="news_item more_items">
-													<div class="news_item_spacing">
-														<div class="text" x-text="'<?php echo cuhk_multilang_text("還有 ", "还有 ", "+"); ?>' + (dateGroup.length - 2) + '<?php echo cuhk_multilang_text(" 則消息", " 则消息", " more items"); ?>'"></div>
 													</div>
 												</div>
 											</template>
@@ -324,11 +316,17 @@ get_header(); ?>
 			},
 
 			formatDate(dateString) {
-				const date = new Date(dateString);
+				// Check if dateString is valid
+				if (!dateString) return '';
+
+				// Parse the date string (assuming YYYY-MM-DD format)
+				const [year, month, day] = dateString.split('-').map(Number);
+				if (!year || !month || !day) return '';
+
+				const date = new Date(year, month - 1, day);
 				const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-				const day = days[date.getDay()];
-				const dayOfMonth = date.getDate();
-				return `${day} ${dayOfMonth}`;
+				const dayName = days[date.getDay()];
+				return `${dayName} ${day}`;
 			},
 
 			async loadNews() {
