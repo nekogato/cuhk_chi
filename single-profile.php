@@ -9,8 +9,20 @@ get_header();
 // Get the first people category this post belongs to
 $people_categories = get_the_terms(get_the_ID(), 'people_category');
 $target_page = '';
+
 if ($people_categories && !is_wp_error($people_categories)) {
-	$target_page = "people/" . $people_categories[0]->slug;
+	foreach ($people_categories as $term) {
+		$top_term = $term;
+
+		// Climb up the hierarchy until we find a term with no parent
+		while ($top_term->parent != 0) {
+			$top_term = get_term($top_term->parent, 'people_category');
+		}
+
+		// You can break or use other logic here depending on your goal
+		$target_page = "people/" . $top_term->slug;
+		break; // if you only care about the first top-most term
+	}
 }
 
 // Include roll menu
