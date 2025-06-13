@@ -50,69 +50,108 @@ if (pll_current_language() == 'sc') {
 	</div>
 	<div class="dropdown">
 		<div class="dropdown_col_wrapper text7">
-			<div class="dropdown_col">
-				<div class="dropdown_menu_list">
-					<div class="t1 text5"><a href="#">Research & Publications</a></div>
-					<ul>
-						<li><a href="#">Research Strengths</a></li>
-						<li><a href="#">Research Projects</a></li>
-						<li><a href="#">MPhil / PhD Research</a></li>
-						<li><a href="#">Publications</a></li>
-						<li><a href="#">Research Centres & Units</a></li>
-					</ul>
+			<?php
+			if( have_rows('column_1_menu') ):
+				?>
+				<div class="dropdown_col">
+				<?php
+				while( have_rows('column_1_menu') ) : the_row();
+					$group_name = get_sub_field('group_name');
+					if( have_rows('menu') ):
+						?>
+
+						<div class="dropdown_menu_list">
+							<div class="t1 text5"><a><?php echo $group_name;?></a></div>
+							<ul>
+								<?php
+								while( have_rows('menu') ) : the_row();
+									$text = get_sub_field('text');
+									$url = get_sub_field('url');
+									?>
+									<li><a href="<?php echo $url;?>"><?php echo $text;?></a></li>
+									<?php
+								endwhile;
+								?>
+							</ul>
+							</div>
+						</div>
+
+						<?php
+					endif;
+				endwhile;
+				?>
 				</div>
-				<div class="dropdown_menu_list">
-					<div class="t1 text5"><a href="#">News</a></div>
-					<ul>
-						<li><a href="#">Announcements</a></li>
-						<li><a href="#">Events</a></li>
-						<li><a href="#">News</a></li>
-						<li><a href="#">Newsletter</a></li>
-						<li><a href="#">Media Gallery</a></li>
-					</ul>
+				<?php
+			endif;
+			?>
+			<?php
+			if( have_rows('column_2_menu') ):
+				?>
+				<div class="dropdown_col">
+				<?php
+				while( have_rows('column_2_menu') ) : the_row();
+					$group_name = get_sub_field('group_name');
+					if( have_rows('menu') ):
+						?>
+
+						<div class="dropdown_menu_list">
+							<div class="t1 text5"><a><?php echo $group_name;?></a></div>
+							<ul>
+								<?php
+								while( have_rows('menu') ) : the_row();
+									$text = get_sub_field('text');
+									$url = get_sub_field('url');
+									?>
+									<li><a href="<?php echo $url;?>"><?php echo $text;?></a></li>
+									<?php
+								endwhile;
+								?>
+							</ul>
+							</div>
+						</div>
+
+						<?php
+					endif;
+				endwhile;
+				?>
 				</div>
-			</div>
-			<div class="dropdown_col">
-				<div class="dropdown_menu_list">
-					<div class="t1 text5"><a href="#">Study</a></div>
-					<ul>
-						<li><a href="#">Undergraduate</a></li>
-						<li><a href="#">BA in XXX</a></li>
-						<li><a href="#">Double Degree Programme</a></li>
-						<li><a href="#">Minor Programme</a></li>
-						<li><a href="#">Taught Postgraduate</a></li>
-						<li><a href="#">Research Postgraduate</a></li>
-						<li><a href="#">Courses Offerings</a></li>
-						<li><a href="#">Support and Opportunities</a></li>
-						<li><a href="#">Resources</a></li>
-						<li><a href="#">Academic Calendar</a></li>
-					</ul>
+				<?php
+			endif;
+			?>
+			<?php
+			if( have_rows('column_3_menu') ):
+				?>
+				<div class="dropdown_col">
+				<?php
+				while( have_rows('column_3_menu') ) : the_row();
+					$group_name = get_sub_field('group_name');
+					if( have_rows('menu') ):
+						?>
+
+						<div class="dropdown_menu_list">
+							<div class="t1 text5"><a><?php echo $group_name;?></a></div>
+							<ul>
+								<?php
+								while( have_rows('menu') ) : the_row();
+									$text = get_sub_field('text');
+									$url = get_sub_field('url');
+									?>
+									<li><a href="<?php echo $url;?>"><?php echo $text;?></a></li>
+									<?php
+								endwhile;
+								?>
+							</ul>
+							</div>
+						</div>
+
+						<?php
+					endif;
+				endwhile;
+				?>
 				</div>
-			</div>
-			<div class="dropdown_col">
-				<div class="dropdown_menu_list">
-					<div class="t1 text5"><a href="#">About Us</a></div>
-					<ul>
-						<li><a href="#">About the Department</a></li>
-						<li><a href="#">Message From Chairman</a></li>
-						<li><a href="#">CUHK Historians</a></li>
-						<li><a href="#">Contact Us</a></li>
-					</ul>
-				</div>
-				<div class="dropdown_menu_list">
-					<div class="t1 text5"><a href="#">People</a></div>
-					<ul>
-						<li><a href="#">Academic Staff
-						</a></li>
-						<li><a href="#">Research Staff</a></li>
-						<li><a href="#">Department Office / Admin Staff</a></li>
-						<li><a href="#">Teaching Assistants / Instructors</a></li>
-						<li><a href="#">Graduate Students</a></li>
-						<li><a href="#">Student Committee</a></li>
-						<li><a href="#">Alumni</a></li>
-					</ul>
-				</div>
-			</div>
+				<?php
+			endif;
+			?>
 			<div class="dropdown_col">
 				<div class="dropdown_department">
 					<div class="dropdown_department_top">
