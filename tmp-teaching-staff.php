@@ -26,7 +26,6 @@ if ($teaching_staff_term) {
 <?php get_template_part('template-parts/roll-menu'); ?>
 
 <div x-data="teachingStaffList()" x-init="init()">
-	<p>Selected: <span x-text="selectedPosition"></span></p>
 	<div class="section section_content filter_menu_section">
 		<div class="section_center_content small_section_center_content scrollin scrollinbottom">
 			<h1 class="section_title text1 scrollin scrollinbottom"><?php the_field('page_title'); ?></h1>
@@ -88,7 +87,7 @@ if ($teaching_staff_term) {
 				<div class="student_list_item_wrapper">
 					<template x-for="staff in staffMembers" :key="staff.id">
 						<template x-if="staff.has_detail">
-							<div class="student_list_item">
+							<div class="student_list_item scrollin scrollinbottom ">
 								<!-- If staff has detail page, make entire item clickable to detail page -->
 								<template x-if="staff.photo">
 									<a class="photo" :href="staff.permalink">
@@ -109,7 +108,7 @@ if ($teaching_staff_term) {
 
 						<!-- If staff has no detail page, make entire item clickable to show popup -->
 						<template x-if="!staff.has_detail">
-							<div class="student_list_item">
+							<div class="student_list_item scrollin scrollinbottom">
 								<template x-if="staff.photo">
 									<div class="photo" @click="showStaffPopup(staff)" x-if="staff.photo">
 										<img :src="staff.photo.sizes.s" :alt="staff.photo.alt">
@@ -257,6 +256,7 @@ if ($teaching_staff_term) {
 
 					const data = await response.json();
 					if (data.success) {
+						doscroll();
 						const newStaff = data.data.staff.map(staff => ({
 							...staff,
 							contact_info: this.formatContactInfo(staff)
@@ -272,13 +272,14 @@ if ($teaching_staff_term) {
 					}
 				} catch (error) {
 					console.error('Error loading teaching staff:', error);
+					doscroll();
 				} finally {
 					this.loading = false;
+					doscroll();
 				}
 			},
 
 			filterByPosition(position) {
-	console.log("Filtering by:", position);
 				this.selectedPosition = this.selectedPosition === position ? '' : position;
 				this.page = 1;
 				this.loadStaff();
