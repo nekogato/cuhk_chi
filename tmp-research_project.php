@@ -156,12 +156,12 @@ $initial_year = isset($_GET['active_year']) ? intval($_GET['active_year']) : $ma
 			</div>
 
 			<div class="project_item_wrapper" x-show="!loading">
-				<div class="section_center_content small_section_center_content">
+				<div class="">
 					<div class="section_expandable_list">
 						<template x-for="project in projects" :key="project.id">
 							<div class="year-group" :data-year="activeYear">
 								<div class="expandable_item scrollin scrollinbottom">
-									<div class="section_center_content">
+									<div class="section_center_content small_section_center_content">
 										<div class="expandable_title">
 											<div class="cat" x-text="project.funding_organization"></div>
 											<div class="text5" x-text="`${project.project_title} (${project.funding_start_year}/${project.funding_end_year_short})`"></div>
@@ -267,26 +267,13 @@ $initial_year = isset($_GET['active_year']) ? intval($_GET['active_year']) : $ma
 						console.log('firstLoad counter:', this.firstLoad);
 						// Reinitialize jQuery expandable functionality after Alpine updates DOM
 						this.$nextTick(() => {
-							// Reinitialize expandable items with jQuery
-							$(".expandable_item .expandable_title").off('click').on('click', function() {
-								var $p = $(this).parents(".expandable_item")
-								if ($p.hasClass("active")) {
-									$p.removeClass("active").find(".hidden").show();
-									setTimeout(function() {
-										$p.find(".hidden").stop().slideUp();
-									}, 0)
-								} else {
-									$p.addClass("active").find(".hidden").hide();
-									setTimeout(function() {
-										$p.find(".hidden").stop().slideDown();
-									}, 0)
-								}
-							});
+							
 
 							// Add animation classes after 100ms delay
 							if (this.firstLoad > 1) {
 								setTimeout(() => {
-									$(".expandable_item.scrollin.scrollinbottom").addClass("onscreen startani");
+									doscroll();
+									//$(".expandable_item.scrollin.scrollinbottom").addClass("onscreen startani");
 								}, 100);
 							}
 						});
