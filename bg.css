@@ -33,6 +33,7 @@
     width: 100%;
     height: auto;
     mix-blend-mode: darken;
+    pointer-events: none;
 }
 
 
@@ -43,6 +44,7 @@
     width: 100%;
     height: 150%;
     mix-blend-mode: darken;
+    pointer-events: none;
 }
 
 .ink_bg1 img{
@@ -59,6 +61,7 @@
     right: 0px;
     height: 200%;
     mix-blend-mode: darken;
+    pointer-events: none;
 }
 
 .ink_bg4{
@@ -69,6 +72,7 @@
     height: 100%;
     object-fit: cover;
     mix-blend-mode: darken;
+    pointer-events: none;
 }
 
 
@@ -80,6 +84,7 @@
     height: auto;
     object-fit: cover;
     mix-blend-mode: darken;
+    pointer-events: none;
 }
 
 
@@ -91,6 +96,7 @@
     height: auto;
     object-fit: cover;
     mix-blend-mode: darken;
+    pointer-events: none;
 }
 
 .ink_bg7{
@@ -102,6 +108,7 @@
     object-fit: cover;
     object-position: bottom center;
     mix-blend-mode: darken;
+    pointer-events: none;
 }
 
 .ink_bg8_wrapper{
@@ -123,6 +130,7 @@
     padding-bottom: 25%;
     position: relative;
     mix-blend-mode: darken;
+    pointer-events: none;
 }
 
 .ink_bg9{
@@ -138,6 +146,7 @@
     position: absolute;
     top:100%;
     mix-blend-mode: darken;
+    pointer-events: none;
 }
 
 .ink_bg10{
@@ -150,6 +159,7 @@
     position: absolute;
     top:0%;
     mix-blend-mode: darken;
+    pointer-events: none;
 }
 
 .ink_bg11{
@@ -164,6 +174,7 @@
     top:0px;
     overflow: hidden;
     mix-blend-mode: darken;
+    pointer-events: none;
 }
 
 .ink_bg12{
@@ -179,6 +190,7 @@
     position: absolute;
     top:0%;
     mix-blend-mode: darken;
+    pointer-events: none;
 }
 
 .ink_bg13{
