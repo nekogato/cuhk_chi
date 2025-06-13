@@ -106,7 +106,7 @@ if ($teaching_staff_term) {
 
 						<!-- If staff has no detail page, make entire item clickable to show popup -->
 						<template x-if="!staff.has_detail">
-							<div class="student_list_item scrollin scrollinbottom">
+							<div class="student_list_item scrollin scrollin_fast scrollinbottom">
 								<template x-if="staff.photo">
 									<div class="photo" @click="showStaffPopup(staff)" x-if="staff.photo">
 										<img :src="staff.photo.sizes.s" :alt="staff.photo.alt">
@@ -133,8 +133,6 @@ if ($teaching_staff_term) {
 					</a>
 				</div>
 			</template>
-
-			<div class="ajax_loading"></div>
 		</div>
 	</div>
 
@@ -238,7 +236,6 @@ if ($teaching_staff_term) {
 			async loadStaff() {
 				if (this.loading) return;
 				this.loading = true;
-				$(".ajax_loading").fadeIn();
 				$(".student_list_item_wrapper").height($(".student_list_item_wrapper").height());
 
 				$(".student_list_item")..css({
@@ -264,6 +261,7 @@ if ($teaching_staff_term) {
 
 					const data = await response.json();
 					if (data.success) {
+						setTimeout(function(){
 						const newStaff = data.data.staff.map(staff => ({
 							...staff,
 							contact_info: this.formatContactInfo(staff)
@@ -276,22 +274,18 @@ if ($teaching_staff_term) {
 						}
 
 						this.hasMore = data.data.has_more;
-						$(".ajax_loading").fadeOut();
-						setTimeout(function(){
 							doscroll();
 							$(".student_list_item_wrapper").height("auto")
 						},300)
 					}
 				} catch (error) {
 					console.error('Error loading teaching staff:', error);
-							$(".ajax_loading").fadeOut();
 						setTimeout(function(){
 							doscroll();
 							$(".student_list_item_wrapper").height("auto")
 						},300)
 				} finally {
 					this.loading = false;
-							$(".ajax_loading").fadeOut();
 						setTimeout(function(){
 							doscroll();
 							$(".student_list_item_wrapper").height("auto")
