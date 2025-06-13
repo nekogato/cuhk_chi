@@ -90,10 +90,11 @@ if ($teaching_staff_term) {
 						<template x-if="staff.has_detail">
 							<div class="student_list_item">
 								<!-- If staff has detail page, make entire item clickable to detail page -->
-
-								<a class="photo" :href="staff.permalink" x-if="staff.photo">
-									<img :src="staff.photo.sizes.s" :alt="staff.photo.alt">
-								</a>
+								<template x-if="staff.photo">
+									<a class="photo" :href="staff.permalink">
+										<img :src="staff.photo.sizes.s" :alt="staff.photo.alt" />
+									</a>
+								</template>
 								<div class="text">
 									<div class="name text5">
 										<a x-text="staff.title"></a>
@@ -109,9 +110,11 @@ if ($teaching_staff_term) {
 						<!-- If staff has no detail page, make entire item clickable to show popup -->
 						<template x-if="!staff.has_detail">
 							<div class="student_list_item">
-								<div class="photo" @click="showStaffPopup(staff)" x-if="staff.photo">
-									<img :src="staff.photo.sizes.s" :alt="staff.photo.alt">
-								</div>
+								<template x-if="staff.photo">
+									<div class="photo" @click="showStaffPopup(staff)" x-if="staff.photo">
+										<img :src="staff.photo.sizes.s" :alt="staff.photo.alt">
+									</div>
+								</template>
 								<div class="text" @click="showStaffPopup(staff)">
 									<div class="name text5" x-text="staff.title"></div>
 									<div class="title" x-text="staff.position"></div>
