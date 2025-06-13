@@ -3543,9 +3543,13 @@ justify-content: center;
 
 .alphabet_list_wrapper .alphabet_list{
     display: flex;
-    gap: 5px 0px;
+    gap: 5px;
     margin-top: 5px;
     flex-wrap: wrap;
+}
+
+.big_alphabet_list_wrapper .alphabet_list{
+    gap: 5px 0px;
 }
 
 .alphabet_list_wrapper .alphabet_list a{
@@ -3556,7 +3560,7 @@ justify-content: center;
     color:#63629B
 }
 
-.alphabet_list_wrapper .alphabet_list li + li{
+.big_alphabet_list_wrapper .alphabet_list li + li{
     padding-left: 10px;
     margin-left: 10px;
     border-left:1px solid #63629B;

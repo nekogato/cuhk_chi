@@ -34,7 +34,7 @@ if ($teaching_staff_term) {
 			<div class="filter_menu filter_menu_no_flex">
 				<div class="section_center_content small_section_center_content scrollin scrollinbottom">
 					<div class="filter_menu_content full_filter_menu_content">
-						<div class="alphabet_list_wrapper">
+						<div class="alphabet_list_wrapper big_alphabet_list_wrapper">
 							<div class="title"><?php echo cuhk_multilang_text("職位分類","","Category"); ?></div>
 							<ul class="alphabet_list">
 								<?php if (!empty($child_terms) && !is_wp_error($child_terms)) : ?>
