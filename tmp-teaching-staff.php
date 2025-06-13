@@ -85,7 +85,7 @@ if ($teaching_staff_term) {
 				<div class="student_list_item_wrapper">
 					<template x-for="staff in staffMembers" :key="staff.id">
 						<template x-if="staff.has_detail">
-							<div class="student_list_item scrollin scrollinopacity ">
+							<div class="student_list_item scrollin scrollin_fast scrollinopacity ">
 								<!-- If staff has detail page, make entire item clickable to detail page -->
 								<template x-if="staff.photo">
 									<a class="photo" :href="staff.permalink">
@@ -133,6 +133,8 @@ if ($teaching_staff_term) {
 					</a>
 				</div>
 			</template>
+
+			<div class="ajax_loading"></div>
 		</div>
 	</div>
 
@@ -236,7 +238,14 @@ if ($teaching_staff_term) {
 			async loadStaff() {
 				if (this.loading) return;
 				this.loading = true;
+				$(".ajax_loading").fadeIn();
 				$(".student_list_item_wrapper").height($(".student_list_item_wrapper").height());
+
+				$(".student_list_item")..css({
+					"-webkit-transition-delay": 0+"ms",
+					"transition-delay": 0+"ms",
+				})
+
 				$(".student_list_item").removeClass("startani")
 				try {
 					const response = await fetch(ajaxurl, {
@@ -255,31 +264,36 @@ if ($teaching_staff_term) {
 
 					const data = await response.json();
 					if (data.success) {
-						const newStaff = data.data.staff.map(staff => ({
-							...staff,
-							contact_info: this.formatContactInfo(staff)
-						}));
-
-						if (this.page === 1) {
-							this.staffMembers = newStaff;
-						} else {
-							this.staffMembers = [...this.staffMembers, ...newStaff];
-						}
-
-						this.hasMore = data.data.has_more;
 						setTimeout(function(){
-							doscroll();
-							$(".student_list_item_wrapper").height("auto")
-						},300)
+							const newStaff = data.data.staff.map(staff => ({
+								...staff,
+								contact_info: this.formatContactInfo(staff)
+							}));
+
+							if (this.page === 1) {
+								this.staffMembers = newStaff;
+							} else {
+								this.staffMembers = [...this.staffMembers, ...newStaff];
+							}
+
+							this.hasMore = data.data.has_more;
+							$(".ajax_loading").fadeOut();
+							setTimeout(function(){
+								doscroll();
+								$(".student_list_item_wrapper").height("auto")
+							},300)
+						},1200)
 					}
 				} catch (error) {
 					console.error('Error loading teaching staff:', error);
+							$(".ajax_loading").fadeOut();
 						setTimeout(function(){
 							doscroll();
 							$(".student_list_item_wrapper").height("auto")
 						},300)
 				} finally {
 					this.loading = false;
+							$(".ajax_loading").fadeOut();
 						setTimeout(function(){
 							doscroll();
 							$(".student_list_item_wrapper").height("auto")
