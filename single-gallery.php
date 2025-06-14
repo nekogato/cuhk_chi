@@ -7,8 +7,11 @@ get_header();
 
 // Include the roll menu template part
 get_template_part('template-parts/roll-menu', null, array(
-	'target_page' => 'news-and-events/media-coverage/galleries' // Assuming this is the parent page slug
+	'target_page' => 'news-and-events/media-coverage' // Assuming this is the parent page slug
 )); ?>
+
+
+<?php get_template_part('template-parts/roll-menu', null, array('target_page' => 'news-and-events/events')); ?>
 
 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
