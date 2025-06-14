@@ -1,0 +1,267 @@
+<?php
+/*
+Template Name: Gallery Archive
+*/
+
+get_header(); ?>
+
+<div class="section roll_menu_section sticky_section">
+	<div class="roll_menu scrollin scrollinbottom">
+		<div class="roll_top_menu text7">
+			<div class="section_center_content">
+				<div class="swiper-container swiper">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide">
+							<div><a href="#" class="active"><?php echo cuhk_multilang_text("新聞與活動", "新闻与活动", "News & Events"); ?></a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="roll_bottom_menu text7">
+			<div class="section_center_content">
+				<div class="swiper-container swiper">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide">
+							<div><a href="#"><?php echo cuhk_multilang_text("公告", "公告", "Announcements"); ?></a></div>
+						</div>
+						<div class="swiper-slide">
+							<div><a href="#"><?php echo cuhk_multilang_text("即將舉行的活動", "即将举行的活动", "Up Coming Events"); ?></a></div>
+						</div>
+						<div class="swiper-slide">
+							<div><a href="#"><?php echo cuhk_multilang_text("新聞", "新闻", "News"); ?></a></div>
+						</div>
+						<div class="swiper-slide">
+							<div><a href="#"><?php echo cuhk_multilang_text("學系新聞", "学系新闻", "Department in the News"); ?></a></div>
+						</div>
+						<div class="swiper-slide">
+							<div><a href="#"><?php echo cuhk_multilang_text("通訊", "通讯", "Newsletter"); ?></a></div>
+						</div>
+						<div class="swiper-slide">
+							<div><a href="#" class="active"><?php echo cuhk_multilang_text("相片集", "相片集", "Media Gallery"); ?></a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div x-data="galleryFilter()">
+	<div class="section section_content filter_menu_section">
+		<div class="section_center_content small_section_center_content small_section_center_content scrollin scrollinbottom">
+			<h1 class="section_title text1 scrollin scrollinbottom"><?php echo cuhk_multilang_text("相片集", "相片集", "Media Gallery"); ?></h1>
+		</div>
+
+		<div class="filter_menu_wrapper">
+			<div class="filter_menu filter_menu_left_bg section_center_content small_section_center_content scrollin scrollinbottom">
+				<div class="filter_menu_content full_filter_menu_content">
+					<div class="filter_checkbox_wrapper text7 filter_switchable_wrapper">
+						<div class="filter_checkbox">
+							<div class="checkbox">
+								<input name="filter" type="radio" id="all"
+									@change="filterByCategory('all')"
+									:checked="activeCategory === 'all'">
+								<label for="all"><span><?php echo cuhk_multilang_text("所有相片集", "所有相片集", "All Galleries"); ?></span></label>
+							</div>
+						</div>
+						<?php
+						// Get gallery categories
+						$gallery_categories = get_terms(array(
+							'taxonomy' => 'gallery_category',
+							'hide_empty' => true,
+							'orderby' => 'name',
+							'order' => 'ASC'
+						));
+
+						if ($gallery_categories && !is_wp_error($gallery_categories)) :
+							foreach ($gallery_categories as $category) :
+						?>
+								<div class="filter_checkbox">
+									<div class="checkbox">
+										<input name="filter" type="radio" id="category-<?php echo esc_attr($category->term_id); ?>"
+											@change="filterByCategory('<?php echo esc_attr($category->slug); ?>')"
+											:checked="activeCategory === '<?php echo esc_attr($category->slug); ?>'">
+										<label for="category-<?php echo esc_attr($category->term_id); ?>">
+											<span><?php echo esc_html($category->name); ?></span>
+										</label>
+									</div>
+								</div>
+						<?php
+							endforeach;
+						endif;
+						?>
+					</div>
+					<div class="filter_dropdown_wrapper right_filter_dropdown_wrapper">
+						<a class="filter_dropdown_btn text5" href="#" @click.prevent="toggleYearDropdown()" x-text="selectedYearText"><?php echo cuhk_multilang_text("年份", "年份", "Year"); ?></a>
+						<div class="filter_dropdown text5" x-show="showYearDropdown" @click.away="showYearDropdown = false">
+							<ul>
+								<li><a href="#" @click.prevent="filterByYear('')" data-val=""><?php echo cuhk_multilang_text("所有年份", "所有年份", "All Years"); ?></a></li>
+								<template x-for="year in availableYears" :key="year">
+									<li><a href="#" @click.prevent="filterByYear(year)" :data-val="year" x-text="year"></a></li>
+								</template>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="section news_box_section news_gallery_box_section scrollin_p">
+		<div class="news_box_wrapper">
+			<div class="section_center_content small_section_center_content">
+				<div class="col_wrapper big_col_wrapper">
+					<div class="flex row" x-show="!loading">
+						<template x-for="gallery in galleries" :key="gallery.id">
+							<div class="news_box col col3">
+								<div class="col_spacing scrollin scrollinbottom">
+									<a class="photo" :href="gallery.permalink">
+										<img :src="gallery.featured_image" :alt="gallery.title">
+									</a>
+									<div class="text_wrapper">
+										<div class="title_wrapper">
+											<template x-if="gallery.category_name">
+												<div class="cat" x-text="gallery.category_name"></div>
+											</template>
+											<div class="title text5" x-text="gallery.title"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</template>
+
+						<template x-if="hasMore && !loading">
+							<div class="load_more_wrapper scrollin scrollinbottom">
+								<a href="#" @click.prevent="loadMore()" class="load_more_btn text5">
+									<div class="icon"></div>
+									<div class="text"><?php echo cuhk_multilang_text("載入更多", "载入更多", "Load more"); ?></div>
+								</a>
+							</div>
+						</template>
+					</div>
+				</div>
+
+				<!-- Loading indicator -->
+				<div class="col_wrapper big_col_wrapper" x-show="loading" x-cloak>
+					<div class="loading-indicator" style="text-align: center; padding: 40px;">
+						<p><?php echo cuhk_multilang_text("載入相片集中...", "载入相片集中...", "Loading galleries..."); ?></p>
+					</div>
+				</div>
+
+				<!-- No results message -->
+				<div class="col_wrapper big_col_wrapper" x-show="!loading && galleries.length === 0" x-cloak>
+					<div class="no-results" style="text-align: center; padding: 40px;">
+						<p><?php echo cuhk_multilang_text("沒有找到相片集", "没有找到相片集", "No galleries found"); ?></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	var ajaxurl = '<?php echo admin_url('admin-ajax.php'); ?>';
+
+	function galleryFilter() {
+		return {
+			galleries: [],
+			activeCategory: 'all',
+			selectedYear: '',
+			selectedYearText: '<?php echo cuhk_multilang_text("年份", "年份", "Year"); ?>',
+			showYearDropdown: false,
+			availableYears: [],
+			loading: false,
+			currentPage: 1,
+			hasMore: true,
+
+			init() {
+				this.loadGalleries();
+				this.loadAvailableYears();
+			},
+
+			async loadGalleries(page = 1, category = 'all', year = '', append = false) {
+				this.loading = true;
+
+				try {
+					const response = await fetch(ajaxurl, {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/x-www-form-urlencoded',
+						},
+						body: new URLSearchParams({
+							action: 'filter_galleries',
+							nonce: '<?php echo wp_create_nonce('filter_galleries_nonce'); ?>',
+							page: page,
+							category: category,
+							year: year
+						})
+					});
+
+					const data = await response.json();
+					if (data.success) {
+						if (append) {
+							this.galleries = [...this.galleries, ...data.data.galleries];
+						} else {
+							this.galleries = data.data.galleries;
+						}
+						this.hasMore = data.data.has_more;
+						this.currentPage = page;
+					}
+				} catch (error) {
+					console.error('Error loading galleries:', error);
+				} finally {
+					this.loading = false;
+				}
+			},
+
+			async loadAvailableYears() {
+				try {
+					const response = await fetch(ajaxurl, {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/x-www-form-urlencoded',
+						},
+						body: new URLSearchParams({
+							action: 'get_gallery_years',
+							nonce: '<?php echo wp_create_nonce('get_gallery_years_nonce'); ?>'
+						})
+					});
+
+					const data = await response.json();
+					if (data.success) {
+						this.availableYears = data.data.years;
+					}
+				} catch (error) {
+					console.error('Error loading years:', error);
+				}
+			},
+
+			filterByCategory(category) {
+				if (this.activeCategory === category) return;
+				this.activeCategory = category;
+				this.currentPage = 1;
+				this.loadGalleries(1, category, this.selectedYear, false);
+			},
+
+			filterByYear(year) {
+				this.selectedYear = year;
+				this.selectedYearText = year || '<?php echo cuhk_multilang_text("年份", "年份", "Year"); ?>';
+				this.showYearDropdown = false;
+				this.currentPage = 1;
+				this.loadGalleries(1, this.activeCategory, year, false);
+			},
+
+			toggleYearDropdown() {
+				this.showYearDropdown = !this.showYearDropdown;
+			},
+
+			loadMore() {
+				if (!this.hasMore || this.loading) return;
+				this.loadGalleries(this.currentPage + 1, this.activeCategory, this.selectedYear, true);
+			}
+		}
+	}
+</script>
+
+<?php get_footer(); ?>
