@@ -204,6 +204,7 @@ get_header(); ?>
 								<div class="t_wrapper">
 									<div class="t1 text4"><span x-text="month.chinese"></span></div>
 									<div class="t2 text2" x-text="month.english"></div>
+									<div class="t2 text2" x-text="month.year"></div>
 								</div>
 							</div>
 						</template>
@@ -301,21 +302,19 @@ get_header(); ?>
 			init() {
 				this.initSwipers();
 				this.loadNews();
-
-				const that = this;
-				setTimeout(() => {
-					that.yearSwiper.update();
-				}, 1000);
 			},
 
 			initSwipers() {
 				// Initialize year slider
 				this.yearSwiper = new Swiper('.home_news_year_slider .swiper-container', {
 					autoplay: false,
-					slidesPerView: 1,
+					slidesPerView: 'auto',
 					speed: 1600,
 					loop: false,
-					spaceBetween: 0
+					spaceBetween: 0,
+					freeMode: true,
+					freeModeMomentum: false,
+					freeModeSticky: true
 				});
 
 				// Initialize date slider
