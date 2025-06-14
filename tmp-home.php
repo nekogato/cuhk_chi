@@ -291,8 +291,8 @@ get_header(); ?>
 
 	function homeNewsSlider() {
 		return {
-			selectedMonth: <?php echo date('n'); ?>, // Current month
-			selectedYear: <?php echo date('Y'); ?>, // Current year
+			selectedMonth: null, // Current month
+			selectedYear: null, // Current year
 			groupedNews: {},
 			loading: false,
 			yearSwiper: null,
@@ -325,6 +325,9 @@ get_header(); ?>
 					loop: false,
 					spaceBetween: 0
 				});
+
+				this.selectedMonth = this.availableMonths[0].value;
+				this.selectedYear = this.availableMonths[0].year;
 			},
 
 			formatDate(dateString) {
