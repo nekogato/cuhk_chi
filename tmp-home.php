@@ -176,23 +176,8 @@ get_header(); ?>
 		</div>
 	</div>
 
-	<!-- Loading indicator -->
-	<template x-if="loading">
-		<div class="home_news_loading">
-			<div class="section_center_content small_section_center_content">
-				<div class="date text4"><?php echo cuhk_multilang_text("載入中...", "载入中...", "Loading..."); ?></div>
-				<div class="news_item_wrapper">
-					<div class="news_item">
-						<div class="news_item_spacing">
-							<div class="text"><?php echo cuhk_multilang_text("正在載入消息...", "正在载入消息...", "Loading news..."); ?></div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</template>
 
-	<div class="home_news_slider_wrapper" x-show="!loading">
+	<div class="home_news_slider_wrapper">
 		<div class="home_news_year_slider">
 			<div class="section_center_content small_section_center_content scrollin scrollinbottom">
 				<div class="swiper-container swiper">
@@ -212,7 +197,23 @@ get_header(); ?>
 			</div>
 		</div>
 
-		<div class="home_news_date_slider_wrapper">
+		<!-- Loading indicator -->
+		<template x-if="loading">
+			<div class="home_news_loading">
+				<div class="section_center_content small_section_center_content">
+					<div class="date text4"><?php echo cuhk_multilang_text("載入中...", "载入中...", "Loading..."); ?></div>
+					<div class="news_item_wrapper">
+						<div class="news_item">
+							<div class="news_item_spacing">
+								<div class="text"><?php echo cuhk_multilang_text("正在載入消息...", "正在载入消息...", "Loading news..."); ?></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</template>
+
+		<div class="home_news_date_slider_wrapper" x-show="!loading">
 			<div class="section_center_content small_section_center_content scrollin scrollinbottom">
 				<div class="home_news_date_slider_inwrapper">
 					<div class="home_news_date_slider">
