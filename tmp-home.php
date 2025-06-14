@@ -199,8 +199,7 @@ get_header(); ?>
 					<div class="swiper-wrapper">
 						<template x-for="(month, index) in availableMonths" :key="index">
 							<div class="swiper-slide"
-								:class="{ 'active': selectedMonth === month.value && selectedYear === month.year }"
-								@click="selectMonth(month.value, month.year)">
+								:class="{ 'active': selectedMonth === month.value && selectedYear === month.year }">
 								<div class="t_wrapper">
 									<div class="t1 text4"><span x-text="month.chinese"></span></div>
 									<div class="t2 text2" x-text="month.english"></div>
@@ -314,7 +313,16 @@ get_header(); ?>
 					spaceBetween: 0,
 					freeMode: true,
 					freeModeMomentum: false,
-					freeModeSticky: true
+					freeModeSticky: true,
+					on: {
+						slideChange: () => {
+							const activeSlide = this.yearSwiper.slides[this.yearSwiper.activeIndex];
+							const monthData = this.availableMonths[this.yearSwiper.activeIndex];
+							if (monthData) {
+								this.selectMonth(monthData.value, monthData.year);
+							}
+						}
+					}
 				});
 
 				// Initialize date slider
