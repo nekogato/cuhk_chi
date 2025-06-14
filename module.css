@@ -6866,3 +6866,10 @@ justify-content: center;
         padding: 50px 0px;
       }
 }
+
+
+.home_news_loading {
+    width: 100%;
+    text-align:center;
+    padding:100px 0;
+}
