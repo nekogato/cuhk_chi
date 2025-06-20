@@ -11,7 +11,8 @@ get_template_part('template-parts/roll-menu'); ?>
 <div x-data="galleryFilter()">
 	<div class="section section_content filter_menu_section">
 		<div class="section_center_content small_section_center_content small_section_center_content scrollin scrollinbottom">
-			<h1 class="section_title text1 scrollin scrollinbottom"><?php echo cuhk_multilang_text("相片集", "", "Media Gallery"); ?></h1>
+			<h1 class="section_title text1 scrollin scrollinbottom"><?php echo get_field("page_title"); ?></h1>
+			<div class="section_description scrollin scrollinbottom col6"><?php echo get_field('introduction'); ?></div>
 		</div>
 
 		<div class="filter_menu_wrapper">
@@ -23,7 +24,7 @@ get_template_part('template-parts/roll-menu'); ?>
 								<input name="filter" type="radio" id="all"
 									@change="filterByCategory('all')"
 									:checked="activeCategory === 'all'">
-								<label for="all"><span><?php echo cuhk_multilang_text("所有相片集", "", "All Galleries"); ?></span></label>
+								<label for="all"><span><?php echo cuhk_multilang_text("所有類型", "", "All Categories"); ?></span></label>
 							</div>
 						</div>
 						<?php
