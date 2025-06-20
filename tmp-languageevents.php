@@ -30,53 +30,9 @@ while (have_posts()) :
 				<?php endif; ?>
 			</div>
 
-			<?php
-			// Get event categories
-			$event_categories = get_terms(array(
-				'taxonomy' => 'event_category',
-				'hide_empty' => true,
-				'orderby' => 'name',
-				'order' => 'ASC'
-			));
-			?>
-
 			<div class="filter_menu_wrapper">
 				<div class="filter_menu filter_menu_left_bg section_center_content small_section_center_content scrollin scrollinbottom">
 					<div class="filter_menu_content full_filter_menu_content">
-						<div class="filter_checkbox_wrapper text7 filter_switchable_wrapper">
-							<div class="filter_checkbox">
-								<div class="checkbox">
-									<input name="filter" type="radio" id="all"
-										@change="filterByCategory('all')"
-										:checked="activeCategory === 'all'">
-									<label for="all"><span><?php echo cuhk_multilang_text("所有活動","","All Events"); ?></span></label>
-								</div>
-							</div>
-							<?php if (!empty($event_categories)) : ?>
-								<?php foreach ($event_categories as $category) : ?>
-									<div class="filter_checkbox">
-										<div class="checkbox">
-											<input name="filter" type="radio" id="category-<?php echo esc_attr($category->term_id); ?>"
-												@change="filterByCategory('<?php echo esc_attr($category->slug); ?>')"
-												:checked="activeCategory === '<?php echo esc_attr($category->slug); ?>'">
-											<label for="category-<?php echo esc_attr($category->term_id); ?>">
-												<span>
-												<?php 
-													if(pll_current_language() == 'tc') {
-														$ctermfullname = get_field('tc_name', 'news_category_' .$category->term_id);
-													}elseif(pll_current_language() == 'sc'){
-														$ctermfullname = get_field('sc_name', 'news_category_' .$category->term_id);
-													}else{
-														$ctermfullname = get_field('en_name', 'news_category_' .$category->term_id);
-													};
-													echo ($ctermfullname); 
-												?></span>
-											</label>
-										</div>
-									</div>
-								<?php endforeach; ?>
-							<?php endif; ?>
-						</div>
 						<div class="filter_dropdown_wrapper right_filter_dropdown_wrapper">
 							<a class="filter_dropdown_btn text5" href="#" @click.prevent="toggleYearDropdown()" x-text="selectedYearText"><?php echo cuhk_multilang_text("所有年份", "", "All Years"); ?></a>
 							<div class="filter_dropdown text5" x-show="showYearDropdown" @click.away="showYearDropdown = false">
@@ -180,7 +136,7 @@ endwhile;
 	function langEventFilter() {
 		return {
 			events: [],
-			activeCategory: 'all',
+			activeCategory: 'language-events',
 			selectedYear: '',
 			selectedYearText: '<?php echo cuhk_multilang_text("所有年份", "", "All Years"); ?>',
 			showYearDropdown: false,
@@ -194,7 +150,7 @@ endwhile;
 				this.loadAvailableYears();
 			},
 
-			async loadEvents(page = 1, category = 'all', year = '', pastonly = false, append = false) {
+			async loadEvents(page = 1, category = 'language-events', year = '', pastonly = false, append = false) {
 				this.loading = true;
 
 				try {
