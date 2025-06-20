@@ -259,20 +259,20 @@ add_action('acf/init', function () {
 
 function pll_get_page_url($page_slug)
 {
-    // Check parameter
-    if (empty($page_slug)) return false;
+	// Check parameter
+	if (empty($page_slug)) return false;
 
-    // Get the page
-    $page = get_page_by_path($page_slug);
+	// Get the page
+	$page = get_page_by_path($page_slug);
 
-    // Check if the page exists
-    if (empty($page) || is_null($page)) return false;
+	// Check if the page exists
+	if (empty($page) || is_null($page)) return false;
 
-    // Get the translated page ID
-    $page_ID_current_lang = function_exists('pll_get_post') ? pll_get_post($page->ID) : $page->ID;
+	// Get the translated page ID
+	$page_ID_current_lang = function_exists('pll_get_post') ? pll_get_post($page->ID) : $page->ID;
 
-    // Return the permalink for the current language
-    return get_permalink($page_ID_current_lang);
+	// Return the permalink for the current language
+	return get_permalink($page_ID_current_lang);
 }
 
 
@@ -1040,7 +1040,7 @@ function load_more_department_news()
 					</div>
 				</div>
 			</div>
-<?php
+	<?php
 			$html .= ob_get_clean();
 		}
 		wp_reset_postdata();
@@ -1342,16 +1342,16 @@ add_action('wp_ajax_nopriv_filter_events', 'filter_events');
 // AJAX handler for getting available years
 function get_event_years_ajax()
 {
-    // Verify nonce
-    if (!wp_verify_nonce($_POST['nonce'], 'get_event_years_nonce')) {
-        wp_die('Security check failed');
-    }
+	// Verify nonce
+	if (!wp_verify_nonce($_POST['nonce'], 'get_event_years_nonce')) {
+		wp_die('Security check failed');
+	}
 
-    global $wpdb;
+	global $wpdb;
 
-    $meta_key = 'start_date'; // ACF field key (stored in Ymd format, e.g., 20240620)
+	$meta_key = 'start_date'; // ACF field key (stored in Ymd format, e.g., 20240620)
 
-    $years = $wpdb->get_col("
+	$years = $wpdb->get_col("
         SELECT DISTINCT 
             LEFT(meta_value, 4) AS year
         FROM {$wpdb->postmeta}
@@ -1363,9 +1363,9 @@ function get_event_years_ajax()
         ORDER BY year DESC
     ");
 
-    wp_send_json_success(array(
-        'years' => $years
-    ));
+	wp_send_json_success(array(
+		'years' => $years
+	));
 }
 add_action('wp_ajax_get_event_years', 'get_event_years_ajax');
 add_action('wp_ajax_nopriv_get_event_years', 'get_event_years_ajax');
@@ -1657,16 +1657,16 @@ add_action('wp_ajax_nopriv_filter_galleries', 'filter_galleries_ajax');
 // AJAX handler for getting available years
 function get_gallery_years_ajax()
 {
-    // Verify nonce
-    if (!wp_verify_nonce($_POST['nonce'], 'get_gallery_years_nonce')) {
-        wp_die('Security check failed');
-    }
+	// Verify nonce
+	if (!wp_verify_nonce($_POST['nonce'], 'get_gallery_years_nonce')) {
+		wp_die('Security check failed');
+	}
 
-    global $wpdb;
+	global $wpdb;
 
-    $meta_key = 'date'; // ACF field key (stored in Ymd format, e.g., 20240620)
+	$meta_key = 'date'; // ACF field key (stored in Ymd format, e.g., 20240620)
 
-    $years = $wpdb->get_col("
+	$years = $wpdb->get_col("
         SELECT DISTINCT 
             LEFT(meta_value, 4) AS year
         FROM {$wpdb->postmeta}
@@ -1678,9 +1678,9 @@ function get_gallery_years_ajax()
         ORDER BY year DESC
     ");
 
-    wp_send_json_success(array(
-        'years' => $years
-    ));
+	wp_send_json_success(array(
+		'years' => $years
+	));
 }
 add_action('wp_ajax_get_gallery_years', 'get_gallery_years_ajax');
 add_action('wp_ajax_nopriv_get_gallery_years', 'get_gallery_years_ajax');
@@ -1762,3 +1762,473 @@ function load_home_news_ajax()
 }
 add_action('wp_ajax_load_home_news', 'load_home_news_ajax');
 add_action('wp_ajax_nopriv_load_home_news', 'load_home_news_ajax');
+
+// ===========================================
+// ACF AUTO-TRANSLATION FROM TC TO SC
+// ===========================================
+
+/**
+ * Auto-translate Traditional Chinese ACF fields to Simplified Chinese
+ * Triggered when saving ACF fields
+ */
+add_action('acf/save_post', 'auto_translate_tc_to_sc_acf_fields', 20);
+
+function auto_translate_tc_to_sc_acf_fields($post_id)
+{
+	// Skip if not using Polylang
+	if (!function_exists('pll_get_post_language') || !function_exists('pll_get_post')) {
+		return;
+	}
+
+	// Skip for autosave, revisions, etc.
+	if (wp_is_post_autosave($post_id) || wp_is_post_revision($post_id)) {
+		return;
+	}
+
+	// Check if this is a Traditional Chinese post
+	$post_language = pll_get_post_language($post_id);
+	if ($post_language !== 'tc') {
+		return;
+	}
+
+	// Get the Simplified Chinese version of this post
+	$sc_post_id = pll_get_post($post_id, 'sc');
+	if (!$sc_post_id) {
+		return;
+	}
+
+	// Get all ACF field groups for this post type
+	$post_type = get_post_type($post_id);
+	$field_groups = acf_get_field_groups(array('post_id' => $post_id));
+
+	if (empty($field_groups)) {
+		return;
+	}
+
+	// Remove this hook temporarily to prevent infinite loop
+	remove_action('acf/save_post', 'auto_translate_tc_to_sc_acf_fields', 20);
+
+	// Process each field group
+	foreach ($field_groups as $field_group) {
+		$fields = acf_get_fields($field_group);
+		if ($fields) {
+			translate_acf_fields_recursive($fields, $post_id, $sc_post_id);
+		}
+	}
+
+	// Also translate post title and content if they exist
+	$tc_post = get_post($post_id);
+	if ($tc_post) {
+		$update_data = array('ID' => $sc_post_id);
+
+		if (!empty($tc_post->post_title)) {
+			$update_data['post_title'] = tc_to_sc($tc_post->post_title);
+		}
+
+		if (!empty($tc_post->post_content)) {
+			$update_data['post_content'] = tc_to_sc($tc_post->post_content);
+		}
+
+		if (!empty($tc_post->post_excerpt)) {
+			$update_data['post_excerpt'] = tc_to_sc($tc_post->post_excerpt);
+		}
+
+		if (count($update_data) > 1) {
+			wp_update_post($update_data);
+		}
+	}
+
+	// Re-add the hook
+	add_action('acf/save_post', 'auto_translate_tc_to_sc_acf_fields', 20);
+}
+
+/**
+ * Recursively translate ACF fields
+ */
+function translate_acf_fields_recursive($fields, $tc_post_id, $sc_post_id)
+{
+	foreach ($fields as $field) {
+		$field_name = $field['name'];
+		$field_type = $field['type'];
+
+		// Get the Traditional Chinese value
+		$tc_value = get_field($field_name, $tc_post_id);
+
+		if (empty($tc_value)) {
+			continue;
+		}
+
+		// Translate based on field type
+		$sc_value = translate_acf_field_value($tc_value, $field_type, $field);
+
+		// Update the Simplified Chinese post
+		if ($sc_value !== null) {
+			update_field($field_name, $sc_value, $sc_post_id);
+		}
+	}
+}
+
+/**
+ * Translate ACF field value based on field type
+ */
+function translate_acf_field_value($value, $field_type, $field = null)
+{
+	if (empty($value)) {
+		return null;
+	}
+
+	switch ($field_type) {
+		case 'text':
+		case 'textarea':
+		case 'email':
+		case 'url':
+		case 'password':
+			return is_string($value) ? tc_to_sc($value) : $value;
+
+		case 'wysiwyg':
+			return is_string($value) ? tc_to_sc($value) : $value;
+
+		case 'select':
+		case 'radio':
+		case 'button_group':
+			// For choice fields, translate the value if it's a string
+			return is_string($value) ? tc_to_sc($value) : $value;
+
+		case 'checkbox':
+			// For checkbox, translate each selected value
+			if (is_array($value)) {
+				return array_map(function ($item) {
+					return is_string($item) ? tc_to_sc($item) : $item;
+				}, $value);
+			}
+			return is_string($value) ? tc_to_sc($value) : $value;
+
+		case 'repeater':
+			if (is_array($value)) {
+				$translated_repeater = array();
+				foreach ($value as $row) {
+					$translated_row = array();
+					foreach ($row as $sub_field_name => $sub_value) {
+						// Get sub field info
+						$sub_field = null;
+						if ($field && isset($field['sub_fields'])) {
+							foreach ($field['sub_fields'] as $sf) {
+								if ($sf['name'] === $sub_field_name) {
+									$sub_field = $sf;
+									break;
+								}
+							}
+						}
+
+						$sub_field_type = $sub_field ? $sub_field['type'] : 'text';
+						$translated_row[$sub_field_name] = translate_acf_field_value($sub_value, $sub_field_type, $sub_field);
+					}
+					$translated_repeater[] = $translated_row;
+				}
+				return $translated_repeater;
+			}
+			break;
+
+		case 'flexible_content':
+			if (is_array($value)) {
+				$translated_flexible = array();
+				foreach ($value as $layout) {
+					$translated_layout = array(
+						'acf_fc_layout' => $layout['acf_fc_layout']
+					);
+
+					foreach ($layout as $layout_field_name => $layout_value) {
+						if ($layout_field_name === 'acf_fc_layout') {
+							continue;
+						}
+
+						// Find the field type for this layout field
+						$layout_field_type = 'text'; // default
+						if ($field && isset($field['layouts'])) {
+							foreach ($field['layouts'] as $layout_config) {
+								if ($layout_config['name'] === $layout['acf_fc_layout']) {
+									foreach ($layout_config['sub_fields'] as $layout_sub_field) {
+										if ($layout_sub_field['name'] === $layout_field_name) {
+											$layout_field_type = $layout_sub_field['type'];
+											break 2;
+										}
+									}
+								}
+							}
+						}
+
+						$translated_layout[$layout_field_name] = translate_acf_field_value($layout_value, $layout_field_type);
+					}
+					$translated_flexible[] = $translated_layout;
+				}
+				return $translated_flexible;
+			}
+			break;
+
+		case 'group':
+			if (is_array($value)) {
+				$translated_group = array();
+				foreach ($value as $group_field_name => $group_value) {
+					// Get sub field info
+					$group_field_type = 'text'; // default
+					if ($field && isset($field['sub_fields'])) {
+						foreach ($field['sub_fields'] as $gsf) {
+							if ($gsf['name'] === $group_field_name) {
+								$group_field_type = $gsf['type'];
+								break;
+							}
+						}
+					}
+
+					$translated_group[$group_field_name] = translate_acf_field_value($group_value, $group_field_type);
+				}
+				return $translated_group;
+			}
+			break;
+
+		case 'image':
+		case 'file':
+		case 'gallery':
+		case 'post_object':
+		case 'page_link':
+		case 'relationship':
+		case 'taxonomy':
+		case 'user':
+		case 'date_picker':
+		case 'date_time_picker':
+		case 'time_picker':
+		case 'color_picker':
+		case 'number':
+		case 'range':
+		case 'true_false':
+			// These field types don't need translation
+			return $value;
+
+		default:
+			// For unknown field types, try to translate if it's a string
+			return is_string($value) ? tc_to_sc($value) : $value;
+	}
+
+	return $value;
+}
+
+/**
+ * Optional: Add admin notice to inform about auto-translation
+ */
+add_action('acf/save_post', 'show_translation_notice', 21);
+
+function show_translation_notice($post_id)
+{
+	if (!function_exists('pll_get_post_language') || !function_exists('pll_get_post')) {
+		return;
+	}
+
+	$post_language = pll_get_post_language($post_id);
+	if ($post_language === 'tc') {
+		$sc_post_id = pll_get_post($post_id, 'sc');
+		if ($sc_post_id) {
+			// Store a transient to show notice on next page load
+			set_transient('acf_translation_notice_' . get_current_user_id(), 'TC content has been automatically translated to SC.', 30);
+		}
+	}
+}
+
+/**
+ * Display the translation notice
+ */
+add_action('admin_notices', 'display_translation_notice');
+
+function display_translation_notice()
+{
+	$notice = get_transient('acf_translation_notice_' . get_current_user_id());
+	if ($notice) {
+		echo '<div class="notice notice-success is-dismissible"><p>' . esc_html($notice) . '</p></div>';
+		delete_transient('acf_translation_notice_' . get_current_user_id());
+	}
+}
+
+// ===========================================
+// END ACF AUTO-TRANSLATION
+// ===========================================
+
+/**
+ * Manual translation function for existing posts
+ * Usage: translate_existing_post_tc_to_sc($tc_post_id);
+ */
+function translate_existing_post_tc_to_sc($tc_post_id)
+{
+	if (!function_exists('pll_get_post_language') || !function_exists('pll_get_post')) {
+		return false;
+	}
+
+	// Check if this is a Traditional Chinese post
+	$post_language = pll_get_post_language($tc_post_id);
+	if ($post_language !== 'tc') {
+		return false;
+	}
+
+	// Get the Simplified Chinese version of this post
+	$sc_post_id = pll_get_post($tc_post_id, 'sc');
+	if (!$sc_post_id) {
+		return false;
+	}
+
+	// Get all ACF field groups for this post type
+	$field_groups = acf_get_field_groups(array('post_id' => $tc_post_id));
+
+	if (!empty($field_groups)) {
+		// Process each field group
+		foreach ($field_groups as $field_group) {
+			$fields = acf_get_fields($field_group);
+			if ($fields) {
+				translate_acf_fields_recursive($fields, $tc_post_id, $sc_post_id);
+			}
+		}
+	}
+
+	// Also translate post title and content
+	$tc_post = get_post($tc_post_id);
+	if ($tc_post) {
+		$update_data = array('ID' => $sc_post_id);
+
+		if (!empty($tc_post->post_title)) {
+			$update_data['post_title'] = tc_to_sc($tc_post->post_title);
+		}
+
+		if (!empty($tc_post->post_content)) {
+			$update_data['post_content'] = tc_to_sc($tc_post->post_content);
+		}
+
+		if (!empty($tc_post->post_excerpt)) {
+			$update_data['post_excerpt'] = tc_to_sc($tc_post->post_excerpt);
+		}
+
+		if (count($update_data) > 1) {
+			wp_update_post($update_data);
+		}
+	}
+
+	return true;
+}
+
+/**
+ * Bulk translate all Traditional Chinese posts to Simplified Chinese
+ * Usage: bulk_translate_all_tc_to_sc(['post', 'page', 'custom_post_type']);
+ */
+function bulk_translate_all_tc_to_sc($post_types = array('post', 'page'))
+{
+	if (!function_exists('pll_get_post_language') || !function_exists('pll_get_post')) {
+		return array('error' => 'Polylang not available');
+	}
+
+	$results = array(
+		'success' => 0,
+		'skipped' => 0,
+		'errors' => array()
+	);
+
+	foreach ($post_types as $post_type) {
+		$posts = get_posts(array(
+			'post_type' => $post_type,
+			'posts_per_page' => -1,
+			'post_status' => 'publish',
+			'lang' => 'tc' // Polylang parameter to get only TC posts
+		));
+
+		foreach ($posts as $post) {
+			$success = translate_existing_post_tc_to_sc($post->ID);
+			if ($success) {
+				$results['success']++;
+			} else {
+				$results['skipped']++;
+				$results['errors'][] = "Failed to translate post ID: {$post->ID}";
+			}
+		}
+	}
+
+	return $results;
+}
+
+/**
+ * Add admin menu for manual translation
+ */
+add_action('admin_menu', 'add_translation_admin_menu');
+
+function add_translation_admin_menu()
+{
+	add_management_page(
+		'TC to SC Translation',
+		'TC to SC Translation',
+		'manage_options',
+		'tc-sc-translation',
+		'tc_sc_translation_admin_page'
+	);
+}
+
+/**
+ * Admin page for manual translation
+ */
+function tc_sc_translation_admin_page()
+{
+	if (!current_user_can('manage_options')) {
+		return;
+	}
+
+	// Handle form submission
+	if (isset($_POST['translate_all']) && wp_verify_nonce($_POST['translation_nonce'], 'tc_sc_translation')) {
+		$post_types = isset($_POST['post_types']) ? $_POST['post_types'] : array('post', 'page');
+		$results = bulk_translate_all_tc_to_sc($post_types);
+
+		echo '<div class="notice notice-success"><p>';
+		echo "Translation completed! Success: {$results['success']}, Skipped: {$results['skipped']}";
+		if (!empty($results['errors'])) {
+			echo '<br>Errors: ' . implode(', ', $results['errors']);
+		}
+		echo '</p></div>';
+	}
+
+	// Get all public post types
+	$post_types = get_post_types(array('public' => true), 'objects');
+	?>
+	<div class="wrap">
+		<h1>Traditional Chinese to Simplified Chinese Translation</h1>
+
+		<div class="card">
+			<h2>How it works</h2>
+			<p>This tool automatically translates Traditional Chinese content to Simplified Chinese using your existing character mapping functions.</p>
+			<ul>
+				<li><strong>Automatic:</strong> New TC content is automatically translated to SC when saved</li>
+				<li><strong>Manual:</strong> Use the form below to translate existing content</li>
+				<li><strong>Supported:</strong> Post titles, content, excerpts, and all ACF fields</li>
+			</ul>
+		</div>
+
+		<form method="post" action="">
+			<?php wp_nonce_field('tc_sc_translation', 'translation_nonce'); ?>
+
+			<table class="form-table">
+				<tr>
+					<th scope="row">Post Types to Translate</th>
+					<td>
+						<?php foreach ($post_types as $post_type): ?>
+							<label>
+								<input type="checkbox" name="post_types[]" value="<?php echo esc_attr($post_type->name); ?>"
+									<?php checked(in_array($post_type->name, array('post', 'page'))); ?>>
+								<?php echo esc_html($post_type->label); ?>
+							</label><br>
+						<?php endforeach; ?>
+					</td>
+				</tr>
+			</table>
+
+			<?php submit_button('Translate All TC Content to SC', 'primary', 'translate_all'); ?>
+		</form>
+
+		<div class="card">
+			<h3>Manual Translation Function</h3>
+			<p>You can also translate individual posts programmatically:</p>
+			<code>translate_existing_post_tc_to_sc($tc_post_id);</code>
+		</div>
+	</div>
+<?php
+}
