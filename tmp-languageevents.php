@@ -116,7 +116,7 @@ endwhile;
 				this.loadEvents();
 			},
 
-			async loadEvents(page = 1, category = 'allanguage-eventsl', append = false) {
+			async loadEvents(page = 1, category = 'language-events', append = false) {
 				this.loading = true;
 
 				try {
