@@ -6,7 +6,7 @@ Template Name: Teaching Project Archive
 get_header();
 
 // Include the roll menu template part
-get_template_part('template-parts/roll-menu'); ?>
+get_template_part('template-parts/roll-menu', null, array('target_page' => 'study/chinese-language-courses')); ?>
 
 
 
