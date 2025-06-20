@@ -87,7 +87,7 @@ while (have_posts()) :
 							<?php endif; ?>
 						</div>
 						<div class="filter_dropdown_wrapper right_filter_dropdown_wrapper">
-							<a class="filter_dropdown_btn text5" href="#" @click.prevent="toggleYearDropdown()" x-text="selectedYearText"><?php echo cuhk_multilang_text("年份", "", "Year"); ?></a>
+							<a class="filter_dropdown_btn text5" href="#" @click.prevent="toggleYearDropdown()" x-text="selectedYearText"><?php echo cuhk_multilang_text("所有年份", "", "All Years"); ?></a>
 							<div class="filter_dropdown text5" x-show="showYearDropdown" @click.away="showYearDropdown = false">
 								<ul>
 									<li><a href="#" @click.prevent="filterByYear('')" data-val=""><?php echo cuhk_multilang_text("所有年份", "", "All Years"); ?></a></li>
@@ -191,7 +191,7 @@ endwhile;
 			events: [],
 			activeCategory: 'all',
 			selectedYear: '',
-			selectedYearText: '<?php echo cuhk_multilang_text("年份", "", "Year"); ?>',
+			selectedYearText: '<?php echo cuhk_multilang_text("所有年份", "", "All Years"); ?>',
 			showYearDropdown: false,
 			availableYears: [],
 			loading: false,
@@ -269,10 +269,10 @@ endwhile;
 
 			filterByYear(year) {
 				this.selectedYear = year;
-				this.selectedYearText = year || '<?php echo cuhk_multilang_text("年份", "", "Year"); ?>';
+				this.selectedYearText = year || '<?php echo cuhk_multilang_text("所有年份", "", "All Year"); ?>';
 				this.showYearDropdown = false;
 				this.currentPage = 1;
-				this.loadGalleries(1, this.activeCategory, year, false);
+				this.loadEvents(1, this.activeCategory, year, false);
 			},
 
 			toggleYearDropdown() {

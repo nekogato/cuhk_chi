@@ -1471,6 +1471,7 @@ justify-content: center;
     max-height: 300px;
     position: relative;
     z-index: 1;
+    max-width: 80%;
 }
 
 .event_list_item .info_item_wrapper{
