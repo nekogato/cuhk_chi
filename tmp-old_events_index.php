@@ -51,7 +51,7 @@ while (have_posts()) :
 
 			<div class="filter_menu_wrapper">
 				<div class="filter_menu filter_menu_left_bg section_center_content small_section_center_content scrollin scrollinbottom">
-					<div class="filter_menu_content">
+					<div class="filter_menu_content full_filter_menu_content">
 						<div class="filter_checkbox_wrapper text7 filter_switchable_wrapper">
 							<div class="filter_checkbox">
 								<div class="checkbox">
@@ -85,6 +85,17 @@ while (have_posts()) :
 									</div>
 								<?php endforeach; ?>
 							<?php endif; ?>
+						</div>
+						<div class="filter_dropdown_wrapper right_filter_dropdown_wrapper">
+							<a class="filter_dropdown_btn text5" href="#" @click.prevent="toggleYearDropdown()" x-text="selectedYearText"><?php echo cuhk_multilang_text("年份", "", "Year"); ?></a>
+							<div class="filter_dropdown text5" x-show="showYearDropdown" @click.away="showYearDropdown = false">
+								<ul>
+									<li><a href="#" @click.prevent="filterByYear('')" data-val=""><?php echo cuhk_multilang_text("所有年份", "", "All Years"); ?></a></li>
+									<template x-for="year in availableYears" :key="year">
+										<li><a href="#" @click.prevent="filterByYear(year)" :data-val="year" x-text="year"></a></li>
+									</template>
+								</ul>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -179,15 +190,20 @@ endwhile;
 		return {
 			events: [],
 			activeCategory: 'all',
+			selectedYear: '',
+			selectedYearText: '<?php echo cuhk_multilang_text("年份", "", "Year"); ?>',
+			showYearDropdown: false,
+			availableYears: [],
 			loading: false,
 			currentPage: 1,
 			hasMore: true,
 
 			init() {
 				this.loadEvents();
+				this.loadAvailableYears();
 			},
 
-			async loadEvents(page = 1, category = 'all', append = false) {
+			async loadEvents(page = 1, category = 'all', year = '', append = false) {
 				this.loading = true;
 
 				try {
@@ -200,7 +216,8 @@ endwhile;
 							action: 'load_past_events',
 							nonce: '<?php echo wp_create_nonce('load_past_events_nonce'); ?>',
 							page: page,
-							category: category
+							category: category,
+							year: year
 						})
 					});
 
@@ -221,16 +238,50 @@ endwhile;
 				}
 			},
 
+			async loadAvailableYears() {
+				try {
+					const response = await fetch(ajaxurl, {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/x-www-form-urlencoded',
+						},
+						body: new URLSearchParams({
+							action: 'get_old_event_years',
+							nonce: '<?php echo wp_create_nonce('get_old_event_years_nonce'); ?>'
+						})
+					});
+
+					const data = await response.json();
+					if (data.success) {
+						this.availableYears = data.data.years;
+					}
+				} catch (error) {
+					console.error('Error loading years:', error);
+				}
+			},
+
 			filterByCategory(category) {
 				if (this.activeCategory === category) return;
 				this.activeCategory = category;
 				this.currentPage = 1;
-				this.loadEvents(1, category, false);
+				this.loadEvents(1, category, this.selectedYear, false);
+			},
+
+			filterByYear(year) {
+				this.selectedYear = year;
+				this.selectedYearText = year || '<?php echo cuhk_multilang_text("年份", "", "Year"); ?>';
+				this.showYearDropdown = false;
+				this.currentPage = 1;
+				this.loadGalleries(1, this.activeCategory, year, false);
+			},
+
+			toggleYearDropdown() {
+				this.showYearDropdown = !this.showYearDropdown;
 			},
 
 			loadMore() {
 				if (!this.hasMore || this.loading) return;
-				this.loadEvents(this.currentPage + 1, this.activeCategory, true);
+				this.loadEvents(this.currentPage + 1, this.activeCategory, this.selectedYear, true);
 			}
 		}
 	}

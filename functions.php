@@ -1072,25 +1072,37 @@ function load_past_events()
 
 	$page = isset($_POST['page']) ? intval($_POST['page']) : 1;
 	$category = isset($_POST['category']) ? sanitize_text_field($_POST['category']) : 'all';
+	$year = sanitize_text_field($_POST['year']);
 	$today = date('Y-m-d');
 
 	// Build query args for past events (latest to oldest)
 	$args = array(
-		'post_type' => 'event',
+		'post_type'      => 'event',
 		'posts_per_page' => EVENTS_PER_PAGE,
-		'paged' => $page,
-		'meta_key' => 'start_date',
-		'orderby' => 'meta_value',
-		'order' => 'DESC', // Latest past events first
-		'meta_query' => array(
+		'paged'          => $page,
+		'meta_key'       => 'start_date', // for ordering
+		'orderby'        => 'meta_value',
+		'order'          => 'DESC',
+		'meta_query'     => array(
+			'relation' => 'AND',
 			array(
-				'key' => 'start_date',
-				'value' => $today,
+				'key'     => 'start_date',
+				'value'   => $today,
 				'compare' => '<',
-				'type' => 'DATE'
-			)
-		)
+				'type'    => 'DATE',
+			),
+		),
 	);
+
+	// If $year is provided, add a BETWEEN filter for that year using Ymd format
+	if ($year) {
+		$args['meta_query'][] = array(
+			'key'     => 'start_date',
+			'value'   => array($year . '0101', $year . '1231'),
+			'compare' => 'BETWEEN',
+			'type'    => 'NUMERIC',
+		);
+	}
 
 	// Add taxonomy query if category is not 'all'
 	if ($category !== 'all') {
