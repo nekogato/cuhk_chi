@@ -493,7 +493,6 @@ function init_function(){
 			slidesPerView: "auto",
 			speed: 1600,
 			loop: false,
-			spaceBetween: 100,
 			breakpoints: {
 				// when window width is >= 320px
 				320: {
@@ -509,7 +508,7 @@ function init_function(){
 				},
 				// when window width is >= 640px
 				1600: {
-					spaceBetween: 50,
+					spaceBetween: 0,
 				}
 			}
 		});

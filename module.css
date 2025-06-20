@@ -105,7 +105,7 @@
 .submenu_btn_wrapper{
     display: flex;
     justify-content: center;
-    margin-bottom: 50px;
+    margin-bottom: 100px;
 }
 
 .submenu_btn_wrapper div{
@@ -423,6 +423,8 @@ justify-content: center;
     align-self: stretch;
     display: flex;
     width: auto;
+    padding-left: 50px;
+    padding-right: 50px;
 }
 
 .roll_bottom_menu .swiper-wrapper .swiper-slide a{
@@ -5659,6 +5661,12 @@ justify-content: center;
 
 
 @media screen and (max-width: 1200px) {
+
+    .roll_bottom_menu .swiper-wrapper .swiper-slide{
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
 
     /* event_list_section */
 
