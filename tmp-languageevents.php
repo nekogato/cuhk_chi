@@ -20,6 +20,19 @@ while (have_posts()) :
 
 	<div x-data="eventFilter()">
 
+		<div class="section section_content filter_menu_section">
+			<div class="section_center_content small_section_center_content small_section_center_content scrollin scrollinbottom">
+				<?php if ($page_title) : ?>
+					<h1 class="section_title text1 scrollin scrollinbottom"><?php echo ($page_title); ?></h1>
+				<?php endif; ?>
+				<?php if ($page_description) : ?>
+					<div class="section_description scrollin scrollinbottom col6"><?php echo ($page_description); ?></div>
+				<?php endif; ?>
+			</div>
+
+
+		</div>
+
 		<div class="section event_list_section scrollin_p">
 			<div class="section_center_content small_section_center_content">
 				<div class="event_list_item_wrapper" x-show="!loading">
@@ -135,6 +148,7 @@ endwhile;
 
 					const data = await response.json();
 					if (data.success) {
+                        console.log(data.data)
 						if (append) {
 							this.events = [...this.events, ...data.data.events];
 						} else {
