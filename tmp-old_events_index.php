@@ -49,7 +49,7 @@ while (have_posts()) :
 			));
 			?>
 
-			<div class="filter_menu_wrapper">
+			<div class="filter_menu_wrapper full_filter_menu_wrapper">
 				<div class="filter_menu filter_menu_left_bg section_center_content small_section_center_content scrollin scrollinbottom">
 					<div class="filter_menu_content full_filter_menu_content">
 						<div class="filter_checkbox_wrapper text7 filter_switchable_wrapper">

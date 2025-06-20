@@ -3538,6 +3538,22 @@ justify-content: center;
     width: 99999px;
 }
 
+.full_filter_menu_wrapper .filter_menu_left_bg .filter_menu_content::before{
+    display: none;
+}
+
+.full_filter_menu_wrapper::before{
+    content:"";
+    position: absolute;
+    bottom: 0px;
+    right: -50px;
+    margin: auto;
+    height: 80px;
+    background: linear-gradient(0deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 100%); 
+    pointer-events: none;
+    width: 99999px;
+}
+
 .alphabet_list_wrapper{
     position: relative;
     padding-top: 20px;
