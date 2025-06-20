@@ -1563,12 +1563,13 @@ function filter_galleries_ajax()
 		);
 	}
 
-	// Add year filter
+	// Add year filter using ACF "date" field (format: d/m/Y)
 	if ($year) {
-		$args['date_query'] = array(
-			array(
-				'year' => intval($year),
-			),
+		$args['meta_query'][] = array(
+			'key'     => 'date',
+			'value'   => array($year . '0101', $year . '1231'),
+			'compare' => 'BETWEEN',
+			'type'    => 'NUMERIC',
 		);
 	}
 
@@ -1617,24 +1618,30 @@ add_action('wp_ajax_nopriv_filter_galleries', 'filter_galleries_ajax');
 // AJAX handler for getting available years
 function get_gallery_years_ajax()
 {
-	// Verify nonce
-	if (!wp_verify_nonce($_POST['nonce'], 'get_gallery_years_nonce')) {
-		wp_die('Security check failed');
-	}
+    // Verify nonce
+    if (!wp_verify_nonce($_POST['nonce'], 'get_gallery_years_nonce')) {
+        wp_die('Security check failed');
+    }
 
-	global $wpdb;
+    global $wpdb;
 
-	$years = $wpdb->get_col("
-        SELECT DISTINCT YEAR(post_date) 
-        FROM {$wpdb->posts} 
-        WHERE post_type = 'gallery' 
-        AND post_status = 'publish' 
-        ORDER BY post_date DESC
+    $meta_key = 'date'; // ACF field key (stored in Ymd format, e.g., 20240620)
+
+    $years = $wpdb->get_col("
+        SELECT DISTINCT 
+            LEFT(meta_value, 4) AS year
+        FROM {$wpdb->postmeta}
+        INNER JOIN {$wpdb->posts} ON {$wpdb->posts}.ID = {$wpdb->postmeta}.post_id
+        WHERE meta_key = '{$meta_key}'
+        AND {$wpdb->posts}.post_type = 'gallery'
+        AND {$wpdb->posts}.post_status = 'publish'
+        AND meta_value REGEXP '^[0-9]{8}$'
+        ORDER BY year DESC
     ");
 
-	wp_send_json_success(array(
-		'years' => $years
-	));
+    wp_send_json_success(array(
+        'years' => $years
+    ));
 }
 add_action('wp_ajax_get_gallery_years', 'get_gallery_years_ajax');
 add_action('wp_ajax_nopriv_get_gallery_years', 'get_gallery_years_ajax');

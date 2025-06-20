@@ -11,7 +11,7 @@ get_template_part('template-parts/roll-menu'); ?>
 <div x-data="galleryFilter()">
 	<div class="section section_content filter_menu_section">
 		<div class="section_center_content small_section_center_content small_section_center_content scrollin scrollinbottom">
-			<h1 class="section_title text1 scrollin scrollinbottom"><?php echo cuhk_multilang_text("相片集", "相片集", "Media Gallery"); ?></h1>
+			<h1 class="section_title text1 scrollin scrollinbottom"><?php echo cuhk_multilang_text("相片集", "", "Media Gallery"); ?></h1>
 		</div>
 
 		<div class="filter_menu_wrapper">
@@ -23,7 +23,7 @@ get_template_part('template-parts/roll-menu'); ?>
 								<input name="filter" type="radio" id="all"
 									@change="filterByCategory('all')"
 									:checked="activeCategory === 'all'">
-								<label for="all"><span><?php echo cuhk_multilang_text("所有相片集", "所有相片集", "All Galleries"); ?></span></label>
+								<label for="all"><span><?php echo cuhk_multilang_text("所有相片集", "", "All Galleries"); ?></span></label>
 							</div>
 						</div>
 						<?php
@@ -54,10 +54,10 @@ get_template_part('template-parts/roll-menu'); ?>
 						?>
 					</div>
 					<div class="filter_dropdown_wrapper right_filter_dropdown_wrapper">
-						<a class="filter_dropdown_btn text5" href="#" @click.prevent="toggleYearDropdown()" x-text="selectedYearText"><?php echo cuhk_multilang_text("年份", "年份", "Year"); ?></a>
+						<a class="filter_dropdown_btn text5" href="#" @click.prevent="toggleYearDropdown()" x-text="selectedYearText"><?php echo cuhk_multilang_text("年份", "", "Year"); ?></a>
 						<div class="filter_dropdown text5" x-show="showYearDropdown" @click.away="showYearDropdown = false">
 							<ul>
-								<li><a href="#" @click.prevent="filterByYear('')" data-val=""><?php echo cuhk_multilang_text("所有年份", "所有年份", "All Years"); ?></a></li>
+								<li><a href="#" @click.prevent="filterByYear('')" data-val=""><?php echo cuhk_multilang_text("所有年份", "", "All Years"); ?></a></li>
 								<template x-for="year in availableYears" :key="year">
 									<li><a href="#" @click.prevent="filterByYear(year)" :data-val="year" x-text="year"></a></li>
 								</template>
@@ -96,7 +96,7 @@ get_template_part('template-parts/roll-menu'); ?>
 							<div class="load_more_wrapper scrollin scrollinbottom">
 								<a href="#" @click.prevent="loadMore()" class="load_more_btn text5">
 									<div class="icon"></div>
-									<div class="text"><?php echo cuhk_multilang_text("載入更多", "载入更多", "Load more"); ?></div>
+									<div class="text"><?php echo cuhk_multilang_text("載入更多", "", "Load more"); ?></div>
 								</a>
 							</div>
 						</template>
@@ -106,14 +106,14 @@ get_template_part('template-parts/roll-menu'); ?>
 				<!-- Loading indicator -->
 				<div class="col_wrapper big_col_wrapper" x-show="loading" x-cloak>
 					<div class="loading-indicator" style="text-align: center; padding: 40px;">
-						<p><?php echo cuhk_multilang_text("載入相片集中...", "载入相片集中...", "Loading galleries..."); ?></p>
+						<p><?php echo cuhk_multilang_text("載入相片集中...", "", "Loading galleries..."); ?></p>
 					</div>
 				</div>
 
 				<!-- No results message -->
 				<div class="col_wrapper big_col_wrapper" x-show="!loading && galleries.length === 0" x-cloak>
 					<div class="no-results" style="text-align: center; padding: 40px;">
-						<p><?php echo cuhk_multilang_text("沒有找到相片集", "没有找到相片集", "No galleries found"); ?></p>
+						<p><?php echo cuhk_multilang_text("沒有找到相片集", "", "No galleries found"); ?></p>
 					</div>
 				</div>
 			</div>
@@ -129,7 +129,7 @@ get_template_part('template-parts/roll-menu'); ?>
 			galleries: [],
 			activeCategory: 'all',
 			selectedYear: '',
-			selectedYearText: '<?php echo cuhk_multilang_text("年份", "年份", "Year"); ?>',
+			selectedYearText: '<?php echo cuhk_multilang_text("年份", "", "Year"); ?>',
 			showYearDropdown: false,
 			availableYears: [],
 			loading: false,
@@ -207,7 +207,7 @@ get_template_part('template-parts/roll-menu'); ?>
 
 			filterByYear(year) {
 				this.selectedYear = year;
-				this.selectedYearText = year || '<?php echo cuhk_multilang_text("年份", "年份", "Year"); ?>';
+				this.selectedYearText = year || '<?php echo cuhk_multilang_text("年份", "", "Year"); ?>';
 				this.showYearDropdown = false;
 				this.currentPage = 1;
 				this.loadGalleries(1, this.activeCategory, year, false);

@@ -14,11 +14,22 @@ get_template_part('template-parts/roll-menu', null, array(
 
 		<div class="section section_content filter_menu_section">
 			<div class="section_center_content small_section_center_content scrollin scrollinbottom">
-				<h1 class="section_title text1 scrollin scrollinbottom"><?php the_title(); ?></h1>
+				<div class="section_title text1 scrollin scrollinbottom">
+					<div class="text1"><?php the_field("gallery_title"); ?></div>
+					<div class="text4 gallery_date">
+					<?php
+					$date_raw = get_field('date'); // This is in Ymd format, e.g. 20250622
+					if ($date_raw) {
+						$date_obj = DateTime::createFromFormat('Ymd', $date_raw);
+						echo $date_obj->format('j/n/y'); // Outputs e.g., 22/6
+					}
+					?>
+					</div>
+				</div>
 
-				<?php if (get_the_content()) : ?>
+				<?php if (get_field("free_text")) : ?>
 					<div class="section_description scrollin scrollinbottom col6">
-						<?php the_content(); ?>
+						<?php the_field("free_text"); ?>
 					</div>
 				<?php endif; ?>
 			</div>
