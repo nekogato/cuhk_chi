@@ -85,7 +85,7 @@ get_template_part('template-parts/roll-menu'); ?>
 											<template x-if="gallery.category_name">
 												<div class="cat" x-text="gallery.category_name"></div>
 											</template>
-											<div class="title text5" x-text="gallery.title"></div>
+											<div class="title text5" x-html="gallery.title"></div>
 										</div>
 									</div>
 								</div>

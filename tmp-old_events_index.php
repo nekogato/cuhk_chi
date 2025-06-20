@@ -130,22 +130,22 @@ while (have_posts()) :
 								</div>
 							</div>
 							<div class="title_wrapper">
-								<div class="title text5" x-text="event.event_name"></div>
+								<div class="title text5" x-html="event.event_name"></div>
 								<div class="info_item_wrapper">
 									<div class="info_item">
 										<div class="t1"><?php echo cuhk_multilang_text("日期","","Date"); ?></div>
-										<div class="t2 text6" x-text="event.date_display"></div>
+										<div class="t2 text6" x-html="event.date_display"></div>
 									</div>
 									<template x-if="event.event_time">
 										<div class="info_item">
 											<div class="t1"><?php echo cuhk_multilang_text("時間","","Time"); ?></div>
-											<div class="t2 text6" x-text="event.event_time"></div>
+											<div class="t2 text6" x-html="event.event_time"></div>
 										</div>
 									</template>
 									<template x-if="event.event_venue">
 										<div class="info_item big_info_item">
 											<div class="t1"><?php echo cuhk_multilang_text("地點","","Venue"); ?></div>
-											<div class="t2 text6" x-text="event.event_venue"></div>
+											<div class="t2 text6" x-html="event.event_venue"></div>
 										</div>
 									</template>
 								</div>
@@ -203,7 +203,7 @@ endwhile;
 				this.loadAvailableYears();
 			},
 
-			async loadEvents(page = 1, category = 'all', year = '', append = false) {
+			async loadEvents(page = 1, category = 'all', year = '', pastonly = true, append = false) {
 				this.loading = true;
 
 				try {
@@ -213,11 +213,12 @@ endwhile;
 							'Content-Type': 'application/x-www-form-urlencoded',
 						},
 						body: new URLSearchParams({
-							action: 'load_past_events',
-							nonce: '<?php echo wp_create_nonce('load_past_events_nonce'); ?>',
+							action: 'load_events_with_year',
+							nonce: '<?php echo wp_create_nonce('load_events_with_year_nonce'); ?>',
 							page: page,
 							category: category,
-							year: year
+							year: year,
+							pastonly : pastonly
 						})
 					});
 
@@ -246,8 +247,8 @@ endwhile;
 							'Content-Type': 'application/x-www-form-urlencoded',
 						},
 						body: new URLSearchParams({
-							action: 'get_old_event_years',
-							nonce: '<?php echo wp_create_nonce('get_old_event_years_nonce'); ?>'
+							action: 'get_event_years',
+							nonce: '<?php echo wp_create_nonce('get_event_years_nonce'); ?>',
 						})
 					});
 

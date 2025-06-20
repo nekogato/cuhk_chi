@@ -1066,14 +1066,15 @@ add_action('wp_ajax_load_more_department_news', 'load_more_department_news');
 add_action('wp_ajax_nopriv_load_more_department_news', 'load_more_department_news');
 
 // AJAX handler for loading past events (Alpine.js version)
-function load_past_events()
+function load_events_with_year()
 {
-	check_ajax_referer('load_past_events_nonce', 'nonce');
+	check_ajax_referer('load_events_with_year_nonce', 'nonce');
 
 	$page = isset($_POST['page']) ? intval($_POST['page']) : 1;
 	$category = isset($_POST['category']) ? sanitize_text_field($_POST['category']) : 'all';
 	$year = sanitize_text_field($_POST['year']);
 	$today = date('Y-m-d');
+	$pastonly = isset($_POST['pastonly']);
 
 	// Build query args for past events (latest to oldest)
 	$args = array(
@@ -1083,25 +1084,31 @@ function load_past_events()
 		'meta_key'       => 'start_date', // for ordering
 		'orderby'        => 'meta_value',
 		'order'          => 'DESC',
-		'meta_query'     => array(
-			'relation' => 'AND',
-			array(
-				'key'     => 'start_date',
-				'value'   => $today,
-				'compare' => '<',
-				'type'    => 'DATE',
-			),
-		),
 	);
 
-	// If $year is provided, add a BETWEEN filter for that year using Ymd format
+	$meta_query = array();
+
+	if ($pastonly) {
+		$meta_query[] = array(
+			'key'     => 'start_date',
+			'value'   => $today,
+			'compare' => '<',
+			'type'    => 'DATE',
+		);
+	}
+
 	if ($year) {
-		$args['meta_query'][] = array(
+		$meta_query[] = array(
 			'key'     => 'start_date',
 			'value'   => array($year . '0101', $year . '1231'),
 			'compare' => 'BETWEEN',
 			'type'    => 'NUMERIC',
 		);
+	}
+
+	// Apply meta_query only if needed
+	if (!empty($meta_query)) {
+		$args['meta_query'] = array_merge(array('relation' => 'AND'), $meta_query);
 	}
 
 	// Add taxonomy query if category is not 'all'
@@ -1169,8 +1176,8 @@ function load_past_events()
 		'has_more' => $page < $events_query->max_num_pages
 	));
 }
-add_action('wp_ajax_load_past_events', 'load_past_events');
-add_action('wp_ajax_nopriv_load_past_events', 'load_past_events');
+add_action('wp_ajax_load_events_with_year', 'load_events_with_year');
+add_action('wp_ajax_nopriv_load_events_with_year', 'load_events_with_year');
 
 // AJAX handler for loading research projects
 function load_research_projects()
@@ -1344,10 +1351,10 @@ add_action('wp_ajax_nopriv_filter_events', 'filter_events');
 
 
 // AJAX handler for getting available years
-function get_old_event_years_ajax()
+function get_event_years_ajax()
 {
     // Verify nonce
-    if (!wp_verify_nonce($_POST['nonce'], 'get_old_event_years_nonce')) {
+    if (!wp_verify_nonce($_POST['nonce'], 'get_event_years_nonce')) {
         wp_die('Security check failed');
     }
 
@@ -1371,8 +1378,8 @@ function get_old_event_years_ajax()
         'years' => $years
     ));
 }
-add_action('wp_ajax_get_old_event_years', 'get_old_event_years_ajax');
-add_action('wp_ajax_nopriv_get_old_event_years', 'get_old_event_years_ajax');
+add_action('wp_ajax_get_event_years', 'get_event_years_ajax');
+add_action('wp_ajax_nopriv_get_event_years', 'get_event_years_ajax');
 
 
 /* chung */

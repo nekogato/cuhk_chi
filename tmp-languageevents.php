@@ -18,7 +18,7 @@ while (have_posts()) :
 	$page_description = get_field("introduction");
 ?>
 
-	<div x-data="eventFilter()">
+	<div x-data="langEventFilter()">
 
 		<div class="section section_content filter_menu_section">
 			<div class="section_center_content small_section_center_content small_section_center_content scrollin scrollinbottom">
@@ -30,7 +30,23 @@ while (have_posts()) :
 				<?php endif; ?>
 			</div>
 
-
+			<div class="filter_menu_wrapper">
+				<div class="filter_menu filter_menu_left_bg section_center_content small_section_center_content scrollin scrollinbottom">
+					<div class="filter_menu_content full_filter_menu_content">
+						<div class="filter_dropdown_wrapper right_filter_dropdown_wrapper">
+							<a class="filter_dropdown_btn text5" href="#" @click.prevent="toggleYearDropdown()" x-text="selectedYearText"><?php echo cuhk_multilang_text("所有年份", "", "All Years"); ?></a>
+							<div class="filter_dropdown text5" x-show="showYearDropdown" @click.away="showYearDropdown = false">
+								<ul>
+									<li><a href="#" @click.prevent="filterByYear('')" data-val=""><?php echo cuhk_multilang_text("所有年份", "", "All Years"); ?></a></li>
+									<template x-for="year in availableYears" :key="year">
+										<li><a href="#" @click.prevent="filterByYear(year)" :data-val="year" x-text="year"></a></li>
+									</template>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 
 		<div class="section event_list_section scrollin_p">
@@ -61,22 +77,22 @@ while (have_posts()) :
 								</div>
 							</div>
 							<div class="title_wrapper">
-								<div class="title text5" x-text="event.event_name"></div>
+								<div class="title text5" x-html="event.event_name"></div>
 								<div class="info_item_wrapper">
 									<div class="info_item">
 										<div class="t1"><?php echo cuhk_multilang_text("日期","","Date"); ?></div>
-										<div class="t2 text6" x-text="event.date_display"></div>
+										<div class="t2 text6" x-html="event.date_display"></div>
 									</div>
 									<template x-if="event.event_time">
 										<div class="info_item">
 											<div class="t1"><?php echo cuhk_multilang_text("時間","","Time"); ?></div>
-											<div class="t2 text6" x-text="event.event_time"></div>
+											<div class="t2 text6" x-html="event.event_time"></div>
 										</div>
 									</template>
 									<template x-if="event.event_venue">
 										<div class="info_item big_info_item">
 											<div class="t1"><?php echo cuhk_multilang_text("地點","","Venue"); ?></div>
-											<div class="t2 text6" x-text="event.event_venue"></div>
+											<div class="t2 text6" x-html="event.event_venue"></div>
 										</div>
 									</template>
 								</div>
@@ -117,19 +133,24 @@ endwhile;
 <script>
 	var ajaxurl = '<?php echo admin_url('admin-ajax.php'); ?>';
 
-	function eventFilter() {
+	function langEventFilter() {
 		return {
 			events: [],
-			activeCategory: 'language-events',
+			activeCategory: 'all',
+			selectedYear: '',
+			selectedYearText: '<?php echo cuhk_multilang_text("所有年份", "", "All Years"); ?>',
+			showYearDropdown: false,
+			availableYears: [],
 			loading: false,
 			currentPage: 1,
 			hasMore: true,
 
 			init() {
 				this.loadEvents();
+				this.loadAvailableYears();
 			},
 
-			async loadEvents(page = 1, category = 'language-events', append = false) {
+			async loadEvents(page = 1, category = 'all', year = '', pastonly = false, append = false) {
 				this.loading = true;
 
 				try {
@@ -139,16 +160,17 @@ endwhile;
 							'Content-Type': 'application/x-www-form-urlencoded',
 						},
 						body: new URLSearchParams({
-							action: 'filter_events',
-							nonce: '<?php echo wp_create_nonce('filter_events_nonce'); ?>',
+							action: 'load_events_with_year',
+							nonce: '<?php echo wp_create_nonce('load_events_with_year_nonce'); ?>',
 							page: page,
-							category: category
+							category: category,
+							year: year,
+							pastonly : pastonly
 						})
 					});
 
 					const data = await response.json();
 					if (data.success) {
-                        console.log(data.data)
 						if (append) {
 							this.events = [...this.events, ...data.data.events];
 						} else {
@@ -164,14 +186,47 @@ endwhile;
 				}
 			},
 
+			async loadAvailableYears() {
+				try {
+					const response = await fetch(ajaxurl, {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/x-www-form-urlencoded',
+						},
+						body: new URLSearchParams({
+							action: 'get_old_event_years',
+							nonce: '<?php echo wp_create_nonce('get_old_event_years_nonce'); ?>'
+						})
+					});
+
+					const data = await response.json();
+					if (data.success) {
+						this.availableYears = data.data.years;
+					}
+				} catch (error) {
+					console.error('Error loading years:', error);
+				}
+			},
+
+			filterByYear(year) {
+				this.selectedYear = year;
+				this.selectedYearText = year || '<?php echo cuhk_multilang_text("所有年份", "", "All Year"); ?>';
+				this.showYearDropdown = false;
+				this.currentPage = 1;
+				this.loadEvents(1, this.activeCategory, year, false);
+			},
+
+			toggleYearDropdown() {
+				this.showYearDropdown = !this.showYearDropdown;
+			},
+
 			loadMore() {
 				if (!this.hasMore || this.loading) return;
-				this.loadEvents(this.currentPage + 1, this.activeCategory, true);
+				this.loadEvents(this.currentPage + 1, this.activeCategory, this.selectedYear, true);
 			}
 		}
 	}
 </script>
-
 
 <?php
 get_footer();
