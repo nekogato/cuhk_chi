@@ -47,9 +47,9 @@ while (have_posts()) :
 					foreach ($related_pages as $related_page) :
 						$is_active = ($related_page->ID === $current_id) ? ' active' : '';
 						?>
-						<a href="<?php echo get_permalink($related_page->ID); ?>" class="submenu_btn text5<?php echo $is_active; ?>">
+						<div><a href="<?php echo get_permalink($related_page->ID); ?>" class="submenu_btn text5<?php echo $is_active; ?>">
 							<?php echo get_field("page_title", $related_page->ID) ?: get_the_title($related_page->ID); ?>
-						</a>
+						</a></div>
 					<?php endforeach; ?>
 				</div>
 
