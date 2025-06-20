@@ -22,6 +22,8 @@ body{
     color: #736562;
 	font-family: "area-normal","Chiron Sung HK WS", sans-serif;
 	font-style: normal;
+	overflow: auto;
+  	overflow-x: hidden;
 	}
 
 a{
