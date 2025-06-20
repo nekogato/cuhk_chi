@@ -20,7 +20,7 @@ get_header();
 					$title = get_field('project_title');
 					$start_year = get_field('start_year');
 					$end_year = get_field('end_year');
-					$principle_investigator = get_field('principle_investigator');
+					$principal_investigator = get_field('principal_investigator');
 					$other_investigator = get_field('other_investigator');
 					$granted_amount = get_field('granted_amount');
 					$funding_organization = get_field('funding_organization');
@@ -43,7 +43,7 @@ get_header();
 					</div>
 					<div class="people_detail_text scrollin scrollinbottom">
 						<?php if ($funded_by) : ?>
-						<div class="funded_by text3"><?php echo $funded_by; ?></div>
+						<div class="funded_by text6"><?php echo $funded_by; ?></div>
 						<?php endif; ?>
 						<div class="name text3"><?php echo $title; ?></div>
 						<div class="info_table text6">
@@ -67,10 +67,10 @@ get_header();
 									</div>
                                     <?php
                                 } ?>
-								<?php if ($principle_investigator) : ?>
+								<?php if ($principal_investigator) : ?>
 									<div class="table_flex_item col6">
 										<div class="title text7"><?php echo cuhk_multilang_text("計劃主持","","Principle Investigator"); ?></div>
-										<div class="text text6"><?php echo ($principle_investigator); ?></div>
+										<div class="text text6"><?php echo ($principal_investigator); ?></div>
 									</div>
 								<?php endif; ?>
 								<?php if ($other_investigator) : ?>
