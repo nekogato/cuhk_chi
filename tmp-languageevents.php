@@ -18,10 +18,19 @@ while (have_posts()) :
 	$page_description = get_field("introduction");
 ?>
 
-	<div x-data="langEventFilter()">
+	<div x-data="pastEventFilter()">
 
 		<div class="section section_content filter_menu_section">
 			<div class="section_center_content small_section_center_content small_section_center_content scrollin scrollinbottom">
+				<?php
+				$related_pages = get_field('related_page');
+				if ($related_pages) : ?>
+					<div class="intro_btn_wrapper">
+						<?php foreach ($related_pages as $related_page) : ?>
+							<a href="<?php echo get_permalink($related_page->ID); ?>" class="round_btn text5"><?php echo get_field("page_title",$related_page->ID); ?></a>
+						<?php endforeach; ?>
+					</div>
+				<?php endif; ?>
 				<?php if ($page_title) : ?>
 					<h1 class="section_title text1 scrollin scrollinbottom"><?php echo ($page_title); ?></h1>
 				<?php endif; ?>
@@ -30,9 +39,53 @@ while (have_posts()) :
 				<?php endif; ?>
 			</div>
 
+			<?php
+			// Get event categories
+			$event_categories = get_terms(array(
+				'taxonomy' => 'event_category',
+				'hide_empty' => true,
+				'orderby' => 'name',
+				'order' => 'ASC'
+			));
+			?>
+
 			<div class="filter_menu_wrapper">
 				<div class="filter_menu filter_menu_left_bg section_center_content small_section_center_content scrollin scrollinbottom">
 					<div class="filter_menu_content full_filter_menu_content">
+						<div class="filter_checkbox_wrapper text7 filter_switchable_wrapper">
+							<div class="filter_checkbox">
+								<div class="checkbox">
+									<input name="filter" type="radio" id="all"
+										@change="filterByCategory('all')"
+										:checked="activeCategory === 'all'">
+									<label for="all"><span><?php echo cuhk_multilang_text("所有活動","","All Events"); ?></span></label>
+								</div>
+							</div>
+							<?php if (!empty($event_categories)) : ?>
+								<?php foreach ($event_categories as $category) : ?>
+									<div class="filter_checkbox">
+										<div class="checkbox">
+											<input name="filter" type="radio" id="category-<?php echo esc_attr($category->term_id); ?>"
+												@change="filterByCategory('<?php echo esc_attr($category->slug); ?>')"
+												:checked="activeCategory === '<?php echo esc_attr($category->slug); ?>'">
+											<label for="category-<?php echo esc_attr($category->term_id); ?>">
+												<span>
+												<?php 
+													if(pll_current_language() == 'tc') {
+														$ctermfullname = get_field('tc_name', 'news_category_' .$category->term_id);
+													}elseif(pll_current_language() == 'sc'){
+														$ctermfullname = get_field('sc_name', 'news_category_' .$category->term_id);
+													}else{
+														$ctermfullname = get_field('en_name', 'news_category_' .$category->term_id);
+													};
+													echo ($ctermfullname); 
+												?></span>
+											</label>
+										</div>
+									</div>
+								<?php endforeach; ?>
+							<?php endif; ?>
+						</div>
 						<div class="filter_dropdown_wrapper right_filter_dropdown_wrapper">
 							<a class="filter_dropdown_btn text5" href="#" @click.prevent="toggleYearDropdown()" x-text="selectedYearText"><?php echo cuhk_multilang_text("所有年份", "", "All Years"); ?></a>
 							<div class="filter_dropdown text5" x-show="showYearDropdown" @click.away="showYearDropdown = false">
@@ -133,10 +186,10 @@ endwhile;
 <script>
 	var ajaxurl = '<?php echo admin_url('admin-ajax.php'); ?>';
 
-	function langEventFilter() {
+	function pastEventFilter() {
 		return {
 			events: [],
-			activeCategory: 'language-events',
+			activeCategory: 'all',
 			selectedYear: '',
 			selectedYearText: '<?php echo cuhk_multilang_text("所有年份", "", "All Years"); ?>',
 			showYearDropdown: false,
@@ -146,16 +199,14 @@ endwhile;
 			hasMore: true,
 
 			init() {
-                alert("0")
 				this.loadEvents();
 				this.loadAvailableYears();
 			},
 
-			async loadEvents(page = 1, category = 'language-events', year = '', pastonly = false, append = false) {
+			async loadEvents(page = 1, category = 'all', year = '', pastonly = true, append = false) {
 				this.loading = true;
 
 				try {
-                alert("1",category)
 					const response = await fetch(ajaxurl, {
 						method: 'POST',
 						headers: {
@@ -196,8 +247,8 @@ endwhile;
 							'Content-Type': 'application/x-www-form-urlencoded',
 						},
 						body: new URLSearchParams({
-							action: 'get_old_event_years',
-							nonce: '<?php echo wp_create_nonce('get_old_event_years_nonce'); ?>'
+							action: 'get_event_years',
+							nonce: '<?php echo wp_create_nonce('get_event_years_nonce'); ?>',
 						})
 					});
 
@@ -208,6 +259,13 @@ endwhile;
 				} catch (error) {
 					console.error('Error loading years:', error);
 				}
+			},
+
+			filterByCategory(category) {
+				if (this.activeCategory === category) return;
+				this.activeCategory = category;
+				this.currentPage = 1;
+				this.loadEvents(1, category, this.selectedYear, false);
 			},
 
 			filterByYear(year) {
