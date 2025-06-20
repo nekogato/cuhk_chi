@@ -7,9 +7,8 @@
  */
 
 get_header();
-?>
 
-<?php get_template_part('template-parts/roll-menu'); ?>
+get_template_part('template-parts/roll-menu', null, array('target_page' => 'study/chinese-language-courses')); ?>
 
 <?php
 while (have_posts()) :
