@@ -14,7 +14,7 @@ get_template_part('template-parts/roll-menu', null, array('target_page' => 'stud
 	<div class="section section_content filter_menu_section">
 		<div class="section_center_content small_section_center_content small_section_center_content scrollin scrollinbottom">
 
-            <div class="intro_btn_wrapper">
+            <div class="submenu_btn_wrapper">
                 <?php
                 $current_id = get_the_ID();
                 $parent_id = wp_get_post_parent_id($current_id);
@@ -39,7 +39,7 @@ get_template_part('template-parts/roll-menu', null, array('target_page' => 'stud
                 foreach ($related_pages as $related_page) :
                     $is_active = ($related_page->ID === $current_id) ? ' active' : '';
                     ?>
-                    <a href="<?php echo get_permalink($related_page->ID); ?>" class="round_btn text5<?php echo $is_active; ?>">
+                    <a href="<?php echo get_permalink($related_page->ID); ?>" class="submenu_btn text5<?php echo $is_active; ?>">
                         <?php echo get_field("page_title", $related_page->ID) ?: get_the_title($related_page->ID); ?>
                     </a>
                 <?php endforeach; ?>

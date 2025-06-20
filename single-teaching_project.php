@@ -42,7 +42,7 @@ get_header();
 						<?php endif; ?>
 					</div>
 					<div class="people_detail_text scrollin scrollinbottom">
-                        <div class="back_btn"><a href="<?php echo pll_get_page_url("study/chinese-language-courses/teaching-projects");?>"><?php echo cuhk_multilang_text("回到教學計劃","","Back to Teaching Projects"); ?></a></div>
+                        <div class="back_btn_wrapper"><a href="javascript:history.back()" class="back_btn"><?php echo cuhk_multilang_text("返回","","Back"); ?></a></div>
 
 						<?php if ($funded_by) : ?>
 						<div class="funded_by text6"><?php echo $funded_by; ?></div>
