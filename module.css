@@ -1377,6 +1377,7 @@ justify-content: center;
     text-align: center;
     flex-grow: 0;  
     align-content: center;
+    flex: 0 0 200px;
 }
 
 .event_list_item .date > *{
@@ -1440,9 +1441,9 @@ justify-content: center;
 }
 
 .event_list_item .photo{
-    width: 30%;
     flex-grow: 0;
     position: relative;
+      flex: 0 0 300px;
 }
 
 .event_list_item .photo::before{
@@ -1468,7 +1469,7 @@ justify-content: center;
     box-shadow: 5px 5px 10px rgba(0,0,0,.3);
     margin: auto;
     display: block;
-    max-height: 300px;
+    max-height: 250px;
     position: relative;
     z-index: 1;
     max-width: 80%;
@@ -5561,10 +5562,12 @@ justify-content: center;
 
     .event_list_item .date {
         width: 180px;
+        flex: 0 0 180px;
       }
 
     .event_list_item .photo {
         width: 150px;
+          flex: 0 0 150px;
       }
 
       .event_list_item .photo img {

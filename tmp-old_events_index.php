@@ -130,7 +130,7 @@ while (have_posts()) :
 								</div>
 							</div>
 							<div class="title_wrapper">
-								<div class="title text5" x-html="event.event_name"></div>
+								<div class="title text4" x-html="event.event_name"></div>
 								<div class="info_item_wrapper">
 									<div class="info_item">
 										<div class="t1"><?php echo cuhk_multilang_text("日期","","Date"); ?></div>
