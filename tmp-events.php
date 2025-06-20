@@ -95,7 +95,7 @@ while (have_posts()) :
 			<div class="section_center_content small_section_center_content">
 				<div class="event_list_item_wrapper" x-show="!loading">
 					<template x-for="event in events" :key="event.id">
-						<div class="event_list_item flex">
+						<div class="event_list_item flex  scrollin scrollinbottom">
 							<div class="date">
 								<template x-if="event.has_date_range">
 									<div class="d_wrapper">
@@ -213,6 +213,9 @@ endwhile;
 						}
 						this.hasMore = data.data.has_more;
 						this.currentPage = page;
+						setTimeout(() => {
+							doscroll();
+						}, 300);
 					}
 				} catch (error) {
 					console.error('Error loading events:', error);
