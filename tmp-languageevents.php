@@ -146,6 +146,7 @@ endwhile;
 			hasMore: true,
 
 			init() {
+                alert("0")
 				this.loadEvents();
 				this.loadAvailableYears();
 			},
@@ -154,6 +155,7 @@ endwhile;
 				this.loading = true;
 
 				try {
+                alert("1",category)
 					const response = await fetch(ajaxurl, {
 						method: 'POST',
 						headers: {
