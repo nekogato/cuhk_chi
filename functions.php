@@ -2149,98 +2149,7 @@ function bulk_translate_all_tc_to_sc($post_types = array('post', 'page'))
 	return $results;
 }
 
-/**
- * Add admin menu for manual translation
- */
-add_action('admin_menu', 'add_translation_admin_menu');
 
-function add_translation_admin_menu()
-{
-	add_management_page(
-		'TC to SC Translation',
-		'TC to SC Translation',
-		'manage_options',
-		'tc-sc-translation',
-		'tc_sc_translation_admin_page'
-	);
-}
-
-/**
- * Admin page for manual translation
- */
-function tc_sc_translation_admin_page()
-{
-	if (!current_user_can('manage_options')) {
-		return;
-	}
-
-	// Handle form submission
-	if (isset($_POST['translate_all']) && wp_verify_nonce($_POST['translation_nonce'], 'tc_sc_translation')) {
-		$post_types = isset($_POST['post_types']) ? $_POST['post_types'] : array('post', 'page');
-		$results = bulk_translate_all_tc_to_sc($post_types);
-
-		echo '<div class="notice notice-success"><p>';
-		echo "Translation completed! Success: {$results['success']}, Skipped: {$results['skipped']}";
-		if (!empty($results['errors'])) {
-			echo '<br>Errors: ' . implode(', ', $results['errors']);
-		}
-		echo '</p></div>';
-	}
-
-	// Get all public post types
-	$post_types = get_post_types(array('public' => true), 'objects');
-	?>
-	<div class="wrap">
-		<h1>Traditional Chinese to Simplified Chinese Translation</h1>
-
-		<div class="card">
-			<h2>How it works</h2>
-			<p>This tool automatically translates Traditional Chinese content to Simplified Chinese using your existing character mapping functions.</p>
-			<ul>
-				<li><strong>Automatic:</strong> New TC content is automatically translated to SC when saved</li>
-				<li><strong>Individual:</strong> Use the "Translate" button in the sidebar when editing TC posts/pages</li>
-				<li><strong>Bulk:</strong> Use the form below to translate multiple existing posts at once</li>
-				<li><strong>Supported:</strong> Post titles, content, excerpts, and all ACF fields</li>
-			</ul>
-		</div>
-
-		<h2>Bulk Translation</h2>
-		<p>Use this form to translate multiple posts at once. For individual posts, use the translate button in the post editor sidebar.</p>
-
-		<form method="post" action="">
-			<?php wp_nonce_field('tc_sc_translation', 'translation_nonce'); ?>
-
-			<table class="form-table">
-				<tr>
-					<th scope="row">Post Types to Translate</th>
-					<td>
-						<?php foreach ($post_types as $post_type): ?>
-							<label>
-								<input type="checkbox" name="post_types[]" value="<?php echo esc_attr($post_type->name); ?>"
-									<?php checked(in_array($post_type->name, array('post', 'page'))); ?>>
-								<?php echo esc_html($post_type->label); ?>
-							</label><br>
-						<?php endforeach; ?>
-					</td>
-				</tr>
-			</table>
-
-			<?php submit_button('Translate All TC Content to SC', 'primary', 'translate_all'); ?>
-		</form>
-
-		<div class="card">
-			<h3>Manual Translation Function</h3>
-			<p>You can also translate individual posts programmatically:</p>
-			<code>translate_existing_post_tc_to_sc($tc_post_id);</code>
-		</div>
-	</div>
-<?php
-}
-
-/**
- * Add admin menu for manual translation
- */
-add_action('admin_menu', 'add_translation_admin_menu');
 
 /**
  * Add meta box with translate button to post edit screens
@@ -2290,7 +2199,7 @@ function tc_to_sc_translate_meta_box_callback($post)
 	$sc_edit_link = get_edit_post_link($sc_post_id);
 
 	wp_nonce_field('tc_to_sc_translate_single', 'tc_to_sc_translate_nonce');
-?>
+	?>
 	<div id="tc-to-sc-translate-container">
 		<p><strong>SC Post:</strong> <a href="<?php echo esc_url($sc_edit_link); ?>" target="_blank"><?php echo esc_html($sc_post->post_title); ?></a></p>
 
