@@ -151,6 +151,7 @@ endwhile;
 			},
 
 			async loadEvents(page = 1, category = 'all', year = '', pastonly = false, append = false) {
+                alert(category)
 				this.loading = true;
 
 				try {

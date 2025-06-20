@@ -1356,6 +1356,11 @@ justify-content: center;
     position: relative;
     z-index: 7;
 }
+
+.filter_menu_section + .event_list_section{
+    padding-top: 0px;
+}
+
 .event_list_item .title_wrapper{
     border-left:1px solid #059f9f;
     padding-left: 30px;
