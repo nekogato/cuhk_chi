@@ -1343,6 +1343,37 @@ add_action('wp_ajax_nopriv_filter_events', 'filter_events');
 
 
 
+// AJAX handler for getting available years
+function get_old_event_years_ajax()
+{
+    // Verify nonce
+    if (!wp_verify_nonce($_POST['nonce'], 'get_old_event_years_nonce')) {
+        wp_die('Security check failed');
+    }
+
+    global $wpdb;
+
+    $meta_key = 'start_date'; // ACF field key (stored in Ymd format, e.g., 20240620)
+
+    $years = $wpdb->get_col("
+        SELECT DISTINCT 
+            LEFT(meta_value, 4) AS year
+        FROM {$wpdb->postmeta}
+        INNER JOIN {$wpdb->posts} ON {$wpdb->posts}.ID = {$wpdb->postmeta}.post_id
+        WHERE meta_key = '{$meta_key}'
+        AND {$wpdb->posts}.post_type = 'event'
+        AND {$wpdb->posts}.post_status = 'publish'
+        AND meta_value REGEXP '^[0-9]{8}$'
+        ORDER BY year DESC
+    ");
+
+    wp_send_json_success(array(
+        'years' => $years
+    ));
+}
+add_action('wp_ajax_get_old_event_years', 'get_old_event_years_ajax');
+add_action('wp_ajax_nopriv_get_old_event_years', 'get_old_event_years_ajax');
+
 
 /* chung */
 
