@@ -163,6 +163,11 @@ while (have_posts()) :
 						<p><?php echo cuhk_multilang_text("戴入活動中","","Loading events..."); ?></p>
 					</div>
 				</div>
+
+				<!-- No events found message -->
+				<div x-show="!loading && events.length === 0" style="text-align: center; padding: 60px 0;">
+                    <p class="text5"><?php pll_e(''); ?><?php echo cuhk_multilang_text("未找到符合所選條件的活動。","","No events found matching the selected criteria."); ?></p>
+				</div>
 			</div>
 		</div>
 
