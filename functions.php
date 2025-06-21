@@ -275,6 +275,16 @@ function pll_get_page_url($page_slug)
 	return get_permalink($page_ID_current_lang);
 }
 
+function pll_get_page_id_by_slug($page_slug) {
+    if (empty($page_slug)) return false;
+
+    // Get the base page object by slug
+    $page = get_page_by_path($page_slug);
+    if (empty($page)) return false;
+
+    // Use Polylang to get the ID in the current language
+    return function_exists('pll_get_post') ? pll_get_post($page->ID) : $page->ID;
+}
 
 function my_theme_add_editor_styles()
 {
