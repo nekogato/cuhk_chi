@@ -84,7 +84,12 @@ if (!empty($ancestor_id)) {
 
 		<?php 
 		$parent_id = wp_get_post_parent_id(get_the_ID());
-		if($ancestor_id!==$parent_id){
+		$current_id = get_the_ID();
+
+		// Check if current page has NO children
+		$has_children = get_pages(['child_of' => $current_id, 'number' => 1]);
+
+		if ($ancestor_id !== $parent_id || $has_children) {
 		?>
 		<div class="roll_bottom_menu text7">
 			<div class="section_center_content">
@@ -92,10 +97,9 @@ if (!empty($ancestor_id)) {
 					<div class="swiper-wrapper">
 						<?php
 
-						$current_id = get_the_ID();
 
 						// If no parent found, use current page as parent
-						if (!$parent_id) {
+						if (!$parent_id || $has_children) {
 							$parent_id = $current_id;
 						}
 

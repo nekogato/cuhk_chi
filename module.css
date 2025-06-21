@@ -441,7 +441,8 @@ justify-content: center;
 }
 
 .roll_bottom_menu .swiper-wrapper .swiper-slide a:hover, .roll_bottom_menu .swiper-wrapper .swiper-slide a.active{
-    border-bottom:1px solid #009b9d
+    border-bottom:1px solid #009b9d;
+    font-weight: 600;
 }
 
 .roll_bottom_menu .swiper-wrapper .swiper-slide a:hover{
