@@ -3655,7 +3655,7 @@ justify-content: center;
 .alphabet_list_wrapper .alphabet_list{
     display: flex;
     gap: 5px;
-    margin-top: 5px;
+    margin-top: 10px;
     flex-wrap: wrap;
 }
 
@@ -3672,8 +3672,8 @@ justify-content: center;
 }
 
 .big_alphabet_list_wrapper .alphabet_list li + li{
-    padding-left: 10px;
-    margin-left: 10px;
+    padding-left: 20px;
+    margin-left: 20px;
     border-left:1px solid #63629B;
 }
 

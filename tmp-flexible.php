@@ -17,6 +17,9 @@ get_header();
 while (have_posts()) :
 	the_post();
 	$page_title = get_the_title();
+	if(get_field("page_title")){
+		$page_title = get_field("page_title");
+	};
 	$page_description = get_field("introduction");
 ?>
 
