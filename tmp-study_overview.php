@@ -28,7 +28,7 @@ while (have_posts()) :
 								<div class="text_wrapper">
 									<div class="text">
 										<div class="title_bg_wrapper">
-											<h1 class="project_title text_c2"><span><?php echo esc_html($hero_banner['main_title']); ?></span></h1>
+											<h1 class="project_title text_c1"><span><?php echo esc_html($hero_banner['main_title']); ?></span></h1>
 										</div>
 										<div class="description free_text">
 											<?php echo apply_filters('the_content', $hero_banner['description']); ?>
@@ -92,7 +92,7 @@ while (have_posts()) :
 										<?php if ($layout['section_title']) : ?>
 											<h5 class="text_c3"><?php echo esc_html($layout['section_title']); ?></h5>
 										<?php endif; ?>
-										<div class="col_wrapper big_col_wrapper">
+										<div class="col_wrapper xl_col_wrapper">
 											<div class="flex row">
 												<?php if ($layout['layout_type'] == 'one_column') : ?>
 													<div class="col8 col">

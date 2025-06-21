@@ -1129,6 +1129,16 @@ p:first-child{
 	overflow-x: auto;
 	margin-top:30px;}	
 	
+
+.free_text h1 + .table-responsive,
+.free_text h2 + .table-responsive,
+.free_text h3 + .table-responsive,
+.free_text h4 + .table-responsive,
+.free_text h5 + .table-responsive,
+.free_text h6 + .table-responsive{
+    margin-top: 10px;
+}
+
 .free_text .table-responsive:first-child{
 	margin-top:auto;
 	}	
