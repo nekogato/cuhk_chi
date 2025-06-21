@@ -6,6 +6,7 @@
  * @package cuhk_chi
  */
 
+$current_id = get_the_ID();
 
 function get_ancestor_with_menu_field_id($relationship_field = 'top_level_menus') {
     global $post;
@@ -69,7 +70,8 @@ if (!empty($ancestor_id)) {
 								// Output HTML
 								echo '<div class="swiper-slide">';
 								echo '<div><a href="' . esc_url(get_permalink($related_id)) . '" class="' . esc_attr($class) . '">';
-								echo esc_html(get_field('page_title', $related_id));
+								$page_title = get_field('page_title', $related_id);
+								echo esc_html($page_title ? $page_title : get_the_title($related_id));
 								echo '</a></div>';
 								echo '</div>';
 							}
