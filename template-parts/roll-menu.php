@@ -87,16 +87,21 @@ if (!empty($ancestor_id)) {
 		$current_id = get_the_ID();
 
 		// Check if current page has children
-		$has_children = get_pages([
-			'child_of' => $current_id,
-			'number'   => 1,
-			'post_status' => 'publish' // optional, only include published pages
+		$children_query = new WP_Query([
+			'post_type'      => 'page',
+			'post_parent'    => $current_id,
+			'posts_per_page' => 1,
+			'post_status'    => 'publish',
+			'lang'           => '', // empty means current Polylang language
 		]);
+
+		$has_children = $children_query->have_posts();
+		wp_reset_postdata();
 
 		$has_children2 = get_pages([
 			'child_of' => 305,
 			'number'   => 1,
-			'post_status' => 'publish' // optional, only include published pages
+			'post_status' => 'publish'
 		]);
 
 		var_dump($parent_id,$current_id,$has_children,$has_children2);
