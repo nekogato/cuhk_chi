@@ -252,6 +252,11 @@
     position: relative;
 }
 
+.center_roll_top_menu .section_center_content{
+    justify-content: center;
+    display: flex;
+}
+
 .roll_top_menu .section_center_content::after{
     content:"";
     position: absolute;
@@ -438,10 +443,11 @@ justify-content: center;
     color:#9f9b9a;
     text-align: center;
     display: block;
+    border-bottom:2px solid transparent;
 }
 
 .roll_bottom_menu .swiper-wrapper .swiper-slide a:hover, .roll_bottom_menu .swiper-wrapper .swiper-slide a.active{
-    border-bottom:1px solid #009b9d;
+    border-bottom:2px solid #009b9d;
     font-weight: 600;
 }
 

@@ -39,7 +39,7 @@ if (!empty($ancestor_id)) {
 <div class="sentinel"></div>
 <div class="section roll_menu_section sticky_section">
 	<div class="roll_menu scrollin scrollinbottom">
-		<div class="roll_top_menu text7">
+		<div class="roll_top_menu center_roll_top_menu text7">
 			<div class="section_center_content">
 				<div class="swiper-container swiper">
 					<div class="swiper-wrapper">
