@@ -88,7 +88,7 @@ if (!empty($ancestor_id)) {
 
 		// Check if current page has NO children
 		$has_children = get_pages(['child_of' => $current_id, 'number' => 1]);
-
+		var_dump($has_children);
 		if ($ancestor_id !== $parent_id || $has_children) {
 		?>
 		<div class="roll_bottom_menu text7">
@@ -98,7 +98,6 @@ if (!empty($ancestor_id)) {
 						<?php
 
 
-						// If no parent found, use current page as parent
 						if (!$parent_id || $has_children) {
 							$parent_id = $current_id;
 						}
