@@ -28,16 +28,14 @@ while (have_posts()) :
 									<div class="text">
 										<div class="title_bg_wrapper">
 											<h1 class="project_title text_c2"><span><?php echo esc_html($hero_banner['main_title']); ?></span></h1>
-											<h4 class="project_smalltitle text_c2"><span><?php echo esc_html($hero_banner['subtitle']); ?></span></h4>
 										</div>
 										<div class="description free_text">
 											<?php echo apply_filters('the_content', $hero_banner['description']); ?>
 										</div>
 										<?php if ($hero_banner['buttons']) : ?>
 											<div class="border_btn_wrapper">
-												<?php if ($hero_banner['buttons_title']) : ?>
-													<div class="btn_title"><?php echo esc_html($hero_banner['buttons_title']); ?></div>
-												<?php endif; ?>
+												<div class="btn_title"><?php echo cuhk_multilang_text("下載檔案","","Download PDF"); ?></div>
+												
 												<?php foreach ($hero_banner['buttons'] as $button) : ?>
 													<?php if ($button['button_link']) : ?>
 														<a class="btn" href="<?php echo esc_url($button['button_link']['url']); ?>">
@@ -241,7 +239,8 @@ while (have_posts()) :
 						</div>
 					<?php endif; ?>
 				</div>
-
+			<?php elseif (get_row_layout() == 'middle_roll_menu_section') : ?>
+			<?php get_template_part('template-parts/roll-menu'); ?>	
 			<?php elseif (get_row_layout() == 'roll_menu_section') : ?>
 				<?php
 				// Get top menu from ACF field
