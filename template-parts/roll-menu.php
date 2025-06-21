@@ -98,15 +98,7 @@ if (!empty($ancestor_id)) {
 		$has_children = $children_query->have_posts();
 		wp_reset_postdata();
 
-		$has_children2 = get_pages([
-			'child_of' => 305,
-			'number'   => 1,
-			'post_status' => 'publish'
-		]);
-
-		var_dump($parent_id,$current_id,$has_children,$has_children2);
-
-		if ($ancestor_id !== $parent_id || !empty($has_children)) {
+		if ($ancestor_id !== $parent_id || $has_children) {
 		?>
 		<div class="roll_bottom_menu text7">
 			<div class="section_center_content">
