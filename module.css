@@ -286,7 +286,7 @@
     font-weight: 600;
 }
 
-.roll_top_menu .swiper-wrapper .swiper-slide a.active::after, .roll_top_menu .swiper-wrapper .swiper-slide-active a::after{
+.roll_top_menu .swiper-wrapper .swiper-slide a.active::after{
     content:"";
     position: absolute;
     left: 0px;
