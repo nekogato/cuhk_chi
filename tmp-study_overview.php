@@ -15,6 +15,7 @@ while (have_posts()) :
 	the_post();
 ?>
 
+	<img src="<?php echo get_template_directory_uri(); ?>/images/ink_bg3.jpg" class="ink_bg3 scrollin scrollinbottom" alt="">
 	<?php
 	$hero_banner = get_field('hero_banner');
 	if ($hero_banner) : ?>
@@ -79,10 +80,8 @@ while (have_posts()) :
 				$background_style = get_sub_field('background_style');
 				$layouts = get_sub_field('flexible_layouts');
 				?>
-				<div class="section plain_text_section <?php echo ($background_style == 'border') ? 'border_layout_section' : ''; ?>">
+				<div class="section plain_text_section border_layout_section">
 					<?php if ($background_style == 'ink') : ?>
-						<img src="<?php echo get_template_directory_uri(); ?>/images/ink_bg3.jpg" class="ink_bg3 scrollin scrollinbottom" alt="">
-					<?php elseif ($background_style == 'border') : ?>
 						<div class="brush_bg"></div>
 					<?php endif; ?>
 					<div class="section_center_content small_section_center_content">
@@ -93,7 +92,7 @@ while (have_posts()) :
 										<?php if ($layout['section_title']) : ?>
 											<h5 class="text_c3"><?php echo esc_html($layout['section_title']); ?></h5>
 										<?php endif; ?>
-										<div class="col_wrapper">
+										<div class="col_wrapper big_col_wrapper">
 											<div class="flex row">
 												<?php if ($layout['layout_type'] == 'one_column') : ?>
 													<div class="col8 col">

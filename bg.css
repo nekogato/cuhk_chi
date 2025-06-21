@@ -57,7 +57,7 @@
 .ink_bg3{
     position: absolute;
     width: auto;
-    top:-100%;
+    top:100px;
     right: 0px;
     height: 200%;
     mix-blend-mode: darken;
