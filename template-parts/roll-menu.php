@@ -86,14 +86,20 @@ if (!empty($ancestor_id)) {
 		$parent_id = wp_get_post_parent_id(get_the_ID());
 		$current_id = get_the_ID();
 
-		// Check if current page has NO children
+		// Check if current page has children
 		$has_children = get_pages([
 			'child_of' => $current_id,
 			'number'   => 1,
 			'post_status' => 'publish' // optional, only include published pages
 		]);
 
-		var_dump($has_children);
+		$has_children2 = get_pages([
+			'child_of' => 305,
+			'number'   => 1,
+			'post_status' => 'publish' // optional, only include published pages
+		]);
+
+		var_dump($parent_id,$current_id,$has_children,$has_children2);
 
 		if ($ancestor_id !== $parent_id || !empty($has_children)) {
 		?>
