@@ -87,9 +87,15 @@ if (!empty($ancestor_id)) {
 		$current_id = get_the_ID();
 
 		// Check if current page has NO children
-		$has_children = get_pages(['child_of' => $current_id, 'number' => 1]);
+		$has_children = get_pages([
+			'child_of' => $current_id,
+			'number'   => 1,
+			'post_status' => 'publish' // optional, only include published pages
+		]);
+
 		var_dump($has_children);
-		if ($ancestor_id !== $parent_id || $has_children) {
+
+		if ($ancestor_id !== $parent_id || !empty($has_children)) {
 		?>
 		<div class="roll_bottom_menu text7">
 			<div class="section_center_content">
