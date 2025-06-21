@@ -36,6 +36,7 @@ get_header();
 						<?php endif; ?>
 					</div>
 					<div class="people_detail_text scrollin scrollinbottom">
+                        <div class="back_btn_wrapper"><a href="javascript:history.back()" class="back_btn"><?php echo cuhk_multilang_text("返回","","Back"); ?></a></div>
 						<div class="name text3"><?php the_field("title"); ?></div>
 						<div class="info_table text6">
 							<div class="table_flex_item_wrapper">

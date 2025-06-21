@@ -29,6 +29,7 @@ while (have_posts()) :
 			<?php if ($page_description) : ?>
 				<div class="section_description scrollin scrollinbottom"><?php echo wp_kses_post($page_description); ?></div>
 			<?php endif; ?>
+		</div>
 
 			<?php if (have_rows('content_sections')) : ?>
 				<?php while (have_rows('content_sections')) : the_row(); ?>
@@ -38,8 +39,10 @@ while (have_posts()) :
 						<?php if ($content) : ?>
 							<!-- Free Text Content Section -->
 							<div class="section_introduction scrollin scrollinbottom onscreen startani">
-								<div class="free_text">
-									<?php echo apply_filters('the_content', $content); ?>
+								<div class="section_center_content small_section_center_content">
+									<div class="free_text">
+										<?php echo apply_filters('the_content', $content); ?>
+									</div>
 								</div>
 							</div>
 						<?php endif; ?>
@@ -86,7 +89,6 @@ while (have_posts()) :
 		<?php
 	endwhile;
 		?>
-		</div>
 	</div>
 
 	<?php
