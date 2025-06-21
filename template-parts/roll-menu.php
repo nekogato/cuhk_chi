@@ -81,13 +81,17 @@ if (!empty($ancestor_id)) {
 				</div>
 			</div>
 		</div>
+
+		<?php 
+		$parent_id = wp_get_post_parent_id(get_the_ID());
+		if($ancestor_id!==$parent_id){
+		?>
 		<div class="roll_bottom_menu text7">
 			<div class="section_center_content">
 				<div class="swiper-container swiper">
 					<div class="swiper-wrapper">
 						<?php
 
-						$parent_id = wp_get_post_parent_id(get_the_ID());
 						$current_id = get_the_ID();
 
 						// If no parent found, use current page as parent
@@ -123,6 +127,9 @@ if (!empty($ancestor_id)) {
 				</div>
 			</div>
 		</div>
+		<?php
+		};
+		?>
 	</div>
 </div>
 
