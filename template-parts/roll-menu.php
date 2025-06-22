@@ -101,10 +101,14 @@ if (!empty($ancestor_id)) {
 								}
 
 								echo '<div class="' . esc_attr($slide_class) . '">';
-								echo '<div><a href="' . esc_url(get_permalink($related_id)) . '" class="' . esc_attr($class) . '">';
+								echo '<div class="a_wrapper"><a href="' . esc_url(get_permalink($related_id)) . '" class="' . esc_attr($class) . '">';
 								$page_title = get_field('page_title', $related_id);
 								echo esc_html($page_title ? $page_title : get_the_title($related_id));
-								echo '</a></div>';
+								echo '</a>';
+								if ($show_dropdown) {
+									echo '<span class="dropdown_arrow"></span>';
+								};
+								echo '</div>';
 
 								// If show_child_as_dropdown is true, output direct children
 								if ($show_dropdown) {
@@ -120,7 +124,9 @@ if (!empty($ancestor_id)) {
 											$page_title = get_field('page_title', $child->ID);
 											$title_to_display = $page_title ? $page_title : get_the_title($child->ID);
 
-											echo '<div><a href="' . esc_url(get_permalink($child->ID)) . '">';
+											$is_selected = get_the_ID() === $child->ID ? 'selected' : '';
+
+											echo '<div><a href="' . esc_url(get_permalink($child->ID)) . '" class="' . esc_attr($is_selected) . '">';
 											echo esc_html($title_to_display);
 											echo '</a></div>';
 										}

@@ -480,6 +480,20 @@ function init_function(){
 				640: {
 					spaceBetween: 0,
 				}
+			},
+			on: {
+				init: function () {
+					$(".slide-has_dropdown > .a_wrapper .dropdown_arrow").click(function(){
+						var $p = $(this).closest(".slide-has_dropdown");
+						if($p.hasClass("opened")){
+							$p.removeClass("opened")
+							$p.find(".swiper_dropdown").stop().fadeOut();
+						}else{
+							$p.addClass("opened")
+							$p.find(".swiper_dropdown").stop().fadeIn();
+						}
+					})
+				},
 			}
 		});
 	})
