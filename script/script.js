@@ -462,8 +462,8 @@ function init_function(){
 
 	$(".roll_top_menu").each(function(){
 
-		var $current_has_dropdown_a = $(this).find(".slide-has_dropdown .swiper_dropdown a.selected");
-		if($current_has_dropdown_a){
+		var $current_has_dropdown_a = $(this).find(".slide-has_dropdown .swiper_dropdown > .a_wrapper > a.selected");
+		if($current_has_dropdown_a.length){
 			$(this).find(".slide-has_dropdown > .a_wrapper > a").attr("href",$current_has_dropdown_a.attr("href"));
 			$(this).find(".slide-has_dropdown > .a_wrapper > a").append("<span> - "+$current_has_dropdown_a.text()+"</span>");
 		}
