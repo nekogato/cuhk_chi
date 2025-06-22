@@ -459,6 +459,25 @@ justify-content: center;
     }
 
 
+.slide-has_dropdown > div > a{
+    padding-right: 40px !important;
+    position: relative;
+}
+
+.slide-has_dropdown > div > a::before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  bottom: 6px;
+  right: 20px;
+  margin: auto;
+  width: 8px;
+  height: 8px;
+  border-right: 1px solid #009b9d;
+  border-bottom: 1px solid #009b9d;
+  transform: rotate(45deg);
+}
+    
 .swiper_dropdown{
     position: absolute;
     left: 0px;
@@ -467,11 +486,6 @@ justify-content: center;
     opacity: 0;
     pointer-events: none;
     padding: 10px;
-}
-
-.roll_bottom_menu .swiper-slide:hover .swiper_dropdown{
-    opacity: 1;
-    pointer-events: auto;
 }
 
 .swiper_dropdown div{
