@@ -30,7 +30,30 @@ function get_ancestor_with_menu_field_id($relationship_field = 'top_level_menus'
     return false;
 }
 
-$ancestor_id = get_ancestor_with_menu_field_id();
+function get_ancestor_with_menu_repeater_id($repeater_field = 'top_level_menus_repeater') {
+    global $post;
+
+    if (!$post || !is_page()) {
+        return false;
+    }
+
+    $parent_id = $post->post_parent;
+
+    while ($parent_id) {
+        // Check if the repeater field has rows
+        if (have_rows($repeater_field, $parent_id)) {
+            // Return translated ID if using Polylang
+            return function_exists('pll_get_post') ? pll_get_post($parent_id) : $parent_id;
+        }
+
+        $parent = get_post($parent_id);
+        $parent_id = $parent->post_parent;
+    }
+
+    return false;
+}
+
+$ancestor_id = get_ancestor_with_menu_repeater_id();
 
 // Now use it
 if (!empty($ancestor_id)) {
@@ -45,11 +68,18 @@ if (!empty($ancestor_id)) {
 					<div class="swiper-wrapper">
 						<?php 
 
-						$related_pages = get_field('top_level_menus', $ancestor_id);
+						if ($ancestor_id && have_rows('top_level_menus_repeater', $ancestor_id)) {
+							while (have_rows('top_level_menus_repeater', $ancestor_id)) {
+								the_row();
 
-						if (!empty($related_pages) && is_array($related_pages)) {
-							foreach ($related_pages as $related_page) {
-								$related_id = is_object($related_page) ? $related_page->ID : $related_page;
+								$page = get_sub_field('page');
+								$show_dropdown = get_sub_field('show_child_as_dropdown');
+
+								if (!$page) {
+									continue;
+								}
+
+								$related_id = is_object($page) ? $page->ID : $page;
 
 								// Determine if current page is the related page or its descendant
 								$is_active = false;
@@ -62,16 +92,43 @@ if (!empty($ancestor_id)) {
 									}
 								}
 
-								// Build class string
 								$class = $is_active ? 'active' : '';
 
-								// Output HTML
-								echo '<div class="swiper-slide">';
+								// Add class if dropdown is enabled
+								$slide_class = 'swiper-slide';
+								if ($show_dropdown) {
+									$slide_class .= ' slide-has_dropdown';
+								}
+
+								echo '<div class="' . esc_attr($slide_class) . '">';
 								echo '<div><a href="' . esc_url(get_permalink($related_id)) . '" class="' . esc_attr($class) . '">';
 								$page_title = get_field('page_title', $related_id);
 								echo esc_html($page_title ? $page_title : get_the_title($related_id));
 								echo '</a></div>';
-								echo '</div>';
+
+								// If show_child_as_dropdown is true, output direct children
+								if ($show_dropdown) {
+									$children = get_pages([
+										'parent' => $related_id,
+										'sort_column' => 'menu_order',
+										'post_status' => 'publish'
+									]);
+
+									if (!empty($children)) {
+										echo '<div class="swiper_dropdown">';
+										foreach ($children as $child) {
+											$page_title = get_field('page_title', $child->ID);
+											$title_to_display = $page_title ? $page_title : get_the_title($child->ID);
+
+											echo '<div><a href="' . esc_url(get_permalink($child->ID)) . '">';
+											echo esc_html($title_to_display);
+											echo '</a></div>';
+										}
+										echo '</div>';
+									}
+								}
+
+								echo '</div>'; // close .swiper-slide
 							}
 						}
 						
