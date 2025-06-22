@@ -479,7 +479,7 @@ justify-content: center;
   right: 0px;
   width: 30px;
   margin: auto;
-  cursor: pointer;
+  pointer-events: none;
 }
 
 .slide-has_dropdown > .a_wrapper .dropdown_arrow::before {
@@ -510,7 +510,7 @@ justify-content: center;
   transform: rotate(-135deg);
 }
 
-.slide-has_dropdown > .a_wrapper .dropdown_arrow:hover::before {
+.slide-has_dropdown > .a_wrapper:hover .dropdown_arrow::before {
   border-right: 1px solid #575792;
   border-bottom: 1px solid #575792;
 }
