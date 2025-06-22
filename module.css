@@ -289,6 +289,7 @@
     padding-right: 20px;
     display: block;
     position: relative;
+    white-space:nowrap;
 }
 .roll_top_menu .swiper-wrapper .swiper-slide a.active{
     font-weight: 600;
@@ -450,6 +451,7 @@ justify-content: center;
     text-align: center;
     display: block;
     border-bottom:1px solid transparent;
+    white-space:nowrap;
 }
 
 .roll_bottom_menu .swiper-wrapper .swiper-slide a:hover{
@@ -542,6 +544,136 @@ justify-content: center;
 .swiper_dropdown div+div{
     margin-top: 5px;
 }
+
+.horizontal-scroll-wrapper {
+	position: relative;
+	/* overflow: hidden; <-- removed to allow dropdown overflow */
+}
+
+.js-drag-scroll {
+	will-change: transform;
+	cursor: grab;
+	display: flex;
+}
+
+.js-drag-scroll a {
+  -webkit-user-drag: none;
+}
+
+.scroll-inner {
+	display: flex;
+	gap: 50px;
+    padding-left: 50px;
+    padding-right: 50px;
+	margin-left: 0;
+	margin-right: 0;
+	white-space: nowrap;
+}
+
+
+.scroll-inner.centered {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.horizontal-scroll-wrapper.dragging .js-drag-scroll {
+	cursor: grabbing;
+}
+
+.menu-item {
+	flex: 0 0 auto;
+	position: relative;
+	white-space: nowrap;
+}
+
+body.dragging-scroll {
+	user-select: none;
+	cursor: grabbing;
+}
+
+.roll_top_menu .menu-item a{
+    padding: 10px 20px;
+    border-bottom:2px solid transparent;
+    color:#63629B;
+    display: block;
+}
+
+.roll_top_menu .menu-item a:hover{
+    color:#009b9d
+}
+
+.roll_top_menu .menu-item a.active{
+    padding: 10px 20px;
+    border-bottom:2px solid #009b9d;
+      font-weight: 600;
+}
+
+.roll_bottom_menu .menu-item a{
+    padding-bottom: 4px;
+    border-bottom:1px solid transparent;
+      color: #9f9b9a;
+    display: block;
+}
+
+.roll_bottom_menu .menu-item a:hover{
+      color: #009b9d;
+}
+
+.roll_bottom_menu .menu-item a.active{
+    border-bottom:1px solid #009b9d;
+      color: #009b9d;
+        font-weight: 600;
+}
+
+
+.js-drag-scroll .has_dropdown > .a_wrapper > a{
+    padding-right: 40px !important;
+    position: relative;
+}
+
+.js-drag-scroll .has_dropdown > .a_wrapper .dropdown_arrow {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  width: 30px;
+  margin: auto;
+  pointer-events: none;
+}
+
+.js-drag-scroll .has_dropdown > .a_wrapper .dropdown_arrow::before {
+    content:"";
+  position: absolute;
+  top: 0px;
+  bottom: 6px;
+  right: 20px;
+  margin: auto;
+  width: 8px;
+  height: 8px;
+  border-right: 1px solid #575792;
+  border-bottom: 1px solid #575792;
+  transform: rotate(45deg);
+}
+
+.js-drag-scroll .has_dropdown.opened > .a_wrapper .dropdown_arrow::before {
+    content:"";
+  position: absolute;
+  top: 6px;
+  bottom: 0px;
+  right: 20px;
+  margin: auto;
+  width: 8px;
+  height: 8px;
+  border-right: 1px solid #575792;
+  border-bottom: 1px solid #575792;
+  transform: rotate(-135deg);
+}
+
+.js-drag-scroll .has_dropdown > .a:hover .dropdown_arrow::before {
+  border-right: 1px solid #009b9d;
+  border-bottom: 1px solid #009b9d;
+}
+    
 
 /* plain_menu_section */
 

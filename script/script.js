@@ -457,8 +457,117 @@ function initMap(){
 
 function init_function(){
 
+	$('.horizontal-scroll-wrapper').each(function () {
+		const $wrapper = $(this);
+		const $track = $wrapper.find('.js-drag-scroll');
 
-  
+		let isDragging = false;
+		let startX = 0;
+		let lastX = 0;
+		let currentTranslate = 0;
+		let velocity = 0;
+		let animationFrame;
+
+		const updateTransform = (x) => {
+			currentTranslate = x;
+			$track.css('transform', `translate3d(${currentTranslate}px, 0, 0)`);
+		};
+
+		const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+
+		const getMinTranslate = () => {
+			return -($track[0].scrollWidth - $wrapper.outerWidth());
+		};
+
+		const startInertiaScroll = () => {
+			const decay = 0.95;
+			const threshold = 0.5;
+
+			function step() {
+				velocity *= decay;
+				if (Math.abs(velocity) > threshold) {
+					let nextTranslate = currentTranslate + velocity;
+					const minTranslate = getMinTranslate();
+					nextTranslate = clamp(nextTranslate, minTranslate, 0);
+					updateTransform(nextTranslate);
+					animationFrame = requestAnimationFrame(step);
+				} else {
+					cancelAnimationFrame(animationFrame);
+				}
+			}
+
+			step();
+		};
+
+		$wrapper.on('mousedown touchstart', function (e) {
+			
+
+			isDragging = true;
+			startX = lastX = (e.pageX || e.originalEvent.touches[0].pageX);
+			$wrapper.addClass('dragging');
+			$('body').addClass('dragging-scroll');
+			cancelAnimationFrame(animationFrame);
+		});
+
+		
+
+		$(document).on('mousemove touchmove', function (e) {
+			if (!isDragging) return;
+
+			const x = (e.pageX || e.originalEvent.touches[0].pageX);
+			const delta = x - lastX;
+			lastX = x;
+			velocity = delta * 1.5;
+
+			let newTranslate = currentTranslate + delta;
+			newTranslate = clamp(newTranslate, getMinTranslate(), 0);
+			updateTransform(newTranslate);
+		});
+
+		$(document).on('mouseup touchend', function () {
+			if (!isDragging) return;
+
+			isDragging = false;
+			$wrapper.removeClass('dragging');
+			$('body').removeClass('dragging-scroll');
+			startInertiaScroll();
+		});
+
+		function updateHorizontalAlignment() {
+			$('.horizontal-scroll-wrapper').each(function () {
+				const $wrapper = $(this);
+				const $track = $wrapper.find('.scroll-inner');
+
+				const wrapperWidth = $wrapper.innerWidth();
+				const contentWidth = $track[0].scrollWidth;
+
+				if (contentWidth <= wrapperWidth) {
+					$track.addClass('centered');
+				} else {
+					$track.removeClass('centered');
+				}
+			});
+		}
+
+		// Run on load and resize
+		$(window).on('load resize', updateHorizontalAlignment);
+
+		$('.js-drag-scroll a').on('dragstart', function (e) {
+			e.preventDefault();
+		});
+	});
+
+	$(".js-drag-scroll .has_dropdown > .a_wrapper > a").click(function(){
+		var $p = $(this).closest(".has_dropdown");
+		if($p.hasClass("opened")){
+			$p.removeClass("opened")
+			$p.find(".swiper_dropdown").stop().fadeOut();
+		}else{
+			$p.addClass("opened")
+			$p.find(".swiper_dropdown").stop().fadeIn();
+		}
+		return false;
+	})
 
 	$(".roll_top_menu").each(function(){
 
@@ -471,12 +580,19 @@ function init_function(){
 			$main_link.append("<span> - " + $current_has_dropdown_a.text() + "</span>");
 		}
 
+		var slidenum = $(this).find(".swiper-slide").length;
+		
+		$(this).find(".swiper-slide").each(function(){
+			//$(this).width($(this).find("a").outerWidth())
+		})
+
 		var roll_top_menu_slider = new Swiper($(this).find(".swiper-container")[0], {
 			autoplay: false,
 			slidesPerView: "auto",
 			speed: 1600,
 			loop: false,
 			spaceBetween: 50,
+      		freeMode: true,
 			breakpoints: {
 				// when window width is >= 320px
 				320: {
@@ -516,11 +632,13 @@ function init_function(){
 
 
 	$(".roll_bottom_menu").each(function(){
+		var slidenum = $(this).find(".swiper-slide").length;
 		var roll_bottom_menu_slider = new Swiper($(this).find(".swiper-container")[0], {
 			autoplay: false,
 			slidesPerView: "auto",
 			speed: 1600,
 			loop: false,
+      		freeMode: true,
 			breakpoints: {
 				// when window width is >= 320px
 				320: {
