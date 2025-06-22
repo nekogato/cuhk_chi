@@ -491,8 +491,8 @@ justify-content: center;
   margin: auto;
   width: 8px;
   height: 8px;
-  border-right: 1px solid #009b9d;
-  border-bottom: 1px solid #009b9d;
+  border-right: 1px solid #575792;
+  border-bottom: 1px solid #575792;
   transform: rotate(45deg);
 }
 
@@ -505,14 +505,14 @@ justify-content: center;
   margin: auto;
   width: 8px;
   height: 8px;
-  border-right: 1px solid #009b9d;
-  border-bottom: 1px solid #009b9d;
+  border-right: 1px solid #575792;
+  border-bottom: 1px solid #575792;
   transform: rotate(-135deg);
 }
 
 .slide-has_dropdown > .a_wrapper:hover .dropdown_arrow::before {
-  border-right: 1px solid #575792;
-  border-bottom: 1px solid #575792;
+  border-right: 1px solid #009b9d;
+  border-bottom: 1px solid #009b9d;
 }
     
 .swiper_dropdown{
