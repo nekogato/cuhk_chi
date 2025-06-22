@@ -244,7 +244,7 @@
     bottom: 0px;
     right: 0px;
     margin: auto;
-    height: 80px;
+    height: 40px;
     background: linear-gradient(0deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 100%); 
     pointer-events: none;
 }

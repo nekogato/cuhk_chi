@@ -60,151 +60,153 @@ if (!empty($ancestor_id)) {
 ?>
 
 <div class="sentinel"></div>
-<div class="section roll_menu_section sticky_section">
-	<div class="roll_menu scrollin scrollinbottom">
-		<div class="roll_top_menu center_roll_top_menu text7">
-			<div class="section_center_content">
-				<div class="swiper-container swiper">
-					<div class="swiper-wrapper">
-						<?php 
+<div class="section roll_menu_section sticky_section scrollin scrollinopacity">
+    <div class="roll_menu_inwrapper">
+		<div class="roll_menu scrollin scrollinbottom">
+			<div class="roll_top_menu center_roll_top_menu text7">
+				<div class="horizontal-scroll-wrapper">
+					<div class="js-drag-scroll">
+						<div class="scroll-inner">
+							<?php 
 
-						if ($ancestor_id && have_rows('top_level_menus_repeater', $ancestor_id)) {
-							while (have_rows('top_level_menus_repeater', $ancestor_id)) {
-								the_row();
+							if ($ancestor_id && have_rows('top_level_menus_repeater', $ancestor_id)) {
+								while (have_rows('top_level_menus_repeater', $ancestor_id)) {
+									the_row();
 
-								$page = get_sub_field('page');
-								$show_dropdown = get_sub_field('show_child_as_dropdown');
+									$page = get_sub_field('page');
+									$show_dropdown = get_sub_field('show_child_as_dropdown');
 
-								if (!$page) {
-									continue;
-								}
+									if (!$page) {
+										continue;
+									}
 
-								$related_id = is_object($page) ? $page->ID : $page;
+									$related_id = is_object($page) ? $page->ID : $page;
 
-								// Determine if current page is the related page or its descendant
-								$is_active = false;
-								if (get_the_ID() === $related_id) {
-									$is_active = true;
-								} else {
-									$ancestors = get_post_ancestors(get_the_ID());
-									if (in_array($related_id, $ancestors)) {
+									// Determine if current page is the related page or its descendant
+									$is_active = false;
+									if (get_the_ID() === $related_id) {
 										$is_active = true;
-									}
-								}
-
-								$class = $is_active ? 'active' : '';
-
-								// Add class if dropdown is enabled
-								$slide_class = 'swiper-slide';
-								if ($show_dropdown) {
-									$slide_class .= ' slide-has_dropdown';
-								}
-
-								echo '<div class="' . esc_attr($slide_class) . '">';
-								echo '<div class="a_wrapper"><a href="' . esc_url(get_permalink($related_id)) . '" class="' . esc_attr($class) . '">';
-								$page_title = get_field('page_title', $related_id);
-								echo esc_html($page_title ? $page_title : get_the_title($related_id));
-								echo '</a>';
-								if ($show_dropdown) {
-									echo '<span class="dropdown_arrow"></span>';
-								};
-								echo '</div>';
-
-								// If show_child_as_dropdown is true, output direct children
-								if ($show_dropdown) {
-									$children = get_pages([
-										'parent' => $related_id,
-										'sort_column' => 'menu_order',
-										'post_status' => 'publish'
-									]);
-
-									if (!empty($children)) {
-										echo '<div class="swiper_dropdown">';
-										foreach ($children as $child) {
-											$page_title = get_field('page_title', $child->ID);
-											$title_to_display = $page_title ? $page_title : get_the_title($child->ID);
-
-											$is_selected = (get_the_ID() === $child->ID || in_array($child->ID, get_post_ancestors(get_the_ID()))) ? 'selected' : '';
-
-											echo '<div><a href="' . esc_url(get_permalink($child->ID)) . '" class="' . esc_attr($is_selected) . '">';
-											echo esc_html($title_to_display);
-											echo '</a></div>';
+									} else {
+										$ancestors = get_post_ancestors(get_the_ID());
+										if (in_array($related_id, $ancestors)) {
+											$is_active = true;
 										}
-										echo '</div>';
 									}
+
+									$class = $is_active ? 'active' : '';
+
+									// Add class if dropdown is enabled
+									$slide_class = 'menu-item';
+									if ($show_dropdown) {
+										$slide_class .= ' has_dropdown';
+									}
+
+									echo '<div class="' . esc_attr($slide_class) . '">';
+									echo '<div class="a_wrapper"><a href="' . esc_url(get_permalink($related_id)) . '" class="' . esc_attr($class) . '">';
+									$page_title = get_field('page_title', $related_id);
+									echo esc_html($page_title ? $page_title : get_the_title($related_id));
+									echo '</a>';
+									if ($show_dropdown) {
+										echo '<span class="dropdown_arrow"></span>';
+									};
+									echo '</div>';
+
+									// If show_child_as_dropdown is true, output direct children
+									if ($show_dropdown) {
+										$children = get_pages([
+											'parent' => $related_id,
+											'sort_column' => 'menu_order',
+											'post_status' => 'publish'
+										]);
+
+										if (!empty($children)) {
+											echo '<div class="swiper_dropdown">';
+											foreach ($children as $child) {
+												$page_title = get_field('page_title', $child->ID);
+												$title_to_display = $page_title ? $page_title : get_the_title($child->ID);
+
+												$is_selected = (get_the_ID() === $child->ID || in_array($child->ID, get_post_ancestors(get_the_ID()))) ? 'selected' : '';
+
+												echo '<div><a href="' . esc_url(get_permalink($child->ID)) . '" class="' . esc_attr($is_selected) . '">';
+												echo esc_html($title_to_display);
+												echo '</a></div>';
+											}
+											echo '</div>';
+										}
+									}
+
+									echo '</div>'; // close .swiper-slide
 								}
-
-								echo '</div>'; // close .swiper-slide
 							}
-						}
-						
-						?>
-						
+							
+							?>
+							
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
 
-		<?php 
-		$parent_id = wp_get_post_parent_id(get_the_ID());
-		$current_id = get_the_ID();
+			<?php 
+			$parent_id = wp_get_post_parent_id(get_the_ID());
+			$current_id = get_the_ID();
 
-		// Check if current page has children
-		$children_query = new WP_Query([
-			'post_type'      => 'page',
-			'post_parent'    => $current_id,
-			'posts_per_page' => 1,
-			'post_status'    => 'publish',
-			'lang'           => '', // empty means current Polylang language
-		]);
+			// Check if current page has children
+			$children_query = new WP_Query([
+				'post_type'      => 'page',
+				'post_parent'    => $current_id,
+				'posts_per_page' => 1,
+				'post_status'    => 'publish',
+				'lang'           => '', // empty means current Polylang language
+			]);
 
-		$has_children = $children_query->have_posts();
-		wp_reset_postdata();
+			$has_children = $children_query->have_posts();
+			wp_reset_postdata();
 
-		if ($ancestor_id !== $parent_id || $has_children) {
-		?>
-		<div class="roll_bottom_menu text7">
-			<div class="section_center_content">
-				<div class="swiper-container swiper">
-					<div class="swiper-wrapper">
-						<?php
+			if ($ancestor_id !== $parent_id || $has_children) {
+			?>
+			<div class="roll_bottom_menu text7">
+				<div class="horizontal-scroll-wrapper">
+					<div class="js-drag-scroll">
+						<div class="scroll-inner">
+							<?php
 
 
-						if (!$parent_id || $has_children) {
-							$parent_id = $current_id;
-						}
+							if (!$parent_id || $has_children) {
+								$parent_id = $current_id;
+							}
 
-						$args = array(
-							'post_type' => 'page',
-							'post_parent' => $parent_id,
-							'orderby' => 'menu_order',
-							'order' => 'ASC',
-							'posts_per_page' => -1
-						);
-						$child_pages = new WP_Query($args);
+							$args = array(
+								'post_type' => 'page',
+								'post_parent' => $parent_id,
+								'orderby' => 'menu_order',
+								'order' => 'ASC',
+								'posts_per_page' => -1
+							);
+							$child_pages = new WP_Query($args);
 
-						if ($child_pages->have_posts()) :
-							while ($child_pages->have_posts()) : $child_pages->the_post();
-								$is_active = (get_the_ID() === $current_id) ? 'active' : '';
-								if(!get_field("hide_in_submenu")){
-						?>
-								<div class="swiper-slide">
-									<div><a href="<?php the_permalink(); ?>" class="<?php echo $is_active; ?>"><?php the_title(); ?></a></div>
-								</div>
-						<?php
+							if ($child_pages->have_posts()) :
+								while ($child_pages->have_posts()) : $child_pages->the_post();
+									$is_active = (get_the_ID() === $current_id) ? 'active' : '';
+									if(!get_field("hide_in_submenu")){
+							?>
+									<div class="menu-item">
+										<div class="a_wrapper"><a href="<?php the_permalink(); ?>" class="<?php echo $is_active; ?>"><?php the_title(); ?></a></div>
+									</div>
+							<?php
 
-								};
-							endwhile;
-							wp_reset_postdata();
-						endif;
-						?>
+									};
+								endwhile;
+								wp_reset_postdata();
+							endif;
+							?>
+						</div>
 					</div>
 				</div>
 			</div>
+			<?php
+			};
+			?>
 		</div>
-		<?php
-		};
-		?>
 	</div>
 </div>
 
@@ -240,20 +242,16 @@ if (!$parent_id) {
 <div class="section roll_menu_section sticky_section">
 	<div class="roll_menu scrollin scrollinbottom">
 		<div class="roll_top_menu text7">
-			<div class="section_center_content">
-				<div class="swiper-container swiper">
-					<div class="swiper-wrapper">
-						<div class="swiper-slide">
-							<div><a href="#" class="active"><?php echo get_the_title($parent_id); ?></a></div>
-						</div>
-					</div>
+            <div class="scroll-inner">
+				<div class="menu-item">
+					<div class="a_wrapper"><a href="#" class="active"><?php echo get_the_title($parent_id); ?></a></div>
 				</div>
 			</div>
 		</div>
 		<div class="roll_bottom_menu text7">
-			<div class="section_center_content">
-				<div class="swiper-container swiper">
-					<div class="swiper-wrapper">
+			<div class="horizontal-scroll-wrapper">
+				<div class="js-drag-scroll">
+					<div class="scroll-inner">
 						<?php
 						$args = array(
 							'post_type' => 'page',
@@ -269,8 +267,8 @@ if (!$parent_id) {
 								$is_active = (get_the_ID() === $current_id) ? 'active' : '';
 								if(!get_field("hide_in_submenu")){
 						?>
-								<div class="swiper-slide">
-									<div><a href="<?php the_permalink(); ?>" class="<?php echo $is_active; ?>"><?php the_title(); ?></a></div>
+								<div class="menu-item">
+									<div class="a_wrapper"><a href="<?php the_permalink(); ?>" class="<?php echo $is_active; ?>"><?php the_title(); ?></a></div>
 								</div>
 						<?php
 
