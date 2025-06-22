@@ -124,7 +124,7 @@ if (!empty($ancestor_id)) {
 											$page_title = get_field('page_title', $child->ID);
 											$title_to_display = $page_title ? $page_title : get_the_title($child->ID);
 
-											$is_selected = get_the_ID() === $child->ID ? 'selected' : '';
+											$is_selected = (get_the_ID() === $child->ID || in_array($child->ID, get_post_ancestors(get_the_ID()))) ? 'selected' : '';
 
 											echo '<div><a href="' . esc_url(get_permalink($child->ID)) . '" class="' . esc_attr($is_selected) . '">';
 											echo esc_html($title_to_display);

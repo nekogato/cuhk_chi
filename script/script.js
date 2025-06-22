@@ -461,6 +461,13 @@ function init_function(){
   
 
 	$(".roll_top_menu").each(function(){
+
+		var $current_has_dropdown_a = $(this).find(".slide-has_dropdown .swiper_dropdown a.selected");
+		if($current_has_dropdown_a){
+			$(this).find(".slide-has_dropdown > .a_wrapper > a").attr("href",$current_has_dropdown_a.attr("href"));
+			$(this).find(".slide-has_dropdown > .a_wrapper > a").append("<span> - "+$current_has_dropdown_a.text()+"</span>");
+		}
+
 		var roll_top_menu_slider = new Swiper($(this).find(".swiper-container")[0], {
 			autoplay: false,
 			slidesPerView: "auto",
@@ -483,6 +490,8 @@ function init_function(){
 			},
 			on: {
 				init: function () {
+					
+
 					$(".slide-has_dropdown > .a_wrapper .dropdown_arrow").click(function(){
 						var $p = $(this).closest(".slide-has_dropdown");
 						if($p.hasClass("opened")){
@@ -493,6 +502,7 @@ function init_function(){
 							$p.find(".swiper_dropdown").stop().fadeIn();
 						}
 					})
+
 				},
 			}
 		});
