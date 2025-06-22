@@ -80,11 +80,11 @@ while (have_posts()) :
 				$background_style = get_sub_field('background_style');
 				$layouts = get_sub_field('flexible_layouts');
 				?>
-				<div class="section plain_text_section border_layout_section">
+				<div class="section plain_text_section border_layout_section <?php if ($background_style == 'top_green_gradient'){echo "top_green_gradient";}; ?>">
 					<?php if ($background_style == 'ink') : ?>
 						<div class="brush_bg"></div>
 					<?php endif; ?>
-					<div class="section_center_content small_section_center_content">
+					<div class="section_center_content small_section_center_content ">
 						<div class="flexible_layout_wrapper">
 							<?php if ($layouts) : ?>
 								<?php foreach ($layouts as $layout) : ?>
