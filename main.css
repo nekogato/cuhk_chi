@@ -17,14 +17,6 @@ input, textarea{
 	font-style: normal;
 	}
 	
-html, body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
-}
-
 body{
 	background-color: #ece6e5;
     color: #736562;
@@ -33,6 +25,10 @@ body{
 	overflow: auto;
   	overflow-x: hidden;
 	}
+
+.site-wrapper{
+  	overflow-x: hidden;
+}	
 
 a{
 	color: #736562;
