@@ -202,6 +202,7 @@
 
 .sticky_section.is_stuck{
     background-color: #ece6e5;
+    box-shadow: 0px 10px 10px rgba(200, 200, 200, 0.5);
 }
 
 .sticky_section.is_stuck::after{
@@ -411,6 +412,7 @@
 	-webkit-transition: background-color 0.6s cubic-bezier(0.77, 0, 0.175, 1) 0s; 
     transition: background-color 0.6s cubic-bezier(0.77, 0, 0.175, 1) 0s; 
     padding-top: 10px;
+    padding-bottom: 5px;
 }
 
 .roll_bottom_menu .section_center_content{
@@ -443,12 +445,13 @@ justify-content: center;
     color:#9f9b9a;
     text-align: center;
     display: block;
-    border-bottom:2px solid transparent;
+    border-bottom:1px solid transparent;
 }
 
 .roll_bottom_menu .swiper-wrapper .swiper-slide a:hover, .roll_bottom_menu .swiper-wrapper .swiper-slide a.active{
-    border-bottom:2px solid #009b9d;
+    border-bottom:1px solid #009b9d;
     font-weight: 600;
+    color:#009b9d;
 }
 
 .roll_bottom_menu .swiper-wrapper .swiper-slide a:hover{
@@ -2598,7 +2601,7 @@ justify-content: center;
 
 .top_photo_banner_section{
     padding-top: 60px;
-    padding-bottom: 60px;
+    padding-bottom: 100px;
     z-index: 4;
 }
 
