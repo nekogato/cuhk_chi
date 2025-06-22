@@ -191,6 +191,7 @@
     position: sticky;
     top:80px;
     z-index: 98;
+      pointer-events: none;
 }
 
 .sentinel {
