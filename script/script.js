@@ -462,10 +462,13 @@ function init_function(){
 
 	$(".roll_top_menu").each(function(){
 
-		var $current_has_dropdown_a = $(this).find(".slide-has_dropdown .swiper_dropdown > .a_wrapper > a.selected");
-		if($current_has_dropdown_a.length){
-			$(this).find(".slide-has_dropdown > .a_wrapper > a").attr("href",$current_has_dropdown_a.attr("href"));
-			$(this).find(".slide-has_dropdown > .a_wrapper > a").append("<span> - "+$current_has_dropdown_a.text()+"</span>");
+		var $current_has_dropdown_a = $(this).find(".slide-has_dropdown .swiper_dropdown a.selected");
+
+		if ($current_has_dropdown_a.length) {
+			var $main_link = $(this).find(".slide-has_dropdown .a_wrapper > a");
+
+			$main_link.attr("href", $current_has_dropdown_a.attr("href"));
+			$main_link.append("<span> - " + $current_has_dropdown_a.text() + "</span>");
 		}
 
 		var roll_top_menu_slider = new Swiper($(this).find(".swiper-container")[0], {
