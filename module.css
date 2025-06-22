@@ -432,14 +432,16 @@ justify-content: center;
     align-self: stretch;
     display: flex;
     width: auto;
-    padding-left: 50px;
-    padding-right: 50px;
+    padding-left: 40px;
+    padding-right: 40px;
 }
 
 .roll_bottom_menu .swiper-wrapper .swiper-slide a{
     height: auto;
     align-self: stretch;
     display: flex;
+    padding-left: 10px;
+    padding-right: 10px;
     align-items: center;
     padding-bottom: 4px;
     color:#9f9b9a;
