@@ -17,6 +17,14 @@ input, textarea{
 	font-style: normal;
 	}
 	
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 body{
 	background-color: #ece6e5;
     color: #736562;
