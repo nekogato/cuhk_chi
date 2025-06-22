@@ -535,6 +535,11 @@ justify-content: center;
     display: block;
     border-bottom:none;
     white-space: nowrap;
+      padding-top: 10px;
+  padding-bottom: 10px;
+    text-align: center;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .swiper_dropdown a:hover, .swiper_dropdown a.selected{
@@ -591,35 +596,35 @@ body.dragging-scroll {
 	cursor: grabbing;
 }
 
-.roll_top_menu .menu-item a{
+.roll_top_menu .menu-item .a_wrapper a{
     padding: 10px 20px;
     border-bottom:2px solid transparent;
     color:#63629B;
     display: block;
 }
 
-.roll_top_menu .menu-item a:hover{
+.roll_top_menu .menu-item .a_wrapper a:hover{
     color:#009b9d
 }
 
-.roll_top_menu .menu-item a.active{
+.roll_top_menu .menu-item .a_wrapper a.active{
     padding: 10px 20px;
     border-bottom:2px solid #009b9d;
       font-weight: 600;
 }
 
-.roll_bottom_menu .menu-item a{
+.roll_bottom_menu .menu-item .a_wrapper a{
     padding-bottom: 4px;
     border-bottom:1px solid transparent;
       color: #9f9b9a;
     display: block;
 }
 
-.roll_bottom_menu .menu-item a:hover{
+.roll_bottom_menu .menu-item .a_wrapper a:hover{
       color: #009b9d;
 }
 
-.roll_bottom_menu .menu-item a.active{
+.roll_bottom_menu .menu-item .a_wrapper a.active{
     border-bottom:1px solid #009b9d;
       color: #009b9d;
         font-weight: 600;

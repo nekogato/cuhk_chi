@@ -501,7 +501,7 @@ function init_function(){
 
 		$wrapper.on('mousedown touchstart', function (e) {
 			
-
+			if (e.type === 'mousedown' && e.button !== 0) return;
 			isDragging = true;
 			startX = lastX = (e.pageX || e.originalEvent.touches[0].pageX);
 			$wrapper.addClass('dragging');
