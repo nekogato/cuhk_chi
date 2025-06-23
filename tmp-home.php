@@ -339,7 +339,7 @@ get_header(); ?>
 								const activeSlide = this.yearSwiper.slides[this.yearSwiper.activeIndex];
 								const monthData = this.availableMonths[this.yearSwiper.activeIndex];
 								if (monthData) {
-									//this.selectMonth(monthData.value, monthData.year);
+									this.selectMonth(monthData.value, monthData.year);
 								}
 							}
 						}
