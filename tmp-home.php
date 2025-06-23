@@ -118,7 +118,7 @@ get_header(); ?>
 <div class="section home_news_section scrollin_p" x-data="homeNewsSlider()">
 	<?php
 	$news_args = array(
-		'post_type' => array('news'),
+		'post_type' => array('news','department_news'),
 		'posts_per_page' => -1,
 		'meta_query' => array(
 			array(
@@ -292,7 +292,7 @@ get_header(); ?>
 					</div>
 				</div>
 				<div class="btn_wrapper">
-					<a href="#" class="round_btn"><?php echo cuhk_multilang_text("查看完整日曆", "查看完整日历", "View Full Calendar"); ?></a>
+					<a href="<?php echo pll_get_page_url("news");?>" class="round_btn"><?php echo cuhk_multilang_text("查看所有學系消息", "查看所有學系消息", "View All News"); ?></a>
 				</div>
 			</div>
 		</div>
