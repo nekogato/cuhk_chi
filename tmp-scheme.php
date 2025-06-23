@@ -120,7 +120,7 @@ while (have_posts()) :
 													<td>
 														<?php echo wp_kses_post($course['course_title']); ?>
 														<?php if ($course['course_short_description']) : ?>
-														<div class="course_short_description"><?php echo wp_kses_post($course['course_short_description']); ?>/div>
+														<div class="course_short_description"><?php echo wp_kses_post($course['course_short_description']); ?></div>
 														<?php endif; ?>
 													</td>
 													<td><?php echo wp_kses_post($course['course_units']); ?> <?php echo cuhk_multilang_text("學分","",($course['course_units'] != 1) ? 'Units' : 'Unit'); ?></td>
