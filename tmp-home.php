@@ -324,7 +324,7 @@ get_header(); ?>
 					slidesPerView: 'auto',
 					speed: 300,
 					loop: false,
-					spaceBetween: 0,
+					spaceBetween: 100,
 					freeMode: true,
 					freeModeMomentum: false,
 					freeModeSticky: true,
@@ -333,7 +333,7 @@ get_header(); ?>
 							const activeSlide = this.yearSwiper.slides[this.yearSwiper.activeIndex];
 							const monthData = this.availableMonths[this.yearSwiper.activeIndex];
 							if (monthData) {
-								this.selectMonth(monthData.value, monthData.year);
+								//this.selectMonth(monthData.value, monthData.year);
 							}
 						}
 					}
