@@ -15,9 +15,16 @@
 
 get_header();
 
+?>
+
+<?php get_template_part('template-parts/roll-menu'); ?>
+
+<?php
+
 while (have_posts()) :
 	the_post();
 ?>
+	
 
 	<div class="section section_content section_intro">
 		<div class="section_center_content">
@@ -50,7 +57,7 @@ while (have_posts()) :
 									<div class="col_spacing scrollin scrollinbottom">
 										<div class="photo">
 											<?php if ($news_banner): ?>
-												<img src="<?php echo esc_url($news_banner['url']); ?>" alt="<?php echo esc_attr($news_banner['alt']); ?>">
+												<a href="<?php the_permalink(); ?>"><img src="<?php echo esc_url($news_banner['url']); ?>" alt="<?php echo esc_attr($news_banner['alt']); ?>"></a>
 											<?php endif; ?>
 										</div>
 										<div class="text_wrapper">
