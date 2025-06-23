@@ -5026,7 +5026,7 @@ body.dragging-scroll {
 }
 
 .scheme_style5{
-    background-color:#dddcb8 ;
+    background-color:#f2e68f ;
 }
 
 .scheme_style5 .scheme_unit_box_right::before{
@@ -5177,6 +5177,7 @@ body.dragging-scroll {
 
 .scheme_unit_expandable_box .hidden_content table tr td:last-child{
     width:60px;
+    text-align: right;
 }
 
 .scheme_unit_expandable_box .hidden_content table tr td+td{
@@ -5190,6 +5191,7 @@ body.dragging-scroll {
 
 .scheme_unit_expandable_box .hidden_content table tr td .course_short_description{
     margin-top: 5px;
+    font-weight: 400;
 }
 
 .scheme_remark{
