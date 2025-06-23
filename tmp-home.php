@@ -425,13 +425,17 @@ get_header(); ?>
 
 			monthNextSlide() {
 				if (this.yearSwiper) {
+					console.log("a")
 					this.yearSwiper.slideNext();
+					console.log("b")
 				}
 			},
 
 			monthPreviousSlide() {
 				if (this.yearSwiper) {
+					console.log("a")
 					this.yearSwiper.slidePrev();
+					console.log("b")
 				}
 			}
 		}
