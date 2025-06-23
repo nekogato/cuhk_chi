@@ -5151,8 +5151,12 @@ body.dragging-scroll {
     width: auto;
 }
 
-.scheme_unit_expandable_box .hidden_content table tr td:first-child, .scheme_unit_expandable_box .hidden_content table tr td:last-child{
-    width:100px;
+.scheme_unit_expandable_box .hidden_content table tr td:first-child{
+    width:120px;
+}
+
+.scheme_unit_expandable_box .hidden_content table tr td:last-child{
+    width:60px;
 }
 
 .scheme_unit_expandable_box .hidden_content table tr td+td{
