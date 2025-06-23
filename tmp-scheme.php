@@ -60,7 +60,7 @@ while (have_posts()) :
 								</div>
 								<div class="scheme_unit_box_right">
 									<div class="t1 text2"><?php echo esc_html($group_required_unit); ?></div>
-									<div class="t2">Units</div>
+									<div class="t2"><?php echo cuhk_multilang_text("學分","",($group_required_unit != 1) ? 'Units' : 'Unit'); ?></div>
 								</div>
 							</div>
 						<?php endwhile; ?>
@@ -70,11 +70,11 @@ while (have_posts()) :
 					if ($total_programme_units) : ?>
 						<div class="scheme_unit_box_total">
 							<div class="scheme_unit_box_left">
-								<div class="t2">Total Units</div>
+								<div class="t2"><?php echo cuhk_multilang_text("總學分","",'Total Units'); ?></div>
 							</div>
 							<div class="scheme_unit_box_right">
 								<div class="t1 text1"><?php echo esc_html($total_programme_units); ?></div>
-								<div class="t2">Units</div>
+								<div class="t2"><?php echo cuhk_multilang_text("學分","",($total_programme_units != 1) ? 'Units' : 'Unit'); ?></div>
 							</div>
 						</div>
 					<?php endif; ?>
@@ -114,7 +114,7 @@ while (have_posts()) :
 														<?php endif; ?>
 													</td>
 													<td><?php echo esc_html($course['course_title']); ?></td>
-													<td><?php echo esc_html($course['course_units']); ?> <?php echo cuhk_multilang_text("學分","","UNITS"); ?></td>
+													<td><?php echo esc_html($course['course_units']); ?> <?php echo cuhk_multilang_text("學分","",($$course['course_units'] != 1) ? 'Units' : 'Unit'); ?></td>
 												</tr>
 											<?php endforeach; ?>
 										</table>
@@ -127,9 +127,9 @@ while (have_posts()) :
 			<?php endif; ?>
 
 			<?php
-			if (get_the_content()) : ?>
+			if (get_field("remarks")) : ?>
 				<div class="scheme_remark free_text">
-					<?php the_content(); ?>
+					<?php the_field("remarks"); ?>
 				</div>
 			<?php endif; ?>
 
