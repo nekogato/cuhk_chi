@@ -240,43 +240,45 @@ if (!$parent_id) {
 
 <div class="sentinel"></div>
 <div class="section roll_menu_section sticky_section scrollin scrollinopacity">
-	<div class="roll_menu">
-		<div class="roll_top_menu text7">
-            <div class="scroll-inner">
-				<div class="menu-item">
-					<div class="a_wrapper"><a href="#" class="active"><?php echo get_the_title($parent_id); ?></a></div>
+	<div class="roll_menu_inwrapper">
+		<div class="roll_menu">
+			<div class="roll_top_menu text7">
+				<div class="scroll-inner">
+					<div class="menu-item">
+						<div class="a_wrapper"><a href="#" class="active"><?php echo get_the_title($parent_id); ?></a></div>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="roll_bottom_menu text7">
-			<div class="horizontal-scroll-wrapper">
-				<div class="js-drag-scroll">
-					<div class="scroll-inner">
-						<?php
-						$args = array(
-							'post_type' => 'page',
-							'post_parent' => $parent_id,
-							'orderby' => 'menu_order',
-							'order' => 'ASC',
-							'posts_per_page' => -1
-						);
-						$child_pages = new WP_Query($args);
+			<div class="roll_bottom_menu text7">
+				<div class="horizontal-scroll-wrapper">
+					<div class="js-drag-scroll">
+						<div class="scroll-inner">
+							<?php
+							$args = array(
+								'post_type' => 'page',
+								'post_parent' => $parent_id,
+								'orderby' => 'menu_order',
+								'order' => 'ASC',
+								'posts_per_page' => -1
+							);
+							$child_pages = new WP_Query($args);
 
-						if ($child_pages->have_posts()) :
-							while ($child_pages->have_posts()) : $child_pages->the_post();
-								$is_active = (get_the_ID() === $current_id) ? 'active' : '';
-								if(!get_field("hide_in_submenu")){
-						?>
-								<div class="menu-item">
-									<div class="a_wrapper"><a href="<?php the_permalink(); ?>" class="<?php echo $is_active; ?>"><?php the_title(); ?></a></div>
-								</div>
-						<?php
+							if ($child_pages->have_posts()) :
+								while ($child_pages->have_posts()) : $child_pages->the_post();
+									$is_active = (get_the_ID() === $current_id) ? 'active' : '';
+									if(!get_field("hide_in_submenu")){
+							?>
+									<div class="menu-item">
+										<div class="a_wrapper"><a href="<?php the_permalink(); ?>" class="<?php echo $is_active; ?>"><?php the_title(); ?></a></div>
+									</div>
+							<?php
 
-								};
-							endwhile;
-							wp_reset_postdata();
-						endif;
-						?>
+									};
+								endwhile;
+								wp_reset_postdata();
+							endif;
+							?>
+						</div>
 					</div>
 				</div>
 			</div>
