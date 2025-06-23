@@ -390,6 +390,7 @@ get_header(); ?>
 							if (this.dateSwiper) {
 								this.dateSwiper.destroy();
 							}
+							dosize();
 							this.dateSwiper = new Swiper('.home_news_date_slider .swiper-container', {
 								autoplay: false,
 								slidesPerView: 'auto',
@@ -397,6 +398,7 @@ get_header(); ?>
 								loop: false,
 								spaceBetween: 0
 							});
+							dosize();
 						});
 					}
 				} catch (error) {
