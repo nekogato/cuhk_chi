@@ -47,16 +47,11 @@ while (have_posts()) :
 							$group_index++;
 							$group_title = get_sub_field('group_title');
 							$group_style = get_sub_field('group_style');
+							$group_required_unit = get_sub_field('group_required_unit');
 							$courses = get_sub_field('courses');
 
 							// Calculate total units for this group
-							$group_total_units = 0;
-							if ($courses) {
-								foreach ($courses as $course) {
-									$group_total_units += intval($course['course_units']);
-								}
-							}
-							$total_programme_units += $group_total_units;
+							$total_programme_units += intval($group_required_unit);
 						?>
 							<div class="scheme_unit_box <?php echo esc_attr($group_style); ?>">
 								<div class="scheme_unit_box_left">
@@ -64,7 +59,7 @@ while (have_posts()) :
 									<div class="t2 text5"><?php echo esc_html($group_title); ?></div>
 								</div>
 								<div class="scheme_unit_box_right">
-									<div class="t1 text2"><?php echo esc_html($group_total_units); ?></div>
+									<div class="t1 text2"><?php echo esc_html($group_required_unit); ?></div>
 									<div class="t2">Units</div>
 								</div>
 							</div>
@@ -125,7 +120,7 @@ while (have_posts()) :
 														<?php endif; ?>
 													</td>
 													<td><?php echo esc_html($course['course_title']); ?></td>
-													<td><?php echo esc_html($course['course_units']); ?> UNITS</td>
+													<td><?php echo esc_html($course['course_units']); ?> <?php echo cuhk_multilang_text("學分","","UNITS"); ?></td>
 												</tr>
 											<?php endforeach; ?>
 										</table>
