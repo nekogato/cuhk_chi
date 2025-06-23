@@ -429,7 +429,7 @@ get_header(); ?>
 				}
 			},
 
-			montPreviousSlide() {
+			monthPreviousSlide() {
 				if (this.yearSwiper) {
 					this.yearSwiper.slidePrev();
 				}
