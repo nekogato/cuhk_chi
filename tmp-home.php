@@ -320,14 +320,15 @@ get_header(); ?>
 			initSwipers() {
 				// Initialize year slider
 				this.yearSwiper = new Swiper('.home_news_year_slider .swiper-container', {
+					effect : 'fade',
+					fadeEffect: {
+						crossFade: true,
+					},
 					autoplay: false,
-					slidesPerView: 'auto',
-					speed: 300,
+					slidesPerView: 1,
+					speed: 400,
 					loop: false,
-					spaceBetween: 100,
-					freeMode: true,
-					freeModeMomentum: false,
-					freeModeSticky: true,
+					spaceBetween: 100
 					on: {
 						slideChange: () => {
 							const activeSlide = this.yearSwiper.slides[this.yearSwiper.activeIndex];
