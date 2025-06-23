@@ -2347,12 +2347,23 @@ function handle_tc_to_sc_translate_single_post()
 }
 
 
-function hide_polylang_language_selector() {
+function hide_polylang_language_ui() {
     echo '
     <style>
-        .pll-metabox .pll-language-select { 
-            display: none !important; 
+        /* Hide the <p> with "Language" */
+        #ml_box .inside > p:first-of-type {
+            display: none !important;
+        }
+
+        /* Hide the screen-reader label */
+        #ml_box .inside > label.screen-reader-text {
+            display: none !important;
+        }
+
+        /* Hide the language dropdown */
+        #select-post-language {
+            display: none !important;
         }
     </style>';
 }
-add_action('admin_head', 'hide_polylang_language_selector');
+add_action('admin_head', 'hide_polylang_language_ui');
