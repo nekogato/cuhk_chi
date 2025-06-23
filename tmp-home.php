@@ -283,11 +283,11 @@ get_header(); ?>
 					<div class="cat_legend_item_wrapper text5">
 						<div class="cat_legend_item">
 							<div class="cat_icon bg_color2"></div>
-							<div class="text"><?php echo cuhk_multilang_text("教學消息", "教学消息", "Teaching News"); ?></div>
+							<div class="text"><?php echo cuhk_multilang_text("學系消息", "", "News"); ?></div>
 						</div>
 						<div class="cat_legend_item">
 							<div class="cat_icon cat_circle bg_color1"></div>
-							<div class="text"><?php echo cuhk_multilang_text("學系消息", "学系消息", "Department News"); ?></div>
+							<div class="text"><?php echo cuhk_multilang_text("系所剪報", "", "Department News"); ?></div>
 						</div>
 					</div>
 				</div>
