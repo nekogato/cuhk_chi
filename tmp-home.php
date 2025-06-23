@@ -328,7 +328,7 @@ get_header(); ?>
 					slidesPerView: 1,
 					speed: 400,
 					loop: false,
-					spaceBetween: 100
+					spaceBetween: 100,
 					on: {
 						slideChange: () => {
 							const activeSlide = this.yearSwiper.slides[this.yearSwiper.activeIndex];
