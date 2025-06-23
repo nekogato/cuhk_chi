@@ -38,8 +38,17 @@ if (pll_current_language() == 'sc') {
 	<div class="plain_bg"></div>
 	<div class="header">
 		<div class="scrollin scrollinbottom">
-			<img src="<?php bloginfo('template_directory'); ?>/images/cuhk_logo.svg" class="cuhk_logo ">
-			<img src="<?php bloginfo('template_directory'); ?>/images/schoolart_logo.svg" class="school_logo ">
+			<?php 
+				if(pll_current_language() == 'tc') {
+					$cu_link = 'https://www.cuhk.edu.hk/chinese/';
+				}else if(pll_current_language() == 'sc') {
+					$cu_link = 'https://translate.itsc.cuhk.edu.hk/uniTS/www.cuhk.edu.hk/chinese/';
+				}else{
+					$cu_link = 'https://www.cuhk.edu.hk/english/';
+				}
+			?>
+			<a href="<?php echo $cu_link; ?>" target="_blank"><img src="<?php bloginfo('template_directory'); ?>/images/cuhk_logo.svg" class="cuhk_logo "></a>
+			<a href="<?php echo esc_url( pll_home_url() ); ?>"><img src="<?php bloginfo('template_directory'); ?>/images/schoolart_logo.svg" class="school_logo "></a>
 		</div>
 
 		<ul class="header_menu scrollin scrollinbottom">
