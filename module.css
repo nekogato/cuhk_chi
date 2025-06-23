@@ -3675,6 +3675,10 @@ body.dragging-scroll {
     margin-bottom: 30px;
 }
 
+.featured_news_box_section .news_box .photo a:hover{
+    opacity: 0.5;
+}
+
 .featured_news_box_section .news_box .photo img{
     position: absolute;
     left: 0%;

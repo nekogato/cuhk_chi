@@ -18,6 +18,7 @@ while (have_posts()) :
 	$section_title = get_field("section_title");
 	$programme_name = get_field("programme_name");
 	$scheme_description = get_field("scheme_description");
+	$show_required_units = get_field("show_required_units");
 ?>
 
 	<div class="section section_content section_scheme">
@@ -38,6 +39,7 @@ while (have_posts()) :
 			<?php endif; ?>
 
 			<?php if (have_rows('course_groups')) : ?>
+				<?php if($show_required_units): ?>
 				<div class="scheme_unit_box_wrapper">
 					<div class="scheme_unit_box_inwrapper">
 						<?php
@@ -79,7 +81,7 @@ while (have_posts()) :
 						</div>
 					<?php endif; ?>
 				</div>
-
+				<?php endif; ?>
 				<div class="scheme_unit_expandable_box_wrapper">
 					<?php
 					$group_index = 0;
@@ -96,7 +98,9 @@ while (have_posts()) :
 								<div class="left_title text5"><?php echo esc_html($group_index); ?>. <?php echo esc_html($group_title); ?></div>
 								<div class="right_title">
 									<div class="num text2"><?php echo esc_html($group_required_unit); ?></div>
+									<?php if($show_required_units):?>
 									<div class="unit text5"><?php echo cuhk_multilang_text("學分","",($group_required_unit != 1) ? 'Units' : 'Unit'); ?></div>
+									<?php endif; ?>
 									<div class="icon_wrapper"><a href="#" class="icon"></a></div>
 								</div>
 							</div>
