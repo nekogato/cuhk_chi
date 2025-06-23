@@ -981,6 +981,15 @@ body.dragging-scroll {
     padding-bottom: 60px;
 }
 
+.expandable_item .hidden_content .free_text h1,
+.expandable_item .hidden_content .free_text h2,
+.expandable_item .hidden_content .free_text h3,
+.expandable_item .hidden_content .free_text h4,
+.expandable_item .hidden_content .free_text h5,
+.expandable_item .hidden_content .free_text h6{
+    color: #62629b;
+}
+
 .expandable_item .download_btn_wrapper{
     display: flex;
     margin-top: 20px;
