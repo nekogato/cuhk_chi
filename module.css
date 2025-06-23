@@ -5134,6 +5134,7 @@ body.dragging-scroll {
 .scheme_unit_expandable_box .hidden_content table{
     width: 100%;
     font-weight: 600;
+    table-layout: fixed;
 }
 
 .scheme_unit_expandable_box .hidden_content table a{
@@ -5146,6 +5147,14 @@ body.dragging-scroll {
     border-bottom: 1px solid #fff;
 }
 
+.scheme_unit_expandable_box .hidden_content table tr td{
+    width: auto;
+}
+
+.scheme_unit_expandable_box .hidden_content table tr td:first-child, .scheme_unit_expandable_box .hidden_content table tr td:last-child{
+    width:100px;
+}
+
 .scheme_unit_expandable_box .hidden_content table tr td+td{
       padding-left: 20px;
 }
@@ -5153,6 +5162,10 @@ body.dragging-scroll {
 
 .scheme_unit_expandable_box .hidden_content table tr+tr td{
       padding-top: 20px;
+}
+
+.scheme_unit_expandable_box .hidden_content table tr td .course_short_description{
+    margin-top: 5px;
 }
 
 .scheme_remark{

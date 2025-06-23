@@ -113,8 +113,13 @@ while (have_posts()) :
 															<?php echo esc_html($course['course_code']); ?>
 														<?php endif; ?>
 													</td>
-													<td><?php echo esc_html($course['course_title']); ?></td>
-													<td><?php echo esc_html($course['course_units']); ?> <?php echo cuhk_multilang_text("學分","",($$course['course_units'] != 1) ? 'Units' : 'Unit'); ?></td>
+													<td>
+														<?php echo esc_html($course['course_title']); ?>
+														<?php if ($course['course_short_description']) : ?>
+														<div class="course_short_description"><?php echo esc_html($course['course_short_description']); ?>/div>
+														<?php endif; ?>
+													</td>
+													<td><?php echo esc_html($course['course_units']); ?> <?php echo cuhk_multilang_text("學分","",($course['course_units'] != 1) ? 'Units' : 'Unit'); ?></td>
 												</tr>
 											<?php endforeach; ?>
 										</table>
