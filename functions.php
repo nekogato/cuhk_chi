@@ -2345,3 +2345,14 @@ function handle_tc_to_sc_translate_single_post()
 		wp_send_json_error('Translation failed. Please check if this is a TC post with a linked SC version.');
 	}
 }
+
+
+function hide_polylang_language_selector() {
+    echo '
+    <style>
+        .pll-metabox .pll-language-select { 
+            display: none !important; 
+        }
+    </style>';
+}
+add_action('admin_head', 'hide_polylang_language_selector');
