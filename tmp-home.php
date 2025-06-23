@@ -313,44 +313,46 @@ get_header(); ?>
 			availableMonths: <?php echo json_encode(array_values($available_months)); ?>,
 
 			init() {
-				this.initSwipers();
-				this.loadNews();
+				this.selectedMonth = this.availableMonths[0].value;
+				this.selectedYear = this.availableMonths[0].year;
+
+				this.$nextTick(() => {
+					this.initSwipers();
+					this.loadNews();
+				});
 			},
 
 			initSwipers() {
-				// Initialize year slider
-				this.yearSwiper = new Swiper('.home_news_year_slider .swiper-container', {
-					effect : 'fade',
-					fadeEffect: {
-						crossFade: true,
-					},
-					autoplay: false,
-					slidesPerView: 1,
-					speed: 400,
-					loop: false,
-					spaceBetween: 100,
-					on: {
-						slideChange: () => {
-							const activeSlide = this.yearSwiper.slides[this.yearSwiper.activeIndex];
-							const monthData = this.availableMonths[this.yearSwiper.activeIndex];
-							if (monthData) {
-								//this.selectMonth(monthData.value, monthData.year);
+					// Initialize year slider
+					this.yearSwiper = new Swiper('.home_news_year_slider .swiper-container', {
+						effect : 'fade',
+						fadeEffect: {
+							crossFade: true,
+						},
+						autoplay: false,
+						slidesPerView: 1,
+						speed: 400,
+						loop: false,
+						spaceBetween: 100,
+						on: {
+							slideChange: () => {
+								const activeSlide = this.yearSwiper.slides[this.yearSwiper.activeIndex];
+								const monthData = this.availableMonths[this.yearSwiper.activeIndex];
+								if (monthData) {
+									//this.selectMonth(monthData.value, monthData.year);
+								}
 							}
 						}
-					}
-				});
+					});
 
-				// Initialize date slider
-				this.dateSwiper = new Swiper('.home_news_date_slider .swiper-container', {
-					autoplay: false,
-					slidesPerView: 'auto',
-					speed: 1600,
-					loop: false,
-					spaceBetween: 0
-				});
-
-				this.selectedMonth = this.availableMonths[0].value;
-				this.selectedYear = this.availableMonths[0].year;
+					// Initialize date slider
+					this.dateSwiper = new Swiper('.home_news_date_slider .swiper-container', {
+						autoplay: false,
+						slidesPerView: 'auto',
+						speed: 1600,
+						loop: false,
+						spaceBetween: 0
+					});
 			},
 
 			formatDate(dateString) {
