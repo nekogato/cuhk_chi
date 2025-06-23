@@ -25,7 +25,7 @@ while (have_posts()) :
 		<div class="section_center_content small_section_center_content scrollin scrollinbottom">
 
 			<?php if ($section_title) : ?>
-				<div class="section_scheme_title text3"><?php echo esc_html($section_title); ?></div>
+				<div class="section_scheme_title text3"><?php echo wp_kses_post($section_title); ?></div>
 			<?php endif; ?>
 
 			<?php if ($programme_name) : ?>
@@ -57,11 +57,11 @@ while (have_posts()) :
 						?>
 							<div class="scheme_unit_box <?php echo esc_attr($group_style); ?>">
 								<div class="scheme_unit_box_left">
-									<div class="t1 text4"><?php echo esc_html($group_index); ?></div>
-									<div class="t2 text5"><?php echo esc_html($group_title); ?></div>
+									<div class="t1 text4"><?php echo wp_kses_post($group_index); ?></div>
+									<div class="t2 text5"><?php echo wp_kses_post($group_title); ?></div>
 								</div>
 								<div class="scheme_unit_box_right">
-									<div class="t1 text2"><?php echo esc_html($group_required_unit); ?></div>
+									<div class="t1 text2"><?php echo wp_kses_post($group_required_unit); ?></div>
 									<div class="t2"><?php echo cuhk_multilang_text("學分","",($group_required_unit != 1) ? 'Units' : 'Unit'); ?></div>
 								</div>
 							</div>
@@ -75,7 +75,7 @@ while (have_posts()) :
 								<div class="t2"><?php echo cuhk_multilang_text("總學分","",'Total Units'); ?></div>
 							</div>
 							<div class="scheme_unit_box_right">
-								<div class="t1 text1"><?php echo esc_html($total_programme_units); ?></div>
+								<div class="t1 text1"><?php echo wp_kses_post($total_programme_units); ?></div>
 								<div class="t2"><?php echo cuhk_multilang_text("學分","",($total_programme_units != 1) ? 'Units' : 'Unit'); ?></div>
 							</div>
 						</div>
@@ -95,10 +95,10 @@ while (have_posts()) :
 					?>
 						<div class="scheme_unit_expandable_box">
 							<div class="title <?php echo esc_attr($group_style); ?>">
-								<div class="left_title text5"><?php echo esc_html($group_index); ?>. <?php echo esc_html($group_title); ?></div>
+								<div class="left_title text5"><?php echo wp_kses_post($group_index); ?>. <?php echo wp_kses_post($group_title); ?></div>
 								<div class="right_title">
 									<?php if($show_required_units):?>
-										<div class="num text2"><?php echo esc_html($group_required_unit); ?></div>
+										<div class="num text2"><?php echo wp_kses_post($group_required_unit); ?></div>
 										<div class="unit text5"><?php echo cuhk_multilang_text("學分","",($group_required_unit != 1) ? 'Units' : 'Unit'); ?></div>
 									<?php endif; ?>
 									<div class="icon_wrapper"><a href="#" class="icon"></a></div>
@@ -112,18 +112,18 @@ while (have_posts()) :
 												<tr>
 													<td>
 														<?php if ($course['course_link']) : ?>
-															<a href="<?php echo esc_url($course['course_link']); ?>"><?php echo esc_html($course['course_code']); ?></a>
+															<a href="<?php echo esc_url($course['course_link']); ?>"><?php echo wp_kses_post($course['course_code']); ?></a>
 														<?php else : ?>
-															<?php echo esc_html($course['course_code']); ?>
+															<?php echo wp_kses_post($course['course_code']); ?>
 														<?php endif; ?>
 													</td>
 													<td>
-														<?php echo esc_html($course['course_title']); ?>
+														<?php echo wp_kses_post($course['course_title']); ?>
 														<?php if ($course['course_short_description']) : ?>
-														<div class="course_short_description"><?php echo esc_html($course['course_short_description']); ?>/div>
+														<div class="course_short_description"><?php echo wp_kses_post($course['course_short_description']); ?>/div>
 														<?php endif; ?>
 													</td>
-													<td><?php echo esc_html($course['course_units']); ?> <?php echo cuhk_multilang_text("學分","",($course['course_units'] != 1) ? 'Units' : 'Unit'); ?></td>
+													<td><?php echo wp_kses_post($course['course_units']); ?> <?php echo cuhk_multilang_text("學分","",($course['course_units'] != 1) ? 'Units' : 'Unit'); ?></td>
 												</tr>
 											<?php endforeach; ?>
 										</table>
