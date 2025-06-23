@@ -261,27 +261,24 @@
 								<div class="swiper-wrapper">
 									<div class="swiper-slide">
 										<div class="t_wrapper">
-											<div class="t1 text4"><span>Jan</span></div>
-											<div class="t2 text2">2025</div>
+											<div class="t1 text4"><span>一月</span></div>
+											<div class="t2 text2">January</div>
 										</div>
 									</div>
 									<div class="swiper-slide">
 										<div class="t_wrapper">
-											<div class="t1 text4"><span>Feb</span></div>
-											<div class="t2 text2">2025</div>
+											<div class="t1 text4"><span>二月</span></div>
+											<div class="t2 text2">February</div>
 										</div>
 									</div>
 									<div class="swiper-slide">
 										<div class="t_wrapper">
-											<div class="t1 text4"><span>Mar</span></div>
-											<div class="t2 text2">2025</div>
+											<div class="t1 text4"><span>三月</span></div>
+											<div class="t2 text2">March</div>
 										</div>
 									</div>
 								</div>
 							</div>
-
-									<div class="prev_btn"></div>
-									<div class="next_btn"></div>
 						</div>
 					</div>
 				
@@ -293,9 +290,7 @@
 									<div class="swiper-container swiper">
 										<div class="swiper-wrapper">
 											<div class="swiper-slide">
-												<div class="date text4">
-													Mon 13
-												</div>
+												<div class="date text4">Mon 14</div>
 												<div class="news_item_wrapper">
 													<div class="news_item">
 														<div class="news_item_spacing">
@@ -322,9 +317,7 @@
 												</div>
 											</div>
 											<div class="swiper-slide">
-												<div class="date text4">
-													Tue 14
-												</div>
+												<div class="date text4">Mon 12</div>
 												<div class="news_item_wrapper">
 													<div class="news_item">
 														<div class="news_item_spacing">
@@ -340,9 +333,7 @@
 												</div>
 											</div>
 											<div class="swiper-slide">
-												<div class="date text4">
-													Wed 15
-												</div>
+												<div class="date text4">Mon 10</div>
 												<div class="news_item_wrapper">
 													<div class="news_item">
 														<div class="news_item_spacing">
@@ -358,9 +349,7 @@
 												</div>
 											</div>
 											<div class="swiper-slide">
-												<div class="date text6">
-													14/3/2025<div class="text4">Mon</div>
-												</div>
+												<div class="date text4">Mon 9</div>
 												<div class="news_item_wrapper">
 													<div class="news_item">
 														<div class="news_item_spacing">
@@ -376,9 +365,7 @@
 												</div>
 											</div>
 											<div class="swiper-slide">
-												<div class="date text6">
-													14/3/2025<div class="text4">Mon</div>
-												</div>
+												<div class="date text4">Mon 8</div>
 												<div class="news_item_wrapper">
 													<div class="news_item">
 														<div class="news_item_spacing">
@@ -394,9 +381,7 @@
 												</div>
 											</div>
 											<div class="swiper-slide">
-												<div class="date text6">
-													14/3/2025<div class="text4">Mon</div>
-												</div>
+												<div class="date text4">Mon 7</div>
 												<div class="news_item_wrapper">
 													<div class="news_item">
 														<div class="news_item_spacing">
@@ -423,7 +408,7 @@
 												</div>
 											</div>
 											<div class="swiper-slide">
-												<div class="date text6">14/3/2025 (Mon)</div>
+												<div class="date text4">Mon 6</div>
 												<div class="news_item_wrapper">
 													<div class="news_item">
 														<div class="news_item_spacing">
@@ -778,50 +763,6 @@
 		<div class="mobile_hide"></div>
 		<div class="mobile_show"></div>
 		<div class="loading"><img src="images/oval.svg"></div>
-		<script>
-			$(window).on('load', function() {
-				$(".home_news_section").each(function(){
-					var home_news_year_slider = new Swiper($(this).find(".home_news_year_slider .swiper-container")[0], {
-						effect : 'fade',
-						fadeEffect: {
-							crossFade: true,
-						},
-						autoplay: false,
-						slidesPerView: 1,
-						speed: 400,
-						loop: false,
-						spaceBetween: 100
-					});
-					var home_news_date_slider = new Swiper($(this).find(".home_news_date_slider .swiper-container")[0], {
-						autoplay: false,
-						slidesPerView: "auto",
-						speed: 1600,
-						loop: false,
-						spaceBetween: 0
-					});
-					
 
-					$(".home_news_year_slider").find(".next_btn").click(function(){
-						home_news_year_slider.slideNext()
-					})
-
-					$(".home_news_year_slider").find(".prev_btn").click(function(){
-						home_news_year_slider.slidePrev()
-					})
-					
-
-					$(".home_news_date_slider").find(".next_btn").click(function(){
-						home_news_date_slider.slideNext()
-					})
-
-					$(".home_news_date_slider").find(".prev_btn").click(function(){
-						home_news_date_slider.slidePrev()
-					})
-
-
-					
-				});
-			});
-		</script>
 	</body>
 </html>

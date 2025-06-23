@@ -117,9 +117,8 @@ get_header(); ?>
 
 <div class="section home_news_section scrollin_p" x-data="homeNewsSlider()">
 	<?php
-	// Query news and department_news
 	$news_args = array(
-		'post_type' => array('news', 'department_news'),
+		'post_type' => array('news'),
 		'posts_per_page' => -1,
 		'meta_query' => array(
 			array(
@@ -186,14 +185,28 @@ get_header(); ?>
 							<div class="swiper-slide"
 								:class="{ 'active': selectedMonth === month.value && selectedYear === month.year }">
 								<div class="t_wrapper">
-									<div class="t1 text4"><span x-text="month.chinese"></span></div>
-									<div class="t2 text2" x-text="month.english"></div>
+									<div class="t1 text4">
+										
+										<?php 
+											if(pll_current_language() == 'tc' || pll_current_language() == 'tc') {
+												?>
+												<span x-text="month.chinese"></span>
+												<?php
+											}else{
+												?>
+												<span x-text="month.english"></span>
+												<?php
+											}
+										?>
+									</div>
 									<div class="t2 text2" x-text="month.year"></div>
 								</div>
 							</div>
 						</template>
 					</div>
 				</div>
+				<div class="prev_btn" @click="monthPreviousSlide()"></div>
+				<div class="next_btn" @click="monthNextSlide()"></div>
 			</div>
 		</div>
 
@@ -256,8 +269,8 @@ get_header(); ?>
 								</template>
 							</div>
 						</div>
-						<div class="prev_btn" @click="previousSlide()"></div>
-						<div class="next_btn" @click="nextSlide()"></div>
+						<div class="prev_btn" @click="datePreviousSlide()"></div>
+						<div class="next_btn" @click="dateNextSlide()"></div>
 					</div>
 				</div>
 			</div>
@@ -309,7 +322,7 @@ get_header(); ?>
 				this.yearSwiper = new Swiper('.home_news_year_slider .swiper-container', {
 					autoplay: false,
 					slidesPerView: 'auto',
-					speed: 1600,
+					speed: 300,
 					loop: false,
 					spaceBetween: 0,
 					freeMode: true,
@@ -397,15 +410,27 @@ get_header(); ?>
 				this.loadNews();
 			},
 
-			nextSlide() {
+			dateNextSlide() {
 				if (this.dateSwiper) {
 					this.dateSwiper.slideNext();
 				}
 			},
 
-			previousSlide() {
+			datePreviousSlide() {
 				if (this.dateSwiper) {
 					this.dateSwiper.slidePrev();
+				}
+			},
+
+			monthNextSlide() {
+				if (this.yearSwiper) {
+					this.yearSwiper.slideNext();
+				}
+			},
+
+			montPreviousSlide() {
+				if (this.yearSwiper) {
+					this.yearSwiper.slidePrev();
 				}
 			}
 		}
