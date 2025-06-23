@@ -97,9 +97,9 @@ while (have_posts()) :
 							<div class="title <?php echo esc_attr($group_style); ?>">
 								<div class="left_title text5"><?php echo esc_html($group_index); ?>. <?php echo esc_html($group_title); ?></div>
 								<div class="right_title">
-									<div class="num text2"><?php echo esc_html($group_required_unit); ?></div>
 									<?php if($show_required_units):?>
-									<div class="unit text5"><?php echo cuhk_multilang_text("學分","",($group_required_unit != 1) ? 'Units' : 'Unit'); ?></div>
+										<div class="num text2"><?php echo esc_html($group_required_unit); ?></div>
+										<div class="unit text5"><?php echo cuhk_multilang_text("學分","",($group_required_unit != 1) ? 'Units' : 'Unit'); ?></div>
 									<?php endif; ?>
 									<div class="icon_wrapper"><a href="#" class="icon"></a></div>
 								</div>
