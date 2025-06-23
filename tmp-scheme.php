@@ -88,21 +88,15 @@ while (have_posts()) :
 						$group_title = get_sub_field('group_title');
 						$group_style = get_sub_field('group_style');
 						$courses = get_sub_field('courses');
+						$group_required_unit = get_sub_field('group_required_unit');
 
-						// Calculate total units for this group
-						$group_total_units = 0;
-						if ($courses) {
-							foreach ($courses as $course) {
-								$group_total_units += intval($course['course_units']);
-							}
-						}
 					?>
 						<div class="scheme_unit_expandable_box">
 							<div class="title <?php echo esc_attr($group_style); ?>">
 								<div class="left_title text5"><?php echo esc_html($group_index); ?>. <?php echo esc_html($group_title); ?></div>
 								<div class="right_title">
 									<div class="num text2"><?php echo esc_html($group_total_units); ?></div>
-									<div class="unit text5">Unit<?php echo ($group_total_units != 1) ? 's' : ''; ?></div>
+									<div class="unit text5"><?php echo cuhk_multilang_text("學分","",($group_required_unit != 1) ? 'Units' : 'Unit'); ?></div>
 									<div class="icon_wrapper"><a href="#" class="icon"></a></div>
 								</div>
 							</div>
