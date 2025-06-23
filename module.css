@@ -5025,6 +5025,22 @@ body.dragging-scroll {
     background-position: -300px -400px ;
 }
 
+.scheme_style5{
+    background-color:#dddcb8 ;
+}
+
+.scheme_style5 .scheme_unit_box_right::before{
+    background-position: -200px -400px ;
+}
+
+.scheme_style6{
+    background-color:#d8d8d8 ;
+}
+
+.scheme_style6 .scheme_unit_box_right::before{
+    background-position: -400px -300px ;
+}
+
 .scheme_unit_box_total{
     display: flex;
     justify-content: space-between;
