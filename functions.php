@@ -2479,3 +2479,27 @@ function fb_mce_before_init($settings)
     unset($settings['preview_styles']);
     return $settings;
 }
+
+add_action('pll_save_post', function($post_id, $translations, $language) {
+    // Get the post type and bail early if it's not supported
+    $post_type = get_post_type($post_id);
+    if (!$post_type) return;
+
+    // Find the original post ID
+    $original_id = array_search($post_id, $translations);
+    if (!$original_id || $original_id === $post_id) return;
+
+    // Check if this translation was already linked to the original
+    $existing_translations = pll_get_post_translations($original_id);
+    if (isset($existing_translations[$language]) && $existing_translations[$language] != $post_id) {
+        // It's an update to an existing translation; do nothing
+        return;
+    }
+
+    // Copy taxonomies from original to new translation
+    $taxonomies = get_object_taxonomies($post_type);
+    foreach ($taxonomies as $taxonomy) {
+        $terms = wp_get_object_terms($original_id, $taxonomy, ['fields' => 'ids']);
+        wp_set_object_terms($post_id, $terms, $taxonomy);
+    }
+}, 10, 3);
