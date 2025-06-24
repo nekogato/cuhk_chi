@@ -2205,7 +2205,7 @@ body.dragging-scroll {
     margin-top: 30px;
       display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
 }
 
 .home_promotion_box .t_wrapper .btn_wrapper .round_btn{

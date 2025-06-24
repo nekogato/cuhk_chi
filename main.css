@@ -1238,7 +1238,7 @@ p:first-child{
     bottom: 10px;
     right: 0px;
     margin: auto;
-    background-color: #726ba5;
+    /* background-color: #726ba5; */
 }
 
 .line_btn::after {
