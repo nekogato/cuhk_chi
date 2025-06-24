@@ -454,6 +454,21 @@ function initMap(){
 	});
 }
 
+function updateHorizontalAlignment() {
+	$('.horizontal-scroll-wrapper').each(function () {
+		const $wrapper = $(this);
+		const $track = $wrapper.find('.scroll-inner');
+
+		const wrapperWidth = $wrapper.innerWidth();
+		const contentWidth = $track[0].scrollWidth;
+
+		if (contentWidth <= wrapperWidth) {
+			$track.addClass('centered');
+		} else {
+			$track.removeClass('centered');
+		}
+	});
+}
 
 function init_function(){
 
@@ -532,25 +547,6 @@ function init_function(){
 			$('body').removeClass('dragging-scroll');
 			startInertiaScroll();
 		});
-
-		function updateHorizontalAlignment() {
-			$('.horizontal-scroll-wrapper').each(function () {
-				const $wrapper = $(this);
-				const $track = $wrapper.find('.scroll-inner');
-
-				const wrapperWidth = $wrapper.innerWidth();
-				const contentWidth = $track[0].scrollWidth;
-
-				if (contentWidth <= wrapperWidth) {
-					$track.addClass('centered');
-				} else {
-					$track.removeClass('centered');
-				}
-			});
-		}
-
-		// Run on load and resize
-		$(window).on('load resize', updateHorizontalAlignment);
 
 		$('.js-drag-scroll a').on('dragstart', function (e) {
 			e.preventDefault();
@@ -1216,6 +1212,9 @@ function dosize(){
 		})
 		$(".committee_list_slider .name").height(titleheight)
 	}
+
+
+	updateHorizontalAlignment();
 }
 
 
