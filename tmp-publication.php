@@ -101,7 +101,7 @@ while (have_posts()) :
 			<?php endif; ?>
 		</div>
 
-		<div class="section section_content">
+		<div class="section section_content filter_result_section">
 			<img src="<?php echo get_template_directory_uri(); ?>/images/ink_bg5.jpg" class="ink_bg5 scrollin scrollinbottom" alt="Background Image">
 
 			<div class="section_center_content small_section_center_content">

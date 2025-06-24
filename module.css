@@ -2863,12 +2863,19 @@ body.dragging-scroll {
 }
 /* publication_box */
 
+.filter_result_section{
+    padding-top: 0px;
+}
 
 .publication_box_list{
     margin-top: 100px;
     display: flex;
     flex-wrap: wrap; 
     gap: 100px 60px; 
+}
+
+.filter_result_section .publication_box_list{
+    margin-top: auto;
 }
 
 .publication_box{
