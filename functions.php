@@ -2479,14 +2479,3 @@ function fb_mce_before_init($settings)
     unset($settings['preview_styles']);
     return $settings;
 }
-
-add_action('pll_save_post', function($post_id, $translations, $language) {
-    $original_id = array_search($post_id, $translations);
-    if (!$original_id) return;
-
-    $taxonomies = get_object_taxonomies(get_post_type($post_id));
-    foreach ($taxonomies as $taxonomy) {
-        $terms = wp_get_object_terms($original_id, $taxonomy, ['fields' => 'ids']);
-        wp_set_object_terms($post_id, $terms, $taxonomy);
-    }
-}, 10, 3);
