@@ -19,11 +19,11 @@ get_header(); ?>
 			}
 			?>
 			<div class="logo scrollin scrollinbottom">
-				<?php 
-				$department_logo = get_field('department_logo'); 
-				if($department_logo){
+				<?php
+				$department_logo = get_field('department_logo');
+				if ($department_logo) {
 				?>
-				<img src="<?php echo $department_logo["url"]; ?>" alt="<?php echo $department_logo['alt']; ?>">
+					<img src="<?php echo $department_logo["url"]; ?>" alt="<?php echo $department_logo['alt']; ?>">
 				<?php
 				};
 				?>
@@ -88,9 +88,9 @@ get_header(); ?>
 																			<?php foreach ($buttons as $button) : ?>
 																				<?php if ($button['link']) : ?>
 																					<div>
-																					<a href="<?php echo $button['link']['url']; ?>" class="<?php echo $button['style'] ?: 'round_btn'; ?>" <?php if ($button['link']['target']) echo 'target="' . $button['link']['target'] . '"'; ?>>
-																						<?php echo $button['text']; ?>
-																					</a>
+																						<a href="<?php echo $button['link']['url']; ?>" class="<?php echo $button['style'] ?: 'round_btn'; ?>" <?php if ($button['link']['target']) echo 'target="' . $button['link']['target'] . '"'; ?>>
+																							<?php echo $button['text']; ?>
+																						</a>
 																					</div>
 																				<?php endif; ?>
 																			<?php endforeach; ?>
@@ -136,7 +136,7 @@ get_header(); ?>
 <div class="section home_news_section scrollin_p" x-data="homeNewsSlider()">
 	<?php
 	$news_args = array(
-		'post_type' => array('news','department_news'),
+		'post_type' => array('news', 'department_news'),
 		'posts_per_page' => -1,
 		'meta_query' => array(
 			array(
@@ -197,7 +197,26 @@ get_header(); ?>
 	<div class="home_news_slider_wrapper">
 		<div class="home_news_year_slider">
 			<div class="section_center_content small_section_center_content scrollin scrollinbottom">
-				<div class="swiper-container swiper">
+				<button class="prev_btn" @click="monthPreviousSlide()"></button>
+				<div class="t_wrapper">
+					<div class="t1 text4">
+						<?php
+						if (pll_current_language() == 'tc' || pll_current_language() == 'sc') {
+						?>
+							<span x-text="getCurrentMonth('tc')"></span>
+						<?php
+						} else {
+						?>
+							<span x-text="getCurrentMonth('en')"></span>
+						<?php
+						}
+						?>
+					</div>
+					<div class="t2 text2" x-text="selectedYear"></div>
+				</div>
+				<button class="next_btn" @click="monthNextSlide()"></button>
+
+				<!-- <div class="swiper-container swiper">
 					<div class="swiper-wrapper">
 						<template x-for="(month, index) in availableMonths" :key="index">
 							<div class="swiper-slide"
@@ -205,26 +224,29 @@ get_header(); ?>
 								<div class="t_wrapper">
 									<div class="t1 text4">
 										
-										<?php 
-											if(pll_current_language() == 'tc' || pll_current_language() == 'tc') {
-												?>
+										<?php
+										if (pll_current_language() == 'tc' || pll_current_language() == 'tc') {
+										?>
 												<span x-text="month.chinese"></span>
 												<?php
-											}else{
+											} else {
 												?>
 												<span x-text="month.english"></span>
 												<?php
 											}
-										?>
+												?>
 									</div>
 									<div class="t2 text2" x-text="month.year"></div>
 								</div>
 							</div>
 						</template>
+
+						
 					</div>
 				</div>
+
 				<div class="prev_btn" @click="monthPreviousSlide()"></div>
-				<div class="next_btn" @click="monthNextSlide()"></div>
+				<div class="next_btn" @click="monthNextSlide()"></div> -->
 			</div>
 		</div>
 
@@ -310,7 +332,7 @@ get_header(); ?>
 					</div>
 				</div>
 				<div class="btn_wrapper">
-					<a href="<?php echo pll_get_page_url("news");?>" class="round_btn"><?php echo cuhk_multilang_text("查看所有學系消息", "查看所有學系消息", "View All News"); ?></a>
+					<a href="<?php echo pll_get_page_url("news"); ?>" class="round_btn"><?php echo cuhk_multilang_text("查看所有學系消息", "查看所有學系消息", "View All News"); ?></a>
 				</div>
 			</div>
 		</div>
@@ -340,37 +362,53 @@ get_header(); ?>
 				});
 			},
 
+			getCurrentMonth(lang) {
+
+				const selectMonthObj = this.availableMonths.find(month => month.value == this.selectedMonth);
+				if (lang == 'tc' || lang == 'sc') {
+					return selectMonthObj.chinese;
+				} else {
+					return selectMonthObj.english;
+				}
+			},
+
+			getCurrentYear() {
+
+				return this.selectedMonth;
+			},
+
 			initSwipers() {
-					// Initialize year slider
-					this.yearSwiper = new Swiper('.home_news_year_slider .swiper-container', {
-						effect : 'fade',
-						fadeEffect: {
-							crossFade: true,
-						},
-						autoplay: false,
-						slidesPerView: 1,
-						speed: 400,
-						loop: false,
-						spaceBetween: 100,
-						on: {
-							slideChange: () => {
-								const activeSlide = this.yearSwiper.slides[this.yearSwiper.activeIndex];
-								const monthData = this.availableMonths[this.yearSwiper.activeIndex];
-								if (monthData) {
-									this.selectMonth(monthData.value, monthData.year);
-								}
+				// Initialize year slider
+				/*
+				this.yearSwiper = new Swiper('.home_news_year_slider .swiper-container', {
+					effect : 'fade',
+					fadeEffect: {
+						crossFade: true,
+					},
+					autoplay: false,
+					slidesPerView: 1,
+					speed: 400,
+					loop: false,
+					spaceBetween: 100,
+					on: {
+						slideChange: () => {
+							const activeSlide = this.yearSwiper.slides[this.yearSwiper.activeIndex];
+							const monthData = this.availableMonths[this.yearSwiper.activeIndex];
+							if (monthData) {
+								this.selectMonth(monthData.value, monthData.year);
 							}
 						}
-					});
+					}
+				});*/
 
-					// Initialize date slider
-					this.dateSwiper = new Swiper('.home_news_date_slider .swiper-container', {
-						autoplay: false,
-						slidesPerView: 'auto',
-						speed: 1600,
-						loop: false,
-						spaceBetween: 0
-					});
+				// Initialize date slider
+				this.dateSwiper = new Swiper('.home_news_date_slider .swiper-container', {
+					autoplay: false,
+					slidesPerView: 'auto',
+					speed: 1600,
+					loop: false,
+					spaceBetween: 0
+				});
 			},
 
 			formatDate(dateString) {
@@ -379,7 +417,11 @@ get_header(); ?>
 				const month = dateString.substring(4, 6);
 				const day = parseInt(dateString.substring(6, 8));
 				const date = new Date(year, month - 1, day);
-				const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+				<?php if (pll_current_language() == 'tc' || pll_current_language() == 'sc') { ?>
+					const days = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+				<?php } else { ?>
+					const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+				<?php } ?>
 				const dayName = days[date.getDay()];
 				return `${dayName} ${day}`;
 			},
@@ -446,18 +488,20 @@ get_header(); ?>
 			},
 
 			monthNextSlide() {
-				if (this.yearSwiper) {
-					console.log("a")
-					this.yearSwiper.slideNext();
-					console.log("b")
+				const currentIndex = this.availableMonths.findIndex(month => month.value == this.selectedMonth);
+				if (currentIndex < this.availableMonths.length - 1) {
+					this.selectedMonth = this.availableMonths[currentIndex + 1].value;
+					this.selectedYear = this.availableMonths[currentIndex + 1].year;
+					this.loadNews();
 				}
 			},
 
 			monthPreviousSlide() {
-				if (this.yearSwiper) {
-					console.log("a")
-					this.yearSwiper.slidePrev();
-					console.log("b")
+				const currentIndex = this.availableMonths.findIndex(month => month.value == this.selectedMonth);
+				if (currentIndex > 0) {
+					this.selectedMonth = this.availableMonths[currentIndex - 1].value;
+					this.selectedYear = this.availableMonths[currentIndex - 1].year;
+					this.loadNews();
 				}
 			}
 		}
@@ -524,9 +568,9 @@ get_header(); ?>
 																	<?php foreach ($buttons as $button) : ?>
 																		<?php if ($button['link']) : ?>
 																			<div>
-																			<a href="<?php echo $button['link']['url']; ?>" class="<?php echo $button['style'] ?: 'round_btn'; ?>" <?php if ($button['link']['target']) echo 'target="' . $button['link']['target'] . '"'; ?>>
-																				<?php echo $button['text']; ?>
-																			</a>
+																				<a href="<?php echo $button['link']['url']; ?>" class="<?php echo $button['style'] ?: 'round_btn'; ?>" <?php if ($button['link']['target']) echo 'target="' . $button['link']['target'] . '"'; ?>>
+																					<?php echo $button['text']; ?>
+																				</a>
 																			</div>
 																		<?php endif; ?>
 																	<?php endforeach; ?>
