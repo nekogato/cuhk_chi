@@ -2367,3 +2367,49 @@ function hide_polylang_language_ui() {
     </style>';
 }
 add_action('admin_head', 'hide_polylang_language_ui');
+
+
+
+/**
+ * Add styles/classes to the "Styles" drop-down
+ */
+
+add_filter('tiny_mce_before_init', 'fb_mce_before_init');
+
+function fb_mce_before_init($settings)
+{
+    // Set to true to include the default settings.
+    $settings['style_formats_merge'] = false;
+
+    $style_formats = [
+        [
+            'title' => 'Paragraph',
+            'format' => 'p',
+        ],
+        [
+            'title' => 'Super Title',
+            'format' => 'h4',
+        ],
+        [
+            'title' => 'Title',
+            'format' => 'h5',
+        ],
+        [
+            'title' => 'Subtitle',
+            'format' => 'h6',
+        ],
+        [
+            'title' => 'Small',
+            'format' => 'small',
+        ],
+        [
+            'title' => 'Round Button',
+            'selector' => 'a',
+            'classes' => 'round_btn',
+        ],
+    ];
+
+    $settings['style_formats'] = json_encode($style_formats);
+    unset($settings['preview_styles']);
+    return $settings;
+}

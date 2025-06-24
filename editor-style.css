@@ -55,7 +55,7 @@ body#tinymce.wp-editor h3 + p,
 body#tinymce.wp-editor h4 + p,
 body#tinymce.wp-editor h5 + p,
 body#tinymce.wp-editor h6 + p{
-    margin-top: 5px;
+    margin-top: 10px;
 }
 
 body#tinymce.wp-editor h1 + *,
@@ -64,7 +64,7 @@ body#tinymce.wp-editor h3 + *,
 body#tinymce.wp-editor h4 + *,
 body#tinymce.wp-editor h5 + *,
 body#tinymce.wp-editor h6 + *{
-    margin-top: 5px;
+    margin-top: 10px;
 }
 
 body#tinymce.wp-editor h1,
@@ -74,6 +74,7 @@ body#tinymce.wp-editor h4,
 body#tinymce.wp-editor h5,
 body#tinymce.wp-editor h6{
 	font-weight: 600;
+	color:#6a5d9d;
 }
 
 body#tinymce.wp-editor a{
