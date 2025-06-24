@@ -84,7 +84,7 @@ get_header(); ?>
 																		<?php endif; ?>
 																	</div>
 																	<?php if ($buttons) : ?>
-																		<div class="btn_wrapper">
+																		<div class="btn_wrapper text6">
 																			<?php foreach ($buttons as $button) : ?>
 																				<?php if ($button['link']) : ?>
 																					<div>
@@ -520,7 +520,7 @@ get_header(); ?>
 																<?php echo $description; ?>
 															</div>
 															<?php if ($buttons) : ?>
-																<div class="btn_wrapper">
+																<div class="btn_wrapper text6">
 																	<?php foreach ($buttons as $button) : ?>
 																		<?php if ($button['link']) : ?>
 																			<div>

@@ -1204,8 +1204,7 @@ body.dragging-scroll {
 .home_about_slider .btn_wrapper{
     margin-top: 30px;
       display: flex;
-  flex-direction: column;
-  gap: 10px;
+  gap: 50px;
 }
 
 
