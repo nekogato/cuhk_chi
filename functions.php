@@ -2479,3 +2479,46 @@ function fb_mce_before_init($settings)
     unset($settings['preview_styles']);
     return $settings;
 }
+
+add_action('pll_save_post', function($post_id, $translations, $language) {
+    if (!is_array($translations) || empty($translations)) {
+        error_log("Polylang Sync: No valid translations array.");
+        return;
+    }
+
+    if (empty($language)) {
+        error_log("Polylang Sync: No language provided.");
+        return;
+    }
+
+    // Find the original post (any post in a different language)
+    $original_id = null;
+    foreach ($translations as $lang => $id) {
+        if ($id != $post_id) {
+            $original_id = $id;
+            break;
+        }
+    }
+
+    if (!$original_id) {
+        error_log("Polylang Sync: No original post found.");
+        return;
+    }
+
+    // Check if this is a new translation
+    $existing_translations = pll_get_post_translations($original_id);
+    if (isset($existing_translations[$language]) && $existing_translations[$language] != $post_id) {
+        error_log("Polylang Sync: Translation for this language already existed.");
+        return; // not a new translation
+    }
+
+    // Copy taxonomy terms
+    $taxonomies = get_object_taxonomies(get_post_type($post_id));
+    foreach ($taxonomies as $taxonomy) {
+        $terms = wp_get_object_terms($original_id, $taxonomy, ['fields' => 'ids']);
+        wp_set_object_terms($post_id, $terms, $taxonomy);
+        error_log("Polylang Sync: Copied terms for taxonomy $taxonomy.");
+    }
+
+    error_log("Polylang Sync: Done syncing taxonomies.");
+}, 10, 3);
