@@ -2076,18 +2076,18 @@ body.dragging-scroll {
 }
 
 .home_promotion_box_wrapper .section_center_content{
-    height: 600px;
+    height: 700px;
     display: flex;
 }
 .home_promotion_box_inwrapper{
-    height: 600px;
+    height: 700px;
     display: flex;
     border-left: 1px solid #5c728c;
     border-right: 1px solid #5c728c;
 }
 
 .home_promotion_box{
-    height: 600px;
+    height: 700px;
     width: 100px;
     display: flex;
     position: relative;
@@ -2104,7 +2104,7 @@ body.dragging-scroll {
     position: absolute;
     left: 100px;
     top:0px;
-    width: 600px;
+    width: 700px;
     height: 100px;
     display: flex;
     align-items: center;
