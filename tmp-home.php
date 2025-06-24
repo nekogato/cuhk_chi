@@ -18,7 +18,16 @@ get_header(); ?>
 				echo $home_title;
 			}
 			?>
-			<div class="logo scrollin scrollinbottom"><img src="<?php bloginfo('template_directory'); ?>/images/chi_logo.png" alt="<?php echo cuhk_multilang_text("中文系標誌", "中文系標誌", "Chinese Department Logo"); ?>"></div>
+			<div class="logo scrollin scrollinbottom">
+				<?php 
+				$department_logo = get_field('department_logo'); 
+				if($department_logo){
+				?>
+				<img src="<?php echo $department_logo["url"]; ?>" alt="<?php echo $department_logo['alt']; ?>">
+				<?php
+				};
+				?>
+			</div>
 		</h1>
 	</div>
 </div>
