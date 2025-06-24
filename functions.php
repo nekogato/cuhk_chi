@@ -8,12 +8,12 @@
  * @package cuhk_chi
  */
 
-define('MPHIL_PHD_RESEARCH_MAX_POSTS', 6);
-define('PUBLICATIONS_PER_PAGE', 6);
-define('NEWS_PER_PAGE', 4);
-define('EVENTS_PER_PAGE', 4);
-define('MAX_POSTGRADUATE_STUDENTS_PER_PAGE', 6);
-define('MAX_DEPARTMENT_NEWS', 6);
+define('MPHIL_PHD_RESEARCH_MAX_POSTS', 20);
+define('PUBLICATIONS_PER_PAGE', 20);
+define('NEWS_PER_PAGE', 20);
+define('EVENTS_PER_PAGE', 20);
+define('MAX_POSTGRADUATE_STUDENTS_PER_PAGE', 20);
+define('MAX_DEPARTMENT_NEWS', 20);
 
 if (! defined('_S_VERSION')) {
 	// Replace the version number of the theme on each release.
