@@ -75,9 +75,9 @@ while (have_posts()) :
 		<div class="section_center_content small_section_center_content scrollin scrollinbottom">
 			<div class="section_title">
 				<div class="text1">
-					<?php echo esc_html($course_code); ?>
+					<?php echo wp_kses_post($course_code); ?>
 					<?php if ($course_title) : ?>
-						<?php echo esc_html($course_title); ?>
+						<?php echo wp_kses_post($course_title); ?>
 					<?php endif; ?>
 				</div>
 			</div>
@@ -88,7 +88,7 @@ while (have_posts()) :
 						$subtitle_parts = array();
 						if ($academic_year_name) $subtitle_parts[] = $academic_year_name;
 						if ($academic_term_name) $subtitle_parts[] = '（' . $academic_term_name . '）';
-						echo esc_html(implode('', $subtitle_parts));
+						echo wp_kses_post(implode('', $subtitle_parts));
 						?>
 					</div>
 				</div>
@@ -103,11 +103,11 @@ while (have_posts()) :
 				<div class="course_detail_info_box">
 					<div class="text7 t1"><?php pll_e('Teacher'); ?></div>
 					<div class="text5 t2">
-						<?php echo esc_html($lecturer_name); ?>
+						<?php echo wp_kses_post($lecturer_name); ?>
 						<?php
 						$contact_parts = array();
-						if ($lecturer_phone) $contact_parts[] = esc_html($lecturer_phone);
-						if ($lecturer_email) $contact_parts[] = '<a href="mailto:' . esc_attr($lecturer_email) . '">' . esc_html($lecturer_email) . '</a>';
+						if ($lecturer_phone) $contact_parts[] = wp_kses_post($lecturer_phone);
+						if ($lecturer_email) $contact_parts[] = '<a href="mailto:' . esc_attr($lecturer_email) . '">' . wp_kses_post($lecturer_email) . '</a>';
 						if (!empty($contact_parts)) {
 							echo ' (' . implode(' / ', $contact_parts) . ')';
 						}
@@ -125,11 +125,11 @@ while (have_posts()) :
 				<div class="course_detail_info_box">
 					<div class="text7 t1"><?php pll_e('Teaching Assistant'); ?></div>
 					<div class="text5 t2">
-						<?php echo esc_html($ta_name); ?>
+						<?php echo wp_kses_post($ta_name); ?>
 						<?php
 						$ta_contact_parts = array();
-						if ($ta_phone) $ta_contact_parts[] = esc_html($ta_phone);
-						if ($ta_email) $ta_contact_parts[] = '<a href="mailto:' . esc_attr($ta_email) . '">' . esc_html($ta_email) . '</a>';
+						if ($ta_phone) $ta_contact_parts[] = wp_kses_post($ta_phone);
+						if ($ta_email) $ta_contact_parts[] = '<a href="mailto:' . esc_attr($ta_email) . '">' . wp_kses_post($ta_email) . '</a>';
 						if (!empty($ta_contact_parts)) {
 							echo ' (' . implode(' / ', $ta_contact_parts) . ')';
 						}
@@ -146,28 +146,28 @@ while (have_posts()) :
 			<?php if ($language) : ?>
 				<div class="course_detail_info_box">
 					<div class="text7 t1"><?php pll_e('Language'); ?></div>
-					<div class="text5 t2"><?php echo esc_html($language); ?></div>
+					<div class="text5 t2"><?php echo wp_kses_post($language); ?></div>
 				</div>
 			<?php endif; ?>
 
 			<?php if ($lecture_time) : ?>
 				<div class="course_detail_info_box">
 					<div class="text7 t1"><?php pll_e('Lecture Time'); ?></div>
-					<div class="text5 t2"><?php echo esc_html($lecture_time); ?></div>
+					<div class="text5 t2"><?php echo wp_kses_post($lecture_time); ?></div>
 				</div>
 			<?php endif; ?>
 
 			<?php if ($venue) : ?>
 				<div class="course_detail_info_box">
 					<div class="text7 t1"><?php pll_e('Venue'); ?></div>
-					<div class="text5 t2"><?php echo esc_html($venue); ?></div>
+					<div class="text5 t2"><?php echo wp_kses_post($venue); ?></div>
 				</div>
 			<?php endif; ?>
 
 			<?php if ($quota) : ?>
 				<div class="course_detail_info_box">
 					<div class="text7 t1"><?php pll_e('Quota'); ?></div>
-					<div class="text5 t2"><?php echo esc_html($quota); ?></div>
+					<div class="text5 t2"><?php echo wp_kses_post($quota); ?></div>
 				</div>
 			<?php endif; ?>
 
