@@ -106,13 +106,25 @@
                 <div class="footer_row">
                     <div class="footer2_t_wrapper">
                         <div class="footer2_t footer2_t1 text8">
+                            <?php
+                            if( have_rows('footer_menu', 'option') ):
+                            ?>
                             <div class="footer_bottom_nav">        
                                 <ul>
-                                    <li><a href="#" >Accessibility</a></li>
-                                    <li><a href="#" >Privacy Policy</a></li>
-                                    <li><a href="#" >Disclaimer</a></li>
+                                <?php
+                                    while( have_rows('footer_menu', 'option') ) : the_row();
+                                    $text = get_sub_field('text');
+                                    $url = get_sub_field('url');
+                                    ?>
+                                    <li><a href="<?php echo $url;?>"><?php echo $text;?></a></li>
+                                    <?php
+                                    endwhile;
+                                    ?>
                                 </ul>
                             </div>
+                            <?php
+                                endif;
+                            ?>
                             <div class="copyright">
                                 <?php echo cuhk_multilang_text(date('Y') ."版權所有",date('Y') ."版權所有","© Copyright ".date('Y')); ?><span class="copyright_line">|</span><?php echo cuhk_multilang_text("香港中文大學中國語言及文學系","香港中文大學中國語言及文學系","The Chinese University of Hong Kong Department of Chinese Language & Literature"); ?>
                             </div>
