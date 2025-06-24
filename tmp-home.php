@@ -417,7 +417,11 @@ get_header(); ?>
 				const month = dateString.substring(4, 6);
 				const day = parseInt(dateString.substring(6, 8));
 				const date = new Date(year, month - 1, day);
+				<?php if (pll_current_language() == 'tc' || pll_current_language() == 'sc') { ?>
+				const days = ['日', '一', '二', '三', '四', '五', '六'];
+				<?php } else { ?>
 				const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+				<?php } ?>
 				const dayName = days[date.getDay()];
 				return `${dayName} ${day}`;
 			},
