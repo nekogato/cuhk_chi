@@ -418,9 +418,9 @@ get_header(); ?>
 				const day = parseInt(dateString.substring(6, 8));
 				const date = new Date(year, month - 1, day);
 				<?php if (pll_current_language() == 'tc' || pll_current_language() == 'sc') { ?>
-				const days = ['日', '一', '二', '三', '四', '五', '六'];
+					const days = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
 				<?php } else { ?>
-				const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+					const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 				<?php } ?>
 				const dayName = days[date.getDay()];
 				return `${dayName} ${day}`;
