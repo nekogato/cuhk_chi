@@ -1108,9 +1108,9 @@ body.dragging-scroll {
 }
 
 /* home_top_section */
-.home_top_section{
-    padding-top: 100px;
-    padding-bottom: 25%;
+.home_top_section{  
+    padding-top: 12%;
+  padding-bottom: 12%;
 }
 
 .home_top_section .text{  
