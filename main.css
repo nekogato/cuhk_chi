@@ -1245,8 +1245,8 @@ p:first-child{
 .line_btn::after {
   content: "";
   position: absolute;
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
   top: 0px;
   bottom: 10px;
   right: 4px;
