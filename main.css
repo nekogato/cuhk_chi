@@ -1256,6 +1256,11 @@ p:first-child{
   border-right: 1px solid #726ba5;
 }
 
+.line_btn:hover::after {
+  border-top: 1px solid #ae6364;
+  border-right: 1px solid #ae6364;
+}
+
 
 /* mobile */
 .mobile_show{
