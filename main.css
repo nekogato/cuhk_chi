@@ -1215,15 +1215,15 @@ p:first-child{
 
 .line_btn{
 	padding-bottom: 10px;
-	border-bottom:1px solid #54565A;
+	border-bottom:1px solid #726ba5;
 	color:#726ba5;
-	padding-right: 20px;
+	padding-right: 40px;
 	position: relative;
 }
 
 .line_btn:hover{
 	padding-bottom: 10px;
-	border-bottom:1px solid #54565A;
+	border-bottom:1px solid #726ba5;
 	color:#ae6364;
 }
 
@@ -1231,10 +1231,10 @@ p:first-child{
 .line_btn::before{
     content:"";
     position: absolute;
-    width: 20px;
+    width: 25px;
     height: 1px;
     top: 0px;
-    bottom: 0px;
+    bottom: 10px;
     right: 0px;
     margin: auto;
     background-color: #ae6364;
@@ -1243,10 +1243,10 @@ p:first-child{
 .line_btn::after {
   content: "";
   position: absolute;
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   top: 0px;
-  bottom: 0px;
+  bottom: 10px;
   right: 2px;
   margin: auto;
   transform: rotate(45deg);
