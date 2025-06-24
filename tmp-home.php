@@ -64,6 +64,7 @@ get_header(); ?>
 											$slide_button_text = get_sub_field('slide_button_text');
 											$slide_button_link = get_sub_field('slide_button_link');
 											$slide_ink_image = get_sub_field('slide_ink_image');
+											$buttons = get_sub_field('buttons');
 									?>
 											<div class="swiper-slide">
 												<div class="col_wrapper ">
@@ -82,9 +83,17 @@ get_header(); ?>
 																			<p><img src="<?php echo $slide_image['url']; ?>" alt="<?php echo $slide_image['alt']; ?>"></p>
 																		<?php endif; ?>
 																	</div>
-																	<?php if ($slide_button_text && $slide_button_link) : ?>
+																	<?php if ($buttons) : ?>
 																		<div class="btn_wrapper">
-																			<a href="<?php echo $slide_button_link['url']; ?>" class="round_btn" <?php if ($slide_button_link['target']) echo 'target="' . $slide_button_link['target'] . '"'; ?>><?php echo $slide_button_text; ?></a>
+																			<?php foreach ($buttons as $button) : ?>
+																				<?php if ($button['link']) : ?>
+																					<div>
+																					<a href="<?php echo $button['link']['url']; ?>" class="<?php echo $button['style'] ?: 'round_btn'; ?>" <?php if ($button['link']['target']) echo 'target="' . $button['link']['target'] . '"'; ?>>
+																						<?php echo $button['text']; ?>
+																					</a>
+																					</div>
+																				<?php endif; ?>
+																			<?php endforeach; ?>
 																		</div>
 																	<?php endif; ?>
 																</div>
