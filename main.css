@@ -1219,6 +1219,7 @@ p:first-child{
 	color:#726ba5;
 	padding-right: 40px;
 	position: relative;
+	font-weight: 600;
 }
 
 .line_btn:hover{
@@ -1237,7 +1238,7 @@ p:first-child{
     bottom: 10px;
     right: 0px;
     margin: auto;
-    background-color: #ae6364;
+    background-color: #726ba5;
 }
 
 .line_btn::after {
@@ -1250,8 +1251,8 @@ p:first-child{
   right: 2px;
   margin: auto;
   transform: rotate(45deg);
-  border-top: 1px solid #ae6364;
-  border-right: 1px solid #ae6364;
+  border-top: 1px solid #726ba5;
+  border-right: 1px solid #726ba5;
 }
 
 
