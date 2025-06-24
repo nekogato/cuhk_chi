@@ -1213,6 +1213,46 @@ p:first-child{
 	color:#fff;
 }
 
+.line_btn{
+	padding-bottom: 10px;
+	border-bottom:1px solid #54565A;
+	color:#726ba5;
+	padding-right: 20px;
+	position: relative;
+}
+
+.line_btn:hover{
+	padding-bottom: 10px;
+	border-bottom:1px solid #54565A;
+	color:#ae6364;
+}
+
+
+.line_btn::before{
+    content:"";
+    position: absolute;
+    width: 20px;
+    height: 1px;
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+    margin: auto;
+    background-color: #ae6364;
+}
+
+.line_btn::after {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  top: 0px;
+  bottom: 0px;
+  right: 2px;
+  margin: auto;
+  transform: rotate(45deg);
+  border-top: 1px solid #ae6364;
+  border-right: 1px solid #ae6364;
+}
 
 
 /* mobile */
