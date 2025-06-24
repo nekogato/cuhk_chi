@@ -1432,6 +1432,8 @@ body.dragging-scroll {
 }
 
 .home_news_year_slider .prev_btn{
+    border:none;
+    background: none;
     width:60px;
     height: 30px;
     position: absolute;
@@ -1475,6 +1477,8 @@ body.dragging-scroll {
 }
 
 .home_news_year_slider .next_btn{
+    border:none;
+    background: none;
     width:60px;
     height: 30px;
     position: absolute;
@@ -1536,6 +1540,7 @@ body.dragging-scroll {
     display: flex;
     gap: 20px;
     align-items: center;
+    justify-content: center;
 }
 
 .home_news_year_slider .t1{
