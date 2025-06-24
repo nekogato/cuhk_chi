@@ -505,9 +505,11 @@ get_header(); ?>
 																<div class="btn_wrapper">
 																	<?php foreach ($buttons as $button) : ?>
 																		<?php if ($button['link']) : ?>
+																			<div>
 																			<a href="<?php echo $button['link']['url']; ?>" class="<?php echo $button['style'] ?: 'round_btn'; ?>" <?php if ($button['link']['target']) echo 'target="' . $button['link']['target'] . '"'; ?>>
 																				<?php echo $button['text']; ?>
 																			</a>
+																			</div>
 																		<?php endif; ?>
 																	<?php endforeach; ?>
 																</div>

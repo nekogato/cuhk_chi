@@ -2200,8 +2200,12 @@ body.dragging-scroll {
 .home_promotion_box .t_wrapper .t2{
     margin-top: 30px;
 }
+
 .home_promotion_box .t_wrapper .btn_wrapper{
     margin-top: 30px;
+      display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .home_promotion_box .t_wrapper .btn_wrapper .round_btn{

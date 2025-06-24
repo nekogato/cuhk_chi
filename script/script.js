@@ -819,6 +819,11 @@ function init_function(){
 
 
 	$(".home_about_slider_section").each(function(){
+		if($(this).find(".swiper-slide").length<2){
+			$(this).find(".next_btn").hide();
+			$(this).find(".prev_btn").hide();
+			$(this).find(".dot_wrapper").hide();
+		}
 		var home_about_slider = new Swiper($(this).find(".swiper-container")[0], {
 			autoplay: false,
 			slidesPerView: 1,
