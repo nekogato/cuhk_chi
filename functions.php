@@ -2480,36 +2480,3 @@ function fb_mce_before_init($settings)
     return $settings;
 }
 
-add_action('save_post', function($post_id) {
-    // Avoid infinite loops
-    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
-    if (wp_is_post_revision($post_id)) return;
-
-    // Get current language and all translations
-    $lang = pll_get_post_language($post_id);
-    if (!$lang) return;
-
-    $translations = pll_get_post_translations($post_id);
-
-    // If less than 2 translations exist, it's likely a new translation
-    if (count($translations) < 2) return;
-
-    // Find the "original" post (first other language)
-    foreach ($translations as $other_lang => $original_id) {
-        if ($other_lang !== $lang) {
-            break;
-        }
-    }
-
-    if (empty($original_id)) return;
-
-    // Copy taxonomy terms
-    $taxonomies = get_object_taxonomies(get_post_type($post_id));
-    foreach ($taxonomies as $taxonomy) {
-        $terms = wp_get_object_terms($original_id, $taxonomy, ['fields' => 'ids']);
-        wp_set_object_terms($post_id, $terms, $taxonomy);
-    }
-
-    error_log("Polylang Sync: Taxonomies copied from post $original_id to $post_id.");
-}, 20);
-
