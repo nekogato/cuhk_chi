@@ -2481,30 +2481,9 @@ function fb_mce_before_init($settings)
 }
 
 add_action('pll_save_post', function($post_id, $translations, $language) {
-    // Ensure $translations is a valid array
-    if (!is_array($translations) || empty($translations)) return;
+    $original_id = array_search($post_id, $translations);
+    if (!$original_id) return;
 
-    // Ensure $language is valid
-    if (empty($language)) return;
-
-    // Find the original post ID (a different language)
-    foreach ($translations as $lang => $id) {
-        if ($id != $post_id) {
-            $original_id = $id;
-            break;
-        }
-    }
-
-    if (empty($original_id)) return;
-
-    // Check if this language already has a translation
-    $existing_translations = pll_get_post_translations($original_id);
-    if (isset($existing_translations[$language]) && $existing_translations[$language] != $post_id) {
-        // It's an update, not a new translation
-        return;
-    }
-
-    // Copy taxonomy terms
     $taxonomies = get_object_taxonomies(get_post_type($post_id));
     foreach ($taxonomies as $taxonomy) {
         $terms = wp_get_object_terms($original_id, $taxonomy, ['fields' => 'ids']);
