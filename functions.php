@@ -180,7 +180,7 @@ function cuhk_chi_scripts()
 	wp_enqueue_script('cuhk_chi-perfect-scrollbar', get_template_directory_uri() . '/script/lib/perfect-scrollbar.js', array('cuhk_chi-jquery'), '', false);
 
 	// Add Alpine.js only for postgraduate research students template
-	if (is_page_template('tmp-postgraduate_research_students.php') || is_page_template('tmp-teaching-staff.php') || is_page_template('tmp-course-index.php') || is_page_template('tmp-research_project.php') || is_page_template('tmp-events.php') || is_page_template('tmp-old_events_index.php') || is_page_template('tmp-languageevents.php') || is_page_template('tmp-home.php') || is_page_template('tmp-gallery.php')) {
+	if (is_page_template('tmp-postgraduate_research_students.php') || is_page_template('tmp-teaching-staff.php') || is_page_template('tmp-course-index.php') || is_page_template('tmp-research_project.php') || is_page_template('tmp-events.php') || is_page_template('tmp-old_events_index.php') || is_page_template('tmp-languageevents.php') || is_page_template('tmp-home.php') || is_page_template('tmp-gallery.php') || is_page_template('tmp-publication.php')) {
 		wp_enqueue_script('alpinejs', 'https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js', array(), '3.13.3', true);
 		wp_script_add_data('alpinejs', 'defer', true);
 	}
@@ -1347,7 +1347,73 @@ function filter_events()
 add_action('wp_ajax_filter_events', 'filter_events');
 add_action('wp_ajax_nopriv_filter_events', 'filter_events');
 
+// AJAX handler for filtering publications by category
+function filter_publications()
+{
+	check_ajax_referer('filter_publications_nonce', 'nonce');
 
+	$page = isset($_POST['page']) ? intval($_POST['page']) : 1;
+	$category = isset($_POST['category']) ? sanitize_text_field($_POST['category']) : 'all';
+
+	// Build query args
+	$args = array(
+		'post_type' => 'publication',
+		'posts_per_page' => defined('PUBLICATIONS_PER_PAGE') ? PUBLICATIONS_PER_PAGE : 10,
+		'paged' => $page,
+		'orderby' => 'date',
+		'order' => 'DESC'
+	);
+
+	// Add taxonomy query if category is not 'all'
+	if ($category !== 'all') {
+		$args['tax_query'] = array(
+			array(
+				'taxonomy' => 'publication_category',
+				'field' => 'slug',
+				'terms' => $category
+			)
+		);
+	}
+
+	$publications_query = new WP_Query($args);
+	$publications = array();
+
+	if ($publications_query->have_posts()) {
+		while ($publications_query->have_posts()) {
+			$publications_query->the_post();
+
+			$author = get_field('author');
+			$chief_editor = get_field('chief_editor');
+			$publisher = get_field('publisher');
+			$publish_year = get_field('year_and_month_of_publication');
+			$cover_image = get_field('cover_photo');
+
+			$publication = array(
+				'id' => get_the_ID(),
+				'title' => get_the_title(),
+				'permalink' => get_permalink(),
+				'author' => $author,
+				'chief_editor' => $chief_editor,
+				'publisher' => $publisher,
+				'publish_year' => $publish_year,
+				'cover_image' => $cover_image ? array(
+					'url' => $cover_image['url'],
+					'alt' => $cover_image['alt'] ?: ''
+				) : null
+			);
+
+			$publications[] = $publication;
+		}
+		wp_reset_postdata();
+	}
+
+	wp_send_json_success(array(
+		'publications' => $publications,
+		'has_more' => $page < $publications_query->max_num_pages
+	));
+}
+add_action('wp_ajax_filter_publications', 'filter_publications');
+add_action('wp_ajax_nopriv_filter_publications', 'filter_publications');
 
 // AJAX handler for getting available years
 function get_event_years_ajax()

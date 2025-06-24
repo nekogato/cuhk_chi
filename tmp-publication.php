@@ -17,123 +17,238 @@ get_header();
 ?>
 <?php get_template_part('template-parts/roll-menu'); ?>
 
-<div class="section section_content">
-	<img src="<?php echo get_template_directory_uri(); ?>/images/ink_bg5.jpg" class="ink_bg5 scrollin scrollinbottom" alt="Background Image">
+<?php
+while (have_posts()) :
+	the_post();
+	$page_title = get_field("page_title");
+	$page_description = get_field("introduction");
+?>
 
-	<div class="section_center_content small_section_center_content">
-		<h1 class="section_title text1 scrollin scrollinbottom"><?php echo get_field("page_title"); ?></h1>
-		<div class="section_description scrollin scrollinbottom col6"><?php echo get_field('introduction'); ?></div>
+	<div x-data="publicationFilter()">
 
-		<div class="publication_box_list scrollin_p">
+		<div class="section section_content filter_menu_section">
+			<div class="section_center_content small_section_center_content scrollin scrollinbottom">
+				<?php
+				$related_pages = get_field('related_page');
+				if ($related_pages) : ?>
+					<div class="intro_btn_wrapper">
+						<?php foreach ($related_pages as $related_page) : ?>
+							<a href="<?php echo get_permalink($related_page->ID); ?>" class="round_btn text5"><?php echo get_field("page_title", $related_page->ID); ?></a>
+						<?php endforeach; ?>
+					</div>
+				<?php endif; ?>
+				<?php if ($page_title) : ?>
+					<h1 class="section_title text1 scrollin scrollinbottom"><?php echo ($page_title); ?></h1>
+				<?php endif; ?>
+				<?php if ($page_description) : ?>
+					<div class="section_description scrollin scrollinbottom col6"><?php echo ($page_description); ?></div>
+				<?php endif; ?>
+			</div>
+
 			<?php
-			$args = array(
-				'post_type' => 'publication',
-				'posts_per_page' => PUBLICATIONS_PER_PAGE,
-				'orderby' => 'date',
-				'order' => 'DESC'
-			);
-
-			$publications = new WP_Query($args);
-
-			if ($publications->have_posts()) :
-				while ($publications->have_posts()) : $publications->the_post();
-					// Get custom fields
-					$author = get_field('author');
-					$chief_editor = get_field('chief_editor');
-					$publisher = get_field('publisher');
-					$publish_year = get_field('year_and_month_of_publication');
-					$cover_image = get_field('cover_photo');
+			// Get publication categories
+			$publication_categories = get_terms(array(
+				'taxonomy' => 'publication_category',
+				'hide_empty' => true,
+				'orderby' => 'name',
+				'order' => 'ASC'
+			));
 			?>
-					<div class="publication_box scrollin scrollinbottom">
-						<div class="publication_thumb">
-							<div class="thumb">
-								<?php if ($cover_image) : ?>
-									<a href="<?php the_permalink(); ?>">
-										<img src="<?php echo esc_url($cover_image['url']); ?>" alt="<?php echo esc_attr($cover_image['alt']); ?>">
-									</a>
-								<?php endif; ?>
+
+			<?php if (!empty($publication_categories)) : ?>
+				<div class="filter_menu_wrapper">
+					<div class="filter_menu filter_menu_left_bg section_center_content small_section_center_content scrollin scrollinbottom">
+						<div class="filter_menu_content">
+							<div class="filter_checkbox_wrapper text7 filter_switchable_wrapper">
+								<div class="filter_checkbox">
+									<div class="checkbox">
+										<input name="filter" type="radio" id="all"
+											@change="filterByCategory('all')"
+											:checked="activeCategory === 'all'">
+										<label for="all"><span><?php echo cuhk_multilang_text("所有出版物", "", "All Publications"); ?></span></label>
+									</div>
+								</div>
+								<?php foreach ($publication_categories as $category) : ?>
+									<div class="filter_checkbox">
+										<div class="checkbox">
+											<input name="filter" type="radio" id="category-<?php echo esc_attr($category->term_id); ?>"
+												@change="filterByCategory('<?php echo esc_attr($category->slug); ?>')"
+												:checked="activeCategory === '<?php echo esc_attr($category->slug); ?>'">
+											<label for="category-<?php echo esc_attr($category->term_id); ?>">
+												<span>
+													<?php
+													if (function_exists('pll_current_language')) {
+														if (pll_current_language() == 'tc') {
+															$ctermfullname = get_field('tc_name', 'publication_category_' . $category->term_id);
+														} elseif (pll_current_language() == 'sc') {
+															$ctermfullname = get_field('sc_name', 'publication_category_' . $category->term_id);
+														} else {
+															$ctermfullname = get_field('en_name', 'publication_category_' . $category->term_id);
+														}
+														echo $ctermfullname ?: $category->name;
+													} else {
+														echo $category->name;
+													}
+													?></span>
+											</label>
+										</div>
+									</div>
+								<?php endforeach; ?>
 							</div>
 						</div>
-						<div class="publication_text">
-							<div class="publication_text_item text5 book_name"><?php the_title(); ?></div>
-							<?php if ($author) : ?>
-								<div class="publication_text_item">
-									<div class="title text7">
-										<?php 
-										echo cuhk_multilang_text("作者","","Author");
-										?>
-									</div>
-									<div class="text text5"><?php echo ($author); ?></div>
-								</div>
-							<?php elseif ($chief_editor) : ?>
-								<div class="publication_text_item">
-									<div class="title text7"><?php echo cuhk_multilang_text("主編","","Chief Editor"); ?></div>
-									<div class="text text5"><?php echo ($chief_editor); ?></div>
-								</div>
-							<?php endif; ?>
-						</div>
 					</div>
-			<?php
-				endwhile;
-				wp_reset_postdata();
-			endif;
-			?>
+				</div>
+			<?php endif; ?>
 		</div>
 
-		<?php if ($publications->max_num_pages > 1) : ?>
-			<div class="load_more_wrapper scrollin scrollinbottom">
-				<a href="#" class="load_more_btn text6" data-page="1" data-max-pages="<?php echo $publications->max_num_pages; ?>">
-					<div class="icon"></div>
-					<div class="text"><?php echo cuhk_multilang_text("載入更多","","Load more"); ?></div>
-				</a>
+		<div class="section section_content">
+			<img src="<?php echo get_template_directory_uri(); ?>/images/ink_bg5.jpg" class="ink_bg5 scrollin scrollinbottom" alt="Background Image">
+
+			<div class="section_center_content small_section_center_content">
+				<div class="publication_box_list scrollin_p" x-show="!loading">
+					<template x-for="publication in publications" :key="publication.id">
+						<div class="publication_box scrollin scrollinbottom">
+							<div class="publication_thumb">
+								<div class="thumb">
+									<template x-if="publication.cover_image">
+										<a :href="publication.permalink">
+											<img :src="publication.cover_image.url" :alt="publication.cover_image.alt">
+										</a>
+									</template>
+								</div>
+							</div>
+							<div class="publication_text">
+								<div class="publication_text_item text5 book_name" x-html="publication.title"></div>
+								<template x-if="publication.author">
+									<div class="publication_text_item">
+										<div class="title text7">
+											<?php echo cuhk_multilang_text("作者", "", "Author"); ?>
+										</div>
+										<div class="text text5" x-html="publication.author"></div>
+									</div>
+								</template>
+								<template x-if="!publication.author && publication.chief_editor">
+									<div class="publication_text_item">
+										<div class="title text7"><?php echo cuhk_multilang_text("主編", "", "Chief Editor"); ?></div>
+										<div class="text text5" x-html="publication.chief_editor"></div>
+									</div>
+								</template>
+								<template x-if="publication.publisher">
+									<div class="publication_text_item">
+										<div class="title text7"><?php echo cuhk_multilang_text("出版商", "", "Publisher"); ?></div>
+										<div class="text text5" x-html="publication.publisher"></div>
+									</div>
+								</template>
+								<template x-if="publication.publish_year">
+									<div class="publication_text_item">
+										<div class="title text7"><?php echo cuhk_multilang_text("出版年份", "", "Publication Year"); ?></div>
+										<div class="text text5" x-html="publication.publish_year"></div>
+									</div>
+								</template>
+							</div>
+						</div>
+					</template>
+
+					<template x-if="hasMore && !loading">
+						<div class="load_more_wrapper scrollin scrollinbottom">
+							<a href="#" @click.prevent="loadMore()" class="load_more_btn text6">
+								<div class="icon"></div>
+								<div class="text"><?php echo cuhk_multilang_text("載入更多", "", "Load more"); ?></div>
+							</a>
+						</div>
+					</template>
+				</div>
+
+				<!-- Loading indicator -->
+				<div class="publication_box_list" x-show="loading" x-cloak>
+					<div class="loading-indicator" style="text-align: center; padding: 40px;">
+						<p><?php echo cuhk_multilang_text("載入出版物中", "", "Loading publications..."); ?></p>
+					</div>
+				</div>
+
+				<!-- No publications found message -->
+				<div x-show="!loading && publications.length === 0" style="text-align: center; padding: 60px 0;">
+					<p class="text5"><?php echo cuhk_multilang_text("未找到符合所選條件的出版物。", "", "No publications found matching the selected criteria."); ?></p>
+				</div>
 			</div>
-		<?php endif; ?>
+		</div>
+
 	</div>
-</div>
+
+<?php
+endwhile;
+?>
 
 <script>
-	jQuery(document).ready(function($) {
-		$('.load_more_btn').on('click', function(e) {
-			e.preventDefault();
+	var ajaxurl = '<?php echo admin_url('admin-ajax.php'); ?>';
 
-			var button = $(this);
-			var currentPage = parseInt(button.data('page'));
-			var maxPages = parseInt(button.data('max-pages'));
+	function publicationFilter() {
+		return {
+			publications: [],
+			activeCategory: 'all',
+			loading: false,
+			currentPage: 1,
+			hasMore: true,
 
-			$.ajax({
-				url: '<?php echo admin_url('admin-ajax.php'); ?>',
-				type: 'POST',
-				data: {
-					action: 'load_more_publications',
-					page: currentPage + 1,
-					nonce: '<?php echo wp_create_nonce('load_more_publications_nonce'); ?>'
-				},
-				beforeSend: function() {
-					button.find('.text').text('<?php pll_e('Loading...'); ?>');
-					button.addClass('loading');
-				},
-				success: function(response) {
-					if (response.success) {
-						$('.publication_box_list').append(response.data.html);
-						button.data('page', currentPage + 1);
+			init() {
+				this.loadPublications();
+			},
 
-						if (currentPage + 1 >= maxPages) {
-							button.parent().hide();
+			async loadPublications(page = 1, category = 'all', append = false) {
+				this.loading = true;
+
+				try {
+					const response = await fetch(ajaxurl, {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/x-www-form-urlencoded',
+						},
+						body: new URLSearchParams({
+							action: 'filter_publications',
+							nonce: '<?php echo wp_create_nonce('filter_publications_nonce'); ?>',
+							page: page,
+							category: category
+						})
+					});
+
+					const data = await response.json();
+					if (data.success) {
+						if (append) {
+							this.publications = [...this.publications, ...data.data.publications];
+						} else {
+							this.publications = data.data.publications;
 						}
-
-						// Reinitialize scroll animations
-						if (typeof initScrollAnimations === 'function') {
-							initScrollAnimations();
-						}
+						this.hasMore = data.data.has_more;
+						this.currentPage = page;
+						setTimeout(() => {
+							if (typeof doscroll === 'function') {
+								doscroll();
+							}
+							if (typeof initScrollAnimations === 'function') {
+								initScrollAnimations();
+							}
+						}, 300);
 					}
-				},
-				complete: function() {
-					button.find('.text').text('<?php echo cuhk_multilang_text("載入更多","","Load more"); ?>');
-					button.removeClass('loading');
+				} catch (error) {
+					console.error('Error loading publications:', error);
+				} finally {
+					this.loading = false;
 				}
-			});
-		});
-	});
+			},
+
+			filterByCategory(category) {
+				if (this.activeCategory === category) return;
+				this.activeCategory = category;
+				this.currentPage = 1;
+				this.loadPublications(1, category, false);
+			},
+
+			loadMore() {
+				if (!this.hasMore || this.loading) return;
+				this.loadPublications(this.currentPage + 1, this.activeCategory, true);
+			}
+		}
+	}
 </script>
 
 <?php
