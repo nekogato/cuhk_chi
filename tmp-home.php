@@ -455,6 +455,10 @@ get_header(); ?>
 					const data = await response.json();
 					if (data.success) {
 						this.groupedNews = data.data.grouped_news;
+						// Destroy existing swiper if needed
+						if (this.dateSwiper) {
+							this.dateSwiper.destroy();
+						}
 						this.$nextTick(async () => {
 							// Wait for all images within the Swiper container to be fully loaded
 							const container = document.querySelector('.home_news_date_slider .swiper-container');
@@ -468,10 +472,6 @@ get_header(); ?>
 								});
 							}));
 
-							// Destroy existing swiper if needed
-							if (this.dateSwiper) {
-								this.dateSwiper.destroy();
-							}
 
 							dosize();
 
@@ -493,7 +493,6 @@ get_header(); ?>
 								},
 							});
 
-							dosize();
 						});
 					}
 				} catch (error) {
