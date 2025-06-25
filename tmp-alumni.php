@@ -73,7 +73,7 @@ if ($alumni_events): ?>
 											<div class="date_wrapper">
 												<?php
 												$start_datetime = new DateTime($start_date);
-												echo $start_datetime->format('j F Y');
+												echo $start_datetime->format('j/n/y');
 												if ($start_time || $end_time): ?>
 													<br><?php echo $start_time; ?><?php echo $end_time ? '-' . $end_time : ''; ?>
 												<?php endif; ?>
