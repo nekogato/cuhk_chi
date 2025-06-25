@@ -407,7 +407,11 @@ get_header(); ?>
 					slidesPerView: 'auto',
 					speed: 1600,
 					loop: false,
-					spaceBetween: 0
+					spaceBetween: 0,
+					navigation: {
+						nextEl: '.home_news_date_slider .next_btn',
+						prevEl: '.home_news_date_slider .prev_btn',
+					},
 				});
 			},
 
@@ -456,7 +460,11 @@ get_header(); ?>
 								slidesPerView: 'auto',
 								speed: 1600,
 								loop: false,
-								spaceBetween: 0
+								spaceBetween: 0,
+								navigation: {
+									nextEl: '.home_news_date_slider .next_btn',
+									prevEl: '.home_news_date_slider .prev_btn',
+								},
 							});
 							dosize();
 						});
