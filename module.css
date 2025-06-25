@@ -6293,6 +6293,10 @@ body.dragging-scroll {
         padding-bottom: 30px;
     }
 
+    .section_expandable_list {
+    margin-top: 30px;
+    }
+
     /* home */
 
     .home_about_slider_section {
@@ -6465,6 +6469,7 @@ body.dragging-scroll {
 
 
     /* expandable */
+    
 
     .table_flex_item_wrapper {
         display: flex;
@@ -6683,6 +6688,8 @@ body.dragging-scroll {
 
       .people_popup .people_detail_text{
         max-height: none;
+        width: 100%;
+        padding-right: 0px;
       }
 
       .people_popup .people_detail_content{
@@ -6734,6 +6741,10 @@ body.dragging-scroll {
       .people_detail_section .section_expandable_list{
         margin-top: 50px;
       }
+
+      .scholarship_popup .people_detail_photo_wrapper {
+    width: 100%;
+    }
       
       /* top_photo_banner_section */
 
@@ -7503,15 +7514,27 @@ body.dragging-scroll {
         }
 
         .committee_list_slider .prev_btn {
-        width: 50px;
+        width: 30px;
         height: 30px;
         margin-top: -15px;
         }
 
         .committee_list_slider .next_btn {
-        width: 50px;
+        width: 30px;
         height: 30px;
         margin-top: -15px;
+        }
+
+        .committee_list_slider .prev_btn::after {
+            width: 15px;
+            height: 15px;
+            left: 2px;
+        }
+
+        .committee_list_slider .next_btn::after {
+            width: 15px;
+            height: 15px;
+            right: 2px;
         }
 
         .committee_list_slider > .swiper-container {
@@ -7520,15 +7543,27 @@ body.dragging-scroll {
         }
 
         .committee_albums_slider .prev_btn{
-        width: 50px;
+        width: 30px;
         height: 30px;
         margin-top: -15px;
         }
 
         .committee_albums_slider .next_btn{
-        width: 50px;
+        width: 30px;
         height: 30px;
         margin-top: -15px;
+        }
+
+        .committee_albums_slider .prev_btn::after {
+            width: 15px;
+            height: 15px;
+            left: 2px;
+        }
+
+        .committee_albums_slider .next_btn::after {
+            width: 15px;
+            height: 15px;
+            right: 2px;
         }
 
         .committee_albums_slider > .swiper-container {
