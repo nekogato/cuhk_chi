@@ -27,7 +27,8 @@ $args = array(
 	'post_type' => 'department_news',
 	'posts_per_page' => MAX_DEPARTMENT_NEWS,
 	'orderby' => 'date',
-	'order' => 'DESC'
+	'order' => 'DESC',
+    'post_status' => 'publish',
 );
 
 $all_news = new WP_Query($args);

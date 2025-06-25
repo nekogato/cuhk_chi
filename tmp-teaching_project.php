@@ -31,7 +31,8 @@ get_template_part('template-parts/roll-menu', null, array('target_page' => 'stud
 						<?php
                         $args = array(
                             'post_type' => 'teaching_project',
-                            'posts_per_page' => -1, // or any number you want
+                            'posts_per_page' => -1,
+		                    'post_status' => 'publish'
                         );
 
                         $query = new WP_Query($args);

@@ -18,7 +18,8 @@ get_header(); ?>
 			'post_type' => 'announcement',
 			'posts_per_page' => -1,
 			'orderby' => 'date',
-			'order' => 'DESC'
+			'order' => 'DESC',
+    		'post_status' => 'publish',
 		);
 
 		$announcements = new WP_Query($args);

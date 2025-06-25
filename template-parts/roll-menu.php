@@ -180,7 +180,8 @@ if (!empty($ancestor_id)) {
 								'post_parent' => $parent_id,
 								'orderby' => 'menu_order',
 								'order' => 'ASC',
-								'posts_per_page' => -1
+								'posts_per_page' => -1,
+								'post_status' => 'publish'
 							);
 							$child_pages = new WP_Query($args);
 
@@ -259,7 +260,8 @@ if (!$parent_id) {
 								'post_parent' => $parent_id,
 								'orderby' => 'menu_order',
 								'order' => 'ASC',
-								'posts_per_page' => -1
+								'posts_per_page' => -1,
+								'post_status' => 'publish'
 							);
 							$child_pages = new WP_Query($args);
 

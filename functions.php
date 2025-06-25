@@ -306,7 +306,8 @@ function load_more_mphil_phd_research_post()
 		'posts_per_page' => MPHIL_PHD_RESEARCH_MAX_POSTS,
 		'orderby' => 'date',
 		'order' => 'DESC',
-		'paged' => $page
+		'paged' => $page,
+		'post_status' => 'publish'
 	);
 
 	$query = new WP_Query($args);
@@ -390,7 +391,8 @@ function load_more_publications()
 		'posts_per_page' => PUBLICATIONS_PER_PAGE,
 		'paged' => $page,
 		'orderby' => 'date',
-		'order' => 'DESC'
+		'order' => 'DESC',
+		'post_status' => 'publish'
 	);
 
 	$publications = new WP_Query($args);
@@ -466,7 +468,8 @@ function load_more_news()
 		'posts_per_page' => NEWS_PER_PAGE,
 		'offset' => $offset,
 		'orderby' => 'date',
-		'order' => 'DESC'
+		'order' => 'DESC',
+		'post_status' => 'publish'
 	);
 
 	$query = new WP_Query($args);
@@ -606,6 +609,7 @@ function load_postgraduate_students()
 		'paged' => $page,
 		'orderby' => 'title',
 		'order' => 'ASC',
+		'post_status' => 'publish',
 		'tax_query' => array(
 			array(
 				'taxonomy' => 'people_category',
@@ -756,7 +760,8 @@ function load_teaching_staff()
 		'paged' => $page,
 		'orderby' => 'title',
 		'order' => strtoupper($sort_order),
-		'tax_query' => $tax_query
+		'tax_query' => $tax_query,
+		'post_status' => 'publish'
 	);
 
 	// No meta_query needed anymore
@@ -896,7 +901,8 @@ function load_courses()
 		'posts_per_page' => -1,
 		'orderby' => 'title',
 		'order' => 'ASC',
-		'tax_query' => $tax_query
+		'tax_query' => $tax_query,
+		'post_status' => 'publish'
 	);
 
 	$courses_query = new WP_Query($args);
@@ -1012,6 +1018,7 @@ function load_more_department_news()
 		'paged' => $page + 1, // +1 because we're loading the next page
 		'orderby' => 'date',
 		'order' => 'DESC',
+		'post_status' => 'publish',
 		'offset' => ($page * MAX_DEPARTMENT_NEWS) // +2 to skip featured posts
 	);
 
@@ -1083,6 +1090,7 @@ function load_events_with_year()
 		'meta_key'       => 'start_date', // for ordering
 		'orderby'        => 'meta_value',
 		'order'          => 'DESC',
+		'post_status' => 'publish'
 	);
 
 	$meta_query = array();
@@ -1204,7 +1212,8 @@ function load_research_projects()
 			)
 		),
 		'orderby' => 'title',
-		'order' => 'ASC'
+		'order' => 'ASC',
+		'post_status' => 'publish'
 	);
 
 	$query = new WP_Query($args);
@@ -1269,6 +1278,7 @@ function filter_events()
 		'meta_key' => 'start_date',
 		'orderby' => 'meta_value',
 		'order' => 'ASC',
+		'post_status' => 'publish',
 		'meta_query' => array(
 			array(
 				'key' => 'start_date',
@@ -1361,7 +1371,8 @@ function filter_publications()
 		'posts_per_page' => defined('PUBLICATIONS_PER_PAGE') ? PUBLICATIONS_PER_PAGE : 10,
 		'paged' => $page,
 		'orderby' => 'date',
-		'order' => 'DESC'
+		'order' => 'DESC',
+		'post_status' => 'publish'
 	);
 
 	// Add taxonomy query if category is not 'all'
@@ -1664,7 +1675,8 @@ function filter_galleries_ajax()
 		'posts_per_page' => $posts_per_page,
 		'paged' => $page,
 		'orderby' => 'date',
-		'order' => 'DESC'
+		'order' => 'DESC',
+		'post_status' => 'publish'
 	);
 
 	// Add category filter

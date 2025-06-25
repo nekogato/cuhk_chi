@@ -46,6 +46,7 @@ while (have_posts()) :
 							'meta_key' => 'start_date',
 							'orderby' => 'meta_value',
 							'order' => 'DESC',
+							'post_status' => 'publish'
 						);
 						$featured_query = new WP_Query($featured_args);
 

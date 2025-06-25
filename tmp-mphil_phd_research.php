@@ -35,7 +35,8 @@ get_header();
 				'posts_per_page' => MPHIL_PHD_RESEARCH_MAX_POSTS,
 				'orderby' => 'date',
 				'order' => 'DESC',
-				'paged' => 1
+				'paged' => 1,
+				'post_status' => 'publish'
 			);
 
 			$query = new WP_Query($args);

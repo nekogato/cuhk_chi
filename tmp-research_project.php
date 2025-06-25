@@ -31,7 +31,8 @@ $args = array(
 	'meta_key' => 'funding_end_year',
 	'orderby' => 'meta_value_num',
 	'order' => 'DESC',
-	'fields' => 'ids'
+	'fields' => 'ids',
+	'post_status' => 'publish'
 );
 $query = new WP_Query($args);
 
