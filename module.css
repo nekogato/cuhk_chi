@@ -1731,6 +1731,10 @@ body.dragging-scroll {
     margin-top: 15px;
 }
 
+.home_news_section .cat_legend_item .cat_icon{
+    margin-top: auto;
+}
+
 .home_news_section .cat_circle{
     width: 15px;
     height: 15px;
@@ -7446,9 +7450,11 @@ body.dragging-scroll {
 
 
 .home_news_loading {
-    width: 100%;
-    text-align:center;
-    padding:100px 20px;
-    border-left: 1px solid #575454;
-    border-right: 1px solid #575454;
+      text-align: center;
+  padding: 50px 20px;
+  border-left: 1px solid #575454;
+  border-right: 1px solid #575454;
+  margin-top: 30px;
+  margin-left: 25px;
+  margin-right: 25px;
 }
