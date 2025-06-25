@@ -1143,6 +1143,7 @@ function dosize(){
 		}else{
 			$(this).width(pwidth/7)
 		}
+		console.log(pwidth,$(this).width())
 	})
 
 	$(".home_promotion_box").each(function(){
