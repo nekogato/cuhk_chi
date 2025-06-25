@@ -14,6 +14,7 @@ if (have_posts()) :
 ?>
 
 		<div class="section section_content section_intro">
+			<img src="images/ink_bg6.jpg" class="ink_bg6 scrollin scrollinbottom">
 			<div class="section_center_content small_section_center_content scrollin scrollinbottom">
 				<h1 class="section_title text1"><?php the_title(); ?></h1>
 				<div class="section_description col6"><?php the_field('introduction'); ?></div>
