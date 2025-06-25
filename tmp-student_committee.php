@@ -99,6 +99,7 @@ if (have_posts()) :
 																</a>
 															</div>
 														<?php endforeach; ?>
+														<div class="swiper-slide"></div>
 													<?php endif; ?>
 												</div>
 											</div>

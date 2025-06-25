@@ -219,6 +219,7 @@ if ($alumni_events): ?>
 														</a>
 													</div>
 												<?php endforeach; ?>
+												<div class="swiper-slide"></div>
 											</div>
 										</div>
 										<div class="dot_wrapper"></div>

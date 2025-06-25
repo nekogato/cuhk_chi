@@ -825,7 +825,7 @@ body.dragging-scroll {
 }
 
 .list_item_col + .list_item_col > div{
-    padding-left: 20px;
+    padding-left: 50px;
 }
 
 .list_item_col a{
@@ -5749,6 +5749,7 @@ body.dragging-scroll {
     justify-content: start;
     gap: 10px;
     margin-top: 20px;
+    flex-wrap: wrap;
 }
 
 .committee_album_slider .dot_wrapper .swiper-pagination-bullet{
@@ -7494,6 +7495,49 @@ body.dragging-scroll {
       .expandable_item.active .hidden_content {
         padding-bottom: 30px;
       }
+
+      /* student Association */
+
+      .committee_list_slider {
+        margin-top: 50px;
+        }
+
+        .committee_list_slider .prev_btn {
+        width: 50px;
+        height: 30px;
+        margin-top: -15px;
+        }
+
+        .committee_list_slider .next_btn {
+        width: 50px;
+        height: 30px;
+        margin-top: -15px;
+        }
+
+        .committee_list_slider > .swiper-container {
+        margin-left: 40px;
+        margin-right: 40px;
+        }
+
+        .committee_albums_slider .prev_btn{
+        width: 50px;
+        height: 30px;
+        margin-top: -15px;
+        }
+
+        .committee_albums_slider .next_btn{
+        width: 50px;
+        height: 30px;
+        margin-top: -15px;
+        }
+
+        .committee_albums_slider > .swiper-container {
+        margin-left: 40px;
+        }
+
+        .committee_album_slider .dot_wrapper {
+        gap: 5px;
+        }
 }
 
 
