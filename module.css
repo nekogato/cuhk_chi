@@ -6891,6 +6891,10 @@ body.dragging-scroll {
       .home_promotion_box .big_num{
         width: 60px;
     }
+
+    .home_promotion_box .image_wrapper{
+        max-width: 300px;
+    }
     
     /* top_photo_banner_section */
 
