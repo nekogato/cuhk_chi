@@ -412,6 +412,11 @@ get_header(); ?>
 						nextEl: '.home_news_date_slider .next_btn',
 						prevEl: '.home_news_date_slider .prev_btn',
 					},
+					on: {
+						init: function () {
+							dosize();
+						}
+					},
 				});
 			},
 
@@ -464,6 +469,11 @@ get_header(); ?>
 								navigation: {
 									nextEl: '.home_news_date_slider .next_btn',
 									prevEl: '.home_news_date_slider .prev_btn',
+								},
+								on: {
+									init: function () {
+										dosize();
+									}
 								},
 							});
 							dosize();
