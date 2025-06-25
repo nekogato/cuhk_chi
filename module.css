@@ -6670,7 +6670,7 @@ body.dragging-scroll {
       .people_detail_incontent::before {
         content: "";
         position: absolute;
-        left: 20%;
+        left: -15px;
         top: 15%;
         bottom: auto;
         height: 400px;
@@ -7488,6 +7488,16 @@ body.dragging-scroll {
         width: 85%;
         margin: auto;
         padding: 50px 0px;
+      }
+
+      .people_detail_photo_wrapper {
+        width: 40%;
+        margin: auto;
+        }
+
+      .people_detail_incontent::before {
+        left: -15px;
+        height: 200px;
       }
 }
 
