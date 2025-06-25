@@ -6332,7 +6332,7 @@ body.dragging-scroll {
       .home_news_date_slider_inwrapper {
         padding-left: 10px;
         padding-right: 10px;
-        margin-top: 30px;
+        margin-top: 0px;
       }
 
       .home_news_date_slider_wrapper .prev_btn {
@@ -7455,6 +7455,7 @@ body.dragging-scroll {
   border-left: 1px solid #575454;
   border-right: 1px solid #575454;
   margin-top: 30px;
+  margin-bottom: 30px;
   margin-left: 25px;
   margin-right: 25px;
 }

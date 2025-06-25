@@ -455,11 +455,27 @@ get_header(); ?>
 					const data = await response.json();
 					if (data.success) {
 						this.groupedNews = data.data.grouped_news;
-						this.$nextTick(() => {
+						this.$nextTick(async () => {
+							// Wait for all images within the Swiper container to be fully loaded
+							const container = document.querySelector('.home_news_date_slider .swiper-container');
+							const images = container.querySelectorAll('img');
+
+							await Promise.all(Array.from(images).map(img => {
+								if (img.complete) return Promise.resolve();
+								return new Promise(resolve => {
+									img.addEventListener('load', resolve);
+									img.addEventListener('error', resolve); // Resolve on error too to avoid hang
+								});
+							}));
+
+							// Destroy existing swiper if needed
 							if (this.dateSwiper) {
 								this.dateSwiper.destroy();
 							}
+
 							dosize();
+
+							// Initialize Swiper
 							this.dateSwiper = new Swiper('.home_news_date_slider .swiper-container', {
 								autoplay: false,
 								slidesPerView: 'auto',
@@ -476,6 +492,7 @@ get_header(); ?>
 									}
 								},
 							});
+
 							dosize();
 						});
 					}
