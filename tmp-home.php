@@ -411,12 +411,7 @@ get_header(); ?>
 					navigation: {
 						nextEl: '.home_news_date_slider .next_btn',
 						prevEl: '.home_news_date_slider .prev_btn',
-					},
-					on: {
-						init: function () {
-							dosize();
-						}
-					},
+					}
 				});
 			},
 
@@ -472,9 +467,6 @@ get_header(); ?>
 								});
 							}));
 
-
-							dosize();
-
 							// Initialize Swiper
 							this.dateSwiper = new Swiper('.home_news_date_slider .swiper-container', {
 								autoplay: false,
@@ -485,12 +477,7 @@ get_header(); ?>
 								navigation: {
 									nextEl: '.home_news_date_slider .next_btn',
 									prevEl: '.home_news_date_slider .prev_btn',
-								},
-								on: {
-									init: function () {
-										dosize();
-									}
-								},
+								}
 							});
 
 						});
@@ -499,6 +486,7 @@ get_header(); ?>
 					console.error('Error loading news:', error);
 				} finally {
 					this.loading = false;
+					dosize();
 				}
 			},
 
