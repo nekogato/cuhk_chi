@@ -7603,8 +7603,12 @@ body.dragging-scroll {
       }
 
       .people_detail_photo_wrapper {
-        width: 40%;
+        width: 100%;
         margin: auto;
+        }
+
+        .single-profile .people_detail_photo_wrapper{
+        width: 50%;
         }
 
       .people_detail_incontent::before {
