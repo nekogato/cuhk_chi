@@ -93,18 +93,17 @@
 }
 
 .back_btn_wrapper .back_btn::before{
-    content:"";
-   width: 0px;
-   height: 0px;
-   border-style: solid;
-   border-width: 6px 10px 6px 0;
-   border-color: transparent #63629B transparent transparent;
-   transform: rotate(0deg);
-    position: absolute;
-  left: 0px;
-  top:0px;
+   content: "";
+  width: 8px;
+  height: 8px;
+  transform: rotate(-45deg);
+  position: absolute;
+  left: 3px;
+  top: 0px;
   bottom: 0px;
   margin: auto;
+  border-top: 1px solid #63629B;
+  border-left: 1px solid #63629B;
 }
 
 .submenu_btn_wrapper{
@@ -6713,8 +6712,8 @@ body.dragging-scroll {
         position: absolute;
         left: -15px;
         top: 15%;
-        bottom: auto;
-        height: 400px;
+        bottom: auto;    
+        height: 85%;
       }
 
       .people_detail_text {
