@@ -4503,6 +4503,7 @@ body.dragging-scroll {
     cursor: pointer;
     padding-bottom: 100%;
     position: relative;
+    display: block;
 }
 
 .student_list_item > .photo:hover{
