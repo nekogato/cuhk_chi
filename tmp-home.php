@@ -450,43 +450,51 @@ get_header(); ?>
 					const data = await response.json();
 					if (data.success) {
 						this.groupedNews = data.data.grouped_news;
-						// Destroy existing swiper if needed
+
+						// Destroy existing swiper
 						if (this.dateSwiper) {
 							this.dateSwiper.destroy();
+							this.dateSwiper = null;
 						}
-						this.$nextTick(async () => {
-							// Wait for all images within the Swiper container to be fully loaded
-							const container = document.querySelector('.home_news_date_slider .swiper-container');
-							const images = container.querySelectorAll('img');
-
-							await Promise.all(Array.from(images).map(img => {
-								if (img.complete) return Promise.resolve();
-								return new Promise(resolve => {
-									img.addEventListener('load', resolve);
-									img.addEventListener('error', resolve); // Resolve on error too to avoid hang
-								});
-							}));
-
-							// Initialize Swiper
-							this.dateSwiper = new Swiper('.home_news_date_slider .swiper-container', {
-								autoplay: false,
-								slidesPerView: 'auto',
-								speed: 1600,
-								loop: false,
-								spaceBetween: 0,
-								navigation: {
-									nextEl: '.home_news_date_slider .next_btn',
-									prevEl: '.home_news_date_slider .prev_btn',
-								}
-							});
-
-						});
 					}
 				} catch (error) {
 					console.error('Error loading news:', error);
 				} finally {
 					this.loading = false;
-					dosize();
+
+					this.$nextTick(async () => {
+						// Wait for Alpine to make .swiper-container visible via x-show="!loading"
+						const container = document.querySelector('.home_news_date_slider .swiper-container');
+
+						// Wait again for Alpine's DOM transition (if any)
+						await new Promise(resolve => requestAnimationFrame(resolve));
+
+						// Wait for all images to be fully loaded
+						const images = container.querySelectorAll('img');
+						await Promise.all(Array.from(images).map(img => {
+							if (img.complete) return Promise.resolve();
+							return new Promise(resolve => {
+								img.addEventListener('load', resolve);
+								img.addEventListener('error', resolve);
+							});
+						}));
+
+						// Initialize Swiper
+						this.dateSwiper = new Swiper('.home_news_date_slider .swiper-container', {
+							autoplay: false,
+							slidesPerView: 'auto',
+							speed: 1600,
+							loop: false,
+							spaceBetween: 0,
+							navigation: {
+								nextEl: '.home_news_date_slider .next_btn',
+								prevEl: '.home_news_date_slider .prev_btn',
+							}
+						});
+
+						// Resize layout after Swiper initializes
+						dosize();
+					});
 				}
 			},
 
