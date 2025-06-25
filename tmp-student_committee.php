@@ -99,7 +99,6 @@ if (have_posts()) :
 																</a>
 															</div>
 														<?php endforeach; ?>
-														<div class="swiper-slide"></div>
 													<?php endif; ?>
 												</div>
 											</div>
@@ -107,6 +106,7 @@ if (have_posts()) :
 										</div>
 									</div>
 								<?php endwhile; ?>
+								<div class="swiper-slide"></div>
 							</div>
 						</div>
 						<div class="prev_btn"></div>
