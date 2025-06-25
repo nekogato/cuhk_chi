@@ -6745,6 +6745,14 @@ body.dragging-scroll {
       .scholarship_popup .people_detail_photo_wrapper {
     width: 100%;
     }
+
+        .people_detail_content {
+        display: block;
+        }
+
+        .back_btn_wrapper {
+        margin-bottom: 25px;
+        }
       
       /* top_photo_banner_section */
 
