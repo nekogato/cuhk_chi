@@ -4500,6 +4500,7 @@ body.dragging-scroll {
 }
 
 .student_list_item > .photo{
+    width: 100%;
     cursor: pointer;
     padding-bottom: 100%;
     position: relative;
