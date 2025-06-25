@@ -1625,6 +1625,12 @@ body.dragging-scroll {
     border-right:1px solid #575454;
 }
 
+
+.home_news_date_slider_wrapper.swiper-button-disabled{
+    opacity: 0.5;
+    pointer-events: none;
+}
+
 .home_news_date_slider_wrapper .swiper-container{
     border-left:1px solid #575454;
     border-right:1px solid #575454;
@@ -6354,10 +6360,22 @@ body.dragging-scroll {
         margin-right: 100px;
         }
 
+        .home_news_year_slider .prev_btn::after {
+        width: 15px;
+        height: 15px;
+          left: 3px;
+        }
+
       .home_news_year_slider .next_btn {
         width: 40px;
         height: 20px;
         margin-left: 100px;
+        }
+
+        .home_news_year_slider .next_btn::after {
+        width: 15px;
+        height: 15px;
+          right: 3px;
         }
 
     /* section_list_content */
