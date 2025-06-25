@@ -27,8 +27,8 @@ get_header();
 			<?php
 			$args = array(
 				'post_type' => 'profile',
-				'posts_per_page' => -1,
-    			'post_status' => 'publish', 
+				'posts_per_page' => -1, 
+    			'post_status' => 'publish',
 				'tax_query' => array(
 					array(
 						'taxonomy' => 'people_category',

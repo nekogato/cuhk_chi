@@ -824,6 +824,26 @@ body.dragging-scroll {
     align-items: start;
 }
 
+.list_item_col + .list_item_col > div{
+    padding-left: 20px;
+}
+
+.list_item_col a{
+    color:#736562
+}
+
+.list_item_col a:hover{
+    color:#009594
+}
+
+.list_item_col.text_c1 a{
+    color:#575792
+}
+
+.list_item_col.text_c1 a:hover{
+    color:#009594
+}
+
 .inner_list_item_col .free_text ul li + li {
     margin-top: 5px;
   }
@@ -6111,6 +6131,14 @@ body.dragging-scroll {
     color:#63629B !important;
 }
 
+.text_c1 a{
+    color:#63629B !important;
+}
+
+.text_c1 a:hover{
+    color:#009594 !important;
+}
+
 .text_c2{
     color:#5C728B !important;
 }
@@ -6420,6 +6448,11 @@ body.dragging-scroll {
     .list_item_row .list_item_col{
         width: 100%;
     }
+
+    .list_item_col + .list_item_col > div{
+        padding-left: 0px;
+    }
+
 
     .list_item_col {
         border-bottom: none;
