@@ -4650,7 +4650,7 @@ body.dragging-scroll {
 
 .people_detail_text .position{
     font-family: "richmond-text","Chiron Sung HK WS", sans-serif;
-    color:#62629e;
+    /* color:#62629e; */
 }
 
 .people_detail_text .qualifications{
@@ -6205,7 +6205,6 @@ body.dragging-scroll {
 
 @media screen and (max-width: 1023px) { 
 
-
     .section_description{
         width: auto;
     }
@@ -6294,6 +6293,16 @@ body.dragging-scroll {
 
     .section_expandable_list {
     margin-top: 30px;
+    }
+
+    .resource_content_section .section_expandable_list + .section_expandable_list {
+    margin-top: 30px;
+    }
+
+
+    .resource_top_section .section_introduction.col6{
+        width: 100%;
+        margin-top: 30px;
     }
 
     /* home */
@@ -6825,6 +6834,10 @@ body.dragging-scroll {
     gap: 25px;
     padding-left: 15px;
     padding-right: 15px;
+    }
+
+    .roll_top_menu .menu-item .a_wrapper a {
+    padding: 10px 10px;
     }
 
     .vertical_text_wrapper .date{
