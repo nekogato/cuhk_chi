@@ -1626,7 +1626,7 @@ body.dragging-scroll {
 }
 
 
-.home_news_date_slider_wrapper.swiper-button-disabled{
+.home_news_date_slider_wrapper .swiper-button-disabled{
     opacity: 0.5;
     pointer-events: none;
 }
