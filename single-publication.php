@@ -12,6 +12,7 @@ get_header();
 <div class="section section_content people_detail_section">
 	<div class="section_center_content small_section_center_content">
 		<div class="people_detail_content">
+			<div class="back_btn_wrapper mobile_show"><a href="javascript:history.back()" class="back_btn"><?php echo cuhk_multilang_text("返回","","Back"); ?></a></div>
 			<div class="people_detail_incontent">
 				<?php
 				while (have_posts()) :
@@ -27,7 +28,6 @@ get_header();
 					$composition = get_field('composition');
 				?>
 
-					<div class="back_btn_wrapper mobile_show"><a href="javascript:history.back()" class="back_btn"><?php echo cuhk_multilang_text("返回","","Back"); ?></a></div>
 
 					<div class="people_detail_photo_wrapper scrollin scrollinbottom">
 						<?php if ($cover_image) : ?>
