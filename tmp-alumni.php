@@ -12,6 +12,7 @@ get_header();
 <?php get_template_part('template-parts/roll-menu'); ?>
 
 <div class="section section_content section_intro">
+	<img src="<?php echo get_template_directory_uri(); ?>/images/ink_bg6.jpg" class="ink_bg6 scrollin scrollinbottom">
 	<div class="section_center_content small_section_center_content">
 		<h1 class="section_title text1 scrollin scrollinbottom"><?php the_title(); ?></h1>
 		<?php if (get_field('introduction')): ?>
