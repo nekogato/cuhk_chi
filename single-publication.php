@@ -26,6 +26,9 @@ get_header();
 					$abstract = get_field('abstract');
 					$composition = get_field('composition');
 				?>
+
+					<div class="back_btn_wrapper mobile_show"><a href="javascript:history.back()" class="back_btn"><?php echo cuhk_multilang_text("返回","","Back"); ?></a></div>
+
 					<div class="people_detail_photo_wrapper scrollin scrollinbottom">
 						<?php if ($cover_image) : ?>
 							<div class="people_detail_photo people_detail_photo_shadow">
@@ -36,7 +39,7 @@ get_header();
 						<?php endif; ?>
 					</div>
 					<div class="people_detail_text scrollin scrollinbottom">
-                        <div class="back_btn_wrapper"><a href="javascript:history.back()" class="back_btn"><?php echo cuhk_multilang_text("返回","","Back"); ?></a></div>
+                        <div class="back_btn_wrapper mobile_hide"><a href="javascript:history.back()" class="back_btn"><?php echo cuhk_multilang_text("返回","","Back"); ?></a></div>
 						<div class="name text3"><?php the_field("title"); ?></div>
 						<div class="info_table text6">
 							<div class="table_flex_item_wrapper">

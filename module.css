@@ -7607,7 +7607,7 @@ body.dragging-scroll {
         margin: auto;
         }
 
-        .single-profile .people_detail_photo_wrapper{
+        .single-profile .people_detail_photo_wrapper, .single-publication .people_detail_photo_wrapper{
         width: 50%;
         }
 
