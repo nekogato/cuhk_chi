@@ -1361,7 +1361,7 @@ p:first-child{
 
 
 	.footer{
-
+    padding-top: 50px;
 	}
 
 	.footer_menu_list_wrapper{
@@ -1388,6 +1388,10 @@ p:first-child{
 		gap: 40px;  
 		align-items: start;
 	  }
+
+	  .footer_row_wrapper + .footer_row_wrapper {
+		margin-top: 50px;
+		}
 
 
 

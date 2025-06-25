@@ -30,7 +30,7 @@
                                 if( have_rows('menu') ):
                                     ?>
                                     <div class="footer_menu_list">
-                                        <div class="t1 text6"><a><?php echo $group_name;?></a></div>
+                                        <div class="t1 text6"><span><?php echo $group_name;?></span></div>
                                         <ul>
                                             <?php
                                             while( have_rows('menu') ) : the_row();
@@ -55,7 +55,7 @@
                                 if( have_rows('menu') ):
                                     ?>
                                     <div class="footer_menu_list">
-                                        <div class="t1 text6"><a><?php echo $group_name;?></a></div>
+                                        <div class="t1 text6"><span><?php echo $group_name;?></span></div>
                                         <ul>
                                             <?php
                                             while( have_rows('menu') ) : the_row();
@@ -80,7 +80,7 @@
                                 if( have_rows('menu') ):
                                     ?>
                                     <div class="footer_menu_list">
-                                        <div class="t1 text6"><a><?php echo $group_name;?></a></div>
+                                        <div class="t1 text6"><span><?php echo $group_name;?></span></div>
                                         <ul>
                                             <?php
                                             while( have_rows('menu') ) : the_row();

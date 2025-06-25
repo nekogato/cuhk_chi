@@ -4059,6 +4059,7 @@ body.dragging-scroll {
     gap: 5px;
     margin-top: 10px;
     flex-wrap: wrap;
+    line-height: 1em;
 }
 
 .big_alphabet_list_wrapper .alphabet_list{
@@ -4073,10 +4074,17 @@ body.dragging-scroll {
     color:#63629B
 }
 
-.big_alphabet_list_wrapper .alphabet_list li + li{
-    padding-left: 20px;
-    margin-left: 20px;
-    border-left:1px solid #63629B;
+.big_alphabet_list_wrapper .alphabet_list li{
+    padding-right: 20px;
+    margin-right: 20px;
+    border-right:1px solid #63629B;
+
+}
+
+.big_alphabet_list_wrapper .alphabet_list li:last-child{
+    padding-right: 0px;
+    margin-right: 0px;
+    border-right:none;
 }
 
 .filter_checkbox_wrapper{
@@ -4493,6 +4501,8 @@ body.dragging-scroll {
 
 .student_list_item > .photo{
     cursor: pointer;
+    padding-bottom: 100%;
+    position: relative;
 }
 
 .student_list_item > .photo:hover{
@@ -4500,7 +4510,13 @@ body.dragging-scroll {
 }
 
 .student_list_item > .photo img{
+    position: absolute;
+    left: 0px;
+    top:0px;
+    height: 100%;
     width: 100%;
+    object-position: center center;
+    object-fit: cover;
 }
 
 .people_popup{
@@ -6548,9 +6564,20 @@ body.dragging-scroll {
         gap: 20px;
       }
 
+      .big_alphabet_list_wrapper .alphabet_list li{
+        padding-right: 10px;
+        margin-right: 10px;
+
+    }
+
+    .big_alphabet_list_wrapper .alphabet_list li:last-child{
+        padding-right: 0px;
+        margin-right: 0px;
+    }
+
     .alphabet_list_wrapper .alphabet_list{
-        gap: 2px 4px;
-        margin-top: 5px;
+        gap: 10px 4px;
+        margin-top: 10px;
     }
     
     .filter_dropdown_wrapper .filter_dropdown .swiper-slide > div {
@@ -6739,6 +6766,12 @@ body.dragging-scroll {
 
 
 @media screen and (max-width: 800px) { 
+
+    .scroll-inner {
+    gap: 25px;
+    padding-left: 15px;
+    padding-right: 15px;
+    }
 
     .vertical_text_wrapper .date{
         margin-left: 0px;
@@ -7231,6 +7264,10 @@ body.dragging-scroll {
       }
 
     /* song */
+
+    .section_song {
+    padding-top: 30px;
+    }
 
     .song_bg {
         height: 250px;

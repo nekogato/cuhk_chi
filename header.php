@@ -70,7 +70,7 @@ if (pll_current_language() == 'sc') {
 						?>
 
 						<div class="dropdown_menu_list">
-							<div class="t1 text5"><a><?php echo $group_name;?></a></div>
+							<div class="t1 text5"><span><?php echo $group_name;?></span></div>
 							<ul>
 								<?php
 								while( have_rows('menu') ) : the_row();
@@ -103,7 +103,7 @@ if (pll_current_language() == 'sc') {
 						?>
 
 						<div class="dropdown_menu_list">
-							<div class="t1 text5"><a><?php echo $group_name;?></a></div>
+							<div class="t1 text5"><span><?php echo $group_name;?></span></div>
 							<ul>
 								<?php
 								while( have_rows('menu') ) : the_row();
@@ -136,7 +136,7 @@ if (pll_current_language() == 'sc') {
 						?>
 
 						<div class="dropdown_menu_list">
-							<div class="t1 text5"><a><?php echo $group_name;?></a></div>
+							<div class="t1 text5"><span><?php echo $group_name;?></span></div>
 							<ul>
 								<?php
 								while( have_rows('menu') ) : the_row();
