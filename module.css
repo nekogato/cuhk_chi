@@ -6269,6 +6269,7 @@ body.dragging-scroll {
     .top_photo_banner_section{
         padding-top: 30px;
         padding-bottom: 30px;
+        padding-top: 0px;
     }
 
     .plain_text_section{
@@ -6778,6 +6779,8 @@ body.dragging-scroll {
         right: 0px;
       }
 
+      .top_photo_banner_section
+
       /* scheme */
       .scheme_unit_box_inwrapper {
         display: flex;
@@ -6999,7 +7002,8 @@ body.dragging-scroll {
     /* top_photo_banner_section */
 
     .top_photo_banner_section .flex{
-        display: block;
+        flex-direction: column-reverse;
+        display: flex;
     }
     .top_photo_banner_section .col{
         display: block;
@@ -7087,7 +7091,7 @@ body.dragging-scroll {
         float: none;
     }
     .section_left_right_content .col+.col{
-        margin-top: 50px;
+        margin-top: 25px;
     }
 
     .section_left_right_content .flexible_layout_photo {

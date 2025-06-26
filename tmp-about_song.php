@@ -126,10 +126,10 @@ get_header();
 		<div class="song_section_intro scrollin scrollinbottom">
 			<div class="section_center_content small_section_center_content">
 				<?php if (get_field('section_name')) : ?>
-					<h1 class="section_title text1 scrollin scrollinbottom"><?php the_field('section_name'); ?></h1>
+					<h1 class="section_title text1 scrollin scrollinbottom"><?php echo wp_kses_post(get_field('section_name')); ?></h1>
 				<?php endif; ?>
 				<?php if (get_field('section_description')) : ?>
-					<div class="section_description scrollin scrollinbottom col6"><?php the_field('section_description'); ?></div>
+					<div class="section_description scrollin scrollinbottom col6"><?php echo wp_kses_post(get_field('section_description')); ?></div>
 				<?php endif; ?>
 			</div>
 		</div>
@@ -139,7 +139,7 @@ get_header();
 		<div class="section_center_content small_section_center_content scrollin scrollinbottom">
 			<?php if (get_field('song_info')) : ?>
 				<div class="basic_description free_text" style="color:#6f6ea6">
-					<?php the_field('song_info'); ?>
+					<?php echo wp_kses_post(get_field('song_info')); ?>
 				</div>
 			<?php endif; ?>
 
@@ -149,7 +149,7 @@ get_header();
 						<div class="col_spacing">
 							<div class="left_content free_text" style="color:#6f6ea6">
 								<?php if (get_field('song_lyrics')) : ?>
-									<?php the_field('song_lyrics'); ?>
+									<?php echo wp_kses_post(get_field('song_lyrics')); ?>
 								<?php endif; ?>
 							</div>
 						</div>
@@ -167,7 +167,7 @@ get_header();
 												<img src="<?php echo esc_url($song_img['sizes']['xl']); ?>" alt="<?php echo esc_attr($song_img['alt']); ?>">
 											</div>
 											<?php if (get_field('song_img_caption')) : ?>
-												<div class="caption"><?php the_field('song_img_caption'); ?></div>
+												<div class="caption"><?php echo wp_kses_post(get_field('song_img_caption')); ?></div>
 											<?php endif; ?>
 										</div>
 									<?php endif; ?>
@@ -175,7 +175,7 @@ get_header();
 									<?php if (get_field('song_remark')) : ?>
 										<div class="flexible_layout flexible_layout_freetext scrollin scrollinbottom">
 											<div class="free_text text8">
-												<?php the_field('song_remark'); ?>
+												<?php echo wp_kses_post(get_field('song_remark')); ?>
 											</div>
 										</div>
 									<?php endif; ?>
