@@ -6515,6 +6515,15 @@ body.dragging-scroll {
 
       /* thumb_text_box_slider_wrapper */
 
+
+      .thumb_text_box_slider_wrapper{
+          margin-top: 20px;
+      }
+
+      .alumni_story_section .thumb_text_box_slider_wrapper{
+          margin-top: 20px;
+      }
+
     .thumb_text_box_slider_wrapper .prev_btn{
         left: 15px;
         width: 30px;
@@ -6558,6 +6567,9 @@ body.dragging-scroll {
 
       /* thumb_text_box_slider_wrapper2 */
 
+      .thumb_text_box_slider_wrapper2{
+          margin-top: 20px;
+      }
 
     .thumb_text_box_slider_wrapper2 .prev_btn{
         left: 15px;
