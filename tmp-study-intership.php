@@ -87,6 +87,7 @@ if (have_posts()) :
 					?>
 						<div class="section_expandable_list switchable_section_expandable_list <?php echo $is_active; ?>" data-id="<?php echo esc_attr($filter_id); ?>">
 							<?php 
+							var_dump(have_rows('expandable_items'));
 							if (have_rows('expandable_items')): ?>
 								<?php
 								$item_index = 1;
