@@ -233,6 +233,8 @@ endwhile;
 					console.error('Error loading publications:', error);
 				} finally {
 					this.loading = false;
+					dosize();
+					doscroll();
 				}
 			},
 

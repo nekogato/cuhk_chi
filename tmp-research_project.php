@@ -283,6 +283,8 @@ $initial_year = isset($_GET['active_year']) ? intval($_GET['active_year']) : $ma
 					console.error('Error loading projects:', error);
 				} finally {
 					this.loading = false;
+					dosize();
+					doscroll();
 				}
 			},
 

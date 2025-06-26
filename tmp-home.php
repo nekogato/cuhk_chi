@@ -500,12 +500,14 @@ get_header(); ?>
 							on: {
 								init: () => {
 									dosize();
+									doscroll();
 								}
 							}
 						});
 
 						// Resize layout after Swiper initializes
 						dosize();
+						doscroll();
 					});
 				}
 			},

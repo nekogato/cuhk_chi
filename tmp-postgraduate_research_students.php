@@ -210,6 +210,8 @@ get_header();
 					console.error('Error loading students:', error);
 				} finally {
 					this.loading = false;
+					dosize();
+					doscroll();
 				}
 			},
 

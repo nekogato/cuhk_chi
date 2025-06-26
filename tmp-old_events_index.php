@@ -244,6 +244,8 @@ endwhile;
 					console.error('Error loading events:', error);
 				} finally {
 					this.loading = false;
+					dosize();
+					doscroll();
 				}
 			},
 

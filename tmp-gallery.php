@@ -174,6 +174,8 @@ get_template_part('template-parts/roll-menu'); ?>
 					console.error('Error loading galleries:', error);
 				} finally {
 					this.loading = false;
+					dosize();
+					doscroll();
 				}
 			},
 
