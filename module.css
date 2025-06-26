@@ -7674,6 +7674,23 @@ body.dragging-scroll {
             right: 2px;
         }
 
+        .committee_albums_slider .prev_btn:hover::after {
+        left: -8px;
+      }
+
+      .committee_albums_slider .prev_btn:hover::before {
+        left:-10px;
+      }
+
+    .committee_albums_slider .next_btn:hover::after {
+        right: -8px;
+      }
+
+      .committee_albums_slider .next_btn:hover::before {
+          right:-10px;
+      }
+      
+
         .committee_albums_slider > .swiper-container {
         margin-left: 40px;
         }
