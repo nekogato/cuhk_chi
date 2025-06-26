@@ -7573,6 +7573,7 @@ body.dragging-scroll {
 
     .filter_menu_left_bg .filter_menu_content::before{
         right: -15px;
+          height: 40px;
     }
     .mobile_title{
         color:#63629B;
