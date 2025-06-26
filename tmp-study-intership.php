@@ -16,7 +16,7 @@ if (have_posts()) :
 		$section_title = get_the_title();
 		$section_description = get_field('introduction');
 		$section_introduction = get_field('intership_introduction');
-		$filter_section_title = get_field('filter_section_title');
+		$internship_list_title = get_field('internship_list_title');
 		$photo_album_title = get_field('photo_album_title');
 		$award_section_title = get_field('award_section_title');
 		$feedback_section_title = get_field('feedback_section_title');
@@ -44,17 +44,12 @@ if (have_posts()) :
 
 		<div class="section section_content filter_menu_section resource_filter_menu_section">
 			<div class="section_center_content small_section_center_content scrollin scrollinbottom">
-				<?php if ($filter_section_title): ?>
-					<h3 class="section_smalltitle"><?php echo esc_html($filter_section_title); ?></h3>
+				<?php if ($internship_list_title): ?>
+					<h3 class="section_smalltitle"><?php echo esc_html($internship_list_title); ?></h3>
 				<?php endif; ?>
 			</div>
 
-			<?php if (have_rows('internship_list')): 
-				
-					echo '<pre>';
-					print_r(get_field('internship_list'));
-					echo '</pre>';
-				?>
+			<?php if (have_rows('internship_list')): ?>
 				<div class="filter_menu_wrapper">
 					<div class="filter_menu filter_menu_left_bg section_center_content small_section_center_content scrollin scrollinbottom">
 						<div class="filter_menu_content">
@@ -95,10 +90,8 @@ if (have_posts()) :
 							
 							if (have_rows('expandable_items')): ?>
 								<?php
-								echo "hello";
 								$item_index = 1;
 								while (have_rows('expandable_items')): the_row();
-								echo "test";
 									$item_title = get_sub_field('item_title');
 									$item_content = get_sub_field('item_content');
 									$is_first_active = ($item_index === 1) ? 'active' : '';
