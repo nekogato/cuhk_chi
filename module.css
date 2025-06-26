@@ -1788,6 +1788,10 @@ body.dragging-scroll {
     background-color: #62629b;
 }
 
+.intro_btn_wrapper  .round_btn:first-child{
+    margin-top: 0px;
+}
+
 .event_list_section{
     padding-top: 100px;
     padding-bottom: 100px;
@@ -3170,7 +3174,7 @@ body.dragging-scroll {
 
 .top_photo_banner_section .vertical_text{
     writing-mode: vertical-rl;
-    text-orientation: upright;
+    text-orientation: mixed;
     letter-spacing: 0.25em;
 }
 
@@ -6826,6 +6830,10 @@ body.dragging-scroll {
     .scheme_unit_expandable_box .hidden_content {
         padding: 15px;
     }
+
+    .resource_top_section .section_introduction {
+    margin-top: 30px;
+    }
 }
 
 
@@ -7241,6 +7249,12 @@ body.dragging-scroll {
         margin-top: 20px;
       }
 
+      /* events */
+
+      .intro_btn_wrapper{
+        margin-bottom: 30px;
+      }
+
        /* event_list_section */
 
        .event_list_item{
@@ -7256,6 +7270,7 @@ body.dragging-scroll {
         border-bottom:1px solid #009594;
         padding-bottom: 20px;
         margin-bottom: 20px;
+            flex: 1;
       }
 
       .event_list_item .round_btn{
@@ -7445,10 +7460,10 @@ body.dragging-scroll {
         font-weight: 600;
     }
     .filter_menu_section{
-        padding-bottom: 0px;
+        /* padding-bottom: 0px; */
     }
     .filter_menu_section + .student_list_section {
-        padding-top: 20px;
+        /* padding-top: 20px; */
       }
     .filter_detail_flex_head + .filter_detail_flex_body {
         margin-top: 0px !important;
