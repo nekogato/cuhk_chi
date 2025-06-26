@@ -4491,6 +4491,7 @@ body.dragging-scroll {
 .student_list_item > .text{
     margin-top: 10px;
     padding-left: 20px;
+    padding-right: 20px;
     border-left:1px solid #6f6ea6;
 }
 
@@ -6671,8 +6672,28 @@ body.dragging-scroll {
       }
 
       .filter_checkbox_wrapper {
-        gap: 20px 20px;
+        gap: 10px 10px;
+        padding-top: 10px;
+        padding-bottom: 10px;
       }
+
+      
+
+      .filter_checkbox input[type="checkbox"] + label::before, .filter_checkbox input[type="radio"] + label::before {
+        width: 12px;
+        height: 12px;
+        }
+
+        .filter_checkbox input[type="checkbox"] + label::after, .filter_checkbox input[type="radio"] + label::after {
+
+        left: 2px;
+        width: 8px;
+        height: 8px;
+        }
+
+        .filter_checkbox input[type="checkbox"] + label, .filter_checkbox input[type="radio"] + label {
+        padding-left: 8px;
+        }
 
       /* student_list */
 
@@ -6686,6 +6707,7 @@ body.dragging-scroll {
 
       .student_list_item > .text {
         padding-left: 10px;
+        padding-right: 10px;
       }
 
       .people_popup{
