@@ -6297,6 +6297,10 @@ body.dragging-scroll {
         padding-bottom: 30px;
     }
 
+    .filter_menu_section + .news_box_section{
+        padding-top: 0px;
+    }
+
     .section_expandable_list {
     margin-top: 30px;
     }

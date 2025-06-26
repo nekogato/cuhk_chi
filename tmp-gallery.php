@@ -175,8 +175,10 @@ get_template_part('template-parts/roll-menu'); ?>
 				} finally {
 					this.loading = false;
 					this.$nextTick(async () => {
-						dosize();
-						doscroll();
+						setTimeout(() => {
+							dosize();
+							doscroll();
+						}, 300);
 					});
 				}
 			},
