@@ -3746,6 +3746,10 @@ body.dragging-scroll {
     margin-top: 20px;
 }
 
+.research_centre_text  .round_btn:first-child{
+    margin-top: auto;
+}
+
 .research_centre_text .round_btn:hover{
     border:1px #62629b solid;
     color:#fff;
@@ -7199,7 +7203,7 @@ body.dragging-scroll {
     }
 
     .research_centre_box + .research_centre_box {
-        margin-top: 50px;
+        margin-top: 30px;
     }
     
     .research_centre_logo .col_spacing {
@@ -7231,6 +7235,10 @@ body.dragging-scroll {
     .research_thesis_list .flex > .col2 .t_wrapper, .research_thesis_list .flex > .col3 .t_wrapper{
         border-bottom: none;
         padding-bottom: 0px;
+    }
+
+    .research_centre_box .col_spacing {
+        padding-bottom: 30px;
     }
 
     /* featured_news_box_section */
