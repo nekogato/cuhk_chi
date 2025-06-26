@@ -6532,7 +6532,7 @@ body.dragging-scroll {
       }
 
       .thumb_text_box_slider_wrapper .prev_btn:hover::before {
-        left:0px;
+        left:-10px;
       }
 
     .thumb_text_box_slider_wrapper .next_btn{
@@ -6552,7 +6552,7 @@ body.dragging-scroll {
       }
 
       .thumb_text_box_slider_wrapper .next_btn:hover::before {
-          right:0px;
+          right:-10px;
       }
 
 
