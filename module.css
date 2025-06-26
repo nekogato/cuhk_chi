@@ -6877,6 +6877,12 @@ body.dragging-scroll {
     margin-top: 30px;
     }
 
+    /* border_box_item_wrapper */
+
+    .border_box_item_wrapper .dot_wrapper{
+        margin-top: 40px;
+    }
+
 }
 
 

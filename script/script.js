@@ -765,6 +765,7 @@ function init_function(){
 	});
 
 	$(".border_thumb_text_box_slider_wrapper").each(function(){
+		var $this = $(this);
 		var border_thumb_text_box_slider = new Swiper($(this).find(".swiper-container")[0], {
 			autoplay: false,
 			slidesPerView: 4,
@@ -801,6 +802,24 @@ function init_function(){
 					spaceBetween: 0,
 					slidesPerView: 4,
 				}
+			},
+			on: {
+				init: function () {
+					const bullets = $this.find('.swiper-pagination-bullet');
+					if (bullets.length <= 1) {
+						$this.find('.dot_wrapper').hide()
+					}else{
+						$this.find('.dot_wrapper').show()
+					}
+				},
+				slideChange: function () {
+					const bullets = $this.find('.swiper-pagination-bullet');
+					if (bullets.length <= 1) {
+						$this.find('.dot_wrapper').hide()
+					}else{
+						$this.find('.dot_wrapper').show()
+					}
+				},
 			}
 		});
 
@@ -988,6 +1007,24 @@ function init_function(){
 				el: $this.find('.dot_wrapper'),
 				clickable: true
 			},
+			on: {
+				init: function () {
+					const bullets = $this.find('.swiper-pagination-bullet');
+					if (bullets.length <= 1) {
+						$this.find('.dot_wrapper').hide()
+					}else{
+						$this.find('.dot_wrapper').show()
+					}
+				},
+				slideChange: function () {
+					const bullets = $this.find('.swiper-pagination-bullet');
+					if (bullets.length <= 1) {
+						$this.find('.dot_wrapper').hide()
+					}else{
+						$this.find('.dot_wrapper').show()
+					}
+				},
+			}
 		});
 	})
 
@@ -1082,7 +1119,23 @@ function init_function(){
 				el: $this.find('.dot_wrapper'),
 				clickable: true
 			},
-            allowTouchMove: false
+            allowTouchMove: false,
+			init: function () {
+				const bullets = $this.find('.swiper-pagination-bullet');
+				if (bullets.length <= 1) {
+					$this.find('.dot_wrapper').hide()
+				}else{
+					$this.find('.dot_wrapper').show()
+				}
+			},
+			slideChange: function () {
+				const bullets = $this.find('.swiper-pagination-bullet');
+				if (bullets.length <= 1) {
+					$this.find('.dot_wrapper').hide()
+				}else{
+					$this.find('.dot_wrapper').show()
+				}
+			},
 		});
 		
 	})
