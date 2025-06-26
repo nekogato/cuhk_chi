@@ -206,8 +206,8 @@ endwhile;
 							'Content-Type': 'application/x-www-form-urlencoded',
 						},
 						body: new URLSearchParams({
-							action: 'get_old_event_years',
-							nonce: '<?php echo wp_create_nonce('get_old_event_years_nonce'); ?>'
+							action: 'get_event_years',
+							nonce: '<?php echo wp_create_nonce('get_event_years_nonce'); ?>'
 						})
 					});
 
