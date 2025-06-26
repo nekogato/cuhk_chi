@@ -6860,6 +6860,7 @@ body.dragging-scroll {
     .resource_top_section .section_introduction {
     margin-top: 30px;
     }
+
 }
 
 
@@ -7200,8 +7201,11 @@ body.dragging-scroll {
     .research_centre_box + .research_centre_box {
         margin-top: 50px;
     }
-
-
+    
+    .research_centre_logo .col_spacing {
+        padding-bottom: 0px;
+        border-bottom: none;
+    }
 
     .research_thesis_list .flex{
         flex-wrap: wrap;
