@@ -23,7 +23,7 @@ get_header();
 
 <!-- Alumni Connection Buttons Section -->
 <?php if (have_rows('alumni_connection_links')): ?>
-	<div class="section section_content section_alumni_btn">
+	<div class="section section_content section_alumni_btn scrollin_p">
 		<div class="section_center_content small_section_center_content scrollin scrollinbottom">
 			<?php if (get_field('connection_section_title')): ?>
 				<h3 class="section_smalltitle"><?php the_field('connection_section_title'); ?></h3>
@@ -46,7 +46,7 @@ $alumni_events = get_field('alumni_events');
 if ($alumni_events): ?>
 	<div class="section featured_news_box_section alumni_news_box_section scrollin_p">
 		<div class="news_box_wrapper">
-			<div class="section_center_content small_section_center_content">
+			<div class="section_center_content small_section_center_content scrollin scrollinbottom">
 				<?php if (get_field('activities_section_title')): ?>
 					<h3 class="section_smalltitle"><?php the_field('activities_section_title'); ?></h3>
 				<?php endif; ?>
@@ -101,7 +101,7 @@ if ($alumni_events): ?>
 
 <!-- Alumni Success Stories Section -->
 <?php if (have_rows('alumni_success_stories')): ?>
-	<div class="section section_content alumni_story_section">
+	<div class="section section_content alumni_story_section scrollin_p">
 		<div class="section_center_content small_section_center_content scrollin scrollinbottom">
 			<?php if (get_field('success_stories_title')): ?>
 				<h3 class="section_smalltitle"><?php the_field('success_stories_title'); ?></h3>
@@ -150,7 +150,7 @@ if ($alumni_events): ?>
 
 <!-- Alumni Associations Section -->
 <?php if (have_rows('alumni_associations')): ?>
-	<div class="section section_content border_box_list_section">
+	<div class="section section_content border_box_list_section scrollin_p">
 		<div class="section_center_content small_section_center_content scrollin scrollinbottom">
 			<?php if (get_field('associations_section_title')): ?>
 				<h3 class="section_smalltitle"><?php the_field('associations_section_title'); ?></h3>
@@ -194,7 +194,7 @@ if ($alumni_events): ?>
 
 <!-- Alumni Photo Albums Section -->
 <?php if (have_rows('alumni_photo_albums')): ?>
-	<div class="section section_content section_committee_album">
+	<div class="section section_content section_committee_album scrollin_p">
 		<div class="section_center_content small_section_center_content scrollin scrollinbottom">
 			<?php if (get_field('photo_albums_title')): ?>
 				<h3 class="section_smalltitle"><?php the_field('photo_albums_title'); ?></h3>
