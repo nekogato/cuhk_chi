@@ -2919,8 +2919,8 @@ body.dragging-scroll {
 
 .publication_box{
     display: flex;  
-    gap: 6%;   
-    flex: 0 0 calc(33.33% - 3%); /* Changed flex-grow to 0 */
+    gap: 20px;   
+    flex: 0 0 calc(33.33% - 50px); /* Changed flex-grow to 0 */
     box-sizing: border-box; /* Ensures padding doesn't affect width */
 }
 
@@ -7730,7 +7730,7 @@ body.dragging-scroll {
       .people_popup .people_detail_incontent {
         width: 85%;
         margin: auto;
-        padding: 50px 0px;
+        padding: 60px 0px;
       }
 
       .people_detail_photo_wrapper {
