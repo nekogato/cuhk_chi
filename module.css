@@ -6556,7 +6556,52 @@ body.dragging-scroll {
       }
 
 
-      /* thumb_text_box_slider_wrapper */
+      /* thumb_text_box_slider_wrapper2 */
+
+
+    .thumb_text_box_slider_wrapper2 .prev_btn{
+        left: 15px;
+        width: 30px;
+        height: 30px;
+    }
+
+    .thumb_text_box_slider_wrapper2 .prev_btn::after {
+        width: 15px;
+        height: 15px;
+        left: 2px;
+      }
+
+    .thumb_text_box_slider_wrapper2 .prev_btn:hover::after {
+        left: -8px;
+      }
+
+      .thumb_text_box_slider_wrapper2 .prev_btn:hover::before {
+        left:-10px;
+      }
+
+    .thumb_text_box_slider_wrapper2 .next_btn{
+        right: 15px;
+        width: 30px;
+        height: 30px;
+    }
+
+    .thumb_text_box_slider_wrapper2 .next_btn::after {
+        width: 15px;
+        height: 15px;
+        right: 2px;
+      }
+
+    .thumb_text_box_slider_wrapper2 .next_btn:hover::after {
+        right: -8px;
+      }
+
+      .thumb_text_box_slider_wrapper2 .next_btn:hover::before {
+          right:-10px;
+      }
+
+
+
+      /* border_thumb_text_box_slider_wrapper */
 
       .border_thumb_text_box_slider_wrapper .prev_btn{
         width: 30px;
