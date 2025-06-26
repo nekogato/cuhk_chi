@@ -7323,6 +7323,11 @@ body.dragging-scroll {
         align-items: start;
     }
 
+    .top_photo_banner_section .chair_photo_wrapper .chair_name{
+        text-align: right;
+        margin-left: auto;
+    }
+
      .top_photo_banner_section .photo_wrapper {
     margin-left: -15px;
     margin-right: -15px;
@@ -7336,6 +7341,10 @@ body.dragging-scroll {
         right: 0px;
         left: 0px;
         top: 180px;
+      }
+
+      .top_photo_banner_section + .section_left_right_content{
+        padding-top: 0px;
       }
 
     /* song */
