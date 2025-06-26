@@ -111,17 +111,17 @@ while (have_posts()) :
 								<template x-if="event.has_date_range">
 									<div class="d_wrapper">
 										<div class="d">
-											<div class="d1 text3" x-text="event.start_date_short"></div>
+											<div class="d2 text3" x-text="event.start_date_short"></div>
 										</div>
 										<div class="d">
-											<div class="d1 text3" x-text="event.end_date_short"></div>
+											<div class="d2 text3" x-text="event.end_date_short"></div>
 										</div>
 									</div>
 								</template>
 								<template x-if="!event.has_date_range">
 									<div class="d_wrapper">
 										<div class="d">
-											<div class="d1 text3" x-text="event.start_date_short"></div>
+											<div class="d2 text3" x-text="event.start_date_short"></div>
 										</div>
 									</div>
 								</template>
