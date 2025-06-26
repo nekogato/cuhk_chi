@@ -49,10 +49,10 @@ if (have_posts()) :
 				<?php endif; ?>
 			</div>
 
-			<?php if (have_rows('filter_categories')): 
+			<?php if (have_rows('internship_list')): 
 				
 					echo '<pre>';
-					print_r(get_field('filter_categories'));
+					print_r(get_field('internship_list'));
 					echo '</pre>';
 				?>
 				<div class="filter_menu_wrapper">
@@ -61,7 +61,7 @@ if (have_posts()) :
 							<div class="filter_checkbox_wrapper text7 filter_switchable_wrapper">
 								<?php
 								$category_index = 1;
-								while (have_rows('filter_categories')): the_row();
+								while (have_rows('internship_list')): the_row();
 									$category_name = get_sub_field('category_name');
 									$filter_id = 'filter' . $category_index;
 									$is_first = ($category_index === 1) ? 'checked' : '';
@@ -86,7 +86,7 @@ if (have_posts()) :
 				<div class="switchable_section_expandable_list_wrapper scrollin scrollinbottom">
 					<?php
 					$category_index = 1;
-					while (have_rows('filter_categories')): the_row();
+					while (have_rows('internship_list')): the_row();
 						$filter_id = 'filter' . $category_index;
 						$is_active = ($category_index === 1) ? 'active' : '';
 					?>
