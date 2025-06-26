@@ -2772,6 +2772,7 @@ body.dragging-scroll {
 
 .thumb_text_box_slider_wrapper2 .swiper-container{
     position: relative;
+    margin-left: 80px;
 }
 
 .thumb_text_box_slider_wrapper:hover .prev_btn, .thumb_text_box_slider_wrapper:hover .next_btn{
@@ -6570,6 +6571,14 @@ body.dragging-scroll {
       .thumb_text_box_slider_wrapper2{
           margin-top: 20px;
       }
+
+      .thumb_text_box_slider_wrapper2 .swiper-container{
+            margin-left: 40px;
+        }
+
+        .thumb_text_box_slider_wrapper2 .swiper-slide .text_spacing {
+        padding: 0px 15px;
+        }
 
     .thumb_text_box_slider_wrapper2 .prev_btn{
         left: 15px;
