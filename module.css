@@ -6870,6 +6870,12 @@ body.dragging-scroll {
     margin-top: 30px;
     }
 
+    /* event_list_section */
+
+    .event_list_item + .event_list_item {
+    margin-top: 30px;
+    }
+
 }
 
 
@@ -7326,21 +7332,21 @@ body.dragging-scroll {
       }
 
     .event_list_item .photo {
-        width: 150px;
+        width: 250px;
         margin: auto;
         margin-top: 30px;
       }
 
       .event_list_item .photo img {
         
-        width: 150px;
-        height: 150px;
+        width: 250px;
+        height: 250px;
         object-fit: contain;
       }
 
       .event_list_item .photo::before {
-        width: 150px;
-        height: 150px;
+        width: 250px;
+        height: 250px;
       }
 
       .event_list_item .title_wrapper {
