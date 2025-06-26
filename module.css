@@ -7731,6 +7731,10 @@ body.dragging-scroll {
       .news_box.col4{
         width: 50%;
       }
+
+      .news_box.col3{
+        width: 50%;
+      }
 }
 
 
