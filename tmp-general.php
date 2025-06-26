@@ -18,7 +18,7 @@ if (have_posts()) :
 		$page_freetext = get_field('free_text');
 ?>
 
-		<div class="section section_content resource_top_section">
+		<div class="section section_content ">
 			<div class="section_center_content xs_section_center_content">
 				<?php if ($page_title): ?>
 					<h1 class="section_title text1 scrollin scrollinbottom"><?php echo wp_kses_post($page_title); ?></h1>

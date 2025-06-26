@@ -23,7 +23,7 @@ while (have_posts()) :
 	$page_description = get_field("introduction");
 ?>
 
-	<div class="section section_content admission_section scrollin scrollinbottom onscreen startani resource_top_section">
+	<div class="section section_content admission_section scrollin scrollinbottom onscreen startani ">
 		<div class="section_center_content small_section_center_content">
 
 			<?php if ($page_title) : ?>
