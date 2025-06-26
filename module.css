@@ -6180,11 +6180,12 @@ body.dragging-scroll {
     .event_list_item .photo {
         width: 150px;
           flex: 0 0 150px;
+          height: 150px;
       }
 
       .event_list_item .photo img {
-        width: 120px;
-        height: 120px;
+        width: 150px;
+        height: 150px;
         object-fit: contain;
       }
 
@@ -7335,6 +7336,7 @@ body.dragging-scroll {
         width: 250px;
         margin: auto;
         margin-top: 30px;
+        height: 250px;
       }
 
       .event_list_item .photo img {
