@@ -3736,7 +3736,7 @@ body.dragging-scroll {
 }
 
 .research_centre_text .description .btn_wrapper{
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 .research_centre_text  .round_btn{
@@ -7237,7 +7237,7 @@ body.dragging-scroll {
         padding-bottom: 0px;
     }
 
-    .research_centre_box .col_spacing {
+    .research_centre_text .col_spacing {
         padding-bottom: 30px;
     }
 
