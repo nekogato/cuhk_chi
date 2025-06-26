@@ -1904,11 +1904,11 @@ body.dragging-scroll {
     bottom: 0px;
     margin: auto;
     border-radius: 100%;
-    background: linear-gradient(180deg, rgba(239,211,193,1) 0%, rgba(239,211,193,0) 100%);
+    background: linear-gradient(180deg, rgba(239,211,193,1) 70%, rgba(239,211,193,0) 100%);
 }
 
 .event_list_item:nth-child(even) .photo::before{
-    background: linear-gradient(180deg, rgba(216,227,215,1) 0%, rgba(216,227,215,0) 100%);
+    background: linear-gradient(180deg, rgba(216,227,215,1) 70%, rgba(216,227,215,0) 100%);
 }
 
 
@@ -3972,6 +3972,11 @@ body.dragging-scroll {
 .filter_menu_section{
     position: relative;
     z-index: 9;
+}
+
+.filter_menu_section > .section_center_content{
+    position: relative;
+    z-index: 1;
 }
 
 .filter_menu_wrapper{
@@ -7295,9 +7300,14 @@ body.dragging-scroll {
 
        /* event_list_section */
 
+       .event_list_item + .event_list_item {
+        margin-top: 30px;
+        }
+
        .event_list_item{
         flex-wrap: wrap;
         gap: 0px;
+            flex-direction: column;
        }
 
        
