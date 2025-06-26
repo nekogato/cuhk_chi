@@ -71,13 +71,13 @@ get_template_part('template-parts/roll-menu'); ?>
 	</div>
 
 	<div class="section news_box_section news_gallery_box_section scrollin_p">
-		<div class="news_box_wrapper">
+		<div class="news_box_wrapper scrollin scrollinbottom">
 			<div class="section_center_content small_section_center_content">
 				<div class="col_wrapper big_col_wrapper">
 					<div class="flex row" x-show="!loading">
 						<template x-for="gallery in galleries" :key="gallery.id">
 							<div class="news_box col col3">
-								<div class="col_spacing scrollin scrollinbottom">
+								<div class="col_spacing ">
 									<a class="photo" :href="gallery.permalink">
 										<img :src="gallery.featured_image" :alt="gallery.title">
 									</a>
