@@ -7723,6 +7723,14 @@ body.dragging-scroll {
         left: -15px;
         height: 200px;
       }
+
+      .news_box.col6{
+        width: 100%;
+      }
+
+      .news_box.col4{
+        width: 50%;
+      }
 }
 
 
