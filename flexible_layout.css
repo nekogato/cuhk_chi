@@ -233,3 +233,20 @@
         
     }
 }
+
+@media screen and (max-width: 800px) { 
+    .flexible_layout{
+        margin-top: 30px;
+    }
+
+    .flexible_layout_one_column .col8.col{
+        width: 100%;
+        
+    }
+}
+
+@media screen and (max-width: 480px) { 
+    .flexible_layout .col6.col{
+        width: 100%;
+    }
+}
