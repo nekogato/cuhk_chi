@@ -49,7 +49,12 @@ if (have_posts()) :
 				<?php endif; ?>
 			</div>
 
-			<?php if (have_rows('filter_categories')): ?>
+			<?php if (have_rows('filter_categories')): 
+				
+					echo '<pre>';
+					print_r(get_field('filter_categories'));
+					echo '</pre>';
+				?>
 				<div class="filter_menu_wrapper">
 					<div class="filter_menu filter_menu_left_bg section_center_content small_section_center_content scrollin scrollinbottom">
 						<div class="filter_menu_content">
