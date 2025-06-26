@@ -9,7 +9,7 @@ get_header();
 while (have_posts()) :
 	the_post();
 ?>
-	<?php get_template_part('template-parts/roll-menu', null, array('target_page' => 'news')); ?>
+<?php get_template_part('template-parts/roll-menu', null, array('target_page' => 'news-and-events/news')); ?>
 
 	<div class="section top_photo_banner_section top_photo_banner_section_absolute">
 		<div class="section_center_content small_section_center_content">

@@ -1257,20 +1257,19 @@ $(function(){
 		const $el = $(this);
 
 		$el.contents().each(function () {
-		if (this.nodeType === Node.TEXT_NODE) {
-			const text = this.nodeValue;
-			const wrapped = Array.from(text).map(char => {
-			if (/[\u4E00-\u9FFF]/.test(char)) {
-				return char;
-			} else {
-				return `<span class="horizontal-text">${char}</span>`;
-			}
-			}).join('');
+			if (this.nodeType === Node.TEXT_NODE) {
+				const text = this.nodeValue;
+				const wrapped = Array.from(text).map(char => {
+					// 中文或標點符號就保留原樣
+					if (/[\u4E00-\u9FFF]/.test(char) || /[，。！？：；、“”‘’（）《》〈〉『』「」【】—……·\[\]]/.test(char)) {
+						return char;
+					} else {
+						return `<span class="horizontal-text">${char}</span>`;
+					}
+				}).join('');
 
-			// Replace the text node with new HTML
-			$(this).replaceWith(wrapped);
-		}
-		// If it's not a text node (e.g., <br>), leave it alone
+				$(this).replaceWith(wrapped);
+			}
 		});
 	});
 
