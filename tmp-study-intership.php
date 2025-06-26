@@ -22,7 +22,7 @@ if (have_posts()) :
 		$feedback_section_title = get_field('feedback_section_title');
 ?>
 
-		<div class="section section_content ">
+		<div class="section section_content resource_top_section">
 			<div class="section_center_content small_section_center_content">
 				<?php if ($section_title): ?>
 					<h1 class="section_title text1 scrollin scrollinbottom"><?php echo esc_html($section_title); ?></h1>
