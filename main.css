@@ -338,6 +338,10 @@ a{
 	display: block;
 }
 
+.hidden_lang li.current-lang{
+	display: none;
+}
+
 .hidden_lang .hidden_lang_btn{
 	color: #636298;
 	display: inline-block;
