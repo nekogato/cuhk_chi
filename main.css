@@ -352,6 +352,11 @@ a{
 	  color: #009b9d;
 }
 
+.hidden_lang a{
+	width: auto;
+	height: auto;
+}
+
 .menu_search{
 	background-image: url(images/menu_search.svg);
 }
