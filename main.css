@@ -305,6 +305,10 @@ a{
 	position: relative;
 }
 
+.header_menu > li > a:hover{
+	opacity: 0.5;
+}
+
 .menu_lang{
 	background-image: url(images/menu_lang.svg);
 }
