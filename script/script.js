@@ -1177,7 +1177,15 @@ function init_function(){
 		}
 	})
 
-
+	$(".menu_lang").click(function(){
+		if($(".hidden_lang_wrapper").hasClass("opened")){
+			$(".hidden_lang_wrapper").removeClass("opened")
+			$(".hidden_lang").stop().fadeOut(300);
+		}else{
+			$(".hidden_lang_wrapper").addClass("opened")
+			$(".hidden_lang").stop().fadeIn(300);
+		}
+	})
 	
 }
 

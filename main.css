@@ -309,6 +309,45 @@ a{
 	background-image: url(images/menu_lang.svg);
 }
 
+.hidden_lang_wrapper{
+	position: relative;
+}
+
+.hidden_lang{
+	position: absolute;
+	width: 80px;
+	top:100%;
+	left: 50%;
+	margin-left: -40px;
+	margin-top: 10px;
+	text-align: center;
+	background-color: #fff;
+	padding: 10px;
+	box-sizing: border-box;
+	display: none
+}
+
+.hidden_lang ul{
+	display: flex;
+	gap: 10px;
+	  margin: auto;
+  justify-content: center;
+}
+
+.hidden_lang li{
+	display: block;
+}
+
+.hidden_lang .hidden_lang_btn{
+	color: #636298;
+	display: inline-block;
+	font-weight: 600;
+}
+
+.hidden_lang .hidden_lang_btn:hover{
+	  color: #009b9d;
+}
+
 .menu_search{
 	background-image: url(images/menu_search.svg);
 }

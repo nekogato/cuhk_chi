@@ -52,7 +52,21 @@ if (pll_current_language() == 'sc') {
 		</div>
 
 		<ul class="header_menu scrollin scrollinbottom">
-			<li><a href="#" class="menu_lang"></a></li>
+			<li class="hidden_lang_wrapper">
+				<a href="#" class="menu_lang"></a>
+				<div class="hidden_lang">
+					<ul>
+						<?php $translations = pll_the_languages(['raw' => 1]); ?>
+						<?php foreach ($translations as $translation): ?>
+						<li <?php echo $translation['current_lang']
+							? 'class="current-lang"'
+							: ''; ?>>
+							<a href="<?php echo $translation['url']; ?>"><?php echo $translation['name']; ?></a>
+						</li>
+						<?php endforeach; ?>
+					</ul>
+				</div>
+			</li>
 			<li><a href="#" class="menu_search"></a></li>
 			<li><a href="#" class="menu_dropdown"><div class="g g1"></div><div class="g g2"></div><div class="g g3"></div></a></li>
 		</ul>
