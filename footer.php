@@ -18,9 +18,8 @@
                     <div class="footer_menu_list_wrapper">
                         <div class="footer_menu_list footer_department_logo_wrapper">
                             <img src="<?php bloginfo('template_directory'); ?>/images/ccc_color.png" class="footer_department_logo">
-                            <div class="t1"><?php echo cuhk_multilang_text("地址：","地址：","Address:"); ?></div>
-                            <div class="t2 text7">
-                                <?php the_field('address', 'option'); ?>
+                            <div class="t2 text7 footer_info">
+                                <?php the_field('footer_info', 'option'); ?>
                             </div>
                         </div>
                         <?php

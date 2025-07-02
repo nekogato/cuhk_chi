@@ -6409,8 +6409,8 @@ body.dragging-scroll {
       /* home_news_section */
 
       .home_news_year_slider .all_news_btn_wrapper{
-            bottom:30px;
-            right: 15px;
+            bottom: 10px;
+            right: 25px;
         }
 
       .home_news_section .vertical_text_wrapper {

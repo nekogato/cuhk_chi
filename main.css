@@ -598,7 +598,7 @@ a{
 .footer_menu_list_wrapper{
 	display: flex;
 	flex-direction: row;
-	gap: 20px;
+	gap: 50px;
 	justify-content: space-between;
 }
 
@@ -690,6 +690,18 @@ a{
 
 .sns_icon_in{
 	background-image: url(images/sns_icon_in.png);
+}
+
+.footer_info{
+
+}
+
+.footer_info td+td{
+	padding-left: 20px;
+}
+
+.footer_info tr+tr td{
+	padding-top: 20px;
 }
 
 /* common */
@@ -1434,6 +1446,10 @@ p:first-child{
 
 	.footer_menu_list{
 		width: calc(50% - 20px);
+	}
+
+	.footer_menu_list + .footer_menu_list {
+	margin-left: 0px;
 	}
 
 	.footer_department_logo_wrapper{
