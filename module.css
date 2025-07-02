@@ -1449,6 +1449,16 @@ body.dragging-scroll {
     right: 50px;
 }
 
+.home_news_year_slider .all_news_btn_wrapper .round_btn{
+    border:1px solid #ae6364;
+    color:#ae6364;
+}
+
+.home_news_year_slider .all_news_btn_wrapper .round_btn:hover{
+    color:#fff;
+    background-color: #ae6364;
+}
+
 .home_news_year_slider .swiper-container{
     margin: auto;
     width: 200px;
