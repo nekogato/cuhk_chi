@@ -1135,11 +1135,13 @@ body.dragging-scroll {
 .home_top_section .text{  
     font-weight: normal;
     color:#575454;
+    font-family: "Microsoft YaHei", "Microsoft JhengHei", "Noto Sans SC", "Noto Sans TC", sans-serif;
+    letter-spacing: 0.07em;
 }
 
 .home_top_section .logo{  
-    width: 4.8em;
-  margin-top: 0.6em;
+    width: 5.1em;
+    margin-top: 0.6em;
 }
 
 .home_top_section .logo img{
