@@ -421,10 +421,12 @@ get_header(); ?>
 				const dayName = days[date.getDay()];
 
 				<?php if (pll_current_language() == 'tc' || pll_current_language() == 'sc') { ?>
-					const ouputdate = new Intl.DateTimeFormat('zh-CN', {
+					const formatter = new Intl.DateTimeFormat('zh-CN', {
 					month: 'numeric',
 					day: 'numeric'
-					}).format(date).replace(' ', '');
+					});
+					let outputDate = formatter.format(date);
+					outputDate = outputDate.replace(/\//g, '月').replace(/\s/g, '') + '日';
 				<?php } else { ?>
 					const ouputdate = new Intl.DateTimeFormat('en-US', {
 					month: 'short',
