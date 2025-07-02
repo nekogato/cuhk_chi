@@ -425,18 +425,16 @@ get_header(); ?>
 					month: 'numeric',
 					day: 'numeric'
 					});
-					console.log(formatter)
 					let outputDate = formatter.format(date);
-					console.log(outputDate)
 					outputDate = outputDate.replace(/\//g, '月').replace(/\s/g, '') + '日';
 				<?php } else { ?>
-					const ouputdate = new Intl.DateTimeFormat('en-US', {
+					const outputDate = new Intl.DateTimeFormat('en-US', {
 					month: 'short',
 					day: 'numeric'
 					}).format(date).toUpperCase().replace(',', '');
 				<?php } ?>
 				
-				return `<div class='day'>${ouputdate}</div><div class='dayName'>${dayName}</div>`;
+				return `<div class='day'>${outputDate}</div><div class='dayName'>${dayName}</div>`;
 			},
 
 			async loadNews() {
