@@ -618,6 +618,14 @@ a{
 	margin-top: 2px;
 }
 
+.footer_menu_list + .footer_menu_list{
+	margin-left: auto;
+}
+
+.footer_menu_list + .footer_menu_list + .footer_menu_list{
+	margin-left: 0px;
+}
+
 .footer2_t_wrapper{
 	display: flex;
 	flex-direction: row;
