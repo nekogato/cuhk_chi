@@ -425,7 +425,9 @@ get_header(); ?>
 					month: 'numeric',
 					day: 'numeric'
 					});
+					console.log(formatter)
 					let outputDate = formatter.format(date);
+					console.log(outputDate)
 					outputDate = outputDate.replace(/\//g, '月').replace(/\s/g, '') + '日';
 				<?php } else { ?>
 					const ouputdate = new Intl.DateTimeFormat('en-US', {
