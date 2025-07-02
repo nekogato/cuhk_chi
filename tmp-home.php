@@ -281,7 +281,7 @@ get_header(); ?>
 								<!-- News slides - Each date is one slide -->
 								<template x-for="(dateGroup, dateKey) in groupedNews" :key="dateKey">
 									<div class="swiper-slide">
-										<div class="date text4" x-text="formatDate(dateKey)"></div>
+										<div class="date text4" x-html="formatDate(dateKey)"></div>
 										<div class="news_item_wrapper">
 											<template x-for="(newsItem, index) in dateGroup" :key="newsItem.id">
 												<div class="news_item">
