@@ -10,7 +10,7 @@ get_header(); ?>
 </div>
 
 <div class="section home_top_section" id="section1">
-	<div class="section_center_content small_section_center_content scrollin scrollinbottom">
+	<div class="section_center_content full_section_center_content scrollin scrollinbottom">
 		<h1 class="text text0 scrollin scrollinbottom">
 			<?php
 			$home_title = get_field('home_title');
@@ -248,6 +248,10 @@ get_header(); ?>
 				<div class="prev_btn" @click="monthPreviousSlide()"></div>
 				<div class="next_btn" @click="monthNextSlide()"></div> -->
 			</div>
+
+			<div class="all_news_btn_wrapper">
+				<a href="<?php echo pll_get_page_url("news-and-events/news/"); ?>" class="round_btn"><?php echo cuhk_multilang_text("查看所有學系消息", "查看所有學系消息", "View All News"); ?></a>
+			</div>
 		</div>
 
 		<!-- Loading indicator -->
@@ -268,6 +272,8 @@ get_header(); ?>
 
 		<div class="home_news_date_slider_wrapper" x-show="!loading">
 			<div class="section_center_content small_section_center_content scrollin scrollinbottom">
+
+
 				<div class="home_news_date_slider_inwrapper">
 					<div class="home_news_date_slider">
 						<div class="swiper-container swiper">
@@ -316,26 +322,6 @@ get_header(); ?>
 			</div>
 		</div>
 
-		<div class="home_news_slider_bottom">
-			<div class="section_center_content small_section_center_content">
-				<div class="cat_legend">
-					<div><?php echo cuhk_multilang_text("資訊", "资讯", "Information"); ?></div>
-					<div class="cat_legend_item_wrapper text5">
-						<div class="cat_legend_item">
-							<div class="cat_icon bg_color2"></div>
-							<div class="text"><?php echo cuhk_multilang_text("學系消息", "", "News"); ?></div>
-						</div>
-						<div class="cat_legend_item">
-							<div class="cat_icon cat_circle bg_color1"></div>
-							<div class="text"><?php echo cuhk_multilang_text("系所剪報", "", "Department News"); ?></div>
-						</div>
-					</div>
-				</div>
-				<div class="btn_wrapper">
-					<a href="<?php echo pll_get_page_url("news"); ?>" class="round_btn"><?php echo cuhk_multilang_text("查看所有學系消息", "查看所有學系消息", "View All News"); ?></a>
-				</div>
-			</div>
-		</div>
 	</div>
 </div>
 
@@ -433,7 +419,17 @@ get_header(); ?>
 					const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 				<?php } ?>
 				const dayName = days[date.getDay()];
-				return `${dayName} ${day}`;
+
+				<?php if (pll_current_language() == 'tc' || pll_current_language() == 'sc') { ?>
+					const ouputdate = month+"月"+day+"日";
+				<?php } else { ?>
+					const ouputdate = new Intl.DateTimeFormat('en-US', {
+					month: 'short',
+					day: 'numeric'
+					}).format(date).toUpperCase().replace(',', '');
+				<?php } ?>
+				
+				return `<div class='day'>${ouputdate}</div><div class='dayName'>${dayName}</div>`;
 			},
 
 			async loadNews() {

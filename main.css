@@ -709,6 +709,9 @@ a{
     max-width: 1400px;
 }
 
+.full_section_center_content{ 
+    max-width: none;
+	}
 
 /* content */
 

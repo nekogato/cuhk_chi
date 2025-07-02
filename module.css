@@ -1443,6 +1443,12 @@ body.dragging-scroll {
     position: relative;
 }
 
+.home_news_year_slider .all_news_btn_wrapper{
+    position: absolute;
+    bottom:30px;
+    right: 50px;
+}
+
 .home_news_year_slider .swiper-container{
     margin: auto;
     width: 200px;
@@ -6392,6 +6398,10 @@ body.dragging-scroll {
 
       /* home_news_section */
 
+      .home_news_year_slider .all_news_btn_wrapper{
+            bottom:30px;
+            right: 15px;
+        }
 
       .home_news_section .vertical_text_wrapper {
         margin-right: 15px;
