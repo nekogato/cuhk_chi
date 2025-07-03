@@ -95,7 +95,7 @@ if (pll_current_language() == 'sc') {
 									?>
 									<li class="t2"><?php echo $text;?></a></li>
 									<?php
-									}else if($text && $url){
+                                    }else if($text || $url){
 									?>
 									<li><a href="<?php echo $url;?>"><?php echo $text;?></a></li>
 									<?php
@@ -139,7 +139,7 @@ if (pll_current_language() == 'sc') {
 									?>
 									<li class="t2"><?php echo $text;?></a></li>
 									<?php
-									}else if($text && $url){
+                                    }else if($text || $url){
 									?>
 									<li><a href="<?php echo $url;?>"><?php echo $text;?></a></li>
 									<?php
@@ -183,7 +183,7 @@ if (pll_current_language() == 'sc') {
 									?>
 									<li class="t2"><?php echo $text;?></a></li>
 									<?php
-									}else if($text && $url){
+                                    }else if($text || $url){
 									?>
 									<li><a href="<?php echo $url;?>"><?php echo $text;?></a></li>
 									<?php
