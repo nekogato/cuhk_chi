@@ -4133,10 +4133,24 @@ body.dragging-scroll {
 
 .alphabet_list_wrapper .alphabet_list a{
     cursor: pointer;
+    position: relative;
 }
 
 .alphabet_list_wrapper .alphabet_list a.active, .alphabet_list_wrapper .alphabet_list a:hover{
-    color:#63629B
+    color:#009b9d
+}
+
+.alphabet_list_wrapper .alphabet_list a.active::after{
+    content:"";
+    position: absolute;
+      border-bottom: 1px solid #009b9d;
+      position: absolute;
+      left: -10px;
+      right: -10px;
+      top:100%;
+      margin: auto;
+      margin-top: 20px;
+      box-sizing: border-box;
 }
 
 .big_alphabet_list_wrapper .alphabet_list li{
