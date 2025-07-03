@@ -618,7 +618,7 @@ a{
 }
 
 
-.footer_menu_list .t1{
+.footer_menu_list .t1, .footer_menu_list .t2{
 	font-weight: 600;
 }
 
@@ -707,7 +707,7 @@ a{
 	background-image: url(images/sns_icon_in.png);
 }
 
-.footer_info .t_spacer{
+.t_spacer{
 	height: 10px;
 }
 
