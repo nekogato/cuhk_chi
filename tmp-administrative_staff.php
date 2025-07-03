@@ -23,7 +23,7 @@ get_header();
 		<h1 class="section_title text1 scrollin scrollinbottom"><?php the_title(); ?></h1>
 		<div class="section_description scrollin scrollinbottom col6"><?php the_field('introduction') ?></div>
 
-		<div class="section_list">
+		<div class="section_list scrollin scrollinbottom">
 			<?php
 			$args = array(
 				'post_type' => 'profile',
@@ -60,11 +60,11 @@ get_header();
 					}
 					$phone_display = $phone_numbers ? '(+852) ' . implode(' / ', $phone_numbers) : '';
 			?>
-					<div class="list_item_row scrollin scrollinbottom">
-						<div class="list_item_col col2">
+					<div class="list_item_row ">
+						<div class="list_item_col col3">
 							<div><?php echo esc_html($title); ?></div>
 						</div>
-						<div class="list_item_col text_c1 col2 text5">
+						<div class="list_item_col text_c1 col3 text5">
 							<div>
 								<?php if ($has_detail): ?>
 									<a href="<?php the_permalink(); ?>"><?php echo esc_html($name); ?></a>
@@ -73,7 +73,7 @@ get_header();
 								<?php endif; ?>
 							</div>
 						</div>
-						<div class="list_item_col col8">
+						<div class="list_item_col col6">
 							<div class="inner_list_item_col col6">
 								<div>
 									<?php
