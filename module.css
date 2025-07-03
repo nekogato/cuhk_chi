@@ -3162,7 +3162,7 @@ body.dragging-scroll {
 .top_photo_banner_section .absolute_vertical_text_wrapper{
     position: absolute;
     right: 0px;
-    top:150px;
+    top:0px;
 }
 
 .top_photo_banner_section .vertical_text_wrapper .project_title{
