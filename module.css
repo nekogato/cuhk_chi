@@ -3257,6 +3257,7 @@ body.dragging-scroll {
 
 .top_photo_banner_section + .section_left_right_content{
     z-index: 4;
+    padding-top: 0px;
 }
 
 .section_left_right_content{
@@ -3287,6 +3288,10 @@ body.dragging-scroll {
 
 .top_photo_banner_section_absolute + .section_left_right_content2{
     z-index: 3;
+}
+
+.top_photo_banner_section_absolute + .section_left_right_content{
+      padding-top: 60px;
 }
 
 .section_left_right_content2 .col_wrapper{
