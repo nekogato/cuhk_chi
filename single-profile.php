@@ -153,9 +153,9 @@ if (have_posts()) :
 				</div>
 			</div>
 
-			<div class="section_expandable_list scrollin_p">
+			<div class="section_expandable_list scrollin scrollinbottom">
 				<?php if ($research_interests): ?>
-					<div class="expandable_item scrollin scrollinbottom">
+					<div class="expandable_item">
 						<div class="section_center_content small_section_center_content">
 							<div class="expandable_title text5"><?php echo cuhk_multilang_text("研究專長","","Research Interests"); ?><div class="icon"></div>
 							</div>
@@ -171,7 +171,7 @@ if (have_posts()) :
 				<?php endif; ?>
 
 				<?php if ($teaching): ?>
-					<div class="expandable_item scrollin scrollinbottom">
+					<div class="expandable_item">
 						<div class="section_center_content small_section_center_content">
 							<div class="expandable_title text5"><?php echo cuhk_multilang_text("任教科目","","Teaching"); ?><div class="icon"></div>
 							</div>
@@ -187,7 +187,7 @@ if (have_posts()) :
 				<?php endif; ?>
 
 				<?php if ($selected_publications): ?>
-					<div class="expandable_item scrollin scrollinbottom">
+					<div class="expandable_item">
 						<div class="section_center_content small_section_center_content">
 							<div class="expandable_title text5"><?php echo cuhk_multilang_text("著作選錄","","Selected Publications"); ?><div class="icon"></div>
 							</div>
@@ -203,7 +203,7 @@ if (have_posts()) :
 				<?php endif; ?>
 
 				<?php if (have_rows('research_projects')): ?>
-					<div class="expandable_item scrollin scrollinbottom">
+					<div class="expandable_item">
 						<div class="section_center_content small_section_center_content">
 							<div class="expandable_title text5"><?php echo cuhk_multilang_text("研究計劃","","Research Projects"); ?><div class="icon"></div>
 							</div>
@@ -236,7 +236,7 @@ if (have_posts()) :
 				<?php endif; ?>
 
 				<?php if ($other_positions_held): ?>
-					<div class="expandable_item scrollin scrollinbottom">
+					<div class="expandable_item">
 						<div class="section_center_content small_section_center_content">
 							<div class="expandable_title text5"><?php echo cuhk_multilang_text("其他職銜","","Other Positions Held"); ?><div class="icon"></div>
 							</div>
@@ -252,7 +252,7 @@ if (have_posts()) :
 				<?php endif; ?>
 
 				<?php if (have_rows('awards_and_honors')): ?>
-					<div class="expandable_item scrollin scrollinbottom">
+					<div class="expandable_item">
 						<div class="section_center_content small_section_center_content">
 							<div class="expandable_title text5"><?php echo cuhk_multilang_text("獎項與榮譽","","Awards and Honors"); ?><div class="icon"></div>
 							</div>
