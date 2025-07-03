@@ -175,7 +175,7 @@ if (pll_current_language() == 'sc') {
 			<div class="dropdown_col">
 				<div class="dropdown_department">
 					<div class="dropdown_department_top">
-						<img src="<?php bloginfo('template_directory'); ?>/images/ccc.png" class="dropdown_department_logo">
+						<img src="<?php bloginfo('template_directory'); ?>/images/ccc_color.png" class="dropdown_department_logo">
 						<div class="text text8">
 							<div>香港中文大學中國語言及文學系</div>
 							<div>The Chinese Universityof Hong Kong Department of Chinese Language & Literature</div>

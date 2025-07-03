@@ -419,6 +419,9 @@ a{
 	background-color: #ece6e5;
 	display: none;
 	overflow: auto;
+	background-image: url(images/dropdown_ink_bg.jpg);
+	background-size: cover;
+	background-position: center center;
 }
 
 .dropdown .menu_dropdown{
@@ -702,6 +705,10 @@ a{
 
 .footer_info{
 
+}
+
+.dropdown .footer_info table{
+	margin-left: auto;
 }
 
 .footer_info td:first-child{
@@ -1396,6 +1403,26 @@ p:first-child{
 
 @media screen and (max-width: 1279px) { 
 
+	.footer_info table tr{
+	display: block;
+	}
+
+	.footer_info table tr + tr{
+		margin-top: 10px;
+	}
+
+	.footer_info table tr td{
+		display: block;
+		padding-top: 0px;
+	}
+
+	.footer_info table tr + tr td{
+		padding-top: 0px;
+	}
+
+	.footer_info table td + td {
+		padding-left: 0px;
+	}
 	
 }
 
@@ -1444,6 +1471,88 @@ p:first-child{
 		padding-right: 15px;
 	  }
 
+	  
+
+	.dropdown .dropdown_col_wrapper {
+		height: auto;
+		position: relative;
+		top: 0px;
+		right: 0px;
+		bottom: 0px;
+		left: 0px;
+		margin: auto;
+		gap: 40px;
+		padding: 15px;
+		flex-direction: column;
+	  }
+
+	.dropdown .dropdown_col {
+		width: auto;
+		padding: 0px;
+	  }
+
+	  .dropdown .dropdown_col::after {
+		display: none;
+	  }
+
+	  .dropdown .dropdown_menu_list{
+		position: relative;
+		text-align:  center;
+	}
+
+	.dropdown_menu_list + .dropdown_menu_list {
+	  }
+
+	  .dropdown_menu_list ul {
+		margin-top: 10px;
+	  }
+
+	  .dropdown_menu_list li + li {
+		margin-top: 10px;
+	  }
+
+
+	  .dropdown .dropdown_menu_list> *{
+		position: relative;
+	  }
+
+	  .dropdown_department {
+		position: relative;
+		left: auto;
+		top: auto;
+		bottom: auto;
+		right: auto;
+		margin: auto;
+		padding: 20px;
+	  }
+
+	  .dropdown_department_logo {
+		width: 30%;
+		max-width: 200px;
+	  }
+
+	  .dropdown_department_top {
+		text-align: center;
+	  }
+
+	  .dropdown_department_bottom {
+		margin-top: 20px;
+		text-align: center;
+	  }
+
+	  .dropdown_department_top .text {
+		margin-top: 15px;
+	  }
+
+	  .dropdown_department_bottom .text {
+		margin-top: 20px;
+	  }
+
+	  .dropdown_department_sns_wrapper ul {
+		justify-content: center;
+	  }
+
+
 	/* footer */
 
 
@@ -1484,7 +1593,42 @@ p:first-child{
 		margin-top: 50px;
 		}
 
+	.footer_info table{
+		width: 100%;
+	}
+	.footer_info table tr{
+	display: table-row;
+	}
 
+	.footer_info table tr + tr{
+		margin-top: 0px;
+	}
+
+	.footer_info table tr td{
+		display: table-cell;
+		padding-top: 0px;
+		    width: 50%;
+	}
+
+	.footer_info table tr + tr td{
+		padding-top: 10px;
+	}
+
+	.footer_info table td + td {
+		padding-left: 20px;
+	}
+
+
+	.dropdown_department_bottom .footer_info table{
+	width: auto;
+	margin-left: auto;
+	margin-right: auto;
+	}
+
+	.dropdown_department_bottom .footer_info table td{
+		text-align: left;
+		width: auto;
+	}
 
 	/* mobile */
 	.mobile_hide{
@@ -1509,91 +1653,6 @@ p:first-child{
 	.big_col_wrapper .col_spacing, .xl_col_wrapper .col_spacing{
 		margin-left: 15px;
 		margin-right: 15px;
-	  }
-
-	.dropdown .dropdown_col_wrapper {
-		display: block;
-		height: auto;
-	  }
-
-	.dropdown .dropdown_col {
-		width: auto;
-		padding: 0px;
-	  }
-
-	  .dropdown .dropdown_col::after {
-		display: none;
-	  }
-
-	  .dropdown .dropdown_menu_list{
-		position: relative;
-		padding: 20px;
-		text-align: left;
-	}
-
-	.dropdown_menu_list + .dropdown_menu_list {
-		margin-top: auto;
-	  }
-
-	  .dropdown_menu_list ul {
-		margin-top: 10px;
-	  }
-
-	  .dropdown_menu_list li + li {
-		margin-top: 10px;
-	  }
-
-	.dropdown .dropdown_menu_list::before {
-		content: "";
-		position: absolute;
-		top: auto;
-		right: 0px;
-		left: 0px;
-		bottom: 0px;
-		margin: auto;
-		width: 100%;
-		background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
-		height: 50px;
-	  }
-
-	  .dropdown .dropdown_menu_list> *{
-		position: relative;
-	  }
-
-	  .dropdown_department {
-		position: relative;
-		left: auto;
-		top: auto;
-		bottom: auto;
-		right: auto;
-		margin: auto;
-		padding: 20px;
-	  }
-
-	  .dropdown_department_logo {
-		width: 30%;
-		max-width: 200px;
-	  }
-
-	  .dropdown_department_top {
-		text-align: center;
-	  }
-
-	  .dropdown_department_bottom {
-		margin-top: 20px;
-		text-align: center;
-	  }
-
-	  .dropdown_department_top .text {
-		margin-top: 15px;
-	  }
-
-	  .dropdown_department_bottom .text {
-		margin-top: 15px;
-	  }
-
-	  .dropdown_department_sns_wrapper ul {
-		justify-content: center;
 	  }
 
 
