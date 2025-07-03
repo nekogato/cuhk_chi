@@ -199,12 +199,11 @@ if (pll_current_language() == 'sc') {
 								<?php }; ?>
 							</ul>
 						</div>
-						<div class="text text8">
-							<?php if(get_field('address', 'option')){
+						<div class="text text8 footer_info">
+							<?php if(get_field('footer_info', 'option')){
 								?>
-								<strong><?php echo cuhk_multilang_text("地址：","地址：","Address:"); ?></strong><br>
 								<?php
-								the_field('address', 'option');
+								the_field('footer_info', 'option');
 							}; ?>
 						</div>
 					</div>

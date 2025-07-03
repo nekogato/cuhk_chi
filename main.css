@@ -434,12 +434,18 @@ a{
 
 .dropdown .dropdown_col_wrapper{
 	display: flex;
-	height: 100%;
+	position: absolute;
+	top:50px;
+	right: 50px;
+	bottom: 50px;
+	left: 50px;
+	margin: auto;
+	gap: 40px;
 }
 
 .dropdown .dropdown_col{
 	width: 25%;
-	padding: 50px;
+	padding: 0px;
 	box-sizing: content-box;
     height: auto;
     align-self: stretch;
@@ -498,7 +504,7 @@ a{
 	bottom: 0px;
 	right: 0px;
 	margin: auto;
-	padding: 50px;
+	padding: 0px;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -696,6 +702,10 @@ a{
 
 .footer_info{
 
+}
+
+.footer_info td:first-child{
+	white-space: nowrap;
 }
 
 .footer_info td+td{
