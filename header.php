@@ -89,10 +89,17 @@ if (pll_current_language() == 'sc') {
 								<?php
 								while( have_rows('menu') ) : the_row();
 									$text = get_sub_field('text');
+									$title_only = get_sub_field('title_only');
 									$url = get_sub_field('url');
+									if($title_only){
+									?>
+									<li class="t2"><?php echo $text;?></a></li>
+									<?php
+									}else{
 									?>
 									<li><a href="<?php echo $url;?>"><?php echo $text;?></a></li>
 									<?php
+									};
 								endwhile;
 								?>
 							</ul>
@@ -122,10 +129,17 @@ if (pll_current_language() == 'sc') {
 								<?php
 								while( have_rows('menu') ) : the_row();
 									$text = get_sub_field('text');
+									$title_only = get_sub_field('title_only');
 									$url = get_sub_field('url');
+									if($title_only){
+									?>
+									<li class="t2"><?php echo $text;?></a></li>
+									<?php
+									}else{
 									?>
 									<li><a href="<?php echo $url;?>"><?php echo $text;?></a></li>
 									<?php
+									};
 								endwhile;
 								?>
 							</ul>
@@ -155,10 +169,17 @@ if (pll_current_language() == 'sc') {
 								<?php
 								while( have_rows('menu') ) : the_row();
 									$text = get_sub_field('text');
+									$title_only = get_sub_field('title_only');
 									$url = get_sub_field('url');
+									if($title_only){
+									?>
+									<li class="t2"><?php echo $text;?></a></li>
+									<?php
+									}else{
 									?>
 									<li><a href="<?php echo $url;?>"><?php echo $text;?></a></li>
 									<?php
+									};
 								endwhile;
 								?>
 							</ul>

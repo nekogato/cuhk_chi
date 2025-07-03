@@ -483,6 +483,10 @@ a{
 .dropdown_menu_list .t1 a{
 	color: #3c3c3c;
 }
+
+.dropdown_menu_list .t2{
+    font-weight: bold;
+}
 .dropdown_menu_list a:hover{
 	color:#45adb3
 }
