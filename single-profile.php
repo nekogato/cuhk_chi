@@ -56,7 +56,7 @@ if (have_posts()) :
 			<div class="section_center_content small_section_center_content">
 
 				<div class="people_detail_content">
-					<div class="back_btn_wrapper mobile_show"><a href="javascript:history.back()" class="back_btn"><?php echo cuhk_multilang_text("返回","","Back"); ?></a></div>
+					<div class="back_btn_wrapper"><a href="javascript:history.back()" class="back_btn"><?php echo cuhk_multilang_text("返回","","Back"); ?></a></div>
 					<div class="people_detail_incontent">
 						<div class="people_detail_photo_wrapper scrollin scrollinbottom">
 							<div class="people_detail_photo">
@@ -67,7 +67,6 @@ if (have_posts()) :
 							</div>
 						</div>
 						<div class="people_detail_text scrollin scrollinbottom">
-                        	<div class="back_btn_wrapper mobile_hide"><a href="javascript:history.back()" class="back_btn"><?php echo cuhk_multilang_text("返回","","Back"); ?></a></div>
 							<div class="name text3"><?php the_title(); ?></div>
 							<?php if ($position): ?>
 								<div class="position text5"><?php echo esc_html($position); ?></div>

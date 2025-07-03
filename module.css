@@ -82,7 +82,10 @@
 
 
 .back_btn_wrapper{
-    margin-bottom: 50px;
+    margin-top: -100px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
 }
 
 .back_btn_wrapper .back_btn{
@@ -6898,6 +6901,9 @@ body.dragging-scroll {
         }
 
         .back_btn_wrapper {
+            position: relative;
+            left: auto;
+            top:auto;
         margin-bottom: 25px;
         }
       
