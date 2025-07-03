@@ -707,8 +707,8 @@ a{
 	background-image: url(images/sns_icon_in.png);
 }
 
-.footer_info{
-
+.footer_info .t_spacer{
+	height: 10px;
 }
 
 .dropdown .footer_info table{

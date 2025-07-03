@@ -40,9 +40,13 @@
                                                 ?>
                                                 <li class="t2"><?php echo $text;?></a></li>
                                                 <?php
-                                                }else{
+                                                }else if($text && $url){
                                                 ?>
                                                 <li><a href="<?php echo $url;?>"><?php echo $text;?></a></li>
+                                                <?php
+                                                }else{
+                                                ?>
+                                                <li class="t_spacer"></li>
                                                 <?php
                                                 };
                                             endwhile;
@@ -72,9 +76,13 @@
                                                 ?>
                                                 <li class="t2"><?php echo $text;?></a></li>
                                                 <?php
-                                                }else{
+                                                }else if($text && $url){
                                                 ?>
                                                 <li><a href="<?php echo $url;?>"><?php echo $text;?></a></li>
+                                                <?php
+                                                }else{
+                                                ?>
+                                                <li class="t_spacer"></li>
                                                 <?php
                                                 };
                                             endwhile;
@@ -104,9 +112,13 @@
                                                 ?>
                                                 <li class="t2"><?php echo $text;?></a></li>
                                                 <?php
-                                                }else{
+                                                }else if($text && $url){
                                                 ?>
                                                 <li><a href="<?php echo $url;?>"><?php echo $text;?></a></li>
+                                                <?php
+                                                }else{
+                                                ?>
+                                                <li class="t_spacer"></li>
                                                 <?php
                                                 };
                                             endwhile;
