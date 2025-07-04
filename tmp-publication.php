@@ -123,7 +123,7 @@ while (have_posts()) :
 									$author = get_field("author");
 									$chief_editor = get_field("chief_editor");
 									$publisher = get_field("publisher");
-									$publish_year = get_field("publish_year");
+									$publish_year = get_field("year_and_month_of_publication");
 									?>
 									<div class="publication_box scrollin scrollinbottom">
 										<?php if($coverimage){?>
