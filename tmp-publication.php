@@ -90,7 +90,7 @@ while (have_posts()) :
 					// Set up WP_Query arguments for the current category
 					$lang = pll_current_language();
 					$ctermfullname = get_field("{$lang}_name", 'publication_category_' . $category->term_id);
-
+					$ctermslug = $category->slug;
 					$args = [
 						'post_type' => 'publication', // Replace with your actual post type
 						'posts_per_page' => -1, // Get all posts; adjust as needed
@@ -109,7 +109,7 @@ while (have_posts()) :
 					// Check if the query has posts
 					if ($query->have_posts()) {
 						?>
-						<div class="publication_box_list_wrapper">
+						<div class="publication_box_list_wrapper" data-id="<?php echo $ctermslug; ?>">
 							<div class="publication_box_list_title text4">
 								<?php echo esc_html($ctermfullname); ?>
 							</div>
