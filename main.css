@@ -1166,13 +1166,19 @@ p:first-child{
 }
 
 
-.free_text strong{
-    font-weight: 600;
+.free_text strong, .free_text b{
+    font-weight: 700;
 }
 
- .free_text a{
+
+.free_text i{
+	font-style: italic;
+}
+
+.free_text a{
     color:#45adb3;
-	text-decoration: underline;
+    opacity: 1;
+    text-decoration: underline;
 }
 .free_text a:hover{
     opacity: 0.5;
@@ -1183,40 +1189,69 @@ p:first-child{
 	height: auto;
 }
 
-.free_text ol, .free_text ul{
-	margin-top: 30px;
+ol:not(.free_text ol), ul:not(.free_text ul) {
+	list-style: none;
 }
 
-.free_text ol:first-child, .free_text ul:first-child{
-	margin-top: 0px;
+.free_text ol {
+    margin-top: 15px;
+}
+
+.free_text ol:first-child {
+    margin-top: auto;
+}
+
+.free_text ol ol, .free_text ol ul{
+    margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+.free_text ol ol:first-child, .free_text ol ul:first-child{
+    margin-top: 15px;
+}
+
+.free_text ul ol, .free_text ul ul{
+    margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+.free_text ul ol:first-child, .free_text ul ul:first-child{
+    margin-top: 15px;
 }
 
 
-.free_text ol li{
-	list-style:decimal;
-	margin-left:1.5em;
+.free_text ol:not([style])  li{
+	/* list-style:decimal; */
+	}	
+
+.free_text ol  li{
+	margin-left:1em;
 	}	
 	
-.free_text ol li+li{
-	margin-top: 10px;
+.free_text ol > li+li{
+	margin-top: 15px;
 	}
+
+.free_text ul {
+    margin-top: 30px;
+}	
+
+.free_text ul:first-child {
+    margin-top: auto;
+}
 	
+.free_text ul:not([style]) li{
+	/* list-style:disc; */
+	}	
 	
 .free_text ul li{
-	list-style:none;
 	margin-left:1em;
 	}	
 
-.free_text ul li::before{
-	content:"•";
-	position: absolute;
-	margin-left: -1em;
-
-}	
 	
 .free_text ul li+li{
-	margin-top: 10px;
 	}
+
 	
 	
 .free_text hr{

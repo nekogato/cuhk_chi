@@ -58,7 +58,7 @@ while (have_posts()) :
 										<div class="research_centre_text_item_wrapper">
 											<?php if ($name): ?>
 												<div class="research_centre_text_item">
-													<div class="t1 text4"><?php echo ($name); ?></div>
+													<div class="t1 text5"><?php echo ($name); ?></div>
 												</div>
 												<div class="break"></div>
 											<?php endif; ?>

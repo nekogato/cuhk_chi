@@ -116,8 +116,11 @@ body#tinymce.wp-editor ul ol:first-child, body#tinymce.wp-editor ul ul:first-chi
     margin-top: 20px;
 }
 
+body#tinymce.wp-editor ol:not([style]) li{
+	/* list-style:decimal; */
+	}	
+
 body#tinymce.wp-editor ol li{
-	list-style:decimal;
 	margin-left:1em;
 	}	
 	
@@ -133,17 +136,13 @@ body#tinymce.wp-editor ul:first-child {
     margin-top: auto;
 }
 	
-body#tinymce.wp-editor ul li{
-	list-style:none;
-	margin-left:1em;
+body#tinymce.wp-editor ul:not([style]) li{
+	/* list-style:disc; */
 	}	
 
-body#tinymce.wp-editor ul li::before{
-	content:"•";
-	position: absolute;
-	margin-left: -1em;
-
-}	
+body#tinymce.wp-editor ul li{
+	margin-left:1em;
+	}	
 	
 body#tinymce.wp-editor ul li+li{
 	}
