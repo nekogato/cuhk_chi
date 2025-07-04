@@ -3894,6 +3894,10 @@ body.dragging-scroll {
     padding-bottom: 60px;
 }
 
+.featured_news_box_section .col_wrapper{
+    overflow: visible;
+}
+
 .featured_news_box_section .news_box .photo{
     position: relative;
     padding-bottom: 56.25%;

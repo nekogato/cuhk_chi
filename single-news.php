@@ -19,7 +19,7 @@ while (have_posts()) :
 						<div class="col_spacing scrollin scrollinbottom">
 							<div class="text_wrapper vertical_text_wrapper">
 								<div class="text vertical_text">
-									<?php $news_category = get_the_terms(get_the_ID(), 'news_category');
+									<!-- <?php $news_category = get_the_terms(get_the_ID(), 'news_category');
 									if ($news_category) {
 										if ($news_category && ! is_wp_error($news_category)) {
 									?>
@@ -48,9 +48,9 @@ while (have_posts()) :
 									<?php
 										};
 									};
-									?>
+									?> -->
 
-									<h1 class="project_title"><span><?php the_field("news_name"); ?></span></h1>
+									<h1 class="project_title"><span><?php echo cuhk_multilang_text("學系消息", "", " News"); ?></span></h1>
 								</div>
 							</div>
 						</div>
@@ -97,6 +97,8 @@ while (have_posts()) :
 						<div class="col_spacing">
 							<div class="right_content">
 								<div class="flexible_layout_wrapper ">
+									<h1 class="project_title content_project_title"><?php the_field("news_name"); ?></h1>
+
 									<?php if (get_field('start_date')) { ?>
 										<div class="news_date scrollin scrollinbottom">
 											<?php echo cuhk_multilang_text("發報日期：","","Publish Date:"); ?>
