@@ -4036,8 +4036,19 @@ body.dragging-scroll {
     position: relative;
     display: block;
     flex: 1;
-    background-color: #ffffff;
   }
+
+
+.news_box_section .news_box:nth-child(even) .photo{  
+    background-color: #ccc;
+    background: linear-gradient(180deg, rgba(239,211,193,1) 50%, rgba(239,211,193,0.7) 100%);
+}
+
+.news_box_section .news_box:nth-child(odd) .photo{  
+    background-color: #ccc;
+    background: linear-gradient(180deg, rgba(195,217,194,1) 50%, rgba(195,217,194,0.7) 100%);
+}
+
 
 .news_box_section .news_box .photo img{  
     position: absolute;
