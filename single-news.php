@@ -247,6 +247,101 @@ while (have_posts()) :
 			</div>
 		</div>
 	</div>
+
+	
+
+	<div class="section section_content">
+		<div class="section_center_content small_section_center_content scrollin scrollinbottom">
+			<h1 class="section_title text1"><?php echo cuhk_multilang_text("探索更多","","Explore More News"); ?></h1>
+		</div>
+		<div class="thumb_text_box_slider_wrapper scrollin scrollinbottom">
+			<div class="swiper-container">
+				<div class="swiper-wrapper">
+					<?php
+						$args = [
+						'post_type' => 'news',
+						'posts_per_page' => 4,
+					];
+
+					// Create a new WP_Query instance
+					$query = new WP_Query($args);
+
+					// Check if the query has posts
+					if ($query->have_posts()) {
+
+						while ($query->have_posts()) {
+							$query->the_post();
+							?>
+							<?php
+							$news_banner = get_field("news_banner");
+							$news_name = get_field('news_name');
+							?>
+							<div class="swiper-slide">
+								<div class="thumb thumb2">
+									<?php if ($news_banner): ?>
+										<img src="<?php echo esc_url($news_banner['sizes']['medium']); ?>"
+											alt="<?php echo esc_attr($news_banner['alt']); ?>">
+									<?php endif; ?>
+								</div>
+								<div class="text">
+									<div class="text_spacing">
+										<?php $news_category = get_the_terms(get_the_ID(), 'event_category');
+										if ($news_category) {
+											if ($news_category && ! is_wp_error($news_category)) {
+										?>
+
+											<div class="cat">
+												<?php
+													$termid = $news_category[0]->term_id;
+													$termslug = $news_category[0]->slug;
+													$termlink = get_term_link($news_category[0]);
+													if (is_wp_error($termlink)) {
+														continue;
+													}
+													if (pll_current_language() == 'tc') {
+														$termname = get_field('tc_name', 'news_category_' . $termid);
+													} elseif (pll_current_language() == 'sc') {
+														$termname = get_field('sc_name', 'news_category_' . $termid);
+													} else {
+														$termname = get_field('en_name', 'news_category_' . $termid);
+													};
+												?>
+												<?php echo $termname; ?>
+											</div>
+										<?php
+											};
+										};
+										?>
+										<?php if ($news_name): ?>
+											<div class="title text5"><?php echo wp_kses_post($news_name); ?></div>
+										<?php endif; ?>
+
+										<div class="name text8">
+											<?php if (get_field('start_date')) { ?>
+												<?php
+												$start_date_raw = get_field('start_date'); // This is in Ymd format, e.g. 20250622
+												if ($start_date_raw) {
+													$date_obj = DateTime::createFromFormat('Ymd', $start_date_raw);
+													echo $date_obj->format('j/n/Y'); // Outputs e.g., 22/6
+												}
+												?>
+											<?php }; ?>
+										</div>
+										
+									</div>
+								</div>
+							</div>
+							<?php
+							wp_reset_postdata();
+						};
+					};
+					?>
+				</div>
+			</div>
+			<div class="prev_btn"></div>
+			<div class="next_btn"></div>
+		</div>
+	</div>
 <?php
 endwhile; // End of the loop.
 ?>
