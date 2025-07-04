@@ -60,6 +60,7 @@ while (have_posts()) :
 												<div class="research_centre_text_item">
 													<div class="t1 text4"><?php echo ($name); ?></div>
 												</div>
+												<div class="break"></div>
 											<?php endif; ?>
 											<?php if ($website): ?>
 												<div class="research_centre_text_item">
