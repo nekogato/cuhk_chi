@@ -195,7 +195,9 @@ while (have_posts()) :
 													<div class="flexible_layout flexible_layout_photo scrollin scrollinleft">
 														<div class="photo_wrapper">
 															<div class="photo">
+																<a href="<?php echo esc_url($image['sizes']['l']); ?>" data-fancybox data-caption="<?php echo $caption; ?>">
 																<img src="<?php echo esc_url($image['sizes']['l']); ?>" alt="<?php echo esc_attr($image['alt']); ?>">
+																</a>
 															</div>
 															<?php if ($caption) : ?>
 																<div class="caption"><?php echo esc_html($caption); ?></div>
