@@ -1990,7 +1990,7 @@ body.dragging-scroll {
 }
 
 .news_date{
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .news_date:first-child{
@@ -1999,6 +1999,7 @@ body.dragging-scroll {
 
 .news_title_wrapper .news_date{  
     color: #736562;
+    letter-spacing: 0em;
 }
 
 /* home_course_intro_section */
@@ -7399,8 +7400,8 @@ body.dragging-scroll {
 
       .section_left_right_content2 .right_content::before {
         content: "";
-        position: absolute;
-        top: -25px;
+        position: absolute;    
+        top: -30px;
         right: -15px;
         left: -15px;
         height: 200px;
