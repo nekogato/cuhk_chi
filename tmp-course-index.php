@@ -167,8 +167,8 @@ if (have_posts()) :
 											<span x-text="course.course_title"></span>
 										</div>
 										<div class="filter_detail_flex_item">
-											<div class="text8 mobile_show2 mobile_title"><?php echo cuhk_multilang_text("學分","","Course Units"); ?></div>
-											<span x-text="course.course_unit"></span>
+											<div class="text8 mobile_show2 mobile_title" x-show="course.course_unit"><?php echo cuhk_multilang_text("學分","","Course Units"); ?></div>
+											<span x-text="course.course_unit" x-show="course.course_unit"></span>
 										</div>
 										<div class="icon"></div>
 									</div>
