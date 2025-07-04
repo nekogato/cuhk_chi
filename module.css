@@ -935,6 +935,9 @@ body.dragging-scroll {
     font-family: "richmond-text","Chiron Sung HK WS", sans-serif;
 }
 
+.expandable_item .expandable_title.disable{
+    cursor:auto;
+}
 
 .expandable_item.active .expandable_title{
     padding-top: 60px;
