@@ -3405,9 +3405,11 @@ body.dragging-scroll {
         position: relative;
 }
 
-.news_title_wrapper .news_cat{
-        position: relative;
-        margin-bottom: 10px;
+.news_title_wrapper .news_cat{  
+    color: #736562;
+    position: relative;
+    margin-bottom: 10px;
+    letter-spacing: 0em;
 }
 
 .news_title_wrapper .news_title{
