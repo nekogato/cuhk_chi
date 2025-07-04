@@ -170,7 +170,7 @@ $initial_year = isset($_GET['active_year']) ? intval($_GET['active_year']) : $ma
 										</div>
 										<div class="hidden">
 											<div class="hidden_content">
-												<div class="table_flex_item_wrapper">
+												<div class="table_flex_item_wrapper table_flex_item_wrapper2">
 													<div class="table_flex_item" x-show="project.project_title">
 														<div class="title text7"><?php echo cuhk_multilang_text("計劃名稱", "", "Project Name"); ?></div>
 														<div class="text" x-text="project.project_title"></div>
@@ -179,9 +179,6 @@ $initial_year = isset($_GET['active_year']) ? intval($_GET['active_year']) : $ma
 														<div class="title text7"><?php echo cuhk_multilang_text("撥款年份", "", "Funding Year"); ?></div>
 														<div class="text" x-text="`${project.funding_start_year}/${project.funding_end_year_short}`"></div>
 													</div>
-												</div>
-
-												<div class="table_flex_item_wrapper">
 													<div class="table_flex_item" x-show="project.principal_investigator">
 														<div class="title text7"><?php echo cuhk_multilang_text("計劃主持", "", "Principal Investigator"); ?></div>
 														<div class="text" x-text="project.principal_investigator"></div>
