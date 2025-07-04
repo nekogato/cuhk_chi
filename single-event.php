@@ -328,7 +328,7 @@ while (have_posts()) :
 											};
 											?>
 											<?php if ($event_name): ?>
-												<div class="title text5"><?php echo esc_html($event_name); ?></div>
+												<div class="title text5"><?php echo wp_kses_post($event_name); ?></div>
 											<?php endif; ?>
 										</div>
 									</div>
