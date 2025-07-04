@@ -2584,17 +2584,17 @@ body.dragging-scroll {
 
 .thumb_text_box_slider_wrapper .swiper-slide:nth-child(even) .thumb3{  
     background-color: #ccc;
-    background: linear-gradient(180deg, rgba(239,211,193,1) 70%, rgba(239,211,193,0) 100%);
+    background: linear-gradient(180deg, rgba(239,211,193,1) 50%, rgba(239,211,193,0.7) 100%);
 }
 
 .thumb_text_box_slider_wrapper .swiper-slide:nth-child(odd) .thumb3{  
     background-color: #ccc;
-    background: linear-gradient(180deg, rgba(195,217,194,1) 70%, rgba(195,217,194,0) 100%);
+    background: linear-gradient(180deg, rgba(195,217,194,1) 50%, rgba(195,217,194,0.7) 100%);
 }
 
 .thumb_text_box_slider_wrapper .swiper-slide .thumb3 img{
-    width: 85%;
-    height: 85%;
+    width: 80%;
+    height: 80%;
     object-fit: contain;
 }
 

@@ -330,6 +330,23 @@ while (have_posts()) :
 											<?php if ($event_name): ?>
 												<div class="title text5"><?php echo wp_kses_post($event_name); ?></div>
 											<?php endif; ?>
+
+											<div class="name text8">
+												
+												<?php
+												$start_date = get_field('start_date');
+												$end_date = get_field('end_date');
+												$start_date_obj = DateTime::createFromFormat('Y-m-d', $start_date);
+												$end_date_obj = DateTime::createFromFormat('Y-m-d', $end_date);
+
+												if ($start_date && $end_date && $start_date !== $end_date) {
+													echo esc_html($start_date_obj->format('j/n/Y') . '－' . $end_date_obj->format('j/n/Y'));
+												} else {
+													echo esc_html($start_date_obj->format('j/n/Y'));
+												}
+												?>
+											</div>
+											
 										</div>
 									</div>
 								</div>
