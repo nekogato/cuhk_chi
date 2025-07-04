@@ -808,6 +808,10 @@ body.dragging-scroll {
     margin-top: 20px;
 }
 
+.single-gallery .section_description{
+    text-align: left;
+}
+
 /* section_list_content */
 
 .section_list_content{
