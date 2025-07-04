@@ -109,66 +109,68 @@ while (have_posts()) :
 					// Check if the query has posts
 					if ($query->have_posts()) {
 						?>
-						<div class="publication_box_list scrollin_p">
+						<div class="publication_box_list_wrapper">
 							<div class="publication_box_list_title">
 								<?php echo esc_html($ctermfullname); ?>
 							</div>
-							<?php 
-							// Loop through posts
-							while ($query->have_posts()) {
-								$query->the_post();
-								$coverimage = get_field("cover_image");
-								$title = get_field("title");
-								$author = get_field("author");
-								$chief_editor = get_field("chief_editor");
-								$publisher = get_field("publisher");
-								$publish_year = get_field("publish_year");
-								?>
-								<div class="publication_box scrollin scrollinbottom">
-									<?php if($coverimage){?>
-									<div class="publication_thumb">
-										<div class="thumb">
-											<a href="<?php the_permalink(); ?>">
-												<img src="<?php echo $coverimage["url"]; ?>" alt="<?php echo $coverimage["alt"]; ?>">
-											</a>
+							<div class="publication_box_list scrollin_p">
+								<?php 
+								// Loop through posts
+								while ($query->have_posts()) {
+									$query->the_post();
+									$coverimage = get_field("cover_photo");
+									$title = get_field("title");
+									$author = get_field("author");
+									$chief_editor = get_field("chief_editor");
+									$publisher = get_field("publisher");
+									$publish_year = get_field("publish_year");
+									?>
+									<div class="publication_box scrollin scrollinbottom">
+										<?php if($coverimage){?>
+										<div class="publication_thumb">
+											<div class="thumb">
+												<a href="<?php the_permalink(); ?>">
+													<img src="<?php echo $coverimage["url"]; ?>" alt="<?php echo $coverimage["alt"]; ?>">
+												</a>
+											</div>
 										</div>
-									</div>
-									<?php }; ?>
-									<div class="publication_text">
-										<div class="publication_text_item text5 book_name">
-											<?php echo $title; ?>
-										</div>
-										<?php if($author){?>
-											<div class="publication_text_item">
-												<div class="title text7">
-													<?php echo cuhk_multilang_text("作者", "", "Author"); ?>
+										<?php }; ?>
+										<div class="publication_text">
+											<div class="publication_text_item text5 book_name">
+												<?php echo $title; ?>
+											</div>
+											<?php if($author){?>
+												<div class="publication_text_item">
+													<div class="title text7">
+														<?php echo cuhk_multilang_text("作者", "", "Author"); ?>
+													</div>
+													<div class="text"><?php echo $author; ?></div>
 												</div>
-												<div class="text" x-html="publication.author"></div>
-											</div>
-										<?php }; ?>
-										<?php if(!$author && $chief_editor){?>
-											<div class="publication_text_item">
-												<div class="title text7"><?php echo cuhk_multilang_text("主編", "", "Chief Editor"); ?></div>
-												<div class="text " x-html="publication.chief_editor"></div>
-											</div>
-										<?php }; ?>
-										<?php if($publisher){?>
-											<div class="publication_text_item">
-												<div class="title text7"><?php echo cuhk_multilang_text("出版商", "", "Publisher"); ?></div>
-												<div class="text " x-html="publication.publisher"></div>
-											</div>
-										<?php }; ?>
-										<?php if($publish_year){?>
-											<div class="publication_text_item">
-												<div class="title text7"><?php echo cuhk_multilang_text("出版年份", "", "Publication Year"); ?></div>
-												<div class="text " x-html="publication.publish_year"></div>
-											</div>
-										<?php }; ?>
+											<?php }; ?>
+											<?php if(!$author && $chief_editor){?>
+												<div class="publication_text_item">
+													<div class="title text7"><?php echo cuhk_multilang_text("主編", "", "Chief Editor"); ?></div>
+													<div class="text "><?php echo $chief_editor; ?></div>
+												</div>
+											<?php }; ?>
+											<?php if($publisher){?>
+												<div class="publication_text_item">
+													<div class="title text7"><?php echo cuhk_multilang_text("出版商", "", "Publisher"); ?></div>
+													<div class="text "><?php echo $publisher; ?></div>
+												</div>
+											<?php }; ?>
+											<?php if($publish_year){?>
+												<div class="publication_text_item">
+													<div class="title text7"><?php echo cuhk_multilang_text("出版年份", "", "Publication Year"); ?></div>
+													<div class="text "><?php echo $publish_year; ?></div>
+												</div>
+											<?php }; ?>
+										</div>
 									</div>
+									<?php
+								};
+								?>
 								</div>
-								<?php
-							};
-							?>
 							</div>
 						</div>
 						<?php
