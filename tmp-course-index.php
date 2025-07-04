@@ -148,11 +148,7 @@ if (have_posts()) :
 						<div class="filter_detail_flex text7">
 							<div class="filter_detail_flex_item"><?php echo cuhk_multilang_text("課程編號","","Course Code"); ?></div>
 							<div class="filter_detail_flex_item"><?php echo cuhk_multilang_text("課程名稱","","Course Title"); ?></div>
-							<div class="filter_detail_flex_item"><?php echo cuhk_multilang_text("講師","","Lecturer"); ?></div>
-							<div class="filter_detail_flex_item"><?php echo cuhk_multilang_text("語言","","Language"); ?></div>
-							<div class="filter_detail_flex_item"><?php echo cuhk_multilang_text("時間","","Lecture Time"); ?></div>
-							<div class="filter_detail_flex_item"><?php echo cuhk_multilang_text("地點","","Venue"); ?></div>
-							<div class="filter_detail_flex_item"><?php echo cuhk_multilang_text("人數","","Quota"); ?></div>
+							<div class="filter_detail_flex_item"><?php echo cuhk_multilang_text("學分","","Units"); ?></div>
 						</div>
 					</div>
 
@@ -171,24 +167,8 @@ if (have_posts()) :
 											<span x-text="course.course_title"></span>
 										</div>
 										<div class="filter_detail_flex_item">
-											<div class="text8 mobile_show2 mobile_title"><?php echo cuhk_multilang_text("講師","","Lecturer"); ?></div>
-											<span x-text="course.lecturer_name"></span>
-										</div>
-										<div class="filter_detail_flex_item">
-											<div class="text8 mobile_show2 mobile_title"><?php echo cuhk_multilang_text("語言","","Language"); ?></div>
-											<span x-text="course.language"></span>
-										</div>
-										<div class="filter_detail_flex_item">
-											<div class="text8 mobile_show2 mobile_title"><?php echo cuhk_multilang_text("時間","","Lecture Time"); ?></div>
-											<span x-text="course.lecture_time"></span>
-										</div>
-										<div class="filter_detail_flex_item">
-											<div class="text8 mobile_show2 mobile_title"><?php echo cuhk_multilang_text("地點","","Venue"); ?></div>
-											<span x-text="course.venue"></span>
-										</div>
-										<div class="filter_detail_flex_item">
-											<div class="text8 mobile_show2 mobile_title"><?php echo cuhk_multilang_text("人數","","Quota"); ?></div>
-											<span x-text="course.quota"></span>
+											<div class="text8 mobile_show2 mobile_title"><?php echo cuhk_multilang_text("學分","","Course Units"); ?></div>
+											<span x-text="course.course_unit"></span>
 										</div>
 										<div class="icon"></div>
 									</div>

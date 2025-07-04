@@ -919,6 +919,7 @@ function load_courses()
 			// Get ACF fields
 			$course_code = get_field('course_code');
 			$course_title = get_field('Course_Title');
+			$course_unit = get_field('course_unit');
 			$language = get_field('language');
 			$lecture_time = get_field('lecture_time');
 			$venue = get_field('venue');
@@ -935,6 +936,7 @@ function load_courses()
 				'id' => get_the_ID(),
 				'course_code' => $course_code,
 				'course_title' => $course_title,
+				'course_unit' => $course_unit,
 				'lecturer_name' => $lecturer_name,
 				'language' => $language,
 				'lecture_time' => $lecture_time,
