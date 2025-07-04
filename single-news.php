@@ -130,7 +130,7 @@ while (have_posts()) :
 						<div class="col_spacing">
 							<div class="right_content news_right_content">
 								<div class="flexible_layout_wrapper ">
-									<div class="news_title_wrapper mobile_hide2">
+									<div class="news_title_wrapper mobile_hide2 scrollin scrollinbottom">
 										<?php $news_category = get_the_terms(get_the_ID(), 'news_category');
 										if ($news_category) {
 											if ($news_category && ! is_wp_error($news_category)) {
