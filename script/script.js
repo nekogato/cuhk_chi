@@ -1187,6 +1187,14 @@ function init_function(){
 		}
 	})
 	
+	$(".publication_filter_btn").click(function(){
+		var mylink = $(this).attr("data-link");
+		var $mytarget = $(".publication_box_list_wrapper[data-id='"+mylink+"']");
+		var mytop = $mytarget.offset().top;
+		var body = $("html");
+		body.stop().animate({scrollTop:mytop-parseInt($(".header_bg").outerHeight())}, 1200, 'easeInOutQuad', function() { 
+		});
+	})
 }
 
 

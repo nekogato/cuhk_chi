@@ -57,7 +57,7 @@ while (have_posts()) :
 									<ul class="alphabet_list">
 										<?php foreach ($publication_categories as $term): ?>
 											<li>
-												<a data-link="<?php echo esc_attr($term->slug); ?>">
+												<a class="publication_filter_btn" data-link="<?php echo esc_attr($term->slug); ?>">
 												<?php
 													$lang = pll_current_language();
 													$ctermfullname = get_field("{$lang}_name", 'publication_category_' . $term->term_id);
