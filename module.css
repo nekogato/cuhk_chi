@@ -3396,10 +3396,23 @@ body.dragging-scroll {
     color: #409192;
 }
 
-.news_right_content .project_title{
+.news_right_content .news_title_wrapper{
     margin-top: -150px;
     margin-bottom: 50px;
+}
+
+.news_title_wrapper{
+        position: relative;
+}
+
+.news_title_wrapper .news_cat{
+        position: relative;
+}
+
+.news_title_wrapper .news_title{
       color: #636298;
+        position: relative;
+    letter-spacing: 0.05em;
 }
 
 /* plain_text_section */
