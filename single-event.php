@@ -98,7 +98,7 @@ while (have_posts()) :
 
 					<div class="col col5">
 						<div class="col_spacing">
-							<div class="right_content">
+							<div class="right_content news_right_content">
 								<div class="flexible_layout_wrapper">
 
 									<div class="news_title_wrapper mobile_hide2 scrollin scrollinbottom">
