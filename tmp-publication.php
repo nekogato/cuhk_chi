@@ -110,7 +110,7 @@ while (have_posts()) :
 					if ($query->have_posts()) {
 						?>
 						<div class="publication_box_list_wrapper">
-							<div class="publication_box_list_title">
+							<div class="publication_box_list_title text4">
 								<?php echo esc_html($ctermfullname); ?>
 							</div>
 							<div class="publication_box_list scrollin_p">
@@ -170,7 +170,6 @@ while (have_posts()) :
 									<?php
 								};
 								?>
-								</div>
 							</div>
 						</div>
 						<?php
