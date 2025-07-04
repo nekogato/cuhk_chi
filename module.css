@@ -2002,6 +2002,10 @@ body.dragging-scroll {
     letter-spacing: 0em;
 }
 
+.news_title_wrapper + .info_item_wrapper{
+    margin-top: 50px;
+}
+
 /* home_course_intro_section */
 
 .home_course_intro_section{
