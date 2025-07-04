@@ -52,7 +52,7 @@ while (have_posts()) :
 
 									<!-- <h1 class="project_title"><span><?php echo cuhk_multilang_text("學系消息", "", " News"); ?></span></h1> -->
 
-									<div class="news_title_wrapper mobile_show">
+									<div class="news_title_wrapper mobile_show2">
 										<?php $news_category = get_the_terms(get_the_ID(), 'news_category');
 										if ($news_category) {
 											if ($news_category && ! is_wp_error($news_category)) {
@@ -130,7 +130,7 @@ while (have_posts()) :
 						<div class="col_spacing">
 							<div class="right_content news_right_content">
 								<div class="flexible_layout_wrapper ">
-									<div class="news_title_wrapper mobile_hide">
+									<div class="news_title_wrapper mobile_hide2">
 										<?php $news_category = get_the_terms(get_the_ID(), 'news_category');
 										if ($news_category) {
 											if ($news_category && ! is_wp_error($news_category)) {
