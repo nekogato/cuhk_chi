@@ -19,38 +19,7 @@ while (have_posts()) :
 						<div class="col_spacing scrollin scrollinbottom">
 							<div class="text_wrapper vertical_text_wrapper">
 								<div class="text vertical_text">
-									<!-- <?php $news_category = get_the_terms(get_the_ID(), 'news_category');
-									if ($news_category) {
-										if ($news_category && ! is_wp_error($news_category)) {
-									?>
-											<h4 class="project_smalltitle ">
-												<?php
-												foreach ($news_category as $term) {
-													$termid = $term->term_id;
-													$termslug = $term->slug;
-													$termlink = get_term_link($term);
-													if (is_wp_error($termlink)) {
-														continue;
-													}
-													if (pll_current_language() == 'tc') {
-														$termname = get_field('tc_name', 'news_category_' . $termid);
-													} elseif (pll_current_language() == 'sc') {
-														$termname = get_field('sc_name', 'news_category_' . $termid);
-													} else {
-														$termname = get_field('en_name', 'news_category_' . $termid);
-													};
-												?>
-													<span><?php echo $termname; ?></span>
-												<?php
-												};
-												?>
-											</h4>
-									<?php
-										};
-									};
-									?> -->
-
-									<!-- <h1 class="project_title"><span><?php echo cuhk_multilang_text("學系消息", "", " News"); ?></span></h1> -->
+									
 
 									<div class="news_title_wrapper mobile_show2">
 										<?php $news_category = get_the_terms(get_the_ID(), 'news_category');

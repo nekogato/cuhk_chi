@@ -24,25 +24,40 @@ while (have_posts()) :
 						<div class="col_spacing scrollin scrollinbottom">
 							<div class="text_wrapper vertical_text_wrapper">
 								<div class="text vertical_text">
-									<?php
-									$event_category = get_the_terms(get_the_ID(), 'event_category');
-									if ($event_category && !is_wp_error($event_category)) :
-										foreach ($event_category as $term) :
-											$term_id = $term->term_id;
-											if (pll_current_language() == 'tc') {
-												$term_name = get_field('tc_name', 'event_category_' . $term_id);
-											} elseif (pll_current_language() == 'sc') {
-												$term_name = get_field('sc_name', 'event_category_' . $term_id);
-											} else {
-												$term_name = get_field('en_name', 'event_category_' . $term_id);
-											}
-									?>
-											<h4 class="project_smalltitle"><span><?php echo esc_html($term_name); ?></span></h4>
-									<?php
-										endforeach;
-									endif;
-									?>
-									<h1 class="project_title"><span><?php echo (get_field('event_name')); ?></span></h1>
+
+									<div class="news_title_wrapper mobile_show2">
+										<?php $event_category = get_the_terms(get_the_ID(), 'event_category');
+										if ($event_category) {
+											if ($event_category && ! is_wp_error($event_category)) {
+										?>
+
+											<div class="news_cat text4">
+												<?php
+													$termid = $event_category[0]->term_id;
+													$termslug = $event_category[0]->slug;
+													$termlink = get_term_link($event_category[0]);
+													if (is_wp_error($termlink)) {
+														continue;
+													}
+													if (pll_current_language() == 'tc') {
+														$termname = get_field('tc_name', 'event_category_' . $termid);
+													} elseif (pll_current_language() == 'sc') {
+														$termname = get_field('sc_name', 'event_category_' . $termid);
+													} else {
+														$termname = get_field('en_name', 'event_category_' . $termid);
+													};
+												?>
+												<span><?php echo $termname; ?></span>
+											</div>
+										<?php
+											};
+										};
+										?>
+
+										<h1 class="news_title "><?php the_field("event_name"); ?></h1>
+										
+									</div>
+
 								</div>
 							</div>
 						</div>
@@ -85,6 +100,40 @@ while (have_posts()) :
 						<div class="col_spacing">
 							<div class="right_content">
 								<div class="flexible_layout_wrapper">
+
+									<div class="news_title_wrapper mobile_hide2 scrollin scrollinbottom">
+										<?php $event_category = get_the_terms(get_the_ID(), 'event_category');
+										if ($event_category) {
+											if ($event_category && ! is_wp_error($event_category)) {
+										?>
+
+											<div class="news_cat text5">
+												<?php
+													$termid = $event_category[0]->term_id;
+													$termslug = $event_category[0]->slug;
+													$termlink = get_term_link($event_category[0]);
+													if (is_wp_error($termlink)) {
+														continue;
+													}
+													if (pll_current_language() == 'tc') {
+														$termname = get_field('tc_name', 'event_category_' . $termid);
+													} elseif (pll_current_language() == 'sc') {
+														$termname = get_field('sc_name', 'event_category_' . $termid);
+													} else {
+														$termname = get_field('en_name', 'event_category_' . $termid);
+													};
+												?>
+												<span><?php echo $termname; ?></span>
+											</div>
+										<?php
+											};
+										};
+										?>
+
+										<h1 class="news_title "><?php the_field("event_name"); ?></h1>
+
+									</div>
+
 									<div class="info_item_wrapper scrollin scrollinbottom">
 										<?php if (get_field('start_date')) : ?>
 											<div class="info_item">
