@@ -3396,6 +3396,12 @@ body.dragging-scroll {
     color: #409192;
 }
 
+.news_right_content .project_title{
+    margin-top: -150px;
+    margin-bottom: 50px;
+      color: #636298;
+}
+
 /* plain_text_section */
 
 .plain_text_section{

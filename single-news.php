@@ -95,9 +95,9 @@ while (have_posts()) :
 					}; ?>
 					<div class="col col5">
 						<div class="col_spacing">
-							<div class="right_content">
+							<div class="right_content news_right_content">
 								<div class="flexible_layout_wrapper ">
-									<h1 class="project_title content_project_title"><?php the_field("news_name"); ?></h1>
+									<h1 class="project_title "><?php the_field("news_name"); ?></h1>
 
 									<?php if (get_field('start_date')) { ?>
 										<div class="news_date scrollin scrollinbottom">
