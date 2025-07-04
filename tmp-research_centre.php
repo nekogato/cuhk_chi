@@ -58,8 +58,7 @@ while (have_posts()) :
 										<div class="research_centre_text_item_wrapper">
 											<?php if ($name): ?>
 												<div class="research_centre_text_item">
-													<div class="t1"><?php echo cuhk_multilang_text("姓名","","Name"); ?></div>
-													<div class="t2 text6"><?php echo ($name); ?></div>
+													<div class="t1 text4"><?php echo ($name); ?></div>
 												</div>
 											<?php endif; ?>
 											<?php if ($website): ?>
@@ -68,13 +67,13 @@ while (have_posts()) :
 													<div class="t2 text6"><a href="<?php echo($website); ?>" target="_blank"><?php echo($website); ?></a></div>
 												</div>
 											<?php endif; ?>
-											<div class="break"></div>
 											<?php if ($director): ?>
 												<div class="research_centre_text_item">
 													<div class="t1"><?php echo cuhk_multilang_text("中心主任","","Director"); ?></div>
 													<div class="t2 text6"><?php echo ($director); ?></div>
 												</div>
 											<?php endif; ?>
+											<div class="break"></div>
 											<?php if ($email): ?>
 												<div class="research_centre_text_item">
 													<div class="t1"><?php echo cuhk_multilang_text("電郵","","Email"); ?></div>
