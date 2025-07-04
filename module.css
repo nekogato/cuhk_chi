@@ -3971,11 +3971,11 @@ body.dragging-scroll {
 .news_box_section .news_box .photo {
     position: relative;
     margin-bottom: auto;
-    padding-bottom: 56.26%;
+    padding-bottom: 50%;
     position: relative;
     display: block;
     flex: 1;
-    background-color: #eeeeee;
+    background-color: #ffffff;
   }
 
 .news_box_section .news_box .photo img{  
@@ -3985,6 +3985,29 @@ body.dragging-scroll {
   width: 85%;
   height: 85%;
   object-fit: contain;
+  object-position: center center;
+  right: 0px;
+  bottom: 0px;
+  margin: auto;
+}
+
+.news_gallery_box_section .news_box .photo {
+    position: relative;
+    margin-bottom: auto;
+    padding-bottom: 56.26%;
+    position: relative;
+    display: block;
+    flex: 1;
+    background-color: #ffffff;
+  }
+
+.news_gallery_box_section .news_box .photo img{  
+    position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   object-position: center center;
   right: 0px;
   bottom: 0px;
