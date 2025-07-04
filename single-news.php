@@ -103,7 +103,7 @@ while (have_posts()) :
 										if ($news_category && ! is_wp_error($news_category)) {
 									?>
 
-										<div class="news_cat text4">
+										<div class="news_cat text5">
 											<?php
 											foreach ($news_category as $term) {
 												$termid = $term->term_id;

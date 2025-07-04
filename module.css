@@ -3407,6 +3407,7 @@ body.dragging-scroll {
 
 .news_title_wrapper .news_cat{
         position: relative;
+        margin-bottom: 10px;
 }
 
 .news_title_wrapper .news_title{
