@@ -277,7 +277,7 @@ while (have_posts()) :
 							$news_name = get_field('news_name');
 							?>
 							<div class="swiper-slide">
-								<div class="thumb thumb2">
+								<div class="thumb thumb2 thumb3">
 									<?php if ($news_banner): ?>
 										<img src="<?php echo esc_url($news_banner['sizes']['medium']); ?>"
 											alt="<?php echo esc_attr($news_banner['alt']); ?>">
