@@ -7396,6 +7396,11 @@ body.dragging-scroll {
         height: 200px;
       }
 
+      .news_right_content .news_title_wrapper{
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+
     /* year_list_section */
 
     .year_list_grid_wrapper {
