@@ -67,7 +67,7 @@ while (have_posts()) :
 												$start_date_raw = get_field('start_date'); // This is in Ymd format, e.g. 20250622
 												if ($start_date_raw) {
 													$date_obj = DateTime::createFromFormat('Ymd', $start_date_raw);
-													echo $date_obj->format('j/n'); // Outputs e.g., 22/6
+													echo $date_obj->format('j/n/Y');
 												}
 												?></div>
 											<div class="title_wrapper">
@@ -147,7 +147,7 @@ while (have_posts()) :
 												$start_date_raw = get_field('start_date'); // This is in Ymd format, e.g. 20250622
 												if ($start_date_raw) {
 													$date_obj = DateTime::createFromFormat('Ymd', $start_date_raw);
-													echo $date_obj->format('j/n'); // Outputs e.g., 22/6
+													echo $date_obj->format('j/n/Y');
 												}
 												?>
 											</div>
