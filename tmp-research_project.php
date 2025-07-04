@@ -81,32 +81,38 @@ $initial_year = isset($_GET['active_year']) ? intval($_GET['active_year']) : $ma
 								</div>
 							</div>
 						</div>
+						<?php
+						if (have_rows('page_banner_slider')):
+						?>
 						<div class="col8 col">
 							<div class="col_spacing scrollin scrollinbottom scrollin scrollinleft">
 								<div class="swiper-container swiper photo_wrapper top_photo_slider">
 									<div class="swiper-wrapper">
 										<?php
-										if (have_rows('page_banner_slider')):
-											while (have_rows('page_banner_slider')) : the_row();
-												$banner_image = get_sub_field('page_banner');
-												$banner_caption = get_sub_field('page_banner_caption');
-										?>
-												<div class="swiper-slide">
-													<div class="photo">
-														<img src="<?php echo esc_url($banner_image['url']); ?>" alt="<?php echo esc_attr($banner_image['alt']); ?>">
-													</div>
-													<?php if ($banner_caption): ?>
-														<div class="caption"><?php echo $banner_caption; ?></div>
-													<?php endif; ?>
+										while (have_rows('page_banner_slider')) : the_row();
+											$banner_image = get_sub_field('page_banner');
+											$banner_caption = get_sub_field('page_banner_caption');
+											if($banner_image){
+											?>
+											<div class="swiper-slide">
+												<div class="photo">
+													<img src="<?php echo esc_url($banner_image['url']); ?>" alt="<?php echo esc_attr($banner_image['alt']); ?>">
 												</div>
-										<?php
-											endwhile;
-										endif;
+												<?php if ($banner_caption): ?>
+													<div class="caption"><?php echo $banner_caption; ?></div>
+												<?php endif; ?>
+											</div>
+											<?php
+											};
+										endwhile;
 										?>
 									</div>
 								</div>
 							</div>
 						</div>
+						<?php
+						endif;
+						?>
 					</div>
 				</div>
 			</div>
