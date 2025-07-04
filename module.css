@@ -4010,7 +4010,7 @@ body.dragging-scroll {
 .news_box_section .news_box .photo {
     position: relative;
     margin-bottom: auto;
-    padding-bottom: 50%;
+    padding-bottom: 45%;
     position: relative;
     display: block;
     flex: 1;
@@ -7540,6 +7540,10 @@ body.dragging-scroll {
       .news_box_section .news_box .btn_wrapper {
         margin-top: 20px;
       }
+
+      .news_box_section .news_box .photo {
+            padding-bottom: 100%;
+        }
 
       /* events */
 
