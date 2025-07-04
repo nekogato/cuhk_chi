@@ -136,11 +136,11 @@ while (have_posts()) :
 						?>
 								<div class="news_box col col4">
 									<div class="col_spacing scrollin scrollinbottom">
-										<div class="photo">
+										<a class="photo" href="<?php the_permalink(); ?>">
 											<?php if ($news_banner): ?>
 												<img src="<?php echo esc_url($news_banner['url']); ?>" alt="<?php echo esc_attr($news_banner['alt']); ?>">
 											<?php endif; ?>
-										</div>
+										</a>
 										<div class="text_wrapper">
 											<div class="date_wrapper text5">
 												<?php
