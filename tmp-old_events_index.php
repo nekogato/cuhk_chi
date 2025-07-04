@@ -22,6 +22,12 @@ while (have_posts()) :
 
 		<div class="section section_content filter_menu_section">
 			<div class="section_center_content small_section_center_content small_section_center_content scrollin scrollinbottom">
+				<?php if ($page_title) : ?>
+					<h1 class="section_title text1 scrollin scrollinbottom"><?php echo ($page_title); ?></h1>
+				<?php endif; ?>
+				<?php if ($page_description) : ?>
+					<div class="section_description scrollin scrollinbottom col6"><?php echo ($page_description); ?></div>
+				<?php endif; ?>
 				<?php
 				$related_pages = get_field('related_page');
 				if ($related_pages) : ?>
@@ -30,12 +36,6 @@ while (have_posts()) :
 							<a href="<?php echo get_permalink($related_page->ID); ?>" class="round_btn text5"><?php echo get_field("page_title",$related_page->ID); ?></a>
 						<?php endforeach; ?>
 					</div>
-				<?php endif; ?>
-				<?php if ($page_title) : ?>
-					<h1 class="section_title text1 scrollin scrollinbottom"><?php echo ($page_title); ?></h1>
-				<?php endif; ?>
-				<?php if ($page_description) : ?>
-					<div class="section_description scrollin scrollinbottom col6"><?php echo ($page_description); ?></div>
 				<?php endif; ?>
 			</div>
 

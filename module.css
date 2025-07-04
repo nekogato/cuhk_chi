@@ -1811,7 +1811,7 @@ body.dragging-scroll {
 /* event_list_section */
 
 .intro_btn_wrapper{
-    margin-bottom: 80px;
+    margin-top: 80px;
 }
 
 .intro_btn_wrapper  .round_btn{
@@ -7581,7 +7581,7 @@ body.dragging-scroll {
       /* events */
 
       .intro_btn_wrapper{
-        margin-bottom: 30px;
+        margin-top: 30px;
       }
 
        /* event_list_section */
