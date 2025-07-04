@@ -89,7 +89,7 @@ while (have_posts()) :
 				foreach ($publication_categories as $category) {
 					// Set up WP_Query arguments for the current category
 					$lang = pll_current_language();
-					$ctermfullname = get_field("{$lang}_name", 'publication_category_' . $term->term_id);
+					$ctermfullname = get_field("{$lang}_name", 'publication_category_' . $category->term_id);
 
 					$args = [
 						'post_type' => 'publication', // Replace with your actual post type
