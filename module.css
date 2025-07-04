@@ -763,6 +763,11 @@ body.dragging-scroll {
     font-weight: 600;
 }
 
+.gallery_date{
+    letter-spacing: 0em;
+    font-weight: 400;
+}
+
 .section_smalltitle{
     color:#6f6ea6;
 }

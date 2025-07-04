@@ -16,7 +16,7 @@ get_template_part('template-parts/roll-menu', null, array(
 			<div class="section_center_content small_section_center_content scrollin scrollinbottom">
 				<div class="section_title text1 scrollin scrollinbottom">
 					<div class="text1"><?php the_field("gallery_title"); ?></div>
-					<div class="text4 gallery_date">
+					<div class="text5 gallery_date">
 					<?php
 					$date_raw = get_field('date'); // This is in Ymd format, e.g. 20250622
 					if ($date_raw) {
