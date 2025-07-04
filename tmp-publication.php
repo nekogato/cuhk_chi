@@ -130,19 +130,19 @@ while (have_posts()) :
 								<template x-if="!publication.author && publication.chief_editor">
 									<div class="publication_text_item">
 										<div class="title text7"><?php echo cuhk_multilang_text("主編", "", "Chief Editor"); ?></div>
-										<div class="text text5" x-html="publication.chief_editor"></div>
+										<div class="text " x-html="publication.chief_editor"></div>
 									</div>
 								</template>
 								<template x-if="publication.publisher">
 									<div class="publication_text_item">
 										<div class="title text7"><?php echo cuhk_multilang_text("出版商", "", "Publisher"); ?></div>
-										<div class="text text5" x-html="publication.publisher"></div>
+										<div class="text " x-html="publication.publisher"></div>
 									</div>
 								</template>
 								<template x-if="publication.publish_year">
 									<div class="publication_text_item">
 										<div class="title text7"><?php echo cuhk_multilang_text("出版年份", "", "Publication Year"); ?></div>
-										<div class="text text5" x-html="publication.publish_year"></div>
+										<div class="text " x-html="publication.publish_year"></div>
 									</div>
 								</template>
 							</div>

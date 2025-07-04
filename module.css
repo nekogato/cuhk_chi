@@ -2975,8 +2975,12 @@ body.dragging-scroll {
     color:#63629B;
 }
 
-.publication_text_item + .publication_text_item{
+.publication_text_item{
     margin-top: 20px;
+}
+
+.publication_text_item:first-child{
+    margin-top: auto;
 }
 
 .publication_text_item.book_name{
@@ -3750,7 +3754,7 @@ body.dragging-scroll {
 
 .research_centre_text_item a{
     color:#45adb3;
-	text-decoration: underline;
+	/* text-decoration: underline; */
 }
 
 .research_centre_text_item a:hover{
