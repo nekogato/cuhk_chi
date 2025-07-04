@@ -1990,7 +1990,15 @@ body.dragging-scroll {
 }
 
 .news_date{
-    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.news_date:first-child{
+    margin-top: auto;
+}
+
+.news_title_wrapper .news_date{  
+    color: #736562;
 }
 
 /* home_course_intro_section */
@@ -3398,7 +3406,7 @@ body.dragging-scroll {
 
 .news_right_content .news_title_wrapper{
     margin-top: -150px;
-    margin-bottom: 10px;
+    margin-bottom: 50px;
 }
 
 .news_title_wrapper{

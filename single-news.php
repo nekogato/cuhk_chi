@@ -82,6 +82,17 @@ while (have_posts()) :
 										?>
 
 										<h1 class="news_title "><?php the_field("news_name"); ?></h1>
+										<?php if (get_field('start_date')) { ?>
+											<div class="news_date">
+												<?php
+												$start_date_raw = get_field('start_date'); // This is in Ymd format, e.g. 20250622
+												if ($start_date_raw) {
+													$date_obj = DateTime::createFromFormat('Ymd', $start_date_raw);
+													echo $date_obj->format('j/n/Y'); // Outputs e.g., 22/6
+												}
+												?>
+											</div>
+										<?php }; ?>
 									</div>
 
 								</div>
@@ -160,19 +171,21 @@ while (have_posts()) :
 										?>
 
 										<h1 class="news_title "><?php the_field("news_name"); ?></h1>
+
+										<?php if (get_field('start_date')) { ?>
+											<div class="news_date scrollin scrollinbottom">
+												<?php
+												$start_date_raw = get_field('start_date'); // This is in Ymd format, e.g. 20250622
+												if ($start_date_raw) {
+													$date_obj = DateTime::createFromFormat('Ymd', $start_date_raw);
+													echo $date_obj->format('j/n/Y'); // Outputs e.g., 22/6
+												}
+												?>
+											</div>
+										<?php }; ?>
 									</div>
 
-									<?php if (get_field('start_date')) { ?>
-										<div class="news_date scrollin scrollinbottom">
-											<?php
-											$start_date_raw = get_field('start_date'); // This is in Ymd format, e.g. 20250622
-											if ($start_date_raw) {
-												$date_obj = DateTime::createFromFormat('Ymd', $start_date_raw);
-												echo $date_obj->format('j/n/Y'); // Outputs e.g., 22/6
-											}
-											?>
-										</div>
-									<?php }; ?>
+									
 									<?php
 									if (have_rows('flexible_content')):
 										$i = 0;
