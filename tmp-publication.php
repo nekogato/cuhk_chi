@@ -136,7 +136,7 @@ while (have_posts()) :
 										</div>
 										<?php }; ?>
 										<div class="publication_text">
-											<div class="publication_text_item text5 book_name">
+											<div class="publication_text_item text6 book_name">
 												<?php echo $title; ?>
 											</div>
 											<?php if($author){?>

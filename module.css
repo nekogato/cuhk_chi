@@ -2948,6 +2948,15 @@ body.dragging-scroll {
     margin-top: auto;
 }
 
+.publication_box_list_title{
+    margin-bottom: 60px;
+    color: #6f6ea1;
+}
+
+.publication_box_list_wrapper+.publication_box_list_wrapper{
+    margin-top: 100px;
+}
+
 .publication_box{
     display: flex;  
     gap: 20px;   
