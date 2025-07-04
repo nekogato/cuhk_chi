@@ -3974,6 +3974,7 @@ body.dragging-scroll {
     padding-bottom: 56.26%;
     position: relative;
     display: block;
+    flex: 1;
   }
 
 .news_box_section .news_box .photo img{
