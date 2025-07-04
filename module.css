@@ -3975,16 +3975,20 @@ body.dragging-scroll {
     position: relative;
     display: block;
     flex: 1;
+    background-color: #eeeeee;
   }
 
-.news_box_section .news_box .photo img{
+.news_box_section .news_box .photo img{  
     position: absolute;
-    left: 0px;
-    top:0px;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center center;
+  left: 0px;
+  top: 0px;
+  width: 85%;
+  height: 85%;
+  object-fit: contain;
+  object-position: center center;
+  right: 0px;
+  bottom: 0px;
+  margin: auto;
 }
 
 .news_box_section .news_box a.photo:hover{
