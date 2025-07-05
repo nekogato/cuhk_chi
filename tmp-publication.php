@@ -109,11 +109,11 @@ while (have_posts()) :
 					// Check if the query has posts
 					if ($query->have_posts()) {
 						?>
-						<div class="publication_box_list_wrapper" data-id="<?php echo $ctermslug; ?>">
+						<div class="publication_box_list_wrapper scrollin scrollinbottom" data-id="<?php echo $ctermslug; ?>">
 							<div class="publication_box_list_title text4">
 								<?php echo esc_html($ctermfullname); ?>
 							</div>
-							<div class="publication_box_list scrollin_p">
+							<div class="publication_box_list">
 								<?php 
 								// Loop through posts
 								while ($query->have_posts()) {
@@ -125,7 +125,7 @@ while (have_posts()) :
 									$publisher = get_field("publisher");
 									$publish_year = get_field("year_and_month_of_publication");
 									?>
-									<div class="publication_box scrollin scrollinbottom">
+									<div class="publication_box ">
 										<?php if($coverimage){?>
 										<div class="publication_thumb">
 											<div class="thumb">
