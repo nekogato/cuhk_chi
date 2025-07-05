@@ -4276,9 +4276,11 @@ body.dragging-scroll {
 .alphabet_list_wrapper .alphabet_list{
     display: flex;
     gap: 5px;
-    margin-top: 10px;
     flex-wrap: wrap;
-    line-height: 1em;
+}
+
+.alphabet_list_wrapper .title + .alphabet_list{
+    margin-top: 20px;
 }
 
 .big_alphabet_list_wrapper .alphabet_list{
@@ -4299,11 +4301,11 @@ body.dragging-scroll {
     position: absolute;
       border-bottom: 1px solid #009b9d;
       position: absolute;
-      left: -10px;
-      right: -10px;
+      left: 0px;
+      right: 0px;
       top:100%;
       margin: auto;  
-      margin-top: 17px;
+      margin-top: 20px;
       box-sizing: border-box;
 }
 
