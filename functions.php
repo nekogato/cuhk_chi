@@ -829,7 +829,7 @@ function load_teaching_staff()
 			if ($photo) {
 				$staff_member['photo'] = array(
 					'sizes' => array(
-						's' => $photo['sizes']['s'],
+						'm' => $photo['sizes']['m'],
 						'l' => $photo['sizes']['l']
 					),
 					'alt' => $photo['alt']
