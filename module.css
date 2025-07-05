@@ -7106,10 +7106,6 @@ body.dragging-scroll {
         right: 0px;
       }  
 
-    .top_photo_banner_section_absolute{
-        padding-top: 20px;
-    }
-
       /* scheme */
       .scheme_unit_box_inwrapper {
         display: flex;
@@ -7346,6 +7342,12 @@ body.dragging-scroll {
     }
     
     /* top_photo_banner_section */
+
+
+
+    .top_photo_banner_section_absolute{
+        padding-top: 20px;
+    }
 
     .top_photo_banner_section .flex{
         flex-direction: column-reverse;
