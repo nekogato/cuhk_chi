@@ -1828,7 +1828,7 @@ function load_home_news_ajax()
 				$grouped_news[$start_date] = array();
 			}
 
-			$featured_image = get_the_post_thumbnail_url(get_the_ID(), 'medium');
+			$featured_image = get_the_post_thumbnail_url(get_the_ID(), 'm');
 			if (!$featured_image) {
 				$featured_image = get_template_directory_uri() . '/images/news1.jpg';
 			}
