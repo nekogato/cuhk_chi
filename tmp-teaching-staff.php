@@ -87,11 +87,11 @@ if ($teaching_staff_term) {
 	</div>
 
 	<div class="section section_content student_list_section">
-		<div class="section_center_content small_section_center_content scrollin scrollinopacity">
+		<div class="section_center_content small_section_center_content scrollin scrollinbottom">
 			<div class="student_list">
 				<div class="student_list_item_wrapper">
 					<template x-for="staff in staffMembers" :key="staff.id">
-						<div class="student_list_item scrollin scrollin_fast scrollinopacity">
+						<div class="student_list_item ">
 							<template x-if="staff.has_detail">
 								<a class="photo" :href="staff.permalink" x-show="staff.photo">
 									<img :src="staff.photo.sizes.s" :alt="staff.photo.alt" />
