@@ -931,6 +931,18 @@ function load_courses()
 			$lecturer = get_field('lecturer');
 			$lecturer_name = $lecturer ? get_the_title($lecturer->ID) : '';
 
+			$course_pdfs = array();
+
+			if (have_rows('course_pdf')) {
+				while (have_rows('course_pdf')) {
+					the_row();
+					$course_pdfs[] = array(
+						'url' => get_sub_field('file')['url'],
+						'text' => get_sub_field('download_text')
+					);
+				}
+			}
+
 			// Prepare course data
 			$course_data = array(
 				'id' => get_the_ID(),
@@ -943,7 +955,9 @@ function load_courses()
 				'venue' => $venue,
 				'quota' => $quota,
 				'course_description' => $course_description,
-				'has_detail' => (bool) $has_detail
+				'has_detail' => (bool) $has_detail,
+				'permalink' => get_permalink(),
+				'course_pdfs' => $course_pdfs,
 			);
 
 			// Get course_semester terms

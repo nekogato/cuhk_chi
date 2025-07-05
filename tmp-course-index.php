@@ -170,15 +170,20 @@ if (have_posts()) :
 											<div class="text8 mobile_show2 mobile_title" x-show="course.course_unit"><?php echo cuhk_multilang_text("學分","","Course Units"); ?></div>
 											<span x-text="course.course_unit" x-show="course.course_unit"></span>
 										</div>
-										<div class="icon" x-show="course.has_detail || course.course_description"></div>
+										<div class="icon" x-show="course.has_detail || course.course_description || course.course_pdfs"></div>
 									</div>
 									<div class="hidden">
 										<div class="hidden_content">
 											<div class="filter_detail_description_title text7" x-show="course.course_description"><?php echo cuhk_multilang_text("簡介","","Description"); ?></div>
 											<div class="filter_detail_description free_text" x-show="course.course_description" x-html="course.course_description"></div>
 
-											<div x-show="course.has_detail" class="btn_wrapper text7">
-												<a href="<?php the_permalink();?>" class="round_btn"><?php echo cuhk_multilang_text("課程內容","","Course detail"); ?></a>
+											<div x-show="course.has_detail || course.course_pdfs" class="btn_wrapper text7">
+												<a :href="course.permalink" class="round_btn" x-show="course.has_detail"><?php echo cuhk_multilang_text("課程內容","","Course detail"); ?></a>
+
+												<template x-for="pdf in course.course_pdfs" :key="pdf.url">
+													<a :href="pdf.url" class="round_btn" x-show="pdf.url" x-text="pdf.text"></a>
+												</template>
+
 											</div>
 
 										</div>
