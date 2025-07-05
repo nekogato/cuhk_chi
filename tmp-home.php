@@ -290,9 +290,6 @@ get_header(); ?>
 															<img :src="newsItem.image" :alt="newsItem.title">
 															<div class="text" x-text="newsItem.title"></div>
 														</a>
-														<div class="cat_icon"
-															:class="newsItem.post_type === 'news' ? 'bg_color2' : 'cat_circle bg_color1'">
-														</div>
 													</div>
 												</div>
 											</template>

@@ -1230,11 +1230,11 @@ function dosize(){
 		}else if($(window).width()<1024){
 			$(this).width(pwidth/4)
 		}else if($(window).width()<1280){
-			$(this).width(pwidth/5)
+			$(this).width(pwidth/4)
 		}else if($(window).width()<1600){
-			$(this).width(pwidth/6)
+			$(this).width(pwidth/4)
 		}else{
-			$(this).width(pwidth/7)
+			$(this).width(pwidth/4)
 		}
 		console.log(pwidth,$(this).width())
 	})
