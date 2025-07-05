@@ -45,6 +45,7 @@
     height: 150%;
     mix-blend-mode: darken;
     pointer-events: none;
+    z-index: 10;
 }
 
 .ink_bg1 img{

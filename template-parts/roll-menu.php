@@ -239,7 +239,7 @@ if (!$parent_id) {
 }
 ?>
 
-<div class="sentinel"></div>
+<!-- <div class="sentinel"></div>
 <div class="section roll_menu_section sticky_section scrollin scrollinopacity">
 	<div class="roll_menu_inwrapper">
 		<div class="roll_menu">
@@ -286,6 +286,6 @@ if (!$parent_id) {
 			</div>
 		</div>
 	</div>
-</div>
+</div> -->
 
 <?php }; ?>
