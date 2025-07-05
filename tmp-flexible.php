@@ -93,7 +93,7 @@ while (have_posts()) :
 						<?php $content = get_sub_field('content'); ?>
 						<?php if ($content) : ?>
 							<!-- Free Text Content Section -->
-							<div class="section_introduction scrollin scrollinbottom onscreen startani">
+							<div class="section section_introduction scrollin scrollinbottom onscreen startani">
 								<div class="section_center_content small_section_center_content">
 									<div class="free_text">
 										<?php echo apply_filters('the_content', $content); ?>
@@ -108,7 +108,7 @@ while (have_posts()) :
 						$expandable_items = get_sub_field('expandable_items');
 						?>
 						<!-- Expandable FAQ/Admission Style Content Section -->
-						<div class="section_expandable_list">
+						<div class="section section_expandable_list">
 							<?php if ($expandable_items) : ?>
 								<?php $first_item = true; ?>
 								<?php foreach ($expandable_items as $item) : ?>
