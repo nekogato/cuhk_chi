@@ -6499,6 +6499,10 @@ body.dragging-scroll {
         padding-top: 0px;
     }
 
+    .top_photo_banner_section_absolute{
+        padding-top: 60px;
+    }
+
     .plain_text_section{
         padding-top: 30px;
         padding-bottom: 30px;
@@ -7100,9 +7104,11 @@ body.dragging-scroll {
       .top_photo_banner_section.banner_bg .section_center_content::before {
         top:50%;
         right: 0px;
-      }
+      }  
 
-      .top_photo_banner_section
+    .top_photo_banner_section_absolute{
+        padding-top: 20px;
+    }
 
       /* scheme */
       .scheme_unit_box_inwrapper {
