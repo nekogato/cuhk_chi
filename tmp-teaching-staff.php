@@ -38,6 +38,13 @@ if ($teaching_staff_term) {
 							<div class="title text5"><?php echo cuhk_multilang_text("職位分類","","Category"); ?></div>
 							<?php if (!empty($child_terms) && !is_wp_error($child_terms)) : ?>
 							<ul class="alphabet_list">
+								<li>
+									<a 
+									@click.prevent="filterByPosition('')"
+									:class="{ 'active': selectedPosition === '' }">
+									<?php echo cuhk_multilang_text("所有職位","","All Category"); ?>
+									</a>
+								</li>
 								<?php foreach ($child_terms as $term): ?>
 									<li>
 										<a 
@@ -87,13 +94,13 @@ if ($teaching_staff_term) {
 						<div class="student_list_item scrollin scrollin_fast scrollinopacity">
 							<template x-if="staff.has_detail">
 								<a class="photo" :href="staff.permalink" x-show="staff.photo">
-									<img :src="staff.photo.sizes.m" :alt="staff.photo.alt" />
+									<img :src="staff.photo.sizes.s" :alt="staff.photo.alt" />
 								</a>
 							</template>
 
 							<template x-if="!staff.has_detail">
 								<div class="photo" @click="showStaffPopup(staff)" x-show="staff.photo">
-									<img :src="staff.photo.sizes.m" :alt="staff.photo.alt">
+									<img :src="staff.photo.sizes.s" :alt="staff.photo.alt">
 								</div>
 							</template>
 
