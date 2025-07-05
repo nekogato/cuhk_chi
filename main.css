@@ -1332,7 +1332,7 @@ ol:not(.free_text ol), ul:not(.free_text ul) {
 	border-radius: 999px;
 	text-transform: uppercase;
 	line-height: 1em;
-	padding: 5px 10px;
+	padding: 5px 15px;
 	border:1px solid transparent;
 	color:#54565A;
 	cursor: pointer;

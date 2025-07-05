@@ -1013,6 +1013,8 @@ body.dragging-scroll {
 
 .expandable_item .hidden_content .btn_wrapper{
     margin-top: 50px;
+      display: flex;
+  gap: 30px;
 }
 
 .expandable_item .hidden_content .btn_wrapper .round_btn{
