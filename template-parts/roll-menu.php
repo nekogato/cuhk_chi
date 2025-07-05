@@ -6,35 +6,11 @@
  * @package cuhk_chi
  */
 
-function is_descendant_of_study_page( $page_id = null ) {
-	global $post;
+global $post;
 
-    if (!$post || !is_page()) {
-        return false;
-    }
-
-    // If no page ID is provided, use the current page ID
-    if ( ! $page_id ) {
-        $page_id = get_the_ID();
-    }
-
-    // Get the page with slug 'study'
-    $study_page = get_page_by_path( 'study' );
-
-    // Check if the study page exists
-    if ( ! $study_page ) {
-        return false;
-    }
-
-    // Get the ancestors of the current page
-    $ancestors = get_ancestors( $page_id, 'page' );
-
-    // Check if the study page ID is in the ancestors array
-    return in_array( $study_page->ID, $ancestors );
-}
 
 // Now use it
-if (is_descendant_of_study_page()) {
+if (get_field("show_top_menu")) {
 
 $target_page = $args['target_page'] ?? '';
 
