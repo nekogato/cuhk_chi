@@ -110,6 +110,15 @@
   border-left: 1px solid #63629B;
 }
 
+.back_btn_wrapper .back_btn:hover{
+      color: rgb(0, 155, 157);
+}
+
+.back_btn_wrapper .back_btn:hover::before{
+  border-top: 1px solid rgb(0, 155, 157);
+  border-left: 1px solid rgb(0, 155, 157);
+}
+
 .submenu_btn_wrapper{
     display: flex;
     justify-content: center;
