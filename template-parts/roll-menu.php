@@ -63,7 +63,7 @@ if (!empty($ancestor_id)) {
 <div class="section roll_menu_section sticky_section scrollin scrollinopacity">
     <div class="roll_menu_inwrapper">
 		<div class="roll_menu">
-			<div class="roll_top_menu center_roll_top_menu text7">
+			<!-- <div class="roll_top_menu center_roll_top_menu text7">
 				<div class="horizontal-scroll-wrapper">
 					<div class="js-drag-scroll">
 						<div class="scroll-inner">
@@ -144,7 +144,7 @@ if (!empty($ancestor_id)) {
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> -->
 
 			<?php 
 			$parent_id = wp_get_post_parent_id(get_the_ID());
