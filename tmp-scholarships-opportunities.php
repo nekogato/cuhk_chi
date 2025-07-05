@@ -8,7 +8,7 @@
 get_header();
 
 // Include roll menu for Study section
-get_template_part('template-parts/roll-menu', null, array('target_page' => 'study'));
+get_template_part('template-parts/roll-menu');
 
 if (have_posts()) :
 	while (have_posts()) : the_post();
