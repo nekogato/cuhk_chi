@@ -16,7 +16,6 @@
 get_header();
 ?>
 
-<?php get_template_part('template-parts/roll-menu'); ?>
 
 <div class="section top_photo_banner_section banner_bg2">
 	<div class="ink_bg10_wrapper">

@@ -16,7 +16,6 @@
 get_header();
 ?>
 
-<?php get_template_part('template-parts/roll-menu'); ?>
 
 <div class="section section_contact scrollin_p">
 	<div class="contact_banner">
