@@ -157,7 +157,7 @@ if (have_posts()) :
 							<div class="expandable_item "
 								:class="expandedCourses.includes(course.id) ? 'active' : ''">
 								<div class="section_center_content small_section_center_content">
-									<div class="expandable_title filter_detail_flex" :class="course.has_detail || course.course_description ? '' : 'disable'">
+									<div class="expandable_title filter_detail_flex" :class="course.has_detail || course.course_description  || course.course_pdfs ? '' : 'disable'">
 										<div class="filter_detail_flex_item text5 text_c1 filter_detail_flex_item_title">
 											<div class="text8 mobile_show2 mobile_title"><?php echo cuhk_multilang_text("課程編號","","Course Code"); ?></div>
 											<span x-text="course.course_code"></span>
