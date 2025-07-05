@@ -38,7 +38,58 @@ while (have_posts()) :
 			<?php if (have_rows('content_sections')) : ?>
 				<?php while (have_rows('content_sections')) : the_row(); ?>
 
-					<?php if (get_row_layout() == 'free_text') : ?>
+					<?php if (get_row_layout() == 'plain_text_section') : ?>
+					<?php
+					$background_style = get_sub_field('background_style');
+					$layouts = get_sub_field('flexible_layouts');
+					?>
+					<div class="section plain_text_section border_layout_section <?php if ($background_style == 'top_green_gradient'){echo "top_green_gradient";}; ?>">
+						<?php if ($background_style == 'ink') : ?>
+							<div class="brush_bg"></div>
+						<?php endif; ?>
+						<div class="section_center_content small_section_center_content ">
+							<div class="flexible_layout_wrapper">
+								<?php if ($layouts) : ?>
+									<?php foreach ($layouts as $layout) : ?>
+										<div class="flexible_layout flexible_layout_<?php echo esc_attr($layout['layout_type']); ?> scrollin scrollinbottom">
+											<?php if ($layout['section_title']) : ?>
+												<h4 class="text_c3 center_text"><?php echo esc_html($layout['section_title']); ?></h4>
+											<?php endif; ?>
+											<div class="col_wrapper xl_col_wrapper">
+												<div class="flex row">
+													<?php if ($layout['layout_type'] == 'one_column') : ?>
+														<div class="col8 col">
+															<div class="col_spacing">
+																<div class="free_text">
+																	<?php echo apply_filters('the_content', $layout['content']); ?>
+																</div>
+															</div>
+														</div>
+													<?php elseif ($layout['layout_type'] == 'two_column') : ?>
+														<div class="col6 col">
+															<div class="col_spacing">
+																<div class="free_text">
+																	<?php echo apply_filters('the_content', $layout['left_content']); ?>
+																</div>
+															</div>
+														</div>
+														<div class="col6 col">
+															<div class="col_spacing">
+																<div class="free_text">
+																	<?php echo apply_filters('the_content', $layout['right_content']); ?>
+																</div>
+															</div>
+														</div>
+													<?php endif; ?>
+												</div>
+											</div>
+										</div>
+									<?php endforeach; ?>
+								<?php endif; ?>
+							</div>
+						</div>
+					</div>
+					<?php elseif (get_row_layout() == 'free_text') : ?>
 						<?php $content = get_sub_field('content'); ?>
 						<?php if ($content) : ?>
 							<!-- Free Text Content Section -->
