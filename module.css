@@ -4697,7 +4697,7 @@ body.dragging-scroll {
 
 .student_list_item{
     flex-grow: 0;
-    width: 25%;
+    width: 20%;
 }
 
 .student_list_item > .text{
@@ -7874,6 +7874,10 @@ body.dragging-scroll {
       .alphabet_list_wrapper{
         padding-bottom: 10px;
       }
+
+      .alphabet_list_wrapper .alphabet_list a.active::after {
+        margin-top: 3px;
+        }
 
       /* section_course_detail */
 
