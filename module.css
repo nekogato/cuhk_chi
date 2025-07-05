@@ -902,6 +902,10 @@ body.dragging-scroll {
     margin-top: 100px;
 }
 
+.section_content + .section.section_expandable_list{
+    margin-top: auto;
+}
+
 .section_expandable_list:first-child{
     margin-top: auto;
 }
@@ -3461,6 +3465,10 @@ body.dragging-scroll {
 .plain_text_section{
     padding-top: 100px;
     padding-bottom: 100px;
+}
+
+.section_content + .plain_text_section{
+    padding-top: 0px;
 }
 
 .plain_text_section .free_text  .table-responsive{
