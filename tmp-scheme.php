@@ -25,7 +25,7 @@ while (have_posts()) :
 		<div class="section_center_content small_section_center_content scrollin scrollinbottom">
 
 			<?php if ($section_title) : ?>
-				<div class="section_scheme_title text3"><?php echo wp_kses_post($section_title); ?></div>
+				<h1 class="section_title text1 scrollin scrollinbottom"><?php echo wp_kses_post($section_title); ?></h1>
 			<?php endif; ?>
 
 			<?php if ($programme_name) : ?>

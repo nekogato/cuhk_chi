@@ -27,12 +27,13 @@ while (have_posts()) :
 		<div class="section_center_content small_section_center_content">
 
 			<?php if ($page_title) : ?>
-				<h1 class="section_title text1 scrollin scrollinbottom"><?php echo esc_html($page_title); ?></h1>
+				<h1 class="section_title text1 scrollin scrollinbottom"><?php echo wp_kses_post($page_title); ?></h1>
 			<?php endif; ?>
 			<?php if ($page_description) : ?>
 				<div class="section_description scrollin scrollinbottom"><?php echo wp_kses_post($page_description); ?></div>
 			<?php endif; ?>
 		</div>
+	</div>
 
 			<?php if (have_rows('content_sections')) : ?>
 				<?php while (have_rows('content_sections')) : the_row(); ?>
@@ -92,7 +93,6 @@ while (have_posts()) :
 		<?php
 	endwhile;
 		?>
-	</div>
 
 	<?php
 	get_footer();
