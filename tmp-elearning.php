@@ -9,7 +9,7 @@
 get_header();
 
 // Include roll menu with research target
-get_template_part('template-parts/roll-menu', null, array('target_page' => 'study/chinese-language-courses'));
+get_template_part('template-parts/roll-menu');
 
 if (have_posts()) :
 	while (have_posts()) : the_post();
