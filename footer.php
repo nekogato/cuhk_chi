@@ -184,8 +184,8 @@
                 </div>
             </div>
         </div>
-        <div class="ink_bg ink_bg1"><img src="<?php bloginfo('template_directory'); ?>/images/ink_bg1.jpg"></div>
     </div>
+    <div class="ink_bg ink_bg1"><img src="<?php bloginfo('template_directory'); ?>/images/ink_bg1.jpg"></div>
 
     <div class="mobile_hide"></div>
     <div class="mobile_show"></div>
