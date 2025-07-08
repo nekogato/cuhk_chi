@@ -499,7 +499,9 @@ get_header(); ?>
 								init: () => {
 									dosize();
 									doscroll();
-									//$(".home_news_date_slider").height("auto")
+									setTimeout(function(){
+										$(".home_news_date_slider").height("auto")
+									},300);
 								}
 							}
 						});
