@@ -487,7 +487,9 @@ get_header(); ?>
 							});
 						}));
 
-						alert("hello");
+						// Resize layout after Swiper initializes
+						dosize();
+						doscroll();
 
 						// Initialize Swiper
 						this.dateSwiper = new Swiper('.home_news_date_slider .swiper-container', {
