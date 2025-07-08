@@ -1775,7 +1775,7 @@ body.dragging-scroll {
 
 .home_news_loading {
       text-align: center;
-  padding: 50px 20px;
+  padding: 0px 20px;
   border-left: 1px solid #575454;
   border-right: 1px solid #575454;
   margin-top: 90px;
