@@ -156,6 +156,8 @@ while (have_posts()) :
     <?php if($course_list){?>
 
         <div class="section section_content filter_detail_section scrollin scrollinbottom">
+			<div class="filter_course_type_name section_center_content  small_section_center_content text3" ><?php echo cuhk_multilang_text("科目表","","Course List"); ?></div>
+
             <div class="section_expandable_list   filter_detail_flex_body">
 
                 <?php 

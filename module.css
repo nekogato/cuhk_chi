@@ -6301,6 +6301,7 @@ body.dragging-scroll {
     padding: 5px 10px;
     border:1px solid #6f6ea6;
     cursor: pointer;
+    position: relative;
 }
 
 .scheme_group_wrapper{
