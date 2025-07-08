@@ -6347,6 +6347,12 @@ body.dragging-scroll {
     transform: rotate(90deg);
 }
 
+
+
+.scheme_group_expandable_item.active .icon::after{
+    transform: rotate(0deg);
+}
+
 .scheme_group_expandable_item .hidden{
     display: none;
 }
@@ -6371,7 +6377,9 @@ body.dragging-scroll {
 
 .group_total_units{
     margin-top: 30px;
-    text-align: right;
+    display: flex;
+    justify-content: end;
+    gap: 20px;
 }
 
 .scheme_groups_dropdown .selected{

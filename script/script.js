@@ -336,6 +336,7 @@ function init_event(){
 		$(this).parent().addClass("active")
 		var $p = $(this).parents(".scheme_groups_dropdown");
 		var target = $(this).attr("data-target");
+		$(".scheme_group").removeClass("active").hide();
 		$(".scheme_group[data-id='"+target+"']").addClass("active").hide();
 		setTimeout(function(){
 			$(".scheme_group[data-id='"+target+"']").stop().fadeIn();

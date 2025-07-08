@@ -129,8 +129,8 @@ while (have_posts()) :
                                 if($group_total_units):
                                     ?>
                                     <div class="group_total_units ">
-                                        <span class="title text2"><?php echo cuhk_multilang_text("總學分","",'Total'); ?></span>
-                                        <span class="num"><?php echo $group_total_units; ?></span>
+                                        <span class="title "><?php echo cuhk_multilang_text("總學分","",'Total'); ?></span>
+                                        <span class="num text2"><?php echo $group_total_units; ?></span>
                                     </div>
                                     <?php
                                 endif; 
