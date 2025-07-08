@@ -1783,6 +1783,11 @@ body.dragging-scroll {
   margin-left: 100px;
   margin-right: 100px;
   box-sizing: border-box;
+  display: none;
+}
+
+.home_news_loading.active{
+    display: block;
 }
 
 .home_news_slider_bottom{
