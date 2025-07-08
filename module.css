@@ -3438,8 +3438,8 @@ body.dragging-scroll {
 
 .section_left_right_content2 .left_content .photo img{
     width: 100%;
-      max-width: 500px;
-  max-height: 500px;
+    max-width: 500px;
+    max-height: 500px;
 
 }
 
