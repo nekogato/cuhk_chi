@@ -6297,7 +6297,11 @@ body.dragging-scroll {
 }
 
 .scheme_group_wrapper{
-    margin-top: 100px;
+    margin-top: 50px;
+}
+
+.scheme_group_expandable_item{
+    margin-top: 30px;
 }
 
 .scheme_group_expandable_item .hidden{
@@ -6305,7 +6309,7 @@ body.dragging-scroll {
 }
 
 .scheme_group_expandable_item .title{
-    padding-bottom: 20px;
+    padding-bottom: 10px;
     border-bottom:1px solid #736562;
     display: flex;
     justify-content: space-between;
@@ -6316,6 +6320,57 @@ body.dragging-scroll {
     display: flex;
     justify-content: space-between;
     gap: 50px;
+}
+
+.group_total_units{
+    margin-top: 30px;
+    text-align: right;
+}
+
+.scheme_groups_dropdown .selected{
+    padding-right: 50px;
+    position: relative;
+}
+
+.scheme_groups_dropdown .selected .arrow{
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top:50%;
+    margin-top: -15px;
+    right: 0px;
+}
+
+.scheme_groups_dropdown .selected .arrow::before{  
+    content: "";
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    top: 0px;
+    right: 5px;
+    bottom: 5px;
+    margin: auto;
+    border-bottom: 1px solid #6f6ea6;
+    border-right: 1px solid #6f6ea6;
+    transform: rotate(45deg);
+}
+
+.scheme_groups_dropdown.opned .selected .arrow::before{  
+  top: 10px;
+  bottom: 0px;
+  transform: rotate(-135deg);
+}
+
+.scheme_groups_dropdown .hidden{
+    display: none;
+}
+
+.scheme_group {
+    display: none;
+}
+
+.scheme_group.active{
+    display: block;
 }
 
 /* good table */

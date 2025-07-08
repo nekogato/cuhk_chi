@@ -315,6 +315,35 @@ function init_event(){
 		}
 	})
 
+	$(".scheme_groups_dropdown .selected").click(function(){
+		var $p = $(this).parents(".scheme_groups_dropdown")
+		if($p.hasClass("opened")){
+			$p.removeClass("opened").find(".hidden").show();
+			setTimeout(function(){
+			$p.find(".hidden").stop().slideUp();
+			},0)
+		}else{
+			$p.addClass("opened").find(".hidden").hide();
+			setTimeout(function(){
+			$p.find(".hidden").stop().slideDown();
+			},0)
+		}
+	})
+
+
+	$(".scheme_groups_dropdown .hidden a").click(function(){
+		var $p = $(this).parents(".scheme_groups_dropdown");
+		var target = $(this).attr("data-target");
+		$(".scheme_group[data-id='"+target+"']").addClass("active").hide();
+		setTimeout(function(){
+			$(".scheme_group[data-id='"+target+"']").stop().fadeIn();
+		},0)
+
+		$p.removeClass("opened").find(".hidden").show();
+		setTimeout(function(){
+		$p.find(".hidden").stop().slideUp();
+		},0)
+	})
 	
 
 	$(document).on("click", ".scheme_group_expandable_item .title", function () {

@@ -41,20 +41,30 @@ while (have_posts()) :
 
             <?php if (have_rows('scheme_groups')) :
                 $group_index = 0;
-                ?>
+
+                // Get the first row's group_title
+                the_row(); // move to first row
+                $first_group_title = get_sub_field('group_title');
+                reset_rows(); // reset the pointer to start loop again
+            ?>
                 <div class="scheme_groups_dropdown">
-                        <ul>
+                    <div class="selected"><?php echo esc_html($first_group_title); ?><div class="arrow"></div></div>
+
+                    <ul class="hidden">
                         <?php while (have_rows('scheme_groups')) : the_row(); 
-                        $group_index++;
-                        $group_title = get_sub_field('group_title');
+                            $group_index++;
+                            $group_title = get_sub_field('group_title');
                         ?>
-                            <li class="<?php if($group_index==1){echo"active";};?>"><a href="#" data-target="group_<?php echo $group_index; ?>">
-                                <?php echo $group_title; ?>
-                            </a></li>
+                            <li class="<?php if ($group_index == 1) echo 'active'; ?>">
+                                <a href="#" data-target="group_<?php echo $group_index; ?>">
+                                    <?php echo esc_html($group_title); ?>
+                                </a>
+                            </li>
                         <?php endwhile; ?>
-                        </ul>
+                    </ul>
                 </div>
             <?php endif; ?>
+
 
 
             <?php if (have_rows('scheme_groups')) : 
@@ -74,8 +84,8 @@ while (have_posts()) :
                             <?php 
                                 if($scheme_pdf):
                                     ?>
-                                    <div class="scheme_pdf_btn">
-                                        <a href="<?php echo $scheme_pdf["url"]; ?>" target="_blank"><?php echo cuhk_multilang_text("修讀辦法","","Download Study Scheme"); ?></a>
+                                    <div class="btn_wrapper text7">
+                                        <a class="scheme_pdf_btn round_btn" href="<?php echo $scheme_pdf["url"]; ?>" target="_blank"><?php echo cuhk_multilang_text("修讀辦法","","Download Study Scheme"); ?></a>
                                     </div>
                                     <?php
                                 endif; 
@@ -93,14 +103,11 @@ while (have_posts()) :
                                     <div class="title">
                                         <div class="left_title text5"><?php echo wp_kses_post($title); ?></div>
                                         <div class="right_title">
-                                            <?php if($show_required_units):?>
-                                                <div class="num text2">
-                                                    <?php echo wp_kses_post($course_units); ?>
-                                            
-                                                    <span class="unit text5"><?php echo cuhk_multilang_text("學分","",($course_units != 1) ? 'Units' : 'Unit'); ?></span>
-                                                </div>
-                                                
-                                            <?php endif; ?>
+                                            <div class="num text2">
+                                                <?php echo wp_kses_post($course_units); ?>
+                                        
+                                                <span class="unit text5"><?php echo cuhk_multilang_text("學分","",($course_units != 1) ? 'Units' : 'Unit'); ?></span>
+                                            </div>
                                             <div class="icon_wrapper"><a href="#" class="icon"></a></div>
                                         </div>
                                     </div>
@@ -119,8 +126,9 @@ while (have_posts()) :
                             <?php 
                                 if($group_total_units):
                                     ?>
-                                    <div class="group_total_units">
-                                        <?php echo $group_total_units; ?>
+                                    <div class="group_total_units ">
+                                        <span class="title text2"><?php echo cuhk_multilang_text("總學分","",'Total'); ?></span>
+                                        <span class="num"><?php echo $group_total_units; ?></span>
                                     </div>
                                     <?php
                                 endif; 
