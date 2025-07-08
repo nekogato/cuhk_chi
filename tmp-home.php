@@ -268,7 +268,7 @@ get_header(); ?>
 				</div>
 			</div>
 
-		<div class="home_news_date_slider_wrapper" :class="loading?'':'show'">
+		<div class="home_news_date_slider_wrapper show">
 			<div class="section_center_content small_section_center_content scrollin scrollinbottom">
 
 
@@ -435,6 +435,7 @@ get_header(); ?>
 			async loadNews() {
 				$(".home_news_loading").height($(".home_news_date_slider_inwrapper").outerHeight())
 				$(".home_news_date_slider_wrapper").addClass("home_news_date_slider_wrapper_loading");
+				$(".home_news_date_slider_wrapper").removeClass("show");
 				$(".home_news_date_slider").height($(".home_news_date_slider_inwrapper").height())
 				this.loading = true;
 				
@@ -511,6 +512,7 @@ get_header(); ?>
 									setTimeout(function(){
 										$(".home_news_date_slider").height("auto");
 										$(".home_news_date_slider_wrapper").removeClass("home_news_date_slider_wrapper_loading");
+										$(".home_news_date_slider_wrapper").addClass("show");
 										swiper.update();
 									},600);
 								}
