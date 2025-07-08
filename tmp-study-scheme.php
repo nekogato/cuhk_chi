@@ -88,7 +88,7 @@ while (have_posts()) :
                             <?php 
                                 if($scheme_pdf):
                                     ?>
-                                    <div class="scheme_pdf_btn_wrapper text5">
+                                    <div class="scheme_pdf_btn_wrapper text6">
                                         <a class=" scheme_pdf_btn" href="<?php echo $scheme_pdf["url"]; ?>" target="_blank"><?php echo cuhk_multilang_text("下載修讀辦法PDF","","Download Study Scheme PDF"); ?><span class="arrow"></span></a>
                                     </div>
                                     <?php
