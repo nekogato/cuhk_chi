@@ -10,7 +10,7 @@
 get_header();
 ?>
 
-<?php get_template_part('template-parts/roll-menu'); ?>
+<?php get_template_part('template-parts/roll-menu', null, array('target_page' => 'study/undergraduate-programme/ba-hons-in-chinese-language-and-literature/course-list/')); ?>
 
 <?php
 while (have_posts()) :
@@ -43,7 +43,6 @@ while (have_posts()) :
                 $group_index = 0;
                 ?>
                 <div class="scheme_groups_dropdown">
-                    <div class="section_center_content small_section_center_content">
                         <ul>
                         <?php while (have_rows('scheme_groups')) : the_row(); 
                         $group_index++;
@@ -54,7 +53,6 @@ while (have_posts()) :
                             </a></li>
                         <?php endwhile; ?>
                         </ul>
-                    </div>
                 </div>
             <?php endif; ?>
 
@@ -96,8 +94,12 @@ while (have_posts()) :
                                         <div class="left_title text5"><?php echo wp_kses_post($title); ?></div>
                                         <div class="right_title">
                                             <?php if($show_required_units):?>
-                                                <div class="num text2"><?php echo wp_kses_post($course_units); ?></div>
-                                                <div class="unit text5"><?php echo cuhk_multilang_text("學分","",($course_units != 1) ? 'Units' : 'Unit'); ?></div>
+                                                <div class="num text2">
+                                                    <?php echo wp_kses_post($course_units); ?>
+                                            
+                                                    <span class="unit text5"><?php echo cuhk_multilang_text("學分","",($course_units != 1) ? 'Units' : 'Unit'); ?></span>
+                                                </div>
+                                                
                                             <?php endif; ?>
                                             <div class="icon_wrapper"><a href="#" class="icon"></a></div>
                                         </div>

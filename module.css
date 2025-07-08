@@ -6290,6 +6290,34 @@ body.dragging-scroll {
     margin-top: 50px;
 }
 
+/* scheme */
+
+.scheme_groups_dropdown{
+    margin-top: 100px;
+}
+
+.scheme_group_wrapper{
+    margin-top: 100px;
+}
+
+.scheme_group_expandable_item .hidden{
+    display: none;
+}
+
+.scheme_group_expandable_item .title{
+    padding-bottom: 20px;
+    border-bottom:1px solid #736562;
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+.scheme_group_expandable_item .right_title{
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+}
+
 /* good table */
 
 .switchable_section_expandable_list  .table-responsive{
