@@ -126,7 +126,7 @@ if (have_posts()) :
 		if ($facebook_url || $instagram_url || $youtube_url || $linkedin_url): ?>
 			<div class="section section_content section_committee_sns">
 				<div class="section_center_content small_section_center_content scrollin scrollinbottom">
-					<h3 class="section_smalltitle"><?php pll_e('社交媒體'); ?></h3>
+					<h3 class="section_smalltitle"><?php echo cuhk_multilang_text("社交媒體","","Social Media"); ?></h3>
 					<ul>
 						<?php if ($facebook_url): ?>
 							<li>

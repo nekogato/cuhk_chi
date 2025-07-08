@@ -19,6 +19,7 @@ while (have_posts()) :
 	$programme_name = get_field("programme_name");
 	$scheme_description = get_field("scheme_description");
 	$show_required_units = get_field("show_required_units");
+	$course_list = get_field("course_list");
 ?>
 
 	<div class="section section_content section_scheme">
@@ -38,113 +39,190 @@ while (have_posts()) :
 				</div>
 			<?php endif; ?>
 
-			<?php if (have_rows('course_groups')) : ?>
-				<?php if($show_required_units): ?>
-				<div class="scheme_unit_box_wrapper">
-					<div class="scheme_unit_box_inwrapper">
-						<?php
-						$total_programme_units = 0;
-						$group_index = 0;
-						while (have_rows('course_groups')) : the_row();
-							$group_index++;
-							$group_title = get_sub_field('group_title');
-							$group_style = get_sub_field('group_style');
-							$group_required_unit = get_sub_field('group_required_unit');
-							$courses = get_sub_field('courses');
 
-							// Calculate total units for this group
-							$total_programme_units += intval($group_required_unit);
-						?>
-							<div class="scheme_unit_box <?php echo esc_attr($group_style); ?>">
-								<div class="scheme_unit_box_left">
-									<div class="t1 text4"><?php echo wp_kses_post($group_index); ?></div>
-									<div class="t2 text5"><?php echo wp_kses_post($group_title); ?></div>
-								</div>
-								<div class="scheme_unit_box_right">
-									<div class="t1 text2"><?php echo wp_kses_post($group_required_unit); ?></div>
-									<div class="t2"><?php echo cuhk_multilang_text("學分","",($group_required_unit != 1) ? 'Units' : 'Unit'); ?></div>
-								</div>
-							</div>
-						<?php endwhile; ?>
-					</div>
-
-					<?php
-					if ($total_programme_units) : ?>
-						<div class="scheme_unit_box_total">
-							<div class="scheme_unit_box_left">
-								<div class="t2"><?php echo cuhk_multilang_text("總學分","",'Total Units'); ?></div>
-							</div>
-							<div class="scheme_unit_box_right">
-								<div class="t1 text1"><?php echo wp_kses_post($total_programme_units); ?></div>
-								<div class="t2"><?php echo cuhk_multilang_text("學分","",($total_programme_units != 1) ? 'Units' : 'Unit'); ?></div>
-							</div>
-						</div>
-					<?php endif; ?>
-				</div>
-				<?php endif; ?>
-				<div class="scheme_unit_expandable_box_wrapper">
-					<?php
-					$group_index = 0;
-					while (have_rows('course_groups')) : the_row();
-						$group_index++;
-						$group_title = get_sub_field('group_title');
-						$group_style = get_sub_field('group_style');
-						$group_required_unit = get_sub_field('group_required_unit');
-						$courses = get_sub_field('courses');
-
-					?>
-						<div class="scheme_unit_expandable_box">
-							<div class="title <?php echo esc_attr($group_style); ?>">
-								<div class="left_title text5"><?php echo wp_kses_post($group_index); ?>. <?php echo wp_kses_post($group_title); ?></div>
-								<div class="right_title">
-									<?php if($show_required_units):?>
-										<div class="num text2"><?php echo wp_kses_post($group_required_unit); ?></div>
-										<div class="unit text5"><?php echo cuhk_multilang_text("學分","",($group_required_unit != 1) ? 'Units' : 'Unit'); ?></div>
-									<?php endif; ?>
-									<div class="icon_wrapper"><a href="#" class="icon"></a></div>
-								</div>
-							</div>
-							<div class="hidden">
-								<div class="hidden_content">
-									<?php if ($courses) : ?>
-										<table>
-											<?php foreach ($courses as $course) : ?>
-												<tr>
-													<td>
-														<?php if ($course['course_link']) : ?>
-															<a href="<?php echo esc_url($course['course_link']); ?>"><?php echo wp_kses_post($course['course_code']); ?></a>
-														<?php else : ?>
-															<?php echo wp_kses_post($course['course_code']); ?>
-														<?php endif; ?>
-													</td>
-													<td>
-														<?php echo wp_kses_post($course['course_title']); ?>
-														<?php if ($course['course_short_description']) : ?>
-														<div class="course_short_description"><?php echo wp_kses_post($course['course_short_description']); ?></div>
-														<?php endif; ?>
-													</td>
-													<td><?php echo wp_kses_post($course['course_units']); ?> <?php echo cuhk_multilang_text("學分","",($course['course_units'] != 1) ? 'Units' : 'Unit'); ?></td>
-												</tr>
-											<?php endforeach; ?>
-										</table>
-									<?php endif; ?>
-								</div>
-							</div>
-						</div>
-					<?php endwhile; ?>
+			<?php if (have_rows('scheme_groups')) :
+				$group_index = 0;
+                ?>
+                <div class="scheme_groups_dropdown">
+                    <ul>
+				    <?php while (have_rows('scheme_groups')) : the_row(); 
+					$group_index++;
+                    $group_title = get_sub_field('group_title');
+                    ?>
+                        <li><a href="#" data-target="group_<?php echo $group_index; ?>">
+                            <?php echo $group_title; ?>
+                        </a></li>
+                    <?php endwhile; ?>
+                    </ul>
 				</div>
 			<?php endif; ?>
 
-			<?php
-			if (get_field("remarks")) : ?>
-				<div class="scheme_remark free_text">
-					<?php the_field("remarks"); ?>
+
+			<?php if (have_rows('scheme_groups')) : 
+				$group_index = 0;
+                ?>
+				<div class="scheme_group_wrapper">
+					<?php
+					while (have_rows('scheme_groups')) : the_row();
+					    $group_index++;
+						$group_total_units = get_sub_field('group_total_units');
+						$scheme_pdf = get_sub_field('scheme_pdf');
+						$expandable_items = get_sub_field('expandable_items');
+						$remarks = get_sub_field('remarks');
+
+					?>
+                        <div class="scheme_group <?php if($group_index==1){echo"active";};?>" data-id="group_<?php echo $group_index; ?>">
+                            <?php 
+                                if($scheme_pdf):
+                                    ?>
+                                    <div class="scheme_pdf_btn">
+                                        <a href="<?php echo $scheme_pdf["url"]; ?>" target="_blank"><?php echo cuhk_multilang_text("社交媒體","","Download Study Scheme"); ?></a>
+                                    </div>
+                                    <?php
+                                endif; 
+                            ?>
+                            <?php 
+                            if (have_rows('expandable_items')) : 
+                                while (have_rows('expandable_items')) : the_row();
+                                
+						        $title = get_sub_field('title');
+						        $course_units = get_sub_field('course_units');
+						        $content = get_sub_field('content');
+                                
+                                ?>
+                                <div class="expandable_item">
+                                    <div class="title">
+                                        <div class="left_title text5"><?php echo wp_kses_post($title); ?></div>
+                                        <div class="right_title">
+                                            <?php if($show_required_units):?>
+                                                <div class="num text2"><?php echo wp_kses_post($course_units); ?></div>
+                                                <div class="unit text5"><?php echo cuhk_multilang_text("學分","",($course_units != 1) ? 'Units' : 'Unit'); ?></div>
+                                            <?php endif; ?>
+                                            <div class="icon_wrapper"><a href="#" class="icon"></a></div>
+                                        </div>
+                                    </div>
+                                    <div class="hidden">
+                                        <div class="hidden_content">
+                                            <?php if ($courses) : ?>
+                                                <div class="free_text"><?php echo wp_kses_post($course_units); ?></div>
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
+                                </div>
+                                <?php 
+                                endwhile;
+                            endif;
+                            ?>
+                            <?php 
+                                if($group_total_units):
+                                    ?>
+                                    <div class="group_total_units">
+                                        <?php echo $group_total_units; ?>
+                                    </div>
+                                    <?php
+                                endif; 
+                            ?>
+                            <?php 
+                                if($remarks):
+                                    ?>
+                                    <div class="scheme_remark free_text">
+                                        <?php echo $remarks; ?>
+                                    </div>
+                                    <?php
+                                endif; 
+                            ?>
+                        </div>
+					<?php 
+                    endwhile; 
+                    ?>
 				</div>
 			<?php endif; ?>
 
 		</div>
 	</div>
+    
+    
+    <?php if($course_list){?>
+    <div class="section_expandable_list   filter_detail_flex_body">
 
+        <?php 
+        $query = new WP_Query([
+            'post_type' => 'course',
+            'tax_query' => [
+                [
+                    'taxonomy' => 'course_category',
+                    'field'    => 'term_id',
+                    'terms'    => $term->term_id,
+                ],
+            ],
+        ]);
+
+        if ($query->have_posts()) {
+            while ($query->have_posts()) {
+                $query->the_post();
+                $course_code = get_field("course_code");
+                $course_title = get_field("course_title");
+                $has_detail = get_field("has_detail");
+                $course_description = get_field("course_description");
+                $course_pdfs = get_field("course_pdfs");
+                $course_unit = get_field("course_unit");
+                ?>
+                <div class="expandable_item ">
+                    <div class="section_center_content small_section_center_content">
+                        <div class="expandable_title filter_detail_flex <?php if($has_detail || $course_description || have_rows('course_pdfs')){ echo "disable"; }; ?>" >
+                            <div class="filter_detail_flex_item text5 text_c1 filter_detail_flex_item_title">
+                                <div class="text8 mobile_show2 mobile_title"><?php echo cuhk_multilang_text("課程編號","","Course Code"); ?></div>
+                                <span><?php echo $course_code; ?></span>
+                            </div>
+                            <div class="filter_detail_flex_item">
+                                <div class="text8 mobile_show2 mobile_title"><?php echo cuhk_multilang_text("課程名稱","","Course Title"); ?></div>
+                                <span><?php echo $course_title; ?></span>
+                            </div>
+                            <div class="filter_detail_flex_item">
+                                <div class="text8 mobile_show2 mobile_title"><?php echo cuhk_multilang_text("學分","","Course Units"); ?></div>
+                                <span><?php echo $course_unit; ?></span>
+                            </div>
+                            <?php if($has_detail || $course_description || have_rows('course_pdfs')){ ?>
+                            <div class="icon"></div>
+                            <?php }; ?>
+                        </div>
+                        <div class="hidden">
+                            <div class="hidden_content">
+                                <?php if($course_description){ ?>
+                                <div class="filter_detail_description_title text7"><?php echo cuhk_multilang_text("簡介","","Description"); ?></div>
+                                <div class="filter_detail_description free_text"><?php echo $course_description; ?></div>
+                                <?php }; ?>
+
+                                <?php if($has_detail || have_rows('course_pdfs')){ ?>
+                                <div class="btn_wrapper text7">
+                                    <?php if($has_detail){ ?>
+                                        <a href="<?php the_permalink(); ?>" class="round_btn"><?php echo cuhk_multilang_text("課程內容","","Course detail"); ?></a>
+                                    <?php }; ?>
+
+                                    <?php if( have_rows('course_pdfs') ): ?>
+                                        <?php while( have_rows('course_pdfs') ): the_row(); 
+                                            $download_text = get_sub_field('download_text');
+                                            $file = get_sub_field('file');
+                                            ?>
+                                            <a href="<?php echo $file["url"];?>" class="round_btn"><?php echo $download_text;?></a>
+                                        <?php endwhile; ?>
+                                    <?php endif; ?>
+
+                                </div>
+                                <?php }; ?>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php
+            }
+            wp_reset_postdata();
+        }
+
+        ?>
+    </div>
+    <?php }; ?>
 <?php
 endwhile;
 ?>
