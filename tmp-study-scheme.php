@@ -47,21 +47,23 @@ while (have_posts()) :
                 $first_group_title = get_sub_field('group_title');
                 reset_rows(); // reset the pointer to start loop again
             ?>
-                <div class="scheme_groups_dropdown">
-                    <div class="selected"><?php echo esc_html($first_group_title); ?><div class="arrow"></div></div>
+                <div class="scheme_groups_dropdown_wrapper">
+                    <div class="scheme_groups_dropdown">
+                        <div class="selected text4"><?php echo esc_html($first_group_title); ?><div class="arrow"></div></div>
 
-                    <ul class="hidden">
-                        <?php while (have_rows('scheme_groups')) : the_row(); 
-                            $group_index++;
-                            $group_title = get_sub_field('group_title');
-                        ?>
-                            <li class="<?php if ($group_index == 1) echo 'active'; ?>">
-                                <a href="#" data-target="group_<?php echo $group_index; ?>">
-                                    <?php echo esc_html($group_title); ?>
-                                </a>
-                            </li>
-                        <?php endwhile; ?>
-                    </ul>
+                        <ul class="hidden">
+                            <?php while (have_rows('scheme_groups')) : the_row(); 
+                                $group_index++;
+                                $group_title = get_sub_field('group_title');
+                            ?>
+                                <li class="<?php if ($group_index == 1) echo 'active'; ?>">
+                                    <a href="#" data-target="group_<?php echo $group_index; ?>">
+                                        <?php echo esc_html($group_title); ?>
+                                    </a>
+                                </li>
+                            <?php endwhile; ?>
+                        </ul>
+                    </div>
                 </div>
             <?php endif; ?>
 

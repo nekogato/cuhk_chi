@@ -332,6 +332,8 @@ function init_event(){
 
 
 	$(".scheme_groups_dropdown .hidden a").click(function(){
+		$(".scheme_groups_dropdown .hidden li.active").removeClass("active");
+		$(this).parent().addClass("active")
 		var $p = $(this).parents(".scheme_groups_dropdown");
 		var target = $(this).attr("data-target");
 		$(".scheme_group[data-id='"+target+"']").addClass("active").hide();

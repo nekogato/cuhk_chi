@@ -6292,8 +6292,15 @@ body.dragging-scroll {
 
 /* scheme */
 
-.scheme_groups_dropdown{
+.scheme_groups_dropdown_wrapper{
+    display: flex;
     margin-top: 100px;
+}
+
+.scheme_groups_dropdown{
+    padding: 20px;
+    border:1px solid #6f6ea6;
+    cursor: pointer;
 }
 
 .scheme_group_wrapper{
@@ -6363,6 +6370,28 @@ body.dragging-scroll {
 
 .scheme_groups_dropdown .hidden{
     display: none;
+    padding: 20px;
+    position: absolute;
+    left: 0px;
+    top:100%;
+    background-color: #fff;
+}
+
+.scheme_groups_dropdown .hidden li{
+    display: block;
+}
+.scheme_groups_dropdown .hidden li + li{
+    margin-top: 5px;
+}
+
+.scheme_groups_dropdown .hidden li a{
+    color:#736562;
+    
+}
+
+.scheme_groups_dropdown .hidden li.active a{
+    color:#575792
+    
 }
 
 .scheme_group {
