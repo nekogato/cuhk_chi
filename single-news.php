@@ -282,6 +282,8 @@ while (have_posts()) :
 										<?php if ($news_banner): ?>
 											<img src="<?php echo esc_url($news_banner['sizes']['medium']); ?>"
 												alt="<?php echo esc_attr($news_banner['alt']); ?>">
+										<?php else: ?>
+											<img src="<?php echo get_template_directory_uri(); ?>/images/schoolart_logo_bg.svg" alt=""/>
 										<?php endif; ?>
 									</div>
 									<div class="text">
