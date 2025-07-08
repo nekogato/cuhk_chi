@@ -501,9 +501,8 @@ get_header(); ?>
 									dosize();
 									doscroll();
 									setTimeout(function(){
-										$(".home_news_date_slider").height("auto");
+										//$(".home_news_date_slider").height("auto");
 										$(".home_news_date_slider_wrapper").removeClass("home_news_date_slider_wrapper_loading");
-										this.dateSwiper.updateSize();
 										this.dateSwiper.update();
 									},600);
 								}
