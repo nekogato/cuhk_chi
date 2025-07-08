@@ -83,7 +83,7 @@ if ($all_news->have_posts()) {
 										<?php endif; ?>
 									</div>
 									<div class="text_wrapper">
-										<div class="date_wrapper text2"><?php echo esc_html($news['date']); ?></div>
+										<div class="date_wrapper text3"><?php echo esc_html($news['date']); ?></div>
 										<div class="title_wrapper">
 											<div class="cat"><?php echo esc_html($news['category']); ?></div>
 											<div class="title text5"><?php echo esc_html($news['title']); ?></div>

@@ -64,7 +64,7 @@ while (have_posts()) :
 											<?php endif; ?>
 										</div>
 										<div class="text_wrapper">
-											<div class="date_wrapper text2">
+											<div class="date_wrapper text3">
 												<?php 
 												$start_date_raw = get_field('start_date'); // This is in Ymd format, e.g. 20250622
 												if ($start_date_raw) {
