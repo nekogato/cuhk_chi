@@ -92,17 +92,18 @@ get_template_part('template-parts/roll-menu'); ?>
 								</div>
 							</div>
 						</template>
-
-						<template x-if="hasMore && !loading">
-							<div class="load_more_wrapper scrollin scrollinbottom">
-								<a href="#" @click.prevent="loadMore()" class="load_more_btn text5">
-									<div class="icon"></div>
-									<div class="text"><?php echo cuhk_multilang_text("載入更多", "", "Load more"); ?></div>
-								</a>
-							</div>
-						</template>
 					</div>
 				</div>
+
+
+				<template x-if="hasMore && !loading">
+					<div class="load_more_wrapper scrollin scrollinbottom">
+						<a @click.prevent="loadMore()" class="load_more_btn text5">
+							<div class="icon"></div>
+							<div class="text"><?php echo cuhk_multilang_text("載入更多", "", "Load more"); ?></div>
+						</a>
+					</div>
+				</template>
 
 				<!-- Loading indicator -->
 				<div class="col_wrapper big_col_wrapper" x-show="loading" x-cloak>
