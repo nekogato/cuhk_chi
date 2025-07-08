@@ -81,7 +81,7 @@ while (have_posts()) :
                             if($scheme_pdf):
                                 ?>
                                 <div class="scheme_pdf_btn">
-                                    <a href="<?php echo $scheme_pdf["url"]; ?>" target="_blank"><?php echo cuhk_multilang_text("社交媒體","","Download Study Scheme"); ?></a>
+                                    <a href="<?php echo $scheme_pdf["url"]; ?>" target="_blank"><?php echo cuhk_multilang_text("修讀辦法","","Download Study Scheme"); ?></a>
                                 </div>
                                 <?php
                             endif; 
@@ -106,13 +106,13 @@ while (have_posts()) :
                                         <div class="icon_wrapper"><a href="#" class="icon"></a></div>
                                     </div>
                                 </div>
+                                <?php if ($content) : ?>
                                 <div class="hidden">
                                     <div class="hidden_content">
-                                        <?php if ($courses) : ?>
-                                            <div class="free_text"><?php echo wp_kses_post($course_units); ?></div>
-                                        <?php endif; ?>
+                                            <div class="free_text"><?php echo wp_kses_post($content); ?></div>
                                     </div>
                                 </div>
+                                <?php endif; ?>
                             </div>
                             <?php 
                             endwhile;
@@ -153,7 +153,7 @@ while (have_posts()) :
                     [
                         'taxonomy' => 'course_category',
                         'field'    => 'term_id',
-                        'terms'    => $term->term_id,
+                        'terms'    => $course_list->term_id,
                     ],
                 ],
             ]);
