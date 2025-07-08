@@ -6908,17 +6908,6 @@ body.dragging-scroll {
         z-index: 11;
         }
 
-        .home_news_year_slider .all_news_btn_wrapper::before{
-            content:"";
-            position: absolute;
-            top:0px;
-            bottom: 0px;
-            margin: auto;
-            height: 1px;
-            width: 100%;
-            background-color: #575792;
-        }
-
         .home_news_year_slider .round_btn{    
         z-index: 1;
         position: relative;
