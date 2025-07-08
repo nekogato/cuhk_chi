@@ -6390,6 +6390,7 @@ body.dragging-scroll {
     display: flex;
     justify-content: end;
     gap: 20px;
+      align-items: center;
 }
 
 .scheme_groups_dropdown .selected{
