@@ -22,7 +22,7 @@ while (have_posts()) :
 ?>
 
 	<div class="section section_content section_scheme">
-		<div class="section_center_content small_section_center_content scrollin scrollinbottom">
+		<div class="section_center_content small_section_center_content scrollin scrollinbottom section_scheme_title_wrapper">
 
 			<?php if ($section_title) : ?>
 				<h1 class="section_title text1 scrollin scrollinbottom"><?php echo wp_kses_post($section_title); ?></h1>
@@ -191,7 +191,8 @@ while (have_posts()) :
                                         'post_type' => 'course',
                                         'orderby' => 'title',
                                         'order' => 'ASC',
-                                        'post_status' => 'publish'
+                                        'post_status' => 'publish',
+		                                'posts_per_page' => -1,
                                     ];
 
                                     // Only add tax_query if any conditions exist

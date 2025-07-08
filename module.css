@@ -6292,6 +6292,11 @@ body.dragging-scroll {
 
 /* scheme */
 
+.section_scheme_title_wrapper{
+    position: relative;
+    z-index: 10;
+}
+
 .scheme_groups_dropdown_wrapper{
     display: flex;
     margin-top: 100px;
