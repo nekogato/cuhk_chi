@@ -1491,6 +1491,7 @@ body.dragging-scroll {
 .home_news_year_slider .all_news_btn_wrapper .round_btn{
     border:1px solid #ae6364;
     color:#ae6364;
+    background-color: #fff;
 }
 
 .home_news_year_slider .all_news_btn_wrapper .round_btn:hover{
@@ -6889,9 +6890,29 @@ body.dragging-scroll {
 
       /* home_news_section */
 
-      .home_news_year_slider .all_news_btn_wrapper{
-            bottom: 10px;
-            right: 25px;
+      .home_news_year_slider .all_news_btn_wrapper{    
+        bottom: -12px;
+        right: 0px;
+        left: 0px;
+        margin: auto;
+        text-align: center;
+        z-index: 11;
+        }
+
+        .home_news_year_slider .all_news_btn_wrapper::before{
+            content:"";
+            position: absolute;
+            top:0px;
+            bottom: 0px;
+            margin: auto;
+            height: 1px;
+            width: 100%;
+            background-color: #575792;
+        }
+
+        .home_news_year_slider .round_btn{    
+        z-index: 1;
+        position: relative;
         }
 
       .home_news_section .vertical_text_wrapper {
