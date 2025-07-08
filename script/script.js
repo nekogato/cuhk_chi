@@ -528,6 +528,7 @@ function updateHorizontalAlignment() {
 }
 
 function init_function(){
+	const isMobile = window.innerWidth < 1024;
 
 	$('.horizontal-scroll-wrapper').each(function () {
 		const $wrapper = $(this);
@@ -1174,7 +1175,8 @@ function init_function(){
 			spaceBetween: 0,
 			pagination: {
 				el: $this.find('.dot_wrapper'),
-				clickable: true
+				clickable: true,
+    			type: isMobile ? 'fraction' : 'bullets',
 			},
             allowTouchMove: false,
 			init: function () {
