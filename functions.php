@@ -483,13 +483,24 @@ function load_more_news()
 		?>
 			<div class="news_box col col4">
 				<div class="col_spacing scrollin scrollinbottom">
-					<div class="photo">
+					<a class="photo" href="<?php the_permalink(); ?>">
 						<?php if ($news_banner): ?>
 							<img src="<?php echo esc_url($news_banner['url']); ?>" alt="<?php echo esc_attr($news_banner['alt']); ?>">
+						
+						<?php else: ?>
+							<img src="<?php echo get_template_directory_uri(); ?>/images/schoolart_logo_bg.svg" alt=""/>
 						<?php endif; ?>
-					</div>
+					</a>
 					<div class="text_wrapper">
-						<div class="date_wrapper text5"><?php echo get_the_date('M d'); ?></div>
+						<div class="date_wrapper text5">
+							<?php
+							$start_date_raw = get_field('start_date'); // This is in Ymd format, e.g. 20250622
+							if ($start_date_raw) {
+								$date_obj = DateTime::createFromFormat('Ymd', $start_date_raw);
+								echo $date_obj->format('j/n/Y');
+							}
+							?>
+						</div>
 						<div class="title_wrapper">
 							<div class="title text5"><?php the_title(); ?></div>
 							<div class="btn_wrapper text8">
@@ -1058,11 +1069,13 @@ function load_more_department_news()
 		?>
 			<div class="news_box col col4">
 				<div class="col_spacing scrollin scrollinbottom">
-					<div class="photo">
-						<?php if ($banner_url) : ?>
-							<img src="<?php echo esc_url($banner_url); ?>" alt="<?php echo esc_attr($banner_alt); ?>">
+					<a class="photo" href="<?php the_permalink(); ?>">
+						<?php if ($banner_url): ?>
+							<img src="<?php echo esc_url(banner_url); ?>" alt="<?php echo esc_attr($banner_alt); ?>">
+						<?php else: ?>
+							<img src="<?php echo get_template_directory_uri(); ?>/images/schoolart_logo_bg.svg" alt=""/>
 						<?php endif; ?>
-					</div>
+					</a>
 					<div class="text_wrapper">
 						<div class="date_wrapper text5"><?php echo get_the_date('M d'); ?></div>
 						<div class="title_wrapper">

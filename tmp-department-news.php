@@ -116,11 +116,14 @@ if ($all_news->have_posts()) {
 						?>
 							<div class="news_box col col4">
 								<div class="col_spacing scrollin scrollinbottom">
-									<div class="photo">
+									<a class="photo" href="<?php the_permalink(); ?>">
 										<?php if ($news['banner_url']) : ?>
 											<img src="<?php echo esc_url($news['banner_url']); ?>" alt="<?php echo esc_attr($news['banner_alt']); ?>">
+										
+										<?php else: ?>
+											<img src="<?php echo get_template_directory_uri(); ?>/images/schoolart_logo_bg.svg" alt=""/>
 										<?php endif; ?>
-									</div>
+									</a>
 									<div class="text_wrapper">
 										<div class="date_wrapper text5"><?php echo esc_html($news['date']); ?></div>
 										<div class="title_wrapper">
