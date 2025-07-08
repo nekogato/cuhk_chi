@@ -1782,6 +1782,7 @@ body.dragging-scroll {
   margin-bottom: 30px;
   margin-left: 100px;
   margin-right: 100px;
+  box-sizing: border-box;
 }
 
 .home_news_slider_bottom{

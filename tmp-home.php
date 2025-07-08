@@ -438,6 +438,9 @@ get_header(); ?>
 				this.loading = true;
 				$(".home_news_date_slider_wrapper").addClass("home_news_date_slider_wrapper_loading");
 				$(".home_news_date_slider").height($(".home_news_date_slider").height())
+				$(".home_news_loading").height($(".home_news_date_slider").height())
+
+				
 				try {
 					const response = await fetch(ajaxurl, {
 						method: 'POST',
@@ -501,9 +504,10 @@ get_header(); ?>
 									dosize();
 									doscroll();
 									setTimeout(function(){
-										$(".home_news_date_slider").height("auto")
+										$(".home_news_date_slider").height("auto");
 										$(".home_news_date_slider_wrapper").removeClass("home_news_date_slider_wrapper_loading");
-									},300);
+										$(".home_news_loading").height("auto");
+									},0);
 								}
 							}
 						});
