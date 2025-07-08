@@ -111,7 +111,7 @@ get_header();
 										$caption = get_sub_field('caption');
 										if ($image):
 										?>
-											<div class="flexible_layout flexible_layout_photo scrollin scrollinleft">
+											<div class="flexible_layout flexible_layout_photo scrollin scrollinbottom">
 												<div class="photo_wrapper">
 													<div class="photo">
 														<img src="<?php echo esc_url($image['sizes']['l']); ?>">

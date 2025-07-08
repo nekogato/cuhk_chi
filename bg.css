@@ -213,16 +213,9 @@
 @media screen and (max-width: 800px) { 
 
     .ink_bg1{
-        position: absolute;
-        left: 0px;
-        bottom: 0px;
-        width: 100%;
-        height: auto;
     }
 
     .ink_bg1 img{
-        width: 100%;
-        height: auto;
     }
 
 
@@ -239,6 +232,33 @@
         opacity: 0.5;
     }
     .loadfinish .scrollinbottom.startani.ink_bg6{
+        opacity: 0.5;
+    }
+    .loadfinish .scrollinbottom.startani.ink_bg7{
+        opacity: 0.5;
+    }
+    .loadfinish .scrollinbottom.startani.ink_bg8{
+        opacity: 0.5;
+    }
+    .loadfinish .scrollinbottom.startani.ink_bg9{
+        opacity: 0.5;
+    }
+    .loadfinish .scrollinbottom.startani.ink_bg10{
+        opacity: 0.5;
+    }
+    .loadfinish .scrollinbottom.startani.ink_bg11{
+        opacity: 0.5;
+    }
+    .loadfinish .scrollinbottom.startani.ink_bg12{
+        opacity: 0.5;
+    }
+    .loadfinish .scrollinbottom.startani.ink_bg13{
+        opacity: 0.5;
+    }
+    .loadfinish .scrollinbottom.startani.ink_bg14{
+        opacity: 0.5;
+    }
+    .loadfinish .scrollinbottom.startani.ink_bg15{
         opacity: 0.5;
     }
     .brush_bg{
