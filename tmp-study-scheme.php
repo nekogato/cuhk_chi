@@ -25,7 +25,6 @@ while (have_posts()) :
         // Remove home URL from the full URL
         $relative_url = str_replace($home_url, '', $full_url);
     }
-    echo  $relative_url;
     get_template_part('template-parts/roll-menu', null, array('target_page' => $relative_url));
 
 	$section_title = get_field("section_title");
@@ -34,8 +33,37 @@ while (have_posts()) :
 	$show_required_units = get_field("show_required_units");
 ?>
 
+    <div class="ink_bg13_wrapper">
+        <img src="<?php echo get_template_directory_uri(); ?>/images/ink_bg13.jpg" class="ink_bg13 scrollin scrollinbottom" alt="Background">
+    </div>
+    
 	<div class="section section_content section_scheme">
 		<div class="section_center_content small_section_center_content scrollin scrollinbottom section_scheme_title_wrapper">
+
+            <?php
+            global $post;
+
+            // Get the parent ID
+            $parent_id = $post->post_parent ? $post->post_parent : $post->ID;
+
+            // Get all child pages of that parent
+            $sibling_pages = get_pages([
+                'parent'     => $parent_id,
+                'sort_column'=> 'menu_order',
+                'sort_order' => 'ASC',
+            ]);
+
+            if ($sibling_pages) : ?>
+                <ul class="sibling-pages-menu">
+                    <?php foreach ($sibling_pages as $page) : ?>
+                        <li class="sibling-page-item <?php if ($page->ID == $post->ID) echo 'current'; ?>">
+                            <a href="<?php echo get_permalink($page->ID); ?>">
+                                <?php echo esc_html($page->post_title); ?>
+                            </a>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            <?php endif; ?>
 
 			<?php if ($section_title) : ?>
 				<h1 class="section_title text1 scrollin scrollinbottom"><?php echo wp_kses_post($section_title); ?></h1>
@@ -144,7 +172,7 @@ while (have_posts()) :
                                 if($group_total_units):
                                     ?>
                                     <div class="group_total_units ">
-                                        <span class="title text3"><?php echo cuhk_multilang_text("總學分：","",'Total:'); ?></span>
+                                        <span class="title text4"><?php echo cuhk_multilang_text("總學分：","",'Total:'); ?></span>
                                         <span class="num text2"><?php echo $group_total_units; ?></span>
                                     </div>
                                     <?php

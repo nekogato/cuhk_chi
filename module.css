@@ -6292,6 +6292,35 @@ body.dragging-scroll {
 
 /* scheme */
 
+.sibling-pages-menu{
+    display: flex;
+}
+
+.sibling-pages-menu {
+    display: flex;
+    gap: 50px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+    margin-bottom: 60px;
+}
+
+.sibling-page-item {
+    position: relative;
+    padding-right: 25px; /* half of gap for spacing from divider */
+}
+
+.sibling-page-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: -25px; /* half of gap */
+    top: 0;
+    height: 100%;
+    width: 1px;
+    background-color: #575792;
+}
+
 .section_scheme_title_wrapper{
     position: relative;
     z-index: 10;
@@ -6402,6 +6431,7 @@ body.dragging-scroll {
     justify-content: end;
     gap: 10px;
       align-items: center;
+      color:#575792
 }
 
 .scheme_groups_dropdown .selected{
