@@ -290,7 +290,7 @@ function pll_get_page_id_by_slug($page_slug)
 
 function my_theme_add_editor_styles()
 {
-	add_editor_style('editor-style5.css');
+	add_editor_style('editor-style6.css');
 	add_editor_style(get_stylesheet_directory_uri() . '/fonts/stylesheet.css');
 }
 
@@ -2503,6 +2503,11 @@ function fb_mce_before_init($settings)
 			'title' => 'Round Button',
 			'selector' => 'a',
 			'classes' => 'round_btn',
+		],
+		[
+			'title' => 'Border Table',
+			'selector' => 'table',
+			'classes' => 'border_table',
 		],
 	];
 

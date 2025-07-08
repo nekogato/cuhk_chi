@@ -1282,6 +1282,11 @@ ol:not(.free_text ol), ul:not(.free_text ul) {
 	margin-top:auto;
 	}	
 
+.free_text .border_table td{
+    padding: 10px;
+    border: 1px solid #736562;
+}
+
 .free_text u{
 	display: inline-block;
 	padding-bottom: 5px;
