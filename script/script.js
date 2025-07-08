@@ -1362,8 +1362,8 @@ function dosize(){
 		$(".committee_list_slider .name").height(titleheight)
 	}
 
-
 	updateHorizontalAlignment();
+	$(".home_news_loading").height($(".home_news_date_slider_inwrapper").outerHeight())
 }
 
 
