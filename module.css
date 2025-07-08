@@ -3437,11 +3437,10 @@ body.dragging-scroll {
 
 
 .section_left_right_content2 .left_content .photo img{
-    width: 100%;
-    max-width: 500px;
-    max-height: 500px;
-    height: auto;
-    object-fit: contain;
+
+      width: 100%;
+  height: auto;
+  object-fit: contain;
 
 }
 
@@ -8430,6 +8429,13 @@ body.dragging-scroll {
         gap: 5px;
           margin-top: 15px;
         }
+
+
+      .section_left_right_content2 .left_content .photo img{
+            max-width: 300px;
+        max-height: 300px;
+
+        }
 }
 
 
@@ -8485,11 +8491,6 @@ body.dragging-scroll {
         width: 50%;
       }
 
-      .section_left_right_content2 .left_content .photo img{
-            max-width: 300px;
-        max-height: 300px;
-
-        }
 }
 
 
