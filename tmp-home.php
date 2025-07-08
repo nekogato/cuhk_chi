@@ -268,7 +268,7 @@ get_header(); ?>
 				</div>
 			</div>
 
-		<div class="home_news_date_slider_wrapper" :class="loading?'show':''">
+		<div class="home_news_date_slider_wrapper" :class="loading?'':'show'">
 			<div class="section_center_content small_section_center_content scrollin scrollinbottom">
 
 
