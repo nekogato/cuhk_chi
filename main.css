@@ -1250,6 +1250,7 @@ ol:not(.free_text ol), ul:not(.free_text ul) {
 
 	
 .free_text ul li+li{
+	margin-top: 15px;
 	}
 
 	

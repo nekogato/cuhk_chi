@@ -6493,6 +6493,57 @@ body.dragging-scroll {
     margin-top: 100px;
 }
 
+.scheme_pdf_btn_wrapper{
+    margin-bottom: 60px;
+    text-align: left;
+}
+
+.scheme_pdf_btn{
+    padding-bottom: 10px;
+    border-bottom:1px solid #575792;
+    color:#575792;
+    display: inline-block;
+    padding-right: 50px;
+    position: relative;
+}
+
+.scheme_pdf_btn .arrow{
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top:50%;
+    margin-top: -25px;
+    right: 0px;
+}
+
+.scheme_pdf_btn .arrow::before{
+    content:"";
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    width: 5px;
+    height: 25px;
+    top:0px;
+    margin: auto;
+    background-color: #575792;
+}
+
+
+.scheme_pdf_btn .arrow::after{
+    content:"";
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    bottom:0px;
+   width: 0px;
+   height: 0px;
+    margin: auto;
+   border-style: solid;
+   border-width: 12px 10px 0 10px;
+   border-color: #FF4532 transparent transparent transparent;
+   transform: rotate(0deg);
+}
+
 /* good table */
 
 .switchable_section_expandable_list  .table-responsive{
