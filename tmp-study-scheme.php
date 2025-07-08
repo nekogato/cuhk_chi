@@ -8,23 +8,26 @@
  */
 
 get_header();
-$post_object = get_field('target_page'); // returns a WP_Post object
 
-if ($post_object) {
-    $full_url = get_permalink($post_object); // full URL
-    $home_url = home_url('/'); // with trailing slash
-
-    // Remove home URL from the full URL
-    $relative_url = str_replace($home_url, '', $full_url);
-}
 
 ?>
 
-<?php get_template_part('template-parts/roll-menu', null, array('target_page' => $relative_url)); ?>
 
 <?php
 while (have_posts()) :
 	the_post();
+    $post_object = get_field('target_page'); // returns a WP_Post object
+
+    if ($post_object) {
+        $full_url = get_permalink($post_object); // full URL
+        $home_url = home_url('/'); // with trailing slash
+
+        // Remove home URL from the full URL
+        $relative_url = str_replace($home_url, '', $full_url);
+    }
+    echo  $relative_url;
+    get_template_part('template-parts/roll-menu', null, array('target_page' => $relative_url));
+
 	$section_title = get_field("section_title");
 	$programme_name = get_field("programme_name");
 	$scheme_description = get_field("scheme_description");
