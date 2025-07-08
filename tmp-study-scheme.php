@@ -48,7 +48,7 @@ while (have_posts()) :
             ?>
                 <div class="scheme_groups_dropdown_wrapper">
                     <div class="scheme_groups_dropdown">
-                        <div class="selected text4"><span class="text"><?php echo esc_html($first_group_title); ?></span><div class="arrow"></div></div>
+                        <div class="selected text5"><span class="text"><?php echo esc_html($first_group_title); ?></span><div class="arrow"></div></div>
 
                         <ul class="hidden text5">
                             <?php while (have_rows('scheme_groups')) : the_row(); 
@@ -72,7 +72,7 @@ while (have_posts()) :
         <?php if (have_rows('scheme_groups')) : 
             $group_index = 0;
             ?>
-            <div class="scheme_group_wrapper">
+            <div class="scheme_group_wrapper scrollin scrollinbottom">
                 <?php
                 while (have_rows('scheme_groups')) : the_row();
                     $group_index++;
@@ -84,7 +84,7 @@ while (have_posts()) :
                     $course_year = get_sub_field('course_year');
                 ?>
                     <div class="scheme_group <?php if($group_index==1){echo"active";};?>" data-id="group_<?php echo $group_index; ?>">
-                        <div class="section_center_content small_section_center_content scrollin scrollinbottom">
+                        <div class="section_center_content small_section_center_content ">
                             <?php 
                                 if($scheme_pdf):
                                     ?>
@@ -152,7 +152,7 @@ while (have_posts()) :
 
                         <?php if($course_category || $course_year){?>
 
-                            <div class="section section_content filter_detail_section scrollin scrollinbottom">
+                            <div class="section section_content filter_detail_section ">
                                 <div class="filter_course_type_name section_center_content  small_section_center_content text3" ><?php echo cuhk_multilang_text("科目表","","Course List"); ?></div>
 
                                 <div class="section_expandable_list   filter_detail_flex_body">

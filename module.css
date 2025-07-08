@@ -6390,18 +6390,24 @@ body.dragging-scroll {
     gap: 50px;
 }
 
+.scheme_group_expandable_item .right_title .num{
+  display: flex;
+  align-items: center;
+    gap: 10px;
+}
+
 .group_total_units{
     margin-top: 30px;
     display: flex;
     justify-content: end;
-    gap: 20px;
+    gap: 10px;
       align-items: center;
 }
 
 .scheme_groups_dropdown .selected{
     padding-right: 50px;
     position: relative;
-    color:#736562;
+    color:#6f6ea6;
 }
 
 .scheme_groups_dropdown .selected .arrow{
@@ -6441,6 +6447,7 @@ body.dragging-scroll {
     top:100%;
     background-color: #fff;
     margin-top: 1px;
+    min-width: 100%;
 }
 
 .scheme_groups_dropdown .hidden li{
