@@ -3460,7 +3460,7 @@ body.dragging-scroll {
     content:"";
     position: absolute;
     top:0px;
-    right: -100px;
+    right: -200px;
     left: -200px;
     height: 400px;
     background: linear-gradient(180deg, rgba(239,211,193,1) 0%, rgba(239,211,193,0) 100%);
