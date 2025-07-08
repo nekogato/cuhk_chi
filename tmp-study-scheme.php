@@ -8,9 +8,19 @@
  */
 
 get_header();
+$post_object = get_field('target_page'); // returns a WP_Post object
+
+if ($post_object) {
+    $full_url = get_permalink($post_object); // full URL
+    $home_url = home_url('/'); // with trailing slash
+
+    // Remove home URL from the full URL
+    $relative_url = str_replace($home_url, '', $full_url);
+}
+
 ?>
 
-<?php get_template_part('template-parts/roll-menu', null, array('target_page' => 'study/undergraduate-programme/ba-hons-in-chinese-language-and-literature/course-list/')); ?>
+<?php get_template_part('template-parts/roll-menu', null, array('target_page' => $relative_url)); ?>
 
 <?php
 while (have_posts()) :
