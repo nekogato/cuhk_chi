@@ -6248,15 +6248,17 @@ body.dragging-scroll {
     position: relative;
 }
 
-.section_introduction .free_text thead td{
-    padding: 10px;
+.section_introduction .free_text td{
     position: relative;
 }
 
+.section_introduction .free_text td + td{
+    padding-left: 10px;
+}
 
-.section_introduction .free_text tbody td{
-    padding: 10px;
-    position: relative;
+
+.section_introduction .free_text tr + tr td{
+    padding-top: 10px;
 }
 
 .section_introduction .free_text tbody{
