@@ -6477,6 +6477,10 @@ body.dragging-scroll {
     background-color: #62629b;
 }
 
+.scheme_group .filter_detail_section{
+    margin-top: 100px;
+}
+
 /* good table */
 
 .switchable_section_expandable_list  .table-responsive{

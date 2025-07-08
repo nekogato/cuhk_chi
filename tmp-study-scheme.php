@@ -189,6 +189,9 @@ while (have_posts()) :
                                     // Build the query
                                     $args = [
                                         'post_type' => 'course',
+                                        'orderby' => 'title',
+                                        'order' => 'ASC',
+                                        'post_status' => 'publish'
                                     ];
 
                                     // Only add tax_query if any conditions exist
