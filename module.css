@@ -6239,6 +6239,30 @@ body.dragging-scroll {
 
 /* resource_top_section */
 
+.section_introduction  .table-responsive{
+    position: relative;
+}
+
+.section_introduction .free_text table{
+    width: auto;
+    position: relative;
+}
+
+.section_introduction .free_text thead td{
+    padding: 10px;
+    position: relative;
+}
+
+
+.section_introduction .free_text tbody td{
+    padding: 10px;
+    position: relative;
+}
+
+.section_introduction .free_text tbody{
+    position: relative;
+}
+
 .resource_top_section .section_introduction{
     margin-top: 100px;
 } 
