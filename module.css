@@ -1645,6 +1645,11 @@ body.dragging-scroll {
     position: relative;
     z-index: 7;
     background-color: #ece6e5;
+    display: none;
+}
+
+.home_news_date_slider_wrapper.show{
+    display: block;
 }
 
 .home_news_date_slider_inwrapper{
