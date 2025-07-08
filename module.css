@@ -6265,6 +6265,15 @@ body.dragging-scroll {
     position: relative;
 }
 
+.section_introduction .free_text h1,
+.section_introduction .free_text h2,
+.section_introduction .free_text h3,
+.section_introduction .free_text h4,
+.section_introduction .free_text h5,
+.section_introduction .free_text h6{
+    color: #62629b;
+}
+
 .resource_top_section .section_introduction{
     margin-top: 100px;
 } 
