@@ -514,7 +514,7 @@ get_header(); ?>
 										$(".home_news_date_slider_wrapper").removeClass("home_news_date_slider_wrapper_loading");
 										$(".home_news_date_slider_wrapper").addClass("show");
 										swiper.update();
-									},600);
+									},0);
 								}
 							}
 						});
