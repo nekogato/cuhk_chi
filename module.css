@@ -6298,7 +6298,7 @@ body.dragging-scroll {
 }
 
 .scheme_groups_dropdown{
-    padding: 20px;
+    padding: 5px 10px;
     border:1px solid #6f6ea6;
     cursor: pointer;
 }
@@ -6337,6 +6337,7 @@ body.dragging-scroll {
 .scheme_groups_dropdown .selected{
     padding-right: 50px;
     position: relative;
+    color:#736562;
 }
 
 .scheme_groups_dropdown .selected .arrow{
@@ -6370,11 +6371,12 @@ body.dragging-scroll {
 
 .scheme_groups_dropdown .hidden{
     display: none;
-    padding: 20px;
+    padding: 10px 15px;
     position: absolute;
     left: 0px;
     top:100%;
     background-color: #fff;
+    margin-top: 1px;
 }
 
 .scheme_groups_dropdown .hidden li{

@@ -49,9 +49,9 @@ while (have_posts()) :
             ?>
                 <div class="scheme_groups_dropdown_wrapper">
                     <div class="scheme_groups_dropdown">
-                        <div class="selected text4"><?php echo esc_html($first_group_title); ?><div class="arrow"></div></div>
+                        <div class="selected text4"><span class="text"><?php echo esc_html($first_group_title); ?></span><div class="arrow"></div></div>
 
-                        <ul class="hidden">
+                        <ul class="hidden text5">
                             <?php while (have_rows('scheme_groups')) : the_row(); 
                                 $group_index++;
                                 $group_title = get_sub_field('group_title');

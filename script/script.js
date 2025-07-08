@@ -345,6 +345,10 @@ function init_event(){
 		setTimeout(function(){
 		$p.find(".hidden").stop().slideUp();
 		},0)
+
+		$(".scheme_groups_dropdown .selected .text").text($(".scheme_groups_dropdown .hidden li.active").text());
+		
+		return false;
 	})
 	
 
