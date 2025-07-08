@@ -237,6 +237,7 @@ endwhile;
 						this.hasMore = data.data.has_more;
 						this.currentPage = page;
 						setTimeout(() => {
+							dosize();
 							doscroll();
 						}, 300);
 					}

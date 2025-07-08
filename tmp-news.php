@@ -237,6 +237,8 @@ while (have_posts()) :
 					},
 					complete: function() {
 						button.removeClass('loading');
+						dosize();
+						doscroll();
 					}
 				});
 			});

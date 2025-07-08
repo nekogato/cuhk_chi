@@ -185,6 +185,8 @@ if ($all_news->have_posts()) {
 
 						if (!response.data.has_more) {
 							button.hide();
+							dosize();
+							doscroll();
 						}
 					} else {
 						button.find('.text').text('<?php pll_e('No more posts'); ?>');
@@ -192,6 +194,8 @@ if ($all_news->have_posts()) {
 				},
 				error: function() {
 					button.find('.text').text('<?php echo cuhk_multilang_text("載入更多","","Load more"); ?>');
+						dosize();
+						doscroll();
 				}
 			});
 		});
