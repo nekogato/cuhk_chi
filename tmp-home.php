@@ -433,6 +433,7 @@ get_header(); ?>
 			},
 
 			async loadNews() {
+				$(".home_news_loading").height($(".home_news_date_slider_inwrapper").outerHeight())
 				this.loading = true;
 				$(".home_news_date_slider_wrapper").addClass("home_news_date_slider_wrapper_loading");
 				$(".home_news_date_slider").height($(".home_news_date_slider_inwrapper").height())
