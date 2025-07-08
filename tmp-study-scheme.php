@@ -110,7 +110,7 @@ while (have_posts()) :
                                         
                                                 <span class="unit text5"><?php echo cuhk_multilang_text("學分","",($course_units != 1) ? 'Units' : 'Unit'); ?></span>
                                             </div>
-                                            <div class="icon_wrapper"><a href="#" class="icon"></a></div>
+                                            <div class="icon_wrapper"><a class="icon"></a></div>
                                         </div>
                                     </div>
                                     <?php if ($content) : ?>

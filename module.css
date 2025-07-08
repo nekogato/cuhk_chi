@@ -6313,6 +6313,10 @@ body.dragging-scroll {
     position: relative;
 }
 
+.scheme_group_expandable_item .icon_wrapper{
+    position: relative;
+}
+
 .scheme_group_expandable_item .icon{
     position: absolute;
     right: 0px;
@@ -6368,6 +6372,11 @@ body.dragging-scroll {
     display: flex;
     justify-content: space-between;
     gap: 50px;
+    cursor: pointer;
+}
+
+.scheme_group_expandable_item .title:hover{
+    color:#575792;
 }
 
 .scheme_group_expandable_item .right_title{
@@ -6437,12 +6446,15 @@ body.dragging-scroll {
 
 .scheme_groups_dropdown .hidden li a{
     color:#736562;
-    
 }
 
 .scheme_groups_dropdown .hidden li.active a{
     color:#575792
     
+}
+
+.scheme_groups_dropdown .hidden li a:hover{
+    color:#575792;
 }
 
 .scheme_group {
