@@ -6404,6 +6404,17 @@ body.dragging-scroll {
     display: block;
 }
 
+.scheme_group .btn_wrapper .round_btn{
+    border:1px #62629b solid;
+    color:#62629b;
+}
+
+.scheme_group .btn_wrapper .round_btn:hover{
+    border:1px #62629b solid;
+    color:#fff;
+    background-color: #62629b;
+}
+
 /* good table */
 
 .switchable_section_expandable_list  .table-responsive{
