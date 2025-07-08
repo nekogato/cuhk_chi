@@ -437,7 +437,6 @@ get_header(); ?>
 				$(".home_news_date_slider_wrapper").addClass("home_news_date_slider_wrapper_loading");
 				$(".home_news_date_slider").height($(".home_news_date_slider_inwrapper").height())
 				this.loading = true;
-
 				
 				try {
 					const response = await fetch(ajaxurl, {
