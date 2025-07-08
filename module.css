@@ -1787,7 +1787,8 @@ body.dragging-scroll {
 }
 
 .home_news_loading.active{
-    display: block;
+    display: flex;
+    align-items: center;
 }
 
 .home_news_slider_bottom{
