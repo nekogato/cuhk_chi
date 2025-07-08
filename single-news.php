@@ -250,7 +250,7 @@ while (have_posts()) :
 
 	
 
-	<div class="section section_content">
+	<div class="section section_content section_more_news">
 		<div class="section_center_content small_section_center_content scrollin scrollinbottom">
 			<h1 class="section_title text1"><?php echo cuhk_multilang_text("探索更多","","Explore More News"); ?></h1>
 		</div>
