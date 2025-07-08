@@ -1763,10 +1763,13 @@ body.dragging-scroll {
 
 .home_news_date_slider .swiper-slide{
     width: auto;
-    border-left: 1px solid #575454;
     box-sizing: border-box;
     height: auto;
     align-self: stretch;
+}
+
+.home_news_date_slider .swiper-slide +  .swiper-slide{
+    border-left: 1px solid #575454;
 }
 
 
