@@ -3422,11 +3422,28 @@ body.dragging-scroll {
     overflow: visible;
 }
 
+.section_left_right_content2 .flex{
+    justify-content: center;
+}
+
 .section_left_right_content2 .left_content{
-    margin-left: -50px;
     position: relative;
     z-index: 1;
 }
+
+.section_left_right_content2 .left_content .photo{
+    text-align: center;
+}
+
+
+.section_left_right_content2 .left_content .photo img{
+    width: auto;
+      max-width: 500px;
+  max-height: 500px;
+
+}
+
+
 
 .section_left_right_content2 .left_content .caption{
     margin-left: 50px;
@@ -8465,6 +8482,12 @@ body.dragging-scroll {
       .news_box.col3{
         width: 50%;
       }
+
+      .section_left_right_content2 .left_content .photo img{
+            max-width: 300px;
+        max-height: 300px;
+
+        }
 }
 
 
