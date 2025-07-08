@@ -766,7 +766,7 @@ body.dragging-scroll {
 }
 
 .section_more_news{
-    z-index:unset;
+     z-index: 11;
 }
 
 .section_title{

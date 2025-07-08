@@ -292,63 +292,65 @@ while (have_posts()) :
 							$event_name = get_field('event_name');
 							?>
 							<div class="swiper-slide">
-								<div class="thumb thumb2 thumb3">
-									<?php if ($event_banner): ?>
-										<img src="<?php echo esc_url($event_banner['sizes']['medium']); ?>"
-											alt="<?php echo esc_attr($event_banner['alt']); ?>">
-									<?php endif; ?>
-								</div>
-								<div class="text">
-									<a class="text_spacing" href="<?php the_permalink();?>">
-										<?php $event_category = get_the_terms(get_the_ID(), 'event_category');
-										if ($event_category) {
-											if ($event_category && ! is_wp_error($event_category)) {
-										?>
-
-											<div class="cat">
-												<?php
-													$termid = $event_category[0]->term_id;
-													$termslug = $event_category[0]->slug;
-													$termlink = get_term_link($event_category[0]);
-													if (is_wp_error($termlink)) {
-														continue;
-													}
-													if (pll_current_language() == 'tc') {
-														$termname = get_field('tc_name', 'event_category_' . $termid);
-													} elseif (pll_current_language() == 'sc') {
-														$termname = get_field('sc_name', 'event_category_' . $termid);
-													} else {
-														$termname = get_field('en_name', 'event_category_' . $termid);
-													};
-												?>
-												<?php echo $termname; ?>
-											</div>
-										<?php
-											};
-										};
-										?>
-										<?php if ($event_name): ?>
-											<div class="title text5"><?php echo wp_kses_post($event_name); ?></div>
+								<a href="<?php the_permalink();?>">
+									<div class="thumb thumb2 thumb3">
+										<?php if ($event_banner): ?>
+											<img src="<?php echo esc_url($event_banner['sizes']['medium']); ?>"
+												alt="<?php echo esc_attr($event_banner['alt']); ?>">
 										<?php endif; ?>
-
-										<div class="name text8">
-											
-											<?php
-											$start_date = get_field('start_date');
-											$end_date = get_field('end_date');
-											$start_date_obj = DateTime::createFromFormat('Y-m-d', $start_date);
-											$end_date_obj = DateTime::createFromFormat('Y-m-d', $end_date);
-
-											if ($start_date && $end_date && $start_date !== $end_date) {
-												echo esc_html($start_date_obj->format('j/n/Y') . '－' . $end_date_obj->format('j/n/Y'));
-											} else {
-												echo esc_html($start_date_obj->format('j/n/Y'));
-											}
+									</div>
+									<div class="text">
+										<div class="text_spacing">
+											<?php $event_category = get_the_terms(get_the_ID(), 'event_category');
+											if ($event_category) {
+												if ($event_category && ! is_wp_error($event_category)) {
 											?>
+
+												<div class="cat">
+													<?php
+														$termid = $event_category[0]->term_id;
+														$termslug = $event_category[0]->slug;
+														$termlink = get_term_link($event_category[0]);
+														if (is_wp_error($termlink)) {
+															continue;
+														}
+														if (pll_current_language() == 'tc') {
+															$termname = get_field('tc_name', 'event_category_' . $termid);
+														} elseif (pll_current_language() == 'sc') {
+															$termname = get_field('sc_name', 'event_category_' . $termid);
+														} else {
+															$termname = get_field('en_name', 'event_category_' . $termid);
+														};
+													?>
+													<?php echo $termname; ?>
+												</div>
+											<?php
+												};
+											};
+											?>
+											<?php if ($event_name): ?>
+												<div class="title text5"><?php echo wp_kses_post($event_name); ?></div>
+											<?php endif; ?>
+
+											<div class="name text8">
+												
+												<?php
+												$start_date = get_field('start_date');
+												$end_date = get_field('end_date');
+												$start_date_obj = DateTime::createFromFormat('Y-m-d', $start_date);
+												$end_date_obj = DateTime::createFromFormat('Y-m-d', $end_date);
+
+												if ($start_date && $end_date && $start_date !== $end_date) {
+													echo esc_html($start_date_obj->format('j/n/Y') . '－' . $end_date_obj->format('j/n/Y'));
+												} else {
+													echo esc_html($start_date_obj->format('j/n/Y'));
+												}
+												?>
+											</div>
+											
 										</div>
-										
-									</a>
-								</div>
+									</div>
+								</a>
 							</div>
 							<?php
 							wp_reset_postdata();
