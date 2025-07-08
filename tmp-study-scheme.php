@@ -58,7 +58,7 @@ while (have_posts()) :
                     <?php foreach ($sibling_pages as $page) : ?>
                         <li class="sibling-page-item <?php if ($page->ID == $post->ID) echo 'current'; ?>">
                             <a href="<?php echo get_permalink($page->ID); ?>">
-                                <?php echo esc_html($page->post_title); ?>
+                                <?php echo esc_html(get_field('section_title', $page->ID)); ?>
                             </a>
                         </li>
                     <?php endforeach; ?>

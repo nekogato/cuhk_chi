@@ -6304,11 +6304,11 @@ body.dragging-scroll {
     margin: 0;
     align-items: center;
     margin-bottom: 60px;
+      justify-content: center;
 }
 
 .sibling-page-item {
     position: relative;
-    padding-right: 25px; /* half of gap for spacing from divider */
 }
 
 .sibling-page-item:not(:last-child)::after {
@@ -6319,6 +6319,10 @@ body.dragging-scroll {
     height: 100%;
     width: 1px;
     background-color: #575792;
+}
+
+.sibling-page-item.current a, .sibling-page-item.current a:hover{
+    color: #575792;
 }
 
 .section_scheme_title_wrapper{
