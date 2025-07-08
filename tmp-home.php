@@ -270,7 +270,7 @@ get_header(); ?>
 			</div>
 		</template>
 
-		<div class="home_news_date_slider_wrapper" x-show="!loading">
+		<div class="home_news_date_slider_wrapper" :class="loading ? 'home_news_date_slider_wrapper_loading' : ''" x-show="!loading">
 			<div class="section_center_content small_section_center_content scrollin scrollinbottom">
 
 
@@ -436,7 +436,7 @@ get_header(); ?>
 
 			async loadNews() {
 				this.loading = true;
-
+				$(".home_news_date_slider").height($(".home_news_date_slider").height())
 				try {
 					const response = await fetch(ajaxurl, {
 						method: 'POST',
@@ -499,6 +499,7 @@ get_header(); ?>
 								init: () => {
 									dosize();
 									doscroll();
+									$(".home_news_date_slider").height("auto")
 								}
 							}
 						});
