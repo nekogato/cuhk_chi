@@ -492,7 +492,8 @@ get_header(); ?>
 						doscroll();
 
 						// Initialize Swiper
-						this.dateSwiper = new Swiper('.home_news_date_slider .swiper-container', {
+						var swiper = this.dateSwiper
+						swiper = new Swiper('.home_news_date_slider .swiper-container', {
 							autoplay: false,
 							slidesPerView: 'auto',
 							freeMode: true,
@@ -510,7 +511,7 @@ get_header(); ?>
 									setTimeout(function(){
 										$(".home_news_date_slider").height("auto");
 										$(".home_news_date_slider_wrapper").removeClass("home_news_date_slider_wrapper_loading");
-										this.dateSwiper.update();
+										swiper.update();
 									},600);
 								}
 							}
