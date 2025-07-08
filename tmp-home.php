@@ -468,21 +468,26 @@ get_header(); ?>
 					this.loading = false;
 
 					this.$nextTick(async () => {
-						// Wait for Alpine to make .swiper-container visible via x-show="!loading"
-						const container = document.querySelector('.home_news_date_slider .swiper-container');
+						// Wait until .swiper-container is in the DOM
+						let container;
+						while (!(container = document.querySelector('.home_news_date_slider .swiper-container'))) {
+							await new Promise(resolve => requestAnimationFrame(resolve));
+						}
 
-						// Wait again for Alpine's DOM transition (if any)
+						// Wait for Alpine transition (if any)
 						await new Promise(resolve => requestAnimationFrame(resolve));
 
-						// Wait for all images to be fully loaded
+						// Wait for all images in container to load
 						const images = container.querySelectorAll('img');
 						await Promise.all(Array.from(images).map(img => {
 							if (img.complete) return Promise.resolve();
 							return new Promise(resolve => {
-								img.addEventListener('load', resolve);
-								img.addEventListener('error', resolve);
+								img.addEventListener('load', resolve, { once: true });
+								img.addEventListener('error', resolve, { once: true });
 							});
 						}));
+
+						alert("hello");
 
 						// Initialize Swiper
 						this.dateSwiper = new Swiper('.home_news_date_slider .swiper-container', {
@@ -501,7 +506,7 @@ get_header(); ?>
 									dosize();
 									doscroll();
 									setTimeout(function(){
-										//$(".home_news_date_slider").height("auto");
+										$(".home_news_date_slider").height("auto");
 										$(".home_news_date_slider_wrapper").removeClass("home_news_date_slider_wrapper_loading");
 										this.dateSwiper.update();
 									},600);
