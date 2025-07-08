@@ -501,7 +501,7 @@ get_header(); ?>
 									doscroll();
 									setTimeout(function(){
 										$(".home_news_date_slider").height("auto")
-									},300);
+									},1200);
 								}
 							}
 						});
