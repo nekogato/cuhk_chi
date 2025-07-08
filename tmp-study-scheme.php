@@ -184,7 +184,7 @@ while (have_posts()) :
                         ?>
                         <div class="expandable_item ">
                             <div class="section_center_content small_section_center_content">
-                                <div class="expandable_title filter_detail_flex <?php if($has_detail || $course_description || have_rows('course_pdfs'))()else{ echo "disable"; }; ?>" >
+                                <div class="expandable_title filter_detail_flex <?php if(!($has_detail || $course_description || have_rows('course_pdfs'))){ echo "disable"; }; ?>" >
                                     <div class="filter_detail_flex_item text5 text_c1 filter_detail_flex_item_title">
                                         <div class="text8 mobile_show2 mobile_title"><?php echo cuhk_multilang_text("課程編號","","Course Code"); ?></div>
                                         <span><?php echo $course_code; ?></span>
@@ -197,7 +197,7 @@ while (have_posts()) :
                                         <div class="text8 mobile_show2 mobile_title"><?php echo cuhk_multilang_text("學分","","Course Units"); ?></div>
                                         <span><?php echo $course_unit; ?></span>
                                     </div>
-                                    <?php if($has_detail || $course_description || have_rows('course_pdfs'))()else{ ?>
+                                    <?php if(!($has_detail || $course_description || have_rows('course_pdfs'))){ ?>
                                     <div class="icon"></div>
                                     <?php }; ?>
                                 </div>
