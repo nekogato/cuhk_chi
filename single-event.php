@@ -299,7 +299,7 @@ while (have_posts()) :
 									<?php endif; ?>
 								</div>
 								<div class="text">
-									<div class="text_spacing">
+									<a class="text_spacing" href="<?php the_permalink();?>">
 										<?php $event_category = get_the_terms(get_the_ID(), 'event_category');
 										if ($event_category) {
 											if ($event_category && ! is_wp_error($event_category)) {
@@ -347,7 +347,7 @@ while (have_posts()) :
 											?>
 										</div>
 										
-									</div>
+										</a>
 								</div>
 							</div>
 							<?php

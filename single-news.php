@@ -284,7 +284,7 @@ while (have_posts()) :
 									<?php endif; ?>
 								</div>
 								<div class="text">
-									<div class="text_spacing">
+									<a class="text_spacing" href="<?php the_permalink();?>">
 										<?php $news_category = get_the_terms(get_the_ID(), 'event_category');
 										if ($news_category) {
 											if ($news_category && ! is_wp_error($news_category)) {
