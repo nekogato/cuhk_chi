@@ -347,7 +347,7 @@ while (have_posts()) :
 											?>
 										</div>
 										
-										</a>
+									</a>
 								</div>
 							</div>
 							<?php

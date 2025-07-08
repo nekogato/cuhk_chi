@@ -2664,6 +2664,7 @@ body.dragging-scroll {
     padding: 20px;
     padding-top: 120px;
     background-color: #fff;
+    display: block;
 }
 
 .thumb_text_box_slider_wrapper .swiper-slide:hover .text_spacing{
