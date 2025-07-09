@@ -47,86 +47,54 @@ if (have_posts()) :
 					<div class="filter_menu filter_menu_left_bg section_center_content small_section_center_content scrollin scrollinbottom">
 						<div class="filter_menu_content">
 							<div class="filter_checkbox_wrapper text7">
-								<?php if (!empty($course_categories)) : ?>
-									<?php foreach ($course_categories as $category) : ?>
-										<div class="filter_checkbox">
-											<div class="checkbox">
-												<input type="checkbox"
-													id="<?php echo esc_attr($category->slug); ?>"
-													x-model="filters.categories"
-													value="<?php echo esc_attr($category->slug); ?>"
-													@change="filterCourses()">
-												<label for="<?php echo esc_attr($category->slug); ?>">
-													<span>
-													<?php 
-														if(pll_current_language() == 'tc') {
-															$ctermfullname = get_field('tc_name', 'course_category_' .$category->term_id);
-														}elseif(pll_current_language() == 'sc'){
-															$ctermfullname = get_field('sc_name', 'course_category_' .$category->term_id);
-														}else{
-															$ctermfullname = get_field('en_name', 'course_category_' .$category->term_id);
-														};
-														echo ($ctermfullname); 
-													?></span>
-												</label>
-											</div>
+								<template x-for="category in courseCategories" :key="category.slug">
+									<div class="filter_checkbox">
+										<div class="checkbox">
+											<input type="checkbox"
+												:id="category.slug"
+												x-model="filters.categories"
+												:value="category.slug"
+												@change="filterCourses()">
+											<label :for="category.slug">
+												<span x-text="category.displayName"></span>
+											</label>
 										</div>
-									<?php endforeach; ?>
-								<?php endif; ?>
+									</div>
+								</template>
 							</div>
 						</div>
 					</div>
 					<div class="filter_menu filter_menu_left_bg filter_menu_bottom section_center_content small_section_center_content scrollin scrollinbottom">
 						<div class="filter_menu_content">
 							<div class="filter_dropdown_wrapper">
-								<a class="filter_dropdown_btn text5"  @click="dropdowns.year = !dropdowns.year" x-text="filters.academicYearName"></a>
+								<a class="filter_dropdown_btn text5" @click="dropdowns.year = !dropdowns.year" x-text="filters.academicYearName"></a>
 								<div class="filter_dropdown text5" x-show="dropdowns.year" @click.away="dropdowns.year = false">
 									<ul>
-										<?php if (!empty($academic_years)) : ?>
-											<?php foreach ($academic_years as $year) : ?>
-												<li>
-													<a 
-														@click="selectFilter('academicYear', '<?php echo esc_js($year->slug); ?>', '<?php echo esc_js($year->name); ?>')"
-														:class="filters.academicYear === '<?php echo esc_js($year->slug); ?>' ? 'active' : ''">
-														<?php echo esc_html($year->name); ?>
-													</a>
-												</li>
-											<?php endforeach; ?>
-										<?php endif; ?>
+										<template x-for="year in academicYears" :key="year.slug">
+											<li>
+												<a
+													@click="selectFilter('academicYear', year.slug, year.name)"
+													:class="filters.academicYear === year.slug ? 'active' : ''"
+													x-text="year.name">
+												</a>
+											</li>
+										</template>
 									</ul>
 								</div>
 							</div>
 							<div class="filter_dropdown_wrapper">
-								<a class="filter_dropdown_btn text5"  @click="dropdowns.type = !dropdowns.type" x-text="filters.courseTypeName || '<?php echo cuhk_multilang_text("所有分類","","All Course Type"); ?>'"></a>
+								<a class="filter_dropdown_btn text5" @click="dropdowns.type = !dropdowns.type" x-text="filters.courseTypeName || '<?php echo cuhk_multilang_text("所有分類", "", "All Course Type"); ?>'"></a>
 								<div class="filter_dropdown text5" x-show="dropdowns.type" @click.away="dropdowns.type = false">
 									<ul>
-										<?php if (!empty($course_type)) : ?>
+										<template x-for="type in courseTypes" :key="type.slug">
 											<li>
-												<a 
-													@click="selectFilter('courseType', '', '<?php echo cuhk_multilang_text("所有分類","","All Course Type"); ?>')"
-													:class="filters.courseType === '' ? 'active' : ''">
-													<?php echo cuhk_multilang_text("所有分類","","All Course Type"); ?>
+												<a
+													@click="selectFilter('courseType', type.slug, type.displayName)"
+													:class="filters.courseType === type.slug ? 'active' : ''"
+													x-text="type.displayName">
 												</a>
 											</li>
-											<?php foreach ($course_type as $type) : ?>
-												<li>
-													<a 
-														@click="selectFilter('courseType', '<?php echo esc_js($type->slug); ?>', '<?php echo esc_js($type->name); ?>')"
-														:class="filters.courseType === '<?php echo esc_js($type->slug); ?>' ? 'active' : ''">
-														<?php 
-															if(pll_current_language() == 'tc') {
-																$ctermfullname = get_field('tc_name', 'course_type_' .$type->term_id);
-															}elseif(pll_current_language() == 'sc'){
-																$ctermfullname = get_field('sc_name', 'course_type_' .$type->term_id);
-															}else{
-																$ctermfullname = get_field('en_name', 'course_type_' .$type->term_id);
-															};
-															echo ($ctermfullname); 
-														?>
-													</a>
-												</li>
-											<?php endforeach; ?>
-										<?php endif; ?>
+										</template>
 									</ul>
 								</div>
 							</div>
@@ -146,9 +114,9 @@ if (have_posts()) :
 
 					<div class="section_center_content small_section_center_content  filter_detail_flex_head mobile_hide2">
 						<div class="filter_detail_flex text7">
-							<div class="filter_detail_flex_item"><?php echo cuhk_multilang_text("課程編號","","Course Code"); ?></div>
-							<div class="filter_detail_flex_item"><?php echo cuhk_multilang_text("課程名稱","","Course Title"); ?></div>
-							<div class="filter_detail_flex_item"><?php echo cuhk_multilang_text("學分","","Units"); ?></div>
+							<div class="filter_detail_flex_item"><?php echo cuhk_multilang_text("課程編號", "", "Course Code"); ?></div>
+							<div class="filter_detail_flex_item"><?php echo cuhk_multilang_text("課程名稱", "", "Course Title"); ?></div>
+							<div class="filter_detail_flex_item"><?php echo cuhk_multilang_text("學分", "", "Units"); ?></div>
 						</div>
 					</div>
 
@@ -159,28 +127,28 @@ if (have_posts()) :
 								<div class="section_center_content small_section_center_content">
 									<div class="expandable_title filter_detail_flex" :class="course.has_detail || course.course_description  || course.course_pdfs.length > 0 ? '' : 'disable'">
 										<div class="filter_detail_flex_item text5 text_c1 filter_detail_flex_item_title">
-											<div class="text8 mobile_show2 mobile_title"><?php echo cuhk_multilang_text("課程編號","","Course Code"); ?></div>
+											<div class="text8 mobile_show2 mobile_title"><?php echo cuhk_multilang_text("課程編號", "", "Course Code"); ?></div>
 											<span x-text="course.course_code"></span>
 										</div>
 										<div class="filter_detail_flex_item">
-											<div class="text8 mobile_show2 mobile_title"><?php echo cuhk_multilang_text("課程名稱","","Course Title"); ?></div>
+											<div class="text8 mobile_show2 mobile_title"><?php echo cuhk_multilang_text("課程名稱", "", "Course Title"); ?></div>
 											<span x-text="course.course_title"></span>
 										</div>
 										<div class="filter_detail_flex_item">
-											<div class="text8 mobile_show2 mobile_title" x-show="course.course_unit"><?php echo cuhk_multilang_text("學分","","Course Units"); ?></div>
+											<div class="text8 mobile_show2 mobile_title" x-show="course.course_unit"><?php echo cuhk_multilang_text("學分", "", "Course Units"); ?></div>
 											<span x-text="course.course_unit" x-show="course.course_unit"></span>
 										</div>
 										<div class="icon" x-show="course.has_detail || course.course_description || course.course_pdfs.length > 0"></div>
 									</div>
 									<div class="hidden">
 										<div class="hidden_content">
-											<div class="filter_detail_description_title text7" x-show="course.course_description"><?php echo cuhk_multilang_text("簡介","","Description"); ?></div>
+											<div class="filter_detail_description_title text7" x-show="course.course_description"><?php echo cuhk_multilang_text("簡介", "", "Description"); ?></div>
 											<div class="filter_detail_description free_text" x-show="course.course_description" x-html="course.course_description"></div>
 
 											<div x-show="course.has_detail || course.course_pdfs.length > 0" class="btn_wrapper text7">
-												<a :href="course.permalink" class="round_btn" x-show="course.has_detail"><?php echo cuhk_multilang_text("課程內容","","Course detail"); ?></a>
+												<a :href="course.permalink" class="round_btn" x-show="course.has_detail"><?php echo cuhk_multilang_text("課程內容", "", "Course detail"); ?></a>
 
-												<template x-for="pdf in course.course_pdfs" :key="pdf.url" >
+												<template x-for="pdf in course.course_pdfs" :key="pdf.url">
 													<a :href="pdf.url" class="round_btn" x-show="pdf.url" x-text="pdf.text"></a>
 												</template>
 
@@ -199,7 +167,7 @@ if (have_posts()) :
 			<div x-show="!loading && courseSections.length === 0"
 				class="section section_content" style="text-align: center; padding: 60px 0;">
 				<div class="section_center_content small_section_center_content">
-					<p class="text5"><?php pll_e(''); ?><?php echo cuhk_multilang_text("未找到符合所選條件的課程。","","No courses found matching the selected criteria."); ?></p>
+					<p class="text5"><?php pll_e(''); ?><?php echo cuhk_multilang_text("未找到符合所選條件的課程。", "", "No courses found matching the selected criteria."); ?></p>
 				</div>
 			</div>
 		</div>
@@ -207,12 +175,63 @@ if (have_posts()) :
 		<script>
 			function courseFilter() {
 				return {
+					courseCategories: [
+						<?php if (!empty($course_categories)) : ?>
+							<?php foreach ($course_categories as $category) : ?> {
+									slug: '<?php echo esc_js($category->slug); ?>',
+									name: '<?php echo esc_js($category->name); ?>',
+									displayName: '<?php
+													if (pll_current_language() == 'tc') {
+														$ctermfullname = get_field('tc_name', 'course_category_' . $category->term_id);
+													} elseif (pll_current_language() == 'sc') {
+														$ctermfullname = get_field('sc_name', 'course_category_' . $category->term_id);
+													} else {
+														$ctermfullname = get_field('en_name', 'course_category_' . $category->term_id);
+													};
+													echo esc_js($ctermfullname);
+													?>'
+								},
+							<?php endforeach; ?>
+						<?php endif; ?>
+					],
+					academicYears: [
+						<?php if (!empty($academic_years)) : ?>
+							<?php foreach ($academic_years as $year) : ?> {
+									slug: '<?php echo esc_js($year->slug); ?>',
+									name: '<?php echo esc_js($year->name); ?>'
+								},
+							<?php endforeach; ?>
+						<?php endif; ?>
+					],
+					courseTypes: [{
+							slug: '',
+							name: '<?php echo cuhk_multilang_text("所有分類", "", "All Course Type"); ?>',
+							displayName: '<?php echo cuhk_multilang_text("所有分類", "", "All Course Type"); ?>'
+						},
+						<?php if (!empty($course_type)) : ?>
+							<?php foreach ($course_type as $type) : ?> {
+									slug: '<?php echo esc_js($type->slug); ?>',
+									name: '<?php echo esc_js($type->name); ?>',
+									displayName: '<?php
+													if (pll_current_language() == 'tc') {
+														$ctermfullname = get_field('tc_name', 'course_type_' . $type->term_id);
+													} elseif (pll_current_language() == 'sc') {
+														$ctermfullname = get_field('sc_name', 'course_type_' . $type->term_id);
+													} else {
+														$ctermfullname = get_field('en_name', 'course_type_' . $type->term_id);
+													};
+													echo esc_js($ctermfullname);
+													?>'
+								},
+							<?php endforeach; ?>
+						<?php endif; ?>
+					],
 					filters: {
 						categories: [],
 						academicYear: '<?php echo !empty($academic_years) ? esc_js($academic_years[0]->slug) : ''; ?>',
 						academicYearName: '<?php echo !empty($academic_years) ? esc_js($academic_years[0]->name) : ''; ?>',
-						courseType: '<?php echo !empty($course_type) ? "" : ''; ?>',
-						courseTypeName: '<?php echo !empty($course_type) ? "" : ''; ?>'
+						courseType: '',
+						courseTypeName: '<?php echo cuhk_multilang_text("所有分類", "", "All Course Type"); ?>'
 					},
 					dropdowns: {
 						year: false,
@@ -223,7 +242,10 @@ if (have_posts()) :
 					loading: false,
 
 					init() {
-						// Don't set default category filter - show all courses initially
+						// Set the first category as selected by default
+						if (this.courseCategories.length > 0) {
+							this.filters.categories = [this.courseCategories[0].slug];
+						}
 						this.loadCourses();
 					},
 
