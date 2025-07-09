@@ -388,7 +388,7 @@ get_header(); ?>
 				this.dateSwiper = new Swiper('.home_news_date_slider .swiper-container', {
 					autoplay: false,
 					slidesPerView: 'auto',
-					freeMode: true,
+					// freeMode: true,
 					speed: 1600,
 					loop: false,
 					spaceBetween: 0,
@@ -499,7 +499,7 @@ get_header(); ?>
 						swiper = new Swiper('.home_news_date_slider .swiper-container', {
 							autoplay: false,
 							slidesPerView: 'auto',
-							freeMode: true,
+							// freeMode: true,
 							speed: 1600,
 							loop: false,
 							spaceBetween: 0,
