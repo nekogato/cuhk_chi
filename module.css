@@ -3649,7 +3649,7 @@ body.dragging-scroll {
 }
 
 .year_list_slider .swiper-slide + .swiper-slide div{
-    border-left:1px solid #E5E1DF;
+    border-left:1px solid #D5CECA;
 }
 
 .year_list_slider .swiper-slide div a{
@@ -8438,6 +8438,22 @@ body.dragging-scroll {
         max-width: 500px;
         max-height: 400px;
 
+        }
+
+
+        .section_scheme .section_scheme_description{
+            width: 100%;
+        }
+
+        .scheme_unit_expandable_box .hidden_content table tr td:first-child {
+            width: 60px;
+        }
+
+        .scheme_unit_expandable_box .hidden_content table tr td:last-child {
+        width: 40px;
+        }
+        .scheme_unit_expandable_box .hidden_content table tr td + td {
+        padding-left: 15px;
         }
 }
 

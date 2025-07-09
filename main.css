@@ -558,7 +558,6 @@ a{
 	color:#4c4846;
 	position: relative;
 	  z-index: 11;
-	  pointer-events: none;
 }
 
 .footer .section_center_content{
