@@ -136,7 +136,7 @@ get_header(); ?>
 <div class="section home_news_section scrollin_p" x-data="homeNewsSlider()">
 	<?php
 	$news_args = array(
-		'post_type' => array('news', 'department_news'),
+		'post_type' => array('news', 'event'),
 		'posts_per_page' => -1,
 		'meta_query' => array(
 			array(
@@ -253,7 +253,8 @@ get_header(); ?>
 				<a href="<?php echo pll_get_page_url("news-and-events/news/"); ?>" class="round_btn"><?php echo cuhk_multilang_text("查看所有學系消息", "查看所有學系消息", "View All News"); ?></a>
 			</div>
 		</div>
-
+		
+		<div class="home_news_date_slider_wrapper_wrapper">
 		<!-- Loading indicator -->
 			<div class="home_news_loading " :class="loading?'active':''">
 				<div class="section_center_content small_section_center_content">
@@ -268,50 +269,51 @@ get_header(); ?>
 				</div>
 			</div>
 
-		<div class="home_news_date_slider_wrapper show">
-			<div class="section_center_content small_section_center_content scrollin scrollinbottom">
+			<div class="home_news_date_slider_wrapper show">
+				<div class="section_center_content small_section_center_content scrollin scrollinbottom">
 
 
-				<div class="home_news_date_slider_inwrapper">
-					<div class="home_news_date_slider">
-						<div class="swiper-container swiper">
-							<div class="swiper-wrapper">
-								<!-- News slides - Each date is one slide -->
-								<template x-for="(dateGroup, dateKey) in groupedNews" :key="dateKey">
-									<div class="swiper-slide">
-										<div class="date text4" x-html="formatDate(dateKey)"></div>
-										<div class="news_item_wrapper">
-											<template x-for="(newsItem, index) in dateGroup" :key="newsItem.id">
+					<div class="home_news_date_slider_inwrapper">
+						<div class="home_news_date_slider">
+							<div class="swiper-container swiper">
+								<div class="swiper-wrapper">
+									<!-- News slides - Each date is one slide -->
+									<template x-for="(dateGroup, dateKey) in groupedNews" :key="dateKey">
+										<div class="swiper-slide">
+											<div class="date text4" x-html="formatDate(dateKey)"></div>
+											<div class="news_item_wrapper">
+												<template x-for="(newsItem, index) in dateGroup" :key="newsItem.id">
+													<div class="news_item">
+														<div class="news_item_spacing">
+															<a :href="newsItem.link">
+																<img :src="newsItem.image" :alt="newsItem.title">
+																<div class="text" x-text="newsItem.title"></div>
+															</a>
+														</div>
+													</div>
+												</template>
+											</div>
+										</div>
+									</template>
+
+									<!-- No news message -->
+									<template x-if="Object.keys(groupedNews).length === 0 && !loading">
+										<div class="swiper-slide">
+											<div class="date text4"><?php echo cuhk_multilang_text("暫無消息", "暂无消息", "No News"); ?></div>
+											<div class="news_item_wrapper">
 												<div class="news_item">
 													<div class="news_item_spacing">
-														<a :href="newsItem.link">
-															<img :src="newsItem.image" :alt="newsItem.title">
-															<div class="text" x-text="newsItem.title"></div>
-														</a>
+														<div class="text"><?php echo cuhk_multilang_text("本月暫無消息", "本月暂无消息", "No news this month"); ?></div>
 													</div>
-												</div>
-											</template>
-										</div>
-									</div>
-								</template>
-
-								<!-- No news message -->
-								<template x-if="Object.keys(groupedNews).length === 0 && !loading">
-									<div class="swiper-slide">
-										<div class="date text4"><?php echo cuhk_multilang_text("暫無消息", "暂无消息", "No News"); ?></div>
-										<div class="news_item_wrapper">
-											<div class="news_item">
-												<div class="news_item_spacing">
-													<div class="text"><?php echo cuhk_multilang_text("本月暫無消息", "本月暂无消息", "No news this month"); ?></div>
 												</div>
 											</div>
 										</div>
-									</div>
-								</template>
+									</template>
+								</div>
 							</div>
+							<div class="prev_btn" @click="datePreviousSlide()"></div>
+							<div class="next_btn" @click="dateNextSlide()"></div>
 						</div>
-						<div class="prev_btn" @click="datePreviousSlide()"></div>
-						<div class="next_btn" @click="dateNextSlide()"></div>
 					</div>
 				</div>
 			</div>

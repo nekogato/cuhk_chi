@@ -1644,12 +1644,15 @@ body.dragging-scroll {
 
 /* home_news_date_slider */
 
+.home_news_date_slider_wrapper_wrapper{
+    background-color: #EEE8DC;
+}
+
 .home_news_date_slider_wrapper{
     padding-top: 60px;
     padding-bottom: 60px;
     position: relative;
     z-index: 7;
-    background-color: #EEE8DC;
     opacity: 0;
     pointer-events: none;
     display: block;

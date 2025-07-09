@@ -1822,7 +1822,7 @@ function load_home_news_ajax()
 	}
 
 	$news_args = array(
-		'post_type' => array('news', 'department_news'),
+		'post_type' => array('news', 'event'),
 		'posts_per_page' => -1,
 		'meta_query' => array(
 			array(
