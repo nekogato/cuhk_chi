@@ -387,7 +387,7 @@ function init_event(){
 		}
 	})
 
-	$(".filter_dropdown_btn").click(function(){
+	$(document).on("click", ".filter_dropdown_btn", function () {
 		var $p = $(this).parents(".filter_dropdown_wrapper")
 		if($p.hasClass("active")){
 			$p.removeClass("active").find(".filter_dropdown").show();
