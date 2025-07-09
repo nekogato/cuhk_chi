@@ -7686,15 +7686,15 @@ body.dragging-scroll {
       }
 
       .home_promotion_box_wrapper .section_center_content{
-        height: 450px;
+        height: 480px;
       }
 
       .home_promotion_box_inwrapper{
-        height: 450px;
+        height: 480px;
       }
 
       .home_promotion_box {
-        height: 450px;
+        height: 480px;
         width: 60px;
         display: flex;
         position: relative;
@@ -7702,7 +7702,7 @@ body.dragging-scroll {
 
       .home_promotion_box .title {
         left: 60px;
-        width: 450px;
+        width: 480px;
         height: 60px;
       }
 
