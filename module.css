@@ -1248,8 +1248,11 @@ body.dragging-scroll {
 
 .home_about_slider_section .vertical_text{
     writing-mode: vertical-rl;
-    text-orientation: upright;
+    text-orientation: mixed;
     letter-spacing: 0.25em;
+}
+.en_body .home_about_slider_section .vertical_text{
+  letter-spacing: 0em;
 }
 
 .home_about_slider{
@@ -1485,8 +1488,12 @@ body.dragging-scroll {
 
 .home_news_section .vertical_text{
     writing-mode: vertical-rl;
-    text-orientation: upright;
+    text-orientation: mixed;
     letter-spacing: 0.25em;
+}
+
+.en_body .home_news_section .vertical_text{
+  letter-spacing: 0em;
 }
 
 .home_news_year_slider{
@@ -2115,7 +2122,7 @@ body.dragging-scroll {
 
 .home_course_intro_section .vertical_text{
     writing-mode: vertical-rl;
-    text-orientation: upright;
+    text-orientation: mixed;
     letter-spacing: 0.25em;
 }
 
@@ -4005,7 +4012,7 @@ body.dragging-scroll {
     position: relative;
     padding-bottom: 56.25%;
     margin-bottom: 30px;
-    background-color: #fff;
+    background-color: rgba(255,255,255,0.8);
 }
 
 .featured_news_box_section .news_box .photo a:hover{
@@ -4090,12 +4097,12 @@ body.dragging-scroll {
 
 
 .news_box_section .news_box:nth-child(even) .photo{  
-    background-color: #fff;
+    background-color: rgba(255,255,255,0.8);
     /* background: linear-gradient(180deg, rgba(239,211,193,1) 0%, rgba(239,211,193,0.5) 100%); */
 }
 
 .news_box_section .news_box:nth-child(odd) .photo{  
-    background-color: #fff;
+    background-color: rgba(255,255,255,0.8);
     /* background: linear-gradient(180deg, rgba(195,217,194,1) 0%, rgba(195,217,194,0.5) 100%); */
 }
 
