@@ -1187,6 +1187,10 @@ body.dragging-scroll {
     letter-spacing: 0.07em;
 }
 
+.en_body .home_top_section .text{
+    letter-spacing: 0em;
+}
+
 .home_top_section .logo{  
     width: 5.1em;
     margin-top: 0.6em;
