@@ -6401,6 +6401,7 @@ body.dragging-scroll {
     border:1px solid #6f6ea6;
     cursor: pointer;
     position: relative;
+    background-color: #EEE8DC;
 }
 
 .scheme_group_wrapper{
@@ -6616,7 +6617,7 @@ body.dragging-scroll {
     left: 0px;
     right: 0px;  
     width: 2px;
-  height: 10px;
+  height: 13px;
     top:5px;
     margin: auto;
     background-color: #575792;
@@ -6624,18 +6625,18 @@ body.dragging-scroll {
 
 
 .scheme_pdf_btn .arrow::after{
-    content:"";
+    content: "";
     position: absolute;
     left: 0px;
     right: 0px;
-    bottom:10px;
-   width: 0px;
-   height: 0px;
+    bottom: 12px;
+    width: 6px;
+    height: 6px;
     margin: auto;
-   border-style: solid;    
-   border-width: 5px 5px 0 5px;
-   border-color: #575792 transparent transparent transparent;
-   transform: rotate(0deg);
+    transform: rotate(0deg);
+    border-right: 2px solid #575792;
+    border-bottom: 2px solid #575792;
+    transform: rotate(45deg);
 }
 
 /* good table */
