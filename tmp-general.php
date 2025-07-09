@@ -19,7 +19,9 @@ if (have_posts()) :
 ?>
 
 		<div class="section section_content ">
+
 			<div class="section_center_content xs_section_center_content">
+				<img src="<?php echo get_template_directory_uri(); ?>/images/ink_bg4.jpg" class="ink_bg4 scrollin scrollinbottom" alt="Background">
 				<?php if ($page_title): ?>
 					<h1 class="section_title text1 scrollin scrollinbottom"><?php echo wp_kses_post($page_title); ?></h1>
 				<?php endif; ?>

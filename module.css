@@ -777,6 +777,10 @@ body.dragging-scroll {
     font-weight: 600;
 }
 
+.section_title + .section_introduction{
+    margin-top: 30px;
+}
+
 .gallery_date{
     letter-spacing: 0em;
     font-weight: 400;
