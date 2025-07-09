@@ -193,6 +193,53 @@ while (have_posts()) :
 
                         <?php if($course_category || $course_year){?>
 
+                            <?php 
+                            $tax_query = [];
+
+                            // Handle course_category
+                            if ($course_category) {
+                                $term_ids = is_array($course_category)
+                                    ? wp_list_pluck($course_category, 'term_id')
+                                    : [$course_category->term_id];
+
+                                $tax_query[] = [
+                                    'taxonomy' => 'course_category',
+                                    'field'    => 'term_id',
+                                    'terms'    => $term_ids,
+                                ];
+                            }
+
+                            // Handle course_year
+                            if ($course_year) {
+                                $term_ids = is_array($course_year)
+                                    ? wp_list_pluck($course_year, 'term_id')
+                                    : [$course_year->term_id];
+
+                                $tax_query[] = [
+                                    'taxonomy' => 'course_year',
+                                    'field'    => 'term_id',
+                                    'terms'    => $term_ids,
+                                ];
+                            }
+
+                            // Build the query
+                            $args = [
+                                'post_type' => 'course',
+                                'orderby' => 'title',
+                                'order' => 'ASC',
+                                'post_status' => 'publish',
+                                'posts_per_page' => -1,
+                            ];
+
+                            // Only add tax_query if any conditions exist
+                            if (!empty($tax_query)) {
+                                $args['tax_query'] = $tax_query;
+                            }
+
+                            $query = new WP_Query($args);
+
+                            if ($query->have_posts()) {
+                            ?>
                             <div class="filter_detail_section ">
                                 <img src="<?php echo get_template_directory_uri(); ?>/images/ink_bg4.jpg" class="ink_bg4 scrollin scrollinbottom" alt="Background">
 
@@ -200,52 +247,7 @@ while (have_posts()) :
 
                                 <div class="section_expandable_list   filter_detail_flex_body">
 
-                                    <?php 
-                                    $tax_query = [];
-
-                                    // Handle course_category
-                                    if ($course_category) {
-                                        $term_ids = is_array($course_category)
-                                            ? wp_list_pluck($course_category, 'term_id')
-                                            : [$course_category->term_id];
-
-                                        $tax_query[] = [
-                                            'taxonomy' => 'course_category',
-                                            'field'    => 'term_id',
-                                            'terms'    => $term_ids,
-                                        ];
-                                    }
-
-                                    // Handle course_year
-                                    if ($course_year) {
-                                        $term_ids = is_array($course_year)
-                                            ? wp_list_pluck($course_year, 'term_id')
-                                            : [$course_year->term_id];
-
-                                        $tax_query[] = [
-                                            'taxonomy' => 'course_year',
-                                            'field'    => 'term_id',
-                                            'terms'    => $term_ids,
-                                        ];
-                                    }
-
-                                    // Build the query
-                                    $args = [
-                                        'post_type' => 'course',
-                                        'orderby' => 'title',
-                                        'order' => 'ASC',
-                                        'post_status' => 'publish',
-		                                'posts_per_page' => -1,
-                                    ];
-
-                                    // Only add tax_query if any conditions exist
-                                    if (!empty($tax_query)) {
-                                        $args['tax_query'] = $tax_query;
-                                    }
-
-                                    $query = new WP_Query($args);
-
-                                    if ($query->have_posts()) {
+                                    <?php
                                         while ($query->have_posts()) {
                                             $query->the_post();
                                             $course_code = get_field("course_code");
