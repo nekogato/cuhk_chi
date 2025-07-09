@@ -1234,6 +1234,7 @@ function init_function(){
 				})
 			},0)
 		}
+		return false;
 	})
 
 	$(".menu_lang").click(function(){
@@ -1244,6 +1245,7 @@ function init_function(){
 			$(".hidden_lang_wrapper").addClass("opened")
 			$(".hidden_lang").stop().fadeIn(300);
 		}
+		return false;
 	})
 	
 	$(".publication_filter_btn").click(function(){
@@ -1253,6 +1255,7 @@ function init_function(){
 		var body = $("html");
 		body.stop().animate({scrollTop:mytop-parseInt($(".header_bg").outerHeight())-100}, 1200, 'easeInOutQuad', function() { 
 		});
+		return false;
 	})
 }
 
