@@ -1373,6 +1373,10 @@ $(function(){
 		$(this).wrap( "<div class='table-responsive'></div>" );
 	});
 
+	$(".free_text table").not($(".free_text table.border_table")).each(function(){
+		$(this).wrap( "<div class='table-bg'></div>" );
+	});
+
 	$(".free_text iframe").each(function(){
 		if($(this).parents(".video_wrapper").length<=0){
 			var my_src = $(this).attr("src")

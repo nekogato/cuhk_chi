@@ -1128,7 +1128,7 @@ body.dragging-scroll {
     position: relative;
 }
 
-.section_expandable_list .free_text .table-responsive::before{
+.section_expandable_list .free_text .table-bg::before{
     content:"";
     position: absolute;
     left: 0px;
@@ -3575,7 +3575,7 @@ body.dragging-scroll {
     position: relative;
 }
 
-.plain_text_section .free_text .table-responsive::before{
+.plain_text_section .free_text .table-bg::before{
     content:"";
     position: absolute;
     left: 0px;
@@ -6362,7 +6362,7 @@ body.dragging-scroll {
 }
 
 
-.resource_top_section .free_text .table-responsive::before{
+.resource_top_section .free_text .table-bg::before{
     content:"";
     position: absolute;
     left: 0px;
@@ -6712,7 +6712,7 @@ body.dragging-scroll {
     position: relative;
 }
 
-.switchable_section_expandable_list .free_text .table-responsive::before{
+.switchable_section_expandable_list .free_text .table-bg::before{
     content:"";
     position: absolute;
     left: 0px;
