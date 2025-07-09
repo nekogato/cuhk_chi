@@ -21,6 +21,7 @@ while (have_posts()) :
 	$show_required_units = get_field("show_required_units");
 ?>
 
+	<img src="<?php echo get_template_directory_uri(); ?>/images/ink_bg7.jpg" class="ink_bg6 scrollin scrollinbottom">
 	<div class="section section_content section_scheme">
 		<div class="section_center_content small_section_center_content scrollin scrollinbottom">
 
