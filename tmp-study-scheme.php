@@ -193,7 +193,7 @@ while (have_posts()) :
 
                         <?php if($course_category || $course_year){?>
 
-                            <div class="section section_content filter_detail_section ">
+                            <div class="filter_detail_section ">
                                 <img src="<?php echo get_template_directory_uri(); ?>/images/ink_bg4.jpg" class="ink_bg4 scrollin scrollinbottom" alt="Background">
 
                                 <div class="filter_course_type_name section_center_content  small_section_center_content text3" ><?php echo cuhk_multilang_text("科目表","","Course List"); ?></div>
