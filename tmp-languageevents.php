@@ -17,6 +17,9 @@ while (have_posts()) :
 	$page_description = get_field("introduction");
 ?>
 
+		<div class="ink_bg13_wrapper">
+			<img src="<?php echo get_template_directory_uri(); ?>/images/ink_bg8.jpg" class="ink_bg13 scrollin scrollinbottom" alt="Background">
+		</div>
 	<div x-data="langEventFilter()">
 
 		<div class="section section_content filter_menu_section">
