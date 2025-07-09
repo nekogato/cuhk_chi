@@ -18,7 +18,9 @@ if (have_posts()) :
 		$resources_introduction = get_field('resources_introduction');
 		$download_section_title = get_field('download_section_title');
 ?>
-
+		<div class="ink_bg13_wrapper">
+			<img src="<?php echo get_template_directory_uri(); ?>/images/ink_bg13.jpg" class="ink_bg13 scrollin scrollinbottom" alt="Background">
+		</div>
 		<div class="section section_content resource_top_section">
 			<div class="section_center_content small_section_center_content">
 				<?php if ($resources_title): ?>
