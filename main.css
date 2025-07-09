@@ -1289,7 +1289,7 @@ ol:not(.free_text ol), ul:not(.free_text ul) {
 
 
 .free_text .table-bg table{
-    width: 100%;
+    width: 100% !important;
     position: relative;
     table-layout: fixed;
 }
