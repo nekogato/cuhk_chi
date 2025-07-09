@@ -7727,6 +7727,10 @@ body.dragging-scroll {
         width: 100%;
       }
 
+       .home_promotion_box .col + .col{
+        margin-top: 15px;
+        }
+
       .home_promotion_box .hidden_content {
         padding-left: 15px;
         padding-right: 15px;

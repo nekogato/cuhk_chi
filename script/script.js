@@ -1377,7 +1377,7 @@ $(function(){
 	});
 
 	$(".free_text table").not($(".free_text table.border_table")).each(function(){
-		$(this).wrap( "<div class='table-bg'></div>" );
+		$(this).addClass("table-bg")
 	});
 
 	$(".free_text iframe").each(function(){

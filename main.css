@@ -1267,7 +1267,9 @@ ol:not(.free_text ol), ul:not(.free_text ul) {
 .free_text .table-responsive{
 	min-height: .01%;
 	overflow-x: auto;
-	margin-top:30px;}	
+	margin-top:30px;
+    position: relative;
+}	
 	
 
 .free_text h1 + .table-responsive,
@@ -1285,16 +1287,12 @@ ol:not(.free_text ol), ul:not(.free_text ul) {
 
 .free_text .table-bg{
 	width: 100% !important;
-}	
-
-
-.free_text .table-bg table{
-    width: 100% !important;
+    background: linear-gradient(180deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 100%); 
     position: relative;
     table-layout: fixed;
 }
 
-.free_text .table-bg table td{
+.free_text .table-bg td{
   position: relative;
   }
 
@@ -1312,16 +1310,6 @@ ol:not(.free_text ol), ul:not(.free_text ul) {
     position: relative;
 }
 
-.free_text .table-bg::before{
-    content:"";
-    position: absolute;
-    left: 0px;
-    top:0px;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(180deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 100%); 
-    pointer-events: none;
-}
 
 .free_text .table-bg tbody tr{
     position: relative;
