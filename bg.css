@@ -142,6 +142,10 @@
     object-fit: cover;
 }
 
+.home_promotion_section .ink_bg9_wrapper{
+    margin-top: -15%;
+}
+
 .ink_bg10_wrapper{
     position: absolute;
     top:100%;
