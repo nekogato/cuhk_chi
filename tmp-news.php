@@ -26,6 +26,10 @@ while (have_posts()) :
 ?>
 	
 
+		<div class="ink_bg13_wrapper">
+			<img src="<?php echo get_template_directory_uri(); ?>/images/ink_bg9.jpg" class="ink_bg13 scrollin scrollinbottom" alt="Background">
+		</div>
+		
 	<div class="section section_content section_intro">
 		<div class="section_center_content">
 			<h1 class="section_title text1 scrollin scrollinbottom"><?php echo get_field("page_title"); ?></h1>
