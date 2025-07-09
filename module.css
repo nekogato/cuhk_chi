@@ -3337,7 +3337,7 @@ body.dragging-scroll {
 }
 
 .en_body .top_photo_banner_section .vertical_text{
-      writing-mode: horizontal-tb;
+      writing-mode: vertical-rl;
   text-orientation: mixed;
   letter-spacing: 0em;
 }
@@ -7762,6 +7762,11 @@ body.dragging-scroll {
     }
 
     .top_photo_banner_section .vertical_text {
+        writing-mode: horizontal-tb;
+      }
+
+      .en_body .top_photo_banner_section .vertical_text{
+
         writing-mode: horizontal-tb;
       }
 
