@@ -141,7 +141,7 @@ while (have_posts()) :
 							</div>
 							<template x-if="event.event_banner">
 								<div class="photo">
-									<img :src="event.event_banner.url" :alt="event.event_banner.alt">
+									<a :href="event.permalink" ><img :src="event.event_banner.url" :alt="event.event_banner.alt"></a>
 								</div>
 							</template>
 						</div>
