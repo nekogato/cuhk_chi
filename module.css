@@ -7555,6 +7555,12 @@ body.dragging-scroll {
     }
 
 
+    /* scheme_groups_dropdown_wrapper */
+
+    .sibling-pages-menu {
+    margin-bottom: 40px;
+    }
+
     .scheme_groups_dropdown_wrapper {
         margin-top: 30px;
     }
