@@ -1387,7 +1387,7 @@ $(function(){
 		}
 	});
 
-	$(".project_title span").each(function () {
+	$(".zh_body .project_title span").each(function () {
 		const $el = $(this);
 
 		$el.contents().each(function () {
