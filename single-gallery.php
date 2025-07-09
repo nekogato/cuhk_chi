@@ -62,7 +62,7 @@ get_template_part('template-parts/roll-menu', null, array(
 								endforeach;
 							else :
 								// Fallback: show featured image if no gallery images
-								$featured_image = get_the_post_thumbnail_url(get_the_ID(), 'medium');
+								$featured_image = get_the_post_thumbnail_url(get_the_ID(), 'm');
 								$featured_image_full = get_the_post_thumbnail_url(get_the_ID(), 'full');
 
 								if ($featured_image) :

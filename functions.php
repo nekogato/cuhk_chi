@@ -1058,7 +1058,7 @@ function load_more_department_news()
 		while ($query->have_posts()) {
 			$query->the_post();
 
-			$banner_url = get_the_post_thumbnail_url(get_the_ID(), 'department-news-regular');
+			$banner_url = get_the_post_thumbnail_url(get_the_ID(), 'm');
 			$banner_alt = get_post_meta(get_post_thumbnail_id(), '_wp_attachment_image_alt', true);
 
 			// Get category from taxonomy
@@ -1738,9 +1738,9 @@ function filter_galleries_ajax()
 		while ($query->have_posts()) {
 			$query->the_post();
 
-			$featured_image = get_the_post_thumbnail_url(get_the_ID(), 'medium');
+			$featured_image = get_the_post_thumbnail_url(get_the_ID(), 'm');
 			if (!$featured_image) {
-				$featured_image = get_template_directory_uri() . '/images/dummy_image4.jpg';
+				$featured_image = get_template_directory_uri() . '/images/schoolart_logo_bg.svg';
 			}
 
 			$gallery_categories = get_the_terms(get_the_ID(), 'gallery_category');

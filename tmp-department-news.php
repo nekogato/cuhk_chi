@@ -56,10 +56,10 @@ if ($all_news->have_posts()) {
 
 		// First 2 posts are featured
 		if ($count < 2) {
-			$news_data['banner_url'] = get_the_post_thumbnail_url(get_the_ID(), 'department-news-featured');
+			$news_data['banner_url'] = get_the_post_thumbnail_url(get_the_ID(), 'l');
 			$featured_news[] = $news_data;
 		} else {
-			$news_data['banner_url'] = get_the_post_thumbnail_url(get_the_ID(), 'department-news-regular');
+			$news_data['banner_url'] = get_the_post_thumbnail_url(get_the_ID(), 'm');
 			$regular_news[] = $news_data;
 		}
 		$count++;

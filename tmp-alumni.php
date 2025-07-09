@@ -56,7 +56,7 @@ if ($alumni_events): ?>
 							<div class="news_box col col6">
 								<div class="col_spacing scrollin scrollinbottom">
 									<?php
-									$event_image = get_the_post_thumbnail_url($event->ID, 'large');
+									$event_image = get_the_post_thumbnail_url($event->ID, 'l');
 									if ($event_image): ?>
 										<div class="photo">
 											<img src="<?php echo esc_url($event_image); ?>" alt="<?php echo esc_attr($event->post_title); ?>">

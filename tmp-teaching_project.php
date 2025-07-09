@@ -43,7 +43,7 @@ get_template_part('template-parts/roll-menu'); ?>
                                 $title = get_the_title();
                                 $permalink = get_permalink();
                                 $thumbnail_id = get_post_thumbnail_id();
-                                $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'medium'); // or 'full'
+                                $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'm'); // or 'full'
                                 $alt_text = get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true);
                                 ?>
                                 
