@@ -37,7 +37,7 @@ while (have_posts()) :
 					<div class="filter_menu_content full_filter_menu_content">
 						<div class="filter_dropdown_wrapper right_filter_dropdown_wrapper">
 							<a class="filter_dropdown_btn text5" href="#" @click.prevent="toggleYearDropdown()" x-text="selectedYearText"><?php echo cuhk_multilang_text("所有年份", "", "All Years"); ?></a>
-							<div class="filter_dropdown text5" x-show="showYearDropdown" @click.away="showYearDropdown = false">
+							<div class="filter_dropdown text5" >
 								<ul>
 									<li><a href="#" @click.prevent="filterByYear('')" data-val=""><?php echo cuhk_multilang_text("所有年份", "", "All Years"); ?></a></li>
 									<template x-for="year in availableYears" :key="year">
