@@ -15,9 +15,9 @@ if (have_posts()) :
 	while (have_posts()) : the_post();
 ?>
 
-		<div class="ink_bg13_wrapper">
-			<img src="<?php echo get_template_directory_uri(); ?>/images/ink_bg6.jpg" class="ink_bg6 scrollin scrollinbottom" alt="Background">
-		</div>
+		<img src="<?php echo get_template_directory_uri(); ?>/images/ink_bg6.jpg" class="ink_bg6 scrollin scrollinbottom" alt="Background">
+		
+
 
 		<div class="section section_content section_intro">
 			<div class="section_center_content small_section_center_content">

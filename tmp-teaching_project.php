@@ -8,6 +8,7 @@ get_header();
 // Include the roll menu template part
 get_template_part('template-parts/roll-menu'); ?>
 
+<img src="<?php echo get_template_directory_uri(); ?>/images/ink_bg11.jpg" class="ink_bg6 scrollin scrollinbottom" alt="Background">
 
 
 <div >
