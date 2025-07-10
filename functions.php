@@ -1889,8 +1889,9 @@ add_action('wp_ajax_nopriv_load_home_news', 'load_home_news_ajax');
 /**
  * Auto-translate Traditional Chinese ACF fields to Simplified Chinese
  * Triggered when saving ACF fields
+ * DISABLED: Only manual translation via button is allowed
  */
-add_action('acf/save_post', 'auto_translate_tc_to_sc_acf_fields', 20);
+// add_action('acf/save_post', 'auto_translate_tc_to_sc_acf_fields', 20);
 
 function auto_translate_tc_to_sc_acf_fields($post_id)
 {
@@ -1957,8 +1958,8 @@ function auto_translate_tc_to_sc_acf_fields($post_id)
 		}
 	}
 
-	// Re-add the hook
-	add_action('acf/save_post', 'auto_translate_tc_to_sc_acf_fields', 20);
+	// Re-add the hook (DISABLED: Only manual translation allowed)
+	// add_action('acf/save_post', 'auto_translate_tc_to_sc_acf_fields', 20);
 }
 
 /**
@@ -2133,8 +2134,9 @@ function translate_acf_field_value($value, $field_type, $field = null)
 
 /**
  * Optional: Add admin notice to inform about auto-translation
+ * DISABLED: Only manual translation via button is allowed
  */
-add_action('acf/save_post', 'show_translation_notice', 21);
+// add_action('acf/save_post', 'show_translation_notice', 21);
 
 function show_translation_notice($post_id)
 {
@@ -2154,8 +2156,9 @@ function show_translation_notice($post_id)
 
 /**
  * Display the translation notice
+ * DISABLED: Only manual translation via button is allowed
  */
-add_action('admin_notices', 'display_translation_notice');
+// add_action('admin_notices', 'display_translation_notice');
 
 function display_translation_notice()
 {
