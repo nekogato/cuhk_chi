@@ -92,15 +92,16 @@ while (have_posts()) :
                     $scheme_courses = get_sub_field('courses');
                 ?>
                     <div class="scheme_item">
-                        <div class="scheme_title"><?php echo $scheme_title; ?></div>
-                        <?php if (have_rows('scheme_year')) :
-                            $group_index = 0;
+                        <div class="section_center_content small_section_center_content">
+                            <div class="scheme_title text2"><?php echo $scheme_title; ?></div>
+                            <?php if (have_rows('scheme_year')) :
+                                $group_index = 0;
 
-                            // Get the first row's group_title
-                            the_row(); // move to first row
-                            $first_group_title = get_sub_field('year_title');
-                            reset_rows(); // reset the pointer to start loop again
-                        ?>
+                                // Get the first row's group_title
+                                the_row(); // move to first row
+                                $first_group_title = get_sub_field('year_title');
+                                reset_rows(); // reset the pointer to start loop again
+                            ?>
                             <div class="scheme_groups_dropdown_wrapper">
                                 <div class="scheme_groups_dropdown">
                                     <div class="selected text5"><span class="text"><?php echo esc_html($first_group_title); ?></span><div class="arrow"></div></div>
@@ -119,7 +120,8 @@ while (have_posts()) :
                                     </ul>
                                 </div>
                             </div>
-                        <?php endif; ?>
+                            <?php endif; ?>
+                        </div>
 
                         <?php if (have_rows('scheme_year')) : 
                             $group_index = 0;
@@ -137,6 +139,18 @@ while (have_posts()) :
                                 ?>
                                     <div class="scheme_group <?php if($group_index==1){echo"active";};?>" data-id="group_<?php echo $group_index; ?>">
                                         <div class="section_center_content small_section_center_content ">
+                                            <?php 
+                                                if($group_introduction):
+                                                    ?>
+                                                    <div class="group_introduction text6">
+                                                        <div class="section_scheme_description free_text text6 col8">
+                                                            <?php echo $group_introduction; ?>
+                                                        </div>
+                                                    </div>
+                                                    <?php
+                                                endif; 
+                                            ?>
+
                                             <?php 
                                                 if($group_pdf):
                                                     ?>

@@ -776,6 +776,9 @@ body.dragging-scroll {
     letter-spacing: 0.05em;
     font-weight: 600;
 }
+.en_body .section_title{
+    letter-spacing: 0em;
+}
 
 .section_title + .section_introduction{
     margin-top: 30px;
@@ -797,15 +800,16 @@ body.dragging-scroll {
     letter-spacing: 0.05em;
     font-weight: 600;
 }
+.en_body .section_subtitle{
+    letter-spacing: 0em;
+}
+
 
 .section_title + .section_subtitle{
     margin-top: 20px;
 }
 
 
-.en_body .section_title{
-    letter-spacing: 0em;
-}
 
 .section_content + .section_content .section_title{
     color:#009b9d;
@@ -825,6 +829,10 @@ body.dragging-scroll {
     text-align: center;
     letter-spacing: 0.05em;
     margin-top: 20px;
+}
+
+.en_body .section_description{
+    letter-spacing: 0em;
 }
 
 .single-gallery .section_description{
@@ -6404,7 +6412,11 @@ body.dragging-scroll {
 
 .scheme_groups_dropdown_wrapper{
     display: flex;
-    margin-top: 100px;
+    margin-top: 30px;
+}
+
+.scheme_groups_dropdown_wrapper:first-child{
+    margin-top: auto;
 }
 
 .scheme_groups_dropdown{
@@ -6648,6 +6660,22 @@ body.dragging-scroll {
     border-right: 2px solid #575792;
     border-bottom: 2px solid #575792;
     transform: rotate(45deg);
+}
+
+.scheme_title{
+      margin: auto;
+    text-align: center;
+    color: #63629B;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+.en_body .scheme_title{
+    letter-spacing: 0em;
+}
+
+.scheme_item_wrapper{
+      margin-top: 100px;
 }
 
 /* good table */
