@@ -221,15 +221,6 @@
                             ?>
                             <div class="footer_bottom_nav">        
                                 <ul>
-                                <?php
-                                    while( have_rows('footer_menu', 'option') ) : the_row();
-                                    $text = get_sub_field('text');
-                                    $url = get_sub_field('url');
-                                    ?>
-                                    <li><a href="<?php echo $url;?>"><?php echo $text;?></a></li>
-                                    <?php
-                                    endwhile;
-                                    ?>
                                     <?php 
                                     while (have_rows('footer_menu', 'option')) : the_row();
                                         $text       = get_sub_field('text');
