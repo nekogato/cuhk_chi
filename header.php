@@ -72,7 +72,7 @@ if (pll_current_language() == 'sc') {
 		</ul>
 	</div>
 	<div class="dropdown">
-		<div class="dropdown_col_wrapper text7">
+		<div class="dropdown_col_wrapper text6">
 			<?php
 			if( have_rows('column_1_menu', 'option') ):
 				?>
