@@ -142,8 +142,8 @@ while (have_posts()) :
                                             <?php 
                                                 if($group_introduction):
                                                     ?>
-                                                    <div class="group_introduction text6">
-                                                        <div class="section_scheme_description free_text text6 col8">
+                                                    <div class="group_introduction text3">
+                                                        <div class="section_scheme_description free_text col8">
                                                             <?php echo $group_introduction; ?>
                                                         </div>
                                                     </div>
