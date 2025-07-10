@@ -67,7 +67,7 @@ while (have_posts()) :
             <?php endif; ?>
 
 			<?php if ($section_title) : ?>
-				<h1 class="section_title text1 scrollin scrollinbottom"><?php echo wp_kses_post($section_title); ?></h1>
+				<h1 class="section_title text1"><?php echo wp_kses_post($section_title); ?></h1>
 			<?php endif; ?>
 
 			<?php if ($programme_name) : ?>
@@ -91,7 +91,7 @@ while (have_posts()) :
                     $scheme_title = get_sub_field('scheme_title');
                     $scheme_courses = get_sub_field('courses');
                 ?>
-                    <div class="scheme_item">
+                    <div class="scheme_item  scrollin scrollinbottom">
                         <div class="section_center_content small_section_center_content">
                             <div class="scheme_title text2"><?php echo $scheme_title; ?></div>
                             <?php if (have_rows('scheme_year')) :
@@ -314,7 +314,12 @@ while (have_posts()) :
         <?php endif; ?>
         
         <?php 
+                echo "1";
+                var_dump(get_field("courses"));
+
             if($how_to_show_course_list==1) : 
+                echo "2";
+                var_dump(get_field("courses"));
                 if (have_rows('courses')) : 
                     while (have_rows('courses')) : the_row();
                     
