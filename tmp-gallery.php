@@ -79,7 +79,7 @@ get_template_part('template-parts/roll-menu'); ?>
 		<div class="news_box_wrapper scrollin scrollinbottom">
 			<div class="section_center_content small_section_center_content">
 				<div class="col_wrapper big_col_wrapper">
-					<div class="flex row" x-show="!loading">
+					<div class="flex row">
 						<template x-for="gallery in galleries" :key="gallery.id">
 							<div class="news_box col col3">
 								<div class="col_spacing ">
@@ -169,11 +169,7 @@ get_template_part('template-parts/roll-menu'); ?>
 					const data = await response.json();
 					if (data.success) {
 						if (append) {
-							const existing = this.galleries.map(g => ({
-								...g,
-								_isNew: false
-							}));
-							this.galleries = [...existing, ...data.data.galleries];
+							this.galleries = [this.galleries, ...data.data.galleries];
 						} else {
 							this.galleries = data.data.galleries;
 						}
