@@ -24,9 +24,9 @@ while (have_posts()) :
 
 		<div class="section section_content filter_menu_section">
 			<div class="section_center_content small_section_center_content small_section_center_content scrollin scrollinbottom">
-				
 
-			
+
+
 				<?php if ($page_title) : ?>
 					<h1 class="section_title text1 scrollin scrollinbottom"><?php echo ($page_title); ?></h1>
 				<?php endif; ?>
@@ -40,7 +40,7 @@ while (have_posts()) :
 					<div class="filter_menu_content full_filter_menu_content">
 						<div class="filter_dropdown_wrapper right_filter_dropdown_wrapper">
 							<a class="filter_dropdown_btn text5" href="#" @click.prevent="toggleYearDropdown()" x-text="selectedYearText"><?php echo cuhk_multilang_text("所有年份", "", "All Years"); ?></a>
-							<div class="filter_dropdown text5" >
+							<div class="filter_dropdown text5">
 								<ul>
 									<li><a href="#" @click.prevent="filterByYear('')" data-val=""><?php echo cuhk_multilang_text("所有年份", "", "All Years"); ?></a></li>
 									<template x-for="year in availableYears" :key="year">
@@ -78,25 +78,25 @@ while (have_posts()) :
 									</div>
 								</template>
 								<div class="btn_wrapper">
-									<a :href="event.permalink" class="reg_btn round_btn text7"><?php echo cuhk_multilang_text("查看更多","","View more"); ?></a>
+									<a :href="event.permalink" class="reg_btn round_btn text7"><?php echo cuhk_multilang_text("查看更多", "", "View more"); ?></a>
 								</div>
 							</div>
 							<div class="title_wrapper">
 								<div class="title text4" x-html="event.event_name"></div>
 								<div class="info_item_wrapper">
 									<div class="info_item">
-										<div class="t1"><?php echo cuhk_multilang_text("日期","","Date"); ?></div>
+										<div class="t1"><?php echo cuhk_multilang_text("日期", "", "Date"); ?></div>
 										<div class="t2 text6" x-html="event.date_display"></div>
 									</div>
 									<template x-if="event.event_time">
 										<div class="info_item">
-											<div class="t1"><?php echo cuhk_multilang_text("時間","","Time"); ?></div>
+											<div class="t1"><?php echo cuhk_multilang_text("時間", "", "Time"); ?></div>
 											<div class="t2 text6" x-html="event.event_time"></div>
 										</div>
 									</template>
 									<template x-if="event.event_venue">
 										<div class="info_item big_info_item">
-											<div class="t1"><?php echo cuhk_multilang_text("地點","","Venue"); ?></div>
+											<div class="t1"><?php echo cuhk_multilang_text("地點", "", "Venue"); ?></div>
 											<div class="t2 text6" x-html="event.event_venue"></div>
 										</div>
 									</template>
@@ -114,7 +114,7 @@ while (have_posts()) :
 						<div class="load_more_wrapper scrollin scrollinbottom">
 							<a @click.prevent="loadMore()" class="load_more_btn text5">
 								<div class="icon"></div>
-								<div class="text"><?php echo cuhk_multilang_text("載入更多","","Load more"); ?></div>
+								<div class="text"><?php echo cuhk_multilang_text("載入更多", "", "Load more"); ?></div>
 							</a>
 						</div>
 					</template>
@@ -123,13 +123,13 @@ while (have_posts()) :
 				<!-- Loading indicator -->
 				<div class="event_list_item_wrapper" x-show="loading" x-cloak>
 					<div class="loading-indicator" style="text-align: center; padding: 40px;">
-						<p><?php echo cuhk_multilang_text("戴入活動中","","Loading events..."); ?></p>
+						<p><?php echo cuhk_multilang_text("戴入活動中", "", "Loading events..."); ?></p>
 					</div>
 				</div>
 
 				<!-- No events found message -->
 				<div x-show="!loading && events.length === 0" style="text-align: center; padding: 60px 0;">
-                    <p class="text5"><?php pll_e(''); ?><?php echo cuhk_multilang_text("未找到符合所選條件的活動。","","No events found matching the selected criteria."); ?></p>
+					<p class="text5"><?php pll_e(''); ?><?php echo cuhk_multilang_text("未找到符合所選條件的活動。", "", "No events found matching the selected criteria."); ?></p>
 				</div>
 			</div>
 		</div>
@@ -175,7 +175,7 @@ endwhile;
 							page: page,
 							category: category,
 							year: year,
-							pastonly : pastonly
+							pastonly: pastonly
 						})
 					});
 
@@ -228,7 +228,7 @@ endwhile;
 				this.selectedYearText = year || '<?php echo cuhk_multilang_text("所有年份", "", "All Year"); ?>';
 				this.showYearDropdown = false;
 				this.currentPage = 1;
-				this.loadEvents(1, this.activeCategory, year, false);
+				this.loadEvents(1, this.activeCategory, year, false, false);
 			},
 
 			toggleYearDropdown() {
@@ -237,7 +237,7 @@ endwhile;
 
 			loadMore() {
 				if (!this.hasMore || this.loading) return;
-				this.loadEvents(this.currentPage + 1, this.activeCategory, this.selectedYear, true);
+				this.loadEvents(this.currentPage + 1, this.activeCategory, this.selectedYear, false, true);
 			}
 		}
 	}
