@@ -86,25 +86,45 @@ if (pll_current_language() == 'sc') {
 						<div class="dropdown_menu_list">
 							<div class="t1 text5"><span><?php echo $group_name;?></span></div>
 							<ul>
-								<?php
-								while( have_rows('menu') ) : the_row();
-									$text = get_sub_field('text');
+								<?php 
+								while (have_rows('menu')) : the_row();
 									$title_only = get_sub_field('title_only');
-									$url = get_sub_field('url');
-									if($title_only){
+									$text       = get_sub_field('text');
+									$url        = get_sub_field('url');
+									$page       = get_sub_field('page');
+
+									if ($title_only) :
 									?>
-									<li class="t2"><?php echo $text;?></a></li>
-									<?php
-                                    }else if($text || $url){
+									<li class="t2"><?php echo esc_html($text); ?></li>
+									<?php 
+									else:
+										// Default title and link fallback
+										$link_title = '';
+										$link_href  = '';
+
+										if ($page) {
+											$link_title = get_the_title($page);
+											$link_href  = get_permalink($page);
+										}
+
+										// Override title if text is given
+										if ($text) {
+											$link_title = $text;
+										}
+
+										// Override URL if given
+										if ($url) {
+											$link_href = $url;
+										}
+
+										// Only show if we have a title and a link
+										if ($link_title && $link_href) :
 									?>
-									<li><a href="<?php echo $url;?>"><?php echo $text;?></a></li>
-									<?php
-									}else{
-									?>
-									<li class="t_spacer"></li>
-									<?php
-									};
-								endwhile;
+										<li><a href="<?php echo esc_url($link_href); ?>"><?php echo esc_html($link_title); ?></a></li>
+										<?php 
+										endif;
+									endif;
+								endwhile; 
 								?>
 							</ul>
 						</div>
@@ -130,25 +150,45 @@ if (pll_current_language() == 'sc') {
 						<div class="dropdown_menu_list">
 							<div class="t1 text5"><span><?php echo $group_name;?></span></div>
 							<ul>
-								<?php
-								while( have_rows('menu') ) : the_row();
-									$text = get_sub_field('text');
+								<?php 
+								while (have_rows('menu')) : the_row();
 									$title_only = get_sub_field('title_only');
-									$url = get_sub_field('url');
-									if($title_only){
+									$text       = get_sub_field('text');
+									$url        = get_sub_field('url');
+									$page       = get_sub_field('page');
+
+									if ($title_only) :
 									?>
-									<li class="t2"><?php echo $text;?></a></li>
-									<?php
-                                    }else if($text || $url){
+									<li class="t2"><?php echo esc_html($text); ?></li>
+									<?php 
+									else:
+										// Default title and link fallback
+										$link_title = '';
+										$link_href  = '';
+
+										if ($page) {
+											$link_title = get_the_title($page);
+											$link_href  = get_permalink($page);
+										}
+
+										// Override title if text is given
+										if ($text) {
+											$link_title = $text;
+										}
+
+										// Override URL if given
+										if ($url) {
+											$link_href = $url;
+										}
+
+										// Only show if we have a title and a link
+										if ($link_title && $link_href) :
 									?>
-									<li><a href="<?php echo $url;?>"><?php echo $text;?></a></li>
-									<?php
-									}else{
-									?>
-									<li class="t_spacer"></li>
-									<?php
-									};
-								endwhile;
+										<li><a href="<?php echo esc_url($link_href); ?>"><?php echo esc_html($link_title); ?></a></li>
+										<?php 
+										endif;
+									endif;
+								endwhile; 
 								?>
 							</ul>
 						</div>
@@ -174,25 +214,45 @@ if (pll_current_language() == 'sc') {
 						<div class="dropdown_menu_list">
 							<div class="t1 text5"><span><?php echo $group_name;?></span></div>
 							<ul>
-								<?php
-								while( have_rows('menu') ) : the_row();
-									$text = get_sub_field('text');
+								<?php 
+								while (have_rows('menu')) : the_row();
 									$title_only = get_sub_field('title_only');
-									$url = get_sub_field('url');
-									if($title_only){
+									$text       = get_sub_field('text');
+									$url        = get_sub_field('url');
+									$page       = get_sub_field('page');
+
+									if ($title_only) :
 									?>
-									<li class="t2"><?php echo $text;?></a></li>
-									<?php
-                                    }else if($text || $url){
+									<li class="t2"><?php echo esc_html($text); ?></li>
+									<?php 
+									else:
+										// Default title and link fallback
+										$link_title = '';
+										$link_href  = '';
+
+										if ($page) {
+											$link_title = get_the_title($page);
+											$link_href  = get_permalink($page);
+										}
+
+										// Override title if text is given
+										if ($text) {
+											$link_title = $text;
+										}
+
+										// Override URL if given
+										if ($url) {
+											$link_href = $url;
+										}
+
+										// Only show if we have a title and a link
+										if ($link_title && $link_href) :
 									?>
-									<li><a href="<?php echo $url;?>"><?php echo $text;?></a></li>
-									<?php
-									}else{
-									?>
-									<li class="t_spacer"></li>
-									<?php
-									};
-								endwhile;
+										<li><a href="<?php echo esc_url($link_href); ?>"><?php echo esc_html($link_title); ?></a></li>
+										<?php 
+										endif;
+									endif;
+								endwhile; 
 								?>
 							</ul>
 						</div>
