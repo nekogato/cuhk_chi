@@ -469,7 +469,8 @@ function load_more_news()
 		'post_type' => 'news',
 		'posts_per_page' => NEWS_PER_PAGE,
 		'offset' => $offset,
-		'orderby' => 'date',
+		'meta_key' => 'start_date',
+		'orderby' => 'meta_value_num',
 		'order' => 'DESC',
 		'post_status' => 'publish'
 	);
@@ -486,9 +487,8 @@ function load_more_news()
 					<a class="photo" href="<?php the_permalink(); ?>">
 						<?php if ($news_banner): ?>
 							<img src="<?php echo esc_url($news_banner['url']); ?>" alt="<?php echo esc_attr($news_banner['alt']); ?>">
-						
 						<?php else: ?>
-							<img src="<?php echo get_template_directory_uri(); ?>/images/schoolart_logo_bg.svg" alt=""/>
+							<img src="<?php echo get_template_directory_uri(); ?>/images/schoolart_logo_bg.svg" alt="" />
 						<?php endif; ?>
 					</a>
 					<div class="text_wrapper">
@@ -1073,7 +1073,7 @@ function load_more_department_news()
 						<?php if ($banner_url): ?>
 							<img src="<?php echo esc_url(banner_url); ?>" alt="<?php echo esc_attr($banner_alt); ?>">
 						<?php else: ?>
-							<img src="<?php echo get_template_directory_uri(); ?>/images/schoolart_logo_bg.svg" alt=""/>
+							<img src="<?php echo get_template_directory_uri(); ?>/images/schoolart_logo_bg.svg" alt="" />
 						<?php endif; ?>
 					</a>
 					<div class="text_wrapper">
@@ -2528,7 +2528,7 @@ function fb_mce_before_init($settings)
 			'classes' => 'table-bg',
 		],
 
-		
+
 	];
 
 	$settings['style_formats'] = json_encode($style_formats);
