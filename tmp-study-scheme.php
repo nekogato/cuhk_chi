@@ -206,7 +206,7 @@ while (have_posts()) :
                                             <?php 
                                                 if($group_remarks):
                                                     ?>
-                                                    <div class="scheme_remark free_text">
+                                                    <div class="scheme_remark free_text scrollin scrollinbottom">
                                                         <?php echo $group_remarks; ?>
                                                     </div>
                                                     <?php
@@ -314,6 +314,7 @@ while (have_posts()) :
         <?php endif; ?>
         
         <?php 
+        echo $how_to_show_course_list;
                 echo "1";
                 var_dump(get_field("courses"));
 
