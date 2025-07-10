@@ -17,9 +17,9 @@ while (have_posts()) :
 	$page_description = get_field("introduction");
 ?>
 
-		<div class="ink_bg13_wrapper">
-			<img src="<?php echo get_template_directory_uri(); ?>/images/ink_bg8.jpg" class="ink_bg13 scrollin scrollinbottom" alt="Background">
-		</div>
+	<div class="ink_bg13_wrapper">
+		<img src="<?php echo get_template_directory_uri(); ?>/images/ink_bg8.jpg" class="ink_bg13 scrollin scrollinbottom" alt="Background">
+	</div>
 	<div x-data="langEventFilter()">
 
 		<div class="section section_content filter_menu_section">
@@ -56,7 +56,7 @@ while (have_posts()) :
 
 		<div class="section event_list_section scrollin_p">
 			<div class="section_center_content small_section_center_content">
-				<div class="event_list_item_wrapper" x-show="!loading">
+				<div class="event_list_item_wrapper">
 					<template x-for="event in events" :key="event.id">
 						<div class="event_list_item flex  scrollin scrollinbottom">
 							<div class="date">
