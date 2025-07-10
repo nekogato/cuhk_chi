@@ -243,8 +243,8 @@ while (have_posts()) :
                                                                             <?php echo wp_kses_post($course_title); ?>
                                                                         </div>
                                                                         <div class="right_title">
-                                                                            <?php echo wp_kses_post($course_units); ?>
                                                                             <div class="num text2">
+                                                                                <?php echo wp_kses_post($course_units); ?>
                                                                                 <span class="unit text5"><?php echo cuhk_multilang_text("學分","",($course_units != 1) ? 'Units' : 'Unit'); ?></span>
                                                                             </div>
                                                                             <div class="icon_wrapper"><a class="icon"></a></div>
@@ -304,8 +304,8 @@ while (have_posts()) :
                                                             <?php echo wp_kses_post($course_title); ?>
                                                         </div>
                                                         <div class="right_title">
-                                                            <?php echo wp_kses_post($course_units); ?>
                                                             <div class="num text2">
+                                                                <?php echo wp_kses_post($course_units); ?>
                                                                 <span class="unit text5"><?php echo cuhk_multilang_text("學分","",($course_units != 1) ? 'Units' : 'Unit'); ?></span>
                                                             </div>
                                                             <div class="icon_wrapper"><a class="icon"></a></div>
