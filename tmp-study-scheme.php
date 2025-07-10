@@ -34,9 +34,10 @@ while (have_posts()) :
 	$courses = get_field("courses");
 ?>
 
-    <div class="ink_bg13_wrapper">
-        <img src="<?php echo get_template_directory_uri(); ?>/images/ink_bg13.jpg" class="ink_bg13 scrollin scrollinbottom" alt="Background">
-    </div>
+    
+	<div class="ink_bg10_wrapper">
+		<img src="<?php echo get_template_directory_uri(); ?>/images/ink_bg10.jpg" class="ink_bg10 scrollin scrollinbottom">
+	</div>
     
 	<div class="section section_content section_scheme scrollin_p">
 		<div class="section_center_content small_section_center_content  scrollin scrollinbottom section_scheme_title_wrapper">
@@ -319,6 +320,7 @@ while (have_posts()) :
                 if (have_rows('courses')) : 
                     ?>
                         <div class="scheme_course_list_section scrollin scrollinbottom">
+                            <div class="brush_bg"></div>
                             <div class="section_center_content small_section_center_content ">
                                 <div class="scheme_title text3"><?php echo cuhk_multilang_text("課程表", "", "Course List"); ?></div>
                                 <?php

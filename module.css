@@ -6719,6 +6719,7 @@ body.dragging-scroll {
     margin-top: 100px;
     position: relative;
     padding-top: 100px;
+    padding-bottom: 100px;
 }
 
 .scheme_course_list_section::before {
@@ -6730,6 +6731,10 @@ body.dragging-scroll {
   height: 50px;
   background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 100%);
 
+}
+
+.scheme_title + .scheme_group_expandable_item{
+    margin-top: 50px;
 }
 
 /* good table */
