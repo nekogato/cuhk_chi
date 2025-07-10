@@ -279,48 +279,50 @@ while (have_posts()) :
                                 if (have_rows('courses')) : 
                                     ?>
                                         <div class="scheme_course_list_section scrollin scrollinbottom">
-                                            <div class="scheme_title text3"><?php echo cuhk_multilang_text("課程表", "", "Course List"); ?></div>
-                                            <?php
-                                            while (have_rows('courses')) : the_row();
-                                            
-                                            $course_code = get_sub_field('course_code');
-                                            $course_title = get_sub_field('course_title');
-                                            $course_short_description = get_sub_field('course_short_description');
-                                            $course_units = get_sub_field('course_units');
-                                            $course_link = get_sub_field('course_link');
-                                            
-                                            ?>
-                                            <div class="scheme_group_expandable_item">
-                                                <div class="title">
-                                                    <div class="left_title text5">
-                                                        <?php if($course_link){?>
-                                                            <?php echo wp_kses_post($course_code); ?>
-                                                        <?php }else{ ?>
-                                                            <a href="<?php echo wp_kses_post($course_link); ?>"><?php echo wp_kses_post($course_code); ?></a>
-                                                        <?php }; ?>
-                                                    </div>
-                                                    <div class="left_title text5">
-                                                        <?php echo wp_kses_post($course_title); ?>
-                                                    </div>
-                                                    <div class="right_title">
-                                                        <?php echo wp_kses_post($course_units); ?>
-                                                        <div class="num text2">
-                                                            <span class="unit text5"><?php echo cuhk_multilang_text("學分","",($course_units != 1) ? 'Units' : 'Unit'); ?></span>
+                                            <div class="section_center_content small_section_center_content">
+                                                <div class="scheme_title text3"><?php echo cuhk_multilang_text("課程表", "", "Course List"); ?></div>
+                                                <?php
+                                                while (have_rows('courses')) : the_row();
+                                                
+                                                $course_code = get_sub_field('course_code');
+                                                $course_title = get_sub_field('course_title');
+                                                $course_short_description = get_sub_field('course_short_description');
+                                                $course_units = get_sub_field('course_units');
+                                                $course_link = get_sub_field('course_link');
+                                                
+                                                ?>
+                                                <div class="scheme_group_expandable_item">
+                                                    <div class="title">
+                                                        <div class="left_title text5">
+                                                            <?php if($course_link){?>
+                                                                <?php echo wp_kses_post($course_code); ?>
+                                                            <?php }else{ ?>
+                                                                <a href="<?php echo wp_kses_post($course_link); ?>"><?php echo wp_kses_post($course_code); ?></a>
+                                                            <?php }; ?>
                                                         </div>
-                                                        <div class="icon_wrapper"><a class="icon"></a></div>
+                                                        <div class="left_title text5">
+                                                            <?php echo wp_kses_post($course_title); ?>
+                                                        </div>
+                                                        <div class="right_title">
+                                                            <?php echo wp_kses_post($course_units); ?>
+                                                            <div class="num text2">
+                                                                <span class="unit text5"><?php echo cuhk_multilang_text("學分","",($course_units != 1) ? 'Units' : 'Unit'); ?></span>
+                                                            </div>
+                                                            <div class="icon_wrapper"><a class="icon"></a></div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <?php if ($course_short_description) : ?>
-                                                <div class="hidden">
-                                                    <div class="hidden_content">
-                                                            <div class="free_text"><?php echo wp_kses_post($course_short_description); ?></div>
+                                                    <?php if ($course_short_description) : ?>
+                                                    <div class="hidden">
+                                                        <div class="hidden_content">
+                                                                <div class="free_text"><?php echo wp_kses_post($course_short_description); ?></div>
+                                                        </div>
                                                     </div>
+                                                    <?php endif; ?>
                                                 </div>
-                                                <?php endif; ?>
+                                                <?php 
+                                                endwhile;
+                                                ?>
                                             </div>
-                                            <?php 
-                                            endwhile;
-                                            ?>
                                         </div>
                                     <?php
                                 endif;
