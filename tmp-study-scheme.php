@@ -93,7 +93,7 @@ while (have_posts()) :
                 ?>
                     <div class="scheme_item  scrollin scrollinbottom">
                         <div class="section_center_content small_section_center_content">
-                            <div class="scheme_title text2"><?php echo $scheme_title; ?></div>
+                            <div class="scheme_title text3"><?php echo $scheme_title; ?></div>
                             <?php if (have_rows('scheme_year')) :
                                 $group_index = 0;
 
@@ -142,7 +142,7 @@ while (have_posts()) :
                                             <?php 
                                                 if($group_introduction):
                                                     ?>
-                                                    <div class="group_introduction text4">
+                                                    <div class="group_introduction text5">
                                                         <div class="section_scheme_description free_text col8">
                                                             <?php echo $group_introduction; ?>
                                                         </div>
@@ -318,8 +318,9 @@ while (have_posts()) :
             if($how_to_show_course_list==1) : 
                 if (have_rows('courses')) : 
                     ?>
-                        <div class="scheme_group_wrapper scrollin scrollinbottom">
+                        <div class="scheme_course_list_section scrollin scrollinbottom">
                             <div class="section_center_content small_section_center_content ">
+                                <div class="scheme_title text3"><?php echo cuhk_multilang_text("課程表", "", "Course List"); ?></div>
                                 <?php
                                 while (have_rows('courses')) : the_row();
                                 

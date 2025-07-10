@@ -6715,6 +6715,23 @@ body.dragging-scroll {
     margin-top: 50px;
 }
 
+.scheme_course_list_section{
+    margin-top: 100px;
+    position: relative;
+    padding-top: 100px;
+}
+
+.scheme_course_list_section::before {
+  content: "";
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 50px;
+  background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 100%);
+
+}
+
 /* good table */
 
 .switchable_section_expandable_list  .table-responsive{
