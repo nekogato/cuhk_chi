@@ -197,7 +197,7 @@ get_header(); ?>
 	<div class="home_news_slider_wrapper">
 		<div class="home_news_year_slider">
 			<div class="section_center_content small_section_center_content scrollin scrollinbottom">
-				<button class="prev_btn" @click="monthPreviousSlide()"></button>
+				<button class="prev_btn" @click="monthNextSlide()"></button>
 				<div class="t_wrapper">
 					<div class="t1 text4">
 						<?php
@@ -214,7 +214,7 @@ get_header(); ?>
 					</div>
 					<div class="t2 text2" x-text="selectedYear"></div>
 				</div>
-				<button class="next_btn" @click="monthNextSlide()"></button>
+				<button class="next_btn" @click="monthPreviousSlide()"></button>
 
 				<!-- <div class="swiper-container swiper">
 					<div class="swiper-wrapper">
