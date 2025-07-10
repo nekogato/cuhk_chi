@@ -14,7 +14,7 @@ get_template_part('template-parts/roll-menu'); ?>
 
 <div x-data="galleryFilter()">
 	<div class="section section_content filter_menu_section">
-		
+
 		<div class="section_center_content small_section_center_content small_section_center_content scrollin scrollinbottom">
 			<h1 class="section_title text1 scrollin scrollinbottom"><?php echo get_field("page_title"); ?></h1>
 			<div class="section_description scrollin scrollinbottom col6"><?php echo get_field('introduction'); ?></div>
@@ -61,7 +61,7 @@ get_template_part('template-parts/roll-menu'); ?>
 					</div>
 					<div class="filter_dropdown_wrapper right_filter_dropdown_wrapper">
 						<a class="filter_dropdown_btn text5" href="#" @click.prevent="toggleYearDropdown()" x-text="selectedYearText"><?php echo cuhk_multilang_text("年份", "", "Year"); ?></a>
-						<div class="filter_dropdown text5" >
+						<div class="filter_dropdown text5">
 							<ul>
 								<li><a href="#" @click.prevent="filterByYear('')" data-val=""><?php echo cuhk_multilang_text("所有年份", "", "All Years"); ?></a></li>
 								<template x-for="year in availableYears" :key="year">
@@ -169,7 +169,11 @@ get_template_part('template-parts/roll-menu'); ?>
 					const data = await response.json();
 					if (data.success) {
 						if (append) {
-							this.galleries = [...this.galleries, ...data.data.galleries];
+							const existing = this.galleries.map(g => ({
+								...g,
+								_isNew: false
+							}));
+							this.galleries = [...existing, ...data.data.galleries];
 						} else {
 							this.galleries = data.data.galleries;
 						}
