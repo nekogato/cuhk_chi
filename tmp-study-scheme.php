@@ -38,8 +38,8 @@ while (have_posts()) :
         <img src="<?php echo get_template_directory_uri(); ?>/images/ink_bg13.jpg" class="ink_bg13 scrollin scrollinbottom" alt="Background">
     </div>
     
-	<div class="section section_content section_scheme">
-		<div class="section_center_content small_section_center_content scrollin scrollinbottom section_scheme_title_wrapper">
+	<div class="section section_content section_scheme scrollin_p">
+		<div class="section_center_content small_section_center_content  scrollin scrollinbottom section_scheme_title_wrapper">
 
             <?php
             global $post;
@@ -55,7 +55,7 @@ while (have_posts()) :
             ]);
 
             if ($sibling_pages) : ?>
-                <ul class="sibling-pages-menu">
+                <ul class="sibling-pages-menu  ">
                     <?php foreach ($sibling_pages as $page) : ?>
                         <li class="sibling-page-item <?php if ($page->ID == $post->ID) echo 'current'; ?>">
                             <a href="<?php echo get_permalink($page->ID); ?>">
@@ -86,7 +86,7 @@ while (have_posts()) :
 
             
         <?php if (have_rows('scheme_repeater')) : ?>
-            <div class="scheme_item_wrapper">
+            <div class="scheme_item_wrapper scrollin_p">
                 <?php while (have_rows('scheme_repeater')) : the_row();  
                     $scheme_title = get_sub_field('scheme_title');
                     $scheme_courses = get_sub_field('courses');
@@ -102,7 +102,7 @@ while (have_posts()) :
                                 $first_group_title = get_sub_field('year_title');
                                 reset_rows(); // reset the pointer to start loop again
                             ?>
-                            <div class="scheme_groups_dropdown_wrapper">
+                            <div class="scheme_groups_dropdown_wrapper scrollin scrollinbottom">
                                 <div class="scheme_groups_dropdown">
                                     <div class="selected text5"><span class="text"><?php echo esc_html($first_group_title); ?></span><div class="arrow"></div></div>
 
@@ -314,51 +314,54 @@ while (have_posts()) :
         <?php endif; ?>
         
         <?php 
-        echo $how_to_show_course_list;
-                echo "1";
-                var_dump(get_field("courses"));
 
             if($how_to_show_course_list==1) : 
-                echo "2";
-                var_dump(get_field("courses"));
                 if (have_rows('courses')) : 
-                    while (have_rows('courses')) : the_row();
-                    
-                    $course_code = get_sub_field('course_code');
-                    $course_title = get_sub_field('course_title');
-                    $course_short_description = get_sub_field('course_short_description');
-                    $course_units = get_sub_field('course_units');
-                    $course_link = get_sub_field('course_link');
-                    
                     ?>
-                    <div class="scheme_group_expandable_item">
-                        <div class="title">
-                            <div class="left_title text5">
-                                <?php if($course_link){?>
-                                    <?php echo wp_kses_post($course_code); ?>
-                                <?php }else{ ?>
-                                    <a href="<?php echo wp_kses_post($course_link); ?>"><?php echo wp_kses_post($course_code); ?></a>
-                                <?php }; ?>
-                            </div>
-                            <div class="left_title text5">
-                                <?php echo wp_kses_post($course_units); ?>
-                                <span class="unit text5"><?php echo cuhk_multilang_text("學分","",($course_units != 1) ? 'Units' : 'Unit'); ?></span>
-                            </div>
-                            <div class="right_title">
-                                <?php echo wp_kses_post($course_title); ?>
-                                <div class="icon_wrapper"><a class="icon"></a></div>
+                        <div class="scheme_group_wrapper scrollin scrollinbottom">
+                            <div class="section_center_content small_section_center_content ">
+                                <?php
+                                while (have_rows('courses')) : the_row();
+                                
+                                $course_code = get_sub_field('course_code');
+                                $course_title = get_sub_field('course_title');
+                                $course_short_description = get_sub_field('course_short_description');
+                                $course_units = get_sub_field('course_units');
+                                $course_link = get_sub_field('course_link');
+                                
+                                ?>
+                                <div class="scheme_group_expandable_item">
+                                    <div class="title">
+                                        <div class="left_title text5">
+                                            <?php if($course_link){?>
+                                                <?php echo wp_kses_post($course_code); ?>
+                                            <?php }else{ ?>
+                                                <a href="<?php echo wp_kses_post($course_link); ?>"><?php echo wp_kses_post($course_code); ?></a>
+                                            <?php }; ?>
+                                        </div>
+                                        <div class="left_title text5">
+                                            <?php echo wp_kses_post($course_units); ?>
+                                            <span class="unit text5"><?php echo cuhk_multilang_text("學分","",($course_units != 1) ? 'Units' : 'Unit'); ?></span>
+                                        </div>
+                                        <div class="right_title">
+                                            <?php echo wp_kses_post($course_title); ?>
+                                            <div class="icon_wrapper"><a class="icon"></a></div>
+                                        </div>
+                                    </div>
+                                    <?php if ($course_short_description) : ?>
+                                    <div class="hidden">
+                                        <div class="hidden_content">
+                                                <div class="free_text"><?php echo wp_kses_post($course_short_description); ?></div>
+                                        </div>
+                                    </div>
+                                    <?php endif; ?>
+                                </div>
+                                <?php 
+                                endwhile;
+                                ?>
                             </div>
                         </div>
-                        <?php if ($course_short_description) : ?>
-                        <div class="hidden">
-                            <div class="hidden_content">
-                                    <div class="free_text"><?php echo wp_kses_post($course_short_description); ?></div>
-                            </div>
-                        </div>
-                        <?php endif; ?>
-                    </div>
-                    <?php 
-                    endwhile;
+                    <?php
                 endif;
             endif;
         ?>
