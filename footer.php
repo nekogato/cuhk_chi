@@ -38,6 +38,12 @@
                                                 $url        = get_sub_field('url');
                                                 $page       = get_sub_field('page');
 
+                                                // If all fields are empty, show spacer
+                                                if (empty($title_only) && empty($text) && empty($url) && empty($page)) {
+                                                    echo '<li class="t_spacer"></li>';
+                                                    continue;
+                                                }
+
                                                 if ($title_only) :
                                                 ?>
                                                 <li class="t2"><?php echo esc_html($text); ?></li>
@@ -94,6 +100,12 @@
                                                 $url        = get_sub_field('url');
                                                 $page       = get_sub_field('page');
 
+                                                // If all fields are empty, show spacer
+                                                if (empty($title_only) && empty($text) && empty($url) && empty($page)) {
+                                                    echo '<li class="t_spacer"></li>';
+                                                    continue;
+                                                }
+
                                                 if ($title_only) :
                                                 ?>
                                                 <li class="t2"><?php echo esc_html($text); ?></li>
@@ -149,6 +161,12 @@
                                                 $text       = get_sub_field('text');
                                                 $url        = get_sub_field('url');
                                                 $page       = get_sub_field('page');
+
+                                                // If all fields are empty, show spacer
+                                                if (empty($title_only) && empty($text) && empty($url) && empty($page)) {
+                                                    echo '<li class="t_spacer"></li>';
+                                                    continue;
+                                                }
 
                                                 if ($title_only) :
                                                 ?>
