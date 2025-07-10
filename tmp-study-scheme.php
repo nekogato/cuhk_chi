@@ -142,7 +142,7 @@ while (have_posts()) :
                                             <?php 
                                                 if($group_introduction):
                                                     ?>
-                                                    <div class="group_introduction text3">
+                                                    <div class="group_introduction text4">
                                                         <div class="section_scheme_description free_text col8">
                                                             <?php echo $group_introduction; ?>
                                                         </div>
@@ -204,10 +204,10 @@ while (have_posts()) :
                                                 endif; 
                                             ?>
                                             <?php 
-                                                if($remarks):
+                                                if($group_remarks):
                                                     ?>
                                                     <div class="scheme_remark free_text">
-                                                        <?php echo $remarks; ?>
+                                                        <?php echo $group_remarks; ?>
                                                     </div>
                                                     <?php
                                                 endif; 

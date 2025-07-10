@@ -6687,7 +6687,8 @@ body.dragging-scroll {
 }
 
 .scheme_item{
-    padding-top: 50px;
+      padding-top: 100px;
+  position: relative;
 }
 
 .scheme_item::before {
