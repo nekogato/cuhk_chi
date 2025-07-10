@@ -230,7 +230,41 @@
                                     <?php
                                     endwhile;
                                     ?>
+                                    <?php 
+                                    while (have_rows('footer_menu', 'option')) : the_row();
+                                        $text       = get_sub_field('text');
+                                        $url        = get_sub_field('url');
+                                        $page       = get_sub_field('page');
+                                        
+                                        // Default title and link fallback
+                                        $link_title = '';
+                                        $link_href  = '';
+
+                                        if ($page) {
+                                            $link_title = get_the_title($page);
+                                            $link_href  = get_permalink($page);
+                                        }
+
+                                        // Override title if text is given
+                                        if ($text) {
+                                            $link_title = $text;
+                                        }
+
+                                        // Override URL if given
+                                        if ($url) {
+                                            $link_href = $url;
+                                        }
+
+                                        // Only show if we have a title and a link
+                                        if ($link_title && $link_href) :
+                                        ?>
+                                            <li><a href="<?php echo esc_url($link_href); ?>"><?php echo esc_html($link_title); ?></a></li>
+                                        <?php 
+                                        endif;
+                                    endwhile; 
+                                    ?>
                                 </ul>
+                                
                             </div>
                             <?php
                                 endif;
