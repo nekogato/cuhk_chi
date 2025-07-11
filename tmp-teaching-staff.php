@@ -11,16 +11,34 @@ get_header();
 $teaching_staff_term = get_term_by('slug', 'teaching-staff', 'people_category');
 
 if ($teaching_staff_term) {
-    $child_terms = get_terms(array(
-        'taxonomy' => 'people_category',
-        'hide_empty' => false,
-        'parent' => $teaching_staff_term->term_id,
-    ));
+	$child_terms = get_terms(array(
+		'taxonomy' => 'people_category',
+		'hide_empty' => false,
+		'parent' => $teaching_staff_term->term_id,
+	));
 }
 ?>
 
 <script>
 	var ajaxurl = '<?php echo admin_url('admin-ajax.php'); ?>';
+	var childTermsData = <?php
+							if (!empty($child_terms) && !is_wp_error($child_terms)) {
+								$terms_with_names = array();
+								foreach ($child_terms as $term) {
+									$lang = pll_current_language();
+									$term_name = get_field("{$lang}_name", 'people_category_' . $term->term_id);
+									$terms_with_names[] = array(
+										'term_id' => $term->term_id,
+										'slug' => $term->slug,
+										'name' => $term->name,
+										'localized_name' => $term_name ?: $term->name
+									);
+								}
+								echo json_encode($terms_with_names);
+							} else {
+								echo '[]';
+							}
+							?>;
 </script>
 
 <?php get_template_part('template-parts/roll-menu'); ?>
@@ -35,31 +53,20 @@ if ($teaching_staff_term) {
 				<div class="section_center_content small_section_center_content scrollin scrollinbottom">
 					<div class="filter_menu_content full_filter_menu_content">
 						<div class="alphabet_list_wrapper big_alphabet_list_wrapper">
-							<div class="title text5"><?php echo cuhk_multilang_text("職位分類","","Category"); ?></div>
-							<?php if (!empty($child_terms) && !is_wp_error($child_terms)) : ?>
-							<ul class="alphabet_list">
-								<li>
-									<a 
-									@click.prevent="filterByPosition('')"
-									:class="{ 'active': selectedPosition === '' }">
-									<?php echo cuhk_multilang_text("所有職位","","All Category"); ?>
-									</a>
-								</li>
-								<?php foreach ($child_terms as $term): ?>
-									<li>
-										<a 
-										@click.prevent="filterByPosition('<?php echo esc_attr($term->slug); ?>')"
-										:class="{ 'active': selectedPosition === '<?php echo esc_js($term->slug); ?>' }">
-										<?php
-											$lang = pll_current_language();
-											$ctermfullname = get_field("{$lang}_name", 'people_category_' . $term->term_id);
-											echo esc_html($ctermfullname);
-										?>
-										</a>
-									</li>
-								<?php endforeach; ?>
-							</ul>
-							<?php endif; ?>
+							<div class="title text5"><?php echo cuhk_multilang_text("職位分類", "", "Category"); ?></div>
+							<template x-if="childTerms && childTerms.length">
+								<ul class="alphabet_list">
+									<template x-for="term in childTerms" :key="term.term_id">
+										<li>
+											<a
+												@click.prevent="filterByPosition(term.slug)"
+												:class="{ 'active': selectedPosition === term.slug }"
+												x-text="getTermName(term)">
+											</a>
+										</li>
+									</template>
+								</ul>
+							</template>
 						</div>
 					</div>
 				</div>
@@ -124,7 +131,7 @@ if ($teaching_staff_term) {
 					</template>
 				</div>
 			</div>
-			
+
 			<template x-if="!loading && staffMembers.length === 0">
 				<div class="no_result text5">
 					<?php echo cuhk_multilang_text("沒有資料", "", "No staff found."); ?>
@@ -135,7 +142,7 @@ if ($teaching_staff_term) {
 				<div class="load_more_wrapper">
 					<a class="load_more_btn text5" @click="loadMore">
 						<div class="icon"></div>
-						<div class="text"><?php echo cuhk_multilang_text("載入更多","","Load more"); ?></div>
+						<div class="text"><?php echo cuhk_multilang_text("載入更多", "", "Load more"); ?></div>
 					</a>
 				</div>
 			</template>
@@ -173,31 +180,31 @@ if ($teaching_staff_term) {
 								<div class="table_flex_item_wrapper">
 									<template x-if="currentStaff.emails && currentStaff.emails.length">
 										<div class="table_flex_item">
-											<div class="title text7"><?php echo cuhk_multilang_text("電郵","","Email"); ?></div>
+											<div class="title text7"><?php echo cuhk_multilang_text("電郵", "", "Email"); ?></div>
 											<div class="text" x-html="currentStaff.emails.join(' / ')"></div>
 										</div>
 									</template>
 									<template x-if="currentStaff.phones && currentStaff.phones.length">
 										<div class="table_flex_item">
-											<div class="title text7"><?php echo cuhk_multilang_text("電話","","Tel"); ?></div>
+											<div class="title text7"><?php echo cuhk_multilang_text("電話", "", "Tel"); ?></div>
 											<div class="text" x-text="currentStaff.phones.join(' / ')"></div>
 										</div>
 									</template>
 									<template x-if="currentStaff.faxes && currentStaff.faxes.length">
 										<div class="table_flex_item">
-											<div class="title text7"><?php echo cuhk_multilang_text("傳真","","Fax"); ?></div>
+											<div class="title text7"><?php echo cuhk_multilang_text("傳真", "", "Fax"); ?></div>
 											<div class="text" x-text="currentStaff.faxes.join(' / ')"></div>
 										</div>
 									</template>
 									<template x-if="currentStaff.address">
 										<div class="table_flex_item">
-											<div class="title text7"><?php echo cuhk_multilang_text("地址","","Address"); ?></div>
+											<div class="title text7"><?php echo cuhk_multilang_text("地址", "", "Address"); ?></div>
 											<div class="text" x-text="currentStaff.address"></div>
 										</div>
 									</template>
 									<template x-if="currentStaff.office_hours">
 										<div class="table_flex_item">
-											<div class="title text7"><?php echo cuhk_multilang_text("辦工時間","","Office Hours"); ?></div>
+											<div class="title text7"><?php echo cuhk_multilang_text("辦工時間", "", "Office Hours"); ?></div>
 											<div class="text" x-text="currentStaff.office_hours"></div>
 										</div>
 									</template>
@@ -205,13 +212,13 @@ if ($teaching_staff_term) {
 							</div>
 							<template x-if="currentStaff.research_interests">
 								<div class="description">
-									<div class="t1 text7"><?php echo cuhk_multilang_text("研究專長","","Research Interests"); ?></div>
+									<div class="t1 text7"><?php echo cuhk_multilang_text("研究專長", "", "Research Interests"); ?></div>
 									<div class="t2 free_text" x-html="currentStaff.research_interests"></div>
 								</div>
 							</template>
 							<template x-if="currentStaff.description">
 								<div class="description">
-									<div class="t1 text7"><?php echo cuhk_multilang_text("簡介","","Description"); ?></div>
+									<div class="t1 text7"><?php echo cuhk_multilang_text("簡介", "", "Description"); ?></div>
 									<div class="t2 free_text" x-html="currentStaff.description"></div>
 								</div>
 							</template>
@@ -228,6 +235,7 @@ if ($teaching_staff_term) {
 	function teachingStaffList() {
 		return {
 			staffMembers: [],
+			childTerms: childTermsData || [],
 			selectedPosition: '',
 			sortOrder: 'asc',
 			page: 1,
@@ -236,9 +244,19 @@ if ($teaching_staff_term) {
 			currentStaff: null,
 
 			init() {
+				// Set the first child term as default if available
+				if (this.childTerms && this.childTerms.length > 0) {
+					this.selectedPosition = this.childTerms[0].slug;
+				}
+
 				this.loadStaff();
 				this.$watch('selectedPosition', () => this.filterStaff());
 				this.$watch('sortOrder', () => this.filterStaff());
+			},
+
+			getTermName(term) {
+				// Use the localized name that was prepared in PHP
+				return term.localized_name || term.name || term.slug;
 			},
 
 			async loadStaff() {
@@ -248,13 +266,13 @@ if ($teaching_staff_term) {
 				$(".student_list_item_wrapper").height($(".student_list_item_wrapper").height());
 
 				$(".student_list_item").css({
-					"-webkit-transition-delay": 0+"ms",
-					"transition-delay": 0+"ms",
+					"-webkit-transition-delay": 0 + "ms",
+					"transition-delay": 0 + "ms",
 				})
 
-				setTimeout(function(){
+				setTimeout(function() {
 					$(".student_list_item").removeClass("startani")
-				},0);
+				}, 0);
 				try {
 					const response = await fetch(ajaxurl, {
 						method: 'POST',
@@ -286,31 +304,32 @@ if ($teaching_staff_term) {
 
 						this.hasMore = data.data.has_more;
 						$(".ajax_loading").stop().fadeOut();
-						setTimeout(function(){
+						setTimeout(function() {
 							doscroll();
 							$(".student_list_item_wrapper").height("auto")
-						},300)
+						}, 300)
 					}
 				} catch (error) {
 					console.error('Error loading teaching staff:', error);
 					$(".ajax_loading").stop().fadeOut();
-					setTimeout(function(){
+					setTimeout(function() {
 						doscroll();
 						$(".student_list_item_wrapper").height("auto")
-					},300)
+					}, 300)
 				} finally {
 					this.loading = false;
 
 					$(".ajax_loading").stop().fadeOut();
-					setTimeout(function(){
+					setTimeout(function() {
 						doscroll();
 						$(".student_list_item_wrapper").height("auto")
-					},300)
+					}, 300)
 				}
 			},
 
 			filterByPosition(position) {
-				this.selectedPosition = this.selectedPosition === position ? '' : position;
+				// If clicking the same position, don't deselect it (keep it selected)
+				this.selectedPosition = position;
 				this.page = 1;
 				this.loadStaff();
 			},
@@ -356,17 +375,17 @@ if ($teaching_staff_term) {
 				// Wait for Alpine to update the DOM
 
 				this.$nextTick(() => {
-					$(".people_detail_text").each(function () {
+					$(".people_detail_text").each(function() {
 						var $this = $(this);
 
-						var ps  = new PerfectScrollbar($(this)[0],{
-							suppressScrollX:true,
-							scrollYMarginOffset:20
+						var ps = new PerfectScrollbar($(this)[0], {
+							suppressScrollX: true,
+							scrollYMarginOffset: 20
 						});
 
 						scrollArr.push(ps)
 					});
-					
+
 					jQuery('.people_popup').fadeIn(300);
 				});
 			},
