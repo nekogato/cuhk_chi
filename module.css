@@ -4918,6 +4918,11 @@ body.dragging-scroll {
 .people_detail_text .name{
     font-family: "richmond-text","Chiron Sung HK WS", sans-serif;
     color:#62629e;
+    margin-top: 10px;
+}
+
+.people_detail_text .name:first-child{
+    margin-top: auto;
 }
 
 .people_detail_text .position{
