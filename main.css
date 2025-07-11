@@ -1299,12 +1299,12 @@ ol:not(.free_text ol), ul:not(.free_text ul) {
 
 .free_text .table-bg thead td{
     color:#62629e;
-    padding: 10px;
+    padding: 10px 15px;
 }
 
 
 .free_text .table-bg tbody td{
-    padding: 10px;
+    padding: 10px 15px;
 }
 
 .free_text .table-bg tbody{
@@ -1325,7 +1325,7 @@ ol:not(.free_text ol), ul:not(.free_text ul) {
 }
 
 .free_text .border_table td{
-    padding: 10px;
+    padding: 10px 15px;
     border: 1px solid #736562;
 }
 
