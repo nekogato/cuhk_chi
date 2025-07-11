@@ -6520,6 +6520,15 @@ body.dragging-scroll {
     gap: 10px;
 }
 
+.scheme_group_expandable_item .free_text h1,
+.scheme_group_expandable_item .free_text h2,
+.scheme_group_expandable_item .free_text h3,
+.scheme_group_expandable_item .free_text h4,
+.scheme_group_expandable_item .free_text h5,
+.scheme_group_expandable_item .free_text h6{
+    color: #62629b;
+}
+
 .group_total_units{
     margin-top: 30px;
     display: flex;
