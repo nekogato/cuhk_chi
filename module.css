@@ -6502,6 +6502,11 @@ body.dragging-scroll {
     justify-content: space-between;
     gap: 50px;
     cursor: pointer;
+      font-weight: 600;
+}
+
+.scheme_group_expandable_item.active .title{
+    color:#575792;
 }
 
 .scheme_group_expandable_item .title:hover{
@@ -6518,6 +6523,7 @@ body.dragging-scroll {
   display: flex;
   align-items: center;
     gap: 10px;
+      font-weight: normal;
 }
 
 .scheme_group_expandable_item .free_text h1,
