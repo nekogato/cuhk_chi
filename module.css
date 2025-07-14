@@ -4626,6 +4626,10 @@ body.dragging-scroll {
     margin-bottom: 50px;
 }
 
+.en_body .filter_course_type_name{
+    font-family: "richmond-text","Chiron Sung HK WS", sans-serif !important;
+}
+
 .filter_detail_flex{
     display: flex;
     gap: 20px;

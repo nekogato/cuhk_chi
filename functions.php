@@ -771,11 +771,35 @@ function load_teaching_staff()
 		'post_type' => 'profile',
 		'posts_per_page' => MAX_POSTGRADUATE_STUDENTS_PER_PAGE,
 		'paged' => $page,
-		'orderby' => 'title',
-		'order' => strtoupper($sort_order),
+		'order' => 'asc',
 		'tax_query' => $tax_query,
 		'post_status' => 'publish'
 	);
+
+	// Change ordering based on current language
+	if (function_exists('pll_current_language')) {
+		$current_lang = pll_current_language();
+
+		if ($current_lang == 'tc') {
+			// Order by number of strokes (numeric)
+			$args['meta_key'] = 'strokes';
+			$args['orderby'] = 'meta_value_num';
+		} elseif ($current_lang == 'sc') {
+			// Order by pinyin (text)
+			$args['meta_key'] = 'pinyin';
+			$args['orderby'] = 'meta_value';
+		} else {
+			// Order by English name (text)
+			$args['meta_key'] = 'english_name';
+			$args['orderby'] = 'meta_value';
+		}
+	} else {
+		// Fallback to ordering by title if Polylang not available
+		$args['orderby'] = 'title';
+	}
+
+
+
 
 	// No meta_query needed anymore
 

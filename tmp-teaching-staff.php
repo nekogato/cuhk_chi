@@ -68,10 +68,15 @@ if ($teaching_staff_term) {
 								</ul>
 							</template>
 						</div>
+						
 					</div>
 				</div>
 			</div>
 
+			<div class="filter_menu filter_menu_left_bg filter_menu_bottom section_center_content small_section_center_content scrollin scrollinbottom ">
+				<?php echo cuhk_multilang_text("按姓名繁體筆劃排序", "按姓名拼音排序", "In alphabetical order"); ?>
+			</div>
+			
 			<!-- <div class="filter_menu filter_menu_left_bg filter_menu_bottom section_center_content small_section_center_content scrollin scrollinbottom">
 				<div class="filter_menu_content">
 					<div class="filter_checkbox_wrapper text7">
