@@ -8293,7 +8293,7 @@ body.dragging-scroll {
       }
 
       .event_list_item .title_wrapper {
-        padding-left:10px;
+        padding-left:20px;
         width: 100%;
       }
       .event_list_item .info_item_wrapper {
@@ -8309,7 +8309,7 @@ body.dragging-scroll {
       .event_list_item .info_item img{
         width: 100%;
         margin: auto;
-        max-width: 480px;
+            max-width: 200px;
       }
 
       .event_list_item .info_item .t1 {
