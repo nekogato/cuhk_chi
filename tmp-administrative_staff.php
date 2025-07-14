@@ -22,6 +22,12 @@ get_header();
 	<div class="section_center_content small_section_center_content">
 		<h1 class="section_title text1 scrollin scrollinbottom"><?php the_title(); ?></h1>
 		<div class="section_description scrollin scrollinbottom col6"><?php the_field('introduction') ?></div>
+		
+		<div class="filter_menu_wrapper">
+			<div class="filter_menu filter_menu_left_bg filter_menu_bottom section_center_content small_section_center_content scrollin scrollinbottom ">
+				<div class="filter_remark"><?php echo cuhk_multilang_text("按姓名繁體筆劃排序", "按姓名拼音排序", "In alphabetical order"); ?></div>
+			</div>
+		</div>
 
 		<div class="section_list scrollin scrollinbottom">
 			<?php
