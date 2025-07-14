@@ -68,7 +68,7 @@ if (have_posts()) :
 						<div class="filter_menu_content">
 							<div class="filter_dropdown_wrapper">
 								<a class="filter_dropdown_btn text5" @click="dropdowns.year = !dropdowns.year" x-text="filters.academicYearName"></a>
-								<div class="filter_dropdown text5" x-show="dropdowns.year" @click.away="dropdowns.year = false">
+								<div class="filter_dropdown text5"  @click.away="dropdowns.year = false">
 									<ul>
 										<template x-for="year in academicYears" :key="year.slug">
 											<li>
