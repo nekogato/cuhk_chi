@@ -3100,6 +3100,8 @@ body.dragging-scroll {
 
 .publication_box_list_wrapper+.publication_box_list_wrapper{
     margin-top: 100px;
+    padding-top: 100px;
+    border-top:1px solid #9f9b9a;;
 }
 
 .publication_box{
@@ -7435,6 +7437,12 @@ body.dragging-scroll {
     .publication_box .publication_text{
         width: 100%;
         margin-top: 20px;
+    }
+
+    .publication_box_list_wrapper+.publication_box_list_wrapper{
+        margin-top: 50px;
+        padding-top: 50px;
+        border-top:1px solid #9f9b9a;;
     }
 
 
