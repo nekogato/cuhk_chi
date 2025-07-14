@@ -1686,7 +1686,7 @@ body.dragging-scroll {
 
 .home_news_date_slider_wrapper{
     padding-top: 60px;
-    padding-bottom: 60px;
+    padding-bottom: 0px;
     position: relative;
     z-index: 7;
     opacity: 0;
@@ -7180,7 +7180,7 @@ body.dragging-scroll {
 
       .home_news_date_slider_wrapper {
         padding-top: 30px;
-        padding-bottom: 30px;
+        padding-bottom: 0px;
       }
 
 

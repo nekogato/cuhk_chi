@@ -571,7 +571,7 @@ get_header(); ?>
 <!-- Promotion Highlight Section with ACF Integration -->
 <div class="section home_promotion_section scrollin_p">
 	<div class="ink_bg9_wrapper">
-		<img src="<?php bloginfo('template_directory'); ?>/images/ink_bg9_2.jpg" class="ink_bg9 scrollin scrollinbottom" alt="<?php echo cuhk_multilang_text("水墨背景", "", "Ink Background"); ?>">
+		<img src="<?php bloginfo('template_directory'); ?>/images/ink_bg9.jpg" class="ink_bg9 scrollin scrollinbottom" alt="<?php echo cuhk_multilang_text("水墨背景", "", "Ink Background"); ?>">
 	</div>
 	<?php
 	$promotion_title = get_field('promotion_section_title');
