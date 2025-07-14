@@ -1220,7 +1220,7 @@ body.dragging-scroll {
 .home_about_slider_section{
     padding: 100px 0px;
     position: relative;
-    z-index: 4;
+    z-index: 5;
 }
 
 .home_about_slider_section .section_center_content{
@@ -1471,6 +1471,7 @@ body.dragging-scroll {
 
 .home_news_section{
     padding-bottom: 100px;
+    z-index: 4;
 }
 
 .home_news_section .vertical_text_wrapper{
