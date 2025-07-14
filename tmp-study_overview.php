@@ -90,7 +90,7 @@ while (have_posts()) :
 								<?php foreach ($layouts as $layout) : ?>
 									<div class="flexible_layout flexible_layout_<?php echo esc_attr($layout['layout_type']); ?> scrollin scrollinbottom">
 										<?php if ($layout['section_title']) : ?>
-											<h4 class="text_c3 center_text"><?php echo esc_html($layout['section_title']); ?></h4>
+											<h4 class="text_c3 center_text flexible_layout_small_title"><?php echo esc_html($layout['section_title']); ?></h4>
 										<?php endif; ?>
 										<div class="col_wrapper xl_col_wrapper">
 											<div class="flex row">
