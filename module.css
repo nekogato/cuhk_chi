@@ -795,6 +795,10 @@ body.dragging-scroll {
     color:#6f6ea6;
 }
 
+.en_body .section_smalltitle{
+    font-family: "richmond-text","Chiron Sung HK WS", sans-serif !important;
+}
+
 .section_subtitle{
     margin: auto;
     text-align: center;
@@ -4820,6 +4824,7 @@ body.dragging-scroll {
     padding-bottom: 100%;
     position: relative;
     display: block;
+      background-color: #fff;
 }
 
 .student_list_item > .photo:hover{
