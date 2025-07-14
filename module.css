@@ -1197,6 +1197,7 @@ body.dragging-scroll {
 
 .en_body .home_top_section .text{
     letter-spacing: 0em;
+    font-family: "richmond-text","Chiron Sung HK WS", sans-serif;
 }
 
 .home_top_section .logo{  
@@ -1259,8 +1260,11 @@ body.dragging-scroll {
     text-orientation: mixed;
     letter-spacing: 0.25em;
 }
-.en_body .home_about_slider_section .vertical_text{
-  letter-spacing: 0em;
+
+
+.en_body  .vertical_text{
+  letter-spacing: 0em !important;
+  font-family: "richmond-text","Chiron Sung HK WS", sans-serif;
 }
 
 .home_about_slider{
