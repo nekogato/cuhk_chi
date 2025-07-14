@@ -140,6 +140,12 @@ while (have_posts()) :
 											<div class="t2 text6" x-html="event.event_venue"></div>
 										</div>
 									</template>
+
+									<template x-if="event.event_banner">
+										<div class="info_item big_info_item mobile_show2">
+											<a :href="event.permalink"><img :src="event.event_banner.url" :alt="event.event_banner.alt"></a>
+										</div>
+									</template>
 								</div>
 							</div>
 							<template x-if="event.event_banner">
