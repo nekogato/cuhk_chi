@@ -3919,6 +3919,7 @@ body.dragging-scroll {
 
 .research_centre_text_item{
     flex: 0 0 calc(33.33% - 33.33px);
+    overflow: hidden;
 }
 
 .research_centre_text_item a{
@@ -4836,6 +4837,9 @@ body.dragging-scroll {
     word-wrap: break-word;
     overflow: hidden;
     margin-top: auto;
+      text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .student_list_item > .text >  .email a:hover{
