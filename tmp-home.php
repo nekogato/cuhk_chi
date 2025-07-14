@@ -250,7 +250,7 @@ get_header(); ?>
 			</div>
 
 			<div class="all_news_btn_wrapper">
-				<a href="<?php echo pll_get_page_url("news-and-events/news/"); ?>" class="round_btn"><?php echo cuhk_multilang_text("查看所有學系消息", "查看所有學系消息", "View All News"); ?></a>
+				<a href="<?php echo pll_get_page_url("news-and-events/news/"); ?>" class="round_btn"><?php echo cuhk_multilang_text("查閲最新動態", "", "View All Updates"); ?></a>
 			</div>
 		</div>
 		
@@ -571,7 +571,7 @@ get_header(); ?>
 <!-- Promotion Highlight Section with ACF Integration -->
 <div class="section home_promotion_section scrollin_p">
 	<div class="ink_bg9_wrapper">
-		<img src="<?php bloginfo('template_directory'); ?>/images/ink_bg9.jpg" class="ink_bg9 scrollin scrollinbottom" alt="<?php echo cuhk_multilang_text("水墨背景", "水墨背景", "Ink Background"); ?>">
+		<img src="<?php bloginfo('template_directory'); ?>/images/ink_bg9_2.jpg" class="ink_bg9 scrollin scrollinbottom" alt="<?php echo cuhk_multilang_text("水墨背景", "", "Ink Background"); ?>">
 	</div>
 	<?php
 	$promotion_title = get_field('promotion_section_title');
