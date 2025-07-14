@@ -1264,7 +1264,10 @@ body.dragging-scroll {
 
 .en_body  .vertical_text{
   letter-spacing: 0em !important;
-  font-family: "richmond-text","Chiron Sung HK WS", sans-serif;
+}
+
+.en_body .vertical_text_wrapper .project_title{
+  font-family: "richmond-text","Chiron Sung HK WS", sans-serif !important;
 }
 
 .home_about_slider{
@@ -2243,6 +2246,10 @@ body.dragging-scroll {
 .home_promotion_section_title h1{
     font-weight: normal;
     color:#62629b;
+}
+
+.en_body .home_promotion_section_title h1{
+    font-family: "richmond-text","Chiron Sung HK WS", sans-serif !important;
 }
 
 .home_promotion_box_wrapper{
