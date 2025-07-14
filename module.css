@@ -7549,6 +7549,7 @@ body.dragging-scroll {
         padding-top: 10px;
         padding-bottom: 10px;
         padding-left: 0px;
+            white-space: nowrap;
       }
 
       .filter_checkbox_wrapper {
@@ -7557,7 +7558,9 @@ body.dragging-scroll {
         padding-bottom: 10px;
       }
 
-      
+      .event_list_item .reg_btn{  
+        padding: 5px;
+      }
 
       .filter_checkbox input[type="checkbox"] + label::before, .filter_checkbox input[type="radio"] + label::before {
         width: 12px;
