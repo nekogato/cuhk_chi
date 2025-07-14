@@ -110,7 +110,7 @@ while (have_posts()) :
 					if ($query->have_posts()) {
 						?>
 						<div class="publication_box_list_wrapper scrollin scrollinbottom" data-id="<?php echo $ctermslug; ?>">
-							<div class="publication_box_list_title text4">
+							<div class="publication_box_list_title text3">
 								<?php echo esc_html($ctermfullname); ?>
 							</div>
 							<div class="publication_box_list">

@@ -3098,6 +3098,10 @@ body.dragging-scroll {
     color: #6f6ea1;
 }
 
+.en_body .publication_box_list_title{
+    font-family: "richmond-text","Chiron Sung HK WS", sans-serif !important;
+}
+
 .publication_box_list_wrapper+.publication_box_list_wrapper{
     margin-top: 100px;
     padding-top: 100px;
