@@ -3920,6 +3920,7 @@ body.dragging-scroll {
 .research_centre_text_item{
     flex: 0 0 calc(33.33% - 33.33px);
     overflow: hidden;
+    word-wrap: break-word;
 }
 
 .research_centre_text_item a{

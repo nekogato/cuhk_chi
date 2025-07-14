@@ -8,6 +8,11 @@ get_header();
 // Include the roll menu template part
 get_template_part('template-parts/roll-menu'); ?>
 
+
+<div class="ink_bg13_wrapper">
+	<img src="<?php echo get_template_directory_uri(); ?>/images/ink_bg8.jpg" class="ink_bg13 scrollin scrollinbottom" alt="Background">
+</div>
+
 <div x-data="galleryFilter()">
 	<div class="section section_content filter_menu_section">
 		<div class="section_center_content small_section_center_content small_section_center_content scrollin scrollinbottom">
