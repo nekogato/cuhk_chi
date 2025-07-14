@@ -4781,6 +4781,8 @@ body.dragging-scroll {
     padding-right: 20px;
     border-left:1px solid #6f6ea6;
       flex: 1;
+        display: flex;
+  flex-direction: column;
 }
 
 .student_list_item > .text a{
@@ -4802,9 +4804,10 @@ body.dragging-scroll {
 }
 
 .student_list_item > .text >  .email{
-    margin-top: 30px;
+    padding-top: 30px;
     word-wrap: break-word;
     overflow: hidden;
+    margin-top: auto;
 }
 
 .student_list_item > .text >  .email a:hover{
