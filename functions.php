@@ -987,6 +987,17 @@ function load_courses()
 				foreach ($academic_terms as $term) {
 					$term_name = $term->name;
 
+					if (function_exists('pll_current_language')) {
+						if (pll_current_language() == 'tc') {
+							$term_name = get_field('tc_name', 'course_semester_' . $term->term_id);
+						} elseif (pll_current_language() == 'sc') {
+							$term_name = get_field('sc_name', 'course_semester_' . $term->term_id);
+						} else {
+							$term_name = get_field('en_name', 'course_semester_' . $term->term_id);
+						};
+					}
+
+
 					if (!isset($courses_by_category[$term_name])) {
 						$courses_by_category[$term_name] = array();
 					}
@@ -994,7 +1005,7 @@ function load_courses()
 				}
 			} else {
 				// No term assigned
-				$other = pll__('Other');
+				$other = cuhk_multilang_text("其他", "", "Other");
 				if (!isset($courses_by_category[$other])) {
 					$courses_by_category[$other] = array();
 				}
@@ -1013,13 +1024,22 @@ function load_courses()
 
 		foreach ($ordered_terms as $term) {
 			$term_name = $term->name;
+			if (function_exists('pll_current_language')) {
+				if (pll_current_language() == 'tc') {
+					$term_name = get_field('tc_name', 'course_semester_' . $term->term_id);
+				} elseif (pll_current_language() == 'sc') {
+					$term_name = get_field('sc_name', 'course_semester_' . $term->term_id);
+				} else {
+					$term_name = get_field('en_name', 'course_semester_' . $term->term_id);
+				};
+			}
 			if (isset($courses_by_category[$term_name])) {
 				$sorted_courses_by_category[$term_name] = $courses_by_category[$term_name];
 			}
 		}
 
 		// Add "Other" to the end if present
-		$other = pll__('Other');
+		$other = cuhk_multilang_text("其他", "", "Other");
 		if (isset($courses_by_category[$other])) {
 			$sorted_courses_by_category[$other] = $courses_by_category[$other];
 		}

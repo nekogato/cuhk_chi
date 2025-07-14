@@ -84,7 +84,7 @@ if (have_posts()) :
 							</div>
 							<div class="filter_dropdown_wrapper">
 								<a class="filter_dropdown_btn text5" @click="dropdowns.type = !dropdowns.type" x-text="filters.courseTypeName || '<?php echo cuhk_multilang_text("所有分類", "", "All Course Type"); ?>'"></a>
-								<div class="filter_dropdown text5" x-show="dropdowns.type" @click.away="dropdowns.type = false">
+								<div class="filter_dropdown text5"  @click.away="dropdowns.type = false">
 									<ul>
 										<template x-for="type in courseTypes" :key="type.slug">
 											<li>
