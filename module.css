@@ -8744,6 +8744,10 @@ body.dragging-scroll {
         width: 50%;
       }
 
+        .event_list_item .info_item img {
+            max-width: 150px;
+        }
+
 }
 
 
