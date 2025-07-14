@@ -250,7 +250,7 @@ get_header(); ?>
 			</div>
 
 			<div class="all_news_btn_wrapper">
-				<a href="<?php echo pll_get_page_url("news-and-events/news/"); ?>" class="round_btn"><?php echo cuhk_multilang_text("查閲最新動態", "", "View All Updates"); ?></a>
+				<a href="<?php echo pll_get_page_url("news-and-events/events/"); ?>" class="round_btn"><?php echo cuhk_multilang_text("查閲最新動態", "", "View All Updates"); ?></a>
 			</div>
 		</div>
 		

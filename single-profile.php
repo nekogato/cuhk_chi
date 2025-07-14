@@ -76,7 +76,7 @@ if (have_posts()) :
 								<div class="qualifications text6">
 									<ul>
 										<?php
-										$qualification_items = explode(',', $qualifications);
+										$qualification_items = explode(';', $qualifications);
 										foreach ($qualification_items as $item):
 											$item = trim($item);
 											if (!empty($item)):

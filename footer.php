@@ -265,7 +265,7 @@
                             </div>
                         </div>
                         <div class="footer2_t footer2_t2">
-                            <div class="footer_sns_title text7"><?php echo cuhk_multilang_text("追蹤中國語言及文學系","","Follow Department of Chinese Language & Literature"); ?></div>
+                            <!-- <div class="footer_sns_title text7"><?php echo cuhk_multilang_text("追蹤中國語言及文學系","","Follow Department of Chinese Language & Literature"); ?></div> -->
                             <div class="footer_sns_wrapper">
                                 <ul>
                                     <?php if(get_field("fb_url","option")){?>

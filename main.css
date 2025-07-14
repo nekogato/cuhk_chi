@@ -273,10 +273,10 @@ a{
 .school_logo{
 	-webkit-transition: all 0.6s cubic-bezier(0.77, 0, 0.175, 1) 0s; 
     transition: all 0.6s cubic-bezier(0.77, 0, 0.175, 1) 0s; 
-	height: 49px;
+	height: 51px;
 	position: absolute;
 	left: 440px;
-	top:35px;
+	top:30px;
 	margin: auto;
 	z-index: 5;
 }
@@ -1553,7 +1553,7 @@ ol:not(.free_text ol), ul:not(.free_text ul) {
 
 	.school_logo, .nottop .school_logo {
 		top: 10px;
-		height: 17px;
+		height: 18px;
 		left: 140px;
 	}
 
