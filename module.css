@@ -4770,6 +4770,9 @@ body.dragging-scroll {
 .student_list_item{
     flex-grow: 0;
     width: 20%;
+      display: flex;
+  flex-direction: column;
+  justify-content: stretch;
 }
 
 .student_list_item > .text{
@@ -4777,6 +4780,7 @@ body.dragging-scroll {
     padding-left: 20px;
     padding-right: 20px;
     border-left:1px solid #6f6ea6;
+      flex: 1;
 }
 
 .student_list_item > .text a{
