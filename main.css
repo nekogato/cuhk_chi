@@ -480,6 +480,11 @@ a{
 	padding-bottom: 10px;
 	border-bottom:1px solid #3c3c3c;
 }
+
+.en_body .dropdown_menu_list .t1{
+  font-family: "richmond-text","Chiron Sung HK WS", sans-serif !important;
+}
+
 .dropdown_menu_list .t1 a{
 	color: #3c3c3c;
 }
