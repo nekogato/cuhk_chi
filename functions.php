@@ -845,7 +845,16 @@ function load_teaching_staff()
 					),
 					'alt' => $photo['alt']
 				);
+			}else{
+				$staff_member['photo'] = array(
+					'sizes' => array(
+						's' => get_template_directory_uri()."/images/schoolart_logo_bg.svg",
+						'l' => get_template_directory_uri()."/images/schoolart_logo_bg.svg",
+					),
+					'alt' => ""
+				);
 			}
+			
 
 			$staff[] = $staff_member;
 		}
