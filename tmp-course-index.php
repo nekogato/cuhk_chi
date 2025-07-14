@@ -132,7 +132,7 @@ if (have_posts()) :
 										</div>
 										<div class="filter_detail_flex_item">
 											<div class="text8 mobile_show2 mobile_title"><?php echo cuhk_multilang_text("課程名稱", "", "Course Title"); ?></div>
-											<span x-text="course.course_title"></span>
+											<span x-html="course.course_title"></span>
 										</div>
 										<div class="filter_detail_flex_item">
 											<div class="text8 mobile_show2 mobile_title" x-show="course.course_unit"><?php echo cuhk_multilang_text("學分", "", "Course Units"); ?></div>

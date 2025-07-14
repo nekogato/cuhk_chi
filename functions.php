@@ -1029,11 +1029,11 @@ function load_courses()
 				}
 			} else {
 				// No term assigned
-				$other = cuhk_multilang_text("其他", "", "Other");
-				if (!isset($courses_by_category[$other])) {
-					$courses_by_category[$other] = array();
-				}
-				$courses_by_category[$other][] = $course_data;
+				// $other = cuhk_multilang_text("其他", "", "Other");
+				// if (!isset($courses_by_category[$other])) {
+				// 	$courses_by_category[$other] = array();
+				// }
+				// $courses_by_category[$other][] = $course_data;
 			}
 		}
 
@@ -1062,11 +1062,11 @@ function load_courses()
 			}
 		}
 
-		// Add "Other" to the end if present
-		$other = cuhk_multilang_text("其他", "", "Other");
-		if (isset($courses_by_category[$other])) {
-			$sorted_courses_by_category[$other] = $courses_by_category[$other];
-		}
+		// // Add "Other" to the end if present
+		// $other = cuhk_multilang_text("其他", "", "Other");
+		// if (isset($courses_by_category[$other])) {
+		// 	$sorted_courses_by_category[$other] = $courses_by_category[$other];
+		// }
 
 
 		// Convert to the format expected by Alpine.js
