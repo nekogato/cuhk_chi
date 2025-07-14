@@ -287,12 +287,29 @@ if (pll_current_language() == 'sc') {
 				<div class="dropdown_department">
 					<div class="dropdown_department_top">
 						<img src="<?php bloginfo('template_directory'); ?>/images/ccc_color.png" class="dropdown_department_logo">
-						<div class="text text8">
+						<div class="text text7">
 							<div>香港中文大學中國語言及文學系</div>
-							<div>The Chinese Universityof Hong Kong Department of Chinese Language & Literature</div>
+							<div>Department of Chinese Language & Literature, CUHK</div>
 						</div>
 					</div>
 					<div class="dropdown_department_bottom">
+						<div class="footer_sns_title text8"><?php echo cuhk_multilang_text("追蹤中國語言及文學系","追蹤中國語言及文學系","Follow Department of Chinese Language & Literature"); ?></div>
+						<div class="footer_sns_wrapper">
+							<ul>
+								<?php if(get_field("fb_url","option")){?>
+									<li><a href="<?php the_field("fb_url","option"); ?>" class="sns_icon_fb"></a></li>
+								<?php }; ?>
+								<?php if(get_field("ig_url","option")){?>
+									<li><a href="<?php the_field("ig_url","option"); ?>" class="sns_icon_ig"></a></li>
+								<?php }; ?>
+								<?php if(get_field("youtube_url","option")){?>
+									<li><a href="<?php the_field("youtube_url","option"); ?>" class="sns_icon_yt"></a></li>
+								<?php }; ?>
+								<?php if(get_field("linkedin_url","option")){?>
+									<li><a href="<?php the_field("linkedin_url","option"); ?>" class="sns_icon_in"></a></li>
+								<?php }; ?>
+							</ul>
+						</div>
 						
 						<div class="dropdown_department_sns_wrapper">
 							<ul>
@@ -310,7 +327,7 @@ if (pll_current_language() == 'sc') {
 								<?php }; ?>
 							</ul>
 						</div>
-						<div class="text text8 footer_info">
+						<div class="text text7 footer_info">
 							<?php if(get_field('footer_info', 'option')){
 								?>
 								<?php

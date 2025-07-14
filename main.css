@@ -536,6 +536,14 @@ a{
 	margin-top: 20px;
 }
 
+.dropdown_department_sns_wrapper{
+	margin-top: 20px;
+}
+
+.dropdown_department_sns_wrapper:first-child{
+	margin-top: auto;
+}
+
 .dropdown_department_sns_wrapper ul{
 	display: flex;
 	flex-direction: row;
