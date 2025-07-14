@@ -8226,20 +8226,20 @@ body.dragging-scroll {
         }
 
        .event_list_item{
-        flex-wrap: wrap;
+        /* flex-wrap: wrap;
         gap: 0px;
-            flex-direction: column;
+            flex-direction: column; */
        }
 
        
     .event_list_item .date {
-        width: 100%;
+        /* width: 100%;
         display: flex;    
         justify-content: space-between;
         border-bottom:1px solid #009594;
         padding-bottom: 15px;
         margin-bottom: 15px;
-            flex: 1;
+            flex: 1; */
       }
 
       .event_list_item .info_item {
