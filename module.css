@@ -7414,11 +7414,17 @@ body.dragging-scroll {
 
     /* publication_box_list */
 
+    .publication_box_list_title {
+    margin-bottom: 30px;
+    color: #6f6ea1;
+    text-align: center;
+    }
+
     .publication_box_list{
         margin-top: 80px;
         display: flex;
         flex-wrap: wrap; 
-        gap: 100px 30px; 
+        gap: 50px 30px; 
     }
 
     .publication_box{
@@ -7447,6 +7453,10 @@ body.dragging-scroll {
         margin-top: 50px;
         padding-top: 50px;
         border-top:1px solid #9f9b9a;;
+    }
+
+    .publication_text_item {
+    margin-top: 10px;
     }
 
 
