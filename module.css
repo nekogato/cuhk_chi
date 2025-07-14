@@ -8231,7 +8231,7 @@ body.dragging-scroll {
         .event_list_item .d_wrapper .d + .d::before {
         content: "";
         position: absolute;
-        width: 10px;
+        width: 1px;
         height: 21px;
         left: 0%;
         right: 0%;
@@ -8304,6 +8304,12 @@ body.dragging-scroll {
       .event_list_item .info_item{
         display: flex;
         gap: 20px;
+      }
+
+      .event_list_item .info_item img{
+        width: 100%;
+        margin: auto;
+        max-width: 480px;
       }
 
       .event_list_item .info_item .t1 {
