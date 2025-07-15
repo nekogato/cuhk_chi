@@ -38,7 +38,7 @@ while (have_posts()) :
 	</div>
 
 	<!-- Regular News Section -->
-	<div class="section news_box_section scrollin_p">
+	<div class="section news_box_section scrollin_p ">
 		<div class="news_box_wrapper">
 			<div class="section_center_content">
 				<div class="col_wrapper">
