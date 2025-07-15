@@ -24,7 +24,7 @@ get_header();
 		<div class="section_description scrollin scrollinbottom col6"><?php the_field('introduction') ?></div>
 		
 		<div class="filter_menu_wrapper">
-			<div class="filter_menu filter_menu_left_bg filter_menu_bottom section_center_content small_section_center_content scrollin scrollinbottom ">
+			<div class="filter_menu filter_menu_left_bg filter_menu_bottom  scrollin scrollinbottom ">
 				<div class="filter_remark"><?php echo cuhk_multilang_text("按姓名繁體筆劃排序", "按姓名拼音排序", "In alphabetical order"); ?></div>
 			</div>
 		</div>
@@ -43,6 +43,29 @@ get_header();
 					)
 				)
 			);
+
+			// Change ordering based on current language
+			if (function_exists('pll_current_language')) {
+				$current_lang = pll_current_language();
+
+				if ($current_lang == 'tc') {
+					// Order by number of strokes (numeric)
+					$args['meta_key'] = 'strokes';
+					$args['orderby'] = 'meta_value_num';
+				} elseif ($current_lang == 'sc') {
+					// Order by pinyin (text)
+					$args['meta_key'] = 'pinyin';
+					$args['orderby'] = 'meta_value';
+				} else {
+					// Order by English name (text)
+					$args['meta_key'] = 'english_name';
+					$args['orderby'] = 'meta_value';
+				}
+			} else {
+				// Fallback to ordering by title if Polylang not available
+				$args['orderby'] = 'title';
+			}
+			
 			$query = new WP_Query($args);
 
 			if ($query->have_posts()) :
