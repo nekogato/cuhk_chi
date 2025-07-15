@@ -3413,7 +3413,9 @@ body.dragging-scroll {
     writing-mode: horizontal-tb;
   text-orientation: mixed;
   letter-spacing: 0em;
-  text-align: right;
+    position: absolute;
+  top: 0px;
+  right: 100px;
 }
 
 .top_photo_banner_section .caption{
@@ -8004,6 +8006,7 @@ body.dragging-scroll {
       .en_body .top_photo_banner_section .vertical_text{
 
         writing-mode: horizontal-tb;
+          text-align: left;
       }
 
       .top_photo_banner_section .vertical_text_wrapper {
