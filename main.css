@@ -1273,6 +1273,10 @@ ol:not(.free_text ol), ul:not(.free_text ul) {
 	list-style: none !important;
 }
 
+.free_text ul.arrow_bullet li{
+    position: relative;
+}
+
 .free_text ul.arrow_bullet li::before {
   content: "";
   position: absolute;
@@ -1282,8 +1286,9 @@ ol:not(.free_text ol), ul:not(.free_text ul) {
   border-width: 6px 0 6px 8px;
   border-color: transparent transparent transparent #62629e;
   transform: rotate(0deg);
-  left: 0px;
-  top: 0.4em;
+  
+    left: -1.2em;
+    top: 0.3em;
 }	
 	
 .free_text hr{
