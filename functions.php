@@ -468,7 +468,7 @@ function load_more_news()
 	$args = array(
 		'post_type' => 'news',
 		'posts_per_page' => NEWS_PER_PAGE,
-		'offset' => $offset,
+		// 'offset' => $offset,
 		'meta_key' => 'start_date',
 		'orderby' => 'meta_value_num',
 		'order' => 'DESC',
