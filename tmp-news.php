@@ -38,7 +38,7 @@ while (have_posts()) :
 	</div>
 
 	<!-- Featured News Section -->
-	<div class="section featured_news_box_section scrollin_p">
+	<!-- <div class="section featured_news_box_section scrollin_p">
 		<div class="news_box_wrapper">
 			<div class="section_center_content">
 				<div class="col_wrapper big_col_wrapper">
@@ -117,7 +117,7 @@ while (have_posts()) :
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 
 	<!-- Regular News Section -->
 	<div class="section news_box_section scrollin_p">
@@ -129,7 +129,7 @@ while (have_posts()) :
 						$args = array(
 							'post_type' => 'news',
 							'posts_per_page' => NEWS_PER_PAGE,
-							'offset' => 2,
+							// 'offset' => 2,
 							'meta_key' => 'start_date',
 							'orderby' => 'meta_value',
 							'order' => 'DESC',

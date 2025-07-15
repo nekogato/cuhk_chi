@@ -8249,7 +8249,7 @@ body.dragging-scroll {
       }
 
       .news_box_section .news_box .photo {
-            padding-bottom: 100%;
+            /* padding-bottom: 100%; */
         }
 
       /* events */
