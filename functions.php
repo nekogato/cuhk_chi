@@ -10,10 +10,10 @@
 
 define('MPHIL_PHD_RESEARCH_MAX_POSTS', 20);
 define('PUBLICATIONS_PER_PAGE', 20);
-define('NEWS_PER_PAGE', 20);
+define('NEWS_PER_PAGE', 21);
 define('EVENTS_PER_PAGE', 20);
 define('MAX_POSTGRADUATE_STUDENTS_PER_PAGE', 20);
-define('MAX_DEPARTMENT_NEWS', 20);
+define('MAX_DEPARTMENT_NEWS', 21);
 
 if (! defined('_S_VERSION')) {
 	// Replace the version number of the theme on each release.
