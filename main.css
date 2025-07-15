@@ -1287,7 +1287,7 @@ ol:not(.free_text ol), ul:not(.free_text ul) {
   border-color: transparent transparent transparent #62629e;
   transform: rotate(0deg);
   
-    left: -1.2em;
+    left: -0.8em;
     top: 0.3em;
 }	
 	

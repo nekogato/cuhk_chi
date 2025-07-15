@@ -167,7 +167,7 @@ body#tinymce.wp-editor ul.arrow_bullet li::before {
   border-color: transparent transparent transparent #62629e;
   transform: rotate(0deg);
   
-    left: -1.2em;
+    left: -0.8em;
     top: 0.3em;
 }	
 
