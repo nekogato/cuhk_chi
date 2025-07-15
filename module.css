@@ -2070,11 +2070,11 @@ body.dragging-scroll {
     bottom: 0px;
     margin: auto;
     border-radius: 100%;
-    background: linear-gradient(180deg, rgba(239,211,193,1) 70%, rgba(239,211,193,0) 100%);
+    /* background: linear-gradient(180deg, rgba(239,211,193,1) 70%, rgba(239,211,193,0) 100%); */
 }
 
 .event_list_item:nth-child(even) .photo::before{
-    background: linear-gradient(180deg, rgba(195,217,194,1) 70%, rgba(195,217,194,0) 100%);
+    /* background: linear-gradient(180deg, rgba(195,217,194,1) 70%, rgba(195,217,194,0) 100%); */
 }
 
 
@@ -4166,7 +4166,7 @@ body.dragging-scroll {
 .news_box_section .news_box .photo {
     position: relative;
     margin-bottom: auto;
-    padding-bottom: 45%;
+    /* padding-bottom: 45%; */
     position: relative;
     display: block;
     flex: 1;
@@ -4185,7 +4185,7 @@ body.dragging-scroll {
 
 
 .news_box_section .news_box .photo img{  
-    position: absolute;
+    /* position: absolute;
   left: 0px;
   top: 0px;
   width: 85%;
@@ -4194,7 +4194,8 @@ body.dragging-scroll {
   object-position: center center;
   right: 0px;
   bottom: 0px;
-  margin: auto;
+  margin: auto; */
+  width: 100%;
 }
 
 .news_gallery_box_section .news_box .photo {
