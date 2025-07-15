@@ -290,7 +290,7 @@ function pll_get_page_id_by_slug($page_slug)
 
 function my_theme_add_editor_styles()
 {
-	add_editor_style('editor-style7.css');
+	add_editor_style('editor-style8.css');
 	add_editor_style(get_stylesheet_directory_uri() . '/fonts/stylesheet.css');
 }
 
@@ -2582,6 +2582,11 @@ function fb_mce_before_init($settings)
 			'title' => 'Table with Gradient Bg',
 			'selector' => 'table',
 			'classes' => 'table-bg',
+		],
+		[
+			'title' => 'Arrow Bullet',
+			'selector' => 'ul',
+			'classes' => 'arrow_bullet',
 		],
 
 

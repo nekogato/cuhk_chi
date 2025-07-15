@@ -1269,7 +1269,22 @@ ol:not(.free_text ol), ul:not(.free_text ul) {
 	margin-top: 15px;
 	}
 
-	
+.free_text ul.arrow_bullet{
+	list-style: none;
+}
+
+.free_text ul.arrow_bullet li::before {
+  content: "";
+  position: absolute;
+  width: 0px;
+  height: 0px;
+  border-style: solid;
+  border-width: 6px 0 6px 8px;
+  border-color: transparent transparent transparent #62629e;
+  transform: rotate(0deg);
+  left: 0px;
+  top: 4px;
+}	
 	
 .free_text hr{
 	background:none;
