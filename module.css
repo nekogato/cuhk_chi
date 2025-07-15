@@ -3410,9 +3410,10 @@ body.dragging-scroll {
 }
 
 .en_body .top_photo_banner_section .vertical_text{
-      writing-mode: vertical-rl;
+    writing-mode: horizontal-tb;
   text-orientation: mixed;
   letter-spacing: 0em;
+  text-align: right;
 }
 
 .top_photo_banner_section .caption{
