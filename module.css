@@ -7937,9 +7937,8 @@ body.dragging-scroll {
       }
 
       .home_promotion_box .title {
-        left: 60px;
-        width: 480px;
-        height: 60px;
+        width: 60px;
+        height: 480px;
       }
 
       .home_promotion_box .col{
