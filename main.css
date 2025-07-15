@@ -1270,7 +1270,7 @@ ol:not(.free_text ol), ul:not(.free_text ul) {
 	}
 
 .free_text ul.arrow_bullet{
-	list-style: none;
+	list-style: none !important;
 }
 
 .free_text ul.arrow_bullet li::before {
@@ -1283,7 +1283,7 @@ ol:not(.free_text ol), ul:not(.free_text ul) {
   border-color: transparent transparent transparent #62629e;
   transform: rotate(0deg);
   left: 0px;
-  top: 4px;
+  top: 0.4em;
 }	
 	
 .free_text hr{
