@@ -22,7 +22,7 @@ get_header();
 	<div class="section_center_content small_section_center_content">
 		<div class="col_wrapper xl_col_wrapper">
 			<div class="flex row">
-				<div class="col2 col">
+				<div class="col3 col">
 					<div class="col_spacing scrollin scrollinbottom">
 						<div class="text_wrapper vertical_text_wrapper">
 							<div class="text vertical_text">

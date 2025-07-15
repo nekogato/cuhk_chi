@@ -3413,9 +3413,10 @@ body.dragging-scroll {
     writing-mode: horizontal-tb;
   text-orientation: mixed;
   letter-spacing: 0em;
-  position: absolute;
+  /* position: absolute;
   top: 0px;
-  right: 0px;
+  right: 0px; */
+  text-align: right;
 }
 
 .top_photo_banner_section .caption{
