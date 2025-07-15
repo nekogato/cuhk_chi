@@ -1231,6 +1231,10 @@ body.dragging-scroll {
     flex-direction: row-reverse;
 }
 
+.en_body .home_about_slider_section > .section_center_content > .col_wrapper > .flex{
+    flex-direction: row;
+}
+
 
 .home_about_slider_section .vertical_text_wrapper .project_title{
     line-height: 1.25em;
@@ -1266,13 +1270,30 @@ body.dragging-scroll {
     letter-spacing: 0.25em;
 }
 
+.en_body .home_about_slider_section .vertical_text{
+    writing-mode: horizontal-tb;
+    text-orientation: mixed;
+  letter-spacing: 0em !important;
+}
 
 .en_body  .vertical_text{
   letter-spacing: 0em !important;
 }
 
+.en_body .home_about_slider_section .vertical_text_wrapper {
+  justify-content: start;
+}
+
 .en_body .vertical_text_wrapper .project_title{
   font-family: "richmond-text","Chiron Sung HK WS", sans-serif !important;
+}
+
+.en_body .home_about_slider_section .col2{
+    width: 100%;
+}
+
+.en_body .home_about_slider_section .col10{
+    margin-left: 16.67%;
 }
 
 .home_about_slider{

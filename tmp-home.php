@@ -6,7 +6,7 @@ Template Name: Home Page
 get_header(); ?>
 
 <div class="bg_video_wrapper">
-	<video id="video1" src="<?php bloginfo('template_directory'); ?>/video/ink2.mp4" muted playsinline loop></video>
+	<video id="video1" src="<?php bloginfo('template_directory'); ?>/video/ink3.mp4" muted playsinline loop></video>
 </div>
 
 <div class="section home_top_section" id="section1">
