@@ -129,7 +129,6 @@ while (have_posts()) :
 						$args = array(
 							'post_type' => 'news',
 							'posts_per_page' => NEWS_PER_PAGE,
-							'offset' => 2,
 							'meta_key' => 'start_date',
 							'orderby' => 'meta_value',
 							'order' => 'DESC',

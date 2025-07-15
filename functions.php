@@ -463,12 +463,12 @@ function load_more_news()
 	check_ajax_referer('load_more_nonce', 'nonce');
 
 	$page = $_POST['page'];
-	$offset = ($page * NEWS_PER_PAGE) + 2; // Add 2 to account for featured posts
+	$offset = ($page * NEWS_PER_PAGE); // Add 2 to account for featured posts
 
 	$args = array(
 		'post_type' => 'news',
 		'posts_per_page' => NEWS_PER_PAGE,
-		// 'offset' => $offset,
+		'offset' => $offset,
 		'meta_key' => 'start_date',
 		'orderby' => 'meta_value_num',
 		'order' => 'DESC',
