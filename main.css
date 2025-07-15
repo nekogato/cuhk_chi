@@ -84,8 +84,8 @@ a{
 	
 	
 .scrollin{
-	-webkit-transition: all 3s cubic-bezier(0.77, 0, 0.175, 1) 0s; 
-    transition: all 3s cubic-bezier(0.77, 0, 0.175, 1) 0s; 
+	-webkit-transition: all 1.5s cubic-bezier(0.77, 0, 0.175, 1) 0s; 
+    transition: all 1.5s cubic-bezier(0.77, 0, 0.175, 1) 0s; 
 	}
 	
 .scrollin_fast{
