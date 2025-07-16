@@ -269,22 +269,22 @@
                             <div class="footer_sns_wrapper">
                                 <ul>
                                     <?php if(get_field("fb_url","option")){?>
-                                        <li><a href="<?php the_field("fb_url","option"); ?>" class="sns_icon_fb"></a></li>
+                                        <li><a href="<?php the_field("fb_url","option"); ?>" class="sns_icon_fb" target="_blank"></a></li>
                                     <?php }; ?>
                                     <?php if(get_field("ig_url","option")){?>
-                                        <li><a href="<?php the_field("ig_url","option"); ?>" class="sns_icon_ig"></a></li>
+                                        <li><a href="<?php the_field("ig_url","option"); ?>" class="sns_icon_ig" target="_blank"></a></li>
                                     <?php }; ?>
                                     <?php if(get_field("youtube_url","option")){?>
-                                        <li><a href="<?php the_field("youtube_url","option"); ?>" class="sns_icon_yt"></a></li>
+                                        <li><a href="<?php the_field("youtube_url","option"); ?>" class="sns_icon_yt" target="_blank"></a></li>
                                     <?php }; ?>
                                     <?php if(get_field("linkedin_url","option")){?>
-                                        <li><a href="<?php the_field("linkedin_url","option"); ?>" class="sns_icon_in"></a></li>
+                                        <li><a href="<?php the_field("linkedin_url","option"); ?>" class="sns_icon_in" target="_blank"></a></li>
                                     <?php }; ?>
                                     <?php if(get_field("weibo_url","option")){?>
-                                        <li><a href="<?php the_field("weibo_url","option"); ?>" class="sns_icon_weibo"></a></li>
+                                        <li><a href="<?php the_field("weibo_url","option"); ?>" class="sns_icon_weibo" target="_blank"></a></li>
                                     <?php }; ?>
                                     <?php if(get_field("xiaohongshu_url","option")){?>
-                                        <li><a href="<?php the_field("xiaohongshu_url","option"); ?>" class="sns_icon_xiaohongshu"></a></li>
+                                        <li><a href="<?php the_field("xiaohongshu_url","option"); ?>" class="sns_icon_xiaohongshu" target="_blank"></a></li>
                                     <?php }; ?>
                                     <?php if(get_field("wechat_qr_code","option")){?>
                                         <li><a href="<?php echo(get_field("wechat_qr_code","option"))["url"]; ?>" data-fancybox class="sns_icon_wechat"></a></li>
