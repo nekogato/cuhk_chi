@@ -721,6 +721,18 @@ a{
 	background-image: url(images/sns_icon_in.png);
 }
 
+.sns_icon_weibo{
+	background-image: url(images/sns_icon_weibo.png);
+}
+
+.sns_icon_xiaohongshu{
+	background-image: url(images/sns_icon_xiaohongshu.png);
+}
+
+.sns_icon_wechat{
+	background-image: url(images/sns_icon_wechat.png);
+}
+
 .t_spacer{
 	height: 10px;
 }

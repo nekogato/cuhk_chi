@@ -308,25 +308,18 @@ if (pll_current_language() == 'sc') {
 								<?php if(get_field("linkedin_url","option")){?>
 									<li><a href="<?php the_field("linkedin_url","option"); ?>" class="sns_icon_in"></a></li>
 								<?php }; ?>
+								<?php if(get_field("weibo_url","option")){?>
+									<li><a href="<?php the_field("weibo_url","option"); ?>" class="sns_icon_weibo"></a></li>
+								<?php }; ?>
+								<?php if(get_field("xiaohongshu_url","option")){?>
+									<li><a href="<?php the_field("xiaohongshu_url","option"); ?>" class="sns_icon_xiaohongshu"></a></li>
+								<?php }; ?>
+								<?php if(get_field("wechat_qr_code","option")){?>
+									<li><a href="<?php echo(get_field("wechat_qr_code","option"))["url"]; ?>" data-fancybox class="sns_icon_wechat"></a></li>
+								<?php }; ?>
 							</ul>
 						</div>
 						
-						<div class="dropdown_department_sns_wrapper">
-							<ul>
-								<?php if(get_field("fb_url")){?>
-									<li><a href="<?php the_field("fb_url"); ?>" class="sns_icon_fb"></a></li>
-								<?php }; ?>
-								<?php if(get_field("ig_url")){?>
-									<li><a href="<?php the_field("ig_url"); ?>" class="sns_icon_ig"></a></li>
-								<?php }; ?>
-								<?php if(get_field("youtube_url")){?>
-									<li><a href="<?php the_field("youtube_url"); ?>" class="sns_icon_yt"></a></li>
-								<?php }; ?>
-								<?php if(get_field("linkedin_url")){?>
-									<li><a href="<?php the_field("linkedin_url"); ?>" class="sns_icon_in"></a></li>
-								<?php }; ?>
-							</ul>
-						</div>
 						<div class="text text7 footer_info">
 							<?php if(get_field('footer_info', 'option')){
 								?>
