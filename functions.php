@@ -1228,8 +1228,8 @@ function load_events_with_year()
 			$event_venue = get_field('event_venue');
 
 			// Format dates
-			$start_date_obj = DateTime::createFromFormat('Y-m-d', $start_date);
-			$end_date_obj = $end_date ? DateTime::createFromFormat('Y-m-d', $end_date) : null;
+			$start_date_obj = DateTime::createFromFormat('Ymd', $start_date);
+			$end_date_obj = $end_date ? DateTime::createFromFormat('Ymd', $end_date) : null;
 
 			// Check if event spans multiple days
 			$has_date_range = $end_date && $start_date !== $end_date;
@@ -1399,8 +1399,8 @@ function filter_events()
 			$event_venue = get_field('event_venue');
 
 			// Format dates
-			$start_date_obj = DateTime::createFromFormat('Y-m-d', $start_date);
-			$end_date_obj = $end_date ? DateTime::createFromFormat('Y-m-d', $end_date) : null;
+			$start_date_obj = DateTime::createFromFormat('Ymd', $start_date);
+			$end_date_obj = $end_date ? DateTime::createFromFormat('Ymd', $end_date) : null;
 
 			// Check if event spans multiple days
 			$has_date_range = $end_date && $start_date !== $end_date;
