@@ -23,7 +23,7 @@ if (have_posts()) :
 ?>
 
 		<div class="section section_content " x-data='search_list' x-init="init">
-			<div class="section_center_content xs_section_center_content">
+			<div class="section_center_content small_section_center_content">
                 <h1 class="section_title text1 scrollin scrollinbottom"><?php echo cuhk_multilang_text("搜尋", "", "Search"); ?></h1>
             
                 <div class="section_description scrollin scrollinbottom col6">
@@ -36,52 +36,54 @@ if (have_posts()) :
 			</div>
 
             <div class="search_section">
-                <!-- other "spotlights" goes here--> 
-                <div class="search_rol_wrapper scrollin_p">
-                    <div class="col_wrapper big_col_wrapper">
-                        <div class="row" x-show="result.length>0">
-                            <template x-for="(elm,index) in result">
-                                <div class="col col6 spotlight_text_item">
-                                    <div class="col_spacing">
-                                        <div class="top_wrapper">
-                                            <div class="date text9" x-show="elm.parent_title"><span x-html="elm.parent_title" ></span></div>
-                                            <div class="date text9" x-show="elm.type"><span x-html="elm.type" ></span></div>
-                                            <div class="title text6">
-                                                <span x-html="elm.title">
-                                                </span>
+                <div class="section_center_content small_section_center_content">
+                    <!-- other "spotlights" goes here--> 
+                    <div class="search_rol_wrapper scrollin_p">
+                        <div class="col_wrapper big_col_wrapper">
+                            <div class="row" x-show="result.length>0">
+                                <template x-for="(elm,index) in result">
+                                    <div class="col col6 spotlight_text_item">
+                                        <div class="col_spacing">
+                                            <div class="top_wrapper">
+                                                <div class="subtitle text9" x-show="elm.parent_title"><span x-html="elm.parent_title" ></span></div>
+                                                <div class="subtitle text9" x-show="elm.type"><span x-html="elm.type" ></span></div>
+                                                <div class="title text6">
+                                                    <span x-html="elm.title">
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="btn_wrapper text8">
+                                                <ul>
+                                                    <li><a x-bind:href="elm.link" class="line_btn"><span><?php echo cuhk_multilang_text("閱讀更多", "", "View More"); ?></span></a></li>
+                                                </ul>
                                             </div>
                                         </div>
-                                        <div class="btn_wrapper text8">
-                                            <ul>
-                                                <li><a x-bind:href="elm.link"><span><?php echo pll__('View More')?></span></a></li>
-                                            </ul>
-                                        </div>
                                     </div>
-                                </div>
-                            </template>
+                                </template>
+                            </div>
+                            <div x-show="done && result.length==0" style="text-align:center"><?php echo cuhk_multilang_text("找不到任何結果", "", "Sorry, please search again."); ?></div>
+
+                            <div x-show="!done && result.length==0" style="text-align:center"><?php echo cuhk_multilang_text("載入中...", "", "Loading..."); ?></div>
                         </div>
-                        <div x-show="done && result.length==0" style="text-align:center"><?php echo pll__('Sorry, please search again.')?></div>
-
-                        <div x-show="!done && result.length==0" style="text-align:center"><?php echo pll__('Loading...')?></div>
-                    </div>
-                </div>
-
-            
-
-                <div class="news_pagination" x-show="pager.total>1">
-
-                    <div class='wp-pagenavi' role='navigation'>
-                        <a class="previouspostslink" rel="prev" @click="prev()" href="javascript:void(0);" x-show="pager.current>1"><?php echo pll__('PREV')?></a>
-                        <template x-for="(elm,index) in new Array(pager.total)">
-                            <span>
-                                <span class='current' x-show="pager.current==index+1" x-text="index+1"></span>
-                                <a class="page larger"  @click="goto(index+1)" href="javascript:void(0);" x-show="pager.current!=(index+1)" x-text="index+1"></a>
-                            </span>
-                        </template>
-                        <a class="nextpostslink" rel="next" @click="next()" href="javascript:void(0);" x-show="pager.current<(pager.total)"><?php echo pll__('NEXT')?></a>
-                        
                     </div>
 
+                
+
+                    <div class="news_pagination" x-show="pager.total>1">
+
+                        <div class='wp-pagenavi' role='navigation'>
+                            <a class="previouspostslink" rel="prev" @click="prev()" href="javascript:void(0);" x-show="pager.current>1"><?php echo cuhk_multilang_text("上一頁", "", "PREV"); ?></a>
+                            <template x-for="(elm,index) in new Array(pager.total)">
+                                <span>
+                                    <span class='current' x-show="pager.current==index+1" x-text="index+1"></span>
+                                    <a class="page larger"  @click="goto(index+1)" href="javascript:void(0);" x-show="pager.current!=(index+1)" x-text="index+1"></a>
+                                </span>
+                            </template>
+                            <a class="nextpostslink" rel="next" @click="next()" href="javascript:void(0);" x-show="pager.current<(pager.total)"><?php echo cuhk_multilang_text("下一頁", "", "NEXT"); ?></a>
+                            
+                        </div>
+
+                    </div>
                 </div>
             </div>
 		</div>

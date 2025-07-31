@@ -6985,6 +6985,9 @@ body.dragging-scroll {
   border-right: 1px solid #ae6364;
 }
 
+.search_section .btn_wrapper{
+    margin-top: 30px;
+}
 
 
 .news_pagination{
