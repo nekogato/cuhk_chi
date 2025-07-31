@@ -22,7 +22,58 @@ while (have_posts()) :
 	$funding_organization = get_field('funding_organization');
 ?>
 
-	
+
+
+	<div class="section top_photo_banner_section top_photo_banner_section_absolute">
+		<div class="section_center_content small_section_center_content">
+			<div class="col_wrapper xl_col_wrapper">
+				<div class="flex row">
+					<div class="col2 col">
+						<div class="col_spacing scrollin scrollinbottom">
+							<div class="text_wrapper vertical_text_wrapper">
+								<div class="text vertical_text">
+
+									<div class="news_title_wrapper mobile_show2">
+										<?php $project_category = get_the_terms(get_the_ID(), 'project_category');
+										if ($project_category) {
+											if ($project_category && ! is_wp_error($project_category)) {
+										?>
+
+											<div class="news_cat text4">
+												<?php
+													$termid = $project_category[0]->term_id;
+													$termslug = $project_category[0]->slug;
+													$termlink = get_term_link($project_category[0]);
+													if (is_wp_error($termlink)) {
+														continue;
+													}
+													if (pll_current_language() == 'tc') {
+														$termname = get_field('tc_name', 'project_category_' . $termid);
+													} elseif (pll_current_language() == 'sc') {
+														$termname = get_field('sc_name', 'project_category_' . $termid);
+													} else {
+														$termname = get_field('en_name', 'project_category_' . $termid);
+													};
+												?>
+												<span><?php echo $termname; ?></span>
+											</div>
+										<?php
+											};
+										};
+										?>
+
+										<h1 class="news_title "><?php the_field("project_title"); ?></h1>
+										
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<div class="section section_left_right_content section_left_right_content2 scrollin_p">
 		<div class="section_center_content small_section_center_content">
@@ -55,7 +106,7 @@ while (have_posts()) :
 						</div>
 					<?php endif; ?>
 
-					<div class="col col5">
+					<div class="col <?php if($event_banner){echo "col5"; }else{ echo "col7"; }; ?>">
 						<div class="col_spacing">
 							<div class="right_content news_right_content">
 								<div class="flexible_layout_wrapper">
