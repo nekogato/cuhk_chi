@@ -3551,9 +3551,9 @@ body.dragging-scroll {
 .section_left_right_content2 .right_content::before{
     content:"";
     position: absolute;
-    top:-170px;
-    right: -200px;
-    left: -200px;
+    top:-150px;
+    right: -150px;
+    left: -150px;
     height: 400px;
     background: linear-gradient(180deg, rgba(239,211,193,1) 0%, rgba(239,211,193,0) 100%);
 }
