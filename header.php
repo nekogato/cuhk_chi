@@ -67,7 +67,7 @@ if (pll_current_language() == 'sc') {
 					</ul>
 				</div>
 			</li>
-			<li><a href="#" class="menu_search"></a></li>
+			<li><a href="<?php echo pll_get_page_url("search"); ?>" class="menu_search"></a></li>
 			<li><a href="#" class="menu_dropdown"><div class="g g1"></div><div class="g g2"></div><div class="g g3"></div></a></li>
 		</ul>
 	</div>

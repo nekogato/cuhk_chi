@@ -181,7 +181,7 @@ function cuhk_chi_scripts()
 	wp_enqueue_script('cuhk_chi-perfect-scrollbar', get_template_directory_uri() . '/script/lib/perfect-scrollbar.js', array('cuhk_chi-jquery'), '', false);
 
 	// Add Alpine.js only for postgraduate research students template
-	if (is_page_template('tmp-postgraduate_research_students.php') || is_page_template('tmp-teaching-staff.php') || is_page_template('tmp-course-index.php') || is_page_template('tmp-research_project.php') || is_page_template('tmp-events.php') || is_page_template('tmp-old_events_index.php') || is_page_template('tmp-languageevents.php') || is_page_template('tmp-home.php') || is_page_template('tmp-gallery.php')) {
+	if (is_page_template('tmp-postgraduate_research_students.php') || is_page_template('tmp-teaching-staff.php') || is_page_template('tmp-course-index.php') || is_page_template('tmp-research_project.php') || is_page_template('tmp-events.php') || is_page_template('tmp-old_events_index.php') || is_page_template('tmp-languageevents.php') || is_page_template('tmp-home.php') || is_page_template('tmp-gallery.php') || is_page_template('tmp-search.php')) {
 		wp_enqueue_script('alpinejs', 'https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js', array(), '3.13.3', true);
 		wp_script_add_data('alpinejs', 'defer', true);
 	}
@@ -2595,4 +2595,85 @@ function fb_mce_before_init($settings)
 	$settings['style_formats'] = json_encode($style_formats);
 	unset($settings['preview_styles']);
 	return $settings;
+}
+
+add_action('wp_ajax_get_search', 'get_search');
+add_action('wp_ajax_nopriv_get_search', 'get_search');
+
+function get_search()
+{
+    $posts_per_page = 8;
+
+    $current_page = isset($_POST['pager']) ? $_POST['pager'] : 0;
+
+    $args = ['post_type' => 'any', 'posts_per_page' => '-1', 'posts_per_page' => '-1', 'post_status' => 'publish'];
+
+    if (isset($_POST['keyword']) && $_POST['keyword'] != '') {
+        $args['s'] = $_POST['keyword'];
+    }
+
+    $total_q = new WP_Query($args);
+    $total = ceil(count($total_q->posts) / $posts_per_page);
+
+    $args['posts_per_page'] = $posts_per_page;
+    $args['paged'] = $current_page;
+
+    $query_q = new WP_Query($args);
+
+    $items = [];
+
+    while ($query_q->have_posts()):
+        $query_q->the_post();
+        $parent_title = '';
+        $current = $post->ID;
+        $parent = $post->post_parent;
+        $grandparent_get = get_post($parent);
+        $grandparent = $grandparent_get->post_parent;
+        if (
+            $root_parent =
+                get_the_title($grandparent) !==
+                ($root_parent = get_the_title($current))
+        ) {
+            $parent_title = get_the_title($grandparent);
+        } elseif (get_the_title($current) !== get_the_title($parent)) {
+            $parent_title = get_the_title($parent);
+        }
+
+        $type = '';
+        if ('news' == get_post_type()) {
+            $type = cuhk_multilang_text("學系消息", "", "News");
+        } elseif ('events' == get_post_type()) {
+            $type = cuhk_multilang_text("學系活動", "", "Events");
+        } elseif ('publication' == get_post_type()) {
+            $type = cuhk_multilang_text("出版刊物", "", "Publication");
+        }
+
+        $local = [
+            'title' => get_the_title(),
+            'link' => get_the_permalink(),
+            'parent_title' => $parent_title,
+            'type' => $type,
+        ];
+
+        $items[] = $local;
+    endwhile;
+
+    $test = count($total_q->posts);
+
+    if (
+        !empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
+        strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'
+    ) {
+        $result = json_encode([
+            'type' => 'success',
+            'data' => $items,
+            'total' => $total,
+            'test' => $test,
+        ]);
+        echo $result;
+    } else {
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+    }
+
+    die();
 }
