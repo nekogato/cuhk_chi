@@ -6937,6 +6937,7 @@ body.dragging-scroll {
   box-sizing: content-box;
   border: 1px solid #ae6364;
   color: #ae6364;
+  margin-bottom: 10px;
 }
 
 .search_wrapper .search_input {
@@ -7003,7 +7004,7 @@ body.dragging-scroll {
 }
 
 .search_section .btn_wrapper{
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
 

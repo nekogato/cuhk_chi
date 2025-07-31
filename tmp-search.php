@@ -40,9 +40,9 @@ if (have_posts()) :
                     <!-- other "spotlights" goes here--> 
                     <div class="search_rol_wrapper scrollin_p">
                         <div class="col_wrapper big_col_wrapper">
-                            <div class="row" x-show="result.length>0">
+                            <div class="row flex" x-show="result.length>0">
                                 <template x-for="(elm,index) in result">
-                                    <div class="col col6 spotlight_text_item">
+                                    <div class="col col6">
                                         <div class="col_spacing">
                                             <div class="top_wrapper">
                                                 <div class="subtitle text9" x-show="elm.parent_title"><span x-html="elm.parent_title" ></span></div>
@@ -52,7 +52,7 @@ if (have_posts()) :
                                                     </span>
                                                 </div>
                                             </div>
-                                            <div class="btn_wrapper text8">
+                                            <div class="btn_wrapper">
                                                 <ul>
                                                     <li><a x-bind:href="elm.link" class="line_btn"><span><?php echo cuhk_multilang_text("閱讀更多", "", "View More"); ?></span></a></li>
                                                 </ul>
