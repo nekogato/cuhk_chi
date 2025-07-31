@@ -2602,7 +2602,7 @@ add_action('wp_ajax_nopriv_get_search', 'get_search');
 
 function get_search()
 {
-    $posts_per_page = 8;
+    $posts_per_page = 20;
 
     $current_page = isset($_POST['pager']) ? $_POST['pager'] : 0;
 
