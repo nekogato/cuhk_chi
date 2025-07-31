@@ -142,8 +142,11 @@ endif;
 
             this.filter.keyword = new URLSearchParams(location.search).get('keyword') || null;
             this.pager.current = new URLSearchParams(location.search).get('pager') || 1;
-
-            this.query();
+            if(this.filter.keyword){
+                this.query();
+            }else{
+                jQuery(".ajax_loading2").stop().fadeOut(300);
+            }
 
             
         },
