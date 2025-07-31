@@ -2642,10 +2642,20 @@ function get_search()
         $type = '';
         if ('news' == get_post_type()) {
             $type = cuhk_multilang_text("學系消息", "", "News");
-        } elseif ('events' == get_post_type()) {
+        } elseif ('event' == get_post_type()) {
             $type = cuhk_multilang_text("學系活動", "", "Events");
         } elseif ('publication' == get_post_type()) {
             $type = cuhk_multilang_text("出版刊物", "", "Publication");
+        } elseif ('gallery' == get_post_type()) {
+            $type = cuhk_multilang_text("學系剪影", "", "Snapshots");
+        }elseif ('research_project' == get_post_type()) {
+            $type = cuhk_multilang_text("研究計劃", "", "Research Projects");
+        }elseif ('profile' == get_post_type()) {
+            $type = cuhk_multilang_text("學系成員", "", "People");
+        }elseif ('course' == get_post_type()) {
+            $type = cuhk_multilang_text("科目", "", "Course");
+        }elseif ('teaching_project' == get_post_type()) {
+            $type = cuhk_multilang_text("教學計劃", "", "Teaching Projects");
         }
 
         $local = [

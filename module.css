@@ -6932,14 +6932,14 @@ body.dragging-scroll {
 .search_wrapper .submit_arrow{
       border: none;
     background: none;
-    width: 50px;
+    width: 40px;
     height: 30px;
     position: absolute;
     right: 0%;
     margin: auto;
     top: 0px;
     bottom: 0px;
-    margin-right: 10px;
+    margin-right: 20px;
     cursor: pointer;
     z-index: 11;
 }
@@ -6963,7 +6963,7 @@ body.dragging-scroll {
   height: 10px;
   top: 0px;
   bottom: 0px;
-  right: 5px;
+  right: 0px;
   margin: auto;
   transform: rotate(45deg);
   border-top: 1px solid #ae6364;
@@ -7007,6 +7007,13 @@ body.dragging-scroll {
     margin-top: 20px;
 }
 
+.search_section .col{
+    margin-top: 90px;
+}
+
+.search_section .row{
+    margin-top: -90px;
+}
 
 .news_pagination{
   text-align: center;

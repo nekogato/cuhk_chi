@@ -68,8 +68,8 @@ $initial_year = isset($_GET['active_year']) ? intval($_GET['active_year']) : $ma
 		the_post();
 	?>
 		<div class="section top_photo_banner_section">
+			<img src="<?php echo get_template_directory_uri(); ?>/images/ink_bg4.jpg" class="ink_bg4 scrollin scrollinbottom" alt="Background">
 			<div class="section_center_content small_section_center_content">
-				<img src="<?php echo get_template_directory_uri(); ?>/images/ink_bg4.jpg" class="ink_bg4 scrollin scrollinbottom" alt="Background">
 				<div class="col_wrapper">
 					<div class="flex row">
 						<div class="col4 col">
