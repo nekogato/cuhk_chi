@@ -66,7 +66,7 @@ if (have_posts()) :
 
                             <div x-show="!done && result.length==0" style="text-align:center"><?php echo cuhk_multilang_text("載入中...", "", "Loading..."); ?></div>
 
-                            <div class="ajax_loading"></div>
+                            <div class="ajax_loading2"></div>
                         </div>
                     </div>
 
@@ -163,7 +163,7 @@ endif;
             params['action'] = "get_search";
             params['filter'] = that.prefilter;
 
-            jQuery(".ajax_loading").stop().fadeIn(300);
+            jQuery(".ajax_loading2").stop().fadeIn(300);
 
             jQuery.ajax({
                     type : "post",
@@ -180,7 +180,7 @@ endif;
                         }
 
                         that.done = true;
-                        jQuery(".ajax_loading").stop().fadeOut(300);
+                        jQuery(".ajax_loading2").stop().fadeOut(300);
                     }
                 })   
 
