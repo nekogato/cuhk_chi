@@ -14,117 +14,138 @@ get_header();
 <?php
 while (have_posts()) :
 	the_post();
-	$project_category = get_the_terms(get_the_ID(), 'project_category');
-	$project_title = get_field('project_title');
-	$funding_start_year = get_field('funding_start_year');
-	$funding_end_year = get_field('funding_end_year');
-	$principal_investigator = get_field('principal_investigator');
-	$other_investigator = get_field('other_investigator');
-	$granted_amount = get_field('granted_amount');
-	$funding_organization = get_field('funding_organization');
-	$banner_image = get_field('banner_image');
-	$banner_caption = get_field('banner_caption');
 ?>
 
-	<div class="section top_photo_banner_section banner_bg">
+	
+
+	<div class="section section_left_right_content section_left_right_content2 scrollin_p">
 		<div class="section_center_content small_section_center_content">
-			<div class="col_wrapper">
+			<div class="col_wrapper xl_col_wrapper">
 				<div class="flex row">
-					<div class="col4 col">
-						<div class="col_spacing scrollin scrollinbottom">
-							<div class="text_wrapper vertical_text_wrapper">
-								<div class="text vertical_text">
-									<?php if ($project_category) : ?>
-										<h4 class="project_smalltitle">
-											<span><?php echo esc_html($project_category[0]->name); ?></span>
-										</h4>
-									<?php endif; ?>
-									<?php if ($project_title) : ?>
-										<h1 class="project_title">
-											<span><?php echo esc_html($project_title); ?></span>
-										</h1>
-									<?php endif; ?>
+					<?php
+					$event_banner = get_field('banner_image');
+					$event_banner_caption = get_field('banner_caption');
+					if ($event_banner) :
+					?>
+						<div class="col col5">
+							<div class="col_spacing">
+								<div class="left_content free_text">
+									<div class="flexible_layout_wrapper">
+										<div class="flexible_layout flexible_layout_photo scrollin scrollinleft">
+											<div class="photo_wrapper">
+												<div class="photo">
+													<a href="<?php echo esc_url($event_banner['sizes']['l']); ?>" data-fancybox>
+													<img src="<?php echo esc_url($event_banner['sizes']['l']); ?>" alt="<?php echo esc_attr($event_banner['alt']); ?>">
+													</a>
+												</div>
+												<?php if ($event_banner_caption) : ?>
+													<div class="caption"><?php echo esc_html($event_banner_caption); ?></div>
+												<?php endif; ?>
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-					<div class="col8 col">
-						<div class="col_spacing scrollin scrollinleft">
-							<div class="photo_wrapper">
-								<?php if ($banner_image) : ?>
-									<div class="photo">
-										<img src="<?php echo esc_url($banner_image['url']); ?>" alt="<?php echo esc_attr($banner_image['alt']); ?>">
-									</div>
-								<?php endif; ?>
-								<?php if ($banner_caption) : ?>
-									<div class="caption"><?php echo esc_html($banner_caption); ?></div>
-								<?php endif; ?>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+					<?php endif; ?>
 
-	<div class="section section_left_right_content scrollin_p">
-		<div class="section_center_content small_section_center_content">
-			<div class="col_wrapper">
-				<div class="flex row">
-					<div class="col col4">
-						<div class="col_spacing scrollin scrollinbottom">
-							<div class="left_content free_text">
-								<?php if ($funding_start_year || $funding_end_year) : ?>
-									<h5><?php pll_e('撥款年份'); ?></h5>
-									<p>
-										<?php
-										if ($funding_start_year && $funding_end_year) {
-											echo esc_html($funding_start_year . ' - ' . $funding_end_year);
-										} elseif ($funding_start_year) {
-											echo esc_html($funding_start_year);
-										} elseif ($funding_end_year) {
-											echo esc_html($funding_end_year);
-										}
-										?>
-									</p>
-								<?php endif; ?>
-
-								<?php if ($principal_investigator) : ?>
-									<h5><?php pll_e('計劃主持'); ?></h5>
-									<p><?php echo esc_html($principal_investigator); ?></p>
-								<?php endif; ?>
-
-								<?php if ($other_investigator) : ?>
-									<h5><?php pll_e('其他研究員'); ?></h5>
-									<p><?php echo esc_html($other_investigator); ?></p>
-								<?php endif; ?>
-
-								<?php if ($granted_amount) : ?>
-									<h5><?php pll_e('撥款金額'); ?></h5>
-									<p><?php echo esc_html($granted_amount); ?></p>
-								<?php endif; ?>
-
-								<?php if ($funding_organization) : ?>
-									<h5><?php pll_e('撥款機構'); ?></h5>
-									<p><?php echo esc_html($funding_organization); ?></p>
-								<?php endif; ?>
-							</div>
-						</div>
-					</div>
-					<div class="col col8">
+					<div class="col col5">
 						<div class="col_spacing">
-							<div class="right_content">
+							<div class="right_content news_right_content">
 								<div class="flexible_layout_wrapper">
+
+									<div class="news_title_wrapper mobile_hide2 scrollin scrollinbottom">
+										<?php $project_category = get_the_terms(get_the_ID(), 'event_category');
+										if ($project_category) {
+											if ($project_category && ! is_wp_error($project_category)) {
+										?>
+
+											<div class="news_cat text5">
+												<?php
+													$termid = $project_category[0]->term_id;
+													$termslug = $project_category[0]->slug;
+													$termlink = get_term_link($project_category[0]);
+													if (is_wp_error($termlink)) {
+														continue;
+													}
+													if (pll_current_language() == 'tc') {
+														$termname = get_field('tc_name', 'project_category_' . $termid);
+													} elseif (pll_current_language() == 'sc') {
+														$termname = get_field('sc_name', 'project_category_' . $termid);
+													} else {
+														$termname = get_field('en_name', 'project_category_' . $termid);
+													};
+												?>
+												<span><?php echo $termname; ?></span>
+											</div>
+										<?php
+											};
+										};
+										?>
+
+										<h1 class="news_title "><?php the_field("project_title"); ?></h1>
+
+									</div>
+
+									<div class="info_item_wrapper scrollin scrollinbottom">
+										<?php if ($funding_start_year || $funding_end_year) : ?>
+											<div class="info_item">
+												<div class="t1 text5"><?php pll_e('撥款年份'); ?></div>
+												<div class="t2 text6">
+													<?php
+													if ($funding_start_year && $funding_end_year) {
+														echo esc_html($funding_start_year . ' - ' . $funding_end_year);
+													} elseif ($funding_start_year) {
+														echo esc_html($funding_start_year);
+													} elseif ($funding_end_year) {
+														echo esc_html($funding_end_year);
+													}
+													?>
+												</div>
+											</div>
+										<?php endif; ?>
+
+										<?php if ($principal_investigator) : ?>
+											<div class="info_item">
+												<div class="t1 text5"><?php pll_e('計劃主持'); ?></div>
+												<div class="t2 text6"><?php echo esc_html($principal_investigator); ?></div>
+											</div>
+										<?php endif; ?>
+
+										<?php if ($other_investigator) : ?>
+											<div class="info_item">
+												<div class="t1 text5"><?php pll_e('其他研究員'); ?></div>
+												<div class="t2 text6"><?php echo esc_html($other_investigator); ?></div>
+											</div>
+										<?php endif; ?>
+
+										<?php if ($granted_amount) : ?>
+											<div class="info_item">
+												<div class="t1 text5"><?php pll_e('撥款金額'); ?></div>
+												<div class="t2 text6"><?php echo esc_html($granted_amount); ?></div>
+											</div>
+										<?php endif; ?>
+
+										<?php if ($funding_organization) : ?>
+											<div class="info_item">
+												<div class="t1 text5"><?php pll_e('撥款機構'); ?></div>
+												<div class="t2 text6"><?php echo esc_html($funding_organization); ?></div>
+											</div>
+										<?php endif; ?>
+
+									</div>
+
 									<?php
 									if (have_rows('flexible_content')) :
+										$i = 0;
 										while (have_rows('flexible_content')) : the_row();
 											if (get_row_layout() == 'free_text') :
-												$freetext = get_sub_field('free_text');
-												if ($freetext) :
+												$free_text = get_sub_field('free_text');
+												if ($free_text) :
 									?>
 													<div class="flexible_layout flexible_layout_freetext scrollin scrollinbottom">
 														<div class="free_text">
-															<?php echo wp_kses_post($freetext); ?>
+															<?php echo wp_kses_post($free_text); ?>
 														</div>
 													</div>
 												<?php
@@ -137,7 +158,9 @@ while (have_posts()) :
 													<div class="flexible_layout flexible_layout_photo scrollin scrollinbottom">
 														<div class="photo_wrapper">
 															<div class="photo">
+																<a href="<?php echo esc_url($image['sizes']['l']); ?>" data-fancybox data-caption="<?php echo $caption; ?>">
 																<img src="<?php echo esc_url($image['sizes']['l']); ?>" alt="<?php echo esc_attr($image['alt']); ?>">
+																</a>
 															</div>
 															<?php if ($caption) : ?>
 																<div class="caption"><?php echo esc_html($caption); ?></div>
@@ -162,7 +185,6 @@ while (have_posts()) :
 												endif;
 											elseif (get_row_layout() == 'slider') :
 												if (have_rows('image_list')) :
-													static $i = 0;
 													$i++;
 												?>
 													<div class="flexible_layout flexible_layout_slider scrollin scrollinbottom">
@@ -172,18 +194,16 @@ while (have_posts()) :
 																while (have_rows('image_list')) : the_row();
 																	$image = get_sub_field('image');
 																	$caption = get_sub_field('caption');
-																	if ($image) :
 																?>
-																		<div class="swiper-slide">
-																			<a href="<?php echo esc_url($image['sizes']['l']); ?>" class="photo" data-fancybox="gallery<?php echo $i; ?>" <?php if ($caption) : ?>data-caption="<?php echo esc_attr($caption); ?>" <?php endif; ?>>
-																				<img src="<?php echo esc_url($image['sizes']['l']); ?>" alt="<?php echo esc_attr($image['alt']); ?>">
-																			</a>
-																			<?php if ($caption) : ?>
-																				<div class="caption"><?php echo esc_html($caption); ?></div>
-																			<?php endif; ?>
-																		</div>
+																	<div class="swiper-slide">
+																		<a href="<?php echo esc_url($image['sizes']['l']); ?>" class="photo" data-fancybox="gallery<?php echo $i; ?>" <?php if ($caption) : ?>data-caption="<?php echo esc_attr($caption); ?>" <?php endif; ?>>
+																			<img src="<?php echo esc_url($image['sizes']['l']); ?>" alt="<?php echo esc_attr($image['alt']); ?>">
+																		</a>
+																		<?php if ($caption) : ?>
+																			<div class="caption"><?php echo esc_html($caption); ?></div>
+																		<?php endif; ?>
+																	</div>
 																<?php
-																	endif;
 																endwhile;
 																?>
 															</div>
