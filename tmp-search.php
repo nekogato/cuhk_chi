@@ -65,6 +65,8 @@ if (have_posts()) :
                             <div x-show="done && result.length==0" style="text-align:center"><?php echo cuhk_multilang_text("找不到任何結果", "", "Sorry, please search again."); ?></div>
 
                             <div x-show="!done && result.length==0" style="text-align:center"><?php echo cuhk_multilang_text("載入中...", "", "Loading..."); ?></div>
+
+                            <div class="ajax_loading"></div>
                         </div>
                     </div>
 
@@ -161,7 +163,7 @@ endif;
             params['action'] = "get_search";
             params['filter'] = that.prefilter;
 
-            jQuery(".news_loading").stop().fadeIn(300);
+            jQuery(".ajax_loading").stop().fadeIn(300);
 
             jQuery.ajax({
                     type : "post",
@@ -178,7 +180,7 @@ endif;
                         }
 
                         that.done = true;
-                        jQuery(".news_loading").stop().fadeOut(300);
+                        jQuery(".ajax_loading").stop().fadeOut(300);
                     }
                 })   
 
