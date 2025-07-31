@@ -30,7 +30,7 @@ if (have_posts()) :
                 <div class="section_description scrollin scrollinbottom col6">
                     <div class="text6 keyword_title"><?php echo cuhk_multilang_text("關鍵字", "", "Keyword"); ?>: </div>
                     <div class="search_wrapper">
-                        <input type="text" placeholder="<?php echo pll__('I am looking for...')?>" id="search_result_input" class="search_input" x-model="filter.keyword" @keyup.enter="query"/> 
+                        <input type="text" placeholder="<?php echo cuhk_multilang_text("我想尋找", "", "I am looking for..."); ?>" id="search_result_input" class="search_input" x-model="filter.keyword" @keyup.enter="query"/> 
                         <div @click="query" class="submit_arrow"></div>
                     </div>
                 </div>
@@ -39,7 +39,7 @@ if (have_posts()) :
             <div class="search_section">
                 <div class="section_center_content small_section_center_content">
                     <!-- other "spotlights" goes here--> 
-                    <div class="search_rol_wrapper scrollin_p">
+                    <div class="search_row_wrapper scrollin_p">
                         <div class="col_wrapper big_col_wrapper">
                             <div class="row flex" x-show="result.length>0">
                                 <template x-for="(elm,index) in result">
@@ -70,7 +70,7 @@ if (have_posts()) :
 
                 
 
-                    <div class="news_pagination" x-show="pager.total>1">
+                    <div class="search_pagination" x-show="pager.total>1">
 
                         <div class='wp-pagenavi' role='navigation'>
                             <a class="previouspostslink" rel="prev" @click="prev()" href="javascript:void(0);" x-show="pager.current>1"><?php echo cuhk_multilang_text("上一頁", "", "PREV"); ?></a>

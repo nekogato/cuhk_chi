@@ -6994,7 +6994,6 @@ body.dragging-scroll {
   padding: 5px 15px;
   border: 1px solid transparent;
   color: #54565A;
-  cursor: pointer;
   text-decoration: none !important;
   display: inline-block;
   box-sizing: content-box;
@@ -7015,8 +7014,9 @@ body.dragging-scroll {
     margin-top: -90px;
 }
 
-.news_pagination{
+.search_pagination{
   text-align: center;
+  margin-top: 90px;
 }
 
 .wp-pagenavi a, .wp-pagenavi span {
