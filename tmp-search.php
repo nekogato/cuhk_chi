@@ -23,6 +23,7 @@ if (have_posts()) :
 ?>
 
 		<div class="section section_content " x-data='search_list' x-init="init">
+			<img src="<?php echo get_template_directory_uri(); ?>/images/ink_bg9.jpg" class="ink_bg9 scrollin scrollinbottom" alt="Background">
 			<div class="section_center_content small_section_center_content">
                 <h1 class="section_title text1 scrollin scrollinbottom"><?php echo cuhk_multilang_text("搜尋", "", "Search"); ?></h1>
             
