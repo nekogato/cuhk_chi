@@ -14,6 +14,12 @@ get_header();
 <?php
 while (have_posts()) :
 	the_post();
+	$funding_start_year = get_field('funding_start_year');
+	$funding_end_year = get_field('funding_end_year');
+	$principal_investigator = get_field('principal_investigator');
+	$other_investigator = get_field('other_investigator');
+	$granted_amount = get_field('granted_amount');
+	$funding_organization = get_field('funding_organization');
 ?>
 
 	
@@ -55,7 +61,7 @@ while (have_posts()) :
 								<div class="flexible_layout_wrapper">
 
 									<div class="news_title_wrapper mobile_hide2 scrollin scrollinbottom">
-										<?php $project_category = get_the_terms(get_the_ID(), 'event_category');
+										<?php $project_category = get_the_terms(get_the_ID(), 'project_category');
 										if ($project_category) {
 											if ($project_category && ! is_wp_error($project_category)) {
 										?>
