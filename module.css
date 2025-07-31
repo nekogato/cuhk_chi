@@ -7171,6 +7171,13 @@ body.dragging-scroll {
 
 @media screen and (max-width: 1023px) { 
 
+    .section_left_right_content2 .right_content::before {
+    top: -130px;
+    right: -100px;
+    left: -100px;
+    }
+
+
     .section_description{
         width: auto;
     }
@@ -8276,14 +8283,14 @@ body.dragging-scroll {
 
       .section_left_right_content2 .right_content {
         margin-top: 0px;
-        padding-top: 0px;
+        padding-top: 30px;
         position: relative;
       }
 
       .section_left_right_content2 .right_content::before {
         content: "";
         position: absolute;    
-        top: -30px;
+        top: 0px;
         right: -15px;
         left: -15px;
         height: 200px;
@@ -8292,6 +8299,10 @@ body.dragging-scroll {
       .news_right_content .news_title_wrapper{
         margin-top: auto;
         margin-bottom: auto;
+    }
+
+    .news_title_wrapper + .info_item_wrapper {
+    margin-top: 0px;
     }
 
     /* year_list_section */

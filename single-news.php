@@ -108,7 +108,7 @@ while (have_posts()) :
 
 					<?php
 					}; ?>
-					<div class="col col5">
+					<div class="col <?php if($news_banner){echo "col5"; }else{ echo "col7"; }; ?>">
 						<div class="col_spacing">
 							<div class="right_content news_right_content">
 								<div class="flexible_layout_wrapper ">
