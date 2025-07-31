@@ -23,12 +23,11 @@ if (have_posts()) :
 ?>
 
 		<div class="section section_content ">
-			<img src="<?php echo get_template_directory_uri(); ?>/images/ink_bg9.jpg" class="ink_bg9 scrollin scrollinbottom" alt="Background">
 			<div class="section_center_content xs_section_center_content">
                 <h1 class="section_title text1 scrollin scrollinbottom"><?php echo cuhk_multilang_text("搜尋", "", "Search"); ?></h1>
             
                 <div class="section_description scrollin scrollinbottom col6">
-                    <div class="cat_title text7"><?php echo pll__('Keyword')?>: </div>
+                    <div class="cat_title text7"><?php echo cuhk_multilang_text("關鍵字", "", "Keyword"); ?>: </div>
                     <div class="search_wrapper"><input type="text" placeholder="<?php echo pll__('I am looking for...')?>" id="search_result_input" class="search_input" x-model="filter.keyword" @keyup.enter="query"/> <div @click="query" class="submit_arrow"></div></div>
                 </div>
 			</div>

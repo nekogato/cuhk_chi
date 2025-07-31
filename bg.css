@@ -135,11 +135,13 @@
 
 .ink_bg9{
     position: absolute;
-    top:0%;
+    bottom: 0%;
     right: 0px;
     width: 100%;
-    height: auto;
-    object-fit: cover;
+    height: 100%;
+    object-fit: contain;
+    top: 0px;
+    object-position: left center;
 }
 
 .home_promotion_section .ink_bg9_wrapper{
