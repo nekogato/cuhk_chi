@@ -64,7 +64,7 @@ if (have_posts()) :
                             </div>
                             <div x-show="done && result.length==0" style="text-align:center"><?php echo cuhk_multilang_text("找不到任何結果", "", "Sorry, please search again."); ?></div>
 
-                            <div x-show="!done && result.length==0" style="text-align:center"><?php echo cuhk_multilang_text("載入中...", "", "Loading..."); ?></div>
+                            <!-- <div x-show="!done && result.length==0" style="text-align:center"><?php echo cuhk_multilang_text("載入中...", "", "Loading..."); ?></div> -->
 
                             <div class="ajax_loading2"></div>
                         </div>
