@@ -6922,6 +6922,23 @@ body.dragging-scroll {
     text-align: left;
 }
 
+.search_wrapper .subtitle{
+    background: none;
+  border: none;
+  border-radius: 999px;
+  text-transform: uppercase;
+  line-height: 1em;
+  padding: 5px 15px;
+  border: 1px solid transparent;
+  color: #54565A;
+  cursor: pointer;
+  text-decoration: none !important;
+  display: inline-block;
+  box-sizing: content-box;
+  border: 1px solid #ae6364;
+  color: #ae6364;
+}
+
 .search_wrapper .search_input {
   background: none;
   border: none;
