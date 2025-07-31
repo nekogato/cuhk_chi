@@ -250,6 +250,10 @@
         margin-top: 30px;
     }
 
+    .mobile_hide2:first-child + .flexible_layout{
+        margin-top: 0px;
+    }
+
     .flexible_layout_one_column .col8.col{
         width: 100%;
         
