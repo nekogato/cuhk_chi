@@ -28,7 +28,7 @@ if (have_posts()) :
                 <h1 class="section_title text1 scrollin scrollinbottom"><?php echo cuhk_multilang_text("搜尋", "", "Search"); ?></h1>
             
                 <div class="section_description scrollin scrollinbottom col6">
-                    <div class="text6 keyword_title"><?php echo cuhk_multilang_text("關鍵字", "", "Keyword"); ?>: </div>
+                    <!-- <div class="text6 keyword_title"><?php echo cuhk_multilang_text("關鍵字", "", "Keyword"); ?>: </div> -->
                     <div class="search_wrapper">
                         <input type="text" placeholder="<?php echo cuhk_multilang_text("我想尋找...", "", "I am looking for..."); ?>" id="search_result_input" class="search_input" x-model="filter.keyword" @keyup.enter="query"/> 
                         <div @click="query" class="submit_arrow"></div>

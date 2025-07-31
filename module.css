@@ -6914,6 +6914,10 @@ body.dragging-scroll {
     margin-top: 10px;
 }
 
+.search_wrapper:first-child{
+    margin-top: auto;
+}
+
 .keyword_title{
     text-align: left;
 }
