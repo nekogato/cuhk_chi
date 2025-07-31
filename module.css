@@ -6913,6 +6913,15 @@ body.dragging-scroll {
     margin-top: 100px;
 }
 
+.search_wrapper{
+    position: relative;
+    margin-top: 30px;
+}
+
+.keyword_title{
+    text-align: left;
+}
+
 .search_wrapper .search_input {
   background: none;
   border: none;

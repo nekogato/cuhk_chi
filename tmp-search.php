@@ -22,13 +22,16 @@ if (have_posts()) :
 	while (have_posts()) : the_post();
 ?>
 
-		<div class="section section_content ">
+		<div class="section section_content " x-data='search_list' x-init="init">
 			<div class="section_center_content xs_section_center_content">
                 <h1 class="section_title text1 scrollin scrollinbottom"><?php echo cuhk_multilang_text("搜尋", "", "Search"); ?></h1>
             
                 <div class="section_description scrollin scrollinbottom col6">
-                    <div class="cat_title text7"><?php echo cuhk_multilang_text("關鍵字", "", "Keyword"); ?>: </div>
-                    <div class="search_wrapper"><input type="text" placeholder="<?php echo pll__('I am looking for...')?>" id="search_result_input" class="search_input" x-model="filter.keyword" @keyup.enter="query"/> <div @click="query" class="submit_arrow"></div></div>
+                    <div class="text6 keyword_title"><?php echo cuhk_multilang_text("關鍵字", "", "Keyword"); ?>: </div>
+                    <div class="search_wrapper">
+                        <input type="text" placeholder="<?php echo pll__('I am looking for...')?>" id="search_result_input" class="search_input" x-model="filter.keyword" @keyup.enter="query"/> 
+                        <div @click="query" class="submit_arrow"></div>
+                    </div>
                 </div>
 			</div>
 
