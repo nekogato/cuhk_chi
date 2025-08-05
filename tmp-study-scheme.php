@@ -247,7 +247,9 @@ while (have_posts()) :
                                                                                 <?php echo wp_kses_post($course_units); ?>
                                                                                 <span class="unit text5"><?php echo cuhk_multilang_text("學分","",($course_units != 1) ? 'Units' : 'Unit'); ?></span>
                                                                             </div>
+                                                                            <?php if ($course_short_description) : ?>
                                                                             <div class="icon_wrapper"><a class="icon"></a></div>
+                                                                            <?php endif; ?>
                                                                         </div>
                                                                     </div>
                                                                     <?php if ($course_short_description) : ?>
@@ -308,7 +310,9 @@ while (have_posts()) :
                                                                 <?php echo wp_kses_post($course_units); ?>
                                                                 <span class="unit text5"><?php echo cuhk_multilang_text("學分","",($course_units != 1) ? 'Units' : 'Unit'); ?></span>
                                                             </div>
+                                                            <?php if ($course_short_description) : ?>
                                                             <div class="icon_wrapper"><a class="icon"></a></div>
+                                                            <?php endif; ?>
                                                         </div>
                                                     </div>
                                                     <?php if ($course_short_description) : ?>
@@ -370,7 +374,9 @@ while (have_posts()) :
                                                 <?php echo wp_kses_post($course_units); ?>
                                                 <span class="unit text5"><?php echo cuhk_multilang_text("學分","",($course_units != 1) ? 'Units' : 'Unit'); ?></span>
                                             </div>
+                                            <?php if ($course_short_description) : ?>
                                             <div class="icon_wrapper"><a class="icon"></a></div>
+                                            <?php endif; ?>
                                         </div>
                                     </div>
                                     <?php if ($course_short_description) : ?>
