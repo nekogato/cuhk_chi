@@ -6517,6 +6517,7 @@ body.dragging-scroll {
     display: flex;
     margin-top: 30px;
     position: relative;
+    z-index: 1;
 }
 
 .scheme_groups_dropdown_wrapper:first-child{
