@@ -7083,6 +7083,14 @@ body.dragging-scroll {
     color: #000000 !important;
   }
 
+
+/* newsletter_main*/
+
+.newsletter_main{
+    position: relative;
+    z-index: 10;
+}
+
 /* general_section */
 
 .general_section .general_content{
