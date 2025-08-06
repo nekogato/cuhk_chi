@@ -25,7 +25,9 @@ while (have_posts()) :
 
 		<div class="section_center_content small_section_center_content">
 			<h1 class="section_title text1 scrollin scrollinbottom"><?php the_title(); ?></h1>
+			<?php if(get_field('introduction')){ ?>
 			<div class="section_description scrollin scrollinbottom col6"><?php echo get_field('introduction'); ?></div>
+			<?php }; ?>
 		</div>
 	</div>
 
