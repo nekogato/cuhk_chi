@@ -92,7 +92,7 @@ while (have_posts()) :
 										<div class="flexible_layout flexible_layout_photo scrollin scrollinleft">
 											<div class="photo_wrapper">
 												<div class="photo">
-													<a href="<?php echo esc_url($event_banner['sizes']['l']); ?>" data-fancybox>
+													<a href="<?php echo esc_url($news_banner['sizes']['l']); ?>" data-fancybox>
 													<img src="<?php echo esc_url($news_banner["sizes"]["l"]); ?>" alt="<?php echo esc_attr($news_banner['alt']); ?>">
 													</a>
 												</div>
