@@ -3539,7 +3539,7 @@ body.dragging-scroll {
 
 
 .section_left_right_content2 .left_content .caption{
-    margin-left: 50px;
+    /* margin-left: 50px; */
 }
 
 .section_left_right_content2 .right_content{
@@ -7089,6 +7089,49 @@ body.dragging-scroll {
 .newsletter_main{
     position: relative;
     z-index: 10;
+}
+
+/* section_mid_link_menu */
+
+.section_introduction + .section_mid_link_menu{
+    padding-top: 50px;
+    padding-bottom: 50px;
+    position: relative;
+    margin-top: 50px;
+
+}
+
+.section_introduction + .section_mid_link_menu::before {
+  content: "";
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+  margin: auto;
+  height: 80px;
+  background: linear-gradient(0deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.section_mid_link_menu + .section_introduction{
+    margin-top: 50px;
+}
+
+.section_mid_link_menu ul{
+    display: flex;
+    gap:25px;
+    position: relative;
+    z-index: 1;
+}
+
+.section_mid_link_menu ul li + li{
+    padding-left: 25px;  
+    border-left: 1px solid #D5CECA;
+}
+
+.section_introduction + .section_introduction{
+    padding-top: 100px;
 }
 
 /* general_section */
