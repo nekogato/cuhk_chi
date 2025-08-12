@@ -1356,19 +1356,42 @@ function filter_events()
 
 	// Build query args
 	$args = array(
-		'post_type' => 'event',
+		'post_type'      => 'event',
 		'posts_per_page' => EVENTS_PER_PAGE,
-		'paged' => $page,
-		'meta_key' => 'start_date',
-		'orderby' => 'meta_value',
-		'order' => 'ASC',
-		'post_status' => 'publish',
-		'meta_query' => array(
+		'paged'          => $page,
+		'meta_key'       => 'start_date',
+		'orderby'        => 'meta_value',
+		'order'          => 'ASC',
+		'post_status'    => 'publish',
+		'meta_query'     => array(
+			'relation' => 'OR', // 使用 OR 關聯，滿足任一條件
 			array(
-				'key' => 'start_date',
-				'value' => $today,
+				// 條件 1: 未來的 event（start_date >= 今天）
+				'key'     => 'start_date',
+				'value'   => $today,
 				'compare' => '>=',
-				'type' => 'DATE'
+				'type'    => 'DATE'
+			),
+			array(
+				// 條件 2: 尚未結束的 event（end_date >= 今天，且 end_date 存在）
+				'key'     => 'end_date',
+				'value'   => $today,
+				'compare' => '>=',
+				'type'    => 'DATE'
+			),
+			array(
+				// 條件 3: 只有 start_date 的單天 event（end_date 不存在或為空）
+				'relation' => 'AND',
+				array(
+					'key'     => 'start_date',
+					'value'   => $today,
+					'compare' => '>=',
+					'type'    => 'DATE'
+				),
+				array(
+					'key'     => 'end_date',
+					'compare' => 'NOT EXISTS', // 處理 end_date 為空的情況
+				)
 			)
 		)
 	);
