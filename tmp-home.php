@@ -169,7 +169,7 @@ get_header(); ?>
 					'value' => $month,
 					'year' => $year,
 					'chinese' => date('n月', mktime(0, 0, 0, $month, 1)),
-					'english' => date('F', mktime(0, 0, 0, $month, 1))
+					'english' => date('M', mktime(0, 0, 0, $month, 1))
 				);
 			}
 		}
