@@ -1548,8 +1548,8 @@ body.dragging-scroll {
 }
 
 .home_news_year_slider{
-    padding-top: 0px;
-    padding-bottom: 60px;
+    padding-top: 60px;
+    padding-bottom: 0px;
     position: relative;
 }
 
@@ -1678,10 +1678,10 @@ body.dragging-scroll {
     content:"";
     position: absolute;
     left: 0px;
-    bottom: 0px;
+    top: 0px;
     width: 100%;
     height: 50px;
-    background: linear-gradient(0deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 100%);
+    background: linear-gradient(180deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 100%);
 }
 
 .home_news_year_slider .t_wrapper{
@@ -1701,6 +1701,8 @@ body.dragging-scroll {
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
+    font-weight: 600;
+    text-transform: uppercase;
 }
 
 .home_news_year_slider .t2{

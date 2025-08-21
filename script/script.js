@@ -1201,12 +1201,12 @@ function init_function(){
 
 	
 
-	$(".home_promotion_box").click(function(){
+	$(".home_promotion_box .title").click(function(){
 
 		var normal_w = $(".home_promotion_box:not(.active)").width();
 		var final_w = $(".home_promotion_box_wrapper .section_center_content").width() - ($(".home_promotion_box").length-1)*$(".home_promotion_box:not(.active)").outerWidth();
-		var $this = $(this);
-		if($(this).hasClass("active")){
+		var $this = $(this).parents(".home_promotion_box");
+		if($this.hasClass("active")){
 			//$(this).removeClass("active")
 		}else{
 			var $currentslide = $(".home_promotion_box.active");
@@ -1215,10 +1215,10 @@ function init_function(){
 			
 
 
-			$(this).css({
+			$this.css({
 				"width":normal_w+"px",
 			});
-			$(this).addClass("active")
+			$this.addClass("active")
 			setTimeout(function(){
 				$currentslide.stop().animate({
 					"width":normal_w+"px",
