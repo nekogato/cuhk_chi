@@ -2348,6 +2348,10 @@ body.dragging-scroll {
     letter-spacing: 0.1em;
 }
 
+.en_body .home_promotion_box .title .rotate_text_wrapper  span{
+    letter-spacing: 0em;
+}
+
 .home_promotion_box .title .num{
     font-size: calc(12px + 1.3vw);
     position: relative;
