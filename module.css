@@ -4835,7 +4835,7 @@ body.dragging-scroll {
 /* student_list_item */
 
 .student_list_section{
-    z-index:unset;
+    /* z-index:unset; */
 }
 
 .filter_menu_section + .student_list_section{
@@ -5138,6 +5138,7 @@ body.dragging-scroll {
 
 .people_detail_content_year_list .year{
     color:#62629e;
+    white-space: nowrap;
 }
 
 .people_detail_content_year_list .free_text h1,
