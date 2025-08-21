@@ -5028,6 +5028,7 @@ body.dragging-scroll {
     font-family: "richmond-text","Chiron Sung HK WS", sans-serif !important;
     color:#62629e;
     margin-top: 10px;
+      font-weight: 600;
 }
 
 .people_detail_text .name:first-child{
