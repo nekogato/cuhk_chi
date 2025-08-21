@@ -769,7 +769,7 @@ function load_teaching_staff()
 
 	$args = array(
 		'post_type' => 'profile',
-		'posts_per_page' => MAX_POSTGRADUATE_STUDENTS_PER_PAGE,
+		'posts_per_page' => -1,
 		'paged' => $page,
 		'order' => 'asc',
 		'tax_query' => $tax_query,

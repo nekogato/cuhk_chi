@@ -2371,6 +2371,14 @@ body.dragging-scroll {
       writing-mode: vertical-lr;
 }
 
+.en_body .home_promotion_box .rotate_text_wrapper{
+      writing-mode: vertical-rl;
+}
+
+.en_body .home_promotion_box .rotate_text_wrapper h3{   
+        line-height: 1.1em;
+}
+
 .home_promotion_box .hidden_wrapper{
     position: relative;
     width: 100%;
