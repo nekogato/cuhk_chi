@@ -1138,9 +1138,9 @@ function init_function(){
 				committee_list_slider.slidePrev();
 			})
 		}else{
-			this.find(".next_btn").hide();
-			this.find(".prev_btn").hide();
-			this.find(".dot_wrapper").hide();
+			$this.find(".next_btn").hide();
+			$this.find(".prev_btn").hide();
+			$this.find(".dot_wrapper").hide();
 		}
 	})
 
