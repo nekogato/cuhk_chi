@@ -13,7 +13,7 @@ $teaching_staff_term = get_term_by('slug', 'teaching-staff', 'people_category');
 if ($teaching_staff_term) {
 	$child_terms = get_terms(array(
 		'taxonomy' => 'people_category',
-		'hide_empty' => false,
+		'hide_empty' => true,
 		'parent' => $teaching_staff_term->term_id,
 	));
 }
