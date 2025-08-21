@@ -35,11 +35,11 @@ while (have_posts()) :
 										</div>
 										<?php if ($hero_banner['buttons']) : ?>
 											<div class="border_btn_wrapper">
-												<div class="btn_title"><?php echo cuhk_multilang_text("下載檔案","","Download PDF"); ?></div>
+												<div class="btn_title text7"><?php echo cuhk_multilang_text("下載檔案","","Download PDF"); ?></div>
 												
 												<?php foreach ($hero_banner['buttons'] as $button) : ?>
 													<?php if ($button['button_link']) : ?>
-														<a class="btn" href="<?php echo esc_url($button['button_link']['url']); ?>">
+														<a class="btn" target="_blank" href="<?php echo esc_url($button['button_link']['url']); ?>">
 															<div class="btn_text"><?php echo esc_html($button['button_text']); ?></div>
 														</a>
 													<?php endif; ?>
