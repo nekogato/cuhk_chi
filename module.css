@@ -3380,7 +3380,7 @@ body.dragging-scroll {
     background-color: #009594;
 }
 
-.top_photo_banner_section .text_wrapper .border_btn_wrapper .btn:hover::before{
+.top_photo_banner_section .text_wrapper .border_btn_wrapper .btn:hover .btn_text::before{
     background-color: #fff;
     right: 2px;
 }
@@ -3399,7 +3399,7 @@ body.dragging-scroll {
     transform: rotate(-45deg);
 }
 
-.top_photo_banner_section .text_wrapper .border_btn_wrapper .btn:hover::after{
+.top_photo_banner_section .text_wrapper .border_btn_wrapper .btn:hover .btn_text::after{
     border-top:1px solid #fff;
     border-left:1px solid #fff;
     right: 22px;
