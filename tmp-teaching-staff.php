@@ -268,16 +268,16 @@ if ($teaching_staff_term) {
 				if (this.loading) return;
 				this.loading = true;
 				$(".ajax_loading").stop().fadeIn();
-				$(".student_list_item_wrapper").height($(".student_list_item_wrapper").height());
+				// $(".student_list_item_wrapper").height($(".student_list_item_wrapper").height());
 
-				$(".student_list_item").css({
-					"-webkit-transition-delay": 0 + "ms",
-					"transition-delay": 0 + "ms",
-				})
+				// $(".student_list_item").css({
+				// 	"-webkit-transition-delay": 0 + "ms",
+				// 	"transition-delay": 0 + "ms",
+				// })
 
-				setTimeout(function() {
-					$(".student_list_item").removeClass("startani")
-				}, 0);
+				// setTimeout(function() {
+				// 	$(".student_list_item").removeClass("startani")
+				// }, 0);
 				try {
 					const response = await fetch(ajaxurl, {
 						method: 'POST',
@@ -295,7 +295,6 @@ if ($teaching_staff_term) {
 
 					const data = await response.json();
 					if (data.success) {
-						console.log(data.data.staff)
 						const newStaff = data.data.staff.map(staff => ({
 							...staff,
 							contact_info: this.formatContactInfo(staff)
@@ -311,7 +310,7 @@ if ($teaching_staff_term) {
 						$(".ajax_loading").stop().fadeOut();
 						setTimeout(function() {
 							doscroll();
-							$(".student_list_item_wrapper").height("auto")
+							//$(".student_list_item_wrapper").height("auto")
 						}, 300)
 					}
 				} catch (error) {
@@ -319,7 +318,7 @@ if ($teaching_staff_term) {
 					$(".ajax_loading").stop().fadeOut();
 					setTimeout(function() {
 						doscroll();
-						$(".student_list_item_wrapper").height("auto")
+						//$(".student_list_item_wrapper").height("auto")
 					}, 300)
 				} finally {
 					this.loading = false;
@@ -327,7 +326,7 @@ if ($teaching_staff_term) {
 					$(".ajax_loading").stop().fadeOut();
 					setTimeout(function() {
 						doscroll();
-						$(".student_list_item_wrapper").height("auto")
+						//$(".student_list_item_wrapper").height("auto")
 					}, 300)
 				}
 			},
