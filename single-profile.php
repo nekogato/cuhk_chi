@@ -213,7 +213,7 @@ if (have_posts()) :
 										<table>
 											<thead>
 												<tr>
-													<td class="year"><?php echo cuhk_multilang_text("年份","","Year"); ?></td>
+													<td class="year"><?php echo cuhk_multilang_text("年度","","Year"); ?></td>
 													<td class="free_text"><?php echo cuhk_multilang_text("研究","","Research"); ?></td>
 												</tr>
 											</thead>
@@ -262,7 +262,7 @@ if (have_posts()) :
 										<table>
 											<thead>
 												<tr>
-													<td class="year"><?php echo cuhk_multilang_text("年份","","Year"); ?></td>
+													<td class="year"><?php echo cuhk_multilang_text("年度","","Year"); ?></td>
 													<td class="free_text"><?php echo cuhk_multilang_text("獎項","","Awards"); ?></td>
 												</tr>
 											</thead>
