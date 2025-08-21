@@ -3343,11 +3343,16 @@ body.dragging-scroll {
 
 .top_photo_banner_section .text_wrapper .border_btn_wrapper .btn{
     display: block;
-    border: 1px solid #fff;
     padding: 5px 10px;
     border-radius: 999px;
     background-color: #fff;
 }
+
+.top_photo_banner_section .text_wrapper .border_btn_wrapper .btn:hover{
+    background-color: #63629B;
+    color:#fff;
+}
+
 
 .top_photo_banner_section .text_wrapper .border_btn_wrapper .btn + .btn{
     margin-top: 10px;
