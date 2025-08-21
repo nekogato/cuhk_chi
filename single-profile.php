@@ -157,7 +157,7 @@ if (have_posts()) :
 				<?php if ($research_interests): ?>
 					<div class="expandable_item">
 						<div class="section_center_content small_section_center_content">
-							<div class="expandable_title text5"><?php echo cuhk_multilang_text("研究專長","","Research Schemes"); ?><div class="icon"></div>
+							<div class="expandable_title text5"><?php echo cuhk_multilang_text("研究興趣","","Research Interests"); ?><div class="icon"></div>
 							</div>
 							<div class="hidden">
 								<div class="hidden_content">
