@@ -3380,6 +3380,11 @@ body.dragging-scroll {
     background-color: #009594;
 }
 
+.top_photo_banner_section .text_wrapper .border_btn_wrapper .btn:hover::before{
+    background-color: #fff;
+    right: 2px;
+}
+
 .top_photo_banner_section .text_wrapper .border_btn_wrapper .btn_text::after{
     content:"";
     position: absolute;
@@ -3392,6 +3397,12 @@ body.dragging-scroll {
     border-top:1px solid #009594;
     border-left:1px solid #009594;
     transform: rotate(-45deg);
+}
+
+.top_photo_banner_section .text_wrapper .border_btn_wrapper .btn:hover::after{
+    border-top:1px solid #fff;
+    border-left:1px solid #fff;
+    right: 22px;
 }
 
 .top_photo_banner_section .absolute_vertical_text_wrapper{
