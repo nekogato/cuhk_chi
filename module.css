@@ -3350,12 +3350,12 @@ body.dragging-scroll {
 }
 
 .top_photo_banner_section .text_wrapper .border_btn_wrapper .btn + .btn{
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .top_photo_banner_section .text_wrapper .border_btn_wrapper .btn_title{
     color:#63629B;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .top_photo_banner_section .text_wrapper .border_btn_wrapper .btn_text{
