@@ -46,8 +46,8 @@ if (have_posts()) :
 												<table>
 													<thead>
 														<tr>
-															<td><?php pll_e('職位'); ?></td>
-															<td><?php pll_e('姓名'); ?></td>
+															<td><?php echo cuhk_multilang_text("職位", "", "Position"); ?></td>
+															<td><?php echo cuhk_multilang_text("姓名", "", "Name"); ?></td>
 														</tr>
 													</thead>
 													<tbody>
@@ -77,7 +77,7 @@ if (have_posts()) :
 		<?php if (have_rows('photo_albums')): ?>
 			<div class="section section_content section_committee_album">
 				<div class="section_center_content small_section_center_content scrollin scrollinbottom">
-					<h3 class="section_smalltitle"><?php pll_e('學生相簿'); ?></h3>
+					<h3 class="section_smalltitle"><?php echo cuhk_multilang_text("學生活動", "", "Activities"); ?></h3>
 					<div class="committee_albums_slider">
 						<div class="swiper-container swiper">
 							<div class="swiper-wrapper">
