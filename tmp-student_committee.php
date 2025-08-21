@@ -24,7 +24,7 @@ if (have_posts()) :
 		<div class="section section_content section_committee">
 			<div class="section_center_content small_section_center_content scrollin scrollinbottom">
 				<div class="committee_list free_text">
-					<h3 class="section_smalltitle"><?php pll_e('學生組織'); ?></h3>
+					<h3 class="section_smalltitle"><?php echo cuhk_multilang_text("學生組織", "", "Student Associations"); ?></h3>
 					<?php if (have_rows('organization_list')): ?>
 						<ol>
 							<?php while (have_rows('organization_list')): the_row(); ?>

@@ -1107,35 +1107,37 @@ function init_function(){
 
 	$(".committee_list_slider").each(function(){
 		var $this = $(this);
-		var committee_list_slider = new Swiper($this.find(".swiper-container")[0], {
-			autoplay: false,
-			slidesPerView: 3,
-			speed: 1600,
-			loop: true,
-			spaceBetween: 30,
-			breakpoints: {
-				// when window width is >= 320px
-				320: {
-					slidesPerView: 1,
+		if($this.find(".swiper-slide").length>1){
+			var committee_list_slider = new Swiper($this.find(".swiper-container")[0], {
+				autoplay: false,
+				slidesPerView: 3,
+				speed: 1600,
+				loop: false,
+				spaceBetween: 30,
+				breakpoints: {
+					// when window width is >= 320px
+					320: {
+						slidesPerView: 1,
+					},
+					// when window width is >= 480px
+					480: {
+						slidesPerView: 1,
+					},
+					// when window width is >= 640px
+					640: {
+						slidesPerView: 3,
+					}
 				},
-				// when window width is >= 480px
-				480: {
-					slidesPerView: 1,
-				},
-				// when window width is >= 640px
-				640: {
-					slidesPerView: 3,
-				}
-			},
-		});
+			});
 
-		$this.find(".next_btn").click(function(){
-			committee_list_slider.slideNext();
-		})
+			$this.find(".next_btn").click(function(){
+				committee_list_slider.slideNext();
+			})
 
-		$this.find(".prev_btn").click(function(){
-			committee_list_slider.slidePrev();
-		})
+			$this.find(".prev_btn").click(function(){
+				committee_list_slider.slidePrev();
+			})
+		}
 	})
 
 
