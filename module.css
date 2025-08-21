@@ -4454,7 +4454,7 @@ body.dragging-scroll {
       right: 0px;
       top:100%;
       margin: auto;  
-      margin-top: 20px;
+      margin-top: 3px;
       box-sizing: border-box;
 }
 
@@ -5037,6 +5037,7 @@ body.dragging-scroll {
 .people_detail_text .position{
     font-family: "richmond-text","Chiron Sung HK WS", sans-serif !important;
     /* color:#62629e; */
+    font-weight: 600;
 }
 
 .people_detail_text .qualifications{

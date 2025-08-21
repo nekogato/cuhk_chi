@@ -67,7 +67,7 @@ if (have_posts()) :
 							</div>
 						</div>
 						<div class="people_detail_text scrollin scrollinbottom">
-							<div class="name text3"><?php the_title(); ?></div>
+							<div class="name text4"><?php the_title(); ?></div>
 							<?php if ($position): ?>
 								<div class="position text5"><?php echo esc_html($position); ?></div>
 							<?php endif; ?>
@@ -189,7 +189,7 @@ if (have_posts()) :
 				<?php if ($selected_publications): ?>
 					<div class="expandable_item">
 						<div class="section_center_content small_section_center_content">
-							<div class="expandable_title text5"><?php echo cuhk_multilang_text("著作選錄","","Selected Publications"); ?><div class="icon"></div>
+							<div class="expandable_title text5"><?php echo cuhk_multilang_text("著作選錄","著作选录","Selected Publications"); ?><div class="icon"></div>
 							</div>
 							<div class="hidden">
 								<div class="hidden_content">
