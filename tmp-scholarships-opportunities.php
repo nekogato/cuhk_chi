@@ -28,23 +28,21 @@ if (have_posts()) :
 					<div class="filter_menu_content">
 						<div class="filter_checkbox_wrapper text7 scholarship_filter">
 							<div class="filter_checkbox">
-								<div class="checkbox"><input type="radio" name="filter" id="all" checked><label for="all"><span><?php pll_e('All'); ?></span></label></div>
+								<div class="checkbox"><input type="radio" name="filter" id="all" checked><label for="all"><span><?php echo cuhk_multilang_text("全部", "", "All"); ?></span></label></div>
 							</div>
 							<div class="filter_checkbox">
-								<div class="checkbox"><input type="radio" name="filter" id="ba_programme"><label for="ba_programme"><span><?php pll_e('BA programme'); ?></span></label></div>
+								<div class="checkbox"><input type="radio" name="filter" id="ba_programme"><label for="ba_programme"><span><?php echo cuhk_multilang_text("本科課程", "", "B.A. Programme"); ?></span></label></div>
 							</div>
 							<div class="filter_checkbox">
-								<div class="checkbox"><input type="radio" name="filter" id="ma_programme"><label for="ma_programme"><span><?php pll_e('MA programme'); ?></span></label></div>
+								<div class="checkbox"><input type="radio" name="filter" id="ma_programme"><label for="ma_programme"><span><?php echo cuhk_multilang_text("文學碩士課程", "", "M.A. Programme"); ?></span></label></div>
 							</div>
 							<div class="filter_checkbox">
-								<div class="checkbox"><input type="radio" name="filter" id="mphil_programme"><label for="mphil_programme"><span><?php pll_e('MPhil programme'); ?></span></label></div>
+								<div class="checkbox"><input type="radio" name="filter" id="mphil_programme"><label for="mphil_programme"><span><?php echo cuhk_multilang_text("哲學碩士課程", "", "M.Phil. Programme"); ?></span></label></div>
 							</div>
 							<div class="filter_checkbox">
-								<div class="checkbox"><input type="radio" name="filter" id="phd_programme"><label for="phd_programme"><span><?php pll_e('PhD programme'); ?></span></label></div>
+								<div class="checkbox"><input type="radio" name="filter" id="phd_programme"><label for="phd_programme"><span><?php echo cuhk_multilang_text("哲學博士課程", "", "Ph.D. Programme"); ?></span></label></div>
 							</div>
-							<div class="filter_checkbox">
-								<div class="checkbox"><input type="radio" name="filter" id="general_education"><label for="general_education"><span><?php pll_e('General Education'); ?></span></label></div>
-							</div>
+
 						</div>
 					</div>
 				</div>
@@ -75,35 +73,35 @@ if (have_posts()) :
 										<div class="table_flex_item_wrapper">
 											<?php if ($scholarship['scholarship_title']) : ?>
 												<div class="table_flex_item">
-													<div class="title text7"><?php pll_e('Title of scholarship'); ?></div>
+													<div class="title text7"><?php echo cuhk_multilang_text("名稱", "", "Title of scholarship"); ?></div>
 													<div class="text"><?php echo esc_html($scholarship['scholarship_title']); ?></div>
 												</div>
 											<?php endif; ?>
 
 											<?php if ($scholarship['amount']) : ?>
 												<div class="table_flex_item">
-													<div class="title text7"><?php pll_e('Amount'); ?></div>
+													<div class="title text7"><?php echo cuhk_multilang_text("金額", "", "Amount per Recipient "); ?></div>
 													<div class="text"><?php echo esc_html($scholarship['amount']); ?></div>
 												</div>
 											<?php endif; ?>
 
 											<?php if ($scholarship['application_period']) : ?>
 												<div class="table_flex_item">
-													<div class="title text7"><?php pll_e('Application period'); ?></div>
+													<div class="title text7"><?php echo cuhk_multilang_text("申請期限", "", "Application Period"); ?></div>
 													<div class="text"><?php echo esc_html($scholarship['application_period']); ?></div>
 												</div>
 											<?php endif; ?>
 
 											<?php if ($scholarship['target_student']) : ?>
 												<div class="table_flex_item">
-													<div class="title text7"><?php pll_e('Target Student'); ?></div>
+													<div class="title text7"><?php echo cuhk_multilang_text("對象", "", "Target Student"); ?></div>
 													<div class="text"><?php echo wp_kses_post($scholarship['target_student']); ?></div>
 												</div>
 											<?php endif; ?>
 
 											<?php if ($scholarship['description']) : ?>
 												<div class="table_flex_item">
-													<div class="title text7"><?php pll_e('Description'); ?></div>
+													<div class="title text7"><?php echo cuhk_multilang_text("申請詳情及條件", "", "Descriptions / Eligibility"); ?></div>
 													<div class="text free_text"><?php echo wp_kses_post($scholarship['description']); ?></div>
 												</div>
 											<?php endif; ?>
