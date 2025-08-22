@@ -4173,6 +4173,10 @@ body.dragging-scroll {
     padding-bottom: 100px;
 }
 
+.filter_menu_section + .news_box_section{
+    padding-top: 0px;
+}
+
 .news_gallery_box_section{
     padding-top: 0px;
     }
