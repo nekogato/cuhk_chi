@@ -258,44 +258,6 @@ while (have_posts()) :
 		}
 	}
 </script>
-	<script>
-		jQuery(document).ready(function($) {
-			$('.load_more_btn').on('click', function(e) {
-				e.preventDefault();
-				var button = $(this);
-				var page = parseInt(button.data('page'));
-				var maxPages = parseInt(button.data('max-pages'));
-
-				$.ajax({
-					url: '<?php echo admin_url('admin-ajax.php'); ?>',
-					type: 'POST',
-					data: {
-						action: 'load_more_news',
-						nonce: '<?php echo wp_create_nonce('load_more_nonce'); ?>',
-						page: page + 1
-					},
-					beforeSend: function() {
-						button.addClass('loading');
-					},
-					success: function(response) {
-						if (response) {
-							$('#news-container').append(response);
-							button.data('page', page + 1);
-
-							if (page + 1 >= maxPages) {
-								button.parent().hide();
-							}
-						}
-					},
-					complete: function() {
-						button.removeClass('loading');
-						dosize();
-						doscroll();
-					}
-				});
-			});
-		});
-	</script>
 
 <?php
 endwhile;
