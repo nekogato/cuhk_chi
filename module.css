@@ -5059,7 +5059,16 @@ body.dragging-scroll {
     box-sizing: border-box;
 }
 
+.people_detail_text .free_text .round_btn{
+    border:1px #62629b solid;
+    color:#62629b;
+}
 
+.people_detail_text .free_text .round_btn:hover{
+    border:1px #62629b solid;
+    color:#fff;
+    background-color: #62629b;
+}
 
 .people_popup .people_detail_text{
     max-height: 500px;
