@@ -1810,6 +1810,9 @@ ol:not(.free_text ol), ul:not(.free_text ul) {
 		margin-right: 15px;
 	  }
 
+	.free_text .table-bg tbody td{
+		padding: 10px 10px;
+	}
 
 	/* mobile */
 
