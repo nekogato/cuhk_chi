@@ -26,6 +26,7 @@ get_header();
 					$isbn = get_field('isbn__issn');
 					$abstract = get_field('abstract');
 					$composition = get_field('composition');
+					$external_link = get_field('external_link');
 				?>
 
 
@@ -91,6 +92,13 @@ get_header();
 								<div class="t1 text7"><?php echo cuhk_multilang_text("撮要","","Abstract"); ?></div>
 								<div class="t2 free_text">
 									<?php echo ($abstract); ?>
+								</div>
+							</div>
+						<?php endif; ?>
+						<?php if ($external_link) : ?>
+							<div class="description">
+								<div class="t2 free_text">
+									<a href="<?php echo ($external_link); ?>" target="_blank"><?php echo cuhk_multilang_text("點擊","","Click"); ?></a><?php echo cuhk_multilang_text("以觀看更多內容","","to view more"); ?>
 								</div>
 							</div>
 						<?php endif; ?>
