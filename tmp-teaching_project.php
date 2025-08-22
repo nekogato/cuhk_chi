@@ -23,7 +23,7 @@ get_template_part('template-parts/roll-menu'); ?>
 		</div>
 	</div>
 
-	<div class="section news_box_section news_gallery_box_section scrollin_p">
+	<div class="section teaching_project_section news_box_section news_gallery_box_section scrollin_p">
 		<div class="news_box_wrapper">
 			<div class="section_center_content small_section_center_content">
 				<div class="col_wrapper big_col_wrapper">
