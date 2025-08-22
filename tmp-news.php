@@ -101,7 +101,7 @@ while (have_posts()) :
 												};
 												?>
 												<div class="title text5"><?php the_field("news_name"); ?></div>
-												<div class="btn_wrapper text8">
+												<div class="btn_wrapper text7">
 													<a href="<?php the_permalink(); ?>" class="round_btn"><?php echo cuhk_multilang_text("查看更多","","View more"); ?></a>
 												</div>
 											</div>

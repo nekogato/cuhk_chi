@@ -216,7 +216,7 @@ if (have_posts()) :
 												<div class="description"><?php echo esc_html($winner_description); ?></div>
 											<?php endif; ?>
 											<?php if ($winner_link): ?>
-												<div class="btn_wrapper text8">
+												<div class="btn_wrapper text7">
 													<a href="<?php echo esc_url($winner_link['url']); ?>" class="round_btn">
 														<?php pll_e('了解更多'); ?>
 													</a>
@@ -279,7 +279,7 @@ if (have_posts()) :
 													<div class="description"><?php echo esc_html($testimonial_description); ?></div>
 												<?php endif; ?>
 												<?php if ($testimonial_link): ?>
-													<div class="btn_wrapper text8">
+													<div class="btn_wrapper text7">
 														<a href="<?php echo esc_url($testimonial_link['url']); ?>" class="round_btn">
 															<?php pll_e('了解更多'); ?>
 														</a>

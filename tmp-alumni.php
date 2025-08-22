@@ -84,7 +84,7 @@ if ($alumni_events): ?>
 											<?php if ($event->post_excerpt): ?>
 												<div class="description"><?php echo esc_html($event->post_excerpt); ?></div>
 											<?php endif; ?>
-											<div class="btn_wrapper text8">
+											<div class="btn_wrapper text7">
 												<a href="<?php echo get_permalink($event->ID); ?>" class="round_btn"><?php pll_e('了解更多'); ?></a>
 											</div>
 										</div>

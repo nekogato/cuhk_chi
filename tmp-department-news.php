@@ -87,7 +87,7 @@ if ($all_news->have_posts()) {
 										<div class="title_wrapper">
 											<div class="cat"><?php echo esc_html($news['category']); ?></div>
 											<div class="title text5"><?php echo esc_html($news['title']); ?></div>
-											<div class="btn_wrapper text8">
+											<div class="btn_wrapper text7">
 												<a href="<?php echo esc_url($news['permalink']); ?>" class="round_btn"><?php pll_e('了解更多'); ?></a>
 											</div>
 										</div>
@@ -129,7 +129,7 @@ if ($all_news->have_posts()) {
 										<div class="title_wrapper">
 											<div class="cat"><?php echo esc_html($news['category']); ?></div>
 											<div class="title text5"><?php echo esc_html($news['title']); ?></div>
-											<div class="btn_wrapper text8">
+											<div class="btn_wrapper text7">
 												<a href="<?php echo esc_url($news['permalink']); ?>" class="round_btn"><?php pll_e('了解更多'); ?></a>
 											</div>
 										</div>

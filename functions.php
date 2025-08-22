@@ -503,7 +503,7 @@ function load_more_news()
 						</div>
 						<div class="title_wrapper">
 							<div class="title text5"><?php the_title(); ?></div>
-							<div class="btn_wrapper text8">
+							<div class="btn_wrapper text7">
 								<a href="<?php the_permalink(); ?>" class="round_btn"><?php pll_e('view more'); ?></a>
 							</div>
 						</div>
@@ -1134,7 +1134,7 @@ function load_more_department_news()
 						<div class="title_wrapper">
 							<div class="cat"><?php echo esc_html($category_name); ?></div>
 							<div class="title text5"><?php the_title(); ?></div>
-							<div class="btn_wrapper text8">
+							<div class="btn_wrapper text7">
 								<a href="<?php the_permalink(); ?>" class="round_btn"><?php pll_e('了解更多'); ?></a>
 							</div>
 						</div>
