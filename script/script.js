@@ -403,6 +403,21 @@ function init_event(){
 		return false;
 	})
 
+	$(document).on("click", ".filter_dropdown a", function () {
+		var $p = $(this).parents(".filter_dropdown_wrapper")
+		if($p.hasClass("active")){
+			$p.removeClass("active").find(".filter_dropdown").show();
+			setTimeout(function(){
+			$p.find(".filter_dropdown").stop().slideUp();
+			},0)
+		}else{
+			$p.addClass("active").find(".filter_dropdown").hide();
+			setTimeout(function(){
+			$p.find(".filter_dropdown").stop().slideDown();
+			},0)
+		}
+	})
+
 	$(".popup_close_btn").click(function(){
 		var $p = $(this).parents(".people_popup")
 		$p.stop().fadeOut();
