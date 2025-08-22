@@ -21,7 +21,7 @@ get_template_part('template-parts/roll-menu', null, array(
 					$date_raw = get_field('date'); // This is in Ymd format, e.g. 20250622
 					if ($date_raw) {
 						$date_obj = DateTime::createFromFormat('Ymd', $date_raw);
-						echo $date_obj->format('j/n/y'); // Outputs e.g., 22/6
+						echo $date_obj->format('j/n/Y'); // Outputs e.g., 22/6
 					}
 					?>
 					</div>

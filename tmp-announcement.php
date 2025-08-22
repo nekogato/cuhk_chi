@@ -32,7 +32,7 @@ get_header(); ?>
 				// Force English date format using PHP DateTime directly
 				$post_date = get_post_time('Y-m-d');
 				$date_obj = new DateTime($post_date);
-				$announcement_date = $date_obj->format('j/n/y');
+				$announcement_date = $date_obj->format('j/n/Y');
 
 				$announcement_content = get_the_content();
 		?>
