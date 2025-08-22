@@ -584,6 +584,7 @@ a{
 	color:#4c4846;
 	position: relative;
 	  z-index: 11;
+	  z-index: 8;
 }
 
 .footer .section_center_content{
