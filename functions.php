@@ -2710,3 +2710,146 @@ function get_search()
 
     die();
 }
+
+
+// AJAX handler for getting available years for news
+function get_news_years_ajax()
+{
+	// Verify nonce
+	if (!wp_verify_nonce($_POST['nonce'], 'get_news_years_nonce')) {
+		wp_die('Security check failed');
+	}
+
+	global $wpdb;
+
+	$meta_key = 'start_date'; // ACF field key (stored in Ymd format, e.g., 20240620)
+
+	$years = $wpdb->get_col("
+        SELECT DISTINCT 
+            LEFT(meta_value, 4) AS year
+        FROM {$wpdb->postmeta}
+        INNER JOIN {$wpdb->posts} ON {$wpdb->posts}.ID = {$wpdb->postmeta}.post_id
+        WHERE meta_key = '{$meta_key}'
+        AND {$wpdb->posts}.post_type = 'news'
+        AND {$wpdb->posts}.post_status = 'publish'
+        AND meta_value REGEXP '^[0-9]{8}$'
+        ORDER BY year DESC
+    ");
+
+	wp_send_json_success(array(
+		'years' => $years
+	));
+}
+add_action('wp_ajax_get_news_years', 'get_news_years_ajax');
+add_action('wp_ajax_nopriv_get_news_years', 'get_news_years_ajax');
+
+
+// AJAX handler for filtering news
+function filter_news_ajax()
+{
+	// Verify nonce
+	if (!wp_verify_nonce($_POST['nonce'], 'filter_news_nonce')) {
+		wp_die('Security check failed');
+	}
+
+	$page = intval($_POST['page']);
+	$category = sanitize_text_field($_POST['category']);
+	$year = sanitize_text_field($_POST['year']);
+	$posts_per_page = 12;
+
+	$args = array(
+		'post_type' => 'news',
+		'post_status' => 'publish',
+		'posts_per_page' => $posts_per_page,
+		'paged' => $page,
+		'orderby' => 'date',
+		'order' => 'DESC',
+		'post_status' => 'publish'
+	);
+
+	// Add category filter
+	if ($category && $category !== 'all') {
+		$args['tax_query'] = array(
+			array(
+				'taxonomy' => 'news_category',
+				'field'    => 'slug',
+				'terms'    => $category,
+			),
+		);
+	}
+
+	// Add year filter using ACF "date" field (format: d/m/Y)
+	if ($year) {
+		$args['meta_query'][] = array(
+			'key'     => 'date',
+			'value'   => array($year . '0101', $year . '1231'),
+			'compare' => 'BETWEEN',
+			'type'    => 'NUMERIC',
+		);
+	}
+
+	$query = new WP_Query($args);
+	$news = array();
+
+	if ($query->have_posts()) {
+		while ($query->have_posts()) {
+			$query->the_post();
+			
+			$photo = '';
+
+			$featured_image = get_the_post_thumbnail_url(get_the_ID(), 'm');
+			$news_banner = get_field('news_banner');
+
+			if ($featured_image) {
+				$photo = $featured_image;
+			} elseif ($news_banner && isset($news_banner['sizes']['m'])) {
+				$photo = $news_banner['sizes']['m'];
+			} else {
+				$photo = get_template_directory_uri() . '/images/schoolart_logo_bg.svg';
+			}
+
+			$news_categories = get_the_terms(get_the_ID(), 'news_category');
+			$category_name = '';
+
+
+			// Default to current language if none is specified
+			if (!$lang && function_exists('pll_current_language')) {
+				$lang = pll_current_language();
+			}
+
+			if ($news_categories && !is_wp_error($news_categories)) {
+				$category_name = get_field($lang.'_name', 'news_category_'.$news_categories[0]->term_id);
+			}
+
+			$start_date_raw = get_field('start_date'); // This is in Ymd format, e.g. 20250622
+			if (!$start_date_raw) continue;
+			if ($start_date_raw) {
+				$date_obj = DateTime::createFromFormat('Ymd', $start_date_raw);
+				$date = $date_obj->format('j/n/Y');
+			}
+			
+
+			$news[] = array(
+				'id' => get_the_ID(),
+				'title' => get_field('news_name'),
+				'permalink' => get_permalink(),
+				'date' => $date,
+				'featured_image' => $photo,
+				'category_name' => $category_name
+			);
+		}
+	}
+
+	wp_reset_postdata();
+
+	$has_more = $page < $query->max_num_pages;
+
+	wp_send_json_success(array(
+		'galleries' => $galleries,
+		'has_more' => $has_more,
+		'current_page' => $page,
+		'max_pages' => $query->max_num_pages
+	));
+}
+add_action('wp_ajax_filter_news', 'filter_news_ajax');
+add_action('wp_ajax_nopriv_filter_news', 'filter_news_ajax');
