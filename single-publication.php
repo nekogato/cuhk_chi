@@ -23,7 +23,7 @@ get_header();
 					$cover_image = get_field('cover_photo');
 					$chief_editor = get_field('chief_editor');
 					$editor = get_field('editors');
-					$isbn = get_field('isbn');
+					$isbn = get_field('isbn__issn');
 					$abstract = get_field('abstract');
 					$composition = get_field('composition');
 				?>
