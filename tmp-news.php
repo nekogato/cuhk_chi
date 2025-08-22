@@ -107,7 +107,9 @@ while (have_posts()) :
 									<div class="text_wrapper">
 										<div class="date_wrapper text5" x-html="news_item.date"></div>
 										<div class="title_wrapper">
-											<div class="cat" x-html="news_item.category_name"></div>
+											<template x-if="news_item.category_name">
+												<div class="cat" x-html="news_item.category_name"></div>
+											</template>
 											<div class="title text5" x-html="news_item.title"></div>
 											<div class="btn_wrapper text7">
 												<a :href="news_item.permalink" class="round_btn"><?php echo cuhk_multilang_text("查看更多","","View more"); ?></a>
