@@ -82,7 +82,7 @@ if (have_posts()) :
 									</ul>
 								</div>
 							</div>
-							<!-- <div class="filter_dropdown_wrapper">
+							<div class="filter_dropdown_wrapper" style="display: none;">
 								<a class="filter_dropdown_btn text5" @click="dropdowns.type = !dropdowns.type" x-text="filters.courseTypeName || '<?php echo cuhk_multilang_text("所有分類", "", "All Course Type"); ?>'"></a>
 								<div class="filter_dropdown text5"  @click.away="dropdowns.type = false">
 									<ul>
@@ -97,7 +97,7 @@ if (have_posts()) :
 										</template>
 									</ul>
 								</div>
-							</div> -->
+							</div>
 						</div>
 					</div>
 				</div>
