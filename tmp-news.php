@@ -95,7 +95,7 @@ while (have_posts()) :
 	<!-- Regular News Section -->
 	<div class="section news_box_section scrollin_p ">
 		<div class="news_box_wrapper">
-			<div class="section_center_content">
+			<div class="section_center_content small_section_center_content">
 				<div class="col_wrapper">
 					<div class="flex row" id="news-container">
 						<template x-for="news_item in news" :key="news_item.id">
