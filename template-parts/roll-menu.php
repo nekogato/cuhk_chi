@@ -13,7 +13,7 @@ global $post;
 if (get_field("show_top_menu")) {
 
 $target_page = $args['target_page'] ?? '';
-print_r($target_page);
+
 
 if ($target_page) {
 	// Get the page by slug
