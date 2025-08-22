@@ -24,6 +24,8 @@ while (have_posts()) :
 
         // Remove home URL from the full URL
         $relative_url = str_replace($home_url, '', $full_url);
+
+        var_dump($full_url, $home_url, $relative_url);
     }
     get_template_part('template-parts/roll-menu', null, array('target_page' => $relative_url));
 
