@@ -59,7 +59,7 @@ while (have_posts()) :
 									<div class="col_spacing">
 										<div class="research_centre_text_item_wrapper">
 											<?php if ($name): ?>
-												<div class="research_centre_text_item">
+												<div class="research_centre_text_item col12">
 													<div class="t1 text5"><?php echo ($name); ?></div>
 												</div>
 												<div class="break"></div>
