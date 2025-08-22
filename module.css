@@ -4265,6 +4265,10 @@ body.dragging-scroll {
     flex: 0 0 calc(50% - 20px); /* Changed flex-grow to 0 */
   }
 
+.teaching_project_section .news_box_section .news_box .text_wrapper {
+    padding-top: 15px;
+  }
+
 .teaching_project_section .news_gallery_box_section .news_box .photo {
     position: relative;
     padding-bottom: 0px;
