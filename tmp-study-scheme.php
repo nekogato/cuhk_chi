@@ -219,7 +219,7 @@ while (have_posts()) :
                                                 if (have_rows('courses')) : 
                                                     ?>
                                                         <div class="scheme_course_list_section scrollin scrollinbottom">
-                                                                <div class="scheme_title text3"><?php echo cuhk_multilang_text("課程表", "", "Course List"); ?></div>
+                                                                <div class="scheme_title text3"><?php echo cuhk_multilang_text("科目", "", "Course List"); ?></div>
                                                                 <?php
                                                                 while (have_rows('courses')) : the_row();
                                                                 
@@ -282,7 +282,7 @@ while (have_posts()) :
                                     ?>
                                         <div class="scheme_course_list_section scrollin scrollinbottom">
                                             <div class="section_center_content small_section_center_content">
-                                                <div class="scheme_title text3"><?php echo cuhk_multilang_text("課程表", "", "Course List"); ?></div>
+                                                <div class="scheme_title text3"><?php echo cuhk_multilang_text("科目", "", "Course List"); ?></div>
                                                 <?php
                                                 while (have_rows('courses')) : the_row();
                                                 
@@ -346,7 +346,7 @@ while (have_posts()) :
                         <div class="scheme_course_list_section scrollin scrollinbottom">
                             <div class="brush_bg"></div>
                             <div class="section_center_content small_section_center_content ">
-                                <div class="scheme_title text3"><?php echo cuhk_multilang_text("課程表", "", "Course List"); ?></div>
+                                <div class="scheme_title text3"><?php echo cuhk_multilang_text("科目", "", "Course List"); ?></div>
                                 <?php
                                 while (have_rows('courses')) : the_row();
                                 
