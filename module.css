@@ -5068,6 +5068,7 @@ body.dragging-scroll {
     border:1px #62629b solid;
     color:#fff;
     background-color: #62629b;
+    opacity: 1;
 }
 
 .people_popup .people_detail_text{
