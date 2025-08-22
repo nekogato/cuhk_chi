@@ -52,7 +52,7 @@ if (have_posts()) :
 										<div class="checkbox">
 											<input type="radio"
 												:id="category.slug"
-												x-model="filters.categories"
+												x-model="filters.category"
 												:value="category.slug"
 												@change="filterCourses()">
 											<label :for="category.slug">
@@ -82,7 +82,7 @@ if (have_posts()) :
 									</ul>
 								</div>
 							</div>
-							<div class="filter_dropdown_wrapper" >
+							<div class="filter_dropdown_wrapper" style="display: none;">
 								<a class="filter_dropdown_btn text5" @click="dropdowns.type = !dropdowns.type" x-text="filters.courseTypeName || '<?php echo cuhk_multilang_text("所有分類", "", "All Course Type"); ?>'"></a>
 								<div class="filter_dropdown text5"  @click.away="dropdowns.type = false">
 									<ul>
@@ -227,7 +227,7 @@ if (have_posts()) :
 						<?php endif; ?>
 					],
 					filters: {
-						categories: [],
+						category: '',
 						academicYear: '<?php echo !empty($academic_years) ? esc_js($academic_years[0]->slug) : ''; ?>',
 						academicYearName: '<?php echo !empty($academic_years) ? esc_js($academic_years[0]->name) : ''; ?>',
 						courseType: '',
@@ -244,7 +244,7 @@ if (have_posts()) :
 					init() {
 						// Set the first category as selected by default
 						if (this.courseCategories.length > 0) {
-							this.filters.categories = [this.courseCategories[0].slug];
+							this.filters.category = [this.courseCategories[0].slug];
 						}
 						this.loadCourses();
 					},
@@ -274,10 +274,8 @@ if (have_posts()) :
 							formData.append('nonce', '<?php echo wp_create_nonce("load_courses_nonce"); ?>');
 
 							// Handle categories array
-							if (this.filters.categories.length > 0) {
-								this.filters.categories.forEach(category => {
-									formData.append('categories[]', category);
-								});
+							if (this.filters.category) {
+								formData.append('categories[]', this.filters.category);
 							}
 
 							if (this.filters.academicYear) {
