@@ -20,7 +20,7 @@ while (have_posts()) :
 
     if ($post_object) {
         $full_url = get_permalink($post_object); // full URL
-        $home_url = home_url('/'); // with trailing slash
+        $home_url = trailingslashit( get_option('home') ); // Settings → General → “Site Address (URL)”
 
         // Remove home URL from the full URL
         $relative_url = str_replace($home_url, '', $full_url);
