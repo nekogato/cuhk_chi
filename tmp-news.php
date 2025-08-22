@@ -165,7 +165,7 @@ while (have_posts()) :
 			hasMore: true,
 
 			init() {
-				this.loadNews();
+				//this.loadNews();
 				this.loadNewsAvailableYears();
 			},
 
