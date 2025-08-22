@@ -2845,7 +2845,7 @@ function filter_news_ajax()
 	$has_more = $page < $query->max_num_pages;
 
 	wp_send_json_success(array(
-		'galleries' => $galleries,
+		'news' => $news,
 		'has_more' => $has_more,
 		'current_page' => $page,
 		'max_pages' => $query->max_num_pages
