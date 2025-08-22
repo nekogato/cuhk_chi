@@ -50,7 +50,7 @@ if (have_posts()) :
 								<template x-for="category in courseCategories" :key="category.slug">
 									<div class="filter_checkbox">
 										<div class="checkbox">
-											<input type="radio"
+											<input type="checkbox"
 												:id="category.slug"
 												x-model="filters.categories"
 												:value="category.slug"
