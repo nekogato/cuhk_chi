@@ -165,7 +165,7 @@ while (have_posts()) :
 			hasMore: true,
 
 			init() {
-				//this.loadNews();
+				this.loadNews();
 				this.loadNewsAvailableYears();
 			},
 
@@ -189,6 +189,7 @@ while (have_posts()) :
 
 					const data = await response.json();
 					if (data.success) {
+						console.log(data);
 						if (append) {
 							this.news = [...this.news, ...data.data.news];
 						} else {
