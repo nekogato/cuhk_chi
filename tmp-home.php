@@ -442,7 +442,6 @@ get_header(); ?>
 				this.loading = true;
 				
 				try {
-					console.log("try")
 					const response = await fetch(ajaxurl, {
 						method: 'POST',
 						headers: {
@@ -457,13 +456,10 @@ get_header(); ?>
 					});
 
 					const data = await response.json();
-					console.log("00",data)
 					if (data.success) {
-						console.log("success",this.dateSwiper)
 						this.groupedNews = data.data.grouped_news;
 						// Destroy existing swiper
 						if (this.dateSwiper) {
-										console.log("0")
 							this.dateSwiper.destroy();
 							this.dateSwiper = null;
 						}
