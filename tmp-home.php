@@ -498,14 +498,9 @@ get_header(); ?>
 						dosize();
 						doscroll();
 
-						// Destroy existing swiper
-						if (this.dateSwiper) {
-							this.dateSwiper.destroy();
-						}
-
 						// Initialize Swiper
-						var swiper = this.dateSwiper;
-						swiper = new Swiper('.home_news_date_slider .swiper-container', {
+						var myswiper = this.dateSwiper;
+						myswiper = new Swiper('.home_news_date_slider .swiper-container', {
 							autoplay: false,
 							slidesPerView: 'auto',
 							// freeMode: true,
@@ -517,7 +512,8 @@ get_header(); ?>
 								prevEl: '.home_news_date_slider .prev_btn',
 							},
 							on: {
-								init: (swiper) => {
+								afterInit: (swiper) => {
+									console.log(swiper)
 									dosize();
 									doscroll();
 									$(".home_news_date_slider").height("auto");
@@ -537,7 +533,7 @@ get_header(); ?>
 							// Resize layout after Swiper initializes
 							dosize();
 							doscroll();
-							swiper.update();
+							myswiper.update();
 							console.log("3")
 						},1200);
 					});
