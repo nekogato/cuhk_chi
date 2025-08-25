@@ -442,7 +442,7 @@ get_header(); ?>
 				this.loading = true;
 				
 				try {
-					console.log("000")
+					console.log("try")
 					const response = await fetch(ajaxurl, {
 						method: 'POST',
 						headers: {
