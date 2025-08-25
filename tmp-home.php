@@ -508,36 +508,18 @@ get_header(); ?>
 							},
 							on: {
 								init: function () {
-									setTimeout(function(){
-										console.log("3")
-									},1200);
 									dosize();
 									doscroll();
 									$(".home_news_date_slider").height("auto");
 									$(".home_news_date_slider_wrapper").removeClass("home_news_date_slider_wrapper_loading");
 									$(".home_news_date_slider_wrapper").addClass("show");
-								},
-								afterInit:function(){
 									setTimeout(function(){
-										console.log("4")
-									},1200);
-
+										dosize();
+										doscroll();
+										this.update();
+									},300);
 								}
 							}
-
-							// on: {
-							// 	init: (swiper) => {
-							// 		console.log("swiper",swiper)
-							// 		dosize();
-							// 		doscroll();
-							// 		$(".home_news_date_slider").height("auto");
-							// 		$(".home_news_date_slider_wrapper").removeClass("home_news_date_slider_wrapper_loading");
-							// 		$(".home_news_date_slider_wrapper").addClass("show");
-							// 		setTimeout(function(){
-							// 			console.log("4")
-							// 		},1200);
-							// 	}
-							// }
 						});
 						// Resize layout after Swiper initializes
 						dosize();
