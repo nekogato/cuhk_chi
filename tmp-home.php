@@ -519,6 +519,7 @@ get_header(); ?>
 										dosize();
 										doscroll();
 										newswiper.update();
+										console.log("1",newswiper)
 									},300);
 								}
 							}
@@ -531,7 +532,7 @@ get_header(); ?>
 							dosize();
 							doscroll();
 							myswiper.update();
-							console.log("2")
+							console.log("2",myswiper)
 						},1200);
 					});
 				}
