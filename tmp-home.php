@@ -460,6 +460,7 @@ get_header(); ?>
 						this.groupedNews = data.data.grouped_news;
 						// Destroy existing swiper
 						if (this.dateSwiper) {
+							console.log("Destroying existing swiper");
 							this.dateSwiper.destroy();
 							this.dateSwiper = null;
 						}
@@ -508,6 +509,7 @@ get_header(); ?>
 							},
 							on: {
 								init: function () {
+									var newswiper = this;
 									dosize();
 									doscroll();
 									$(".home_news_date_slider").height("auto");
@@ -516,7 +518,7 @@ get_header(); ?>
 									setTimeout(function(){
 										dosize();
 										doscroll();
-										this.update();
+										newswiper.update();
 									},300);
 								}
 							}
