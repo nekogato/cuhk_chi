@@ -442,6 +442,7 @@ get_header(); ?>
 				this.loading = true;
 				
 				try {
+					concole.log("000")
 					const response = await fetch(ajaxurl, {
 						method: 'POST',
 						headers: {
@@ -456,7 +457,7 @@ get_header(); ?>
 					});
 
 					const data = await response.json();
-					concole.log(data)
+					concole.log("00",data)
 					if (data.success) {
 						console.log("success",this.dateSwiper)
 						this.groupedNews = data.data.grouped_news;
