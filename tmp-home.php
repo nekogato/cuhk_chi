@@ -387,6 +387,7 @@ get_header(); ?>
 					autoplay: false,
 					slidesPerView: 'auto',
 					// freeMode: true,
+					init: false,
 					speed: 1600,
 					loop: false,
 					spaceBetween: 0,
@@ -503,6 +504,7 @@ get_header(); ?>
 							slidesPerView: 'auto',
 							// freeMode: true,
 							speed: 1600,
+							init: false,
 							loop: false,
 							spaceBetween: 0,
 							navigation: {
