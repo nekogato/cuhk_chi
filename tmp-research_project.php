@@ -28,7 +28,7 @@ $args = array(
 	'post_type' => 'research_project',
 	'post_status' => 'publish',
 	'posts_per_page' => -1,
-	'meta_key' => 'funding_end_year',
+	'meta_key' => 'funding_start_year',
 	'orderby' => 'meta_value_num',
 	'order' => 'DESC',
 	'fields' => 'ids',
@@ -41,7 +41,7 @@ $max_year = 0;
 
 if ($query->have_posts()) :
 	foreach ($query->posts as $post_id) :
-		$year = get_field("funding_end_year", $post_id);
+		$year = get_field("funding_start_year", $post_id);
 		// Validate year: must be 4-digit number between 1900-2100
 		if ($year && is_numeric($year) && strlen($year) == 4 && $year >= 1900 && $year <= 2100 && !in_array($year, $years)) {
 			$years[] = intval($year);
