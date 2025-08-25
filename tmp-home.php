@@ -399,7 +399,7 @@ get_header(); ?>
 					on: {
 						init: () => {
 							dosize();
-							console.log(newSwiper)
+							console.log("start",newSwiper)
 						}
 					}
 				});
