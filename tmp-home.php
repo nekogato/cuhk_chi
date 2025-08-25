@@ -397,7 +397,7 @@ get_header(); ?>
 						prevEl: '.home_news_date_slider .prev_btn',
 					},
 					on: {
-						init: () => {
+						afterInit: () => {
 							dosize();
 						}
 					}
@@ -513,7 +513,7 @@ get_header(); ?>
 							},
 							on: {
 								afterInit: (swiper) => {
-									console.log(swiper)
+									console.log("swiper",swiper)
 									dosize();
 									doscroll();
 									$(".home_news_date_slider").height("auto");
