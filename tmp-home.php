@@ -520,13 +520,9 @@ get_header(); ?>
 								init: (swiper) => {
 									dosize();
 									doscroll();
-									setTimeout(function(){
-										console.log("2")
-										$(".home_news_date_slider").height("auto");
-										$(".home_news_date_slider_wrapper").removeClass("home_news_date_slider_wrapper_loading");
-										$(".home_news_date_slider_wrapper").addClass("show");
-										swiper.update();
-									},0);
+									$(".home_news_date_slider").height("auto");
+									$(".home_news_date_slider_wrapper").removeClass("home_news_date_slider_wrapper_loading");
+									$(".home_news_date_slider_wrapper").addClass("show");
 									setTimeout(function(){
 										console.log("4")
 										swiper.update();
