@@ -2762,7 +2762,8 @@ function filter_news_ajax()
 		'post_status' => 'publish',
 		'posts_per_page' => $posts_per_page,
 		'paged' => $page,
-		'orderby' => 'date',
+		'meta_key' => 'start_date',
+		'orderby' => 'meta_value_num',
 		'order' => 'DESC',
 		'post_status' => 'publish'
 	);
