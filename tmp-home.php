@@ -538,7 +538,7 @@ get_header(); ?>
 							dosize();
 							doscroll();
 							swiper.update();
-										console.log("3")
+							console.log("3")
 						},1200);
 					});
 				}
