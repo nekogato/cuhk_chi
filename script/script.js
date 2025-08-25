@@ -1027,8 +1027,8 @@ function init_function(){
 		$this.find(".next_btn").click(function(){
 			var currentslide = $this.find(".swiper-container .swiper-slide a.active").parents(".swiper-slide");
 			if(currentslide.next().length){
-				$this.find(".swiper-container .swiper-slide a.active").removeClass("active");
-				currentslide.next().find("a").addClass("active");
+				//$this.find(".swiper-container .swiper-slide a.active").removeClass("active");
+				//currentslide.next().find("a").addClass("active").click();
 			}
 			year_list_slider.slideNext();
 		})
@@ -1036,8 +1036,8 @@ function init_function(){
 		$this.find(".prev_btn").click(function(){
 			var currentslide = $this.find(".swiper-container .swiper-slide a.active").parents(".swiper-slide");
 			if(currentslide.prev().length){
-				$this.find(".swiper-container .swiper-slide a.active").removeClass("active");
-				currentslide.prev().find("a").addClass("active");
+				//$this.find(".swiper-container .swiper-slide a.active").removeClass("active");
+				//currentslide.prev().find("a").addClass("active");
 			}
 			year_list_slider.slidePrev();
 		})
