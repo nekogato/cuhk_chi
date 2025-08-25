@@ -533,7 +533,7 @@ get_header(); ?>
 							dosize();
 							doscroll();
 							myswiper.update();
-							console.log("2",myswiper)
+							console.log("2" ,myswiper)
 						},1200);
 					});
 				}
