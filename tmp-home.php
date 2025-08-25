@@ -520,14 +520,14 @@ get_header(); ?>
 								init: (swiper) => {
 									dosize();
 									doscroll();
-									setTimeout(function(swiper){
+									setTimeout(function(){
 										console.log("2")
 										$(".home_news_date_slider").height("auto");
 										$(".home_news_date_slider_wrapper").removeClass("home_news_date_slider_wrapper_loading");
 										$(".home_news_date_slider_wrapper").addClass("show");
 										swiper.update();
 									},0);
-									setTimeout(function(swiper){
+									setTimeout(function(){
 										console.log("4")
 										swiper.update();
 									},1200);
