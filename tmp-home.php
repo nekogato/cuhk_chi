@@ -461,7 +461,7 @@ get_header(); ?>
 
 						// Destroy existing swiper
 						if (this.dateSwiper) {
-							this.dateSwiper.destroy();
+							//this.dateSwiper.destroy();
 							this.dateSwiper = null;
 						}
 					}
@@ -497,7 +497,7 @@ get_header(); ?>
 
 						// Destroy existing swiper
 						if (this.dateSwiper) {
-							this.dateSwiper.destroy();
+							//this.dateSwiper.destroy();
 						}
 
 						// Initialize Swiper
