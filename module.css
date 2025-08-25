@@ -1754,12 +1754,12 @@ body.dragging-scroll {
     right: 0px;
     bottom: 0px;
     left: 0px;
-    width: 16px;
-    height: 16px;
+    width: 24px;
+    height: 24px;
     margin: auto;
     transform: rotate(-45deg);
-    border-top:1px solid #575454;
-    border-left:1px solid #575454;
+    border-top:2px solid #575454;
+    border-left:2px solid #575454;
 }
 
 .home_news_date_slider_wrapper .next_btn{
@@ -1778,12 +1778,12 @@ body.dragging-scroll {
     right: 0px;
     bottom: 0px;
     left: 0px;
-    width: 16px;
-    height: 16px;
+    width: 24px;
+    height: 24px;
     margin: auto;
     transform: rotate(45deg);
-    border-top:1px solid #575454;
-    border-right:1px solid #575454;
+    border-top:2px solid #575454;
+    border-right:2px solid #575454;
 }
 
 
