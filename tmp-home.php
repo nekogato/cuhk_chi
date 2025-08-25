@@ -495,8 +495,8 @@ get_header(); ?>
 						doscroll();
 
 						// Initialize Swiper
-						var myswiper = this.dateSwiper;
-						myswiper = new Swiper('.home_news_date_slider .swiper-container', {
+						console.log("0",this.dateSwiper)
+						this.dateSwiper = new Swiper('.home_news_date_slider .swiper-container', {
 							autoplay: false,
 							slidesPerView: 'auto',
 							// freeMode: true,
@@ -531,7 +531,7 @@ get_header(); ?>
 							// Resize layout after Swiper initializes
 							dosize();
 							doscroll();
-							myswiper.update();
+							this.dateSwiper.update();
 							console.log("2",myswiper)
 						},1200);
 					});
