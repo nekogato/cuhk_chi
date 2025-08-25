@@ -1300,7 +1300,7 @@ function load_research_projects()
 		'posts_per_page' => -1,
 		'meta_query' => array(
 			array(
-				'key' => 'funding_end_year',
+				'key' => 'funding_start_year',
 				'value' => $year,
 				'compare' => '=',
 				'type' => 'NUMERIC'
