@@ -495,8 +495,13 @@ get_header(); ?>
 						dosize();
 						doscroll();
 
+						// Destroy existing swiper
+						if (this.dateSwiper) {
+							this.dateSwiper.destroy();
+						}
+
 						// Initialize Swiper
-						var swiper = this.dateSwiper
+						var swiper = this.dateSwiper;
 						swiper = new Swiper('.home_news_date_slider .swiper-container', {
 							autoplay: false,
 							slidesPerView: 'auto',
