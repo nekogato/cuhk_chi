@@ -397,8 +397,9 @@ get_header(); ?>
 						prevEl: '.home_news_date_slider .prev_btn',
 					},
 					on: {
-						afterInit: () => {
-							dosize();
+						init: function (swiper) {
+						console.log("Swiper is ready!", swiper);
+						dosize();
 						}
 					}
 				});
@@ -508,18 +509,25 @@ get_header(); ?>
 								prevEl: '.home_news_date_slider .prev_btn',
 							},
 							on: {
-								init: (swiper) => {
-									console.log("swiper",swiper)
-									dosize();
-									doscroll();
-									$(".home_news_date_slider").height("auto");
-									$(".home_news_date_slider_wrapper").removeClass("home_news_date_slider_wrapper_loading");
-									$(".home_news_date_slider_wrapper").addClass("show");
-									setTimeout(function(){
-										console.log("4")
-									},1200);
+								init: function (swiper) {
+								console.log("Swiper is ready!", swiper);
+								dosize();
 								}
 							}
+
+							// on: {
+							// 	init: (swiper) => {
+							// 		console.log("swiper",swiper)
+							// 		dosize();
+							// 		doscroll();
+							// 		$(".home_news_date_slider").height("auto");
+							// 		$(".home_news_date_slider_wrapper").removeClass("home_news_date_slider_wrapper_loading");
+							// 		$(".home_news_date_slider_wrapper").addClass("show");
+							// 		setTimeout(function(){
+							// 			console.log("4")
+							// 		},1200);
+							// 	}
+							// }
 						});
 						// Resize layout after Swiper initializes
 						dosize();
