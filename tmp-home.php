@@ -508,7 +508,7 @@ get_header(); ?>
 								prevEl: '.home_news_date_slider .prev_btn',
 							},
 							on: {
-								afterInit: (swiper) => {
+								init: (swiper) => {
 									console.log("swiper",swiper)
 									dosize();
 									doscroll();
@@ -517,7 +517,6 @@ get_header(); ?>
 									$(".home_news_date_slider_wrapper").addClass("show");
 									setTimeout(function(){
 										console.log("4")
-										swiper.update();
 									},1200);
 								}
 							}
