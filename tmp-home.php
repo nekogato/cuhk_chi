@@ -516,7 +516,7 @@ get_header(); ?>
 									$(".home_news_date_slider").height("auto");
 									$(".home_news_date_slider_wrapper").removeClass("home_news_date_slider_wrapper_loading");
 									$(".home_news_date_slider_wrapper").addClass("show");
-								}
+								},
 								afterInit:function(){
 									setTimeout(function(){
 										console.log("4")
