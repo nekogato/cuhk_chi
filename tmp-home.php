@@ -383,9 +383,7 @@ get_header(); ?>
 						}
 					}
 				});*/
-				var newSwiper = this.dateSwiper;
-				// Initialize date slider
-				newSwiper = new Swiper('.home_news_date_slider .swiper-container', {
+				var newSwiper = new Swiper('.home_news_date_slider .swiper-container', {
 					autoplay: false,
 					slidesPerView: 'auto',
 					// freeMode: true,
