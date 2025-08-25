@@ -564,6 +564,12 @@ get_header(); ?>
 			},
 
 			monthNextSlide() {
+					console.log("monthNextSlide",this.dateSwiper)
+				if (this.dateSwiper) {
+					console.log("monthNextSlide0")
+					this.dateSwiper.destroy();
+					this.dateSwiper = null;
+				}
 				const currentIndex = this.availableMonths.findIndex(month => month.value == this.selectedMonth);
 				if (currentIndex < this.availableMonths.length - 1) {
 					this.selectedMonth = this.availableMonths[currentIndex + 1].value;
@@ -573,6 +579,12 @@ get_header(); ?>
 			},
 
 			monthPreviousSlide() {
+					console.log("monthPreviousSlide",this.dateSwiper)
+				if (this.dateSwiper) {
+					console.log("monthPreviousSlide0")
+					this.dateSwiper.destroy();
+					this.dateSwiper = null;
+				}
 				const currentIndex = this.availableMonths.findIndex(month => month.value == this.selectedMonth);
 				if (currentIndex > 0) {
 					this.selectedMonth = this.availableMonths[currentIndex - 1].value;
