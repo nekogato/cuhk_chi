@@ -276,9 +276,10 @@ $initial_year = isset($_GET['active_year']) ? intval($_GET['active_year']) : $ma
 							// Add animation classes after 100ms delay
 							if (this.firstLoad > 1) {
 								setTimeout(() => {
+									dosize();
 									doscroll();
 									//$(".expandable_item.scrollin.scrollinbottom").addClass("onscreen startani");
-								}, 100);
+								}, 300);
 							}
 						});
 					}
@@ -288,6 +289,12 @@ $initial_year = isset($_GET['active_year']) ? intval($_GET['active_year']) : $ma
 					this.loading = false;
 					dosize();
 					doscroll();
+					this.$nextTick(async () => {
+						setTimeout(() => {
+							dosize();
+							doscroll();
+						}, 300);
+					});
 				}
 			},
 
