@@ -520,10 +520,15 @@ get_header(); ?>
 								}
 							}
 						});
-
 						// Resize layout after Swiper initializes
 						dosize();
 						doscroll();
+						setTimeout(function(){
+							// Resize layout after Swiper initializes
+							dosize();
+							doscroll();
+							swiper.update();
+						},300);
 					});
 				}
 			},
