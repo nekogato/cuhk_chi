@@ -397,8 +397,8 @@ get_header(); ?>
 						prevEl: '.home_news_date_slider .prev_btn',
 					},
 					on: {
-						init: function (swiper) {
-						console.log("Swiper is ready!", swiper);
+						init: function () {
+						console.log("Swiper is ready!", this);
 						dosize();
 						}
 					}
@@ -509,8 +509,8 @@ get_header(); ?>
 								prevEl: '.home_news_date_slider .prev_btn',
 							},
 							on: {
-								init: function (swiper) {
-								console.log("Swiper is ready!", swiper);
+								init: function () {
+								console.log("Swiper is ceated!", this);
 								dosize();
 								}
 							}
