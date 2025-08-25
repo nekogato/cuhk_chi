@@ -943,8 +943,9 @@ function load_courses()
 	$args = array(
 		'post_type' => 'course',
 		'posts_per_page' => -1,
-		'orderby' => 'title',
-		'order' => 'ASC',
+		'meta_key'       => 'course_code', // for ordering
+		'orderby'        => 'meta_value',
+		'order'          => 'ASC',
 		'tax_query' => $tax_query,
 		'post_status' => 'publish'
 	);
