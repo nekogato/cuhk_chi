@@ -528,7 +528,7 @@ get_header(); ?>
 							dosize();
 							doscroll();
 							swiper.update();
-						},300);
+						},1200);
 					});
 				}
 			},
