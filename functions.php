@@ -392,8 +392,6 @@ function load_more_publications()
 		'post_type' => 'publication',
 		'posts_per_page' => PUBLICATIONS_PER_PAGE,
 		'paged' => $page,
-		'orderby' => 'date',
-		'order' => 'DESC',
 		'post_status' => 'publish'
 	);
 
