@@ -261,6 +261,9 @@ while (have_posts()) :
 						$args = [
 						'post_type' => 'news',
 						'posts_per_page' => 4,
+						'meta_key'       => 'start_date',
+						'orderby'        => 'meta_value',
+						'order'          => 'DESC',
 					];
 
 					// Create a new WP_Query instance
