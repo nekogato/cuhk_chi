@@ -458,7 +458,7 @@ get_header(); ?>
 					const data = await response.json();
 					if (data.success) {
 						this.groupedNews = data.data.grouped_news;
-
+						console.log(this.dateSwiper)
 						// Destroy existing swiper
 						if (this.dateSwiper) {
 										console.log("0")
