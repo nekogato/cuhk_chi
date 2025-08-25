@@ -527,11 +527,12 @@ get_header(); ?>
 						// Resize layout after Swiper initializes
 						dosize();
 						doscroll();
+						var myswiper = this.dateSwiper;
 						setTimeout(function(){
 							// Resize layout after Swiper initializes
 							dosize();
 							doscroll();
-							this.dateSwiper.update();
+							myswiper.update();
 							console.log("2",myswiper)
 						},1200);
 					});
