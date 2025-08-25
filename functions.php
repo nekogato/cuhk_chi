@@ -1425,7 +1425,18 @@ function filter_events()
 			$events_query->the_post();
 
 			$event_name = get_field('event_name');
+			$photo = '';
+
+			$featured_image = get_the_post_thumbnail_url(get_the_ID(), 'm');
 			$event_banner = get_field('event_banner');
+
+			if ($featured_image) {
+				$photo = $featured_image;
+			} elseif ($event_banner && isset($event_banner['sizes']['m'])) {
+				$photo = $event_banner['sizes']['m'];
+			} else {
+				$photo = get_template_directory_uri() . '/images/schoolart_logo_bg.svg';
+			}
 			$start_date = get_field('start_date');
 			$end_date = get_field('end_date');
 			$event_time = get_field('event_time');
@@ -1456,8 +1467,8 @@ function filter_events()
 				'event_time' => $event_time,
 				'event_venue' => $event_venue,
 				'event_banner' => $event_banner ? array(
-					'url' => $event_banner['sizes']['l'],
-					'alt' => $event_banner['alt']
+					'url' => $photo,
+					'alt' => $event_name
 				) : null
 			);
 
