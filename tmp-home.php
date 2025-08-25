@@ -383,9 +383,9 @@ get_header(); ?>
 						}
 					}
 				});*/
-
+				var newSwiper = this.dateSwiper;
 				// Initialize date slider
-				this.dateSwiper = new Swiper('.home_news_date_slider .swiper-container', {
+				newSwiper = new Swiper('.home_news_date_slider .swiper-container', {
 					autoplay: false,
 					slidesPerView: 'auto',
 					// freeMode: true,
@@ -399,6 +399,7 @@ get_header(); ?>
 					on: {
 						init: () => {
 							dosize();
+							console.log(newSwiper)
 						}
 					}
 				});
@@ -440,7 +441,7 @@ get_header(); ?>
 				$(".home_news_date_slider_wrapper").removeClass("show");
 				$(".home_news_date_slider").height($(".home_news_date_slider_inwrapper").height())
 				this.loading = true;
-				
+				var newSwiper = this.dateSwiper;
 				try {
 					console.log("try")
 					const response = await fetch(ajaxurl, {
@@ -457,21 +458,21 @@ get_header(); ?>
 					});
 
 					const data = await response.json();
-					console.log("00",data)
 					if (data.success) {
-						console.log("success",this.dateSwiper)
+						console.log("success",newSwiper)
 						this.groupedNews = data.data.grouped_news;
 						// Destroy existing swiper
-						if (this.dateSwiper) {
-										console.log("0")
-							this.dateSwiper.destroy();
-							this.dateSwiper = null;
+						if (newSwiper) {
+							console.log("0")
+							newSwiper.destroy();
+							newSwiper = null;
 						}
 					}
 				} catch (error) {
 					console.error('Error loading news:', error);
 				} finally {
 					this.loading = false;
+					var newSwiper = this.dateSwiper;
 
 					this.$nextTick(async () => {
 						// Wait until .swiper-container is in the DOM
@@ -498,14 +499,8 @@ get_header(); ?>
 						dosize();
 						doscroll();
 
-						// Destroy existing swiper
-						if (this.dateSwiper) {
-							this.dateSwiper.destroy();
-						}
-
 						// Initialize Swiper
-						var swiper = this.dateSwiper;
-						swiper = new Swiper('.home_news_date_slider .swiper-container', {
+						newSwiper = new Swiper('.home_news_date_slider .swiper-container', {
 							autoplay: false,
 							slidesPerView: 'auto',
 							// freeMode: true,
@@ -525,7 +520,7 @@ get_header(); ?>
 										$(".home_news_date_slider").height("auto");
 										$(".home_news_date_slider_wrapper").removeClass("home_news_date_slider_wrapper_loading");
 										$(".home_news_date_slider_wrapper").addClass("show");
-										swiper.update();
+										newSwiper.update();
 									},0);
 								}
 							}
@@ -537,8 +532,8 @@ get_header(); ?>
 							// Resize layout after Swiper initializes
 							dosize();
 							doscroll();
-							swiper.update();
-										console.log("3")
+							newSwiper.update();
+							console.log("3")
 						},1200);
 					});
 				}
@@ -565,11 +560,6 @@ get_header(); ?>
 
 			monthNextSlide() {
 					console.log("monthNextSlide",this.dateSwiper)
-				if (this.dateSwiper) {
-					console.log("monthNextSlide0")
-					this.dateSwiper.destroy();
-					this.dateSwiper = null;
-				}
 				const currentIndex = this.availableMonths.findIndex(month => month.value == this.selectedMonth);
 				if (currentIndex < this.availableMonths.length - 1) {
 					this.selectedMonth = this.availableMonths[currentIndex + 1].value;
@@ -580,11 +570,6 @@ get_header(); ?>
 
 			monthPreviousSlide() {
 					console.log("monthPreviousSlide",this.dateSwiper)
-				if (this.dateSwiper) {
-					console.log("monthPreviousSlide0")
-					this.dateSwiper.destroy();
-					this.dateSwiper = null;
-				}
 				const currentIndex = this.availableMonths.findIndex(month => month.value == this.selectedMonth);
 				if (currentIndex > 0) {
 					this.selectedMonth = this.availableMonths[currentIndex - 1].value;
