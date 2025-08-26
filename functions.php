@@ -258,23 +258,34 @@ add_action('acf/init', function () {
 });
 
 
-function pll_get_page_url($page_slug)
-{
-	// Check parameter
-	if (empty($page_slug)) return false;
+/**
+ * This function returns a page permalink
+ * for the current website language.
+ *
+ * @author  Mauricio Gelves <mg@maugelves.com>
+ * @param   $page_slug      string          WordPress page slug
+ * @return                  string|false    Page Permalink or false if the page is not found
+ */
+function pll_get_page_url( $page_slug ) {
 
+	// Check parameter
+	if( empty( $page_slug ) ) return false;
+	
 	// Get the page
-	$page = get_page_by_path($page_slug);
+	$page = get_page_by_path( $page_slug );
 
 	// Check if the page exists
-	if (empty($page) || is_null($page)) return false;
+	if( empty( $page ) || is_null( $page ) ) return false;
 
-	// Get the translated page ID
-	$page_ID_current_lang = function_exists('pll_get_post') ? pll_get_post($page->ID) : $page->ID;
+	// Get the URL
+	$page_ID_current_lang = pll_get_post( $page->ID );
 
-	// Return the permalink for the current language
-	return get_permalink($page_ID_current_lang);
+	// Return the current language permalink
+	return empty($page_ID_current_lang) ? get_permalink( $page->ID ) : get_permalink( $page_ID_current_lang );
+
 }
+
+add_action('wp_footer', 'pll_get_page_url');
 
 function pll_get_page_id_by_slug($page_slug)
 {
