@@ -1100,6 +1100,10 @@ body.dragging-scroll {
     margin-top: 5px;
 }
 
+.table_flex_item a:hover{
+    color:#45adb3;
+}
+
 .table_flex_item.break{
   flex-basis: 100%;
   height: 0;
