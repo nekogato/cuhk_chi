@@ -1864,9 +1864,16 @@ body.dragging-scroll {
     box-sizing: border-box;
     height: auto;
     align-self: stretch;
+    position: relative;
 }
 
-.home_news_date_slider .swiper-slide +  .swiper-slide{
+.home_news_date_slider .swiper-slide +  .swiper-slide::before{
+    content:"";
+    position: absolute;
+    left: 0px;
+    top:0px;
+    bottom: 0px;
+    margin: auto;
     border-left: 1px solid #575454;
 }
 
