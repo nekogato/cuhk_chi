@@ -18,10 +18,10 @@ get_header();
 
 <?php get_template_part('template-parts/roll-menu'); ?>
 
+<div class="ink_bg10_wrapper">
+	<img src="<?php echo get_template_directory_uri(); ?>/images/ink_bg10.jpg" class="ink_bg10 scrollin scrollinbottom">
+</div>
 <div class="section top_photo_banner_section banner_bg2">
-	<div class="ink_bg10_wrapper">
-		<img src="<?php echo get_template_directory_uri(); ?>/images/ink_bg10.jpg" class="ink_bg10 scrollin scrollinbottom">
-	</div>
 	<div class="section_center_content small_section_center_content">
 		<div class="col_wrapper">
 			<div class="flex row">

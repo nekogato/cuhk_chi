@@ -41,11 +41,11 @@ get_header();
 	</div>
 </div>
 
-<div class="section section_left_right_content section_left_right_content2 scrollin_p">
 	<div class="ink_bg11_wrapper">
 		<img src="<?php echo get_template_directory_uri(); ?>/images/ink_bg11.jpg" class="ink_bg11 scrollin scrollinbottom">
 	</div>
 
+<div class="section section_left_right_content section_left_right_content2 scrollin_p">
 	<div class="section_center_content small_section_center_content">
 		<div class="col_wrapper xl_col_wrapper">
 			<div class="flex row">
