@@ -1086,22 +1086,22 @@ body{
 	}	
 	
 .text1, h1{
-	font-size: calc(10px + 1.8vw);
-	line-height:1.2em;
-	}	
-	
-.text2, h2{
 	font-size: calc(10px + 1.5vw);
 	line-height:1.2em;
 	}	
 	
+.text2, h2{
+	font-size: calc(10px + 1.3vw);
+	line-height:1.2em;
+	}	
+	
 .text3, h3{
-	font-size: calc(10px + 1.2vw);
+	font-size: calc(10px + 1.1vw);
 	line-height:1.3em;
 	}	
 	
 .text4, h4{
-	font-size: calc(10px + 1vw);
+	font-size: calc(10px + 0.85vw);
 	line-height:1.4em;
 	}	
 	
