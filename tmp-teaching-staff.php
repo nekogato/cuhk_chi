@@ -120,7 +120,7 @@ if ($teaching_staff_term) {
 								<div class="name text5">
 									<a x-text="staff.title" :href="staff.has_detail ? staff.permalink : null"></a>
 								</div>
-								<div class="title" x-text="staff.position"></div>
+								<div class="title" x-html="staff.position"></div>
 								<template x-if="staff.emails && staff.emails.length">
 									<div class="email">
 										<template x-for="(email, index) in staff.emails" :key="email">
