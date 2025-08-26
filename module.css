@@ -1792,8 +1792,12 @@ body.dragging-scroll {
 
 
 .home_news_date_slider_wrapper .swiper-button-disabled{
-    opacity: 0.2;
     pointer-events: none;
+}
+
+
+.home_news_date_slider_wrapper .swiper-button-disabled::before{
+    opacity: 0;
 }
 
 .home_news_date_slider_wrapper .swiper-container{
