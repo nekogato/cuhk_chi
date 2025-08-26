@@ -26,11 +26,27 @@ if ($people_categories && !is_wp_error($people_categories)) {
 }
 
 
-$terms = get_the_terms(get_the_ID(), 'people_category');
+$terms = get_the_terms(get_the_ID(), 'your_taxonomy');
 
 if (!empty($terms) && !is_wp_error($terms)) {
-    $first_term = $terms[0]; // Direct term
-    echo $first_term->slug;  // Term name
+    // Filter out parent terms if their children are also present
+    $term_ids = wp_list_pluck($terms, 'term_id');
+    $specific_terms = [];
+
+    foreach ($terms as $term) {
+        if (!in_array($term->parent, $term_ids)) {
+            $specific_terms[] = $term;
+        }
+    }
+
+    // If we found more specific terms, use them
+    if (!empty($specific_terms)) {
+        $term_to_show = $specific_terms[0]; // pick first if multiple
+    } else {
+        $term_to_show = $terms[0]; // fallback: show any term
+    }
+
+    echo esc_html($term_to_show->slug);
 }
 // Include roll menu
 get_template_part('template-parts/roll-menu', null, array('target_page' => $target_page));
