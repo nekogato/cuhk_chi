@@ -4923,12 +4923,13 @@ body.dragging-scroll {
 .student_list_item_wrapper{
     display: flex;
     flex-wrap: wrap;
-    gap: 100px 0px;
+    gap: 100px 15px;
+    
 }
 
 .student_list_item{
     flex-grow: 0;
-    width: 20%;
+    width: calc(20% - 12px);
       display: flex;
   flex-direction: column;
   justify-content: stretch;
