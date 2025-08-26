@@ -29,16 +29,15 @@ $parent_slug = '';
 
 if ($people_categories && !is_wp_error($people_categories)) {
 	foreach ($people_categories as $term) {
-		$parent_term = null;
-
 		// Get the direct parent if it exists
 		if ($term->parent != 0) {
 			$parent_term = get_term($term->parent, 'people_category');
+			if ($parent_term && !is_wp_error($parent_term)) {
+				$parent_slug = $parent_term->slug;
+			}
 		}
 
-		$parent_slug = $parent_term->slug;
-
-		break; // if you only care about the first category's parent
+		break; // stop after first category
 	}
 }
 
