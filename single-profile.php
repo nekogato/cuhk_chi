@@ -44,7 +44,7 @@ if (!empty($terms) && !is_wp_error($terms)) {
         $term_to_show = $terms[0];
     }
 
-    echo esc_html($term_to_show->name."sdfds");
+    echo esc_html($term_to_show->slug);
 }
 
 
