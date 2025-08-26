@@ -1075,7 +1075,7 @@ a{
 
 	
 body{
-	font-size: calc(12px + 0.3vw);
+	font-size: calc(14px);
 	line-height:1.5em;
 	font-weight: 400;
 	}
@@ -1086,37 +1086,37 @@ body{
 	}	
 	
 .text1, h1{
-	font-size: calc(12px + 1.5vw);
+	font-size: calc(10px + 1.8vw);
 	line-height:1.2em;
 	}	
 	
 .text2, h2{
-	font-size: calc(12px + 1.35vw);
+	font-size: calc(10px + 1.5vw);
 	line-height:1.2em;
 	}	
 	
 .text3, h3{
-	font-size: calc(12px + 1.2vw);
+	font-size: calc(10px + 1.2vw);
 	line-height:1.3em;
 	}	
 	
 .text4, h4{
-	font-size: calc(12px + 1vw);
+	font-size: calc(10px + 1vw);
 	line-height:1.4em;
 	}	
 	
 .text5, h5{
-	font-size: calc(12px + 0.6vw);
+	font-size: calc(10px + 0.6vw);
 	line-height:1.4em;
 	}	
 	
 .text6, h6{
-	font-size: calc(12px + 0.4vw);
+	font-size: calc(14px);
 	line-height:1.4em;
 	}	
 
 .text7{
-	font-size: calc(12px + 0.2vw);
+	font-size: calc(10px + 0.2vw);
 	line-height:1.5em;
 }	
 
