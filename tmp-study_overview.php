@@ -95,7 +95,7 @@ while (have_posts()) :
 										<div class="col_wrapper xl_col_wrapper">
 											<div class="flex row">
 												<?php if ($layout['layout_type'] == 'one_column') : ?>
-													<div class="col8 col">
+													<div class="col10 col">
 														<div class="col_spacing">
 															<div class="free_text">
 																<?php echo apply_filters('the_content', $layout['content']); ?>
