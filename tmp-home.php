@@ -256,8 +256,8 @@ get_header(); ?>
 		
 		<div class="home_news_date_slider_wrapper_wrapper">
 		<!-- Loading indicator -->
-			<div class="section_center_content small_section_center_content">
-				<div class="home_news_loading " :class="loading?'active':''">
+			<div class="home_news_loading " :class="loading?'active':''">
+				<div class="section_center_content small_section_center_content">
 					<div class="date text4"><?php echo cuhk_multilang_text("載入中...", "载入中...", "Loading..."); ?></div>
 					<div class="news_item_wrapper">
 						<div class="news_item">
