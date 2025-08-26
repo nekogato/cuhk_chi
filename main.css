@@ -1091,17 +1091,17 @@ body{
 	}	
 	
 .text2, h2{
-	font-size: calc(10px + 1.3vw);
+	font-size: calc(10px + 1.6vw);
 	line-height:1.2em;
 	}	
 	
 .text3, h3{
-	font-size: calc(10px + 1.1vw);
+	font-size: calc(10px + 1.4vw);
 	line-height:1.3em;
 	}	
 	
 .text4, h4{
-	font-size: calc(10px + 0.85vw);
+	font-size: calc(10px + 1.2vw);
 	line-height:1.4em;
 	}	
 	
