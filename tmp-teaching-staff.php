@@ -61,6 +61,7 @@ if ($teaching_staff_term) {
 											<a
 												@click.prevent="filterByPosition(term.slug)"
 												:class="{ 'active': selectedPosition === term.slug }"
+												:data-slug="term.slug"
 												x-text="getTermName(term)">
 											</a>
 										</li>
@@ -249,15 +250,22 @@ if ($teaching_staff_term) {
 			currentStaff: null,
 
 			init() {
-				// Set the first child term as default if available
-				if (this.childTerms && this.childTerms.length > 0) {
+				// Check for URL parameter first
+				const urlParams = new URLSearchParams(window.location.search);
+				const positionFromURL = urlParams.get('people_category');
+
+				if (positionFromURL) {
+					this.selectedPosition = positionFromURL;
+				} else if (this.childTerms && this.childTerms.length > 0) {
+					// Fallback to first term if no URL param
 					this.selectedPosition = this.childTerms[0].slug;
 				}
 
 				this.loadStaff();
+
 				this.$watch('selectedPosition', () => this.filterStaff());
 				this.$watch('sortOrder', () => this.filterStaff());
-			},
+			}
 
 			getTermName(term) {
 				// Use the localized name that was prepared in PHP
