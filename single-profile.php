@@ -30,17 +30,17 @@ $terms = get_the_terms(get_the_ID(), 'people_category');
 
 if (!empty($terms) && !is_wp_error($terms)) {
     $term_ids = wp_list_pluck($terms, 'term_id');
+    $parent_ids = wp_list_pluck($terms, 'parent');
 
-    // Remove parent terms if their children are also present
-    $filtered_terms = array_filter($terms, function ($term) use ($term_ids) {
-        return !in_array($term->parent, $term_ids);
+    // Keep terms that are NOT parents of other terms
+    $filtered_terms = array_filter($terms, function($term) use ($parent_ids) {
+        return !in_array($term->term_id, $parent_ids);
     });
 
-    // Choose the most specific term (child if exists)
     if (!empty($filtered_terms)) {
         $term_to_show = array_shift($filtered_terms);
     } else {
-        $term_to_show = $terms[0]; // fallback
+        $term_to_show = $terms[0];
     }
 
     echo esc_html($term_to_show->name);
