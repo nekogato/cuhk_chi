@@ -1764,13 +1764,14 @@ body.dragging-scroll {
 }
 
 .home_news_date_slider_wrapper .next_btn{
-    width: 50px;
+    width: 51px;
     position: absolute;
     right: 0px;
     top:0px;
     height: 100%;
     cursor: pointer;
     background: linear-gradient(90deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 100%);
+    z-index: 1;
 }
 
 
