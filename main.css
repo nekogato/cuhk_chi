@@ -1591,6 +1591,11 @@ ol:not(.free_text ol), ul:not(.free_text ul) {
 
 @media screen and (max-width: 1023px) { 
 
+	body{
+		font-size: calc(13px);
+		line-height:1.7em;
+	}
+
 	.header, .nottop .header{
 		background-color: #fff;
 	}
