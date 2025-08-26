@@ -7959,11 +7959,11 @@ body.dragging-scroll {
       /* student_list */
 
       .student_list_item_wrapper {
-        gap: 50px 0px;
+        gap: 50px 15px;
       }
 
       .student_list_item {
-        width: 33.33%;
+            width: calc(33.33% - 10px);
       }
 
       .student_list_item > .text {
@@ -9093,8 +9093,9 @@ body.dragging-scroll {
 
 
       .student_list_item {
-        width: 50%;
+        width: calc(50% - 8px);
       }
+      
 
       .student_list_item .email {
         margin-top: 20px;
