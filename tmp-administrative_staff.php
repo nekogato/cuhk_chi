@@ -103,7 +103,8 @@ get_header();
 							</div>
 						</div>
 						<div class="list_item_col col6">
-							<div class="inner_list_item_col col6">
+							<?php if ($email_addresses): ?>
+							<div class="inner_list_item_col <?php echo !empty($phone_display) ? 'col6' : 'col12 right_text'; ?>">
 								<div>
 									<?php
 									if ($email_addresses):
@@ -116,9 +117,12 @@ get_header();
 									?>
 								</div>
 							</div>
-							<div class="inner_list_item_col col6">
+							<?php endif; ?>
+							<?php if ($phone_display): ?>
+							<div class="inner_list_item_col <?php echo !empty($email_addresses) ? 'col6' : 'col12 right_text'; ?>">
 								<div><?php echo esc_html($phone_display); ?></div>
 							</div>
+							<?php endif; ?>
 						</div>
 					</div>
 			<?php
