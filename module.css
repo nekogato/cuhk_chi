@@ -5224,6 +5224,7 @@ body.dragging-scroll {
 .people_detail_content_year_list .year{
     color:#62629e;
     white-space: nowrap;
+    width: 100px;
 }
 
 .people_detail_content_year_list .free_text h1,
@@ -9068,10 +9069,17 @@ body.dragging-scroll {
         .scheme_unit_expandable_box .hidden_content table tr td + td {
         padding-left: 15px;
         }
+
+        
+    .people_detail_content_year_list table td + td {
+        padding-left: 20px;
+    }
 }
 
 
 @media screen and (max-width: 480px) { 
+
+
 
     .top_photo_banner_section + .plain_text_section .col6{
         width: 100%;
