@@ -25,7 +25,7 @@ if ($people_categories && !is_wp_error($people_categories)) {
 	}
 }
 
-
+$parent_slug = '';
 $terms = get_the_terms(get_the_ID(), 'people_category');
 
 if (!empty($terms) && !is_wp_error($terms)) {
@@ -43,7 +43,7 @@ if (!empty($terms) && !is_wp_error($terms)) {
         $term_to_show = $terms[0];
     }
 
-    echo esc_html($term_to_show->name);
+    $parent_slug = $term_to_show->slug;
 }
 
 
