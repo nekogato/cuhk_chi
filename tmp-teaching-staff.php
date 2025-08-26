@@ -265,7 +265,7 @@ if ($teaching_staff_term) {
 
 				this.$watch('selectedPosition', () => this.filterStaff());
 				this.$watch('sortOrder', () => this.filterStaff());
-			}
+			},
 
 			getTermName(term) {
 				// Use the localized name that was prepared in PHP
