@@ -40,7 +40,7 @@ if ($people_categories && !is_wp_error($people_categories)) {
 		break; // stop after first category
 	}
 }
-var_dump( $parent_slug );
+var_dump( $people_categories, $parent_slug );
 // Include roll menu
 get_template_part('template-parts/roll-menu', null, array('target_page' => $target_page));
 
