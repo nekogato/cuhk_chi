@@ -283,8 +283,11 @@
                                     <?php if(get_field("weibo_url","option")){?>
                                         <li><a href="<?php the_field("weibo_url","option"); ?>" class="sns_icon_weibo" target="_blank"></a></li>
                                     <?php }; ?>
-                                    <?php if(get_field("xiaohongshu_url","option")){?>
+                                    <!-- <?php if(get_field("xiaohongshu_url","option")){?>
                                         <li><a href="<?php the_field("xiaohongshu_url","option"); ?>" class="sns_icon_xiaohongshu" target="_blank"></a></li>
+                                    <?php }; ?> -->
+                                    <?php if(get_field("xiaohongshu_qr_code","option")){?>
+                                        <li><a href="<?php echo(get_field("xiaohongshu_qr_code","option"))["url"]; ?>" data-fancybox class="sns_icon_xiaohongshu"></a></li>
                                     <?php }; ?>
                                     <?php if(get_field("wechat_qr_code","option")){?>
                                         <li><a href="<?php echo(get_field("wechat_qr_code","option"))["url"]; ?>" data-fancybox class="sns_icon_wechat"></a></li>
