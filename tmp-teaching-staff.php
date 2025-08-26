@@ -340,10 +340,14 @@ if ($teaching_staff_term) {
 			},
 
 			filterByPosition(position) {
-				// If clicking the same position, don't deselect it (keep it selected)
 				this.selectedPosition = position;
 				this.page = 1;
 				this.loadStaff();
+
+				// Update the URL without reloading the page
+				const url = new URL(window.location);
+				url.searchParams.set('people_category', position);
+				window.history.pushState({}, '', url);
 			},
 
 			setSortOrder(order) {
