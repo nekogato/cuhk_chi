@@ -1086,12 +1086,12 @@ body{
 	}	
 	
 .text1, h1{
-	font-size: calc(12px + 1.6vw);
+	font-size: calc(12px + 1.5vw);
 	line-height:1.2em;
 	}	
 	
 .text2, h2{
-	font-size: calc(12px + 1.4vw);
+	font-size: calc(12px + 1.35vw);
 	line-height:1.2em;
 	}	
 	
