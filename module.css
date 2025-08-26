@@ -1713,7 +1713,7 @@ body.dragging-scroll {
 /* home_news_date_slider */
 
 .home_news_date_slider_wrapper_wrapper{
-    background-color: #EEE8DC;
+    /* background-color: #EEE8DC; */
 }
 
 .home_news_date_slider_wrapper{
@@ -1874,14 +1874,13 @@ body.dragging-scroll {
 .home_news_loading {
       text-align: center;
   padding: 0px 20px;
-  border-left: 1px solid #575454;
-  border-right: 1px solid #575454;
   margin-top: 90px;
   margin-bottom: 30px;
   margin-left: 100px;
   margin-right: 100px;
   box-sizing: border-box;
   display: none;
+
 }
 
 .home_news_loading.active{
