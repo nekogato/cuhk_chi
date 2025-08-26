@@ -25,6 +25,23 @@ if ($people_categories && !is_wp_error($people_categories)) {
 	}
 }
 
+$parent_slug = '';
+
+if ($people_categories && !is_wp_error($people_categories)) {
+	foreach ($people_categories as $term) {
+		$parent_term = null;
+
+		// Get the direct parent if it exists
+		if ($term->parent != 0) {
+			$parent_term = get_term($term->parent, 'people_category');
+		}
+
+		$parent_slug = $parent_term->slug;
+
+		break; // if you only care about the first category's parent
+	}
+}
+
 // Include roll menu
 get_template_part('template-parts/roll-menu', null, array('target_page' => $target_page));
 
@@ -57,8 +74,7 @@ if (have_posts()) :
 
 				<div class="people_detail_content">
 					<div class="back_btn_wrapper scrollin scrollinbottom">
-						<?php echo $target_page; ?>
-						<a href="<?php echo pll_get_page_url("people/teaching-staff") ?>" class="back_btn"><?php echo cuhk_multilang_text("返回","","Back"); ?></a>
+						<a href="<?php echo pll_get_page_url("people/teaching-staff")."?people_category=".$parent_slug ?>" class="back_btn"><?php echo cuhk_multilang_text("返回","","Back"); ?></a>
 					</div>
 					<div class="people_detail_incontent">
 						<div class="people_detail_photo_wrapper scrollin scrollinbottom">
