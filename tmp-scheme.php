@@ -58,7 +58,7 @@ while (have_posts()) :
 						?>
 							<div class="scheme_unit_box <?php echo esc_attr($group_style); ?>">
 								<div class="scheme_unit_box_left">
-									<div class="t1 text4"><?php echo wp_kses_post($group_index); ?></div>
+									<!-- <div class="t1 text4"><?php echo wp_kses_post($group_index); ?></div> -->
 									<div class="t2 text5"><?php echo wp_kses_post($group_title); ?></div>
 								</div>
 								<div class="scheme_unit_box_right">
@@ -96,7 +96,10 @@ while (have_posts()) :
 					?>
 						<div class="scheme_unit_expandable_box">
 							<div class="title <?php echo esc_attr($group_style); ?>">
-								<div class="left_title text5"><?php echo wp_kses_post($group_index); ?>. <?php echo wp_kses_post($group_title); ?></div>
+								<div class="left_title text5">
+									<!-- <?php echo wp_kses_post($group_index); ?>.  -->
+									<?php echo wp_kses_post($group_title); ?>
+								</div>
 								<div class="right_title">
 									<?php if($show_required_units):?>
 										<div class="num text2"><?php echo wp_kses_post($group_required_unit); ?></div>
