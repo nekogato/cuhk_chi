@@ -35,7 +35,7 @@ while (have_posts()) :
 										</div>
 										<?php if ($hero_banner['buttons']) : ?>
 											<div class="border_btn_wrapper">
-												<div class="btn_title text7"><?php echo cuhk_multilang_text("下載檔案","","Download PDF"); ?></div>
+												<div class="btn_title "><?php echo cuhk_multilang_text("下載檔案","","Download PDF"); ?></div>
 												
 												<?php foreach ($hero_banner['buttons'] as $button) : ?>
 													<?php if ($button['button_link']) : ?>

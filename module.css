@@ -3374,7 +3374,7 @@ body.dragging-scroll {
 .top_photo_banner_section .text_wrapper .border_btn_wrapper .btn{
     display: block;
     padding: 5px 10px;
-    border-radius: 999px;
+    border-radius: 16px;
     background-color: #fff;
 }
 
