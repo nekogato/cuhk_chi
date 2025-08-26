@@ -29,24 +29,24 @@ if ($people_categories && !is_wp_error($people_categories)) {
 $terms = get_the_terms(get_the_ID(), 'people_category');
 
 if (!empty($terms) && !is_wp_error($terms)) {
-    $term_ids = wp_list_pluck($terms, 'term_id');
-    $specific_terms = [];
+    // Build an array of all assigned term IDs
+    $assigned_ids = wp_list_pluck($terms, 'term_id');
 
-    foreach ($terms as $term) {
-        if (!in_array($term->parent, $term_ids)) {
-            $specific_terms[] = $term;
-        }
-    }
+    // Find the deepest (most specific) terms: i.e., those whose parent is also in the assigned terms
+    $specific_terms = array_filter($terms, function($term) use ($assigned_ids) {
+        return !in_array($term->parent, $assigned_ids);
+    });
 
-    // Use the most specific term if available, otherwise fallback
+    // Pick the first specific term (or fallback)
     if (!empty($specific_terms)) {
-        $term_to_show = $specific_terms[0]; // first specific term
+        $term_to_show = array_shift($specific_terms);
     } else {
-        $term_to_show = $terms[0]; // fallback to any term
+        $term_to_show = $terms[0];
     }
 
     echo esc_html($term_to_show->name);
 }
+
 
 // Include roll menu
 get_template_part('template-parts/roll-menu', null, array('target_page' => $target_page));
