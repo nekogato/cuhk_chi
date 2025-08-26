@@ -94,7 +94,7 @@ if (have_posts()) :
 						<div class="people_detail_text scrollin scrollinbottom">
 							<div class="name text4"><?php the_title(); ?></div>
 							<?php if ($position): ?>
-								<div class="position text5"><?php echo esc_html($position); ?></div>
+								<div class="position text5"><?php echo wp_kses_post($position); ?></div>
 							<?php endif; ?>
 
 							<?php if ($qualifications): ?>

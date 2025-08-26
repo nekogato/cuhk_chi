@@ -171,7 +171,7 @@ if ($teaching_staff_term) {
 						</template>
 						<div class="people_detail_text">
 							<div class="name text3" x-text="currentStaff.title"></div>
-							<div class="position text5" x-text="currentStaff.position"></div>
+							<div class="position text5" x-html="currentStaff.position"></div>
 							<template x-if="currentStaff.qualifications">
 								<div class="qualifications text6">
 									<ul>
