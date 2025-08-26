@@ -2887,3 +2887,42 @@ function filter_news_ajax()
 }
 add_action('wp_ajax_filter_news', 'filter_news_ajax');
 add_action('wp_ajax_nopriv_filter_news', 'filter_news_ajax');
+
+
+// AJAX handler for getting available years
+function get_language_event_years_ajax() {
+    // Verify nonce
+    if ( empty($_POST['nonce']) || ! wp_verify_nonce($_POST['nonce'], 'get_language_event_years_nonce') ) {
+        wp_die('Security check failed');
+    }
+
+    global $wpdb;
+
+    $meta_key = 'start_date';          // ACF date in Ymd (e.g. 20240620)
+    $taxonomy = 'event_category';      // your taxonomy
+    $term_slug = 'language-events';    // the slug to filter by
+
+    $sql = $wpdb->prepare("
+        SELECT DISTINCT LEFT(pm.meta_value, 4) AS year
+        FROM {$wpdb->postmeta} pm
+        INNER JOIN {$wpdb->posts} p ON p.ID = pm.post_id
+        INNER JOIN {$wpdb->term_relationships} tr ON tr.object_id = p.ID
+        INNER JOIN {$wpdb->term_taxonomy} tt ON tt.term_taxonomy_id = tr.term_taxonomy_id
+        INNER JOIN {$wpdb->terms} t ON t.term_id = tt.term_id
+        WHERE pm.meta_key = %s
+          AND pm.meta_value REGEXP '^[0-9]{8}$'
+          AND p.post_type = 'event'
+          AND p.post_status = 'publish'
+          AND tt.taxonomy = %s
+          AND t.slug = %s
+        ORDER BY year DESC
+    ", $meta_key, $taxonomy, $term_slug);
+
+    $years = $wpdb->get_col($sql);
+
+    wp_send_json_success([
+        'years' => $years,
+    ]);
+}
+add_action('wp_ajax_get_language_event_years', 'get_language_event_years_ajax');
+add_action('wp_ajax_nopriv_get_language_event_years', 'get_language_event_years_ajax');
