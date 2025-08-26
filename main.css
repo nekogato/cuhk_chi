@@ -1275,7 +1275,7 @@ ol:not(.free_text ol), ul:not(.free_text ul) {
 	}	
 
 .free_text ol  li{
-	margin-left:1em;
+	margin-left:2em;
 	}	
 	
 .free_text ol > li+li{
@@ -1295,7 +1295,7 @@ ol:not(.free_text ol), ul:not(.free_text ul) {
 	}	
 	
 .free_text ul li{
-	margin-left:1em;
+	margin-left:2em;
 	}	
 
 	
