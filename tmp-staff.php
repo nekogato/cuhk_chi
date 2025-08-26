@@ -67,26 +67,26 @@ get_header();
 							</div>
 						</div>
 						<div class="list_item_col col8">
-							<div class="inner_list_item_col col6">
+							<?php if ($email_addresses): ?>
+							<div class="inner_list_item_col <?php echo !empty($research_interests) ? 'col6' : 'col12 right_text'; ?>">
 								<div>
 									<?php
-									if ($email_addresses):
-										$email_links = array();
-										foreach ($email_addresses as $email) {
-											$email_links[] = '<a href="mailto:' . esc_attr($email) . '">' . esc_html($email) . '</a>';
-										}
-										echo implode(' / ', $email_links);
-									endif;
+									$email_links = array();
+									foreach ($email_addresses as $email) {
+										$email_links[] = '<a href="mailto:' . esc_attr($email) . '">' . esc_html($email) . '</a>';
+									}
+									echo implode(' / ', $email_links);
 									?>
 								</div>
 							</div>
-							<div class="inner_list_item_col col6">
-								<?php if ($research_interests): ?>
-									<div class="free_text">
-										<?php echo wp_kses_post($research_interests); ?>
-									</div>
-								<?php endif; ?>
+							<?php endif; ?>
+							<?php if ($research_interests): ?>
+							<div class="inner_list_item_col <?php echo !empty($email_addresses) ? 'col6' : 'col12 right_text'; ?>">
+								<div class="free_text">
+									<?php echo wp_kses_post($research_interests); ?>
+								</div>
 							</div>
+							<?php endif; ?>
 						</div>
 					</div>
 			<?php
