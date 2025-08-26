@@ -1432,7 +1432,11 @@ ol:not(.free_text ol), ul:not(.free_text ul) {
   cursor: pointer;
 }
 
-	
+.center_content{
+	margin-left: auto;
+	margin-right: auto;
+}	
+
 .center_text{
 	text-align:center;
 	}	

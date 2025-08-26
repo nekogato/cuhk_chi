@@ -20,7 +20,7 @@ get_header();
 
 <div class="section section_content">
 	<div class="section_center_content small_section_center_content">
-		<div class="col10">
+		<div class="col10 center_content">
 			<h1 class="section_title text1 scrollin scrollinbottom"><?php the_title(); ?></h1>
 			<div class="section_description scrollin scrollinbottom col6"><?php the_field('introduction') ?></div>
 			
