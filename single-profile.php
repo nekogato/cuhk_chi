@@ -26,7 +26,7 @@ if ($people_categories && !is_wp_error($people_categories)) {
 }
 
 
-$terms = get_the_terms(get_the_ID(), 'your_taxonomy');
+$terms = get_the_terms(get_the_ID(), 'people_category');
 
 if (!empty($terms) && !is_wp_error($terms)) {
     // Filter out parent terms if their children are also present
