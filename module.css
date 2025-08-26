@@ -1739,13 +1739,14 @@ body.dragging-scroll {
 }
 
 .home_news_date_slider_wrapper .prev_btn{
-    width: 50px;
+    width: 51px;
     position: absolute;
     left: 0px;
     top:0px;
     height: 100%;
     cursor: pointer;
-    background: linear-gradient(-90deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 100%);
+    background: linear-gradient(-90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+    z-index: 1;
 }
 
 .home_news_date_slider_wrapper .prev_btn::before{
@@ -1770,7 +1771,7 @@ body.dragging-scroll {
     top:0px;
     height: 100%;
     cursor: pointer;
-    background: linear-gradient(90deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 100%);
+    background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
     z-index: 1;
 }
 

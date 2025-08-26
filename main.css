@@ -759,9 +759,17 @@ a{
 	white-space: nowrap;
 }
 
+.en_body .footer_info td:first-child{
+	white-space:unset;
+}
+
 .footer_info td+td{
 	padding-left: 20px;
 	  white-space: nowrap;
+}
+
+.en_body .footer_info td+td{
+	white-space:unset;
 }
 
 .footer_info tr+tr td{
