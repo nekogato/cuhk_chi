@@ -27,7 +27,7 @@ if ($people_categories && !is_wp_error($people_categories)) {
 
 
 $terms = get_the_terms(get_the_ID(), 'people_category');
-echo '<pre>';
+echo '<pre>'; 
 print_r($terms);
 echo '</pre>';
 if (!empty($terms) && !is_wp_error($terms)) {
