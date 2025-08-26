@@ -160,6 +160,34 @@
     height: auto;
 }
 
+.ink_bg10_1_wrapper{
+    position: absolute;
+    top:0%;
+    right: 0%;
+    width: 35%;
+    mix-blend-mode: darken;
+    pointer-events: none;
+}
+
+.ink_bg10_1{
+    width: 100%;
+    height: auto;
+}
+
+.ink_bg10_2_wrapper{
+    position: absolute;
+    bottom:50%;
+    left: 0%;
+    width: 35%;
+    mix-blend-mode: darken;
+    pointer-events: none;
+}
+
+.ink_bg10_2{
+    width: 100%;
+    height: auto;
+}
+
 
 .ink_bg11_wrapper{
     position: absolute;

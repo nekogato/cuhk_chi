@@ -37,8 +37,11 @@ while (have_posts()) :
 ?>
 
     
-	<div class="ink_bg10_wrapper">
-		<img src="<?php echo get_template_directory_uri(); ?>/images/ink_bg10.jpg" class="ink_bg10 scrollin scrollinbottom">
+	<div class="ink_bg10_1_wrapper">
+		<img src="<?php echo get_template_directory_uri(); ?>/images/ink_bg10_1.jpg" class="ink_bg10_1 scrollin scrollinbottom">
+	</div>
+	<div class="ink_bg10_2_wrapper">
+		<img src="<?php echo get_template_directory_uri(); ?>/images/ink_bg10_2.jpg" class="ink_bg10_2 scrollin scrollinbottom">
 	</div>
     
 	<div class="section section_content section_scheme scrollin_p">
