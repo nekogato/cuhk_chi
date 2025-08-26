@@ -11,7 +11,7 @@
 
 ?>
 
-    <div class="footer">
+    <div class="footer text7">
         <div class="section_center_content">
             <div class="footer_row_wrapper footer1">
                 <div class="footer_row">
