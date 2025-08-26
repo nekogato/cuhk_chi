@@ -72,7 +72,7 @@ get_header(); ?>
 														<div class="col6 col">
 															<div class="col_spacing ">
 																<div class="text_wrapper">
-																	<div class="text free_text text5">
+																	<div class="text free_text">
 																		<?php if ($slide_title) : ?>
 																			<h4><?php echo $slide_title; ?></h4>
 																		<?php endif; ?>
