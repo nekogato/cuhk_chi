@@ -27,7 +27,9 @@ if ($people_categories && !is_wp_error($people_categories)) {
 
 
 $terms = get_the_terms(get_the_ID(), 'people_category');
-
+echo '<pre>';
+print_r($terms);
+echo '</pre>';
 if (!empty($terms) && !is_wp_error($terms)) {
     // Build an array of all assigned term IDs
     $assigned_ids = wp_list_pluck($terms, 'term_id');
