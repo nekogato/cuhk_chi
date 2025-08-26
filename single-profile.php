@@ -25,20 +25,13 @@ if ($people_categories && !is_wp_error($people_categories)) {
 	}
 }
 
-$parent_slug = '';
 
-if ($people_categories && !is_wp_error($people_categories)) {
-	foreach ($people_categories as $term) {
-		// Get the direct parent if it exists
-		$parent_term = get_term($term, 'people_category');
-		if ($parent_term && !is_wp_error($parent_term)) {
-			$parent_slug = $parent_term->slug;
-		}
+$terms = get_the_terms(get_the_ID(), 'people_category');
 
-		break; // stop after first category
-	}
+if (!empty($terms) && !is_wp_error($terms)) {
+    $first_term = $terms[0]; // Direct term
+    echo $first_term->slug;  // Term name
 }
-var_dump( "slug:", $parent_slug );
 // Include roll menu
 get_template_part('template-parts/roll-menu', null, array('target_page' => $target_page));
 
