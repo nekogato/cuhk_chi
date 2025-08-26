@@ -27,27 +27,25 @@ if ($people_categories && !is_wp_error($people_categories)) {
 
 
 $terms = get_the_terms(get_the_ID(), 'people_category');
-echo '<pre>'; 
-print_r($terms);
-echo '</pre>';
-if (!empty($terms) && !is_wp_error($terms)) {
-    // Build an array of all assigned term IDs
-    $assigned_ids = wp_list_pluck($terms, 'term_id');
 
-    // Find the deepest (most specific) terms: i.e., those whose parent is also in the assigned terms
-    $specific_terms = array_filter($terms, function($term) use ($assigned_ids) {
-        return !in_array($term->parent, $assigned_ids);
+if (!empty($terms) && !is_wp_error($terms)) {
+    $term_ids = wp_list_pluck($terms, 'term_id');
+
+    // Remove parent terms if their children are also present
+    $filtered_terms = array_filter($terms, function ($term) use ($term_ids) {
+        return !in_array($term->parent, $term_ids);
     });
 
-    // Pick the first specific term (or fallback)
-    if (!empty($specific_terms)) {
-        $term_to_show = array_shift($specific_terms);
+    // Choose the most specific term (child if exists)
+    if (!empty($filtered_terms)) {
+        $term_to_show = array_shift($filtered_terms);
     } else {
-        $term_to_show = $terms[0];
+        $term_to_show = $terms[0]; // fallback
     }
 
-    echo esc_html($term_to_show->slug);
+    echo esc_html($term_to_show->name);
 }
+
 
 
 // Include roll menu
