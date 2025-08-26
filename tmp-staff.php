@@ -80,7 +80,7 @@ get_header();
 								</div>
 							</div>
 							<?php endif; ?>
-							<?php if ($research_interests): ?>
+							<?php if ($research_interests):?>
 							<div class="inner_list_item_col <?php echo !empty($email_addresses) ? 'col6' : 'col12 right_text'; ?>">
 								<div class="free_text">
 									<?php echo wp_kses_post($research_interests); ?>
