@@ -101,7 +101,7 @@ if (have_posts()) :
 
 											<?php if ($scholarship['description']) : ?>
 												<div class="table_flex_item">
-													<div class="title text7"><?php echo cuhk_multilang_text("申請詳情及條件", "", "Descriptions / Eligibility"); ?></div>
+													<!-- <div class="title text7"><?php echo cuhk_multilang_text("申請詳情及條件", "", "Descriptions / Eligibility"); ?></div> -->
 													<div class="text free_text"><?php echo wp_kses_post($scholarship['description']); ?></div>
 												</div>
 											<?php endif; ?>

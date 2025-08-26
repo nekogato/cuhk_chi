@@ -1100,6 +1100,10 @@ body.dragging-scroll {
     margin-top: 5px;
 }
 
+.table_flex_item .text:first-child{
+    margin-top: auto;
+}
+
 .table_flex_item a:hover{
     color:#45adb3;
 }
@@ -9070,7 +9074,7 @@ body.dragging-scroll {
         padding-left: 15px;
         }
 
-        
+
     .people_detail_content_year_list table td + td {
         padding-left: 20px;
     }
