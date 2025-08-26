@@ -30,10 +30,10 @@ $parent_slug = '';
 if ($people_categories && !is_wp_error($people_categories)) {
 	foreach ($people_categories as $term) {
 		// Get the direct parent if it exists
-			$parent_term = get_term($term->parent, 'people_category');
-			if ($parent_term && !is_wp_error($parent_term)) {
-				$parent_slug = $parent_term->slug;
-			}
+		$parent_term = get_term($term, 'people_category');
+		if ($parent_term && !is_wp_error($parent_term)) {
+			$parent_slug = $parent_term->slug;
+		}
 
 		break; // stop after first category
 	}
