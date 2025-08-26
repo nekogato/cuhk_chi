@@ -61,7 +61,6 @@ if ($teaching_staff_term) {
 											<a
 												@click.prevent="filterByPosition(term.slug)"
 												:class="{ 'active': selectedPosition === term.slug }"
-												:data-slug="term.slug"
 												x-text="getTermName(term)">
 											</a>
 										</li>
