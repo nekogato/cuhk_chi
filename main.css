@@ -1075,7 +1075,7 @@ a{
 
 	
 body{
-	font-size: calc(14px);
+	font-size: calc(15px);
 	line-height:1.5em;
 	font-weight: 400;
 	}
@@ -1111,7 +1111,7 @@ body{
 	}	
 	
 .text6, h6{
-	font-size: calc(14px);
+	font-size: calc(10px + 0.4vw);
 	line-height:1.4em;
 	}	
 
