@@ -1819,6 +1819,10 @@ ol:not(.free_text ol), ul:not(.free_text ul) {
 		padding-left: 20px;
 	}
 
+	.footer_sns_wrapper ul {
+	justify-content: center;
+	}
+
 
 	.dropdown_department_bottom .footer_info table{
 	width: auto;
