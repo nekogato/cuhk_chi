@@ -74,7 +74,7 @@ while (have_posts()) :
 	<div class="section section_content">
 		<div class="section_center_content small_section_center_content scrollin scrollinbottom">
 			<div class="section_title">
-				<div class="text1">
+				<div class="text2">
 					<?php echo wp_kses_post($course_code); ?>
 					<?php if ($course_title) : ?>
 						<?php echo wp_kses_post($course_title); ?>
