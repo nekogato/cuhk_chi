@@ -107,7 +107,7 @@ while (have_posts()) :
 
 		<div class="section event_list_section scrollin_p" x-show="comingEvents.length > 0">
 			<div class="section_center_content small_section_center_content">
-				<div class="event_section_title text3 scrollin scrollinbottom left_text"><?php echo cuhk_multilang_text("活動預告", "", "Upcoming Events"); ?></div>
+				<div class="event_section_title text2 scrollin scrollinbottom left_text"><?php echo cuhk_multilang_text("活動預告", "", "Upcoming Events"); ?></div>
 
 				<div class="event_list_item_wrapper" x-show="!loadingComing">
 					<template x-for="event in comingEvents" :key="event.id">
