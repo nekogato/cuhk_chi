@@ -188,7 +188,7 @@ while (have_posts()) :
 
 				<!-- No events found message -->
 				<div x-show="!loadingComing && comingEvents.length === 0" class="event_list_item_wrapper col10 center_content">
-                    <p class="text5"><?php pll_e(''); ?><?php echo cuhk_multilang_text("未找到符合所選條件的活動。","","No events found matching the selected criteria."); ?></p>
+                    <div class="text5 center_text"><?php pll_e(''); ?><?php echo cuhk_multilang_text("未找到符合所選條件的活動。","","No events found matching the selected criteria."); ?></div>
 				</div>
 			</div>
 		</div>
@@ -276,7 +276,7 @@ while (have_posts()) :
 
 				<!-- No events found message -->
 				<div x-show="!loadingOld && oldEvents.length === 0" class="event_list_item_wrapper col10 center_content">
-                    <p class="text5"><?php pll_e(''); ?><?php echo cuhk_multilang_text("未找到符合所選條件的活動。","","No events found matching the selected criteria."); ?></p>
+                    <div class="text5 center_text"><?php pll_e(''); ?><?php echo cuhk_multilang_text("未找到符合所選條件的活動。","","No events found matching the selected criteria."); ?></div>
 				</div>
 			</div>
 		</div>
