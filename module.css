@@ -6971,6 +6971,8 @@ body.dragging-scroll {
 
 .en_body .scheme_title{
     letter-spacing: 0em;
+    font-family: "richmond-text","Chiron Sung HK WS", sans-serif !important;
+    font-weight: normal;
 }
 
 .scheme_item_wrapper{

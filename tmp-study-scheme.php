@@ -61,7 +61,7 @@ while (have_posts()) :
             ]);
 
             if ($sibling_pages) : ?>
-                <ul class="sibling-pages-menu  text5">
+                <ul class="sibling-pages-menu  text6">
                     <?php foreach ($sibling_pages as $page) : ?>
                         <li class="sibling-page-item <?php if ($page->ID == $post->ID) echo 'current'; ?>">
                             <a href="<?php echo get_permalink($page->ID); ?>">
@@ -79,7 +79,7 @@ while (have_posts()) :
             <?php
             $rows = get_field('scheme_repeater'); // returns array|false
             if ($rows && count($rows) > 1) : ?>
-                <ul class="sibling-pages-menu text5">
+                <ul class="sibling-pages-menu text6">
                     <?php while (have_rows('scheme_repeater')) : the_row();
                         $scheme_title = get_sub_field('scheme_title'); ?>
                         <li class="sibling-page-item">
