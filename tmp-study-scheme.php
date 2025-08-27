@@ -76,18 +76,19 @@ while (have_posts()) :
 				<h1 class="section_title text1"><?php echo wp_kses_post($section_title); ?></h1>
 			<?php endif; ?> -->
 
-            <?php if (have_rows('scheme_repeater')) : ?>
-            <ul class="sibling-pages-menu  text5">
-                <?php while (have_rows('scheme_repeater')) : the_row();  
-                    $scheme_title = get_sub_field('scheme_title');
-                    ?>
-                    <li class="sibling-page-item">
-                        <a href="#" data-target="<?php echo $scheme_title; ?>">
-                            <?php echo esc_html($scheme_title); ?>
-                        </a>
-                    </li>
-                <?php endwhile; ?>
-            </ul>
+            <?php
+            $rows = get_field('scheme_repeater'); // returns array|false
+            if ($rows && count($rows) > 1) : ?>
+                <ul class="sibling-pages-menu text5">
+                    <?php while (have_rows('scheme_repeater')) : the_row();
+                        $scheme_title = get_sub_field('scheme_title'); ?>
+                        <li class="sibling-page-item">
+                            <a href="#" class="scheme_slide_btn" data-target="<?php echo esc_attr($scheme_title); ?>">
+                                <?php echo esc_html($scheme_title); ?>
+                            </a>
+                        </li>
+                    <?php endwhile; ?>
+                </ul>
             <?php endif; ?>
 
 			<?php if ($programme_name) : ?>
