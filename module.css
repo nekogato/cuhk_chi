@@ -2045,6 +2045,7 @@ body.dragging-scroll {
     letter-spacing: 0.05em;
   font-weight: 600;
   color: #63629B;
+  position: relative;
 }
 
 .en_body .event_section_title {
