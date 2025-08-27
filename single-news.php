@@ -50,7 +50,7 @@ while (have_posts()) :
 										};
 										?>
 
-										<h1 class="news_title "><?php the_field("news_name"); ?></h1>
+										<h1 class="news_title text2"><?php the_field("news_name"); ?></h1>
 										<?php if (get_field('start_date')) { ?>
 											<div class="news_date">
 												<?php
@@ -141,7 +141,7 @@ while (have_posts()) :
 										};
 										?>
 
-										<h1 class="news_title "><?php the_field("news_name"); ?></h1>
+										<h1 class="news_title text2"><?php the_field("news_name"); ?></h1>
 
 										<?php if (get_field('start_date')) { ?>
 											<div class="news_date scrollin scrollinbottom">
@@ -252,7 +252,7 @@ while (have_posts()) :
 
 	<div class="section section_content section_more_news">
 		<div class="section_center_content small_section_center_content scrollin scrollinbottom">
-			<h1 class="section_title text1"><?php echo cuhk_multilang_text("探索更多","","Explore More News"); ?></h1>
+			<div class="section_title text1"><?php echo cuhk_multilang_text("探索更多","","Explore More News"); ?></div>
 		</div>
 		<div class="thumb_text_box_slider_wrapper scrollin scrollinbottom">
 			<div class="swiper-container">

@@ -62,7 +62,7 @@ while (have_posts()) :
 										};
 										?>
 
-										<h1 class="news_title "><?php the_field("project_title"); ?></h1>
+										<h1 class="news_title text2"><?php the_field("project_title"); ?></h1>
 										
 									</div>
 
@@ -140,7 +140,7 @@ while (have_posts()) :
 										};
 										?>
 
-										<h1 class="news_title "><?php the_field("project_title"); ?></h1>
+										<h1 class="news_title text2"><?php the_field("project_title"); ?></h1>
 
 									</div>
 
