@@ -105,7 +105,7 @@ while (have_posts()) :
 			</div>
 		</div>
 
-		<div class="section event_list_section scrollin_p">
+		<div class="section event_list_section scrollin_p" x-show="comingEvents.length > 0">
 			<div class="section_center_content small_section_center_content">
 				<div class="event_section_title text2 scrollin scrollinbottom left_text"><?php echo cuhk_multilang_text("活動預告", "", "Upcoming Events"); ?></div>
 
