@@ -109,7 +109,7 @@ while (have_posts()) :
 			<div class="section_center_content small_section_center_content">
 				<div class="event_section_title text2 scrollin scrollinbottom left_text"><?php echo cuhk_multilang_text("活動預告", "", "Upcoming Events"); ?></div>
 
-				<div class="event_list_item_wrapper" x-show="!loadingComing">
+				<div class="event_list_item_wrapper col10 center_content" x-show="!loadingComing">
 					<template x-for="event in comingEvents" :key="event.id">
 						<div class="event_list_item flex  scrollin scrollinbottom">
 							<div class="date">
@@ -180,14 +180,14 @@ while (have_posts()) :
 				</div>
 
 				<!-- Loading indicator -->
-				<div class="event_list_item_wrapper" x-show="loadingComing" x-cloak>
+				<div class="event_list_item_wrapper col10 center_content" x-show="loadingComing" x-cloak>
 					<div class="loading-indicator" style="text-align: center; padding: 40px;">
 						<p><?php echo cuhk_multilang_text("戴入活動中","","Loading events..."); ?></p>
 					</div>
 				</div>
 
 				<!-- No events found message -->
-				<div x-show="!loadingComing && comingEvents.length === 0" style="text-align: center; padding: 60px 0;">
+				<div x-show="!loadingComing && comingEvents.length === 0" class="event_list_item_wrapper col10 center_content">
                     <p class="text5"><?php pll_e(''); ?><?php echo cuhk_multilang_text("未找到符合所選條件的活動。","","No events found matching the selected criteria."); ?></p>
 				</div>
 			</div>
@@ -197,7 +197,7 @@ while (have_posts()) :
 			<div class="section_center_content small_section_center_content">
 				<div class="event_section_title text2 scrollin scrollinbottom left_text"><?php echo cuhk_multilang_text("過去活動", "", "Past Events"); ?></div>
 				
-				<div class="event_list_item_wrapper" x-show="!loadingOld">
+				<div class="event_list_item_wrapper col10 center_content" x-show="!loadingOld">
 					<template x-for="event in oldEvents" :key="event.id">
 						<div class="event_list_item flex  scrollin scrollinbottom">
 							<div class="date">
@@ -268,14 +268,14 @@ while (have_posts()) :
 				</div>
 
 				<!-- Loading indicator -->
-				<div class="event_list_item_wrapper" x-show="loadingOld" x-cloak>
+				<div class="event_list_item_wrapper col10 center_content" x-show="loadingOld" x-cloak>
 					<div class="loading-indicator" style="text-align: center; padding: 40px;">
 						<p><?php echo cuhk_multilang_text("戴入活動中","","Loading events..."); ?></p>
 					</div>
 				</div>
 
 				<!-- No events found message -->
-				<div x-show="!loadingOld && oldEvents.length === 0" style="text-align: center; padding: 60px 0;">
+				<div x-show="!loadingOld && oldEvents.length === 0" class="event_list_item_wrapper col10 center_content">
                     <p class="text5"><?php pll_e(''); ?><?php echo cuhk_multilang_text("未找到符合所選條件的活動。","","No events found matching the selected criteria."); ?></p>
 				</div>
 			</div>
