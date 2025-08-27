@@ -72,8 +72,7 @@ if (pll_current_language() == 'sc') {
 		</ul>
 	</div>
 	<div class="dropdown">
-		<div class="dropdown_col_wrapper ">
-			<div class="dropdown_col_inwrapper">
+		<div class="dropdown_col_wrapper text7">
 			<?php
 			if( have_rows('column_1_menu', 'option') ):
 				?>
@@ -333,7 +332,6 @@ if (pll_current_language() == 'sc') {
 						</div>
 					</div>
 				</div>
-			</div>
 			</div>
 		</div>
 		<a href="#" class="menu_dropdown"><div class="g g1"></div><div class="g g2"></div><div class="g g3"></div></a>
