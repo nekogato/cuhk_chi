@@ -962,6 +962,20 @@ body.dragging-scroll {
 .no_bg .expandable_item::before{
     display: none;
 }
+.no_bg .expandable_item::before{
+    content:"";
+    position: absolute;
+    left: 50px;
+    right: 50px;
+    bottom: 0px;
+    top: auto;
+    width: auto;
+    height: auto;
+    margin: auto;
+    background: none; 
+    border-bottom:1px solid #736562;
+}
+
 
 .expandable_item .expandable_title{
 	-webkit-transition: padding-top 0.6s cubic-bezier(0.77, 0, 0.175, 1) 0s, padding-bottom 0.6s cubic-bezier(0.77, 0, 0.175, 1) 0s; 
