@@ -579,7 +579,7 @@ a{
 /* footer */
 
 .footer{
-	padding-top: 100px;
+	padding-top: 60px;
 	padding-bottom: 50px;
 	color:#4c4846;
 	position: relative;
@@ -601,7 +601,7 @@ a{
 }
 
 .footer_row_wrapper + .footer_row_wrapper{
-    margin-top: 100px;
+    margin-top: 60px;
 }
 
 .footer_row + .footer_row{
