@@ -1683,6 +1683,10 @@ ol:not(.free_text ol), ul:not(.free_text ul) {
 		gap: 40px;
 	  }
 
+	  .dropdown_menu_list::after{
+		display: none;
+	}
+
 	.dropdown .dropdown_col {
 		width: auto;
 		padding: 0px;
