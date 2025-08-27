@@ -960,7 +960,6 @@ body.dragging-scroll {
 }
 
 .no_bg .expandable_item::before{
-    display: none;
 }
 .no_bg .expandable_item::before{
     content:"";
