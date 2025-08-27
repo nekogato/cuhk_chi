@@ -2937,6 +2937,9 @@ function load_all_events_with_year()
 
 	$category = isset($_POST['category']) ? sanitize_text_field($_POST['category']) : 'all';
 	$year     = isset($_POST['year']) ? sanitize_text_field($_POST['year']) : '';
+
+	$pastonly = isset($_POST['pastonly']);
+	
 	$today    = date('Y-m-d');
 
 	// Build query args
@@ -3122,4 +3125,4 @@ function load_all_events_with_year()
 	));
 }
 add_action('wp_ajax_load_all_events_with_year', 'load_all_events_with_year');
-add_action('wp_ajax_nopriv_load_all_events_with_year', 'load_events_with_year');
+add_action('wp_ajax_nopriv_load_all_events_with_year', 'load_all_events_with_year');
