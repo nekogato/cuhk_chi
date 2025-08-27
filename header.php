@@ -73,262 +73,264 @@ if (pll_current_language() == 'sc') {
 	</div>
 	<div class="dropdown">
 		<div class="dropdown_col_wrapper text7">
-			<?php
-			if( have_rows('column_1_menu', 'option') ):
-				?>
-				<div class="dropdown_col">
+			<div class="dropdown_col_inwrapper">
 				<?php
-				while( have_rows('column_1_menu', 'option') ) : the_row();
-					$group_name = get_sub_field('group_name');
-					if( have_rows('menu') ):
-						?>
+				if( have_rows('column_1_menu', 'option') ):
+					?>
+					<div class="dropdown_col">
+					<?php
+					while( have_rows('column_1_menu', 'option') ) : the_row();
+						$group_name = get_sub_field('group_name');
+						if( have_rows('menu') ):
+							?>
 
-						<div class="dropdown_menu_list">
-							<div class="t1 text5"><span><?php echo $group_name;?></span></div>
-							<ul>
-								<?php 
-								while (have_rows('menu')) : the_row();
-									$title_only = get_sub_field('title_only');
-									$text       = get_sub_field('text');
-									$url        = get_sub_field('url');
-									$page       = get_sub_field('page');
-
-									// If all fields are empty, show spacer
-									if (empty($title_only) && empty($text) && empty($url) && empty($page)) {
-										echo '<li class="t_spacer"></li>';
-										continue;
-									}
-
-									if ($title_only) :
-									?>
-									<li class="t2"><?php echo esc_html($text); ?></li>
+							<div class="dropdown_menu_list">
+								<div class="t1 text5"><span><?php echo $group_name;?></span></div>
+								<ul>
 									<?php 
-									else:
-										// Default title and link fallback
-										$link_title = '';
-										$link_href  = '';
+									while (have_rows('menu')) : the_row();
+										$title_only = get_sub_field('title_only');
+										$text       = get_sub_field('text');
+										$url        = get_sub_field('url');
+										$page       = get_sub_field('page');
 
-										if ($page) {
-											$link_title = get_the_title($page);
-											$link_href  = get_permalink($page);
+										// If all fields are empty, show spacer
+										if (empty($title_only) && empty($text) && empty($url) && empty($page)) {
+											echo '<li class="t_spacer"></li>';
+											continue;
 										}
 
-										// Override title if text is given
-										if ($text) {
-											$link_title = $text;
-										}
-
-										// Override URL if given
-										if ($url) {
-											$link_href = $url;
-										}
-
-										// Only show if we have a title and a link
-										if ($link_title && $link_href) :
-									?>
-										<li><a href="<?php echo esc_url($link_href); ?>"><?php echo esc_html($link_title); ?></a></li>
+										if ($title_only) :
+										?>
+										<li class="t2"><?php echo esc_html($text); ?></li>
 										<?php 
+										else:
+											// Default title and link fallback
+											$link_title = '';
+											$link_href  = '';
+
+											if ($page) {
+												$link_title = get_the_title($page);
+												$link_href  = get_permalink($page);
+											}
+
+											// Override title if text is given
+											if ($text) {
+												$link_title = $text;
+											}
+
+											// Override URL if given
+											if ($url) {
+												$link_href = $url;
+											}
+
+											// Only show if we have a title and a link
+											if ($link_title && $link_href) :
+										?>
+											<li><a href="<?php echo esc_url($link_href); ?>"><?php echo esc_html($link_title); ?></a></li>
+											<?php 
+											endif;
 										endif;
-									endif;
-								endwhile; 
-								?>
-							</ul>
-						</div>
-
-						<?php
-					endif;
-				endwhile;
-				?>
-				</div>
-				<?php
-			endif;
-			?>
-			<?php
-			if( have_rows('column_2_menu', 'option') ):
-				?>
-				<div class="dropdown_col">
-				<?php
-				while( have_rows('column_2_menu', 'option') ) : the_row();
-					$group_name = get_sub_field('group_name');
-					if( have_rows('menu') ):
-						?>
-
-						<div class="dropdown_menu_list">
-							<div class="t1 text5"><span><?php echo $group_name;?></span></div>
-							<ul>
-								<?php 
-								while (have_rows('menu')) : the_row();
-									$title_only = get_sub_field('title_only');
-									$text       = get_sub_field('text');
-									$url        = get_sub_field('url');
-									$page       = get_sub_field('page');
-
-									// If all fields are empty, show spacer
-									if (empty($title_only) && empty($text) && empty($url) && empty($page)) {
-										echo '<li class="t_spacer"></li>';
-										continue;
-									}
-
-									if ($title_only) :
+									endwhile; 
 									?>
-									<li class="t2"><?php echo esc_html($text); ?></li>
-									<?php 
-									else:
-										// Default title and link fallback
-										$link_title = '';
-										$link_href  = '';
+								</ul>
+							</div>
 
-										if ($page) {
-											$link_title = get_the_title($page);
-											$link_href  = get_permalink($page);
-										}
-
-										// Override title if text is given
-										if ($text) {
-											$link_title = $text;
-										}
-
-										// Override URL if given
-										if ($url) {
-											$link_href = $url;
-										}
-
-										// Only show if we have a title and a link
-										if ($link_title && $link_href) :
-									?>
-										<li><a href="<?php echo esc_url($link_href); ?>"><?php echo esc_html($link_title); ?></a></li>
-										<?php 
-										endif;
-									endif;
-								endwhile; 
-								?>
-							</ul>
-						</div>
-
-						<?php
-					endif;
-				endwhile;
-				?>
-				</div>
-				<?php
-			endif;
-			?>
-			<?php
-			if( have_rows('column_3_menu', 'option') ):
-				?>
-				<div class="dropdown_col">
-				<?php
-				while( have_rows('column_3_menu', 'option') ) : the_row();
-					$group_name = get_sub_field('group_name');
-					if( have_rows('menu') ):
-						?>
-
-						<div class="dropdown_menu_list">
-							<div class="t1 text5"><span><?php echo $group_name;?></span></div>
-							<ul>
-								<?php 
-								while (have_rows('menu')) : the_row();
-									$title_only = get_sub_field('title_only');
-									$text       = get_sub_field('text');
-									$url        = get_sub_field('url');
-									$page       = get_sub_field('page');
-
-									// If all fields are empty, show spacer
-									if (empty($title_only) && empty($text) && empty($url) && empty($page)) {
-										echo '<li class="t_spacer"></li>';
-										continue;
-									}
-
-									if ($title_only) :
-									?>
-									<li class="t2"><?php echo esc_html($text); ?></li>
-									<?php 
-									else:
-										// Default title and link fallback
-										$link_title = '';
-										$link_href  = '';
-
-										if ($page) {
-											$link_title = get_the_title($page);
-											$link_href  = get_permalink($page);
-										}
-
-										// Override title if text is given
-										if ($text) {
-											$link_title = $text;
-										}
-
-										// Override URL if given
-										if ($url) {
-											$link_href = $url;
-										}
-
-										// Only show if we have a title and a link
-										if ($link_title && $link_href) :
-									?>
-										<li><a href="<?php echo esc_url($link_href); ?>"><?php echo esc_html($link_title); ?></a></li>
-										<?php 
-										endif;
-									endif;
-								endwhile; 
-								?>
-							</ul>
-						</div>
-
-						<?php
-					endif;
-				endwhile;
-				?>
-				</div>
-				<?php
-			endif;
-			?>
-			<div class="dropdown_col">
-				<div class="dropdown_department">
-					<div class="dropdown_department_top">
-						<img src="<?php bloginfo('template_directory'); ?>/images/ccc_color.png" class="dropdown_department_logo">
-						<div class="text text7">
-							<div>香港中文大學中國語言及文學系</div>
-							<div>Department of Chinese Language & Literature, CUHK</div>
-						</div>
+							<?php
+						endif;
+					endwhile;
+					?>
 					</div>
-					<div class="dropdown_department_bottom">
-						<!-- <div class="footer_sns_title text7"><?php echo cuhk_multilang_text("追蹤中國語言及文學系","","Follow Department of Chinese Language & Literature"); ?></div> -->
-						<div class="footer_sns_wrapper">
-							<ul>
-								<?php if(get_field("fb_url","option")){?>
-									<li><a href="<?php the_field("fb_url","option"); ?>" class="sns_icon_fb" target="_blank"></a></li>
-								<?php }; ?>
-								<?php if(get_field("ig_url","option")){?>
-									<li><a href="<?php the_field("ig_url","option"); ?>" class="sns_icon_ig" target="_blank"></a></li>
-								<?php }; ?>
-								<?php if(get_field("youtube_url","option")){?>
-									<li><a href="<?php the_field("youtube_url","option"); ?>" class="sns_icon_yt" target="_blank"></a></li>
-								<?php }; ?>
-								<?php if(get_field("linkedin_url","option")){?>
-									<li><a href="<?php the_field("linkedin_url","option"); ?>" class="sns_icon_in" target="_blank"></a></li>
-								<?php }; ?>
-								<?php if(get_field("weibo_url","option")){?>
-									<li><a href="<?php the_field("weibo_url","option"); ?>" class="sns_icon_weibo" target="_blank"></a></li>
-								<?php }; ?>
-								<!-- <?php if(get_field("xiaohongshu_url","option")){?>
-									<li><a href="<?php the_field("xiaohongshu_url","option"); ?>" class="sns_icon_xiaohongshu" target="_blank"></a></li>
-								<?php }; ?> -->
-								<?php if(get_field("xiaohongshu_qr_code","option")){?>
-									<li><a href="<?php echo(get_field("xiaohongshu_qr_code","option"))["url"]; ?>" data-fancybox class="sns_icon_xiaohongshu"></a></li>
-								<?php }; ?>
-								<?php if(get_field("wechat_qr_code","option")){?>
-									<li><a href="<?php echo(get_field("wechat_qr_code","option"))["url"]; ?>" data-fancybox class="sns_icon_wechat"></a></li>
-								<?php }; ?>
-							</ul>
+					<?php
+				endif;
+				?>
+				<?php
+				if( have_rows('column_2_menu', 'option') ):
+					?>
+					<div class="dropdown_col">
+					<?php
+					while( have_rows('column_2_menu', 'option') ) : the_row();
+						$group_name = get_sub_field('group_name');
+						if( have_rows('menu') ):
+							?>
+
+							<div class="dropdown_menu_list">
+								<div class="t1 text5"><span><?php echo $group_name;?></span></div>
+								<ul>
+									<?php 
+									while (have_rows('menu')) : the_row();
+										$title_only = get_sub_field('title_only');
+										$text       = get_sub_field('text');
+										$url        = get_sub_field('url');
+										$page       = get_sub_field('page');
+
+										// If all fields are empty, show spacer
+										if (empty($title_only) && empty($text) && empty($url) && empty($page)) {
+											echo '<li class="t_spacer"></li>';
+											continue;
+										}
+
+										if ($title_only) :
+										?>
+										<li class="t2"><?php echo esc_html($text); ?></li>
+										<?php 
+										else:
+											// Default title and link fallback
+											$link_title = '';
+											$link_href  = '';
+
+											if ($page) {
+												$link_title = get_the_title($page);
+												$link_href  = get_permalink($page);
+											}
+
+											// Override title if text is given
+											if ($text) {
+												$link_title = $text;
+											}
+
+											// Override URL if given
+											if ($url) {
+												$link_href = $url;
+											}
+
+											// Only show if we have a title and a link
+											if ($link_title && $link_href) :
+										?>
+											<li><a href="<?php echo esc_url($link_href); ?>"><?php echo esc_html($link_title); ?></a></li>
+											<?php 
+											endif;
+										endif;
+									endwhile; 
+									?>
+								</ul>
+							</div>
+
+							<?php
+						endif;
+					endwhile;
+					?>
+					</div>
+					<?php
+				endif;
+				?>
+				<?php
+				if( have_rows('column_3_menu', 'option') ):
+					?>
+					<div class="dropdown_col">
+					<?php
+					while( have_rows('column_3_menu', 'option') ) : the_row();
+						$group_name = get_sub_field('group_name');
+						if( have_rows('menu') ):
+							?>
+
+							<div class="dropdown_menu_list">
+								<div class="t1 text5"><span><?php echo $group_name;?></span></div>
+								<ul>
+									<?php 
+									while (have_rows('menu')) : the_row();
+										$title_only = get_sub_field('title_only');
+										$text       = get_sub_field('text');
+										$url        = get_sub_field('url');
+										$page       = get_sub_field('page');
+
+										// If all fields are empty, show spacer
+										if (empty($title_only) && empty($text) && empty($url) && empty($page)) {
+											echo '<li class="t_spacer"></li>';
+											continue;
+										}
+
+										if ($title_only) :
+										?>
+										<li class="t2"><?php echo esc_html($text); ?></li>
+										<?php 
+										else:
+											// Default title and link fallback
+											$link_title = '';
+											$link_href  = '';
+
+											if ($page) {
+												$link_title = get_the_title($page);
+												$link_href  = get_permalink($page);
+											}
+
+											// Override title if text is given
+											if ($text) {
+												$link_title = $text;
+											}
+
+											// Override URL if given
+											if ($url) {
+												$link_href = $url;
+											}
+
+											// Only show if we have a title and a link
+											if ($link_title && $link_href) :
+										?>
+											<li><a href="<?php echo esc_url($link_href); ?>"><?php echo esc_html($link_title); ?></a></li>
+											<?php 
+											endif;
+										endif;
+									endwhile; 
+									?>
+								</ul>
+							</div>
+
+							<?php
+						endif;
+					endwhile;
+					?>
+					</div>
+					<?php
+				endif;
+				?>
+				<div class="dropdown_col">
+					<div class="dropdown_department">
+						<div class="dropdown_department_top">
+							<img src="<?php bloginfo('template_directory'); ?>/images/ccc_color.png" class="dropdown_department_logo">
+							<div class="text text7">
+								<div>香港中文大學中國語言及文學系</div>
+								<div>Department of Chinese Language & Literature, CUHK</div>
+							</div>
 						</div>
-						
-						<div class="text text7 footer_info">
-							<?php if(get_field('footer_info', 'option')){
-								?>
-								<?php
-								the_field('footer_info', 'option');
-							}; ?>
+						<div class="dropdown_department_bottom">
+							<!-- <div class="footer_sns_title text7"><?php echo cuhk_multilang_text("追蹤中國語言及文學系","","Follow Department of Chinese Language & Literature"); ?></div> -->
+							<div class="footer_sns_wrapper">
+								<ul>
+									<?php if(get_field("fb_url","option")){?>
+										<li><a href="<?php the_field("fb_url","option"); ?>" class="sns_icon_fb" target="_blank"></a></li>
+									<?php }; ?>
+									<?php if(get_field("ig_url","option")){?>
+										<li><a href="<?php the_field("ig_url","option"); ?>" class="sns_icon_ig" target="_blank"></a></li>
+									<?php }; ?>
+									<?php if(get_field("youtube_url","option")){?>
+										<li><a href="<?php the_field("youtube_url","option"); ?>" class="sns_icon_yt" target="_blank"></a></li>
+									<?php }; ?>
+									<?php if(get_field("linkedin_url","option")){?>
+										<li><a href="<?php the_field("linkedin_url","option"); ?>" class="sns_icon_in" target="_blank"></a></li>
+									<?php }; ?>
+									<?php if(get_field("weibo_url","option")){?>
+										<li><a href="<?php the_field("weibo_url","option"); ?>" class="sns_icon_weibo" target="_blank"></a></li>
+									<?php }; ?>
+									<!-- <?php if(get_field("xiaohongshu_url","option")){?>
+										<li><a href="<?php the_field("xiaohongshu_url","option"); ?>" class="sns_icon_xiaohongshu" target="_blank"></a></li>
+									<?php }; ?> -->
+									<?php if(get_field("xiaohongshu_qr_code","option")){?>
+										<li><a href="<?php echo(get_field("xiaohongshu_qr_code","option"))["url"]; ?>" data-fancybox class="sns_icon_xiaohongshu"></a></li>
+									<?php }; ?>
+									<?php if(get_field("wechat_qr_code","option")){?>
+										<li><a href="<?php echo(get_field("wechat_qr_code","option"))["url"]; ?>" data-fancybox class="sns_icon_wechat"></a></li>
+									<?php }; ?>
+								</ul>
+							</div>
+							
+							<div class="text text7 footer_info">
+								<?php if(get_field('footer_info', 'option')){
+									?>
+									<?php
+									the_field('footer_info', 'option');
+								}; ?>
+							</div>
 						</div>
 					</div>
 				</div>

@@ -463,6 +463,7 @@ a{
 	width: 100%;
 	display: flex;
 	gap: 40px;
+	padding-bottom: 50px;
 }
 
 .dropdown .dropdown_col{
@@ -1666,6 +1667,11 @@ ol:not(.free_text ol), ul:not(.free_text ul) {
 		gap: 40px;
 		padding: 15px;
 		flex-direction: column;
+	  }
+
+	  .dropdown .dropdown_col_inwrapper{
+		flex-direction: column;
+		gap: 40px;
 	  }
 
 	.dropdown .dropdown_col {
