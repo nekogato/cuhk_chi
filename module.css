@@ -2393,7 +2393,7 @@ body.dragging-scroll {
 }
 .home_promotion_box .rotate_text_wrapper{
     padding-top: 20px;
-    padding-bottom: 20px;
+    padding-bottom: 45px;
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -8307,8 +8307,12 @@ body.dragging-scroll {
       }
 
       .home_promotion_box .t_wrapper .btn_wrapper {
-        margin-top: 15px;
+        margin-top: 10px;
       }
+
+      .line_btn {
+        padding-bottom: 5px;
+        }
 
       .home_promotion_box .t_wrapper .t2  p{
         margin-top: 15px;
