@@ -202,7 +202,7 @@ get_header(); ?>
 			<div class="section_center_content small_section_center_content scrollin scrollinbottom">
 				<button class="prev_btn" @click="monthNextSlide()"></button>
 				<div class="t_wrapper">
-					<div class="t1 text4">
+					<div class="t1 text5">
 						<?php
 						if (pll_current_language() == 'tc' || pll_current_language() == 'sc') {
 						?>
