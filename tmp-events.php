@@ -89,6 +89,17 @@ while (have_posts()) :
 								<?php endforeach; ?>
 							<?php endif; ?>
 						</div>
+						<div class="filter_dropdown_wrapper right_filter_dropdown_wrapper">
+							<a class="filter_dropdown_btn text5" href="#" @click.prevent="toggleYearDropdown()" x-text="selectedYearText"><?php echo cuhk_multilang_text("所有年份", "", "All Years"); ?></a>
+							<div class="filter_dropdown text5">
+								<ul>
+									<li><a href="#" @click.prevent="filterByYear('')" data-val=""><?php echo cuhk_multilang_text("所有年份", "", "All Years"); ?></a></li>
+									<template x-for="year in availableYears" :key="year">
+										<li><a href="#" @click.prevent="filterByYear(year)" :data-val="year" x-text="year"></a></li>
+									</template>
+								</ul>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -96,8 +107,9 @@ while (have_posts()) :
 
 		<div class="section event_list_section scrollin_p">
 			<div class="section_center_content small_section_center_content">
-				<div class="event_list_item_wrapper" x-show="!loading">
-					<template x-for="event in events" :key="event.id">
+				
+				<div class="event_list_item_wrapper" x-show="!loadingComing">
+					<template x-for="event in comingEvents" :key="event.id">
 						<div class="event_list_item flex  scrollin scrollinbottom">
 							<div class="date">
 								<template x-if="event.has_date_range">
@@ -158,7 +170,7 @@ while (have_posts()) :
 
 					<template x-if="hasMore && !loading">
 						<div class="load_more_wrapper scrollin scrollinbottom">
-							<a @click.prevent="loadMore()" class="load_more_btn text5">
+							<a @click.prevent="loadMoreComing()" class="load_more_btn text5">
 								<div class="icon"></div>
 								<div class="text"><?php echo cuhk_multilang_text("載入更多","","Load more"); ?></div>
 							</a>
@@ -167,14 +179,101 @@ while (have_posts()) :
 				</div>
 
 				<!-- Loading indicator -->
-				<div class="event_list_item_wrapper" x-show="loading" x-cloak>
+				<div class="event_list_item_wrapper" x-show="loadingComing" x-cloak>
 					<div class="loading-indicator" style="text-align: center; padding: 40px;">
 						<p><?php echo cuhk_multilang_text("戴入活動中","","Loading events..."); ?></p>
 					</div>
 				</div>
 
 				<!-- No events found message -->
-				<div x-show="!loading && events.length === 0" style="text-align: center; padding: 60px 0;">
+				<div x-show="!loadingComing && comingEvents.length === 0" style="text-align: center; padding: 60px 0;">
+                    <p class="text5"><?php pll_e(''); ?><?php echo cuhk_multilang_text("未找到符合所選條件的活動。","","No events found matching the selected criteria."); ?></p>
+				</div>
+			</div>
+		</div>
+
+		<div class="section event_list_section scrollin_p">
+			<div class="section_center_content small_section_center_content">
+				
+				<div class="event_list_item_wrapper" x-show="!loadingOld">
+					<template x-for="event in oldEvents" :key="event.id">
+						<div class="event_list_item flex  scrollin scrollinbottom">
+							<div class="date">
+								<template x-if="event.has_date_range">
+									<div class="d_wrapper">
+										<div class="d">
+											<div class="d1 text3" x-text="event.start_date_short"></div>
+										</div>
+										<div class="d">
+											<div class="d1 text3" x-text="event.end_date_short"></div>
+										</div>
+									</div>
+								</template>
+								<template x-if="!event.has_date_range">
+									<div class="d_wrapper">
+										<div class="d">
+											<div class="d1 text3" x-text="event.start_date_short"></div>
+										</div>
+									</div>
+								</template>
+								<div class="btn_wrapper">
+									<a :href="event.permalink" class="reg_btn round_btn text7"><?php echo cuhk_multilang_text("查看更多","","View more"); ?></a>
+								</div>
+							</div>
+							<div class="title_wrapper">
+								<div class="title text4" x-html="event.event_name"></div>
+								<div class="info_item_wrapper">
+									<div class="info_item">
+										<div class="t1"><?php echo cuhk_multilang_text("日期","","Date"); ?></div>
+										<div class="t2 text6" x-html="event.date_display"></div>
+									</div>
+									<template x-if="event.event_time">
+										<div class="info_item">
+											<div class="t1"><?php echo cuhk_multilang_text("時間","","Time"); ?></div>
+											<div class="t2 text6" x-html="event.event_time"></div>
+										</div>
+									</template>
+									<template x-if="event.event_venue">
+										<div class="info_item big_info_item">
+											<div class="t1"><?php echo cuhk_multilang_text("地點","","Venue"); ?></div>
+											<div class="t2 text6" x-html="event.event_venue"></div>
+										</div>
+									</template>
+
+									<template x-if="event.event_banner">
+										<div class="info_item big_info_item mobile_show2">
+											<a :href="event.permalink"><img :src="event.event_banner.url" :alt="event.event_banner.alt"></a>
+										</div>
+									</template>
+								</div>
+							</div>
+							<template x-if="event.event_banner">
+								<div class="photo mobile_hide2">
+									<a :href="event.permalink" ><img :src="event.event_banner.url" :alt="event.event_banner.alt"></a>
+								</div>
+							</template>
+						</div>
+					</template>
+
+					<template x-if="hasMore && !loadingOld">
+						<div class="load_more_wrapper scrollin scrollinbottom">
+							<a @click.prevent="loadMoreOld()" class="load_more_btn text5">
+								<div class="icon"></div>
+								<div class="text"><?php echo cuhk_multilang_text("載入更多","","Load more"); ?></div>
+							</a>
+						</div>
+					</template>
+				</div>
+
+				<!-- Loading indicator -->
+				<div class="event_list_item_wrapper" x-show="loadingOld" x-cloak>
+					<div class="loading-indicator" style="text-align: center; padding: 40px;">
+						<p><?php echo cuhk_multilang_text("戴入活動中","","Loading events..."); ?></p>
+					</div>
+				</div>
+
+				<!-- No events found message -->
+				<div x-show="!loadingOld && oldEvents.length === 0" style="text-align: center; padding: 60px 0;">
                     <p class="text5"><?php pll_e(''); ?><?php echo cuhk_multilang_text("未找到符合所選條件的活動。","","No events found matching the selected criteria."); ?></p>
 				</div>
 			</div>
@@ -191,19 +290,101 @@ endwhile;
 
 	function eventFilter() {
 		return {
-			events: [],
+			comingEvents: [],
+			oldEvents: [],
 			activeCategory: 'all',
-			loading: false,
-			currentPage: 1,
-			hasMore: true,
+			selectedYear: '',
+			selectedYearText: '<?php echo cuhk_multilang_text("所有年份", "", "All Years"); ?>',
+			showYearDropdown: false,
+			availableYears: [],
+
+			// pagination & loading
+			pageComing: 1,
+			pageOld: 1,
+			hasMoreComing: true,
+			hasMoreOld: true,
+			loadingComing: false,
+			loadingOld: false,
 
 			init() {
-				this.loadEvents();
+				this.reloadAll();
+        		this.loadAvailableYears();
 			},
 
-			async loadEvents(page = 1, category = 'all', append = false) {
-				this.loading = true;
+			reloadAll() {
+				this.pageComing = 1;
+				this.pageOld = 1;
+				this.fetchComing(false);
+				this.fetchOld(false);
+			},
 
+			filterByCategory(category) {
+				if (this.activeCategory === category) return;
+				this.activeCategory = category;
+				this.reloadAll();
+			},
+
+			async fetchComing(append = false) {
+				this.loadingComing = true;
+				try {
+					const response = await fetch(ajaxurl, {
+						method: 'POST',
+						headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+						body: new URLSearchParams({
+							action: 'load_events_with_year',
+							nonce: '<?php echo wp_create_nonce('load_events_with_year_nonce'); ?>',
+							category: this.activeCategory,
+							year: this.year,
+							page_coming: this.pageComing,
+							page_old: 1 // server expects both; keep old at 1 for this call
+						})
+					});
+					const data = await response.json();
+					if (data.success) {
+						const list = data.data.coming_events || [];
+						this.comingEvents = append ? this.comingEvents.concat(list) : list;
+						this.hasMoreComing = !!data.data.has_more_coming;
+						setTimeout(() => doscroll(), 300);
+					}
+				} catch (e) {
+					console.error('Error loading coming events:', e);
+				} finally {
+					this.loadingComing = false;
+					dosize(); doscroll();
+				}
+			},
+
+			async fetchOld(append = false) {
+				this.loadingOld = true;
+				try {
+					const response = await fetch(ajaxurl, {
+						method: 'POST',
+						headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+						body: new URLSearchParams({
+							action: 'load_events_with_year',
+							nonce: '<?php echo wp_create_nonce('load_events_with_year_nonce'); ?>',
+							category: this.activeCategory,
+							year: this.year,
+							page_coming: 1, // keep coming at 1 for this call
+							page_old: this.pageOld
+						})
+					});
+					const data = await response.json();
+					if (data.success) {
+						const list = data.data.old_events || [];
+						this.oldEvents = append ? this.oldEvents.concat(list) : list;
+						this.hasMoreOld = !!data.data.has_more_old;
+						setTimeout(() => doscroll(), 300);
+					}
+				} catch (e) {
+					console.error('Error loading old events:', e);
+				} finally {
+					this.loadingOld = false;
+					dosize(); doscroll();
+				}
+			},
+
+			async loadAvailableYears() {
 				try {
 					const response = await fetch(ajaxurl, {
 						method: 'POST',
@@ -211,45 +392,47 @@ endwhile;
 							'Content-Type': 'application/x-www-form-urlencoded',
 						},
 						body: new URLSearchParams({
-							action: 'filter_events',
-							nonce: '<?php echo wp_create_nonce('filter_events_nonce'); ?>',
-							page: page,
-							category: category
+							action: 'get_event_years',
+							nonce: '<?php echo wp_create_nonce('get_event_years_nonce'); ?>',
 						})
 					});
 
 					const data = await response.json();
 					if (data.success) {
-						if (append) {
-							this.events = [...this.events, ...data.data.events];
-						} else {
-							this.events = data.data.events;
-						}
-						this.hasMore = data.data.has_more;
-						this.currentPage = page;
-						setTimeout(() => {
-							doscroll();
-						}, 300);
+						this.availableYears = data.data.years;
 					}
 				} catch (error) {
-					console.error('Error loading events:', error);
-				} finally {
-					this.loading = false;
-					dosize();
-					doscroll();
+					console.error('Error loading years:', error);
 				}
 			},
 
 			filterByCategory(category) {
 				if (this.activeCategory === category) return;
 				this.activeCategory = category;
-				this.currentPage = 1;
-				this.loadEvents(1, category, false);
+        		this.reloadAll();
 			},
 
-			loadMore() {
-				if (!this.hasMore || this.loading) return;
-				this.loadEvents(this.currentPage + 1, this.activeCategory, true);
+			filterByYear(year) {
+				this.selectedYear = year;
+				this.selectedYearText = year || '<?php echo cuhk_multilang_text("所有年份", "", "All Year"); ?>';
+				this.showYearDropdown = false;
+        		this.reloadAll();
+			},
+
+			toggleYearDropdown() {
+				this.showYearDropdown = !this.showYearDropdown;
+			},
+
+			loadMoreComing() {
+				if (!this.hasMoreComing || this.loadingComing) return;
+				this.pageComing += 1;
+				this.fetchComing(true);
+			},
+
+			loadMoreOld() {
+				if (!this.hasMoreOld || this.loadingOld) return;
+				this.pageOld += 1;
+				this.fetchOld(true);
 			}
 		}
 	}

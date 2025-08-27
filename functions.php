@@ -2926,3 +2926,221 @@ function get_language_event_years_ajax() {
 }
 add_action('wp_ajax_get_language_event_years', 'get_language_event_years_ajax');
 add_action('wp_ajax_nopriv_get_language_event_years', 'get_language_event_years_ajax');
+
+// AJAX handler for loading events grouped by coming/old (Alpine.js version)
+function load_all_events_with_year()
+{
+	check_ajax_referer('load_all_events_with_year_nonce', 'nonce');
+
+	$page_coming = isset($_POST['page_coming']) ? intval($_POST['page_coming']) : 1;
+	$page_old    = isset($_POST['page_old']) ? intval($_POST['page_old']) : 1;
+
+	$category = isset($_POST['category']) ? sanitize_text_field($_POST['category']) : 'all';
+	$year     = isset($_POST['year']) ? sanitize_text_field($_POST['year']) : '';
+	$today    = date('Y-m-d');
+
+	// shared base args
+	$base_args = array(
+		'post_type'      => 'event',
+		'posts_per_page' => EVENTS_PER_PAGE,
+		'meta_key'       => 'start_date', // for ordering
+		'orderby'        => 'meta_value',
+		'order'          => 'DESC',
+		'post_status'    => 'publish',
+	);
+
+	// taxonomy filter (if any)
+	if ($category !== 'all') {
+		$base_args['tax_query'] = array(
+			array(
+				'taxonomy' => 'event_category',
+				'field'    => 'slug',
+				'terms'    => $category,
+			)
+		);
+	}
+
+	/**
+	 * YEAR filter:
+	 * Only apply if year is provided and not "all"
+	 */
+	$year_filter = array();
+	if (!empty($year) && strtolower($year) !== 'all') {
+		$year_filter[] = array(
+			'key'     => 'start_date',
+			'value'   => array($year . '0101', $year . '1231'),
+			'compare' => 'BETWEEN',
+			'type'    => 'NUMERIC',
+		);
+	}
+
+	/**
+	 * COMING EVENTS
+	 */
+	$coming_meta_query = array('relation' => 'AND');
+	if (!empty($year_filter)) {
+		$coming_meta_query = array_merge($coming_meta_query, $year_filter);
+	}
+	$coming_meta_query[] = array(
+		'relation' => 'OR',
+		array(
+			'key'     => 'start_date',
+			'value'   => $today,
+			'compare' => '>=',
+			'type'    => 'DATE',
+		),
+		array(
+			'key'     => 'end_date',
+			'value'   => $today,
+			'compare' => '>=',
+			'type'    => 'DATE',
+		),
+		array(
+			'relation' => 'AND',
+			array(
+				'key'     => 'start_date',
+				'value'   => $today,
+				'compare' => '>=',
+				'type'    => 'DATE',
+			),
+			array(
+				'key'     => 'end_date',
+				'compare' => 'NOT EXISTS',
+			),
+		),
+	);
+
+	$coming_args = $base_args;
+	$coming_args['paged'] = max(1, $page_coming);
+	$coming_args['meta_query'] = $coming_meta_query;
+
+	/**
+	 * OLD EVENTS
+	 */
+	$old_meta_query = array('relation' => 'AND');
+	if (!empty($year_filter)) {
+		$old_meta_query = array_merge($old_meta_query, $year_filter);
+	}
+	$old_meta_query[] = array(
+		'relation' => 'OR',
+		// A) multi-day event ended
+		array(
+			'relation' => 'AND',
+			array(
+				'key'     => 'end_date',
+				'compare' => 'EXISTS',
+			),
+			array(
+				'key'     => 'end_date',
+				'value'   => $today,
+				'compare' => '<',
+				'type'    => 'DATE',
+			),
+		),
+		// B) single-day event in the past
+		array(
+			'relation' => 'AND',
+			array(
+				'key'     => 'start_date',
+				'value'   => $today,
+				'compare' => '<',
+				'type'    => 'DATE',
+			),
+			array(
+				'relation' => 'OR',
+				array(
+					'key'     => 'end_date',
+					'compare' => 'NOT EXISTS',
+				),
+				array(
+					'key'     => 'end_date',
+					'value'   => '',
+					'compare' => '=',
+				),
+			),
+		),
+	);
+
+	$old_args = $base_args;
+	$old_args['paged'] = max(1, $page_old);
+	$old_args['meta_query'] = $old_meta_query;
+
+	// Run both queries
+	$coming_query = new WP_Query($coming_args);
+	$old_query    = new WP_Query($old_args);
+
+	$build_event = function () {
+		$event_name = get_field('event_name');
+		$photo = '';
+
+		$featured_image = get_the_post_thumbnail_url(get_the_ID(), 'm');
+		$event_banner   = get_field('event_banner');
+
+		if ($featured_image) {
+			$photo = $featured_image;
+		} elseif ($event_banner && isset($event_banner['sizes']['m'])) {
+			$photo = $event_banner['sizes']['m'];
+		} else {
+			$photo = get_template_directory_uri() . '/images/schoolart_logo_bg.svg';
+		}
+
+		$start_date  = get_field('start_date'); // Ymd
+		$end_date    = get_field('end_date');   // Ymd or empty
+		$event_time  = get_field('event_time');
+		$event_venue = get_field('event_venue');
+
+		$start_date_obj = DateTime::createFromFormat('Ymd', $start_date);
+		$end_date_obj   = $end_date ? DateTime::createFromFormat('Ymd', $end_date) : null;
+
+		$has_date_range = $end_date && $start_date !== $end_date;
+
+		if ($has_date_range) {
+			$date_display = $start_date_obj->format('j/n/Y') . '－' . $end_date_obj->format('j/n/Y');
+		} else {
+			$date_display = $start_date_obj->format('j/n/Y');
+		}
+
+		return array(
+			'id'               => get_the_ID(),
+			'event_name'       => $event_name,
+			'permalink'        => get_permalink(),
+			'start_date_short' => $start_date_obj->format('j/n'),
+			'end_date_short'   => $end_date_obj ? $end_date_obj->format('j/n') : '',
+			'has_date_range'   => (bool) $has_date_range,
+			'date_display'     => $date_display,
+			'event_time'       => $event_time,
+			'event_venue'      => $event_venue,
+			'event_banner'     => $photo ? array(
+				'url' => $photo,
+				'alt' => $event_name
+			) : null,
+		);
+	};
+
+	$coming_events = array();
+	if ($coming_query->have_posts()) {
+		while ($coming_query->have_posts()) {
+			$coming_query->the_post();
+			$coming_events[] = $build_event();
+		}
+		wp_reset_postdata();
+	}
+
+	$old_events = array();
+	if ($old_query->have_posts()) {
+		while ($old_query->have_posts()) {
+			$old_query->the_post();
+			$old_events[] = $build_event();
+		}
+		wp_reset_postdata();
+	}
+
+	wp_send_json_success(array(
+		'coming_events'   => $coming_events,
+		'has_more_coming' => $page_coming < $coming_query->max_num_pages,
+		'old_events'      => $old_events,
+		'has_more_old'    => $page_old < $old_query->max_num_pages,
+	));
+}
+add_action('wp_ajax_load_all_events_with_year', 'load_all_events_with_year');
+add_action('wp_ajax_nopriv_load_all_events_with_year', 'load_all_events_with_year');
