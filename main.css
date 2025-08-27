@@ -458,13 +458,14 @@ a{
 	margin: auto;
 	gap: 40px;
 	padding: 50px;
+	height: 100%;
+  	box-sizing: border-box;
 }
 
 .dropdown_col_inwrapper{
 	width: 100%;
 	display: flex;
 	gap: 40px;
-	padding-bottom: 50px;
 }
 
 .dropdown .dropdown_col{
