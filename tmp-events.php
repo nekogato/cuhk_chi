@@ -327,7 +327,7 @@ endwhile;
 						body: new URLSearchParams({
 							action: 'load_all_events_with_year',
 							nonce: '<?php echo wp_create_nonce('load_all_events_with_year_nonce'); ?>',
-							category: page_old,
+							category: category,
 							year: year,
 							page_coming: page_coming, // keep coming at 1 for this call
 							page_old: page_old
@@ -365,7 +365,7 @@ endwhile;
 						body: new URLSearchParams({
 							action: 'load_all_events_with_year',
 							nonce: '<?php echo wp_create_nonce('load_all_events_with_year_nonce'); ?>',
-							category: page_old,
+							category: category,
 							year: year,
 							page_coming: page_coming, // keep coming at 1 for this call
 							page_old: page_old
