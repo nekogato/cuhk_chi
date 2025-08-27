@@ -459,6 +459,12 @@ a{
 	gap: 40px;
 }
 
+.dropdown_col_inwrapper{
+	display: flex;
+	gap: 40px;
+	padding-bottom: 50px;
+}
+
 .dropdown .dropdown_col{
 	width: 25%;
 	padding: 0px;
