@@ -61,7 +61,7 @@ while (have_posts()) :
             ]);
 
             if ($sibling_pages) : ?>
-                <ul class="sibling-pages-menu  ">
+                <ul class="sibling-pages-menu  text5">
                     <?php foreach ($sibling_pages as $page) : ?>
                         <li class="sibling-page-item <?php if ($page->ID == $post->ID) echo 'current'; ?>">
                             <a href="<?php echo get_permalink($page->ID); ?>">
@@ -72,9 +72,23 @@ while (have_posts()) :
                 </ul>
             <?php endif; ?>
 
-			<?php if ($section_title) : ?>
+			<!-- <?php if ($section_title) : ?>
 				<h1 class="section_title text1"><?php echo wp_kses_post($section_title); ?></h1>
-			<?php endif; ?>
+			<?php endif; ?> -->
+
+            <?php if (have_rows('scheme_repeater')) : ?>
+            <ul class="sibling-pages-menu  text5">
+                <?php while (have_rows('scheme_repeater')) : the_row();  
+                    $scheme_title = get_sub_field('scheme_title');
+                    ?>
+                    <li class="sibling-page-item">
+                        <a href="#" data-target="<?php echo $scheme_title; ?>">
+                            <?php echo esc_html($scheme_title); ?>
+                        </a>
+                    </li>
+                <?php endwhile; ?>
+            </ul>
+            <?php endif; ?>
 
 			<?php if ($programme_name) : ?>
 				<div class="section_scheme_prog_name text5 col8"><?php echo wp_kses_post($programme_name); ?></div>
@@ -97,7 +111,7 @@ while (have_posts()) :
                     $scheme_title = get_sub_field('scheme_title');
                     $scheme_courses = get_sub_field('courses');
                 ?>
-                    <div class="scheme_item  scrollin scrollinbottom">
+                    <div class="scheme_item  scrollin scrollinbottom" data-id="<?php echo $scheme_title; ?>">
                         <div class="section_center_content small_section_center_content">
                             <div class="scheme_title text3"><?php echo $scheme_title; ?></div>
                             <?php if (have_rows('scheme_year')) :
