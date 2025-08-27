@@ -7575,12 +7575,12 @@ body.dragging-scroll {
 
       .home_news_date_slider_wrapper .prev_btn {
         width: 25px;
-        left: -10px;
+        left: -11px;
       }
 
       .home_news_date_slider_wrapper .next_btn {
         width: 25px;
-        right: -10px;
+        right: -11px;
       }
 
       .home_news_date_slider .news_item_wrapper {

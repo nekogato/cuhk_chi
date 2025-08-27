@@ -180,19 +180,22 @@ get_header(); ?>
 	krsort($available_months);
 	?>
 	<img src="<?php bloginfo('template_directory'); ?>/images/ink_bg7.jpg" class="ink_bg7 scrollin scrollinbottom">
+	<?php 
+	$news_section_title = get_field('news_section_title');
+	if($news_section_title){
+	?>
 	<div class="section_center_content small_section_center_content">
 		<div class="text_wrapper vertical_text_wrapper">
 			<div class="text vertical_text scrollin scrollinbottom">
 				<h1 class="project_title"><span><?php
-												$news_section_title = get_field('news_section_title');
-												if ($news_section_title) {
-													echo $news_section_title;
-												}
-												?></span></h1>
+					echo $news_section_title;
+				?></span></h1>
 			</div>
 		</div>
 	</div>
-
+	<?php 
+	};
+	?>
 
 	<div class="home_news_slider_wrapper">
 		<div class="home_news_year_slider">
