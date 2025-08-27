@@ -52,16 +52,16 @@ while (have_posts()) :
 			));
 			?>
 
-			<div class="filter_menu_wrapper">
+			<div class="filter_menu_wrapper full_filter_menu_wrapper">
 				<div class="filter_menu filter_menu_left_bg section_center_content small_section_center_content scrollin scrollinbottom">
-					<div class="filter_menu_content">
+					<div class="filter_menu_content full_filter_menu_content">
 						<div class="filter_checkbox_wrapper text7 filter_switchable_wrapper">
 							<div class="filter_checkbox">
 								<div class="checkbox">
 									<input name="filter" type="radio" id="all"
 										@change="filterByCategory('all')"
 										:checked="activeCategory === 'all'">
-									<label for="all"><span><?php echo cuhk_multilang_text("所有活動","","All Events"); ?></span></label>
+									<label for="all"><span><?php echo cuhk_multilang_text("所有活動", "", "All Events"); ?></span></label>
 								</div>
 							</div>
 							<?php if (!empty($event_categories)) : ?>
@@ -73,16 +73,16 @@ while (have_posts()) :
 												:checked="activeCategory === '<?php echo esc_attr($category->slug); ?>'">
 											<label for="category-<?php echo esc_attr($category->term_id); ?>">
 												<span>
-												<?php 
-													if(pll_current_language() == 'tc') {
-														$ctermfullname = get_field('tc_name', 'event_category_' .$category->term_id);
-													}elseif(pll_current_language() == 'sc'){
-														$ctermfullname = get_field('sc_name', 'event_category_' .$category->term_id);
-													}else{
-														$ctermfullname = get_field('en_name', 'event_category_' .$category->term_id);
+													<?php
+													if (pll_current_language() == 'tc') {
+														$ctermfullname = get_field('tc_name', 'news_category_' . $category->term_id);
+													} elseif (pll_current_language() == 'sc') {
+														$ctermfullname = get_field('sc_name', 'news_category_' . $category->term_id);
+													} else {
+														$ctermfullname = get_field('en_name', 'news_category_' . $category->term_id);
 													};
-													echo ($ctermfullname); 
-												?></span>
+													echo ($ctermfullname);
+													?></span>
 											</label>
 										</div>
 									</div>
@@ -331,8 +331,8 @@ endwhile;
 						method: 'POST',
 						headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 						body: new URLSearchParams({
-							action: 'load_events_with_year',
-							nonce: '<?php echo wp_create_nonce('load_events_with_year_nonce'); ?>',
+							action: 'load_all_events_with_year',
+							nonce: '<?php echo wp_create_nonce('load_all_events_with_year_nonce'); ?>',
 							category: this.activeCategory,
 							year: this.year,
 							page_coming: this.pageComing,
@@ -361,8 +361,8 @@ endwhile;
 						method: 'POST',
 						headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 						body: new URLSearchParams({
-							action: 'load_events_with_year',
-							nonce: '<?php echo wp_create_nonce('load_events_with_year_nonce'); ?>',
+							action: 'load_all_events_with_year',
+							nonce: '<?php echo wp_create_nonce('load_all_events_with_year_nonce'); ?>',
 							category: this.activeCategory,
 							year: this.year,
 							page_coming: 1, // keep coming at 1 for this call
