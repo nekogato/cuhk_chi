@@ -2984,10 +2984,13 @@ function load_all_events_with_year()
 		)
 	);
 
-	$coming_meta_query = array();
+	// your existing OR block already in $coming_args['meta_query']
+	$base_or = $coming_args['meta_query'];
 
-	if ($year) {
-		$coming_meta_query[] = array(
+	// build the year clause (skip when empty or "all")
+	$year_clause = array();
+	if (!empty($year) && strtolower($year) !== 'all') {
+		$year_clause[] = array(
 			'key'     => 'start_date',
 			'value'   => array($year . '0101', $year . '1231'),
 			'compare' => 'BETWEEN',
@@ -2995,9 +2998,12 @@ function load_all_events_with_year()
 		);
 	}
 
-	// Apply meta_query only if needed
-	if (!empty($coming_meta_query)) {
-		$coming_args['meta_query'] = array_merge(array('relation' => 'AND'), $coming_meta_query);
+	// only merge if we actually have a year clause
+	if (!empty($year_clause)) {
+		$coming_args['meta_query'] = array_merge(
+			array('relation' => 'AND', $base_or), // keep the original OR group
+			$year_clause                  // add the year filter(s)
+		);
 	}
 
 	// Add taxonomy query if category is not 'all'
