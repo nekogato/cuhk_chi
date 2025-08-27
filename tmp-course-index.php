@@ -113,10 +113,12 @@ if (have_posts()) :
 					<div class="filter_course_type_name section_center_content  small_section_center_content text3" x-text="section.name"></div>
 
 					<div class="section_center_content small_section_center_content  filter_detail_flex_head no_bg mobile_hide2">
-						<div class="filter_detail_flex text7">
-							<div class="filter_detail_flex_item"><?php echo cuhk_multilang_text("課程編號", "", "Course Code"); ?></div>
-							<div class="filter_detail_flex_item"><?php echo cuhk_multilang_text("課程名稱", "", "Course Title"); ?></div>
-							<div class="filter_detail_flex_item"><?php echo cuhk_multilang_text("學分", "", "Units"); ?></div>
+						<div class="col10 center_content">
+							<div class="filter_detail_flex text7">
+								<div class="filter_detail_flex_item"><?php echo cuhk_multilang_text("課程編號", "", "Course Code"); ?></div>
+								<div class="filter_detail_flex_item"><?php echo cuhk_multilang_text("課程名稱", "", "Course Title"); ?></div>
+								<div class="filter_detail_flex_item"><?php echo cuhk_multilang_text("學分", "", "Units"); ?></div>
+							</div>
 						</div>
 					</div>
 
