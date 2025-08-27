@@ -334,14 +334,14 @@ endwhile;
 						})
 					});
 					const data = await response.json();
-					console.log("coming",data);
 					if (data.success) {
 						if (append) {
 							this.comingEvents = [...this.comingEvents, ...data.data.coming_events];
 						} else {
 							this.comingEvents = data.data.coming_events;
 						}
-						this.hasMoreComing = !!data.data.has_more_coming;
+						this.hasMoreComing = data.data.has_more_coming;
+						this.pageComing = page_coming;
 						setTimeout(() => {
 							dosize();
 							doscroll();
@@ -372,14 +372,15 @@ endwhile;
 						})
 					});
 					const data = await response.json();
-					console.log("old",data);
 					if (data.success) {
 						if (append) {
+							console.log("append",append);
 							this.oldEvents = [...this.oldEvents, ...data.data.old_events];
 						} else {
 							this.oldEvents = data.data.old_events;
 						}
-						this.hasMoreOld = !!data.data.has_more_old;
+						this.hasMoreOld = data.data.has_more_old;
+						this.pageOld = page_old;
 						setTimeout(() => {
 							dosize();
 							doscroll();
