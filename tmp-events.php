@@ -312,11 +312,11 @@ endwhile;
 			},
 
 			reloadAll() {
-				this.fetchComing();
-				this.fetchOld();
+				this.fetchComing(1,1,this.activeCategory, this.selectedYear, false,false);
+				this.fetchOld(1,1,this.activeCategory, this.selectedYear, true,false);
 			},
 
-			async fetchComing(page_coming = 1, page_old = 1, category = 'all', year = '', append = false) {
+			async fetchComing(page_coming = 1, page_old = 1, category = 'all', year = '', pastonly = false, append = false) {
 				this.loadingComing = true;
 				try {
 					const response = await fetch(ajaxurl, {
@@ -354,7 +354,7 @@ endwhile;
 				}
 			},
 
-			async fetchOld(page_coming = 1, page_old = 1, category = 'all', year = '', append = false) {
+			async fetchOld(page_coming = 1, page_old = 1, category = 'all', year = '', pastonly = true, append = false) {
 				this.loadingOld = true;
 				try {
 					const response = await fetch(ajaxurl, {
@@ -419,8 +419,8 @@ endwhile;
 				this.activeCategory = category;
 				this.pageComing = 1;
 				this.pageOld = 1;
-				this.fetchComing(1, 1,category, this.selectedYear, true);
-				this.fetchOld(1, 1,category, this.selectedYear, true);
+				this.fetchComing(1, 1,category, this.selectedYear, false,false);
+				this.fetchOld(1, 1,category, this.selectedYear, true,false);
 			},
 
 			filterByYear(year) {
@@ -430,8 +430,8 @@ endwhile;
 				this.showYearDropdown = false;
 				this.pageComing = 1;
 				this.pageOld = 1;
-				this.fetchComing(1, 1,category, this.selectedYear, true);
-				this.fetchOld(1, 1,category, this.selectedYear, true);
+				this.fetchComing(1, 1,category, this.selectedYear, false,false);
+				this.fetchOld(1, 1,category, this.selectedYear, true,false);
 			},
 
 			toggleYearDropdown() {
@@ -440,7 +440,7 @@ endwhile;
 
 			loadMoreComing() {
 				if (!this.hasMoreComing || this.loadingComing) return;
-				this.fetchComing(this.pageComing + 1, this.pageOld, this.activeCategory, this.selectedYear, true, true);
+				this.fetchComing(this.pageComing + 1, this.pageOld, this.activeCategory, this.selectedYear, false, true);
 			},
 
 			loadMoreOld() {

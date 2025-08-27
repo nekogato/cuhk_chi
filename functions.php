@@ -2939,34 +2939,88 @@ function load_all_events_with_year()
 	$year     = isset($_POST['year']) ? sanitize_text_field($_POST['year']) : '';
 	$today    = date('Y-m-d');
 
-	// shared base args
-	$base_args = array(
+	// Build query args
+	$coming_args = array(
 		'post_type'      => 'event',
 		'posts_per_page' => EVENTS_PER_PAGE,
-		'meta_key'       => 'start_date', // for ordering
+		'paged'          => $page_coming,
+		'meta_key'       => 'start_date',
 		'orderby'        => 'meta_value',
-		'order'          => 'DESC',
+		'order'          => 'ASC',
 		'post_status'    => 'publish',
+		'meta_query'     => array(
+			'relation' => 'OR', // 使用 OR 關聯，滿足任一條件
+			array(
+				// 條件 1: 未來的 event（start_date >= 今天）
+				'key'     => 'start_date',
+				'value'   => $today,
+				'compare' => '>=',
+				'type'    => 'DATE'
+			),
+			array(
+				// 條件 2: 尚未結束的 event（end_date >= 今天，且 end_date 存在）
+				'key'     => 'end_date',
+				'value'   => $today,
+				'compare' => '>=',
+				'type'    => 'DATE'
+			),
+			array(
+				// 條件 3: 只有 start_date 的單天 event（end_date 不存在或為空）
+				'relation' => 'AND',
+				array(
+					'key'     => 'start_date',
+					'value'   => $today,
+					'compare' => '>=',
+					'type'    => 'DATE'
+				),
+				array(
+					'key'     => 'end_date',
+					'compare' => 'NOT EXISTS', // 處理 end_date 為空的情況
+				)
+			)
+		)
 	);
 
-	// taxonomy filter (if any)
+	// Add taxonomy query if category is not 'all'
 	if ($category !== 'all') {
-		$base_args['tax_query'] = array(
+		$coming_args['tax_query'] = array(
 			array(
 				'taxonomy' => 'event_category',
-				'field'    => 'slug',
-				'terms'    => $category,
+				'field' => 'slug',
+				'terms' => $category
 			)
 		);
 	}
 
 	/**
-	 * YEAR filter:
-	 * Only apply if year is provided and not "all"
+	 * OLD EVENTS
 	 */
-	$year_filter = array();
-	if (!empty($year) && strtolower($year) !== 'all') {
-		$year_filter[] = array(
+	$pastonly = isset($_POST['pastonly']);
+
+	// Build query args for past events (latest to oldest)
+	$old_args = array(
+		'post_type'      => 'event',
+		'posts_per_page' => EVENTS_PER_PAGE,
+		'paged'          => $page_old,
+		'meta_key'       => 'start_date', // for ordering
+		'orderby'        => 'meta_value',
+		'order'          => 'DESC',
+		'post_status' => 'publish'
+	);
+
+	$meta_query = array();
+
+	if ($pastonly) {
+		$meta_query[] = array(
+			'key'     => 'start_date',
+			'value'   => $today,
+			'compare' => '<',
+			'type'    => 'DATE',
+		);
+	}
+
+	if ($year) {
+		$meta_query[] = array(
 			'key'     => 'start_date',
 			'value'   => array($year . '0101', $year . '1231'),
 			'compare' => 'BETWEEN',
@@ -2974,96 +3028,21 @@ function load_all_events_with_year()
 		);
 	}
 
-	/**
-	 * COMING EVENTS
-	 */
-	$coming_meta_query = array('relation' => 'AND');
-	if (!empty($year_filter)) {
-		$coming_meta_query = array_merge($coming_meta_query, $year_filter);
+	// Apply meta_query only if needed
+	if (!empty($meta_query)) {
+		$old_args['meta_query'] = array_merge(array('relation' => 'AND'), $meta_query);
 	}
-	$coming_meta_query[] = array(
-		'relation' => 'OR',
-		array(
-			'key'     => 'start_date',
-			'value'   => $today,
-			'compare' => '>=',
-			'type'    => 'DATE',
-		),
-		array(
-			'key'     => 'end_date',
-			'value'   => $today,
-			'compare' => '>=',
-			'type'    => 'DATE',
-		),
-		array(
-			'relation' => 'AND',
-			array(
-				'key'     => 'start_date',
-				'value'   => $today,
-				'compare' => '>=',
-				'type'    => 'DATE',
-			),
-			array(
-				'key'     => 'end_date',
-				'compare' => 'NOT EXISTS',
-			),
-		),
-	);
 
-	$coming_args = $base_args;
-	$coming_args['paged'] = max(1, $page_coming);
-	$coming_args['meta_query'] = $coming_meta_query;
-
-	/**
-	 * OLD EVENTS
-	 */
-	$old_meta_query = array('relation' => 'AND');
-	if (!empty($year_filter)) {
-		$old_meta_query = array_merge($old_meta_query, $year_filter);
+	// Add taxonomy query if category is not 'all'
+	if ($category !== 'all') {
+		$args['tax_query'] = array(
+			array(
+				'taxonomy' => 'event_category',
+				'field' => 'slug',
+				'terms' => $category
+			)
+		);
 	}
-	$old_meta_query[] = array(
-		'relation' => 'OR',
-		// A) multi-day event ended
-		array(
-			'relation' => 'AND',
-			array(
-				'key'     => 'end_date',
-				'compare' => 'EXISTS',
-			),
-			array(
-				'key'     => 'end_date',
-				'value'   => $today,
-				'compare' => '<',
-				'type'    => 'DATE',
-			),
-		),
-		// B) single-day event in the past
-		array(
-			'relation' => 'AND',
-			array(
-				'key'     => 'start_date',
-				'value'   => $today,
-				'compare' => '<',
-				'type'    => 'DATE',
-			),
-			array(
-				'relation' => 'OR',
-				array(
-					'key'     => 'end_date',
-					'compare' => 'NOT EXISTS',
-				),
-				array(
-					'key'     => 'end_date',
-					'value'   => '',
-					'compare' => '=',
-				),
-			),
-		),
-	);
-
-	$old_args = $base_args;
-	$old_args['paged'] = max(1, $page_old);
-	$old_args['meta_query'] = $old_meta_query;
 
 	// Run both queries
 	$coming_query = new WP_Query($coming_args);
@@ -3143,4 +3122,4 @@ function load_all_events_with_year()
 	));
 }
 add_action('wp_ajax_load_all_events_with_year', 'load_all_events_with_year');
-add_action('wp_ajax_nopriv_load_all_events_with_year', 'load_all_events_with_year');
+add_action('wp_ajax_nopriv_load_all_events_with_year', 'load_events_with_year');
