@@ -460,9 +460,9 @@ a{
 }
 
 .dropdown_col_inwrapper{
+	width: 100%;
 	display: flex;
 	gap: 40px;
-	padding-bottom: 50px;
 }
 
 .dropdown .dropdown_col{
