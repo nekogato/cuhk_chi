@@ -293,7 +293,7 @@ endwhile;
 			comingEvents: [],
 			oldEvents: [],
 			activeCategory: 'all',
-			year: '',
+			selectedYear: '',
 			selectedYearText: '<?php echo cuhk_multilang_text("所有年份", "", "All Years"); ?>',
 			showYearDropdown: false,
 			availableYears: [],
@@ -312,19 +312,11 @@ endwhile;
 			},
 
 			reloadAll() {
-				this.pageComing = 1;
-				this.pageOld = 1;
-				this.fetchComing(false);
-				this.fetchOld(false);
+				this.fetchComing();
+				this.fetchOld();
 			},
 
-			filterByCategory(category) {
-				if (this.activeCategory === category) return;
-				this.activeCategory = category;
-				this.reloadAll();
-			},
-
-			async fetchComing(append = false) {
+			async fetchComing(page_coming = 1, page_old = 1, category = 'all', year = '', append = false) {
 				this.loadingComing = true;
 				try {
 					const response = await fetch(ajaxurl, {
@@ -333,29 +325,36 @@ endwhile;
 						body: new URLSearchParams({
 							action: 'load_all_events_with_year',
 							nonce: '<?php echo wp_create_nonce('load_all_events_with_year_nonce'); ?>',
-							category: this.activeCategory,
-							year: this.year,
-							page_coming: this.pageComing,
-							page_old: 1 // server expects both; keep old at 1 for this call
+							category: page_old,
+							year: year,
+							page_coming: page_coming, // keep coming at 1 for this call
+							page_old: page_old
 						})
 					});
 					const data = await response.json();
 					console.log("coming",data);
 					if (data.success) {
-						const list = data.data.coming_events || [];
-						this.comingEvents = append ? this.comingEvents.concat(list) : list;
+						if (append) {
+							this.comingEvents = [...this.comingEvents, ...data.data.coming_events];
+						} else {
+							this.comingEvents = data.data.coming_events;
+						}
 						this.hasMoreComing = !!data.data.has_more_coming;
-						setTimeout(() => doscroll(), 300);
+						setTimeout(() => {
+							dosize();
+							doscroll();
+						}, 300);
 					}
 				} catch (e) {
 					console.error('Error loading coming events:', e);
 				} finally {
 					this.loadingComing = false;
-					dosize(); doscroll();
+					dosize(); 
+					doscroll();
 				}
 			},
 
-			async fetchOld(append = false) {
+			async fetchOld(page_coming = 1, page_old = 1, category = 'all', year = '', append = false) {
 				this.loadingOld = true;
 				try {
 					const response = await fetch(ajaxurl, {
@@ -364,25 +363,32 @@ endwhile;
 						body: new URLSearchParams({
 							action: 'load_all_events_with_year',
 							nonce: '<?php echo wp_create_nonce('load_all_events_with_year_nonce'); ?>',
-							category: this.activeCategory,
-							year: this.year,
-							page_coming: 1, // keep coming at 1 for this call
-							page_old: this.pageOld
+							category: page_old,
+							year: year,
+							page_coming: page_coming, // keep coming at 1 for this call
+							page_old: page_old
 						})
 					});
 					const data = await response.json();
 					console.log("old",data);
 					if (data.success) {
-						const list = data.data.old_events || [];
-						this.oldEvents = append ? this.oldEvents.concat(list) : list;
+						if (append) {
+							this.oldEvents = [...this.oldEvents, ...data.data.old_events];
+						} else {
+							this.oldEvents = data.data.old_events;
+						}
 						this.hasMoreOld = !!data.data.has_more_old;
-						setTimeout(() => doscroll(), 300);
+						setTimeout(() => {
+							dosize();
+							doscroll();
+						}, 300);
 					}
 				} catch (e) {
 					console.error('Error loading old events:', e);
 				} finally {
 					this.loadingOld = false;
-					dosize(); doscroll();
+					dosize(); 
+					doscroll();
 				}
 			},
 
@@ -411,14 +417,21 @@ endwhile;
 			filterByCategory(category) {
 				if (this.activeCategory === category) return;
 				this.activeCategory = category;
-        		this.reloadAll();
+				this.pageComing = 1;
+				this.pageOld = 1;
+				this.fetchComing(1, 1,category, this.selectedYear, true);
+				this.fetchOld(1, 1,category, this.selectedYear, true);
 			},
 
 			filterByYear(year) {
-				this.year = year;
+				if (this.selectedYear === year) return;
+				this.selectedYear = year;
 				this.selectedYearText = year || '<?php echo cuhk_multilang_text("所有年份", "", "All Year"); ?>';
 				this.showYearDropdown = false;
-        		this.reloadAll();
+				this.pageComing = 1;
+				this.pageOld = 1;
+				this.fetchComing(1, 1,category, this.selectedYear, true);
+				this.fetchOld(1, 1,category, this.selectedYear, true);
 			},
 
 			toggleYearDropdown() {
@@ -427,14 +440,12 @@ endwhile;
 
 			loadMoreComing() {
 				if (!this.hasMoreComing || this.loadingComing) return;
-				this.pageComing += 1;
-				this.fetchComing(true);
+				this.fetchComing(this.pageComing + 1, this.pageOld, this.activeCategory, this.selectedYear, true, true);
 			},
 
 			loadMoreOld() {
 				if (!this.hasMoreOld || this.loadingOld) return;
-				this.pageOld += 1;
-				this.fetchOld(true);
+				this.fetchOld(this.pageComing, this.pageOld + 1, this.activeCategory, this.selectedYear, true, true);
 			}
 		}
 	}
