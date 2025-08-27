@@ -971,6 +971,7 @@ body.dragging-scroll {
     margin: auto;
     background: none; 
     border-bottom:1px solid #736562;
+    z-index: 2;
 }
 
 
@@ -4839,6 +4840,10 @@ body.dragging-scroll {
 .filter_detail_flex_body .filter_detail_flex_item{
     color: #736562;
     font-weight: 400;
+}
+
+.no_bg .filter_detail_flex_body .filter_detail_flex_item{
+    padding: 0px 10px;
 }
 
 .filter_detail_flex_body .filter_detail_flex_item_title{
