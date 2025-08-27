@@ -4832,6 +4832,9 @@ body.dragging-scroll {
     font-weight: 600;
 }
 
+.no_bg.filter_detail_flex_head .filter_detail_flex_item{
+    padding: 0px 10px;
+}
 
 .filter_detail_flex_head + .filter_detail_flex_body{
     margin-top: 10px !important;
@@ -4842,7 +4845,7 @@ body.dragging-scroll {
     font-weight: 400;
 }
 
-.no_bg .filter_detail_flex_body .filter_detail_flex_item{
+.no_bg.filter_detail_flex_body .filter_detail_flex_item{
     padding: 0px 10px;
 }
 
