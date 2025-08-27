@@ -107,7 +107,8 @@ while (have_posts()) :
 
 		<div class="section event_list_section scrollin_p">
 			<div class="section_center_content small_section_center_content">
-				
+				<div class="section_title text4 scrollin scrollinbottom"><?php echo cuhk_multilang_text("活動預告", "", "Upcoming Events"); ?></div>
+
 				<div class="event_list_item_wrapper" x-show="!loadingComing">
 					<template x-for="event in comingEvents" :key="event.id">
 						<div class="event_list_item flex  scrollin scrollinbottom">
@@ -194,6 +195,7 @@ while (have_posts()) :
 
 		<div class="section event_list_section scrollin_p">
 			<div class="section_center_content small_section_center_content">
+				<div class="section_title text4 scrollin scrollinbottom"><?php echo cuhk_multilang_text("過去活動", "", "Past Events"); ?></div>
 				
 				<div class="event_list_item_wrapper" x-show="!loadingOld">
 					<template x-for="event in oldEvents" :key="event.id">
