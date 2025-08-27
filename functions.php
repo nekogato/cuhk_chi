@@ -2957,7 +2957,7 @@ function load_all_events_with_year()
 				// 條件 1: 未來的 event（start_date >= 今天）
 				'key'     => 'start_date',
 				'value'   => $today,
-				'compare' => '>=',
+				'compare' => '<=',
 				'type'    => 'DATE'
 			),
 			array(
