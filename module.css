@@ -985,6 +985,14 @@ body.dragging-scroll {
     font-family: "richmond-text","Chiron Sung HK WS", sans-serif !important;
 }
 
+.expandable_item .expandable_title:hover{
+    background-color: #fff;
+}
+
+.expandable_item.active .expandable_title:hover{
+    background-color: transparent;
+}
+
 .expandable_item .expandable_title.disable{
     cursor:auto;
 }
