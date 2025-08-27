@@ -11,7 +11,7 @@ get_header(); ?>
 
 <div class="section home_top_section" id="section1">
 	<div class="section_center_content full_section_center_content scrollin scrollinbottom">
-		<h1 class="text text0 scrollin scrollinbottom">
+		<h1 class="text text0 col8 scrollin scrollinbottom">
 			<?php
 			$home_title = get_field('home_title');
 			if ($home_title) {

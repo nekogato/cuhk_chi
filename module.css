@@ -1603,6 +1603,10 @@ body.dragging-scroll {
    z-index: 11;
 }
 
+.home_news_year_slider .prev_btn:hover{
+    opacity: 0.8;
+}
+
 .home_news_year_slider .prev_btn::before{
     content:"";
     position: absolute;
@@ -1646,6 +1650,10 @@ body.dragging-scroll {
    margin-left: 150px;
     cursor: pointer;
    z-index: 11;
+}
+
+.home_news_year_slider .next_btn:hover{
+    opacity: 0.8;
 }
 
 .home_news_year_slider .next_btn::before{

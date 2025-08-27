@@ -714,6 +714,10 @@ a{
 	display: block;
 }
 
+.footer_sns_wrapper a:hover{
+	opacity: 0.8;
+}
+
 .footer_sns_title + .footer_sns_wrapper{
 	margin-top: 15px;
 }
