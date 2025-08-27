@@ -120,7 +120,7 @@ if (have_posts()) :
 						</div>
 					</div>
 
-					<div class="section_expandable_list   filter_detail_flex_body">
+					<div class="section_expandable_list   filter_detail_flex_body no_bg">
 						<template x-for="course in section.courses" :key="course.id">
 							<div class="expandable_item "
 								:class="expandedCourses.includes(course.id) ? 'active' : ''">

@@ -959,6 +959,10 @@ body.dragging-scroll {
     background: linear-gradient(0deg, rgba(195,217,194,0) 0%, rgba(195,217,194,1) 100%); 
 }
 
+.no_bg .expandable_item::before{
+    display: none;
+}
+
 .expandable_item .expandable_title{
 	-webkit-transition: padding-top 0.6s cubic-bezier(0.77, 0, 0.175, 1) 0s, padding-bottom 0.6s cubic-bezier(0.77, 0, 0.175, 1) 0s; 
     transition: padding-top 0.6s cubic-bezier(0.77, 0, 0.175, 1) 0s, padding-bottom 0.6s cubic-bezier(0.77, 0, 0.175, 1) 0s; 
