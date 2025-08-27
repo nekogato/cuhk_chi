@@ -959,11 +959,16 @@ body.dragging-scroll {
     background: linear-gradient(0deg, rgba(195,217,194,0) 0%, rgba(195,217,194,1) 100%); 
 }
 
-.no_bg .expandable_item .section_center_content::before{
+.no_bg .expandable_item::before{
+    display: none;
+}
+
+
+.no_bg .expandable_item .center_content::before{
     content:"";
     position: absolute;
-    left: 50px;
-    right: 50px;
+    left: 0px;
+    right: 0px;
     bottom: 0px;
     top: auto;
     width: auto;
