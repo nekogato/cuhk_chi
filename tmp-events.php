@@ -31,7 +31,7 @@ while (have_posts()) :
 				<?php if ($page_description) : ?>
 					<div class="section_description scrollin scrollinbottom col6"><?php echo ($page_description); ?></div>
 				<?php endif; ?>
-				<?php
+				<!-- <?php
 				$related_pages = get_field('related_page');
 				if ($related_pages) : ?>
 					<div class="intro_btn_wrapper">
@@ -39,7 +39,7 @@ while (have_posts()) :
 							<a href="<?php echo get_permalink($related_page->ID); ?>" class="round_btn text5"><?php echo get_field("page_title",$related_page->ID); ?></a>
 						<?php endforeach; ?>
 					</div>
-				<?php endif; ?>
+				<?php endif; ?> -->
 			</div>
 
 			<?php
@@ -107,7 +107,7 @@ while (have_posts()) :
 
 		<div class="section event_list_section scrollin_p" x-show="comingEvents.length > 0">
 			<div class="section_center_content small_section_center_content">
-				<div class="section_title text4 scrollin scrollinbottom left_text"><?php echo cuhk_multilang_text("活動預告", "", "Upcoming Events"); ?></div>
+				<div class="event_section_title text4 scrollin scrollinbottom left_text"><?php echo cuhk_multilang_text("活動預告", "", "Upcoming Events"); ?></div>
 
 				<div class="event_list_item_wrapper" x-show="!loadingComing">
 					<template x-for="event in comingEvents" :key="event.id">
@@ -195,7 +195,7 @@ while (have_posts()) :
 
 		<div class="section event_list_section scrollin_p" x-show="oldEvents.length > 0">
 			<div class="section_center_content small_section_center_content">
-				<div class="section_title text4 scrollin scrollinbottom left_text"><?php echo cuhk_multilang_text("過去活動", "", "Past Events"); ?></div>
+				<div class="event_section_title text4 scrollin scrollinbottom left_text"><?php echo cuhk_multilang_text("過去活動", "", "Past Events"); ?></div>
 				
 				<div class="event_list_item_wrapper" x-show="!loadingOld">
 					<template x-for="event in oldEvents" :key="event.id">

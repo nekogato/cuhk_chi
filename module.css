@@ -2037,6 +2037,24 @@ body.dragging-scroll {
     padding-top: 0px;
 }
 
+.filter_menu_section + .event_list_section[style*="display: none;"] + .event_list_section{
+  padding-top: 0px;
+}
+
+.event_section_title{
+    border-bottom: 1px solid #63629B;
+  border-top: 1px solid #63629B;
+    letter-spacing: 0.05em;
+  font-weight: 600;
+  padding: 5px 0px;
+}
+
+.en_body .event_section_title {
+  letter-spacing: 0em;
+  font-family: "richmond-text","Chiron Sung HK WS", sans-serif !important;
+  font-weight: normal;
+}
+
 .event_list_item .title_wrapper{
     border-left:1px solid #059f9f;
     padding-left: 30px;
