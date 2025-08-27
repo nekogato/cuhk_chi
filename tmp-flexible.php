@@ -60,7 +60,7 @@ while (have_posts()) :
 											<div class="col_wrapper xl_col_wrapper">
 												<div class="flex row">
 													<?php if ($layout['layout_type'] == 'one_column') : ?>
-														<div class="col8 col">
+														<div class="col10 col">
 															<div class="col_spacing">
 																<div class="free_text">
 																	<?php echo apply_filters('the_content', $layout['content']); ?>
@@ -97,8 +97,10 @@ while (have_posts()) :
 							<!-- Free Text Content Section -->
 							<div class="section section_introduction scrollin scrollinbottom onscreen startani">
 								<div class="section_center_content small_section_center_content">
-									<div class="free_text">
-										<?php echo apply_filters('the_content', $content); ?>
+            						<div class="col10 center_content">
+										<div class="free_text">
+											<?php echo apply_filters('the_content', $content); ?>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -123,12 +125,14 @@ while (have_posts()) :
 									?>
 									<div class="expandable_item<?php echo $active_class; ?>">
 										<div class="section_center_content small_section_center_content">
-											<div class="expandable_title text5"><?php echo esc_html($question); ?><div class="icon"></div>
-											</div>
-											<div class="hidden">
-												<div class="hidden_content">
-													<div class="free_text">
-														<?php echo apply_filters('the_content', $answer); ?>
+            								<div class="col10 center_content">
+												<div class="expandable_title text5"><?php echo esc_html($question); ?><div class="icon"></div>
+												</div>
+												<div class="hidden">
+													<div class="hidden_content">
+														<div class="free_text">
+															<?php echo apply_filters('the_content', $answer); ?>
+														</div>
 													</div>
 												</div>
 											</div>
