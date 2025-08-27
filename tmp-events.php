@@ -293,7 +293,7 @@ endwhile;
 			comingEvents: [],
 			oldEvents: [],
 			activeCategory: 'all',
-			selectedYear: '',
+			year: '',
 			selectedYearText: '<?php echo cuhk_multilang_text("所有年份", "", "All Years"); ?>',
 			showYearDropdown: false,
 			availableYears: [],
@@ -415,7 +415,7 @@ endwhile;
 			},
 
 			filterByYear(year) {
-				this.selectedYear = year;
+				this.year = year;
 				this.selectedYearText = year || '<?php echo cuhk_multilang_text("所有年份", "", "All Year"); ?>';
 				this.showYearDropdown = false;
         		this.reloadAll();
