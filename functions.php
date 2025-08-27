@@ -2984,6 +2984,22 @@ function load_all_events_with_year()
 		)
 	);
 
+	$coming_meta_query = array();
+
+	if ($year) {
+		$coming_meta_query[] = array(
+			'key'     => 'start_date',
+			'value'   => array($year . '0101', $year . '1231'),
+			'compare' => 'BETWEEN',
+			'type'    => 'NUMERIC',
+		);
+	}
+
+	// Apply meta_query only if needed
+	if (!empty($coming_meta_query)) {
+		$coming_args['meta_query'] = array_merge(array('relation' => 'AND'), $coming_meta_query);
+	}
+
 	// Add taxonomy query if category is not 'all'
 	if ($category !== 'all') {
 		$coming_args['tax_query'] = array(
