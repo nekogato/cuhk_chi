@@ -168,7 +168,7 @@ while (have_posts()) :
 						</div>
 					</template>
 
-					<template x-if="hasMoreComing && !loading">
+					<template x-if="hasMoreComing && !loadingComing">
 						<div class="load_more_wrapper scrollin scrollinbottom">
 							<a @click.prevent="loadMoreComing()" class="load_more_btn text5">
 								<div class="icon"></div>
