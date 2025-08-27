@@ -6664,6 +6664,7 @@ body.dragging-scroll {
     align-items: center;
     margin-bottom: 60px;
       justify-content: center;
+      flex-wrap: wrap;
 }
 
 .sibling-page-item {
