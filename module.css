@@ -776,9 +776,11 @@ body.dragging-scroll {
     letter-spacing: 0.05em;
     font-weight: 600;
 }
+
 .en_body .section_title{
     letter-spacing: 0em;
     font-family: "richmond-text","Chiron Sung HK WS", sans-serif !important;
+    font-weight: normal;
 }
 
 .section_title + .section_introduction{
@@ -2040,6 +2042,11 @@ body.dragging-scroll {
     padding-left: 30px;
 }
 /* event_list_item */
+
+
+.section_title + .event_list_item_wrapper{
+    margin-top: 60px;
+}
 
 .event_list_item{
     display: flex;

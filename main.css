@@ -1464,6 +1464,10 @@ ol:not(.free_text ol), ul:not(.free_text ul) {
 	text-align:center;
 	}	
 
+.left_text{
+	text-align:left;
+}	
+
 .right_text{
 	text-align:right;
 }	
