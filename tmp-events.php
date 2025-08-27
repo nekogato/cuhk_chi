@@ -433,8 +433,8 @@ endwhile;
 				this.showYearDropdown = false;
 				this.pageComing = 1;
 				this.pageOld = 1;
-				this.fetchComing(1, 1,category, this.selectedYear, false,false);
-				this.fetchOld(1, 1,category, this.selectedYear, true,false);
+				this.fetchComing(1, 1, this.activeCategory, year, false,false);
+				this.fetchOld(1, 1, this.activeCategory, year, true,false);
 			},
 
 			toggleYearDropdown() {
