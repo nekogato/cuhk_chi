@@ -2042,11 +2042,8 @@ body.dragging-scroll {
 }
 
 .event_section_title{
-    border-bottom: 1px solid #63629B;
-  border-top: 1px solid #63629B;
     letter-spacing: 0.05em;
   font-weight: 600;
-  padding: 5px 0px;
   color: #63629B;
 }
 
@@ -2064,7 +2061,7 @@ body.dragging-scroll {
 
 
 .event_section_title + .event_list_item_wrapper{
-    margin-top: 60px;
+    margin-top: 30px;
 }
 
 .event_list_item{
