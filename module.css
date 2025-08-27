@@ -8269,15 +8269,15 @@ body.dragging-scroll {
       }
 
       .home_promotion_box_wrapper .section_center_content{
-        height: 600px;
+        height: 640px;
       }
 
       .home_promotion_box_inwrapper{
-        height: 600px;
+        height: 640px;
       }
 
       .home_promotion_box {
-        height: 600px;
+        height: 640px;
         width: 60px;
         display: flex;
         position: relative;
@@ -8285,7 +8285,7 @@ body.dragging-scroll {
 
       .home_promotion_box .title {
         width: 60px;
-        height: 600px;
+        height: 640px;
       }
 
       .home_promotion_box .col{
@@ -8308,6 +8308,7 @@ body.dragging-scroll {
 
       .home_promotion_box .t_wrapper .btn_wrapper {
         margin-top: 10px;
+          gap: 5px;
       }
 
       .line_btn {
