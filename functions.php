@@ -2939,7 +2939,7 @@ function load_all_events_with_year()
 	$year     = isset($_POST['year']) ? sanitize_text_field($_POST['year']) : '';
 
 	$pastonly = isset($_POST['pastonly']);
-	
+
 	$today    = date('Y-m-d');
 
 	// Build query args
@@ -3013,14 +3013,12 @@ function load_all_events_with_year()
 
 	$meta_query = array();
 
-	if ($pastonly) {
 		$meta_query[] = array(
 			'key'     => 'start_date',
 			'value'   => $today,
 			'compare' => '<',
 			'type'    => 'DATE',
 		);
-	}
 
 	if ($year) {
 		$meta_query[] = array(
