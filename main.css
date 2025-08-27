@@ -1838,6 +1838,10 @@ ol:not(.free_text ol), ul:not(.free_text ul) {
 		width: auto;
 	}
 
+	.col10.center_content{
+		width: 100%;
+	}
+
 	/* mobile */
 	.mobile_hide{
 		display:none !important;
