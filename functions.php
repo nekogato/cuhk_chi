@@ -2956,9 +2956,9 @@ function load_all_events_with_year()
 			array(
 				// 條件 1: 未來的 event（start_date >= 今天）
 				'key'     => 'start_date',
-				'value'   => $today,
-				'compare' => '<=',
-				'type'    => 'DATE'
+			'value'   => $today,
+			'compare' => '<',
+			'type'    => 'DATE',
 			),
 			array(
 				// 條件 2: 尚未結束的 event（end_date >= 今天，且 end_date 存在）
