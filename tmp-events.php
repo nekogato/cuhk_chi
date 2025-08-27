@@ -340,6 +340,7 @@ endwhile;
 						})
 					});
 					const data = await response.json();
+					console.log("coming",data);
 					if (data.success) {
 						const list = data.data.coming_events || [];
 						this.comingEvents = append ? this.comingEvents.concat(list) : list;
@@ -370,6 +371,7 @@ endwhile;
 						})
 					});
 					const data = await response.json();
+					console.log("old",data);
 					if (data.success) {
 						const list = data.data.old_events || [];
 						this.oldEvents = append ? this.oldEvents.concat(list) : list;
