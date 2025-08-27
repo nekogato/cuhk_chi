@@ -1287,7 +1287,7 @@ function init_function(){
 
 	$(".scheme_slide_btn").click(function(){
 		var mylink = $(this).attr("data-target");
-		var $mytarget = $(".publication_box_list_wrapper[data-id='"+mylink+"']");
+		var $mytarget = $(".scheme_item[data-id='"+mylink+"']");
 		var mytop = $mytarget.offset().top;
 		var body = $("html");
 		body.stop().animate({scrollTop:mytop-parseInt($(".header_bg").outerHeight())-100}, 1200, 'easeInOutQuad', function() { 
