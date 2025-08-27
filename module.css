@@ -987,7 +987,7 @@ body.dragging-scroll {
 }
 
 .no_bg .expandable_item .expandable_title:hover{
-    background-color: rgba(255,255,255,0.8);
+    background-color: rgba(255,255,255,0.5);
 }
 
 .no_bg .expandable_item.active .expandable_title:hover{
