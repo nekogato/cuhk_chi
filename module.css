@@ -6657,7 +6657,7 @@ body.dragging-scroll {
 
 .sibling-pages-menu {
     display: flex;
-    gap: 50px;
+    gap: 20px 50px;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -8205,6 +8205,14 @@ body.dragging-scroll {
 
     .sibling-pages-menu {
     margin-bottom: 40px;
+    }
+
+    .sibling-pages-menu {
+        gap: 10px 30px;
+    }
+
+    .sibling-page-item:not(:last-child)::after {
+        right: -15px; /* half of gap */
     }
 
     .scheme_groups_dropdown_wrapper {
