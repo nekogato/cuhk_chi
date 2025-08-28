@@ -34,7 +34,7 @@ get_header();
 						<div class="people_detail_photo_wrapper scrollin scrollinbottom">
 							<?php if ($cover_image) : ?>
 								<div class="people_detail_photo people_detail_photo_shadow">
-									<a href="<?php echo esc_url($cover_image['url']); ?>">
+									<a href="<?php echo esc_url($cover_image['url']); ?>" data-fancybox>
 										<img src="<?php echo esc_url($cover_image['url']); ?>" alt="<?php echo esc_attr($cover_image['alt']); ?>">
 									</a>
 								</div>
