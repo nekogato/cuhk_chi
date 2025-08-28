@@ -41,7 +41,7 @@ get_header();
 							<?php endif; ?>
 						</div>
 						<div class="people_detail_text scrollin scrollinbottom">
-							<div class="name text3"><?php the_field("title"); ?></div>
+							<div class="name text4"><?php the_field("title"); ?></div>
 							<div class="info_table text6">
 								<div class="table_flex_item_wrapper">
 									<?php if ($author) : ?>
