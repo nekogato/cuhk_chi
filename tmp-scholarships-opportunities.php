@@ -64,58 +64,60 @@ if (have_posts()) :
 					?>
 						<div class="expandable_item <?php echo esc_attr($programme_classes); ?>">
 							<div class="section_center_content small_section_center_content">
-								<div class="expandable_title text5">
-									<?php echo esc_html($scholarship['title'] ?? ''); ?>
-									<div class="icon"></div>
-								</div>
-								<div class="hidden">
-									<div class="hidden_content">
-										<div class="table_flex_item_wrapper">
-											<?php if ($scholarship['scholarship_title']) : ?>
-												<div class="table_flex_item">
-													<div class="title text7"><?php echo cuhk_multilang_text("名稱", "", "Title of scholarship"); ?></div>
-													<div class="text"><?php echo esc_html($scholarship['scholarship_title']); ?></div>
-												</div>
-											<?php endif; ?>
+								<div class="col10 center_content">
+									<div class="expandable_title text5">
+										<?php echo esc_html($scholarship['title'] ?? ''); ?>
+										<div class="icon"></div>
+									</div>
+									<div class="hidden">
+										<div class="hidden_content">
+											<div class="table_flex_item_wrapper">
+												<?php if ($scholarship['scholarship_title']) : ?>
+													<div class="table_flex_item">
+														<div class="title text7"><?php echo cuhk_multilang_text("名稱", "", "Title of scholarship"); ?></div>
+														<div class="text"><?php echo esc_html($scholarship['scholarship_title']); ?></div>
+													</div>
+												<?php endif; ?>
 
-											<?php if ($scholarship['amount']) : ?>
-												<div class="table_flex_item">
-													<div class="title text7"><?php echo cuhk_multilang_text("金額", "", "Amount per Recipient "); ?></div>
-													<div class="text"><?php echo esc_html($scholarship['amount']); ?></div>
-												</div>
-											<?php endif; ?>
+												<?php if ($scholarship['amount']) : ?>
+													<div class="table_flex_item">
+														<div class="title text7"><?php echo cuhk_multilang_text("金額", "", "Amount per Recipient "); ?></div>
+														<div class="text"><?php echo esc_html($scholarship['amount']); ?></div>
+													</div>
+												<?php endif; ?>
 
-											<?php if ($scholarship['application_period']) : ?>
-												<div class="table_flex_item">
-													<div class="title text7"><?php echo cuhk_multilang_text("申請期限", "", "Application Period"); ?></div>
-													<div class="text"><?php echo esc_html($scholarship['application_period']); ?></div>
-												</div>
-											<?php endif; ?>
+												<?php if ($scholarship['application_period']) : ?>
+													<div class="table_flex_item">
+														<div class="title text7"><?php echo cuhk_multilang_text("申請期限", "", "Application Period"); ?></div>
+														<div class="text"><?php echo esc_html($scholarship['application_period']); ?></div>
+													</div>
+												<?php endif; ?>
 
-											<?php if ($scholarship['target_student']) : ?>
-												<div class="table_flex_item">
-													<div class="title text7"><?php echo cuhk_multilang_text("對象", "", "Target Student"); ?></div>
-													<div class="text"><?php echo wp_kses_post($scholarship['target_student']); ?></div>
-												</div>
-											<?php endif; ?>
+												<?php if ($scholarship['target_student']) : ?>
+													<div class="table_flex_item">
+														<div class="title text7"><?php echo cuhk_multilang_text("對象", "", "Target Student"); ?></div>
+														<div class="text"><?php echo wp_kses_post($scholarship['target_student']); ?></div>
+													</div>
+												<?php endif; ?>
 
-											<?php if ($scholarship['description']) : ?>
-												<div class="table_flex_item">
-													<!-- <div class="title text7"><?php echo cuhk_multilang_text("申請詳情及條件", "", "Descriptions / Eligibility"); ?></div> -->
-													<div class="text free_text"><?php echo wp_kses_post($scholarship['description']); ?></div>
+												<?php if ($scholarship['description']) : ?>
+													<div class="table_flex_item">
+														<!-- <div class="title text7"><?php echo cuhk_multilang_text("申請詳情及條件", "", "Descriptions / Eligibility"); ?></div> -->
+														<div class="text free_text"><?php echo wp_kses_post($scholarship['description']); ?></div>
+													</div>
+												<?php endif; ?>
+											</div>
+
+											<?php if ($scholarship['download_files']) : ?>
+												<div class="download_btn_wrapper text7">
+													<?php foreach ($scholarship['download_files'] as $file) : ?>
+														<a href="<?php echo esc_url($file['url']); ?>" class="border_button" target="_blank">
+															<?php echo esc_html($file['title'] ?: 'Download PDF'); ?>
+														</a>
+													<?php endforeach; ?>
 												</div>
 											<?php endif; ?>
 										</div>
-
-										<?php if ($scholarship['download_files']) : ?>
-											<div class="download_btn_wrapper text7">
-												<?php foreach ($scholarship['download_files'] as $file) : ?>
-													<a href="<?php echo esc_url($file['url']); ?>" class="border_button" target="_blank">
-														<?php echo esc_html($file['title'] ?: 'Download PDF'); ?>
-													</a>
-												<?php endforeach; ?>
-											</div>
-										<?php endif; ?>
 									</div>
 								</div>
 							</div>

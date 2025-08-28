@@ -8553,6 +8553,10 @@ body.dragging-scroll {
     margin-top: 0px;
     }
 
+    .news_date {
+    margin-top: 5px;
+    }
+
     /* year_list_section */
 
     .year_list_grid_wrapper {
