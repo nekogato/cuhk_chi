@@ -27,7 +27,7 @@ while (have_posts()) :
 											if ($news_category && ! is_wp_error($news_category)) {
 										?>
 
-											<div class="news_cat text4">
+											<div class="news_cat text5">
 												<?php
 													$termid = $news_category[0]->term_id;
 													$termslug = $news_category[0]->slug;
@@ -50,7 +50,7 @@ while (have_posts()) :
 										};
 										?>
 
-										<h1 class="news_title text2"><?php the_field("news_name"); ?></h1>
+										<h1 class="news_title text4"><?php the_field("news_name"); ?></h1>
 										<?php if (get_field('start_date')) { ?>
 											<div class="news_date">
 												<?php
@@ -141,7 +141,7 @@ while (have_posts()) :
 										};
 										?>
 
-										<h1 class="news_title text2"><?php the_field("news_name"); ?></h1>
+										<h1 class="news_title text4"><?php the_field("news_name"); ?></h1>
 
 										<?php if (get_field('start_date')) { ?>
 											<div class="news_date scrollin scrollinbottom">

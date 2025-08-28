@@ -40,7 +40,7 @@ while (have_posts()) :
 												if ($project_category && ! is_wp_error($project_category)) {
 											?>
 
-												<div class="news_cat text4">
+												<div class="news_cat text5">
 													<?php
 														$termid = $project_category[0]->term_id;
 														$termslug = $project_category[0]->slug;
@@ -63,7 +63,7 @@ while (have_posts()) :
 											};
 											?>
 
-											<h1 class="news_title text2"><?php the_field("project_title"); ?></h1>
+											<h1 class="news_title text4"><?php the_field("project_title"); ?></h1>
 											
 										</div>
 
@@ -143,7 +143,7 @@ while (have_posts()) :
 											};
 											?>
 
-											<h1 class="news_title text2"><?php the_field("project_title"); ?></h1>
+											<h1 class="news_title text4"><?php the_field("project_title"); ?></h1>
 
 										</div>
 
