@@ -93,7 +93,7 @@ while (have_posts()) :
 											<h4 class="text_c3 center_text flexible_layout_small_title"><?php echo esc_html($layout['section_title']); ?></h4>
 										<?php endif; ?>
 										<div class="col_wrapper xl_col_wrapper">
-											<div class="flex row">
+											<div class="flex row flex_h_center">
 												<?php if ($layout['layout_type'] == 'one_column') : ?>
 													<div class="col10 col">
 														<div class="col_spacing">
@@ -103,14 +103,14 @@ while (have_posts()) :
 														</div>
 													</div>
 												<?php elseif ($layout['layout_type'] == 'two_column') : ?>
-													<div class="col6 col">
+													<div class="col5 col">
 														<div class="col_spacing">
 															<div class="free_text">
 																<?php echo apply_filters('the_content', $layout['left_content']); ?>
 															</div>
 														</div>
 													</div>
-													<div class="col6 col">
+													<div class="col5 col">
 														<div class="col_spacing">
 															<div class="free_text">
 																<?php echo apply_filters('the_content', $layout['right_content']); ?>

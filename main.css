@@ -989,6 +989,10 @@ a{
 	width:100%;
 }
 
+.flex_h_center{
+	justify-content: center;
+}
+
 .flex_v_bottom{
 	align-items: flex-end;
 }
@@ -1505,7 +1509,7 @@ ol:not(.free_text ol), ul:not(.free_text ul) {
 	padding-bottom: 10px;
 	border-bottom:1px solid #726ba5;
 	color:#726ba5;
-	padding-right: 40px;
+	padding-right: 20px;
 	position: relative;
 	font-weight: 600;
 	  display: inline-block;

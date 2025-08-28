@@ -254,14 +254,19 @@
         margin-top: 0px;
     }
 
-    .flexible_layout_one_column .col8.col{
+    .flexible_layout_one_column .col10, .flexible_layout_one_column .col8{
         width: 100%;
         
     }
+
+    
 }
 
 @media screen and (max-width: 480px) { 
     .flexible_layout .col6.col{
+        width: 100%;
+    }
+    .flexible_layout .col5.col{
         width: 100%;
     }
 }
