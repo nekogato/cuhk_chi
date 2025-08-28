@@ -29,50 +29,52 @@ if (have_posts()) :
 
 		<div class="section section_content">
 			<div class="section_center_content small_section_center_content">
-				<div class="research_centre_box_list research_centre_box_list2">
-					<?php if (have_rows('research_strengths')): ?>
-						<?php $popup_index = 1; ?>
-						<?php while (have_rows('research_strengths')): the_row(); ?>
-							<?php
-							$image = get_sub_field('image');
-							$title = get_sub_field('title');
-							$description = get_sub_field('description');
-							$detailed_description = get_sub_field('detailed_description');
-							$popup_id = 'popup' . $popup_index;
-							?>
-							<div class="research_centre_box scrollin scrollinbottom col_wrapper">
-								<div class="row flex">
-									<div class="research_centre_logo col col4">
-										<div class="col_spacing">
-											<div class="thumb">
-												<?php if ($image): ?>
-													<img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>">
-												<?php endif; ?>
+				<div class="col10 center_content">
+					<div class="research_centre_box_list research_centre_box_list2">
+						<?php if (have_rows('research_strengths')): ?>
+							<?php $popup_index = 1; ?>
+							<?php while (have_rows('research_strengths')): the_row(); ?>
+								<?php
+								$image = get_sub_field('image');
+								$title = get_sub_field('title');
+								$description = get_sub_field('description');
+								$detailed_description = get_sub_field('detailed_description');
+								$popup_id = 'popup' . $popup_index;
+								?>
+								<div class="research_centre_box scrollin scrollinbottom col_wrapper">
+									<div class="row flex">
+										<div class="research_centre_logo col col4">
+											<div class="col_spacing">
+												<div class="thumb">
+													<?php if ($image): ?>
+														<img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>">
+													<?php endif; ?>
+												</div>
 											</div>
 										</div>
-									</div>
-									<div class="research_centre_text col col8">
-										<div class="col_spacing">
-											<div class="description">
-												<?php if ($title): ?>
-													<div class="t1 text6"><?php echo esc_html($title); ?></div>
-												<?php endif; ?>
-												<?php if ($description): ?>
-													<div class="t2 text6"><?php echo wp_kses_post($description); ?></div>
-												<?php endif; ?>
-												<?php if ($detailed_description): ?>
-													<div class="btn_wrapper">
-														<a href="#" class="round_btn text7 popup_btn" data-target="<?php echo esc_attr($popup_id); ?>"><?php pll_e('了解更多'); ?></a>
-													</div>
-												<?php endif; ?>
+										<div class="research_centre_text col col8">
+											<div class="col_spacing">
+												<div class="description">
+													<?php if ($title): ?>
+														<div class="t1 text6"><?php echo esc_html($title); ?></div>
+													<?php endif; ?>
+													<?php if ($description): ?>
+														<div class="t2 text6"><?php echo wp_kses_post($description); ?></div>
+													<?php endif; ?>
+													<?php if ($detailed_description): ?>
+														<div class="btn_wrapper">
+															<a href="#" class="round_btn text7 popup_btn" data-target="<?php echo esc_attr($popup_id); ?>"><?php pll_e('了解更多'); ?></a>
+														</div>
+													<?php endif; ?>
+												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-							<?php $popup_index++; ?>
-						<?php endwhile; ?>
-					<?php endif; ?>
+								<?php $popup_index++; ?>
+							<?php endwhile; ?>
+						<?php endif; ?>
+					</div>
 				</div>
 			</div>
 		</div>
