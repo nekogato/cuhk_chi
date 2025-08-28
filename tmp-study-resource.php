@@ -23,21 +23,23 @@ if (have_posts()) :
 		</div>
 		<div class="section section_content resource_top_section">
 			<div class="section_center_content small_section_center_content">
-				<?php if ($resources_title): ?>
-					<h1 class="section_title text1 scrollin scrollinbottom"><?php echo wp_kses_post($resources_title); ?></h1>
-				<?php endif; ?>
+				<div class="col10 center_content">
+					<?php if ($resources_title): ?>
+						<h1 class="section_title text1 scrollin scrollinbottom"><?php echo wp_kses_post($resources_title); ?></h1>
+					<?php endif; ?>
 
-				<?php if ($resources_description): ?>
-					<div class="section_description scrollin scrollinbottom col6"><?php echo wp_kses_post($resources_description); ?></div>
-				<?php endif; ?>
+					<?php if ($resources_description): ?>
+						<div class="section_description scrollin scrollinbottom col6"><?php echo wp_kses_post($resources_description); ?></div>
+					<?php endif; ?>
 
-				<?php if ($resources_introduction): ?>
-					<div class="section_introduction col6 scrollin scrollinbottom">
-						<div class="free_text">
-							<?php echo wp_kses_post($resources_introduction); ?>
+					<?php if ($resources_introduction): ?>
+						<div class="section_introduction col6 scrollin scrollinbottom">
+							<div class="free_text">
+								<?php echo wp_kses_post($resources_introduction); ?>
+							</div>
 						</div>
-					</div>
-				<?php endif; ?>
+					<?php endif; ?>
+				</div>
 			</div>
 		</div>
 
@@ -64,12 +66,14 @@ if (have_posts()) :
 									?>
 									<div class="expandable_item">
 										<div class="section_center_content small_section_center_content">
-											<div class="expandable_title text5"><?php echo wp_kses_post($group_title); ?><div class="icon"></div>
-											</div>
-											<div class="hidden">
-												<div class="hidden_content">
-													<div class="free_text">
-														<?php echo wp_kses_post($group_content); ?>
+											<div class="col10 center_content">
+												<div class="expandable_title text5"><?php echo wp_kses_post($group_title); ?><div class="icon"></div>
+												</div>
+												<div class="hidden">
+													<div class="hidden_content">
+														<div class="free_text">
+															<?php echo wp_kses_post($group_content); ?>
+														</div>
 													</div>
 												</div>
 											</div>
