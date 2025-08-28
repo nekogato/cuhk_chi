@@ -14,21 +14,23 @@ get_header(); ?>
 
 	<div class="section top_photo_banner_section top_photo_banner_section_absolute">
 		<div class="section_center_content small_section_center_content">
-			<div class="col_wrapper xl_col_wrapper">
-				<div class="flex row">
-					<div class="col2 col">
-						<div class="col_spacing scrollin scrollinbottom">
-							<div class="text_wrapper vertical_text_wrapper">
-								<div class="text vertical_text">
-									<?php
-									// Get category from taxonomy
-									$categories = wp_get_post_terms(get_the_ID(), 'department-category');
-									$category_name = !empty($categories) ? $categories[0]->name : '';
-									?>
-									<?php if ($category_name) : ?>
-										<h4 class="project_smalltitle"><span><?php echo esc_html($category_name); ?></span></h4>
-									<?php endif; ?>
-									<h1 class="project_title"><span><?php the_title(); ?></span></h1>
+			<div class="col10 center_content">
+				<div class="col_wrapper xl_col_wrapper">
+					<div class="flex row">
+						<div class="col2 col">
+							<div class="col_spacing scrollin scrollinbottom">
+								<div class="text_wrapper vertical_text_wrapper">
+									<div class="text vertical_text">
+										<?php
+										// Get category from taxonomy
+										$categories = wp_get_post_terms(get_the_ID(), 'department-category');
+										$category_name = !empty($categories) ? $categories[0]->name : '';
+										?>
+										<?php if ($category_name) : ?>
+											<h4 class="project_smalltitle"><span><?php echo esc_html($category_name); ?></span></h4>
+										<?php endif; ?>
+										<h1 class="project_title"><span><?php the_title(); ?></span></h1>
+									</div>
 								</div>
 							</div>
 						</div>

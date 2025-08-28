@@ -98,79 +98,81 @@ while (have_posts()) :
 
 	<div class="section section_content section_course_detail">
 		<div class="course_detail_info_box_wrapper section_center_content small_section_center_content scrollin scrollinbottom">
+			<div class="col10 center_content">
 
-			<?php if ($lecturer_name) : ?>
-				<div class="course_detail_info_box">
-					<div class="text7 t1"><?php pll_e('Teacher'); ?></div>
-					<div class="text5 t2">
-						<?php echo wp_kses_post($lecturer_name); ?>
-						<?php
-						$contact_parts = array();
-						if ($lecturer_phone) $contact_parts[] = wp_kses_post($lecturer_phone);
-						if ($lecturer_email) $contact_parts[] = '<a href="mailto:' . esc_attr($lecturer_email) . '">' . wp_kses_post($lecturer_email) . '</a>';
-						if (!empty($contact_parts)) {
-							echo ' (' . implode(' / ', $contact_parts) . ')';
-						}
-						?>
-					</div>
-					<?php if ($lecturer) : ?>
-						<div class="btn_wrapper text7">
-							<a href="<?php echo get_permalink($lecturer->ID); ?>" class="round_btn"><?php pll_e('individual profile'); ?></a>
+				<?php if ($lecturer_name) : ?>
+					<div class="course_detail_info_box">
+						<div class="text7 t1"><?php pll_e('Teacher'); ?></div>
+						<div class="text5 t2">
+							<?php echo wp_kses_post($lecturer_name); ?>
+							<?php
+							$contact_parts = array();
+							if ($lecturer_phone) $contact_parts[] = wp_kses_post($lecturer_phone);
+							if ($lecturer_email) $contact_parts[] = '<a href="mailto:' . esc_attr($lecturer_email) . '">' . wp_kses_post($lecturer_email) . '</a>';
+							if (!empty($contact_parts)) {
+								echo ' (' . implode(' / ', $contact_parts) . ')';
+							}
+							?>
 						</div>
-					<?php endif; ?>
-				</div>
-			<?php endif; ?>
-
-			<?php if ($ta_name) : ?>
-				<div class="course_detail_info_box">
-					<div class="text7 t1"><?php pll_e('Teaching Assistant'); ?></div>
-					<div class="text5 t2">
-						<?php echo wp_kses_post($ta_name); ?>
-						<?php
-						$ta_contact_parts = array();
-						if ($ta_phone) $ta_contact_parts[] = wp_kses_post($ta_phone);
-						if ($ta_email) $ta_contact_parts[] = '<a href="mailto:' . esc_attr($ta_email) . '">' . wp_kses_post($ta_email) . '</a>';
-						if (!empty($ta_contact_parts)) {
-							echo ' (' . implode(' / ', $ta_contact_parts) . ')';
-						}
-						?>
+						<?php if ($lecturer) : ?>
+							<div class="btn_wrapper text7">
+								<a href="<?php echo get_permalink($lecturer->ID); ?>" class="round_btn"><?php pll_e('individual profile'); ?></a>
+							</div>
+						<?php endif; ?>
 					</div>
-					<?php if ($teaching_assistant) : ?>
-						<div class="btn_wrapper text7">
-							<a href="<?php echo get_permalink($teaching_assistant->ID); ?>" class="round_btn"><?php pll_e('individual profile'); ?></a>
+				<?php endif; ?>
+
+				<?php if ($ta_name) : ?>
+					<div class="course_detail_info_box">
+						<div class="text7 t1"><?php pll_e('Teaching Assistant'); ?></div>
+						<div class="text5 t2">
+							<?php echo wp_kses_post($ta_name); ?>
+							<?php
+							$ta_contact_parts = array();
+							if ($ta_phone) $ta_contact_parts[] = wp_kses_post($ta_phone);
+							if ($ta_email) $ta_contact_parts[] = '<a href="mailto:' . esc_attr($ta_email) . '">' . wp_kses_post($ta_email) . '</a>';
+							if (!empty($ta_contact_parts)) {
+								echo ' (' . implode(' / ', $ta_contact_parts) . ')';
+							}
+							?>
 						</div>
-					<?php endif; ?>
-				</div>
-			<?php endif; ?>
+						<?php if ($teaching_assistant) : ?>
+							<div class="btn_wrapper text7">
+								<a href="<?php echo get_permalink($teaching_assistant->ID); ?>" class="round_btn"><?php pll_e('individual profile'); ?></a>
+							</div>
+						<?php endif; ?>
+					</div>
+				<?php endif; ?>
 
-			<?php if ($language) : ?>
-				<div class="course_detail_info_box">
-					<div class="text7 t1"><?php pll_e('Language'); ?></div>
-					<div class="text5 t2"><?php echo wp_kses_post($language); ?></div>
-				</div>
-			<?php endif; ?>
+				<?php if ($language) : ?>
+					<div class="course_detail_info_box">
+						<div class="text7 t1"><?php pll_e('Language'); ?></div>
+						<div class="text5 t2"><?php echo wp_kses_post($language); ?></div>
+					</div>
+				<?php endif; ?>
 
-			<?php if ($lecture_time) : ?>
-				<div class="course_detail_info_box">
-					<div class="text7 t1"><?php pll_e('Lecture Time'); ?></div>
-					<div class="text5 t2"><?php echo wp_kses_post($lecture_time); ?></div>
-				</div>
-			<?php endif; ?>
+				<?php if ($lecture_time) : ?>
+					<div class="course_detail_info_box">
+						<div class="text7 t1"><?php pll_e('Lecture Time'); ?></div>
+						<div class="text5 t2"><?php echo wp_kses_post($lecture_time); ?></div>
+					</div>
+				<?php endif; ?>
 
-			<?php if ($venue) : ?>
-				<div class="course_detail_info_box">
-					<div class="text7 t1"><?php pll_e('Venue'); ?></div>
-					<div class="text5 t2"><?php echo wp_kses_post($venue); ?></div>
-				</div>
-			<?php endif; ?>
+				<?php if ($venue) : ?>
+					<div class="course_detail_info_box">
+						<div class="text7 t1"><?php pll_e('Venue'); ?></div>
+						<div class="text5 t2"><?php echo wp_kses_post($venue); ?></div>
+					</div>
+				<?php endif; ?>
 
-			<?php if ($quota) : ?>
-				<div class="course_detail_info_box">
-					<div class="text7 t1"><?php pll_e('Quota'); ?></div>
-					<div class="text5 t2"><?php echo wp_kses_post($quota); ?></div>
-				</div>
-			<?php endif; ?>
+				<?php if ($quota) : ?>
+					<div class="course_detail_info_box">
+						<div class="text7 t1"><?php pll_e('Quota'); ?></div>
+						<div class="text5 t2"><?php echo wp_kses_post($quota); ?></div>
+					</div>
+				<?php endif; ?>
 
+			</div>
 		</div>
 
 		<div class="section_expandable_list course_detail_expandable_list">
@@ -178,12 +180,14 @@ while (have_posts()) :
 			<?php if ($course_description) : ?>
 				<div class="expandable_item scrollin scrollinbottom">
 					<div class="section_center_content small_section_center_content">
-						<div class="expandable_title text5"><?php pll_e('Course Description'); ?> <div class="icon"></div>
-						</div>
-						<div class="hidden">
-							<div class="hidden_content">
-								<div class="free_text">
-									<?php echo wp_kses_post($course_description); ?>
+						<div class="col10 center_content">
+							<div class="expandable_title text5"><?php pll_e('Course Description'); ?> <div class="icon"></div>
+							</div>
+							<div class="hidden">
+								<div class="hidden_content">
+									<div class="free_text">
+										<?php echo wp_kses_post($course_description); ?>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -194,12 +198,14 @@ while (have_posts()) :
 			<?php if ($syllabus) : ?>
 				<div class="expandable_item scrollin scrollinbottom">
 					<div class="section_center_content small_section_center_content">
-						<div class="expandable_title text5"><?php pll_e('Syllabus'); ?><div class="icon"></div>
-						</div>
-						<div class="hidden">
-							<div class="hidden_content">
-								<div class="free_text">
-									<?php echo wp_kses_post($syllabus); ?>
+						<div class="col10 center_content">
+							<div class="expandable_title text5"><?php pll_e('Syllabus'); ?><div class="icon"></div>
+							</div>
+							<div class="hidden">
+								<div class="hidden_content">
+									<div class="free_text">
+										<?php echo wp_kses_post($syllabus); ?>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -210,12 +216,14 @@ while (have_posts()) :
 			<?php if ($assessment_assignments) : ?>
 				<div class="expandable_item scrollin scrollinbottom">
 					<div class="section_center_content small_section_center_content">
-						<div class="expandable_title text5"><?php pll_e('Assessment & Assignments'); ?><div class="icon"></div>
-						</div>
-						<div class="hidden">
-							<div class="hidden_content">
-								<div class="free_text">
-									<?php echo wp_kses_post($assessment_assignments); ?>
+						<div class="col10 center_content">
+							<div class="expandable_title text5"><?php pll_e('Assessment & Assignments'); ?><div class="icon"></div>
+							</div>
+							<div class="hidden">
+								<div class="hidden_content">
+									<div class="free_text">
+										<?php echo wp_kses_post($assessment_assignments); ?>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -226,12 +234,14 @@ while (have_posts()) :
 			<?php if ($tutorials) : ?>
 				<div class="expandable_item scrollin scrollinbottom">
 					<div class="section_center_content small_section_center_content">
-						<div class="expandable_title text5"><?php pll_e('Tutorials'); ?><div class="icon"></div>
-						</div>
-						<div class="hidden">
-							<div class="hidden_content">
-								<div class="free_text">
-									<?php echo wp_kses_post($tutorials); ?>
+						<div class="col10 center_content">
+							<div class="expandable_title text5"><?php pll_e('Tutorials'); ?><div class="icon"></div>
+							</div>
+							<div class="hidden">
+								<div class="hidden_content">
+									<div class="free_text">
+										<?php echo wp_kses_post($tutorials); ?>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -242,12 +252,14 @@ while (have_posts()) :
 			<?php if ($references) : ?>
 				<div class="expandable_item scrollin scrollinbottom">
 					<div class="section_center_content small_section_center_content">
-						<div class="expandable_title text5"><?php pll_e('References'); ?><div class="icon"></div>
-						</div>
-						<div class="hidden">
-							<div class="hidden_content">
-								<div class="free_text">
-									<?php echo wp_kses_post($references); ?>
+						<div class="col10 center_content">
+							<div class="expandable_title text5"><?php pll_e('References'); ?><div class="icon"></div>
+							</div>
+							<div class="hidden">
+								<div class="hidden_content">
+									<div class="free_text">
+										<?php echo wp_kses_post($references); ?>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -258,12 +270,14 @@ while (have_posts()) :
 			<?php if ($others) : ?>
 				<div class="expandable_item scrollin scrollinbottom">
 					<div class="section_center_content small_section_center_content">
-						<div class="expandable_title text5"><?php pll_e('Others'); ?><div class="icon"></div>
-						</div>
-						<div class="hidden">
-							<div class="hidden_content">
-								<div class="free_text">
-									<?php echo wp_kses_post($others); ?>
+						<div class="col10 center_content">
+							<div class="expandable_title text5"><?php pll_e('Others'); ?><div class="icon"></div>
+							</div>
+							<div class="hidden">
+								<div class="hidden_content">
+									<div class="free_text">
+										<?php echo wp_kses_post($others); ?>
+									</div>
 								</div>
 							</div>
 						</div>
