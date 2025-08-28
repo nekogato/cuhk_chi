@@ -42,29 +42,31 @@ get_header();
 
 	<div class="contact_bottom">
 		<div class="section_center_content small_section_center_content">
-			<div class="col_wrapper">
-				<div class="flex row">
-					<div class="col col7">
-						<div class="col_spacing">
-							<div class="contact_map_wrapper">
-								<div class="map"
-									data-lng="<?php echo get_field('map_longitude'); ?>"
-									data-lat="<?php echo get_field('map_latitude'); ?>"
-									data-zoom="<?php echo get_field('map_zoom'); ?>">
+			<div class="col10 center_content">
+				<div class="col_wrapper">
+					<div class="flex row">
+						<div class="col col7">
+							<div class="col_spacing">
+								<div class="contact_map_wrapper">
+									<div class="map"
+										data-lng="<?php echo get_field('map_longitude'); ?>"
+										data-lat="<?php echo get_field('map_latitude'); ?>"
+										data-zoom="<?php echo get_field('map_zoom'); ?>">
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-					<div class="col col5">
-						<div class="col_spacing">
-							<div class="flexible_layout_wrapper">
-								<?php if (get_field("free_text")): ?>
-									<div class="flexible_layout flexible_layout_freetext scrollin scrollinbottom">
-										<div class="free_text">
-											<?php the_field("free_text"); ?>
+						<div class="col col5">
+							<div class="col_spacing">
+								<div class="flexible_layout_wrapper">
+									<?php if (get_field("free_text")): ?>
+										<div class="flexible_layout flexible_layout_freetext scrollin scrollinbottom">
+											<div class="free_text">
+												<?php the_field("free_text"); ?>
+											</div>
 										</div>
-									</div>
-								<?php endif; ?>
+									<?php endif; ?>
+								</div>
 							</div>
 						</div>
 					</div>
