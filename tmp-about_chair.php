@@ -26,46 +26,44 @@ get_header();
 </div>
 <div class="section top_photo_banner_section banner_bg2">
 	<div class="section_center_content small_section_center_content">
-		<div class="col10 center_content">
-			<div class="col_wrapper">
-				<div class="flex row">
-					<div class="col3 col">
-						<div class="col_spacing scrollin scrollinbottom">
-							<div class="text_wrapper vertical_text_wrapper absolute_vertical_text_wrapper">
-								<div class="text vertical_text">
-									<?php if (get_field("small_headline")): ?>
-										<h4 class="project_smalltitle"><span><?php the_field("small_headline"); ?></span></h4>
-									<?php endif; ?>
-									<?php if (get_field("headline")): ?>
-										<h1 class="project_title no_max_height"><span><?php the_field("headline"); ?></span></h1>
-									<?php endif; ?>
-								</div>
+		<div class="col_wrapper">
+			<div class="flex row">
+				<div class="col3 col">
+					<div class="col_spacing scrollin scrollinbottom">
+						<div class="text_wrapper vertical_text_wrapper absolute_vertical_text_wrapper">
+							<div class="text vertical_text">
+								<?php if (get_field("small_headline")): ?>
+									<h4 class="project_smalltitle"><span><?php the_field("small_headline"); ?></span></h4>
+								<?php endif; ?>
+								<?php if (get_field("headline")): ?>
+									<h1 class="project_title no_max_height"><span><?php the_field("headline"); ?></span></h1>
+								<?php endif; ?>
 							</div>
 						</div>
 					</div>
-					<div class="col9 col">
-						<div class="col_spacing scrollin scrollinleft">
-							<div class="chair_photo_wrapper">
-								<?php
-								$chair_image = get_field("chair_image");
-								if ($chair_image): ?>
-									<div class="photo_wrapper col10">
-										<div class="photo">
-											<img src="<?php echo esc_url($chair_image['sizes']['l']); ?>">
-										</div>
-										<?php if (get_field("chair_image_caption")): ?>
-											<div class="caption"><?php the_field("chair_image_caption"); ?></div>
-										<?php endif; ?>
+				</div>
+				<div class="col8 col">
+					<div class="col_spacing scrollin scrollinleft">
+						<div class="chair_photo_wrapper">
+							<?php
+							$chair_image = get_field("chair_image");
+							if ($chair_image): ?>
+								<div class="photo_wrapper col10">
+									<div class="photo">
+										<img src="<?php echo esc_url($chair_image['sizes']['l']); ?>">
 									</div>
-								<?php endif; ?>
-								<div class="chair_name">
-									<?php if (get_field("chair_name")): ?>
-										<div class="t1 text5"><?php the_field("chair_name"); ?></div>
-									<?php endif; ?>
-									<?php if (get_field("chair_title")): ?>
-										<div class="t2"><?php the_field("chair_title"); ?></div>
+									<?php if (get_field("chair_image_caption")): ?>
+										<div class="caption"><?php the_field("chair_image_caption"); ?></div>
 									<?php endif; ?>
 								</div>
+							<?php endif; ?>
+							<div class="chair_name">
+								<?php if (get_field("chair_name")): ?>
+									<div class="t1 text5"><?php the_field("chair_name"); ?></div>
+								<?php endif; ?>
+								<?php if (get_field("chair_title")): ?>
+									<div class="t2"><?php the_field("chair_title"); ?></div>
+								<?php endif; ?>
 							</div>
 						</div>
 					</div>
