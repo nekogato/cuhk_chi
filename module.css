@@ -1814,7 +1814,7 @@ body.dragging-scroll {
 }
 
 .home_news_date_slider_wrapper .next_btn{
-    width: 51px;
+    width: 50px;
     position: absolute;
     right: 0px;
     top:0px;
@@ -1865,6 +1865,7 @@ body.dragging-scroll {
 
 .home_news_date_slider_wrapper .swiper-container .swiper-wrapper{
     margin-left: -1px;
+    margin-right: -1px;
     width: auto;
 }
 
@@ -7653,12 +7654,12 @@ body.dragging-scroll {
 
       .home_news_date_slider_wrapper .prev_btn {
         width: 25px;
-        left: -11px;
+        left: -10px;
       }
 
       .home_news_date_slider_wrapper .next_btn {
         width: 25px;
-        right: -11px;
+        right: -10px;
       }
 
       .home_news_date_slider .news_item_wrapper {
