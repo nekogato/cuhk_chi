@@ -1787,7 +1787,7 @@ body.dragging-scroll {
 }
 
 .home_news_date_slider_wrapper .prev_btn{
-    width: 51px;
+    width: 50px;
     position: absolute;
     left: 0px;
     top:0px;
@@ -1865,7 +1865,6 @@ body.dragging-scroll {
 
 .home_news_date_slider_wrapper .swiper-container .swiper-wrapper{
     margin-left: -1px;
-    margin-right: -1px;
     width: auto;
 }
 
