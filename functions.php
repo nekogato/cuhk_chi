@@ -2102,7 +2102,7 @@ function translate_acf_fields_recursive($fields, $tc_post_id, $sc_post_id)
  */
 function translate_acf_field_value($value, $field_type, $field = null)
 {
-    // 避免將 '0' 當 empty
+    // Avoid treating "0" as empty
     if ($value === null || $value === '') {
         return $value;
     }
@@ -2133,14 +2133,14 @@ function translate_acf_field_value($value, $field_type, $field = null)
             if (is_array($value)) {
                 $translated_repeater = [];
                 foreach ($value as $row) {
-                    // row = ['sub_field_name' => value, ...] 或 ['field_xxxx' => value, ...]
+                    // Each row is an array of sub-field values
                     if (!is_array($row)) {
                         $translated_repeater[] = $row;
                         continue;
                     }
                     $translated_row = [];
                     foreach ($row as $sub_field_key_or_name => $sub_value) {
-                        // ★ 同時以 name / key 尋找
+                        // Match repeater sub-field by name or key
                         $sub_field = null;
                         if ($field && !empty($field['sub_fields'])) {
                             foreach ($field['sub_fields'] as $sf) {
@@ -2155,11 +2155,11 @@ function translate_acf_field_value($value, $field_type, $field = null)
 
                         if ($sub_field) {
                             $sub_type = isset($sub_field['type']) ? $sub_field['type'] : 'text';
-                            // ★ 一定傳落去 sub_field（比下一層再搵到佢嘅 sub_fields）
+                            // Important: pass the full sub-field config down
                             $translated_row[$sub_field_key_or_name] =
                                 translate_acf_field_value($sub_value, $sub_type, $sub_field);
                         } else {
-                            // 搵唔到 schema 都起碼試下 translate 字串
+                            // If schema not found, still try to translate strings
                             $translated_row[$sub_field_key_or_name] =
                                 is_string($sub_value) ? tc_to_sc($sub_value) : $sub_value;
                         }
@@ -2188,7 +2188,7 @@ function translate_acf_field_value($value, $field_type, $field = null)
                         $layout_sub_field = null;
                         $layout_field_type = 'text';
 
-                        // ★ 用 name 或 key 去 match 對應 layout
+                        // Match layout by name or key
                         if ($field && !empty($field['layouts']) && $layout_id) {
                             foreach ($field['layouts'] as $layout_config) {
                                 $cfg_name = isset($layout_config['name']) ? $layout_config['name'] : null;
@@ -2198,7 +2198,6 @@ function translate_acf_field_value($value, $field_type, $field = null)
                                         foreach ($layout_config['sub_fields'] as $lsf) {
                                             $lsf_name = isset($lsf['name']) ? $lsf['name'] : null;
                                             $lsf_key  = isset($lsf['key'])  ? $lsf['key']  : null;
-                                            // ★ 同時支援 name / key 做行內 key
                                             if ($lsf_name === $layout_field_name || $lsf_key === $layout_field_name) {
                                                 $layout_field_type = isset($lsf['type']) ? $lsf['type'] : 'text';
                                                 $layout_sub_field  = $lsf;
@@ -2211,11 +2210,10 @@ function translate_acf_field_value($value, $field_type, $field = null)
                         }
 
                         if ($layout_sub_field) {
-                            // ★ 重要：將整個 sub_field config 傳入
+                            // Important: pass the full sub-field config down
                             $translated_layout[$layout_field_name] =
                                 translate_acf_field_value($layout_value, $layout_field_type, $layout_sub_field);
                         } else {
-                            // 無 schema 都盡量處理字串
                             $translated_layout[$layout_field_name] =
                                 is_string($layout_value) ? tc_to_sc($layout_value) : $layout_value;
                         }
@@ -2258,7 +2256,7 @@ function translate_acf_field_value($value, $field_type, $field = null)
             }
             return $value;
 
-        // 以下類型唔做翻譯
+        // Field types that don’t need translation
         case 'image':
         case 'file':
         case 'gallery':
