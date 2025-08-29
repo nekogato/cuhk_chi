@@ -2102,8 +2102,9 @@ function translate_acf_fields_recursive($fields, $tc_post_id, $sc_post_id)
  */
 function translate_acf_field_value($value, $field_type, $field = null)
 {
-    if (empty($value)) {
-        return null;
+    // 避免將 '0' 當 empty
+    if ($value === null || $value === '') {
+        return $value;
     }
 
     switch ($field_type) {
@@ -2130,55 +2131,77 @@ function translate_acf_field_value($value, $field_type, $field = null)
 
         case 'repeater':
             if (is_array($value)) {
-                $translated_repeater = array();
+                $translated_repeater = [];
                 foreach ($value as $row) {
-                    $translated_row = array();
-                    foreach ($row as $sub_field_name => $sub_value) {
-                        // find the repeater's sub-field config (if provided)
+                    // row = ['sub_field_name' => value, ...] 或 ['field_xxxx' => value, ...]
+                    if (!is_array($row)) {
+                        $translated_repeater[] = $row;
+                        continue;
+                    }
+                    $translated_row = [];
+                    foreach ($row as $sub_field_key_or_name => $sub_value) {
+                        // ★ 同時以 name / key 尋找
                         $sub_field = null;
-                        if ($field && isset($field['sub_fields'])) {
+                        if ($field && !empty($field['sub_fields'])) {
                             foreach ($field['sub_fields'] as $sf) {
-                                if ($sf['name'] === $sub_field_name) {
+                                $sf_name = isset($sf['name']) ? $sf['name'] : null;
+                                $sf_key  = isset($sf['key'])  ? $sf['key']  : null;
+                                if ($sf_name === $sub_field_key_or_name || $sf_key === $sub_field_key_or_name) {
                                     $sub_field = $sf;
                                     break;
                                 }
                             }
                         }
-                        $sub_field_type = $sub_field ? $sub_field['type'] : 'text';
-                        $translated_row[$sub_field_name] =
-                            translate_acf_field_value($sub_value, $sub_field_type, $sub_field); // ★ pass $sub_field
+
+                        if ($sub_field) {
+                            $sub_type = isset($sub_field['type']) ? $sub_field['type'] : 'text';
+                            // ★ 一定傳落去 sub_field（比下一層再搵到佢嘅 sub_fields）
+                            $translated_row[$sub_field_key_or_name] =
+                                translate_acf_field_value($sub_value, $sub_type, $sub_field);
+                        } else {
+                            // 搵唔到 schema 都起碼試下 translate 字串
+                            $translated_row[$sub_field_key_or_name] =
+                                is_string($sub_value) ? tc_to_sc($sub_value) : $sub_value;
+                        }
                     }
                     $translated_repeater[] = $translated_row;
                 }
                 return $translated_repeater;
             }
-            break;
+            return $value;
 
         case 'flexible_content':
             if (is_array($value)) {
-                $translated_flexible = array();
+                $translated_flexible = [];
                 foreach ($value as $layout) {
-                    $layout_name = isset($layout['acf_fc_layout']) ? $layout['acf_fc_layout'] : null;
-                    $translated_layout = array(
-                        'acf_fc_layout' => $layout_name
-                    );
+                    if (!is_array($layout)) {
+                        $translated_flexible[] = $layout;
+                        continue;
+                    }
+
+                    $layout_id = isset($layout['acf_fc_layout']) ? $layout['acf_fc_layout'] : null;
+                    $translated_layout = ['acf_fc_layout' => $layout_id];
 
                     foreach ($layout as $layout_field_name => $layout_value) {
-                        if ($layout_field_name === 'acf_fc_layout') {
-                            continue;
-                        }
+                        if ($layout_field_name === 'acf_fc_layout') continue;
 
-                        // find the layout sub-field config
-                        $layout_field_type = 'text'; // default
-                        $layout_sub_field = null;    // ★ keep the whole sub-field
-                        if ($field && isset($field['layouts']) && $layout_name) {
+                        $layout_sub_field = null;
+                        $layout_field_type = 'text';
+
+                        // ★ 用 name 或 key 去 match 對應 layout
+                        if ($field && !empty($field['layouts']) && $layout_id) {
                             foreach ($field['layouts'] as $layout_config) {
-                                if ($layout_config['name'] === $layout_name) {
+                                $cfg_name = isset($layout_config['name']) ? $layout_config['name'] : null;
+                                $cfg_key  = isset($layout_config['key'])  ? $layout_config['key']  : null;
+                                if ($cfg_name === $layout_id || $cfg_key === $layout_id) {
                                     if (!empty($layout_config['sub_fields'])) {
                                         foreach ($layout_config['sub_fields'] as $lsf) {
-                                            if ($lsf['name'] === $layout_field_name) {
-                                                $layout_field_type = $lsf['type'];
-                                                $layout_sub_field  = $lsf; // ★ capture the config
+                                            $lsf_name = isset($lsf['name']) ? $lsf['name'] : null;
+                                            $lsf_key  = isset($lsf['key'])  ? $lsf['key']  : null;
+                                            // ★ 同時支援 name / key 做行內 key
+                                            if ($lsf_name === $layout_field_name || $lsf_key === $layout_field_name) {
+                                                $layout_field_type = isset($lsf['type']) ? $lsf['type'] : 'text';
+                                                $layout_sub_field  = $lsf;
                                                 break 2;
                                             }
                                         }
@@ -2187,39 +2210,55 @@ function translate_acf_field_value($value, $field_type, $field = null)
                             }
                         }
 
-                        // ★ pass $layout_sub_field so nested repeaters/groups know their sub_fields
-                        $translated_layout[$layout_field_name] =
-                            translate_acf_field_value($layout_value, $layout_field_type, $layout_sub_field);
+                        if ($layout_sub_field) {
+                            // ★ 重要：將整個 sub_field config 傳入
+                            $translated_layout[$layout_field_name] =
+                                translate_acf_field_value($layout_value, $layout_field_type, $layout_sub_field);
+                        } else {
+                            // 無 schema 都盡量處理字串
+                            $translated_layout[$layout_field_name] =
+                                is_string($layout_value) ? tc_to_sc($layout_value) : $layout_value;
+                        }
                     }
+
                     $translated_flexible[] = $translated_layout;
                 }
                 return $translated_flexible;
             }
-            break;
+            return $value;
 
         case 'group':
             if (is_array($value)) {
-                $translated_group = array();
-                foreach ($value as $group_field_name => $group_value) {
-                    $group_sub_field = null; // ★ keep whole sub-field
+                $translated_group = [];
+                foreach ($value as $group_field_key_or_name => $group_value) {
+                    $group_sub_field = null;
                     $group_field_type = 'text';
-                    if ($field && isset($field['sub_fields'])) {
+
+                    if ($field && !empty($field['sub_fields'])) {
                         foreach ($field['sub_fields'] as $gsf) {
-                            if ($gsf['name'] === $group_field_name) {
-                                $group_field_type = $gsf['type'];
-                                $group_sub_field  = $gsf; // ★ capture config
+                            $gsf_name = isset($gsf['name']) ? $gsf['name'] : null;
+                            $gsf_key  = isset($gsf['key'])  ? $gsf['key']  : null;
+                            if ($gsf_name === $group_field_key_or_name || $gsf_key === $group_field_key_or_name) {
+                                $group_field_type = isset($gsf['type']) ? $gsf['type'] : 'text';
+                                $group_sub_field  = $gsf;
                                 break;
                             }
                         }
                     }
-                    // ★ pass $group_sub_field
-                    $translated_group[$group_field_name] =
-                        translate_acf_field_value($group_value, $group_field_type, $group_sub_field);
+
+                    if ($group_sub_field) {
+                        $translated_group[$group_field_key_or_name] =
+                            translate_acf_field_value($group_value, $group_field_type, $group_sub_field);
+                    } else {
+                        $translated_group[$group_field_key_or_name] =
+                            is_string($group_value) ? tc_to_sc($group_value) : $group_value;
+                    }
                 }
                 return $translated_group;
             }
-            break;
+            return $value;
 
+        // 以下類型唔做翻譯
         case 'image':
         case 'file':
         case 'gallery':
@@ -2235,14 +2274,11 @@ function translate_acf_field_value($value, $field_type, $field = null)
         case 'number':
         case 'range':
         case 'true_false':
-            // no translation needed
             return $value;
 
         default:
             return is_string($value) ? tc_to_sc($value) : $value;
     }
-
-    return $value;
 }
 
 
