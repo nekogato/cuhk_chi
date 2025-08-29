@@ -2133,30 +2133,30 @@ function translate_acf_field_value($value, $field_type, $field = null)
 			return is_string($value) ? tc_to_sc($value) : $value;
 
 		case 'repeater':
-			if (is_array($value)) {
-				$translated_repeater = array();
-				foreach ($value as $row) {
-					$translated_row = array();
-					foreach ($row as $sub_field_name => $sub_value) {
-						// Get sub field info
-						$sub_field = null;
-						if ($field && isset($field['sub_fields'])) {
-							foreach ($field['sub_fields'] as $sf) {
-								if ($sf['name'] === $sub_field_name) {
-									$sub_field = $sf;
-									break;
-								}
-							}
-						}
-
-						$sub_field_type = $sub_field ? $sub_field['type'] : 'text';
-						$translated_row[$sub_field_name] = translate_acf_field_value($sub_value, $sub_field_type, $sub_field);
-					}
-					$translated_repeater[] = $translated_row;
-				}
-				return $translated_repeater;
-			}
-			break;
+            if (is_array($value)) {
+                $translated_repeater = array();
+                foreach ($value as $row) {
+                    $translated_row = array();
+                    foreach ($row as $sub_field_name => $sub_value) {
+                        // find the repeater's sub-field config (if provided)
+                        $sub_field = null;
+                        if ($field && isset($field['sub_fields'])) {
+                            foreach ($field['sub_fields'] as $sf) {
+                                if ($sf['name'] === $sub_field_name) {
+                                    $sub_field = $sf;
+                                    break;
+                                }
+                            }
+                        }
+                        $sub_field_type = $sub_field ? $sub_field['type'] : 'text';
+                        $translated_row[$sub_field_name] =
+                            translate_acf_field_value($sub_value, $sub_field_type, $sub_field); // ★ pass $sub_field
+                    }
+                    $translated_repeater[] = $translated_row;
+                }
+                return $translated_repeater;
+            }
+            break;
 
 		case 'flexible_content':
             if (is_array($value)) {
