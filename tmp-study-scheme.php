@@ -431,9 +431,11 @@ while (have_posts()) :
                 ?>
                     <div class="scheme_remark section_center_content small_section_center_content  scrollin scrollinbottom section_scheme_title_wrapper">
                         <div class="col10 center_content">
+                            <div class="free_text">
                             <?php 
                             echo $remarks;
                             ?>
+                            </div>
                         </div>
                     </div>
                 <?php
