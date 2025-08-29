@@ -13,7 +13,7 @@ get_header();
 	<div class="section_center_content small_section_center_content">
 		<div class="col10 center_content">
 			<div class="people_detail_content">
-				<div class="back_btn_wrapper scrollin scrollinbottom"><a href="javascript:history.back()" class="back_btn"><?php echo cuhk_multilang_text("返回","","Back"); ?></a></div>
+				<a href="<?php echo pll_get_page_url("study/chinese-language-courses/teaching-projects")?>" class="back_btn"><?php echo cuhk_multilang_text("返回","","Back"); ?></a>
 				<div class="people_detail_incontent">
 					<?php
 					while (have_posts()) :
