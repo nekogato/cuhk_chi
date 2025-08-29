@@ -2159,61 +2159,70 @@ function translate_acf_field_value($value, $field_type, $field = null)
 			break;
 
 		case 'flexible_content':
-			if (is_array($value)) {
-				$translated_flexible = array();
-				foreach ($value as $layout) {
-					$translated_layout = array(
-						'acf_fc_layout' => $layout['acf_fc_layout']
-					);
+            if (is_array($value)) {
+                $translated_flexible = array();
+                foreach ($value as $layout) {
+                    $layout_name = isset($layout['acf_fc_layout']) ? $layout['acf_fc_layout'] : null;
+                    $translated_layout = array(
+                        'acf_fc_layout' => $layout_name
+                    );
 
-					foreach ($layout as $layout_field_name => $layout_value) {
-						if ($layout_field_name === 'acf_fc_layout') {
-							continue;
-						}
+                    foreach ($layout as $layout_field_name => $layout_value) {
+                        if ($layout_field_name === 'acf_fc_layout') {
+                            continue;
+                        }
 
-						// Find the field type for this layout field
-						$layout_field_type = 'text'; // default
-						if ($field && isset($field['layouts'])) {
-							foreach ($field['layouts'] as $layout_config) {
-								if ($layout_config['name'] === $layout['acf_fc_layout']) {
-									foreach ($layout_config['sub_fields'] as $layout_sub_field) {
-										if ($layout_sub_field['name'] === $layout_field_name) {
-											$layout_field_type = $layout_sub_field['type'];
-											break 2;
-										}
-									}
-								}
-							}
-						}
+                        // find the layout sub-field config
+                        $layout_field_type = 'text'; // default
+                        $layout_sub_field = null;    // ★ keep the whole sub-field
+                        if ($field && isset($field['layouts']) && $layout_name) {
+                            foreach ($field['layouts'] as $layout_config) {
+                                if ($layout_config['name'] === $layout_name) {
+                                    if (!empty($layout_config['sub_fields'])) {
+                                        foreach ($layout_config['sub_fields'] as $lsf) {
+                                            if ($lsf['name'] === $layout_field_name) {
+                                                $layout_field_type = $lsf['type'];
+                                                $layout_sub_field  = $lsf; // ★ capture the config
+                                                break 2;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
 
-						$translated_layout[$layout_field_name] = translate_acf_field_value($layout_value, $layout_field_type);
-					}
-					$translated_flexible[] = $translated_layout;
-				}
-				return $translated_flexible;
-			}
-			break;
+                        // ★ pass $layout_sub_field so nested repeaters/groups know their sub_fields
+                        $translated_layout[$layout_field_name] =
+                            translate_acf_field_value($layout_value, $layout_field_type, $layout_sub_field);
+                    }
+                    $translated_flexible[] = $translated_layout;
+                }
+                return $translated_flexible;
+            }
+            break;
 
-		case 'group':
-			if (is_array($value)) {
-				$translated_group = array();
-				foreach ($value as $group_field_name => $group_value) {
-					// Get sub field info
-					$group_field_type = 'text'; // default
-					if ($field && isset($field['sub_fields'])) {
-						foreach ($field['sub_fields'] as $gsf) {
-							if ($gsf['name'] === $group_field_name) {
-								$group_field_type = $gsf['type'];
-								break;
-							}
-						}
-					}
-
-					$translated_group[$group_field_name] = translate_acf_field_value($group_value, $group_field_type);
-				}
-				return $translated_group;
-			}
-			break;
+        case 'group':
+            if (is_array($value)) {
+                $translated_group = array();
+                foreach ($value as $group_field_name => $group_value) {
+                    $group_sub_field = null; // ★ keep whole sub-field
+                    $group_field_type = 'text';
+                    if ($field && isset($field['sub_fields'])) {
+                        foreach ($field['sub_fields'] as $gsf) {
+                            if ($gsf['name'] === $group_field_name) {
+                                $group_field_type = $gsf['type'];
+                                $group_sub_field  = $gsf; // ★ capture config
+                                break;
+                            }
+                        }
+                    }
+                    // ★ pass $group_sub_field
+                    $translated_group[$group_field_name] =
+                        translate_acf_field_value($group_value, $group_field_type, $group_sub_field);
+                }
+                return $translated_group;
+            }
+            break;
 
 		case 'image':
 		case 'file':
