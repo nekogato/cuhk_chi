@@ -151,9 +151,9 @@ if ($teaching_staff_term) {
 					</a>
 				</div>
 			</template>
+		</div>
 
 			<div class="ajax_loading"></div>
-		</div>
 	</div>
 
 	<!-- Render Popup -->
