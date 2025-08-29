@@ -4564,7 +4564,7 @@ body.dragging-scroll {
     display: flex;
     gap: 5px;
     flex-wrap: wrap;
-    margin-top: 20px;
+    /* margin-top: 20px; */
 }
 
 .alphabet_list_wrapper .alphabet_list:first-child{
