@@ -23,7 +23,9 @@ while (have_posts()) :
 	$page_description = get_field("introduction");
 ?>
 
-	<img src="<?php echo get_template_directory_uri(); ?>/images/ink_bg6.jpg" class="ink_bg6 scrollin scrollinbottom">
+	<div class="ink_bg13_wrapper">
+		<img src="<?php echo get_template_directory_uri(); ?>/images/ink_bg13.jpg" class="ink_bg13 scrollin scrollinbottom" alt="Background">
+	</div>
 
 	<div class="section section_content admission_section scrollin scrollinbottom onscreen startani ">
 		<div class="section_center_content small_section_center_content">
