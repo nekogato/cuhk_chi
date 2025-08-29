@@ -67,71 +67,14 @@ $initial_year = isset($_GET['active_year']) ? intval($_GET['active_year']) : $ma
 	while (have_posts()) :
 		the_post();
 	?>
-		<div class="section top_photo_banner_section">
-			<img src="<?php echo get_template_directory_uri(); ?>/images/ink_bg4.jpg" class="ink_bg4 scrollin scrollinbottom" alt="Background">
-			<div class="section_center_content small_section_center_content">
-				<div class="col_wrapper">
-					<div class="flex row">
-						<div class="col4 col">
-							<div class="col_spacing scrollin scrollinbottom">
-								<div class="text_wrapper vertical_text_wrapper">
-									<div class="text vertical_text">
-										<h1 class="project_title"><span><?php the_field("page_title"); ?></span></h1>
-									</div>
-								</div>
-							</div>
-						</div>
-						<?php
-						if (have_rows('page_banner_slider')):
-						?>
-						<div class="col8 col">
-							<div class="col_spacing scrollin scrollinbottom scrollin scrollinleft">
-								<div class="swiper-container swiper photo_wrapper top_photo_slider">
-									<div class="swiper-wrapper">
-										<?php
-										while (have_rows('page_banner_slider')) : the_row();
-											$banner_image = get_sub_field('page_banner');
-											$banner_caption = get_sub_field('page_banner_caption');
-											if($banner_image){
-											?>
-											<div class="swiper-slide">
-												<div class="photo">
-													<img src="<?php echo esc_url($banner_image['url']); ?>" alt="<?php echo esc_attr($banner_image['alt']); ?>">
-												</div>
-												<?php if ($banner_caption): ?>
-													<div class="caption"><?php echo $banner_caption; ?></div>
-												<?php endif; ?>
-											</div>
-											<?php
-											};
-										endwhile;
-										?>
-									</div>
-								</div>
-							</div>
-						</div>
-						<?php
-						endif;
-						?>
-					</div>
-				</div>
-			</div>
-		</div>
+		<img src="<?php echo get_template_directory_uri(); ?>/images/ink_bg4.jpg" class="ink_bg4 scrollin scrollinbottom" alt="Background">
 
-		<div class="section plain_text_section">
+		<div class="section section_content">
 			<div class="section_center_content small_section_center_content">
-				<div class="col_wrapper ">
-					<div class="flex row">
-						<div class="col6 col">
-							<div class="col_spacing scrollin scrollinbottom scrollin scrollinbottom">
-								<!-- introduction -->
-								<div class="free_text">
-									<?php echo get_field("introduction") ?>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+				<h1 class="section_title text1 scrollin scrollinbottom"><?php the_field("page_title"); ?></h1>
+				<?php if (get_field('introduction')): ?>
+					<div class="section_description scrollin scrollinbottom col6 free_text"><?php the_field('introduction'); ?></div>
+				<?php endif; ?>
 			</div>
 		</div>
 
