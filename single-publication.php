@@ -92,7 +92,6 @@ get_header();
 							</div>
 							<?php if ($abstract) : ?>
 								<div class="description">
-									<div class="t1 text7"><?php echo cuhk_multilang_text("撮要","","Abstract"); ?></div>
 									<div class="t2 free_text">
 										<?php echo ($abstract); ?>
 									</div>
