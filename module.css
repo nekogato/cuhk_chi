@@ -1793,7 +1793,7 @@ body.dragging-scroll {
     top:0px;
     height: 100%;
     cursor: pointer;
-    background: linear-gradient(-90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+    /* background: linear-gradient(-90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%); */
     z-index: 1;
 }
 
@@ -1819,7 +1819,7 @@ body.dragging-scroll {
     top:0px;
     height: 100%;
     cursor: pointer;
-    background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+    /* background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%); */
     z-index: 1;
 }
 
