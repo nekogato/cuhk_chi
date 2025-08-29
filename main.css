@@ -1636,7 +1636,7 @@ ol:not(.free_text ol), ul:not(.free_text ul) {
 	}
 
 	.header, .nottop .header, .header_bg {
-		height: 40px;
+		height: 48px;
 	}
 
 	.cuhk_logo, .nottop .cuhk_logo {
