@@ -1025,22 +1025,17 @@ function init_function(){
 		});
 
 		$this.find(".next_btn").click(function(){
-			var currentslide = $this.find(".swiper-container .swiper-slide a.active").parents(".swiper-slide");
-			if(currentslide.next().length){
-				//$this.find(".swiper-container .swiper-slide a.active").removeClass("active");
-				//currentslide.next().find("a").addClass("active").click();
-			}
-			year_list_slider.slideNext();
-		})
+			var currentIndex = year_list_slider.activeIndex;
+			var slidesPerView = year_list_slider.params.slidesPerView;
+			// Jump by slidesPerView, or replace with 2, 3, etc.
+			year_list_slider.slideTo(currentIndex + slidesPerView);
+		});
 
 		$this.find(".prev_btn").click(function(){
-			var currentslide = $this.find(".swiper-container .swiper-slide a.active").parents(".swiper-slide");
-			if(currentslide.prev().length){
-				//$this.find(".swiper-container .swiper-slide a.active").removeClass("active");
-				//currentslide.prev().find("a").addClass("active");
-			}
-			year_list_slider.slidePrev();
-		})
+			var currentIndex = year_list_slider.activeIndex;
+			var slidesPerView = year_list_slider.params.slidesPerView;
+			year_list_slider.slideTo(currentIndex - slidesPerView);
+		});
 	})
 
 
