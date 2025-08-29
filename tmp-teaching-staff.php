@@ -53,7 +53,6 @@ if ($teaching_staff_term) {
 				<div class="section_center_content small_section_center_content scrollin scrollinbottom">
 					<div class="filter_menu_content full_filter_menu_content">
 						<div class="alphabet_list_wrapper big_alphabet_list_wrapper">
-							<div class="title text5"><?php echo cuhk_multilang_text("職位分類", "", "Category"); ?></div>
 							<template x-if="childTerms && childTerms.length">
 								<ul class="alphabet_list">
 									<template x-for="term in childTerms" :key="term.term_id">
