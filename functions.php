@@ -2102,37 +2102,33 @@ function translate_acf_fields_recursive($fields, $tc_post_id, $sc_post_id)
  */
 function translate_acf_field_value($value, $field_type, $field = null)
 {
-	if (empty($value)) {
-		return null;
-	}
+    if (empty($value)) {
+        return null;
+    }
 
-	switch ($field_type) {
-		case 'text':
-		case 'textarea':
-		case 'email':
-		case 'url':
-		case 'password':
-			return is_string($value) ? tc_to_sc($value) : $value;
+    switch ($field_type) {
+        case 'text':
+        case 'textarea':
+        case 'email':
+        case 'url':
+        case 'password':
+        case 'wysiwyg':
+            return is_string($value) ? tc_to_sc($value) : $value;
 
-		case 'wysiwyg':
-			return is_string($value) ? tc_to_sc($value) : $value;
+        case 'select':
+        case 'radio':
+        case 'button_group':
+            return is_string($value) ? tc_to_sc($value) : $value;
 
-		case 'select':
-		case 'radio':
-		case 'button_group':
-			// For choice fields, translate the value if it's a string
-			return is_string($value) ? tc_to_sc($value) : $value;
+        case 'checkbox':
+            if (is_array($value)) {
+                return array_map(function ($item) {
+                    return is_string($item) ? tc_to_sc($item) : $item;
+                }, $value);
+            }
+            return is_string($value) ? tc_to_sc($value) : $value;
 
-		case 'checkbox':
-			// For checkbox, translate each selected value
-			if (is_array($value)) {
-				return array_map(function ($item) {
-					return is_string($item) ? tc_to_sc($item) : $item;
-				}, $value);
-			}
-			return is_string($value) ? tc_to_sc($value) : $value;
-
-		case 'repeater':
+        case 'repeater':
             if (is_array($value)) {
                 $translated_repeater = array();
                 foreach ($value as $row) {
@@ -2158,7 +2154,7 @@ function translate_acf_field_value($value, $field_type, $field = null)
             }
             break;
 
-		case 'flexible_content':
+        case 'flexible_content':
             if (is_array($value)) {
                 $translated_flexible = array();
                 foreach ($value as $layout) {
@@ -2224,31 +2220,31 @@ function translate_acf_field_value($value, $field_type, $field = null)
             }
             break;
 
-		case 'image':
-		case 'file':
-		case 'gallery':
-		case 'post_object':
-		case 'page_link':
-		case 'relationship':
-		case 'taxonomy':
-		case 'user':
-		case 'date_picker':
-		case 'date_time_picker':
-		case 'time_picker':
-		case 'color_picker':
-		case 'number':
-		case 'range':
-		case 'true_false':
-			// These field types don't need translation
-			return $value;
+        case 'image':
+        case 'file':
+        case 'gallery':
+        case 'post_object':
+        case 'page_link':
+        case 'relationship':
+        case 'taxonomy':
+        case 'user':
+        case 'date_picker':
+        case 'date_time_picker':
+        case 'time_picker':
+        case 'color_picker':
+        case 'number':
+        case 'range':
+        case 'true_false':
+            // no translation needed
+            return $value;
 
-		default:
-			// For unknown field types, try to translate if it's a string
-			return is_string($value) ? tc_to_sc($value) : $value;
-	}
+        default:
+            return is_string($value) ? tc_to_sc($value) : $value;
+    }
 
-	return $value;
+    return $value;
 }
+
 
 /**
  * Optional: Add admin notice to inform about auto-translation
