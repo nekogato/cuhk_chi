@@ -2815,7 +2815,7 @@ function filter_news_ajax()
 	// Add year filter using ACF "date" field (format: d/m/Y)
 	if ($year) {
 		$args['meta_query'][] = array(
-			'key'     => 'date',
+			'key'     => 'start_date',
 			'value'   => array($year . '0101', $year . '1231'),
 			'compare' => 'BETWEEN',
 			'type'    => 'NUMERIC',
