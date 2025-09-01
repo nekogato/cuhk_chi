@@ -792,19 +792,28 @@ function load_teaching_staff()
 		if ($current_lang == 'tc') {
 			// Order by number of strokes (numeric)
 			$args['meta_key'] = 'strokes';
-			$args['orderby'] = 'meta_value_num';
+			$args['orderby']  = array(
+				'meta_value_num' => 'ASC',
+				'menu_order'     => 'ASC',
+			);
 		} elseif ($current_lang == 'sc') {
 			// Order by pinyin (text)
 			$args['meta_key'] = 'pinyin';
-			$args['orderby'] = 'meta_value';
+			$args['orderby']  = array(
+				'meta_value' => 'ASC',
+				'menu_order'     => 'ASC',
+			);
 		} else {
 			// Order by English name (text)
 			$args['meta_key'] = 'english_name';
-			$args['orderby'] = 'meta_value';
+			$args['orderby']  = array(
+				'meta_value' => 'ASC',
+				'menu_order'     => 'ASC',
+			);
 		}
 	} else {
 		// Fallback to ordering by title if Polylang not available
-		$args['orderby'] = 'title';
+		$args['orderby'] = 'menu_order';
 	}
 
 
