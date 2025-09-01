@@ -801,14 +801,14 @@ function load_teaching_staff()
 			$args['meta_key'] = 'pinyin';
 			$args['orderby']  = array(
 				'meta_value' => 'ASC',
-				'menu_order'     => 'ASC',
+				'menu_order' => 'ASC',
 			);
 		} else {
 			// Order by English name (text)
 			$args['meta_key'] = 'english_name';
 			$args['orderby']  = array(
 				'meta_value' => 'ASC',
-				'menu_order'     => 'ASC',
+				'menu_order' => 'ASC',
 			);
 		}
 	} else {
