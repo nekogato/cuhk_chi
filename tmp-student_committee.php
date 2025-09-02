@@ -12,9 +12,9 @@ get_template_part('template-parts/roll-menu');
 if (have_posts()) :
 	while (have_posts()) : the_post();
 ?>
+			<img src="<?php echo get_template_directory_uri(); ?>/images/ink_bg6.jpg" class="ink_bg6 scrollin scrollinbottom">
 
 		<div class="section section_content section_intro">
-			<img src="<?php echo get_template_directory_uri(); ?>/images/ink_bg6.jpg" class="ink_bg6 scrollin scrollinbottom">
 			<div class="section_center_content small_section_center_content scrollin scrollinbottom">
 				<h1 class="section_title text1"><?php the_title(); ?></h1>
 				<div class="section_description col6"><?php the_field('introduction'); ?></div>
