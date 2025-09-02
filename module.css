@@ -5302,7 +5302,7 @@ body.dragging-scroll {
 .people_detail_content_year_list .year{
     color:#62629e;
     white-space: nowrap;
-    width: 100px;
+    width: 120px;
 }
 
 .people_detail_content_year_list .free_text h1,
@@ -8245,6 +8245,11 @@ body.dragging-scroll {
 
 
 @media screen and (max-width: 800px) { 
+
+    .people_detail_content_year_list .year {
+    width: 90px;
+    }
+
 
     .scroll-inner {
     gap: 25px;
