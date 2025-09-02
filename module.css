@@ -7761,6 +7761,10 @@ body.dragging-scroll {
         gap: 30px 10px;
       }
 
+      .people_detail_photo_wrapper {
+        width: 25%;
+    }
+
 
     .table_flex_item_wrapper .table_flex_item.col6 {
         width: calc(50% - 5px);
