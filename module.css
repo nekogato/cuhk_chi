@@ -6155,6 +6155,12 @@ body.dragging-scroll {
     margin-left: 80px;
 }
 
+.no_slider.committee_albums_slider > .swiper-container{
+    overflow: visible;
+    margin-right: 80px;
+    margin-left: 80px;
+}
+
 .committee_album_slider{
     width: 100%;
 }

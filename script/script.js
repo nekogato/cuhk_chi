@@ -1176,9 +1176,10 @@ function init_function(){
 				committee_albums_slider.slidePrev();
 			})
 		}else{
+			$this.addClass("no_slider");
 			$this.find(".next_btn").hide();
 			$this.find(".prev_btn").hide();
-			$this.find(".dot_wrapper").hide();
+			// $this.find(".dot_wrapper").hide();
 		}
 	})
 
