@@ -9150,6 +9150,11 @@ body.dragging-scroll {
         margin-left: 40px;
         }
 
+        .no_slider.committee_albums_slider > .swiper-container {
+        margin-right: 40px;
+        margin-left: 40px;
+        }
+
         .committee_album_slider .dot_wrapper {
         gap: 5px;
           margin-top: 15px;
