@@ -563,7 +563,10 @@ a{
 }
 .dropdown_department_bottom .text{
 	margin-top: 20px;
+  margin-left: -100px;
 }
+
+
 
 .dropdown_department_sns_wrapper{
 	margin-top: 20px;
@@ -1758,6 +1761,7 @@ ol:not(.free_text ol), ul:not(.free_text ul) {
 
 	  .dropdown_department_bottom .text {
 		margin-top: 20px;
+		margin-left: auto;
 	  }
 
 	  .dropdown_department_sns_wrapper ul {
