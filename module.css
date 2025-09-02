@@ -7751,7 +7751,7 @@ body.dragging-scroll {
         gap: 20px;
     }
 
-    .table_flex_item_wrapper {
+    .people_detail_text .table_flex_item_wrapper{
         display: flex;
         flex-wrap: wrap;
         gap: 30px 10px;
