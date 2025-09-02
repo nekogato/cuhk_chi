@@ -7744,14 +7744,23 @@ body.dragging-scroll {
       }
 
 
+
     /* expandable */
     
+    .people_detail_incontent {
+        gap: 20px;
+    }
 
     .table_flex_item_wrapper {
         display: flex;
         flex-wrap: wrap;
-        gap: 30px 50px;
+        gap: 30px 10px;
       }
+
+
+    .table_flex_item_wrapper .table_flex_item.col6 {
+        width: calc(50% - 5px);
+    }
 
       .table_flex_item_wrapper + .table_flex_item_wrapper{
             margin-top: 30px;
@@ -8245,6 +8254,7 @@ body.dragging-scroll {
 
 
 @media screen and (max-width: 800px) { 
+
 
     .people_detail_content_year_list .year {
     width: 90px;
