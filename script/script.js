@@ -1158,7 +1158,7 @@ function init_function(){
 
 	$(".committee_albums_slider").each(function(){
 		var $this = $(this);
-		if($this.find(".swiper-slide").length>1){
+		if($this.find("> .swiper-container > .swiper-wrapper >.swiper-slide").length>1){
 			var committee_albums_slider = new Swiper($this.find(" > .swiper-container")[0], {
 				autoplay: false,
 				slidesPerView: 2,
