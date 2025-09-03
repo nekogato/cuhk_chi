@@ -137,7 +137,7 @@ while (have_posts()) :
 										<?php }; ?>
 										<div class="publication_text">
 											<div class="publication_text_item text6 book_name">
-												<?php echo $title; ?>
+												<a href="<?php the_permalink(); ?>"><?php echo $title; ?></a>
 											</div>
 											<?php if($author){?>
 												<div class="publication_text_item">

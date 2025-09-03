@@ -100,7 +100,7 @@ get_header();
 							<?php if ($external_link) : ?>
 								<div class="description">
 									<div class="t2 free_text">
-										<a href="<?php echo ($external_link); ?>" target="_blank" class="round_btn"><?php echo cuhk_multilang_text("點擊查看目錄","","Click here to view contents"); ?></a>
+										<a href="<?php echo ($external_link); ?>" target="_blank" class="round_btn"><?php echo cuhk_multilang_text("點擊查看目錄","","Click here to view the contents"); ?></a>
 									</div>
 								</div>
 							<?php endif; ?>
