@@ -779,7 +779,7 @@ body.dragging-scroll {
 
 .en_body .section_title{
     letter-spacing: 0em;
-    font-family: "richmond-text","Chiron Sung HK WS", sans-serif !important;
+    font-family: "richmond-text","Chiron Sung HK WS",serif !important;
     font-weight: normal;
 }
 
@@ -798,7 +798,7 @@ body.dragging-scroll {
 }
 
 .en_body .section_smalltitle{
-    font-family: "richmond-text","Chiron Sung HK WS", sans-serif !important;
+    font-family: "richmond-text","Chiron Sung HK WS",serif !important;
 }
 
 .section_subtitle{
@@ -990,7 +990,7 @@ body.dragging-scroll {
     padding-right: 32px;
     color:#63629B;
     cursor: pointer;
-    font-family: "richmond-text","Chiron Sung HK WS", sans-serif !important;
+    font-family: "richmond-text","Chiron Sung HK WS",serif !important;
 }
 
 .no_bg .expandable_item .expandable_title:hover{
@@ -1241,7 +1241,7 @@ body.dragging-scroll {
 
 .en_body .home_top_section .text{
     letter-spacing: 0em;
-    font-family: "richmond-text","Chiron Sung HK WS", sans-serif !important;
+    font-family: "richmond-text","Chiron Sung HK WS",serif !important;
 }
 
 .home_top_section .logo{  
@@ -1324,7 +1324,7 @@ body.dragging-scroll {
 }
 
 .en_body .vertical_text_wrapper .project_title{
-  font-family: "richmond-text","Chiron Sung HK WS", sans-serif !important;
+  font-family: "richmond-text","Chiron Sung HK WS",serif !important;
 }
 
 .en_body .home_about_slider_section .col2{
@@ -1754,7 +1754,7 @@ body.dragging-scroll {
 }
 
 .home_news_year_slider .t2{
-    font-family: "richmond-text","Chiron Sung HK WS", sans-serif !important;
+    font-family: "richmond-text","Chiron Sung HK WS",serif !important;
 }
 
 
@@ -2054,7 +2054,7 @@ body.dragging-scroll {
 
 .en_body .event_section_title {
   letter-spacing: 0em;
-  font-family: "richmond-text","Chiron Sung HK WS", sans-serif !important;
+  font-family: "richmond-text","Chiron Sung HK WS",serif !important;
   font-weight: normal;
 }
 
@@ -2374,7 +2374,7 @@ body.dragging-scroll {
 }
 
 .home_promotion_section_title{
-    font-family: "richmond-text","Chiron Sung HK WS", sans-serif !important;
+    font-family: "richmond-text","Chiron Sung HK WS",serif !important;
 }
 
 .home_promotion_section_title h1{
@@ -2383,7 +2383,7 @@ body.dragging-scroll {
 }
 
 .en_body .home_promotion_section_title h1{
-    font-family: "richmond-text","Chiron Sung HK WS", sans-serif !important;
+    font-family: "richmond-text","Chiron Sung HK WS",serif !important;
 }
 
 .home_promotion_box_wrapper{
@@ -3054,7 +3054,7 @@ body.dragging-scroll {
 }
 
 .thumb_text_box_slider_wrapper2 .swiper-slide .title{
-    font-family: "richmond-text","Chiron Sung HK WS", sans-serif !important;
+    font-family: "richmond-text","Chiron Sung HK WS",serif !important;
     color:#6f6ea1;
 }
 
@@ -3241,7 +3241,7 @@ body.dragging-scroll {
 }
 
 .en_body .publication_box_list_title{
-    font-family: "richmond-text","Chiron Sung HK WS", sans-serif !important;
+    font-family: "richmond-text","Chiron Sung HK WS",serif !important;
 }
 
 .publication_box_list_wrapper+.publication_box_list_wrapper{
@@ -3288,6 +3288,15 @@ body.dragging-scroll {
 .publication_text_item.book_name{
     color:#63629B;
     font-weight: 600;
+}
+
+.publication_text_item.book_name a{
+    color:#63629B;
+}
+
+.publication_text_item.book_name a:hover{
+    color:#ae6364;
+    opacity: 1;
 }
 
 .publication_text_item .title{
@@ -3401,7 +3410,7 @@ body.dragging-scroll {
 }
 
 .en_body .top_photo_banner_section .text_wrapper .project_title, .en_body .top_photo_banner_section .text_wrapper .project_smalltitle{
-    font-family: "richmond-text","Chiron Sung HK WS", sans-serif !important;
+    font-family: "richmond-text","Chiron Sung HK WS",serif !important;
 }
 
 .top_photo_banner_section .text_wrapper  .title_bg_wrapper{
@@ -3749,7 +3758,7 @@ body.dragging-scroll {
 
 .en_body .news_title_wrapper .news_title{
     letter-spacing: 0em;
-      font-family: "richmond-text","Chiron Sung HK WS", sans-serif !important;
+      font-family: "richmond-text","Chiron Sung HK WS",serif !important;
 }
 
 /* plain_text_section */
@@ -4839,7 +4848,7 @@ body.dragging-scroll {
 }
 
 .en_body .filter_course_type_name{
-    font-family: "richmond-text","Chiron Sung HK WS", sans-serif !important;
+    font-family: "richmond-text","Chiron Sung HK WS",serif !important;
 }
 
 .filter_detail_flex{
@@ -5186,7 +5195,7 @@ body.dragging-scroll {
 }
 
 .people_detail_text .name{
-    font-family: "richmond-text","Chiron Sung HK WS", sans-serif !important;
+    font-family: "richmond-text","Chiron Sung HK WS",serif !important;
     color:#62629e;
     margin-top: 10px;
       font-weight: 600;
@@ -5197,13 +5206,13 @@ body.dragging-scroll {
 }
 
 .people_detail_text .position{
-    font-family: "richmond-text","Chiron Sung HK WS", sans-serif !important;
+    font-family: "richmond-text","Chiron Sung HK WS",serif !important;
     /* color:#62629e; */
     font-weight: 600;
 }
 
 .people_detail_text .qualifications{
-    font-family: "richmond-text","Chiron Sung HK WS", sans-serif !important;
+    font-family: "richmond-text","Chiron Sung HK WS",serif !important;
     color:#62629e;
     margin-top: 60px;
 }
@@ -5638,7 +5647,7 @@ body.dragging-scroll {
 }
 
 .section_scheme .section_scheme_title{
-    font-family: "richmond-text","Chiron Sung HK WS", sans-serif !important;
+    font-family: "richmond-text","Chiron Sung HK WS",serif !important;
     color:#6F6EA6;
 }
 
@@ -6181,7 +6190,7 @@ body.dragging-scroll {
 }
 
 .committee_albums_slider .album_title{
-    font-family: "richmond-text","Chiron Sung HK WS", sans-serif !important;
+    font-family: "richmond-text","Chiron Sung HK WS",serif !important;
     margin-bottom: 10px;
     color: #575792;
     font-weight: 600;
@@ -6402,7 +6411,7 @@ body.dragging-scroll {
 }
 
 .alumni_story_section .section_smalltitle{
-    font-family: "richmond-text","Chiron Sung HK WS", sans-serif !important;
+    font-family: "richmond-text","Chiron Sung HK WS",serif !important;
     color:#62629b;
 }
 
@@ -6412,7 +6421,7 @@ body.dragging-scroll {
 
 .alumni_story_section .thumb_text_box_slider_wrapper .swiper-slide .title{
 
-    font-family: "richmond-text","Chiron Sung HK WS", sans-serif !important;
+    font-family: "richmond-text","Chiron Sung HK WS",serif !important;
     color:#62629b;
 }
 
@@ -6513,7 +6522,7 @@ body.dragging-scroll {
 }
 
 .border_box_item .t1{
-    font-family: "richmond-text","Chiron Sung HK WS", sans-serif !important;
+    font-family: "richmond-text","Chiron Sung HK WS",serif !important;
     color:#62629b;
 }
 
@@ -6981,7 +6990,7 @@ body.dragging-scroll {
 
 .en_body .scheme_title{
     letter-spacing: 0em;
-    font-family: "richmond-text","Chiron Sung HK WS", sans-serif !important;
+    font-family: "richmond-text","Chiron Sung HK WS",serif !important;
     font-weight: normal;
 }
 

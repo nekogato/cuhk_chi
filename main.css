@@ -13,14 +13,14 @@ td{vertical-align:top;}
 
 input, textarea{
 	color: #736562;
-	font-family: "area-normal","Chiron Sung HK WS", sans-serif;
+	font-family: "area-normal","Chiron Sung HK WS",serif;
 	font-style: normal;
 	}
 	
 body{
 	background-color: #EEE8DC;
     color: #736562;
-	font-family: "area-normal","Chiron Sung HK WS", sans-serif;
+	font-family: "area-normal","Chiron Sung HK WS",serif;
 	font-style: normal;
 	overflow: auto;
   	overflow-x: hidden;
@@ -374,6 +374,10 @@ a{
 	height: auto;
 }
 
+.hidden_lang a:hover{
+	color:#ae6364;
+}
+
 .menu_search{
 	background-image: url(images/menu_search.svg);
 }
@@ -511,7 +515,7 @@ a{
 }
 
 .en_body .dropdown_menu_list .t1{
-  font-family: "richmond-text","Chiron Sung HK WS", sans-serif !important;
+  font-family: "richmond-text","Chiron Sung HK WS",serif !important;
 }
 
 .dropdown_menu_list .t1 a{
@@ -1163,8 +1167,8 @@ small{
 }	
 	
 h1,h2,h3,h4,h5,h6{
-	/* font-family: "richmond-text","Chiron Sung HK WS", sans-serif; */
-	font-family: "area-normal","Chiron Sung HK WS", sans-serif;
+	/* font-family: "richmond-text","Chiron Sung HK WS",serif; */
+	font-family: "area-normal","Chiron Sung HK WS",serif;
 	font-style: normal;
 	font-weight: 600;
 }
