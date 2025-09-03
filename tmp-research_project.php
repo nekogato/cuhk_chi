@@ -114,7 +114,7 @@ $initial_year = isset($_GET['active_year']) ? intval($_GET['active_year']) : $ma
 									<div class="section_center_content small_section_center_content">
 										<div class="col10 center_content">
 											<div class="expandable_title">
-												<div class="cat"><?php echo cuhk_multilang_text("", "", "Funded by "); ?><span x-text="project.funding_organization"></span><?php echo cuhk_multilang_text("資助", "", ""); ?></div>
+												<div class="cat"><?php echo cuhk_multilang_text("", "", "Funded by "); ?><span x-text="project.category_name"></span><?php echo cuhk_multilang_text("資助", "", ""); ?></div>
 												<div class="text5" x-html="`${project.project_title} (${project.funding_start_year}/${project.funding_end_year_short})`"></div>
 												<div class="icon"></div>
 											</div>

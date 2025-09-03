@@ -1337,6 +1337,19 @@ function load_research_projects()
 	if ($query->have_posts()) {
 		while ($query->have_posts()) {
 			$query->the_post();
+			
+			$project_categories = get_the_terms(get_the_ID(), 'project_category');
+			$category_name = '';
+
+
+			// Default to current language if none is specified
+			if (!$lang && function_exists('pll_current_language')) {
+				$lang = pll_current_language();
+			}
+
+			if ($project_categories && !is_wp_error($project_categories)) {
+				$category_name = get_field($lang.'_name', 'project_category_'.$project_categories[0]->term_id);
+			}
 
 			// Get flexible content for description
 			$description = '';
@@ -1355,6 +1368,7 @@ function load_research_projects()
 			$project = array(
 				'id' => get_the_ID(),
 				'project_title' => get_field('project_title'),
+				'category_name' => $category_name,
 				'funding_organization' => get_field('funding_organization'),
 				'funding_start_year' => get_field('funding_start_year'),
 				'funding_end_year_short' => substr(get_field('funding_end_year'), -2),
