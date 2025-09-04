@@ -85,7 +85,7 @@ if ($alumni_events): ?>
 												<div class="description"><?php echo esc_html($event->post_excerpt); ?></div>
 											<?php endif; ?>
 											<div class="btn_wrapper text7">
-												<a href="<?php echo get_permalink($event->ID); ?>" class="round_btn"><?php pll_e('了解更多'); ?></a>
+												<a href="<?php echo get_permalink($event->ID); ?>" class="round_btn"><?php echo cuhk_multilang_text("了解更多", "", "Details"); ?></a>
 											</div>
 										</div>
 									</div>
@@ -178,7 +178,7 @@ if ($alumni_events): ?>
 									<?php endif; ?>
 									<?php if ($association_link): ?>
 										<div class="btn_wrapper">
-											<a href="<?php echo esc_url($association_link['url']); ?>" class="round_btn text8" <?php echo $association_link['target'] ? ' target="' . esc_attr($association_link['target']) . '"' : ''; ?>><?php pll_e('了解更多'); ?></a>
+											<a href="<?php echo esc_url($association_link['url']); ?>" class="round_btn text8" <?php echo $association_link['target'] ? ' target="' . esc_attr($association_link['target']) . '"' : ''; ?>><?php echo cuhk_multilang_text("了解更多", "", "Details"); ?></a>
 										</div>
 									<?php endif; ?>
 								</div>

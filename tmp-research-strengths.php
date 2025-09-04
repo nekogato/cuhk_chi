@@ -63,7 +63,7 @@ if (have_posts()) :
 													<?php endif; ?>
 													<?php if ($detailed_description): ?>
 														<div class="btn_wrapper">
-															<a href="#" class="round_btn text7 popup_btn" data-target="<?php echo esc_attr($popup_id); ?>"><?php pll_e('了解更多'); ?></a>
+															<a href="#" class="round_btn text7 popup_btn" data-target="<?php echo esc_attr($popup_id); ?>"><?php echo cuhk_multilang_text("了解更多", "", "Details"); ?></a>
 														</div>
 													<?php endif; ?>
 												</div>

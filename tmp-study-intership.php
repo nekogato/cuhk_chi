@@ -218,7 +218,7 @@ if (have_posts()) :
 											<?php if ($winner_link): ?>
 												<div class="btn_wrapper text7">
 													<a href="<?php echo esc_url($winner_link['url']); ?>" class="round_btn">
-														<?php pll_e('了解更多'); ?>
+														<?php echo cuhk_multilang_text("了解更多", "", "Details"); ?>
 													</a>
 												</div>
 											<?php endif; ?>
@@ -281,7 +281,7 @@ if (have_posts()) :
 												<?php if ($testimonial_link): ?>
 													<div class="btn_wrapper text7">
 														<a href="<?php echo esc_url($testimonial_link['url']); ?>" class="round_btn">
-															<?php pll_e('了解更多'); ?>
+															<?php echo cuhk_multilang_text("了解更多", "", "Details"); ?>
 														</a>
 													</div>
 												<?php endif; ?>

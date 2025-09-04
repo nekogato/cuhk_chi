@@ -550,7 +550,20 @@ add_action('wp_ajax_nopriv_load_more_news', 'load_more_news');
 function load_google_maps_script()
 {
 	if (is_page_template('tmp-about_contact.php')) {
-		wp_enqueue_script('google-maps', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBf7lvMAu5CR6kOUpRB3XVKjYixA8G9rec&callback=initMap', array(), null, true);
+		if (function_exists('pll_current_language')) {
+			$current_lang = pll_current_language();
+
+			if ($current_lang == 'tc') {
+				wp_enqueue_script('google-maps', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBf7lvMAu5CR6kOUpRB3XVKjYixA8G9rec&language=zh-HK&callback=initMap', array(), null, true);
+			} elseif ($current_lang == 'sc') {
+				wp_enqueue_script('google-maps', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBf7lvMAu5CR6kOUpRB3XVKjYixA8G9rec&language=zh-CN&callback=initMap', array(), null, true);
+			} else {
+				wp_enqueue_script('google-maps', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBf7lvMAu5CR6kOUpRB3XVKjYixA8G9rec&language=en&callback=initMap', array(), null, true);
+			}
+		} else {
+			wp_enqueue_script('google-maps', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBf7lvMAu5CR6kOUpRB3XVKjYixA8G9rec&language=en&callback=initMap', array(), null, true);
+		}
+		
 	}
 }
 add_action('wp_enqueue_scripts', 'load_google_maps_script');
@@ -1196,7 +1209,7 @@ function load_more_department_news()
 							<div class="cat"><?php echo esc_html($category_name); ?></div>
 							<div class="title text5"><?php the_title(); ?></div>
 							<div class="btn_wrapper text7">
-								<a href="<?php the_permalink(); ?>" class="round_btn"><?php pll_e('了解更多'); ?></a>
+								<a href="<?php the_permalink(); ?>" class="round_btn"><?php echo cuhk_multilang_text("了解更多", "", "Details"); ?></a>
 							</div>
 						</div>
 					</div>
