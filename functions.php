@@ -301,7 +301,7 @@ function pll_get_page_id_by_slug($page_slug)
 
 function my_theme_add_editor_styles()
 {
-	add_editor_style('editor-style10.css');
+	add_editor_style('editor-style11.css');
 	add_editor_style(get_stylesheet_directory_uri() . '/fonts/stylesheet.css');
 }
 
