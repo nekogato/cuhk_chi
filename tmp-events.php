@@ -182,7 +182,7 @@ while (have_posts()) :
 				<!-- Loading indicator -->
 				<div class="event_list_item_wrapper col10 center_content" x-show="loadingComing" x-cloak>
 					<div class="loading-indicator" style="text-align: center; padding: 40px;">
-						<p><?php echo cuhk_multilang_text("戴入活動中","","Loading events..."); ?></p>
+						<p><?php echo cuhk_multilang_text("載入活動中","","Loading events..."); ?></p>
 					</div>
 				</div>
 
@@ -270,7 +270,7 @@ while (have_posts()) :
 				<!-- Loading indicator -->
 				<div class="event_list_item_wrapper col10 center_content" x-show="loadingOld" x-cloak>
 					<div class="loading-indicator" style="text-align: center; padding: 40px;">
-						<p><?php echo cuhk_multilang_text("戴入活動中","","Loading events..."); ?></p>
+						<p><?php echo cuhk_multilang_text("載入活動中","","Loading events..."); ?></p>
 					</div>
 				</div>
 

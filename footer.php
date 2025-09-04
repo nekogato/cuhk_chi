@@ -261,7 +261,7 @@
                                 endif;
                             ?>
                             <div class="copyright">
-                                <?php echo cuhk_multilang_text(date('Y') ."版權所有","","© Copyright ".date('Y')); ?><span class="copyright_line">|</span><?php echo cuhk_multilang_text("香港中文大學中國語言及文學系","","The Chinese University of Hong Kong Department of Chinese Language & Literature"); ?>
+                                <?php echo cuhk_multilang_text("香港中文大學中國語言及文學系".date('Y')."版權所有","","Copyright © ".date('Y').". All Rights Reserved. Department of Chinese Language and Literature, CUHK"); ?>
                             </div>
                         </div>
                         <div class="footer2_t footer2_t2">
