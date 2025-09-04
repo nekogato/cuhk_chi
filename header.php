@@ -33,6 +33,12 @@
 global $style_class;
 if (pll_current_language() == 'sc' || pll_current_language() == 'tc') {
     $style_class .= ' zh_body';
+	if(pll_current_language() == 'sc'){
+		$style_class .= ' sc_body';
+	}
+	if(pll_current_language() == 'tc'){
+		$style_class .= ' tc_body';
+	}
 }else{
     $style_class .= ' en_body';
 }

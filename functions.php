@@ -1307,6 +1307,11 @@ function load_research_projects()
 	check_ajax_referer('load_research_projects_nonce', 'nonce');
 
 	$year = isset($_POST['year']) ? intval($_POST['year']) : 0;
+    $lang = isset($_POST['lang']) ? sanitize_text_field($_POST['lang']) : '';
+
+    if ($lang && function_exists('pll_switch_language')) {
+        pll_switch_language($lang);
+    }
 
 	if (!$year) {
 		wp_send_json_error('Invalid year');
@@ -1328,7 +1333,8 @@ function load_research_projects()
 		),
 		'orderby' => 'title',
 		'order' => 'ASC',
-		'post_status' => 'publish'
+		'post_status' => 'publish',
+		'lang' => $lang ?: (function_exists('pll_current_language') ? pll_current_language('slug') : ''),
 	);
 
 	$query = new WP_Query($args);
