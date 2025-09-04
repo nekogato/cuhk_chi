@@ -46,7 +46,7 @@ if (have_posts()) :
 		<div class="section section_content resource_content_section scrollin scrollinbottom">
 			
 
-				<?php if (have_rows('filter_categories')): ?>
+				<?php if (have_rows('filter_categories')): $i=0;?>
 					<?php
 					while (have_rows('filter_categories')): the_row();
 						$category_name = get_sub_field('category_name');
@@ -59,7 +59,7 @@ if (have_posts()) :
 								</div>
 							</div>
 							<?php if (have_rows('download_groups')): 
-								$i=0;?>
+								?>
 								<?php while (have_rows('download_groups')): the_row(); 
 								$i++;?>
 									<?php
