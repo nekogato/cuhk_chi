@@ -447,7 +447,7 @@ function init_event(){
 			$(".song_text .t2 .version_name").text(myname);
 			var mysong  = $this.attr("data-song");
 			changeAudioSource($(".audio-player"),mysong);
-			$(".download_song_wrapper a").attr("href",$this.attr(mysong));
+			$(".download_song_wrapper a").attr("href",mysong);
 		}
 		return false;
 	})
