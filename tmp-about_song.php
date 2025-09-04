@@ -29,7 +29,9 @@ get_header();
 								while (have_rows('song_repeater')) : the_row();
 									$version_name = get_sub_field('version_name');
 									$song_file = get_sub_field('song_file');
+									if($first){
 									$firsttext = $version_name;
+									}
 									if ($song_file) :
 								?>
 										<li>
