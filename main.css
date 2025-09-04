@@ -1221,7 +1221,7 @@ p:first-child{
 .free_text h4 + p,
 .free_text h5 + p,
 .free_text h6 + p{
-    margin-top: 10px;
+    margin-top: 25px;
 }
 
 .free_text h1 + table,
@@ -1230,7 +1230,7 @@ p:first-child{
 .free_text h4 + table,
 .free_text h5 + table,
 .free_text h6 + table{
-    margin-top: 10px;
+    margin-top: 25px;
 }
 
 .free_text h1 + ul,
@@ -1239,7 +1239,7 @@ p:first-child{
 .free_text h4 + ul,
 .free_text h5 + ul,
 .free_text h6 + ul{
-    margin-top: 10px;
+    margin-top: 25px;
 }
 
 .free_text h1 + ol,
@@ -1248,7 +1248,7 @@ p:first-child{
 .free_text h4 + ol,
 .free_text h5 + ol,
 .free_text h6 + ol{
-    margin-top: 10px;
+    margin-top: 25px;
 }
 
 .free_text p + table{
