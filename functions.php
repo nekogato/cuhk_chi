@@ -313,6 +313,11 @@ function load_more_mphil_phd_research_post()
 	check_ajax_referer('load_more_nonce', 'nonce');
 
 	$page = $_POST['page'];
+	$lang = isset($_POST['lang']) ? sanitize_text_field($_POST['lang']) : '';
+
+    if ($lang && function_exists('pll_switch_language')) {
+        pll_switch_language($lang);
+    }
 
 	$args = array(
 		'post_type' => 'mphil_phd_research',
@@ -320,7 +325,8 @@ function load_more_mphil_phd_research_post()
 		'orderby' => 'date',
 		'order' => 'DESC',
 		'paged' => $page,
-		'post_status' => 'publish'
+		'post_status' => 'publish',
+		'lang' => $lang ?: (function_exists('pll_current_language') ? pll_current_language('slug') : ''),
 	);
 
 	$query = new WP_Query($args);
@@ -398,12 +404,18 @@ function load_more_publications()
 	check_ajax_referer('load_more_publications_nonce', 'nonce');
 
 	$page = isset($_POST['page']) ? intval($_POST['page']) : 1;
+	$lang = isset($_POST['lang']) ? sanitize_text_field($_POST['lang']) : '';
+
+    if ($lang && function_exists('pll_switch_language')) {
+        pll_switch_language($lang);
+    }
 
 	$args = array(
 		'post_type' => 'publication',
 		'posts_per_page' => PUBLICATIONS_PER_PAGE,
 		'paged' => $page,
-		'post_status' => 'publish'
+		'post_status' => 'publish',
+		'lang' => $lang ?: (function_exists('pll_current_language') ? pll_current_language('slug') : ''),
 	);
 
 	$publications = new WP_Query($args);
@@ -472,6 +484,11 @@ function load_more_news()
 	check_ajax_referer('load_more_nonce', 'nonce');
 
 	$page = $_POST['page'];
+	$lang = isset($_POST['lang']) ? sanitize_text_field($_POST['lang']) : '';
+
+    if ($lang && function_exists('pll_switch_language')) {
+        pll_switch_language($lang);
+    }
 	$offset = ($page * NEWS_PER_PAGE); // Add 2 to account for featured posts
 
 	$args = array(
@@ -481,7 +498,8 @@ function load_more_news()
 		'meta_key' => 'start_date',
 		'orderby' => 'meta_value_num',
 		'order' => 'DESC',
-		'post_status' => 'publish'
+		'post_status' => 'publish',
+		'lang' => $lang ?: (function_exists('pll_current_language') ? pll_current_language('slug') : ''),
 	);
 
 	$query = new WP_Query($args);
@@ -616,6 +634,11 @@ function load_postgraduate_students()
 	$page = isset($_POST['page']) ? intval($_POST['page']) : 1;
 	$alphabet = isset($_POST['alphabet']) ? strtoupper(sanitize_text_field($_POST['alphabet'])) : '';
 	$degree = isset($_POST['degree']) ? sanitize_text_field($_POST['degree']) : '';
+	$lang = isset($_POST['lang']) ? sanitize_text_field($_POST['lang']) : '';
+
+    if ($lang && function_exists('pll_switch_language')) {
+        pll_switch_language($lang);
+    }
 
 	// Get the category ID for postgraduate-research-students
 	$category = get_term_by('slug', 'postgraduate-research-students', 'people_category');
@@ -638,7 +661,8 @@ function load_postgraduate_students()
 				'field' => 'term_id',
 				'terms' => $category->term_id
 			)
-		)
+		),
+		'lang' => $lang ?: (function_exists('pll_current_language') ? pll_current_language('slug') : ''),
 	);
 
 	// Add meta query for degree and alphabet if specified
@@ -748,6 +772,11 @@ function load_teaching_staff()
 	$page = isset($_POST['page']) ? intval($_POST['page']) : 1;
 	$position = isset($_POST['position']) ? sanitize_text_field($_POST['position']) : '';
 	$sort_order = isset($_POST['sort_order']) ? sanitize_text_field($_POST['sort_order']) : 'asc';
+	$lang = isset($_POST['lang']) ? sanitize_text_field($_POST['lang']) : '';
+
+    if ($lang && function_exists('pll_switch_language')) {
+        pll_switch_language($lang);
+    }
 
 	// Get the parent term (teaching-staff)
 	$category = get_term_by('slug', 'teaching-staff', 'people_category');
@@ -782,7 +811,8 @@ function load_teaching_staff()
 		'paged' => $page,
 		'order' => 'asc',
 		'tax_query' => $tax_query,
-		'post_status' => 'publish'
+		'post_status' => 'publish',
+		'lang' => $lang ?: (function_exists('pll_current_language') ? pll_current_language('slug') : ''),
 	);
 
 	// Change ordering based on current language
@@ -924,6 +954,11 @@ function load_courses()
 	$categories = isset($_POST['categories']) ? $_POST['categories'] : [];
 	$academic_year = isset($_POST['academic_year']) ? sanitize_text_field($_POST['academic_year']) : '';
 	$course_type = isset($_POST['course_type']) ? sanitize_text_field($_POST['course_type']) : '';
+	$lang = isset($_POST['lang']) ? sanitize_text_field($_POST['lang']) : '';
+
+    if ($lang && function_exists('pll_switch_language')) {
+        pll_switch_language($lang);
+    }
 
 	// Log the received data for debugging
 	error_log('Received POST data: ' . print_r($_POST, true));
@@ -967,7 +1002,8 @@ function load_courses()
 		'orderby'        => 'meta_value',
 		'order'          => 'ASC',
 		'tax_query' => $tax_query,
-		'post_status' => 'publish'
+		'post_status' => 'publish',
+		'lang' => $lang ?: (function_exists('pll_current_language') ? pll_current_language('slug') : ''),
 	);
 
 	$courses_query = new WP_Query($args);
@@ -1020,7 +1056,7 @@ function load_courses()
 				'course_description' => $course_description,
 				'has_detail' => (bool) $has_detail,
 				'permalink' => get_permalink(),
-				'course_pdfs' => $course_pdfs,
+				'course_pdfs' => $course_pdfs
 			);
 
 			// Get course_semester terms
@@ -1112,6 +1148,11 @@ function load_more_department_news()
 	check_ajax_referer('load_more_department_news_nonce', 'nonce');
 
 	$page = isset($_POST['page']) ? intval($_POST['page']) : 1;
+	$lang = isset($_POST['lang']) ? sanitize_text_field($_POST['lang']) : '';
+
+    if ($lang && function_exists('pll_switch_language')) {
+        pll_switch_language($lang);
+    }
 
 	$args = array(
 		'post_type' => 'department_news',
@@ -1120,6 +1161,7 @@ function load_more_department_news()
 		'orderby' => 'date',
 		'order' => 'DESC',
 		'post_status' => 'publish',
+		'lang' => $lang ?: (function_exists('pll_current_language') ? pll_current_language('slug') : ''),
 		'offset' => ($page * MAX_DEPARTMENT_NEWS) // +2 to skip featured posts
 	);
 
@@ -1184,6 +1226,11 @@ function load_events_with_year()
 	$year = sanitize_text_field($_POST['year']);
 	$today = date('Y-m-d');
 	$pastonly = isset($_POST['pastonly']);
+	$lang = isset($_POST['lang']) ? sanitize_text_field($_POST['lang']) : '';
+
+    if ($lang && function_exists('pll_switch_language')) {
+        pll_switch_language($lang);
+    }
 
 	// Build query args for past events (latest to oldest)
 	$args = array(
@@ -1193,7 +1240,8 @@ function load_events_with_year()
 		'meta_key'       => 'start_date', // for ordering
 		'orderby'        => 'meta_value',
 		'order'          => 'DESC',
-		'post_status' => 'publish'
+		'post_status' => 'publish',
+		'lang' => $lang ?: (function_exists('pll_current_language') ? pll_current_language('slug') : ''),
 	);
 
 	$meta_query = array();
@@ -1404,6 +1452,11 @@ function filter_events()
 	$page = isset($_POST['page']) ? intval($_POST['page']) : 1;
 	$category = isset($_POST['category']) ? sanitize_text_field($_POST['category']) : 'all';
 	$today = date('Y-m-d');
+	$lang = isset($_POST['lang']) ? sanitize_text_field($_POST['lang']) : '';
+
+    if ($lang && function_exists('pll_switch_language')) {
+        pll_switch_language($lang);
+    }
 
 	// Build query args
 	$args = array(
@@ -1414,6 +1467,7 @@ function filter_events()
 		'orderby'        => 'meta_value',
 		'order'          => 'ASC',
 		'post_status'    => 'publish',
+		'lang' => $lang ?: (function_exists('pll_current_language') ? pll_current_language('slug') : ''),
 		'meta_query'     => array(
 			'relation' => 'OR', // 使用 OR 關聯，滿足任一條件
 			array(
@@ -1533,6 +1587,11 @@ function filter_publications()
 
 	$page = isset($_POST['page']) ? intval($_POST['page']) : 1;
 	$category = isset($_POST['category']) ? sanitize_text_field($_POST['category']) : 'all';
+	$lang = isset($_POST['lang']) ? sanitize_text_field($_POST['lang']) : '';
+
+    if ($lang && function_exists('pll_switch_language')) {
+        pll_switch_language($lang);
+    }
 
 	// Build query args
 	$args = array(
@@ -1541,7 +1600,8 @@ function filter_publications()
 		'paged' => $page,
 		'orderby' => 'date',
 		'order' => 'DESC',
-		'post_status' => 'publish'
+		'post_status' => 'publish',
+		'lang' => $lang ?: (function_exists('pll_current_language') ? pll_current_language('slug') : ''),
 	);
 
 	// Add taxonomy query if category is not 'all'
@@ -1837,6 +1897,11 @@ function filter_galleries_ajax()
 	$category = sanitize_text_field($_POST['category']);
 	$year = sanitize_text_field($_POST['year']);
 	$posts_per_page = 12;
+	$lang = isset($_POST['lang']) ? sanitize_text_field($_POST['lang']) : '';
+
+    if ($lang && function_exists('pll_switch_language')) {
+        pll_switch_language($lang);
+    }
 
 	$args = array(
 		'post_type' => 'gallery',
@@ -1845,7 +1910,8 @@ function filter_galleries_ajax()
 		'paged' => $page,
 		'orderby' => 'date',
 		'order' => 'DESC',
-		'post_status' => 'publish'
+		'post_status' => 'publish',
+		'lang' => $lang ?: (function_exists('pll_current_language') ? pll_current_language('slug') : ''),
 	);
 
 	// Add category filter
@@ -1952,6 +2018,11 @@ function load_home_news_ajax()
 
 	$month = intval($_POST['month']);
 	$year = intval($_POST['year']);
+	$lang = isset($_POST['lang']) ? sanitize_text_field($_POST['lang']) : '';
+
+	if ($lang && function_exists('pll_switch_language')) {
+		pll_switch_language($lang);
+	}
 
 	// Validate month and year
 	if ($month < 1 || $month > 12 || $year < 2000 || $year > 2100) {
@@ -1976,7 +2047,8 @@ function load_home_news_ajax()
 		'orderby' => 'meta_value',
 		'meta_key' => 'start_date',
 		'order' => 'DESC',
-		'post_status' => 'publish'
+		'post_status' => 'publish',
+		'lang' => $lang ?: (function_exists('pll_current_language') ? pll_current_language('slug') : ''),
 	);
 
 	$news_query = new WP_Query($news_args);
@@ -2857,6 +2929,11 @@ function filter_news_ajax()
 	$category = sanitize_text_field($_POST['category']);
 	$year = sanitize_text_field($_POST['year']);
 	$posts_per_page = 12;
+	$lang = isset($_POST['lang']) ? sanitize_text_field($_POST['lang']) : '';
+
+    if ($lang && function_exists('pll_switch_language')) {
+        pll_switch_language($lang);
+    }
 
 	$args = array(
 		'post_type' => 'news',
@@ -2866,7 +2943,8 @@ function filter_news_ajax()
 		'meta_key' => 'start_date',
 		'orderby' => 'meta_value_num',
 		'order' => 'DESC',
-		'post_status' => 'publish'
+		'post_status' => 'publish',
+		'lang' => $lang ?: (function_exists('pll_current_language') ? pll_current_language('slug') : ''),
 	);
 
 	// Add category filter
@@ -3007,6 +3085,11 @@ function load_all_events_with_year()
 	$year     = isset($_POST['year']) ? sanitize_text_field($_POST['year']) : '';
 
 	$pastonly = isset($_POST['pastonly']);
+	$lang = isset($_POST['lang']) ? sanitize_text_field($_POST['lang']) : '';
+
+    if ($lang && function_exists('pll_switch_language')) {
+        pll_switch_language($lang);
+    }
 
 	$today    = date('Y-m-d');
 
@@ -3049,7 +3132,8 @@ function load_all_events_with_year()
 					'compare' => 'NOT EXISTS', // 處理 end_date 為空的情況
 				)
 			)
-		)
+		),
+		'lang' => $lang ?: (function_exists('pll_current_language') ? pll_current_language('slug') : ''),
 	);
 
 	// your existing OR block already in $coming_args['meta_query']
@@ -3098,7 +3182,8 @@ function load_all_events_with_year()
 		'meta_key'       => 'start_date', // for ordering
 		'orderby'        => 'meta_value',
 		'order'          => 'DESC',
-		'post_status' => 'publish'
+		'post_status' => 'publish',
+		'lang' => $lang ?: (function_exists('pll_current_language') ? pll_current_language('slug') : ''),
 	);
 
 	$meta_query = array();

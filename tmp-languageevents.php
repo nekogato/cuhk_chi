@@ -141,6 +141,23 @@ endwhile;
 ?>
 
 <script>
+	function getCurrentLangFromBody() {
+		// Map your body classes to the *Polylang* language slugs you use in WP
+		// Adjust the right-hand side if your PLL slugs are different (e.g. "zh-tw"/"zh-cn")
+		const map = {
+		'tc_body': 'tc',
+		'sc_body': 'sc',
+		'en_body': 'en'
+		};
+
+		const cls = document.body.classList;
+		if (cls.contains('tc_body')) return map['tc_body'];
+		if (cls.contains('sc_body')) return map['sc_body'];
+		if (cls.contains('en_body')) return map['en_body'];
+
+		// Fallback (choose one that makes sense for you)
+		return 'en';
+	}
 	var ajaxurl = '<?php echo admin_url('admin-ajax.php'); ?>';
 
 	function langEventFilter() {
@@ -175,7 +192,8 @@ endwhile;
 							page: page,
 							category: category,
 							year: year,
-							pastonly: pastonly
+							pastonly: pastonly,
+							lang: getCurrentLangFromBody()
 						})
 					});
 

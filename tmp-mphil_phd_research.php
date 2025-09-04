@@ -110,6 +110,24 @@ get_header();
 </div>
 
 <script>
+	function getCurrentLangFromBody() {
+		// Map your body classes to the *Polylang* language slugs you use in WP
+		// Adjust the right-hand side if your PLL slugs are different (e.g. "zh-tw"/"zh-cn")
+		const map = {
+		'tc_body': 'tc',
+		'sc_body': 'sc',
+		'en_body': 'en'
+		};
+
+		const cls = document.body.classList;
+		if (cls.contains('tc_body')) return map['tc_body'];
+		if (cls.contains('sc_body')) return map['sc_body'];
+		if (cls.contains('en_body')) return map['en_body'];
+
+		// Fallback (choose one that makes sense for you)
+		return 'en';
+	}
+
 	jQuery(document).ready(function($) {
 		$('.load_more_btn').on('click', function(e) {
 			e.preventDefault();
@@ -132,7 +150,8 @@ get_header();
 				data: {
 					action: 'load_more_mphil_phd_research_post',
 					page: currentPage + 1,
-					nonce: '<?php echo wp_create_nonce('load_more_nonce'); ?>'
+					nonce: '<?php echo wp_create_nonce('load_more_nonce'); ?>',
+					lang: getCurrentLangFromBody()
 				},
 				success: function(response) {
 					if (response.success) {

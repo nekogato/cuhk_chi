@@ -158,6 +158,23 @@ if ($all_news->have_posts()) {
 <?php endif; ?>
 
 <script>
+	function getCurrentLangFromBody() {
+		// Map your body classes to the *Polylang* language slugs you use in WP
+		// Adjust the right-hand side if your PLL slugs are different (e.g. "zh-tw"/"zh-cn")
+		const map = {
+		'tc_body': 'tc',
+		'sc_body': 'sc',
+		'en_body': 'en'
+		};
+
+		const cls = document.body.classList;
+		if (cls.contains('tc_body')) return map['tc_body'];
+		if (cls.contains('sc_body')) return map['sc_body'];
+		if (cls.contains('en_body')) return map['en_body'];
+
+		// Fallback (choose one that makes sense for you)
+		return 'en';
+	}
 	jQuery(document).ready(function($) {
 		$('#load-more-department-news').on('click', function(e) {
 			e.preventDefault();
@@ -172,7 +189,8 @@ if ($all_news->have_posts()) {
 				data: {
 					action: 'load_more_department_news',
 					page: page,
-					nonce: nonce
+					nonce: nonce,
+					lang: getCurrentLangFromBody()
 				},
 				beforeSend: function() {
 					button.find('.text').text('<?php pll_e('Loading...'); ?>');
