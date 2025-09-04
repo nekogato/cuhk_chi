@@ -1870,8 +1870,10 @@ body.dragging-scroll {
 }
 
 .home_news_date_slider .date{
-    text-align: center;
+    text-align: left;
     margin-bottom: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
 }
 
 .home_news_date_slider .news_item_wrapper{
@@ -7695,7 +7697,13 @@ body.dragging-scroll {
       .home_news_date_slider .news_item_wrapper {
         display: flex;
       }
-      
+
+
+    .home_news_date_slider .date{
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+        
       .news_item_spacing{
         margin-left: 15px;
         margin-right: 15px;
