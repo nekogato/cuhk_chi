@@ -5492,6 +5492,21 @@ body.dragging-scroll {
     margin-top: 30px;
 }
 
+.section_song .download_song_wrapper{
+    margin-top: 30px;
+}
+
+.section_song .round_btn{
+    border:1px #62629b solid;
+    color:#62629b;
+}
+
+.section_song .round_btn:hover{
+    border:1px #62629b solid;
+    color:#fff;
+    background-color: #62629b;
+}
+
 .song_thumb{
     width: 20%;
     flex-grow: 0;

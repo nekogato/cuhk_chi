@@ -25,12 +25,14 @@ get_header();
 							<ul>
 								<?php
 								$firsttext;
+								$firstturl;
 								$first = true;
 								while (have_rows('song_repeater')) : the_row();
 									$version_name = get_sub_field('version_name');
 									$song_file = get_sub_field('song_file');
 									if($first){
-									$firsttext = $version_name;
+										$firsttext = $version_name;
+										$firstturl = $song_file['url'];
 									}
 									if ($song_file) :
 								?>
@@ -120,6 +122,12 @@ get_header();
 								</div>
 							</div>
 						</div>
+					</div>
+
+					<div class="download_song_wrapper">
+						<a href="<?php echo esc_url($firstturl); ?>" class="round_btn" >
+							<span><?php echo cuhk_multilang_text("下載歌曲", "", "Download Song"); ?></span>
+						</a>
 					</div>
 				</div>
 			</div>
