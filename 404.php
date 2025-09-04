@@ -8,53 +8,30 @@
  */
 
 get_header();
+// Include roll menu
+get_template_part('template-parts/roll-menu');
+
+if (have_posts()) :
+	while (have_posts()) : the_post();
+
 ?>
 
-	<main id="primary" class="site-main">
+	<div class="section section_content ">
+			<div class="section_center_content xs_section_center_content">
+				<?php if ($page_title): ?>
+					<h1 class="section_title text1 scrollin scrollinbottom"><?php echo cuhk_multilang_text("404找不到網頁。","","404 Page not found."); ?></h1>
+				<?php endif; ?>
 
-		<section class="error-404 not-found">
-			<header class="page-header">
-				<h1 class="page-title"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'cuhk_chi' ); ?></h1>
-			</header><!-- .page-header -->
+				<?php if ($page_description): ?>
+					<div class="section_description scrollin scrollinbottom col6"><?php echo cuhk_multilang_text("很抱歉，我們未能提供你所找尋的路徑。該路徑也許不正確或已被移除。","","Sorry, the CUHK page you are looking for cannot be found. The URL address may be incorrect or the page may be outdated. "); ?></div>
+				<?php endif; ?>
 
-			<div class="page-content">
-				<p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'cuhk_chi' ); ?></p>
+			</div>
+		</div>
 
-					<?php
-					get_search_form();
-
-					the_widget( 'WP_Widget_Recent_Posts' );
-					?>
-
-					<div class="widget widget_categories">
-						<h2 class="widget-title"><?php esc_html_e( 'Most Used Categories', 'cuhk_chi' ); ?></h2>
-						<ul>
-							<?php
-							wp_list_categories(
-								array(
-									'orderby'    => 'count',
-									'order'      => 'DESC',
-									'show_count' => 1,
-									'title_li'   => '',
-									'number'     => 10,
-								)
-							);
-							?>
-						</ul>
-					</div><!-- .widget -->
-
-					<?php
-					/* translators: %1$s: smiley */
-					$cuhk_chi_archive_content = '<p>' . sprintf( esc_html__( 'Try looking in the monthly archives. %1$s', 'cuhk_chi' ), convert_smilies( ':)' ) ) . '</p>';
-					the_widget( 'WP_Widget_Archives', 'dropdown=1', "after_title=</h2>$cuhk_chi_archive_content" );
-
-					the_widget( 'WP_Widget_Tag_Cloud' );
-					?>
-
-			</div><!-- .page-content -->
-		</section><!-- .error-404 -->
-
-	</main><!-- #main -->
 
 <?php
-get_footer();
+	endwhile;
+endif;
+
+get_footer(); ?>
