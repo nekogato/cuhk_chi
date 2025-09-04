@@ -58,13 +58,15 @@ if (have_posts()) :
 									<h3><?php echo $category_name;?></h3>
 								</div>
 							</div>
-							<?php if (have_rows('download_groups')): ?>
-								<?php while (have_rows('download_groups')): the_row(); ?>
+							<?php if (have_rows('download_groups')): 
+								$i=0;?>
+								<?php while (have_rows('download_groups')): the_row(); 
+								$i++;?>
 									<?php
 									$group_title = get_sub_field('group_title');
 									$group_content = get_sub_field('group_content');
 									?>
-									<div class="expandable_item">
+									<div class="expandable_item" data-id="q<?php echo $i; ?>">
 										<div class="section_center_content small_section_center_content">
 											<div class="col10 center_content">
 												<div class="expandable_title text5"><?php echo wp_kses_post($group_title); ?><div class="icon"></div>
@@ -91,5 +93,21 @@ if (have_posts()) :
 <?php
 	endwhile;
 endif;
-
+?>
+<script>
+// Get the hash from URL
+  var hash = window.location.hash;
+  var $matchitem = $(".expandable_item[data-id='"+hash.replace("#","")+"']");
+  if (hash) {
+	if($matchitem.length){
+		var mytop = $$matchitem.offset().top;
+		var body = $("html");
+		body.stop().animate({scrollTop:mytop-parseInt($(".header_bg").outerHeight())-100}, 1200, 'easeInOutQuad', function() { 
+			$matchitem.addClass("active");
+			$matchitem.find(".hidden").slideDown(600, 'easeInOutQuad');
+		});
+	}
+  }
+</script>
+<?php
 get_footer(); ?>
