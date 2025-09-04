@@ -249,7 +249,7 @@
                                         // Only show if we have a title and a link
                                         if ($link_title && $link_href) :
                                         ?>
-                                            <li><a href="<?php echo esc_url($link_href); ?>"><?php echo esc_html($link_title); ?></a></li>
+                                            <li><a href="<?php echo esc_url($link_href); ?>" target="_blank"><?php echo esc_html($link_title); ?></a></li>
                                         <?php 
                                         endif;
                                     endwhile; 
