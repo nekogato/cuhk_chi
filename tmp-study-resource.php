@@ -100,7 +100,7 @@ endif;
   var $matchitem = $(".expandable_item[data-id='"+hash.replace("#","")+"']");
   if (hash) {
 	if($matchitem.length){
-		var mytop = $$matchitem.offset().top;
+		var mytop = $matchitem.offset().top;
 		var body = $("html");
 		body.stop().animate({scrollTop:mytop-parseInt($(".header_bg").outerHeight())-100}, 1200, 'easeInOutQuad', function() { 
 			$matchitem.addClass("active");
