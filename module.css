@@ -6832,6 +6832,10 @@ body.dragging-scroll {
     gap: 50px;
 }
 
+.scheme_group_expandable_item .right_title .unit{
+    white-space: nowrap;
+}
+
 .scheme_group_expandable_item .right_title .num{
   display: flex;
   align-items: center;
