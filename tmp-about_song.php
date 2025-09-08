@@ -125,7 +125,7 @@ get_header();
 					</div>
 
 					<div class="download_song_wrapper">
-						<a href="<?php echo esc_url($firstturl); ?>" class="round_btn" >
+						<a href="<?php echo esc_url($firstturl); ?>" class="round_btn" target="_blank">
 							<span><?php echo cuhk_multilang_text("下載歌曲", "", "Download Song"); ?></span>
 						</a>
 					</div>
