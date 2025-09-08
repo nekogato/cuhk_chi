@@ -101,6 +101,11 @@ endif;
 		var $matchitem = $(".expandable_item[data-id='"+hash.replace("#","")+"']");
 		if (hash) {
 			if($matchitem.length){
+				if($("body").hasClass("openmenu")){
+					$("body").removeClass("openmenu")
+					$(".dropdown").stop().fadeOut();
+				}
+
 				$matchitem.addClass("active");
 				$matchitem.find(".hidden").slideDown(600, 'easeInOutQuad',function(){
 					var mytop = $matchitem.offset().top;
