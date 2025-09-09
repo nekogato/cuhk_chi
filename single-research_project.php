@@ -150,7 +150,7 @@ while (have_posts()) :
 										<div class="info_item_wrapper scrollin scrollinbottom">
 											<?php if ($funding_start_year || $funding_end_year) : ?>
 												<div class="info_item">
-													<div class="t1 text5"><?php pll_e('撥款年份'); ?></div>
+													<div class="t1 "><?php echo cuhk_multilang_text("撥款年份", "", "Funding Year"); ?></div>
 													<div class="t2 text6">
 														<?php
 														if ($funding_start_year && $funding_end_year) {
@@ -167,28 +167,28 @@ while (have_posts()) :
 
 											<?php if ($principal_investigator) : ?>
 												<div class="info_item">
-													<div class="t1 text5"><?php pll_e('計劃主持'); ?></div>
+													<div class="t1 "><?php echo cuhk_multilang_text("計劃主持", "", "Principal Investigator"); ?></div>
 													<div class="t2 text6"><?php echo esc_html($principal_investigator); ?></div>
 												</div>
 											<?php endif; ?>
 
 											<?php if ($other_investigator) : ?>
 												<div class="info_item">
-													<div class="t1 text5"><?php pll_e('其他研究員'); ?></div>
+													<div class="t1 "><?php echo cuhk_multilang_text("其他研究成員", "", "Other Investigator"); ?></div>
 													<div class="t2 text6"><?php echo esc_html($other_investigator); ?></div>
 												</div>
 											<?php endif; ?>
 
 											<?php if ($granted_amount) : ?>
 												<div class="info_item">
-													<div class="t1 text5"><?php pll_e('撥款金額'); ?></div>
+													<div class="t1 "><?php echo cuhk_multilang_text("撥款金額", "", "Granted Amount"); ?></div>
 													<div class="t2 text6"><?php echo esc_html($granted_amount); ?></div>
 												</div>
 											<?php endif; ?>
 
 											<?php if ($funding_organization) : ?>
 												<div class="info_item">
-													<div class="t1 text5"><?php pll_e('撥款機構'); ?></div>
+													<div class="t1 "><?php echo cuhk_multilang_text("撥款機構", "", "Funding Organization"); ?></div>
 													<div class="t2 text6"><?php echo esc_html($funding_organization); ?></div>
 												</div>
 											<?php endif; ?>

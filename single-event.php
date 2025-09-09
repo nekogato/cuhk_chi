@@ -139,7 +139,7 @@ while (have_posts()) :
 									<div class="info_item_wrapper scrollin scrollinbottom">
 										<?php if (get_field('start_date')) : ?>
 											<div class="info_item">
-												<div class="t1 text5"><?php echo cuhk_multilang_text("日期","","Date"); ?></div>
+												<div class="t1 "><?php echo cuhk_multilang_text("日期","","Date"); ?></div>
 												<div class="t2 text6">
 													<?php
 													$start_date = get_field('start_date');
@@ -159,14 +159,14 @@ while (have_posts()) :
 
 										<?php if (get_field('event_time')) : ?>
 											<div class="info_item">
-												<div class="t1 text5"><?php echo cuhk_multilang_text("時間","","Time"); ?></div>
+												<div class="t1 "><?php echo cuhk_multilang_text("時間","","Time"); ?></div>
 												<div class="t2 text6"><?php echo esc_html(get_field('event_time')); ?></div>
 											</div>
 										<?php endif; ?>
 
 										<?php if (get_field('event_venue')) : ?>
 											<div class="info_item big_info_item">
-												<div class="t1 text5"><?php echo cuhk_multilang_text("地點","","Venue"); ?></div>
+												<div class="t1 "><?php echo cuhk_multilang_text("地點","","Venue"); ?></div>
 												<div class="t2 text6"><?php echo esc_html(get_field('event_venue')); ?></div>
 											</div>
 										<?php endif; ?>
