@@ -214,7 +214,7 @@ $initial_year = isset($_GET['active_year']) ? intval($_GET['active_year']) : $ma
 					if (!Number.isNaN(y)) this.activeYear = y;
 				}
 				this.loadProjects(this.activeYear);
-			}
+			},
 
 			async loadProjects(year) {
 				this.loading = true;
