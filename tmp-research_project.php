@@ -93,6 +93,7 @@ $initial_year = isset($_GET['active_year']) ? intval($_GET['active_year']) : $ma
 													:class="{ 'active': activeYear === year }"
 													x-text="year">
 												</a>
+												<span x-text="activeYear"></span>
 											</div>
 										</div>
 									</template>
