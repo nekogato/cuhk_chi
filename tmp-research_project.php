@@ -122,34 +122,34 @@ $initial_year = isset($_GET['active_year']) ? intval($_GET['active_year']) : $ma
 												<div class="hidden_content">
 													<div class="table_flex_item_wrapper table_flex_item_wrapper2">
 														<div class="table_flex_item" x-show="project.project_title">
-															<div class="title text7"><?php echo cuhk_multilang_text("計劃名稱", "", "Project Name"); ?></div>
+															<div class="title text6"><?php echo cuhk_multilang_text("計劃名稱", "", "Project Name"); ?></div>
 															<div class="text" x-html="project.project_title"></div>
 														</div>
 														<div class="table_flex_item" x-show="project.funding_end_year_short">
-															<div class="title text7"><?php echo cuhk_multilang_text("撥款年份", "", "Funding Year"); ?></div>
+															<div class="title text6"><?php echo cuhk_multilang_text("撥款年份", "", "Funding Year"); ?></div>
 															<div class="text" x-html="`${project.funding_start_year}/${project.funding_end_year_short}`"></div>
 														</div>
 														<div class="table_flex_item" x-show="project.principal_investigator">
-															<div class="title text7"><?php echo cuhk_multilang_text("計劃主持", "", "Principal Investigator"); ?></div>
+															<div class="title text6"><?php echo cuhk_multilang_text("計劃主持", "", "Principal Investigator"); ?></div>
 															<div class="text" x-html="project.principal_investigator"></div>
 														</div>
 														<div class="table_flex_item" x-show="project.other_investigator">
-															<div class="title text7"><?php echo cuhk_multilang_text("其他研究成員", "", "Other Investigator"); ?></div>
+															<div class="title text6"><?php echo cuhk_multilang_text("其他研究成員", "", "Other Investigator"); ?></div>
 															<div class="text" x-html="project.other_investigator"></div>
 														</div>
 														<div class="table_flex_item" x-show="project.granted_amount">
-															<div class="title text7"><?php echo cuhk_multilang_text("撥款金額", "", "Granted Amount"); ?></div>
+															<div class="title text6"><?php echo cuhk_multilang_text("撥款金額", "", "Granted Amount"); ?></div>
 															<div class="text" x-html="project.granted_amount"></div>
 														</div>
 														<div class="table_flex_item" x-show="project.funding_organization">
-															<div class="title text7"><?php echo cuhk_multilang_text("撥款機構", "", "Funding Organization"); ?></div>
+															<div class="title text6"><?php echo cuhk_multilang_text("撥款機構", "", "Funding Organization"); ?></div>
 															<div class="text" x-html="project.funding_organization"></div>
 														</div>
 													</div>
 
 													<div class="table_flex_item_wrapper">
 														<div class="table_flex_item" x-show="project.description">
-															<div class="title text7"><?php echo cuhk_multilang_text("計劃概述", "", "Description"); ?></div>
+															<div class="title text6"><?php echo cuhk_multilang_text("計劃概述", "", "Description"); ?></div>
 															<div class="text free_text" x-html="project.description"></div>
 														</div>
 													</div>
