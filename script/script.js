@@ -1025,6 +1025,13 @@ function init_function(){
 			}
 		});
 
+		// find the slide that contains the .active link
+		var $activeSlide = $this.find(".swiper-slide .active").closest(".swiper-slide");
+		if ($activeSlide.length > 0) {
+			var activeIndex = $activeSlide.index(); // index in DOM
+			year_list_slider.slideTo(activeIndex); // tell Swiper to start there
+		}
+
 		$this.find(".next_btn").click(function(){
 			var currentIndex = year_list_slider.activeIndex;
 			var slidesPerView = year_list_slider.params.slidesPerView;
