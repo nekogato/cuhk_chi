@@ -1125,6 +1125,7 @@ body.dragging-scroll {
 .table_flex_item .title{
     color:#63629B;
     font-weight: 600;
+    font-family: "richmond-text","Chiron Sung HK WS",serif !important;
 }
 
 .table_flex_item .text{
