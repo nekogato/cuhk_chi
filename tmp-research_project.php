@@ -93,7 +93,6 @@ $initial_year = isset($_GET['active_year']) ? intval($_GET['active_year']) : $ma
 													:class="{ 'active': activeYear === year }"
 													x-text="year">
 												</a>
-												<span x-text="activeYear"></span>
 											</div>
 										</div>
 									</template>
@@ -208,17 +207,14 @@ $initial_year = isset($_GET['active_year']) ? intval($_GET['active_year']) : $ma
 			firstLoad: 0,
 
 			init() {
-				// Check for URL parameter first
 				const urlParams = new URLSearchParams(window.location.search);
 				const yearFromURL = urlParams.get('active_year');
-
 				if (yearFromURL) {
-					this.activeYear = yearFromURL;
+					const y = parseInt(yearFromURL, 10);
+					if (!Number.isNaN(y)) this.activeYear = y;
 				}
-
-				// Load initial projects for the default year
 				this.loadProjects(this.activeYear);
-			},
+			}
 
 			async loadProjects(year) {
 				this.loading = true;
