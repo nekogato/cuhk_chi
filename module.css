@@ -1158,35 +1158,35 @@ body.dragging-scroll {
 	text-decoration: underline;
 }
 
-.section_expandable_list .free_text  .table-responsive{
+.section_expandable_list .free_text  .table-responsive, .table_flex_item  .free_text  .table-responsive{
     position: relative;
 }
 
-.section_expandable_list .free_text table{
+.section_expandable_list .free_text table, .table_flex_item .free_text table{
     width: 100%;
     position: relative;
     table-layout: fixed;
 }
 
-.section_expandable_list .free_text table td{
+.section_expandable_list .free_text table td, .table_flex_item .free_text table td{
   position: relative;
   }
 
-.section_expandable_list .free_text thead td{
+.section_expandable_list .free_text thead td, .table_flex_item .free_text thead td{
     color:#62629e;
     padding: 10px;
 }
 
 
-.section_expandable_list .free_text tbody td{
+.section_expandable_list .free_text tbody td, .table_flex_item .free_text tbody td{
     padding: 10px;
 }
 
-.section_expandable_list .free_text tbody{
+.section_expandable_list .free_text tbody, .table_flex_item .free_text tbody{
     position: relative;
 }
 
-.section_expandable_list .free_text .table-bg::before{
+.section_expandable_list .free_text .table-bg::before, .table_flex_item .free_text .table-bg::before{
     content:"";
     position: absolute;
     left: 0px;
@@ -1197,15 +1197,16 @@ body.dragging-scroll {
     pointer-events: none;
 }
 
-.section_expandable_list .free_text tbody tr{
+.section_expandable_list .free_text tbody tr, .table_flex_item .free_text tbody tr{
     position: relative;
 }
 
-.section_expandable_list .free_text tbody td+td {
+.section_expandable_list .free_text tbody td+td , .table_flex_item .free_text tbody td+td {
     border-left:2px solid #EEE8DC;
 }
 
-.section_expandable_list .free_text tbody tr+tr td{
+.section_expandable_list .free_text tbody tr+tr td, 
+.table_flex_item .free_text tbody tr+tr td{
     border-top:2px solid #EEE8DC;
 }
 
