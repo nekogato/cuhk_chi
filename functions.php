@@ -195,10 +195,10 @@ function cuhk_chi_scripts()
 	wp_enqueue_style('cuhk_chi-adobe-font', 'https://use.typekit.net/gsi3slf.css', '', '', 'all');
 
 	wp_enqueue_style('cuhk_chi-fonts', get_template_directory_uri() . '/fonts/stylesheet.css', '', '', 'all');
-	wp_enqueue_style('cuhk_chi-main', get_template_directory_uri() . '/main.css', '', '', 'all');
-	wp_enqueue_style('cuhk_chi-module', get_template_directory_uri() . '/module.css', '', '', 'all');
+	wp_enqueue_style('cuhk_chi-main', get_template_directory_uri() . '/main.css?v=1', '', '', 'all');
+	wp_enqueue_style('cuhk_chi-module', get_template_directory_uri() . '/module.css?v=1', '', '', 'all');
 
-	wp_enqueue_script('cuhk_chi-script', get_template_directory_uri() . '/script/script.js', array('cuhk_chi-jquery'), '', false);
+	wp_enqueue_script('cuhk_chi-script', get_template_directory_uri() . '/script/script.js?v=1', array('cuhk_chi-jquery'), '', false);
 
 
 	if (is_singular() && comments_open() && get_option('thread_comments')) {
