@@ -209,7 +209,7 @@ $initial_year = isset($_GET['active_year']) ? intval($_GET['active_year']) : $ma
 			init() {
 				// Check for URL parameter first
 				const urlParams = new URLSearchParams(window.location.search);
-				const yearFromURL = urlParams.get('proj_year');
+				const yearFromURL = urlParams.get('active_year');
 
 				if (yearFromURL) {
 					this.activeYear = yearFromURL;
@@ -276,7 +276,7 @@ $initial_year = isset($_GET['active_year']) ? intval($_GET['active_year']) : $ma
 				this.loadProjects(year);
 				// Update the URL without reloading the page
 				const url = new URL(window.location);
-				url.searchParams.set('proj_year', year);
+				url.searchParams.set('active_year', year);
 				window.history.pushState({}, '', url);
 			}
 		}
