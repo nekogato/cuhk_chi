@@ -2195,6 +2195,11 @@ function translate_acf_fields_recursive($fields, $tc_post_id, $sc_post_id)
 		$field_name = $field['name'];
 		$field_type = $field['type'];
 
+		// Skip specific fields
+		if ($field_name === 'target_page') {
+			continue;
+		}
+
 		// Get the Traditional Chinese value
 		$tc_value = get_field($field_name, $tc_post_id, false);
 
