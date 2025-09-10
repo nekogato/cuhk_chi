@@ -2,7 +2,7 @@
 
 html, body{ width:100%; }
 img{vertical-align: top;   }
-strong, b{font-weight:bold;}
+strong, b{font-weight:600;}
 em{font-style:italic;}	
 td{vertical-align:top;}
 .clear{float:none; clear:both;}
@@ -1173,7 +1173,7 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .free_text h1,.free_text h2,.free_text h3,.free_text h4,.free_text h5,.free_text h6{
-	font-family: "area-normal","Chiron Sung HK WS",serif;
+	font-family: "richmond-text","Chiron Sung HK WS",serif;
 }
 
 .en_body h1,.en_body h2,.en_body h3,.en_body h4,.en_body h5,.en_body h6{
