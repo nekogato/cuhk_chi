@@ -1413,22 +1413,26 @@ function dosize(){
 	$(".home_news_loading").height($(".home_news_date_slider_inwrapper").outerHeight())
 }
 
-
-$(function(){
-	$(".free_text table").each(function(){
+function ajaxfriendlyinit(){
+	$(".free_text table").not($(".free_text .table-responsive table")).each(function(){
 		$(this).wrap( "<div class='table-responsive'></div>" );
 	});
 
-	$(".free_text table").not($(".free_text table.border_table")).each(function(){
+	$(".free_text table").not($(".free_text .table-responsive table.border_table")).each(function(){
 		$(this).addClass("table-bg")
 	});
 
-	$(".free_text iframe").each(function(){
+	$(".free_text iframe").not($(".free_text .video_wrapper iframe")).each(function(){
 		if($(this).parents(".video_wrapper").length<=0){
 			var my_src = $(this).attr("src")
 			$(this).wrap( "<div class='video_wrapper'></div>" );
 		}
 	});
+}
+
+$(function(){
+
+	ajaxfriendlyinit();
 
 	$(".zh_body .project_title span").each(function () {
 		const $el = $(this);

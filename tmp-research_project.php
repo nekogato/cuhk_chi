@@ -247,6 +247,7 @@ $initial_year = isset($_GET['active_year']) ? intval($_GET['active_year']) : $ma
 								setTimeout(() => {
 									dosize();
 									doscroll();
+									ajaxfriendlyinit();
 									//$(".expandable_item.scrollin.scrollinbottom").addClass("onscreen startani");
 								}, 300);
 							}
@@ -262,6 +263,7 @@ $initial_year = isset($_GET['active_year']) ? intval($_GET['active_year']) : $ma
 						setTimeout(() => {
 							dosize();
 							doscroll();
+							ajaxfriendlyinit();
 						}, 300);
 					});
 				}
