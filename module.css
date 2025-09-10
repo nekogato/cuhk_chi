@@ -1011,7 +1011,7 @@ body.dragging-scroll {
 }
 
 
-.expandable_item.active .expandable_title .cat{
+.expandable_item .expandable_title .cat{
     font-weight: 600;
 }
 
