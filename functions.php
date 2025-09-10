@@ -1442,7 +1442,8 @@ function load_research_projects()
 				'principal_investigator' => get_field('principal_investigator'),
 				'other_investigator' => get_field('other_investigator'),
 				'granted_amount' => get_field('granted_amount'),
-				'description' => $description
+				'description' => $description,
+				'other_information' => get_field('other_information'),
 			);
 
 			$projects[] = $project;

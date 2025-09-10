@@ -152,6 +152,10 @@ $initial_year = isset($_GET['active_year']) ? intval($_GET['active_year']) : $ma
 															<div class="title text6"><?php echo cuhk_multilang_text("計劃概述", "", "Description"); ?></div>
 															<div class="text free_text" x-html="project.description"></div>
 														</div>
+														<div class="table_flex_item" x-show="project.other_information">
+															<div class="title text6"><?php echo cuhk_multilang_text("其他資料", "", "Other Information"); ?></div>
+															<div class="text free_text" x-html="project.other_information"></div>
+														</div>
 													</div>
 												</div>
 											</div>
