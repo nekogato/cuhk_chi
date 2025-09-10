@@ -207,6 +207,14 @@ $initial_year = isset($_GET['active_year']) ? intval($_GET['active_year']) : $ma
 			firstLoad: 0,
 
 			init() {
+				// Check for URL parameter first
+				const urlParams = new URLSearchParams(window.location.search);
+				const yearFromURL = urlParams.get('year');
+
+				if (yearFromURL) {
+					this.activeYear = yearFromURL;
+				}
+
 				// Load initial projects for the default year
 				this.loadProjects(this.activeYear);
 			},
@@ -266,6 +274,10 @@ $initial_year = isset($_GET['active_year']) ? intval($_GET['active_year']) : $ma
 				if (this.activeYear === year) return;
 				this.activeYear = year;
 				this.loadProjects(year);
+				// Update the URL without reloading the page
+				const url = new URL(window.location);
+				url.searchParams.set('year', year);
+				window.history.pushState({}, '', url);
 			}
 		}
 	}
