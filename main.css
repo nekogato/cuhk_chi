@@ -1177,7 +1177,7 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .en_body h1,.en_body h2,.en_body h3,.en_body h4,.en_body h5,.en_body h6{
-	font-weight: 600;
+	font-weight: normal;
 }
 
 h1:first-child,h2:first-child,h3:first-child,h4:first-child,h5:first-child,h6:first-child{
