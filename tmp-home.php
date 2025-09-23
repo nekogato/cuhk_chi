@@ -359,7 +359,7 @@ get_header(); ?>
 			init() {
 				this.selectedMonth = this.availableMonths[0].value;
 				this.selectedYear = this.availableMonths[0].year;
-
+				console.log(selectedMonth,selectedYear)
 				this.$nextTick(() => {
 					this.initSwipers();
 					this.loadNews();
@@ -382,28 +382,6 @@ get_header(); ?>
 			},
 
 			initSwipers() {
-				// Initialize year slider
-				/*
-				this.yearSwiper = new Swiper('.home_news_year_slider .swiper-container', {
-					effect : 'fade',
-					fadeEffect: {
-						crossFade: true,
-					},
-					autoplay: false,
-					slidesPerView: 1,
-					speed: 400,
-					loop: false,
-					spaceBetween: 100,
-					on: {
-						slideChange: () => {
-							const activeSlide = this.yearSwiper.slides[this.yearSwiper.activeIndex];
-							const monthData = this.availableMonths[this.yearSwiper.activeIndex];
-							if (monthData) {
-								this.selectMonth(monthData.value, monthData.year);
-							}
-						}
-					}
-				});*/
 
 				// Initialize date slider
 				this.dateSwiper = new Swiper('.home_news_date_slider .swiper-container', {
