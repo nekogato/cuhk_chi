@@ -192,7 +192,7 @@ endwhile;
 							page: page,
 							category: category,
 							year: year,
-							pastonly: pastonly,
+							pastonly: false,
 							lang: getCurrentLangFromBody()
 						})
 					});
