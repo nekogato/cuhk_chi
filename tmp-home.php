@@ -357,9 +357,15 @@ get_header(); ?>
 			availableMonths: <?php echo json_encode(array_values($available_months)); ?>,
 
 			init() {
-				this.selectedMonth = 9;
-				this.selectedYear = 2025;
-				console.log(this.selectedMonth,this.selectedYear)
+				const today = new Date();
+
+				// Get the month (1–12)
+				const month = today.getMonth() + 1;
+				const year = today.getFullYear();
+
+				this.selectedMonth = month;
+				this.selectedYear = year;
+				
 				this.$nextTick(() => {
 					this.initSwipers();
 					this.loadNews();
