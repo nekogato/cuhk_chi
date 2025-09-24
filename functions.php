@@ -1264,7 +1264,7 @@ function load_events_with_year()
 			'key'     => 'start_date',
 			'value'   => $today,
 			'compare' => '<',
-			'type'    => 'DATE',
+			'type'    => 'NUMERIC',
 		);
 	}
 
