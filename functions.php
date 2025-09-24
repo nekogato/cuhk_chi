@@ -1259,14 +1259,14 @@ function load_events_with_year()
 
 	$meta_query = array();
 
-	if ($pastonly) {
-		$meta_query[] = array(
-			'key'     => 'start_date',
-			'value'   => $today,
-			'compare' => '<',
-			'type'    => 'DATE',
-		);
-	}
+	// if ($pastonly) {
+	// 	$meta_query[] = array(
+	// 		'key'     => 'start_date',
+	// 		'value'   => $today,
+	// 		'compare' => '<',
+	// 		'type'    => 'DATE',
+	// 	);
+	// }
 
 	if ($year) {
 		$meta_query[] = array(
