@@ -460,7 +460,7 @@ get_header(); ?>
 						this.groupedNews = data.data.grouped_news;
 						// Destroy existing swiper
 						if (this.dateSwiper) {
-							console.log("Destroying existing swiper");
+							//console.log("Destroying existing swiper");
 							this.dateSwiper.destroy();
 							this.dateSwiper = null;
 						}
@@ -495,7 +495,7 @@ get_header(); ?>
 						doscroll();
 
 						// Initialize Swiper
-						console.log("0",this.dateSwiper)
+						//console.log("0",this.dateSwiper)
 						this.dateSwiper = new Swiper('.home_news_date_slider .swiper-container', {
 							autoplay: false,
 							slidesPerView: 'auto',
@@ -519,7 +519,7 @@ get_header(); ?>
 										dosize();
 										doscroll();
 										newswiper.update();
-										console.log("1",newswiper)
+										//console.log("1",newswiper)
 									},300);
 								}
 							}
@@ -533,7 +533,7 @@ get_header(); ?>
 							dosize();
 							doscroll();
 							myswiper.update();
-							console.log("2" ,myswiper)
+							//console.log("2" ,myswiper)
 						},1200);
 					});
 				}
