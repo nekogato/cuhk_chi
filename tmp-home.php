@@ -357,8 +357,8 @@ get_header(); ?>
 			availableMonths: <?php echo json_encode(array_values($available_months)); ?>,
 
 			init() {
-				this.selectedMonth = this.availableMonths[0].value;
-				this.selectedYear = this.availableMonths[0].year;
+				this.selectedMonth = 9;
+				this.selectedYear = 2025;
 				console.log(this.selectedMonth,this.selectedYear)
 				this.$nextTick(() => {
 					this.initSwipers();
