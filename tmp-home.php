@@ -359,7 +359,7 @@ get_header(); ?>
 			init() {
 				this.selectedMonth = this.availableMonths[0].value;
 				this.selectedYear = this.availableMonths[0].year;
-				console.log(selectedMonth,selectedYear)
+				console.log(this.selectedMonth,this.selectedYear)
 				this.$nextTick(() => {
 					this.initSwipers();
 					this.loadNews();
