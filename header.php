@@ -57,14 +57,23 @@ if (pll_current_language() == 'sc') {
 			<?php 
 				if(pll_current_language() == 'tc') {
 					$cu_link = 'https://www.cuhk.edu.hk/chinese/';
+					$art_link = 'https://www.arts.cuhk.edu.hk/web/zh-hant/home';
 				}else if(pll_current_language() == 'sc') {
 					$cu_link = 'https://translate.itsc.cuhk.edu.hk/uniTS/www.cuhk.edu.hk/chinese/';
+					$art_link = 'https://www.arts.cuhk.edu.hk/web/zh-hans/homepage';
 				}else{
 					$cu_link = 'https://www.cuhk.edu.hk/english/';
+					$art_link = 'https://www.arts.cuhk.edu.hk/';
 				}
 			?>
 			<a href="<?php echo $cu_link; ?>" target="_blank"><img src="<?php bloginfo('template_directory'); ?>/images/cuhk_logo.svg" class="cuhk_logo "></a>
-			<a href="<?php echo esc_url( pll_home_url() ); ?>"><img src="<?php bloginfo('template_directory'); ?>/images/schoolart_logo.svg" class="school_logo "></a>
+
+			<div class="header_small_logo">
+				<a href="<?php echo $art_link; ?>"><img src="<?php bloginfo('template_directory'); ?>/images/faculty_logo.svg" class="faculty_logo "></a>
+				<div class="line"></div>
+				<a href="<?php echo esc_url( pll_home_url() ); ?>"><img src="<?php bloginfo('template_directory'); ?>/images/department_logo.svg" class="department_logo "></a>
+			</div>
+			
 		</div>
 
 		<ul class="header_menu scrollin scrollinbottom">

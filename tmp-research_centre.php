@@ -19,9 +19,9 @@ while (have_posts()) :
 	the_post();
 ?>
 	<?php get_template_part('template-parts/roll-menu'); ?>
+	<img src="<?php echo get_template_directory_uri(); ?>/images/ink_bg6.jpg" class="ink_bg6 scrollin scrollinbottom" alt="Background">
 
 	<div class="section section_content section_intro">
-		<img src="<?php echo get_template_directory_uri(); ?>/images/ink_bg6.jpg" class="ink_bg6 scrollin scrollinbottom" alt="Background">
 
 		<div class="section_center_content small_section_center_content">
 			<h1 class="section_title text1 scrollin scrollinbottom"><?php the_title(); ?></h1>
