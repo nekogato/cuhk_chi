@@ -69,7 +69,7 @@ if (pll_current_language() == 'sc') {
 			<a href="<?php echo $cu_link; ?>" target="_blank"><img src="<?php bloginfo('template_directory'); ?>/images/cuhk_logo.svg" class="cuhk_logo "></a>
 
 			<div class="header_small_logo">
-				<a href="<?php echo $art_link; ?>"><img src="<?php bloginfo('template_directory'); ?>/images/faculty_logo.svg" class="faculty_logo "></a>
+				<a href="<?php echo $art_link; ?>" target="_blank"><img src="<?php bloginfo('template_directory'); ?>/images/faculty_logo.svg" class="faculty_logo "></a>
 				<div class="line"></div>
 				<a href="<?php echo esc_url( pll_home_url() ); ?>"><img src="<?php bloginfo('template_directory'); ?>/images/department_logo.svg" class="department_logo "></a>
 			</div>
