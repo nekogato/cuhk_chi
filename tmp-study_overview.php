@@ -348,7 +348,7 @@ while (have_posts()) :
 											<div class="photo_wrapper">
 												<?php
 												$image_id = $testimonial['popup_image']['ID'];
-												$image_src = wp_get_attachment_image_src($image_id, 'm');
+												$image_src = wp_get_attachment_image_src($image_id, 'l');
 												$image_url = $image_src ? $image_src[0] : $testimonial['popup_image']['url'];
 												?>
 												<img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($testimonial['popup_image']['alt']); ?>">
