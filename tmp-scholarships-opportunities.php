@@ -150,7 +150,7 @@ if (have_posts()) :
 										<?php if ($story['photo']) :
 											// Get 392x202 thumbnail size for swiper slides
 											$image_id = $story['photo']['ID'];
-											$thumbnail = wp_get_attachment_image_src($image_id, '392x202');
+											$thumbnail = wp_get_attachment_image_src($image_id, 'm');
 											$thumbnail_url = $thumbnail ? $thumbnail[0] : $story['photo']['url'];
 											$alt_text = get_post_meta($image_id, '_wp_attachment_image_alt', true) ?: $story['photo']['alt'];
 										?>

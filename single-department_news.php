@@ -52,7 +52,7 @@ get_header(); ?>
 										<div class="photo_wrapper">
 											<div class="photo">
 												<?php if (has_post_thumbnail()) : ?>
-													<?php the_post_thumbnail('department-news-featured'); ?>
+													<?php the_post_thumbnail('m'); ?>
 												<?php endif; ?>
 											</div>
 											<?php if (has_post_thumbnail()) :
@@ -106,7 +106,7 @@ get_header(); ?>
 													<?php foreach ($gallery_images as $image) : ?>
 														<div class="swiper-slide">
 															<a href="<?php echo esc_url($image['url']); ?>" data-fancybox="gallery" data-caption="<?php echo esc_attr($image['caption']); ?>" class="photo">
-																<img src="<?php echo esc_url($image['sizes']['department-news-featured']); ?>" alt="<?php echo esc_attr($image['alt']); ?>">
+																<img src="<?php echo esc_url($image['sizes']['m']); ?>" alt="<?php echo esc_attr($image['alt']); ?>">
 															</a>
 															<?php if ($image['caption']) : ?>
 																<div class="caption"><?php echo esc_html($image['caption']); ?></div>

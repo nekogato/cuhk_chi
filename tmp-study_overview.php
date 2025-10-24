@@ -57,7 +57,7 @@ while (have_posts()) :
 										<?php if ($hero_banner['hero_image']) : ?>
 											<?php
 											$image_id = $hero_banner['hero_image']['ID'];
-											$image_src = wp_get_attachment_image_src($image_id, '929x465');
+											$image_src = wp_get_attachment_image_src($image_id, 'm');
 											$image_url = $image_src ? $image_src[0] : $hero_banner['hero_image']['url'];
 											?>
 											<img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($hero_banner['hero_image']['alt']); ?>">
@@ -152,7 +152,7 @@ while (have_posts()) :
 												<div class="thumb thumb2">
 													<?php
 													$image_id = $testimonial['photo']['ID'];
-													$image_src = wp_get_attachment_image_src($image_id, '929x465');
+													$image_src = wp_get_attachment_image_src($image_id, 'm');
 													$image_url = $image_src ? $image_src[0] : $testimonial['photo']['url'];
 													?>
 													<img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($testimonial['photo']['alt']); ?>">
@@ -215,7 +215,7 @@ while (have_posts()) :
 														<div class="thumb">
 															<?php
 															$image_id = $experience['image']['ID'];
-															$image_src = wp_get_attachment_image_src($image_id, '287x155');
+															$image_src = wp_get_attachment_image_src($image_id, 's');
 															$image_url = $image_src ? $image_src[0] : $experience['image']['url'];
 															?>
 															<img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($experience['image']['alt']); ?>">
@@ -348,7 +348,7 @@ while (have_posts()) :
 											<div class="photo_wrapper">
 												<?php
 												$image_id = $testimonial['popup_image']['ID'];
-												$image_src = wp_get_attachment_image_src($image_id, 'testimonial-popup');
+												$image_src = wp_get_attachment_image_src($image_id, 'm');
 												$image_url = $image_src ? $image_src[0] : $testimonial['popup_image']['url'];
 												?>
 												<img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($testimonial['popup_image']['alt']); ?>">
