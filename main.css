@@ -1690,7 +1690,7 @@ ol:not(.free_text ol), ul:not(.free_text ul) {
 		left: 150px;
 	}
 
-	.nottop .header_small_logo{
+	.header_small_logo, .nottop .header_small_logo{
 		top: 13px;
 		height: 20px;
 		left: 150px;
