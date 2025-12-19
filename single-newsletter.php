@@ -35,7 +35,7 @@ while (have_posts()) :
                                                 <tbody>
                                                     <tr>
                                                         <td align="left" valign="top" style="width:360px; text-align:left;" class="enews_head">
-                                                            <img src="<?php echo get_template_directory_uri(); ?>/images/enews_head.png" style="dislay:block;width:360px;height:80px;margin:0px;mso-line-height-rule:at-least;">
+                                                            <img src="<?php echo get_template_directory_uri(); ?>/images/enews_head.png" style="dislay:block;width:475px;height:80px;margin:0px;mso-line-height-rule:at-least;">
                                                         </td>
                                                         <td align="right" valign="top" style="width:200px; text-align: right; font-size: 12px; padding: 20px;">
                                                             <?php
