@@ -4,10 +4,6 @@
  * Template Name: Newsletter
  */
 
-get_header();
-
-echo "test";
-
 $latest = get_posts([
   'post_type'      => 'newsletter',
   'post_status'    => 'publish',
