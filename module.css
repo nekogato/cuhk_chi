@@ -7490,7 +7490,7 @@ body.dragging-scroll {
 }
 
 .newsletter_side_dropdown_wrapper .filter_dropdown_wrapper + .filter_dropdown_wrapper{
-    margin-top: 20px;
+    /* margin-top: 20px; */
 }
 
 .newsletter_side_dropdown_wrapper .filter_dropdown_wrapper{

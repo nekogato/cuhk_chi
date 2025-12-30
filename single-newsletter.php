@@ -362,17 +362,7 @@ endwhile;
 
         var $p = $(this).parents(".filter_dropdown_wrapper")
         $p.find(".filter_dropdown_btn").html(year);
-		if($p.hasClass("active")){
-			$p.removeClass("active").find(".filter_dropdown").show();
-			setTimeout(function(){
-			$p.find(".filter_dropdown").stop().slideUp(function(){doscroll()});
-			},0)
-		}else{
-			$p.addClass("active").find(".filter_dropdown").hide();
-			setTimeout(function(){
-			$p.find(".filter_dropdown").stop().slideDown(function(){doscroll()});
-			},0)
-		}
+		
     })
 
     $(".newsletter_side_dropdown_item .filter_dropdown_wrapper:first-child").show();
