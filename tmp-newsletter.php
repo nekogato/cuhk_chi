@@ -6,6 +6,23 @@
 
 get_header();
 
+
+$latest = get_posts([
+  'post_type'      => 'newsletter',
+  'post_status'    => 'publish',
+  'posts_per_page' => 1,
+  'no_found_rows'  => true,
+]);
+
+if (!empty($latest)) {
+  wp_safe_redirect(get_permalink($latest[0]->ID), 302);
+  exit;
+}
+
+// If there are no published newsletters, fall back somewhere sensible:
+wp_safe_redirect(home_url('/'), 302);
+exit;
+
 // Include roll menu
 get_template_part('template-parts/roll-menu');
 
