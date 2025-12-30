@@ -6,6 +6,7 @@
 
 get_header();
 
+echo "test";
 
 $latest = get_posts([
   'post_type'      => 'newsletter',
