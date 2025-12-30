@@ -327,10 +327,6 @@ while (have_posts()) :
                                         ?>
                                     </div>
                                 </div>
-
-                                <div class="old_newsletter_menu">
-                                    <a href="<?php echo pll_get_page_url("news-and-events/old_newsletter"); ?>" class="old_newsletter_btn text5 line_btn"><?php echo cuhk_multilang_text("系訊存檔","","Newsletter Archive"); ?></a>
-                                </div>
                             </div>
 
                         </div>
