@@ -7404,8 +7404,8 @@ body.dragging-scroll {
 .newsletter_side_title{
     padding: 10px;
     text-align: center;
-    color:#0A2342;
-    /* background-color: #0A2342; */
+    color:#63629B;
+    /* background-color: #63629B; */
     position: relative;
     z-index: 1;
 }
@@ -7421,11 +7421,11 @@ body.dragging-scroll {
   top: 0px;
   width: 100%;
   height: 100%;
-  background: linear-gradient(180deg, rgba(126,204,189,0.5) 0%, rgba(126,204,189,0) 100%);
+  background: linear-gradient(180deg, rgba(239,211,193,1) 0%, rgba(239,211,193,0) 100%);
 }
 
 .recent_newsletter_list{
-    /* border:1px solid #0A2342; */
+    /* border:1px solid #63629B; */
     padding: 15px;
     /* background-color: #fff; */
     border-top:1px solid #fff;
@@ -7438,7 +7438,7 @@ body.dragging-scroll {
 }
 
 .recent_newsletter_list_item a{
-    color:#0A2342;
+    color:#63629B;
 }
 
 .recent_newsletter_list_item a:hover{
@@ -7455,7 +7455,7 @@ body.dragging-scroll {
 
 .newsletter_side_dropdown_wrapper .filter_dropdown_btn{
     /* background-color: #fff;
-    border:1px solid #0A2342; */
+    border:1px solid #63629B; */
 }
 .newsletter_side_dropdown_wrapper .filter_dropdown_btn::after{
     content: "";
@@ -8553,7 +8553,7 @@ body.dragging-scroll {
 
         .newsletter_side_dropdown_wrapper .filter_dropdown_btn{
             background-color: #fff;
-            border:1px solid #0A2342;
+            border:1px solid #63629B;
         }
 
         .newsletter_side_dropdown_wrapper .filter_dropdown{
