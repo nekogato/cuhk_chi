@@ -7464,7 +7464,7 @@ body.dragging-scroll {
     right: 0px;
     margin: auto;
     height: 100%;
-    background: linear-gradient(0deg, rgba(126,204,189,0) 0%, rgba(126,204,189,0.5) 100%);
+    background: linear-gradient(0deg, rgba(239,211,193,0) 0%, rgba(239,211,193,1) 100%);
     pointer-events: none;
     width: auto;
     left: 0px;

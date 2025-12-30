@@ -27,10 +27,10 @@ while (have_posts()) :
                 <div class="newsletter_col_wrapper scrollin scrollinbottom">
                     <div class="newsletter_col newsletter_main col8">
                         <center>
-                            <table width="600" height="100%" align="center" cellspacing="0" cellpadding="0" border="0" style="font-family:'Open Sans','Arial','Verdana',sans-serif;font-size:12px;font-style:normal;font-weight:400;line-height:1.2;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing: grayscale;-moz-font-feature-settings:'liga','kern';border-spacing:0;border-collapse:collapse;padding:0;margin:0 auto;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;width:600px;color:#63629B;background-color:#ffffff;border:1px solid #63629B;">
+                            <table width="600" height="100%" align="center" cellspacing="0" cellpadding="0" border="0" style="font-family:'Open Sans','Arial','Verdana',sans-serif;font-size:12px;font-style:normal;font-weight:400;line-height:1.2;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing: grayscale;-moz-font-feature-settings:'liga','kern';border-spacing:0;border-collapse:collapse;padding:0;margin:0 auto;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;width:600px;color:#4c4846;background-color:#ffffff;border:1px solid #4c4846;">
                                 <tbody>
                                     <tr>
-                                        <td align="left" valign="top" style="border-bottom:1px solid #63629B;">
+                                        <td align="left" valign="top" style="border-bottom:1px solid #4c4846;">
                                             <table width="600" class="enews_head_table" style="border-spacing:0;border-collapse:collapse;padding:0;margin:0 auto;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;width:600px;">
                                                 <tbody>
                                                     <tr>
@@ -45,9 +45,9 @@ while (have_posts()) :
                                                                 foreach ($languages as $lang) {
                                                                     $i++;
                                                                     if($i>1){
-                                                                        echo '| <a href="' . esc_url($lang['url']) . '" class="' . esc_attr($lang['classes']) . '" style="text-decoration: none; color:#63629B;">' . esc_html($lang['name']) . '</a> ';
+                                                                        echo '| <a href="' . esc_url($lang['url']) . '" class="' . esc_attr($lang['classes']) . '" style="text-decoration: none; color:#4c4846;">' . esc_html($lang['name']) . '</a> ';
                                                                     }else{
-                                                                        echo '<a href="' . esc_url($lang['url']) . '" class="' . esc_attr($lang['classes']) . '" style="text-decoration: none; color:#63629B;">' . esc_html($lang['name']) . '</a> ';
+                                                                        echo '<a href="' . esc_url($lang['url']) . '" class="' . esc_attr($lang['classes']) . '" style="text-decoration: none; color:#4c4846;">' . esc_html($lang['name']) . '</a> ';
                                                                     }
                                                                     
                                                                 }
@@ -72,7 +72,7 @@ while (have_posts()) :
                                                     ?>
                                                     <tr>
                                                         <td align="left" valign="top" style="padding:0px">
-                                                            <table width="560" style="border-spacing:0;border-collapse:collapse;padding:0;margin:0 auto;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;width:560px; border-bottom:1px solid #63629B;">
+                                                            <table width="560" style="border-spacing:0;border-collapse:collapse;padding:0;margin:0 auto;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;width:560px; border-bottom:1px solid #4c4846;">
                                                                 <tbody>
                                                                     <tr>
                                                                         <td style="padding:30px 20px 30px 10px; width:350px; vertical-align: top;">
@@ -83,7 +83,7 @@ while (have_posts()) :
                                                                                 <div style="margin-top:15px;"><?php echo $description; ?></div>
                                                                             <?php }; ?>
                                                                             <?php if ( $url ) { ?>
-                                                                                <div style="margin-top:20px;"><a href="<?php echo $url; ?>" style="display:inline-block; background-color:#fff; color:#63629B; border:1px solid #63629B; padding:5px 20px; text-decoration: none;"><?php echo cuhk_multilang_text("閱讀更多", "", "Read more"); ?></a></div>
+                                                                                <div style="margin-top:20px;"><a href="<?php echo $url; ?>" style="display:inline-block; background-color:#fff; color:#4c4846; border:1px solid #4c4846; padding:5px 20px; text-decoration: none;"><?php echo cuhk_multilang_text("閱讀更多", "", "Read more"); ?></a></div>
                                                                             <?php }; ?>
                                                                         </td>
                                                                         <td style="padding:30px 10px 30px 20px; width:150px; vertical-align: top;">
@@ -116,7 +116,7 @@ while (have_posts()) :
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td align="left" valign="top" style="text-align: center; background-color:#63629B; color:#fff;">
+                                        <td align="left" valign="top" style="text-align: center; background-color:#4c4846; color:#fff;">
                                             <table width="600" style="border-spacing:0;border-collapse:collapse;padding:0;margin:0 auto;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;width:600px;">
                                                 <tbody>
                                                     <tr>
