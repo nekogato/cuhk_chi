@@ -120,14 +120,14 @@ while (have_posts()) :
                                             <table width="600" style="border-spacing:0;border-collapse:collapse;padding:0;margin:0 auto;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;width:600px;">
                                                 <tbody>
                                                     <tr>
-                                                        <td  align="center" valign="top" style="-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;width:600px;padding:20px 0px 0 0px; font-size:14px;line-height:20px;">
+                                                        <td  align="center" valign="top" style="-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;width:600px;padding:20px 0px 0 0px; font-size:14px;line-height:20px;color:#ffffff;">
                                                             <a style="text-decoration:none; color:#fff;" href="<?php echo esc_url( home_url('/about/contact-us/') );?>" target="_blank"><?php echo cuhk_multilang_text("聯絡我們","","Contact Us"); ?></a><span style="display: inline-block;  margin-left: 12px; margin-right: 12px;">|</span><a style="text-decoration:none; color:#fff;" href="http://www.cuhk.edu.hk/english/privacy.html" target="_blank"><?php echo cuhk_multilang_text("私隱政策","","Privacy Policy"); ?></a><span style="display: inline-block;  margin-left: 12px; margin-right: 12px;">|</span><a style="text-decoration:none; color:#fff;" href="http://www.cuhk.edu.hk/english/disclaimer.html" target="_blank"><?php echo cuhk_multilang_text("免責聲明","","Disclaimer"); ?></a>
                                                         </td>
 
                                                         
                                                     </tr>
                                                     <tr>
-                                                        <td width="600" align="center" valign="top" style="-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;width:600px;padding:20px 0px;"><?php echo cuhk_multilang_text(date('Y') ."版權所有","","© Copyright ".date('Y')); ?><span style="display: inline-block;  margin-left: 12px; margin-right: 12px;">|</span><?php echo cuhk_multilang_text("香港中文大學中國語言及文學系","","The Chinese University of Hong Kong Department of Chinese Language and Literature"); ?></td>
+                                                        <td width="600" align="center" valign="top" style="-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;width:600px;padding:20px 0px;color:#ffffff;"><?php echo cuhk_multilang_text(date('Y') ."版權所有","","© Copyright ".date('Y')); ?><span style="display: inline-block;  margin-left: 12px; margin-right: 12px;">|</span><?php echo cuhk_multilang_text("香港中文大學中國語言及文學系","","The Chinese University of Hong Kong Department of Chinese Language and Literature"); ?></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
