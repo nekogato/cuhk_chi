@@ -19,7 +19,7 @@ while (have_posts()) :
 ?>
 
     <div class="ink_bg13_wrapper">
-        <img src="<?php echo get_template_directory_uri(); ?>/images/ink_bg13_2.jpg" class="ink_bg13 scrollin scrollinbottom" alt="Background">
+        <img src="<?php echo get_template_directory_uri(); ?>/images/ink_bg13.jpg" class="ink_bg13 scrollin scrollinbottom" alt="Background">
     </div>
 	<div class="section section_content section_newsletter">
 		<div class="section_center_content small_section_center_content">
