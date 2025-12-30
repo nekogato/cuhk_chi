@@ -34,10 +34,10 @@ while (have_posts()) :
                                             <table width="600" class="enews_head_table" style="border-spacing:0;border-collapse:collapse;padding:0;margin:0 auto;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;width:600px;">
                                                 <tbody>
                                                     <tr>
-                                                        <td align="left" valign="top" style="width:475px; text-align:left;" class="enews_head">
-                                                            <img src="<?php echo get_template_directory_uri(); ?>/images/enews_head.png" style="dislay:block;width:475px;height:80px;margin:0px;mso-line-height-rule:at-least;">
+                                                        <td align="left" valign="top" style="width:440px; text-align:left;" class="enews_head">
+                                                            <img src="<?php echo get_template_directory_uri(); ?>/images/enews_head.png" style="dislay:block;width:440px;height:80px;margin:0px;mso-line-height-rule:at-least;">
                                                         </td>
-                                                        <td align="right" valign="top" style="width:85px; text-align: right; font-size: 12px; padding: 20px;">
+                                                        <td align="right" valign="top" style="width:120px; text-align: right; font-size: 12px; padding: 20px;">
                                                             <?php
                                                             if (function_exists('pll_the_languages')) {
                                                                 $i=0;
