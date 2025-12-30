@@ -15,6 +15,8 @@ $latest = get_posts([
   'no_found_rows'  => true,
 ]);
 
+var_dump($latest);
+
 if (!empty($latest)) {
   wp_safe_redirect(get_permalink($latest[0]->ID), 302);
   exit;
