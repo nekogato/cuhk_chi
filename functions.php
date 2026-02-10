@@ -116,6 +116,7 @@ function cuhk_chi_setup()
 	add_image_size('m', 1200, 900);
 	add_image_size('s', 500, 500, array('center', 'center'));
 	add_image_size('xs', 200, 200, array('center', 'center'));
+	add_image_size('newsletter_image', 200, 200);
 }
 add_action('after_setup_theme', 'cuhk_chi_setup');
 

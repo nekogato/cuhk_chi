@@ -27,17 +27,44 @@ while (have_posts()) :
                 <div class="newsletter_col_wrapper scrollin scrollinbottom">
                     <div class="newsletter_col newsletter_main col8">
                         <center>
+                            <?php
+                            // Get all rows once
+                            $rows = get_field('news_row');
+
+                            $preheader = '';
+                            if (!empty($rows) && !empty($rows[0]['title'])) {
+                            // Strip tags just in case title contains <br> etc.
+                            $preheader = trim(wp_strip_all_tags($rows[0]['title']));
+                            }
+
+                            // If you also want to prepend the issue number, if you have it:
+                            $issue_no = $newsletter_number; // or get_field('issue_no') etc.
+                            if ($preheader) {
+                            $preheader = $issue_no . ' ' . $preheader;
+                            }
+                            ?>
+
+                            <!-- Preheader: shows in inbox preview -->
+                            <div style="display:none !important; font-size:1px; line-height:1px; max-height:0; max-width:0; opacity:0; overflow:hidden; mso-hide:all;">
+                                <?php echo esc_html($preheader); ?>
+                            </div>
+
+                            <!-- Spacer to prevent other text bleeding into preview in some clients -->
+                            <div style="display:none !important; max-height:0; overflow:hidden; mso-hide:all;">
+                                &nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;
+                            </div>
+
                             <table width="600" height="100%" align="center" cellspacing="0" cellpadding="0" border="0" style="font-family:'Open Sans','Arial','Verdana',sans-serif;font-size:12px;font-style:normal;font-weight:400;line-height:1.2;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing: grayscale;-moz-font-feature-settings:'liga','kern';border-spacing:0;border-collapse:collapse;padding:0;margin:0 auto;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;width:600px;color:#4c4846;background-color:#ffffff;border:1px solid #4c4846;">
                                 <tbody>
                                     <tr>
                                         <td align="left" valign="top" style="border-bottom:1px solid #4c4846;">
-                                            <table width="600" class="enews_head_table" style="border-spacing:0;border-collapse:collapse;padding:0;margin:0 auto;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;width:600px;">
+                                            <table width="600" class="enews_head_table" style="border-spacing:0;border-collapse:collapse;padding:0;margin-top:0;margin-bottom:0;margin-left:auto;margin-right:auto;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;width:600px;">
                                                 <tbody>
                                                     <tr>
-                                                        <td align="left" valign="top" style="width:440px; text-align:left;" class="enews_head">
-                                                            <img src="<?php echo get_template_directory_uri(); ?>/images/enews_head.png" style="dislay:block;width:440px;height:80px;margin:0px;mso-line-height-rule:at-least;">
+                                                        <td align="left" valign="middle" style="width:440px; text-align:left; vertical-align: middle;" class="enews_head">
+                                                            <img src="<?php echo get_template_directory_uri(); ?>/images/enews_head.png" style="dislay:block;width:440px;height:80px;margin:0px;mso-line-height-rule:at-least;vertical-align: top;">
                                                         </td>
-                                                        <td align="right" valign="top" style="width:120px; text-align: right; font-size: 12px; padding: 20px;">
+                                                        <td align="right" valign="top" style="width:120px; text-align: right;  vertical-align: top; font-size: 12px; padding: 20px;">
                                                             <?php
                                                             if (function_exists('pll_the_languages')) {
                                                                 $i=0;
@@ -45,9 +72,9 @@ while (have_posts()) :
                                                                 foreach ($languages as $lang) {
                                                                     $i++;
                                                                     if($i>1){
-                                                                        echo '| <a href="' . esc_url($lang['url']) . '" class="' . esc_attr($lang['classes']) . '" style="text-decoration: none; color:#4c4846;">' . esc_html($lang['name']) . '</a> ';
+                                                                        echo '| <a href="' . esc_url($lang['url']) . '"  style="text-decoration: none; color:#4c4846;">' . esc_html($lang['name']) . '</a> ';
                                                                     }else{
-                                                                        echo '<a href="' . esc_url($lang['url']) . '" class="' . esc_attr($lang['classes']) . '" style="text-decoration: none; color:#4c4846;">' . esc_html($lang['name']) . '</a> ';
+                                                                        echo '<a href="' . esc_url($lang['url']) . '"  style="text-decoration: none; color:#4c4846;">' . esc_html($lang['name']) . '</a> ';
                                                                     }
                                                                     
                                                                 }
@@ -65,25 +92,25 @@ while (have_posts()) :
                                             while (have_rows('news_row')) : the_row();
                                                 $title = get_sub_field('title');
                                                 $image = get_sub_field('image');
-                                                $displayimageURL = $image["sizes"]["m"];
+                                                $displayimageURL = $image["sizes"]["newsletter_image"];
                                                 $description = get_sub_field('description');
                                                 $url = get_sub_field('url');
                                                 if($title||$image||$description){
                                                     ?>
                                                     <tr>
-                                                        <td align="left" valign="top" style="padding:0px">
-                                                            <table width="560" style="border-spacing:0;border-collapse:collapse;padding:0;margin:0 auto;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;width:560px; border-bottom:1px solid #4c4846;">
+                                                        <td align="center" valign="top" style="padding:0px; text-align: center;">
+                                                            <table width="560" style="border-spacing:0;border-collapse:collapse;padding:0;margin-top:0;margin-bottom:0;margin-left:auto;margin-right:auto;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;width:560px; border-bottom:1px solid #4c4846;">
                                                                 <tbody>
                                                                     <tr>
-                                                                        <td style="padding:30px 20px 30px 10px; width:350px; vertical-align: top;">
+                                                                        <td style="padding:30px 20px 30px 10px; width:350px; vertical-align: top; text-align: left;">
                                                                             <?php if ( $title ) { ?>
-                                                                                <strong style="font-size:16px; font-weight:900;font-family:'Times New Roman',serif;"><?php echo $title; ?></strong>
+                                                                                <div style="font-size:16px; font-weight:900;font-family:'Times New Roman',serif; text-align:left;"><?php echo $title; ?></div>
                                                                             <?php }; ?>
                                                                             <?php if ( $description ) { ?>
-                                                                                <div style="margin-top:15px;"><?php echo $description; ?></div>
+                                                                                <div style="margin-top:15px; font-size:14px;line-height:20px; text-align:justify;"><?php echo $description; ?></div>
                                                                             <?php }; ?>
                                                                             <?php if ( $url ) { ?>
-                                                                                <div style="margin-top:20px;"><a href="<?php echo $url; ?>" style="display:inline-block; background-color:#fff; color:#4c4846; border:1px solid #4c4846; padding:5px 20px; text-decoration: none;"><?php echo cuhk_multilang_text("閱讀更多", "", "Read more"); ?></a></div>
+                                                                                <div style="margin-top:20px; margin-bottom: 1px; font-size:12px;"><a href="<?php echo $url; ?>" style="display:inline-block; background-color:#fff; color:#4c4846; border:1px solid #4c4846; padding:5px 20px; text-decoration: none;" target="_blank"><?php echo cuhk_multilang_text("閱讀更多", "", "Read more"); ?></a></div>
                                                                             <?php }; ?>
                                                                         </td>
                                                                         <td style="padding:30px 10px 30px 20px; width:150px; vertical-align: top;">
@@ -120,14 +147,12 @@ while (have_posts()) :
                                             <table width="600" style="border-spacing:0;border-collapse:collapse;padding:0;margin:0 auto;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;width:600px;">
                                                 <tbody>
                                                     <tr>
-                                                        <td  align="center" valign="top" style="-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;width:600px;padding:20px 0px 0 0px; font-size:14px;line-height:20px;color:#ffffff;">
-                                                            <a style="text-decoration:none; color:#fff;" href="<?php echo esc_url( home_url('/about/contact-us/') );?>" target="_blank"><?php echo cuhk_multilang_text("聯絡我們","","Contact Us"); ?></a><span style="display: inline-block;  margin-left: 12px; margin-right: 12px;">|</span><a style="text-decoration:none; color:#fff;" href="http://www.cuhk.edu.hk/english/privacy.html" target="_blank"><?php echo cuhk_multilang_text("私隱政策","","Privacy Policy"); ?></a><span style="display: inline-block;  margin-left: 12px; margin-right: 12px;">|</span><a style="text-decoration:none; color:#fff;" href="http://www.cuhk.edu.hk/english/disclaimer.html" target="_blank"><?php echo cuhk_multilang_text("免責聲明","","Disclaimer"); ?></a>
+                                                        <td  align="center" valign="top" style="-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;width:600px;padding:20px 0px 0 0px; font-size:14px;line-height:20px;color:#fff;">
+                                                            <a style="text-decoration:none; color:#fff;" href="<?php echo esc_url( home_url('/about/contact-us/') );?>" target="_blank"><?php echo cuhk_multilang_text("聯絡我們","","Contact Us"); ?></a><span style="display: inline-block;">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span><a style="text-decoration:none; color:#fff;" href="http://www.cuhk.edu.hk/english/privacy.html" target="_blank"><?php echo cuhk_multilang_text("私隱政策","","Privacy Policy"); ?></a><span style="display: inline-block;">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span><a style="text-decoration:none; color:#fff;" href="http://www.cuhk.edu.hk/english/disclaimer.html" target="_blank"><?php echo cuhk_multilang_text("免責聲明","","Disclaimer"); ?></a>
                                                         </td>
-
-                                                        
                                                     </tr>
                                                     <tr>
-                                                        <td width="600" align="center" valign="top" style="-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;width:600px;padding:20px 0px;color:#ffffff;"><?php echo cuhk_multilang_text(date('Y') ."版權所有","","© Copyright ".date('Y')); ?><span style="display: inline-block;  margin-left: 12px; margin-right: 12px;">|</span><?php echo cuhk_multilang_text("香港中文大學中國語言及文學系","","The Chinese University of Hong Kong Department of Chinese Language and Literature"); ?></td>
+                                                        <td width="600" align="center" valign="top" style="-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;width:600px;padding:20px 0px; font-size:12px; color:#fff;"><?php echo cuhk_multilang_text(date('Y') ."版權所有","","© Copyright ".date('Y')); ?><span style="display: inline-block;">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span><?php echo cuhk_multilang_text("香港中文大學中國語言及文學系","","The Chinese University of Hong Kong Department of Chinese Language and Literature"); ?></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
