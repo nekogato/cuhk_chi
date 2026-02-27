@@ -1125,10 +1125,10 @@ function init_function(){
 
 	$(".committee_list_slider").each(function(){
 		var $this = $(this);
-		if($this.find(".swiper-slide").length>2){
+		if($this.find(".swiper-slide").length>1){
 			var committee_list_slider = new Swiper($this.find(".swiper-container")[0], {
 				autoplay: false,
-				slidesPerView: 3,
+				slidesPerView: 1,
 				speed: 1600,
 				loop: false,
 				spaceBetween: 30,
