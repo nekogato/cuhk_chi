@@ -50,7 +50,7 @@ get_template_part('template-parts/roll-menu', null, array(
 								if ($gallery_images) :
 									foreach ($gallery_images as $image) :
 										$image_url = $image['sizes']['medium'] ?? $image['url'];
-										$full_image_url = $image['url'];
+										$full_image_url = $image['sizes']['l'] ?? $image['url'];
 										$caption = $image['caption'] ?? get_the_title();
 										$alt_text = $image['alt'] ?? get_the_title();
 								?>

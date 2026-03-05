@@ -147,7 +147,7 @@ if (have_posts()) :
 													<?php if ($album_photos): ?>
 														<?php foreach ($album_photos as $photo): ?>
 															<div class="swiper-slide">
-																<a href="<?php echo esc_url($photo['url']); ?>"
+																<a href="<?php echo esc_url($photo['sizes']['l']); ?>"
 																	data-fancybox="<?php echo esc_attr($gallery_id); ?>"
 																	data-caption="<?php echo esc_attr($album_title); ?>">
 																	<img src="<?php echo esc_url($photo['sizes']['medium']); ?>"

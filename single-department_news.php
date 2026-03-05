@@ -105,7 +105,7 @@ get_header(); ?>
 												<div class="swiper-wrapper">
 													<?php foreach ($gallery_images as $image) : ?>
 														<div class="swiper-slide">
-															<a href="<?php echo esc_url($image['url']); ?>" data-fancybox="gallery" data-caption="<?php echo esc_attr($image['caption']); ?>" class="photo">
+															<a href="<?php echo esc_url($image['sizes']['l']); ?>" data-fancybox="gallery" data-caption="<?php echo esc_attr($image['caption']); ?>" class="photo">
 																<img src="<?php echo esc_url($image['sizes']['m']); ?>" alt="<?php echo esc_attr($image['alt']); ?>">
 															</a>
 															<?php if ($image['caption']) : ?>

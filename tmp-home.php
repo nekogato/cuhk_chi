@@ -80,7 +80,7 @@ get_header(); ?>
 																			<?php echo $slide_content; ?>
 																		<?php endif; ?>
 																		<?php if ($slide_image) : ?>
-																			<p><img src="<?php echo $slide_image['url']; ?>" alt="<?php echo $slide_image['alt']; ?>"></p>
+																			<p><img src="<?php echo $slide_image['sizes']['l']; ?>" alt="<?php echo $slide_image['alt']; ?>"></p>
 																		<?php endif; ?>
 																	</div>
 																	<?php if ($buttons) : ?>
@@ -103,7 +103,7 @@ get_header(); ?>
 															<div class="col_spacing ">
 																<div class="ink_image scrollin scrollinbottom">
 																	<?php if ($slide_ink_image) : ?>
-																		<img src="<?php echo $slide_ink_image['url']; ?>" alt="<?php echo $slide_ink_image['alt']; ?>">
+																		<img src="<?php echo $slide_ink_image['sizes']['l']; ?>" alt="<?php echo $slide_ink_image['alt']; ?>">
 																	<?php else : ?>
 																		<img src="<?php bloginfo('template_directory'); ?>/images/home_slider_ink1.png" alt="<?php echo cuhk_multilang_text("水墨設計", "水墨设计", "Ink Design"); ?>">
 																	<?php endif; ?>
@@ -628,7 +628,7 @@ get_header(); ?>
 													<div class="col_spacing <?php echo $counter === 1 ? 'scrollin scrollinbottom' : ''; ?>">
 														<div class="image_wrapper">
 															<?php if ($image) : ?>
-																<img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>">
+																<img src="<?php echo $image['sizes']['l']; ?>" alt="<?php echo $image['alt']; ?>">
 															<?php endif; ?>
 														</div>
 													</div>

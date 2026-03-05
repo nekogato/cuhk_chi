@@ -49,7 +49,7 @@ if (have_posts()) :
 										<div class="col_spacing">
 											<div class="thumb">
 												<?php if ($image): ?>
-													<img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>">
+													<img src="<?php echo esc_url($image['sizes']['l']); ?>" alt="<?php echo esc_attr($image['alt']); ?>">
 												<?php endif; ?>
 											</div>
 										</div>
@@ -97,7 +97,7 @@ if (have_posts()) :
 								<?php if ($image): ?>
 									<div class="people_detail_photo_wrapper scrollin scrollinbottom">
 										<div class="popup_left_photo">
-											<img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>">
+											<img src="<?php echo esc_url($image['sizes']['l']); ?>" alt="<?php echo esc_attr($image['alt']); ?>">
 										</div>
 									</div>
 								<?php endif; ?>

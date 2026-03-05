@@ -58,7 +58,7 @@ while (have_posts()) :
 											<?php
 											$image_id = $hero_banner['hero_image']['ID'];
 											$image_src = wp_get_attachment_image_src($image_id, 'm');
-											$image_url = $image_src ? $image_src[0] : $hero_banner['hero_image']['url'];
+											$image_url = $image_src ? $image_src[0] : $hero_banner['hero_image']['sizes']['l'];
 											?>
 											<img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($hero_banner['hero_image']['alt']); ?>">
 										<?php endif; ?>
@@ -153,7 +153,7 @@ while (have_posts()) :
 													<?php
 													$image_id = $testimonial['photo']['ID'];
 													$image_src = wp_get_attachment_image_src($image_id, 'm');
-													$image_url = $image_src ? $image_src[0] : $testimonial['photo']['url'];
+													$image_url = $image_src ? $image_src[0] : $testimonial['photo']['sizes']['l'];
 													?>
 													<img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($testimonial['photo']['alt']); ?>">
 												</div>
@@ -216,7 +216,7 @@ while (have_posts()) :
 															<?php
 															$image_id = $experience['image']['ID'];
 															$image_src = wp_get_attachment_image_src($image_id, 's');
-															$image_url = $image_src ? $image_src[0] : $experience['image']['url'];
+															$image_url = $image_src ? $image_src[0] : $experience['image']['sizes']['l'];
 															?>
 															<img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($experience['image']['alt']); ?>">
 														</div>
@@ -225,7 +225,7 @@ while (have_posts()) :
 												<?php if ($experience['gallery']) : ?>
 													<div style="display: none;">
 														<?php foreach ($experience['gallery'] as $gallery_index => $gallery_image) : ?>
-															<a href="<?php echo esc_url($gallery_image['url']); ?>" data-fancybox="gallery<?php echo ($index + 1); ?>" class="fancybox"></a>
+															<a href="<?php echo esc_url($gallery_image['sizes']['l']); ?>" data-fancybox="gallery<?php echo ($index + 1); ?>" class="fancybox"></a>
 														<?php endforeach; ?>
 													</div>
 												<?php endif; ?>
@@ -349,7 +349,7 @@ while (have_posts()) :
 												<?php
 												$image_id = $testimonial['popup_image']['ID'];
 												$image_src = wp_get_attachment_image_src($image_id, 'l');
-												$image_url = $image_src ? $image_src[0] : $testimonial['popup_image']['url'];
+												$image_url = $image_src ? $image_src[0] : $testimonial['popup_image']['sizes']['l'];
 												?>
 												<img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($testimonial['popup_image']['alt']); ?>">
 											</div>

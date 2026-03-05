@@ -433,7 +433,7 @@ function load_more_publications()
 					<div class="thumb">
 						<?php if ($cover_image) : ?>
 							<a href="<?php the_permalink(); ?>">
-								<img src="<?php echo esc_url($cover_image['url']); ?>" alt="<?php echo esc_attr($cover_image['alt']); ?>">
+								<img src="<?php echo esc_url($cover_image['sizes']['l']); ?>" alt="<?php echo esc_attr($cover_image['alt']); ?>">
 							</a>
 						<?php endif; ?>
 					</div>
@@ -1638,7 +1638,7 @@ function filter_publications()
 				'publisher' => $publisher,
 				'publish_year' => $publish_year,
 				'cover_image' => $cover_image ? array(
-					'url' => $cover_image['url'],
+					'url' => $cover_image['sizes']['l'],
 					'alt' => $cover_image['alt'] ?: ''
 				) : null
 			);

@@ -151,7 +151,7 @@ if (have_posts()) :
 											// Get 392x202 thumbnail size for swiper slides
 											$image_id = $story['photo']['ID'];
 											$thumbnail = wp_get_attachment_image_src($image_id, 'm');
-											$thumbnail_url = $thumbnail ? $thumbnail[0] : $story['photo']['url'];
+											$thumbnail_url = $thumbnail ? $thumbnail[0] : $story['photo']['sizes']['l'];
 											$alt_text = get_post_meta($image_id, '_wp_attachment_image_alt', true) ?: $story['photo']['alt'];
 										?>
 											<img src="<?php echo esc_url($thumbnail_url); ?>" alt="<?php echo esc_attr($alt_text); ?>">
@@ -195,7 +195,7 @@ if (have_posts()) :
 										// Get 400px wide thumbnail
 										$image_id = $story['photo']['ID'];
 										$thumbnail = wp_get_attachment_image_src($image_id, array(400, 9999));
-										$thumbnail_url = $thumbnail ? $thumbnail[0] : $story['photo']['url'];
+										$thumbnail_url = $thumbnail ? $thumbnail[0] : $story['photo']['sizes']['l'];
 										$alt_text = get_post_meta($image_id, '_wp_attachment_image_alt', true) ?: $story['photo']['alt'];
 										?>
 										<img src="<?php echo esc_url($thumbnail_url); ?>" alt="<?php echo esc_attr($alt_text); ?>">

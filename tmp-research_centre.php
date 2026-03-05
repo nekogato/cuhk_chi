@@ -51,7 +51,7 @@ while (have_posts()) :
 										<div class="col_spacing">
 											<div class="thumb">
 												<?php if ($logo): ?>
-													<img src="<?php echo esc_url($logo['url']); ?>" alt="<?php echo esc_attr($logo['alt']); ?>">
+													<img src="<?php echo esc_url($logo['sizes']['l']); ?>" alt="<?php echo esc_attr($logo['alt']); ?>">
 												<?php endif; ?>
 											</div>
 										</div>

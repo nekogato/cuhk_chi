@@ -56,8 +56,8 @@ get_header();
 						if ($song_thumb) :
 						?>
 							<div class="song_thumb">
-								<a href="<?php echo esc_url($song_thumb['url']); ?>" data-fancybox>
-									<img src="<?php echo esc_url($song_thumb['sizes']['xl']); ?>" alt="<?php echo esc_attr($song_thumb['alt']); ?>">
+								<a href="<?php echo esc_url($song_thumb['sizes']['xl']); ?>" data-fancybox>
+									<img src="<?php echo esc_url($song_thumb['sizes']['l']); ?>" alt="<?php echo esc_attr($song_thumb['alt']); ?>">
 								</a>
 							</div>
 						<?php endif; ?>
