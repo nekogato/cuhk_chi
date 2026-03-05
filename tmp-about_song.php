@@ -56,7 +56,7 @@ get_header();
 						if ($song_thumb) :
 						?>
 							<div class="song_thumb">
-								<a href="<?php echo esc_url($song_thumb['sizes']['xl']); ?>" data-fancybox>
+								<a href="<?php echo esc_url($song_thumb['sizes']['l']); ?>" data-fancybox>
 									<img src="<?php echo esc_url($song_thumb['sizes']['l']); ?>" alt="<?php echo esc_attr($song_thumb['alt']); ?>">
 								</a>
 							</div>
@@ -179,7 +179,7 @@ get_header();
 										?>
 											<div class="flexible_layout flexible_layout_photo scrollin scrollinbottom">
 												<div class="photo">
-													<img src="<?php echo esc_url($song_img['sizes']['xl']); ?>" alt="<?php echo esc_attr($song_img['alt']); ?>">
+													<img src="<?php echo esc_url($song_img['sizes']['l']); ?>" alt="<?php echo esc_attr($song_img['alt']); ?>">
 												</div>
 												<?php if (get_field('song_img_caption')) : ?>
 													<div class="caption"><?php echo wp_kses_post(get_field('song_img_caption')); ?></div>
