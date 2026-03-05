@@ -57,7 +57,7 @@ while (have_posts()) :
 										<?php if ($hero_banner['hero_image']) : ?>
 											<?php
 											$image_id = $hero_banner['hero_image']['ID'];
-											$image_src = wp_get_attachment_image_src($image_id, 'm');
+											$image_src = wp_get_attachment_image_src($image_id, 'l');
 											$image_url = $image_src ? $image_src[0] : $hero_banner['hero_image']['sizes']['l'];
 											?>
 											<img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($hero_banner['hero_image']['alt']); ?>">
