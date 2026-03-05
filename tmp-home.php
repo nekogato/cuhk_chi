@@ -23,7 +23,7 @@ get_header(); ?>
 				$department_logo = get_field('department_logo');
 				if ($department_logo) {
 				?>
-					<img src="<?php echo $department_logo["url"]; ?>" alt="<?php echo $department_logo['alt']; ?>">
+					<img src="<?php echo $department_logo["sizes"]["l"]; ?>" alt="<?php echo $department_logo['alt']; ?>">
 				<?php
 				};
 				?>

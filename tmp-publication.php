@@ -130,7 +130,7 @@ while (have_posts()) :
 										<div class="publication_thumb">
 											<div class="thumb">
 												<a href="<?php the_permalink(); ?>">
-													<img src="<?php echo $coverimage["url"]; ?>" alt="<?php echo $coverimage["alt"]; ?>">
+													<img src="<?php echo $coverimage["sizes"]["l"]; ?>" alt="<?php echo $coverimage["alt"]; ?>">
 												</a>
 											</div>
 										</div>
