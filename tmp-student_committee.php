@@ -27,11 +27,11 @@ if (have_posts()) :
 					<div class="committee_list free_text">
 						<h3 class="section_smalltitle"><?php echo cuhk_multilang_text("學生組織", "", "Student Associations"); ?></h3>
 						<?php if (have_rows('organization_list')): ?>
-							<ol>
+							<ul>
 								<?php while (have_rows('organization_list')): the_row(); ?>
 									<li><?php the_sub_field('organization_name'); ?></li>
 								<?php endwhile; ?>
-							</ol>
+							</ul>
 						<?php endif; ?>
 					</div>
 
