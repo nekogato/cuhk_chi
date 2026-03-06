@@ -913,25 +913,29 @@ function init_function(){
 			$(this).find(".prev_btn").hide();
 			$(this).find(".dot_wrapper").hide();
 		}
-		var home_about_slider = new Swiper($(this).find(".swiper-container")[0], {
-			autoplay: false,
-			slidesPerView: 1,
-			speed: 1600,
-			loop: true,
-			spaceBetween: 60,
-			pagination: {
-				el: $(this).find('.dot_wrapper'),
-				clickable: true
-			}
-		});
+		if($(this).find(".swiper-slide").length>1){
+			var home_about_slider = new Swiper($(this).find(".swiper-container")[0], {
+				autoplay: {
+					delay: 5000,
+				},
+				slidesPerView: 1,
+				speed: 1600,
+				loop: true,
+				spaceBetween: 60,
+				pagination: {
+					el: $(this).find('.dot_wrapper'),
+					clickable: true
+				}
+			});
 
-		$(this).find(".next_btn").click(function(){
-			home_about_slider.slideNext()
-		})
+			$(this).find(".next_btn").click(function(){
+				home_about_slider.slideNext()
+			})
 
-		$(this).find(".prev_btn").click(function(){
-			home_about_slider.slidePrev()
-		})
+			$(this).find(".prev_btn").click(function(){
+				home_about_slider.slidePrev()
+			})
+		}
 	});
 
 	// $(".home_news_section").each(function(){

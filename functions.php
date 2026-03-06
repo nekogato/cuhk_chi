@@ -1751,6 +1751,7 @@ add_filter('manage_news_posts_columns', function ($columns) {
 
 add_filter('manage_event_posts_columns', function ($columns) {
 	$columns['start_date'] = 'Start Date';
+	$columns['end_date'] = 'End Date';
 	return $columns;
 });
 
@@ -1774,6 +1775,10 @@ add_action('manage_event_posts_custom_column', function ($column, $post_id) {
 		$value = get_field('start_date', $post_id);
 		echo esc_html($value);
 	}
+	if ($column === 'end_date') {
+		$value = get_field('end_date', $post_id);
+		echo esc_html($value);
+	}
 }, 10, 2);
 
 // 3. Make the columns sortable
@@ -1789,6 +1794,7 @@ add_filter('manage_edit-news_sortable_columns', function ($columns) {
 
 add_filter('manage_edit-event_sortable_columns', function ($columns) {
 	$columns['start_date'] = 'start_date';
+	$columns['end_date'] = 'end_date';
 	return $columns;
 });
 
@@ -3098,7 +3104,7 @@ function load_all_events_with_year()
         pll_switch_language($lang);
     }
 
-	$today    = date('Y-m-d');
+	$today    = date('Ymd');
 
 	// Build query args
 	$coming_args = array(
@@ -3112,32 +3118,16 @@ function load_all_events_with_year()
 		'meta_query'     => array(
 			'relation' => 'OR', // 使用 OR 關聯，滿足任一條件
 			array(
-				// 條件 1: 未來的 event（start_date >= 今天）
-				'key'     => 'start_date',
-				'value'   => $today,
-				'compare' => '>=',
-				'type'    => 'DATE'
-			),
-			array(
-				// 條件 2: 尚未結束的 event（end_date >= 今天，且 end_date 存在）
 				'key'     => 'end_date',
 				'value'   => $today,
 				'compare' => '>=',
-				'type'    => 'DATE'
+				'type'    => 'NUMERIC'
 			),
 			array(
-				// 條件 3: 只有 start_date 的單天 event（end_date 不存在或為空）
-				'relation' => 'AND',
-				array(
-					'key'     => 'start_date',
-					'value'   => $today,
-					'compare' => '>=',
-					'type'    => 'DATE'
-				),
-				array(
-					'key'     => 'end_date',
-					'compare' => 'NOT EXISTS', // 處理 end_date 為空的情況
-				)
+				'key'     => 'start_date',
+				'value'   => $today,
+				'compare' => '>=',
+				'type'    => 'NUMERIC'
 			)
 		),
 		'lang' => $lang ?: (function_exists('pll_current_language') ? pll_current_language('slug') : ''),
@@ -3190,30 +3180,33 @@ function load_all_events_with_year()
 		'orderby'        => 'meta_value',
 		'order'          => 'DESC',
 		'post_status' => 'publish',
+		'meta_query'     => array(
+			'relation' => 'AND',
+			array(
+				'key'     => 'start_date',
+				'value'   => $today,
+				'compare' => '<',
+				'type'    => 'NUMERIC'
+			),
+			array(
+				'key'     => 'end_date',
+				'value'   => $today,
+				'compare' => '<',
+				'type'    => 'NUMERIC'
+			)
+		),
 		'lang' => $lang ?: (function_exists('pll_current_language') ? pll_current_language('slug') : ''),
 	);
 
-	$meta_query = array();
+	// your existing OR block already in $coming_args['meta_query']
+	$base_or_old = $old_args['meta_query'];
 
-		$meta_query[] = array(
-			'key'     => 'start_date',
-			'value'   => $today,
-			'compare' => '<',
-			'type'    => 'DATE',
+	// only merge if we actually have a year clause
+	if (!empty($year_clause)) {
+		$old_args['meta_query'] = array_merge(
+			array('relation' => 'AND', $base_or_old), // keep the original OR group
+			$year_clause                  // add the year filter(s)
 		);
-
-	if ($year) {
-		$meta_query[] = array(
-			'key'     => 'start_date',
-			'value'   => array($year . '0101', $year . '1231'),
-			'compare' => 'BETWEEN',
-			'type'    => 'NUMERIC',
-		);
-	}
-
-	// Apply meta_query only if needed
-	if (!empty($meta_query)) {
-		$old_args['meta_query'] = array_merge(array('relation' => 'AND'), $meta_query);
 	}
 
 	// Add taxonomy query if category is not 'all'
@@ -3226,6 +3219,7 @@ function load_all_events_with_year()
 			)
 		);
 	}
+
 
 	// Run both queries
 	$coming_query = new WP_Query($coming_args);
@@ -3306,3 +3300,36 @@ function load_all_events_with_year()
 }
 add_action('wp_ajax_load_all_events_with_year', 'load_all_events_with_year');
 add_action('wp_ajax_nopriv_load_all_events_with_year', 'load_all_events_with_year');
+
+add_filter('wp_insert_post_data', function ($data, $postarr) {
+    if (!is_admin() || empty($data['post_type'])) return $data;
+    if (!function_exists('pll_get_post')) return $data;
+
+    // Respect a manually entered slug
+    if (!empty($postarr['post_name'])) return $data;
+
+    $source_id = 0;
+
+    // First save often still has from_post in the request
+    if (!empty($_REQUEST['from_post'])) {
+        $source_id = absint($_REQUEST['from_post']);
+    }
+    // Fallback: parse it from the hidden referrer field
+    elseif (!empty($_POST['_wp_http_referer'])) {
+        $query = wp_parse_url(wp_unslash($_POST['_wp_http_referer']), PHP_URL_QUERY);
+        parse_str((string) $query, $args);
+        if (!empty($args['from_post'])) {
+            $source_id = absint($args['from_post']);
+        }
+    }
+
+    if (!$source_id) return $data;
+
+    $source = get_post($source_id);
+    if (!$source || $source->post_type !== $data['post_type'] || empty($source->post_name)) {
+        return $data;
+    }
+
+    $data['post_name'] = $source->post_name;
+    return $data;
+}, 10, 2);
