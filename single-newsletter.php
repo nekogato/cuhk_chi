@@ -66,17 +66,46 @@ while (have_posts()) :
                                                         </td>
                                                         <td align="right" valign="top" style="width:120px; text-align: right;  vertical-align: top; font-size: 12px; padding: 20px;">
                                                             <?php
-                                                            if (function_exists('pll_the_languages')) {
-                                                                $i=0;
+                                                            if ( function_exists('pll_the_languages') && function_exists('pll_get_post') ) {
+                                                                $current_post_id = get_queried_object_id();
                                                                 $languages = pll_the_languages(['raw' => 1, 'echo' => 0]);
-                                                                foreach ($languages as $lang) {
-                                                                    $i++;
-                                                                    if($i>1){
-                                                                        echo '| <a href="' . esc_url($lang['url']) . '"  style="text-decoration: none; color:#4c4846;">' . esc_html($lang['name']) . '</a> ';
-                                                                    }else{
-                                                                        echo '<a href="' . esc_url($lang['url']) . '"  style="text-decoration: none; color:#4c4846;">' . esc_html($lang['name']) . '</a> ';
+                                                                $i = 0;
+
+                                                                foreach ( $languages as $lang ) {
+                                                                    $translated_post_id = pll_get_post($current_post_id, $lang['slug']);
+
+                                                                    if ( ! $translated_post_id ) {
+                                                                        continue;
                                                                     }
-                                                                    
+
+                                                                    $translated_post = get_post($translated_post_id);
+                                                                    if ( ! $translated_post ) {
+                                                                        continue;
+                                                                    }
+
+                                                                    $url = '';
+
+                                                                    if ( $translated_post->post_status === 'publish' ) {
+                                                                        $url = get_permalink($translated_post_id);
+                                                                    } else {
+                                                                        $sample = get_sample_permalink($translated_post_id);
+                                                                        if ( ! empty($sample[0]) ) {
+                                                                            $url = str_replace('%pagename%', $sample[1], $sample[0]);
+                                                                        }
+                                                                    }
+
+                                                                    if ( ! $url ) {
+                                                                        continue;
+                                                                    }
+
+                                                                    $i++;
+                                                                    if ( $i > 1 ) {
+                                                                        echo '| ';
+                                                                    }
+
+                                                                    echo '<a href="' . esc_url($url) . '" style="text-decoration: none; color:#4c4846;">' 
+                                                                        . esc_html($lang['name']) . 
+                                                                        '</a> ';
                                                                 }
                                                             }
                                                             ?><br>
