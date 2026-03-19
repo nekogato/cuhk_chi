@@ -3304,85 +3304,40 @@ add_action('wp_ajax_nopriv_load_all_events_with_year', 'load_all_events_with_yea
 add_action('save_post', 'my_copy_translation_slug_from_source', 20, 3);
 
 function my_copy_translation_slug_from_source($post_id, $post, $update) {
-    // Admin only
-    if (!is_admin()) {
-        return;
-    }
+    if (!is_admin()) return;
+    if (!$post || empty($post->post_type)) return;
+    if (wp_is_post_autosave($post_id) || wp_is_post_revision($post_id)) return;
+    if (!function_exists('pll_get_post')) return;
 
-    // Skip autosaves / revisions
-    if (wp_is_post_autosave($post_id) || wp_is_post_revision($post_id)) {
-        return;
-    }
-
-    // Polylang required
-    if (!function_exists('pll_get_post')) {
-        return;
-    }
-
-    // Avoid running on unsupported post objects
-    if (!$post || empty($post->post_type)) {
-        return;
-    }
-
-    // Optional: skip nav menu items, attachments, etc.
-    if (in_array($post->post_type, array('attachment', 'revision', 'nav_menu_item'), true)) {
-        return;
-    }
-
-    // Respect a manually entered slug:
-    // if user submitted post_name in the request, do nothing.
     if (isset($_POST['post_name']) && $_POST['post_name'] !== '') {
         return;
     }
 
     $source_id = 0;
 
-    // Best source: Polylang "copy from" request param
     if (!empty($_REQUEST['from_post'])) {
         $source_id = absint($_REQUEST['from_post']);
-    }
-
-    // Fallback: hidden referrer sometimes still contains it
-    if (!$source_id && !empty($_POST['_wp_http_referer'])) {
+    } elseif (!empty($_POST['_wp_http_referer'])) {
         $query = wp_parse_url(wp_unslash($_POST['_wp_http_referer']), PHP_URL_QUERY);
         parse_str((string) $query, $args);
-
         if (!empty($args['from_post'])) {
             $source_id = absint($args['from_post']);
         }
     }
 
-    if (!$source_id) {
-        return;
-    }
+    if (!$source_id) return;
 
     $source = get_post($source_id);
+    if (!$source || $source->post_type !== $post->post_type) return;
 
-    if (
-        !$source ||
-        $source->post_type !== $post->post_type ||
-        empty($source->post_name)
-    ) {
+    $source_slug = !empty($source->post_name)
+        ? $source->post_name
+        : sanitize_title($source->post_title);
+
+    if (empty($source_slug) || $post->post_name === $source_slug) {
         return;
     }
 
-    /*
-     * Only replace the slug if current slug looks auto-generated.
-     * This avoids overwriting intentional manual edits.
-     *
-     * Examples:
-     * - source slug: hello-world
-     * - new post slug may be hello-world-2 or based on title
-     */
-    $current_slug = (string) $post->post_name;
-    $source_slug  = (string) $source->post_name;
-
-    // If already correct, nothing to do
-    if ($current_slug === $source_slug) {
-        return;
-    }
-
-    // Remove this hook temporarily to avoid recursion
     remove_action('save_post', 'my_copy_translation_slug_from_source', 20);
 
     wp_update_post(array(
