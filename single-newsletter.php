@@ -67,8 +67,28 @@ while (have_posts()) :
                                                         <td align="right" valign="top" style="width:120px; text-align: right;  vertical-align: top; font-size: 12px; padding: 20px;">
                                                             <?php
                                                             if ( function_exists('pll_the_languages') && function_exists('pll_get_post') ) {
+
+                                                                // Load get_sample_permalink() on frontend if needed
+                                                                if ( ! function_exists('get_sample_permalink') ) {
+                                                                    require_once ABSPATH . 'wp-admin/includes/post.php';
+                                                                }
+
                                                                 $current_post_id = get_queried_object_id();
-                                                                $languages = pll_the_languages(['raw' => 1, 'echo' => 0]);
+
+                                                                // If preview is pointing to a revision/autosave, use the parent post ID
+                                                                if ( $revision_parent_id = wp_is_post_revision($current_post_id) ) {
+                                                                    $current_post_id = $revision_parent_id;
+                                                                }
+
+                                                                if ( ! $current_post_id ) {
+                                                                    return;
+                                                                }
+
+                                                                $languages = pll_the_languages([
+                                                                    'raw'  => 1,
+                                                                    'echo' => 0,
+                                                                ]);
+
                                                                 $i = 0;
 
                                                                 foreach ( $languages as $lang ) {
@@ -89,12 +109,13 @@ while (have_posts()) :
                                                                         $url = get_permalink($translated_post_id);
                                                                     } else {
                                                                         $sample = get_sample_permalink($translated_post_id);
-                                                                        if ( ! empty($sample[0]) ) {
+
+                                                                        if ( ! empty($sample[0]) && ! empty($sample[1]) ) {
                                                                             $url = str_replace('%pagename%', $sample[1], $sample[0]);
                                                                         }
                                                                     }
 
-                                                                    if ( ! $url ) {
+                                                                    if ( empty($url) ) {
                                                                         continue;
                                                                     }
 
@@ -103,12 +124,13 @@ while (have_posts()) :
                                                                         echo '| ';
                                                                     }
 
-                                                                    echo '<a href="' . esc_url($url) . '" style="text-decoration: none; color:#4c4846;">' 
-                                                                        . esc_html($lang['name']) . 
-                                                                        '</a> ';
+                                                                    echo '<a href="' . esc_url($url) . '" style="text-decoration: none; color:#4c4846;">'
+                                                                        . esc_html($lang['name'])
+                                                                        . '</a> ';
                                                                 }
                                                             }
-                                                            ?><br>
+                                                            ?>
+                                                            <br>
                                                             <div style="margin-top: 4px;"><?php echo $newsletter_number; ?></div>	
                                                         </td>
                                                     </tr>
